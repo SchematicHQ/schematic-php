@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * SyncCompanyPlansResponseData Class Doc Comment
  *
  * @category Class
  * @description The created resource
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class SyncCompanyPlansResponseData implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'plans' => '\OpenAPI\Client\Model\CompanyPlanResponseData[]'
+        'plans' => '\Schematic\Model\CompanyPlanResponseData[]'
     ];
 
     /**
@@ -296,7 +296,7 @@ class SyncCompanyPlansResponseData implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets plans
      *
-     * @return \OpenAPI\Client\Model\CompanyPlanResponseData[]
+     * @return \Schematic\Model\CompanyPlanResponseData[]
      */
     public function getPlans()
     {
@@ -306,7 +306,7 @@ class SyncCompanyPlansResponseData implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets plans
      *
-     * @param \OpenAPI\Client\Model\CompanyPlanResponseData[] $plans plans
+     * @param \Schematic\Model\CompanyPlanResponseData[] $plans plans
      *
      * @return self
      */

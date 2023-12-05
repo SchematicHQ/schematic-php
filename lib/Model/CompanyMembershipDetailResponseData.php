@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CompanyMembershipDetailResponseData Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class CompanyMembershipDetailResponseData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'company' => '\OpenAPI\Client\Model\CompanyResponseData',
+        'company' => '\Schematic\Model\CompanyResponseData',
         'company_id' => 'string',
         'created_at' => '\DateTime',
         'id' => 'string',
@@ -342,7 +342,7 @@ class CompanyMembershipDetailResponseData implements ModelInterface, ArrayAccess
     /**
      * Gets company
      *
-     * @return \OpenAPI\Client\Model\CompanyResponseData|null
+     * @return \Schematic\Model\CompanyResponseData|null
      */
     public function getCompany()
     {
@@ -352,7 +352,7 @@ class CompanyMembershipDetailResponseData implements ModelInterface, ArrayAccess
     /**
      * Sets company
      *
-     * @param \OpenAPI\Client\Model\CompanyResponseData|null $company company
+     * @param \Schematic\Model\CompanyResponseData|null $company company
      *
      * @return self
      */

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**condition_groups** | [**\OpenAPI\Client\Model\RuleConditionGroupDetailResponseData[]**](RuleConditionGroupDetailResponseData.md) |  |
-**conditions** | [**\OpenAPI\Client\Model\RuleConditionResponseData[]**](RuleConditionResponseData.md) |  |
+**condition_groups** | [**\Schematic\Model\RuleConditionGroupDetailResponseData[]**](RuleConditionGroupDetailResponseData.md) |  |
+**conditions** | [**\Schematic\Model\RuleConditionResponseData[]**](RuleConditionResponseData.md) |  |
 **created_at** | **\DateTime** |  |
 **environment_id** | **string** |  |
 **flag_id** | **string** |  | [optional]

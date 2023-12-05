@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**company** | [**\OpenAPI\Client\Model\EventBodyIdentifyCompany**](EventBodyIdentifyCompany.md) |  | [optional]
+**company** | [**\Schematic\Model\EventBodyIdentifyCompany**](EventBodyIdentifyCompany.md) |  | [optional]
 **event** | **string** | The name of the type of track event |
 **traits** | **object** | A map of user trait names to trait values | [optional]
 **user** | **object** | Key-value pairs to identify user associated with track event | [optional]

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**api_keys** | [**\OpenAPI\Client\Model\ApiKeyResponseData[]**](ApiKeyResponseData.md) |  |
+**api_keys** | [**\Schematic\Model\ApiKeyResponseData[]**](ApiKeyResponseData.md) |  |
 **created_at** | **\DateTime** |  |
 **environment_type** | **string** |  |
 **id** | **string** |  |

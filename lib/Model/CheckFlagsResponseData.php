@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CheckFlagsResponseData Class Doc Comment
  *
  * @category Class
  * @description The created resource
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'flags' => '\OpenAPI\Client\Model\CheckFlagOutputWithFlagKey[]'
+        'flags' => '\Schematic\Model\CheckFlagOutputWithFlagKey[]'
     ];
 
     /**
@@ -296,7 +296,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets flags
      *
-     * @return \OpenAPI\Client\Model\CheckFlagOutputWithFlagKey[]
+     * @return \Schematic\Model\CheckFlagOutputWithFlagKey[]
      */
     public function getFlags()
     {
@@ -306,7 +306,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets flags
      *
-     * @param \OpenAPI\Client\Model\CheckFlagOutputWithFlagKey[] $flags flags
+     * @param \Schematic\Model\CheckFlagOutputWithFlagKey[] $flags flags
      *
      * @return self
      */

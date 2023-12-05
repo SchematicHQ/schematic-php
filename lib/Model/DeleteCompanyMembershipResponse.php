@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * DeleteCompanyMembershipResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class DeleteCompanyMembershipResponse implements ModelInterface, ArrayAccess, \J
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\DeleteResponse',
+        'data' => '\Schematic\Model\DeleteResponse',
         'params' => 'object'
     ];
 
@@ -305,7 +305,7 @@ class DeleteCompanyMembershipResponse implements ModelInterface, ArrayAccess, \J
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\DeleteResponse
+     * @return \Schematic\Model\DeleteResponse
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class DeleteCompanyMembershipResponse implements ModelInterface, ArrayAccess, \J
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\DeleteResponse $data data
+     * @param \Schematic\Model\DeleteResponse $data data
      *
      * @return self
      */

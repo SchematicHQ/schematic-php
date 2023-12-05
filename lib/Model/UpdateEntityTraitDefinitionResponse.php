@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * UpdateEntityTraitDefinitionResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class UpdateEntityTraitDefinitionResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\EntityTraitDefinitionResponseData',
+        'data' => '\Schematic\Model\EntityTraitDefinitionResponseData',
         'params' => 'object'
     ];
 
@@ -305,7 +305,7 @@ class UpdateEntityTraitDefinitionResponse implements ModelInterface, ArrayAccess
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\EntityTraitDefinitionResponseData
+     * @return \Schematic\Model\EntityTraitDefinitionResponseData
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class UpdateEntityTraitDefinitionResponse implements ModelInterface, ArrayAccess
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\EntityTraitDefinitionResponseData $data data
+     * @param \Schematic\Model\EntityTraitDefinitionResponseData $data data
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListFlagsResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListFlagsResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\FlagResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListFlagsParams'
+        'data' => '\Schematic\Model\FlagResponseData[]',
+        'params' => '\Schematic\Model\ListFlagsParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListFlagsResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\FlagResponseData[]
+     * @return \Schematic\Model\FlagResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListFlagsResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\FlagResponseData[] $data The returned resources
+     * @param \Schematic\Model\FlagResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListFlagsResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListFlagsParams
+     * @return \Schematic\Model\ListFlagsParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListFlagsResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListFlagsParams $params params
+     * @param \Schematic\Model\ListFlagsParams $params params
      *
      * @return self
      */

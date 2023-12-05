@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**\OpenAPI\Client\Model\EnvironmentResponseData**](EnvironmentResponseData.md) |  |
+**data** | [**\Schematic\Model\EnvironmentResponseData**](EnvironmentResponseData.md) |  |
 **params** | **object** | Input parameters |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

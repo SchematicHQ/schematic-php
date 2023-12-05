@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListPlansResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\PlanResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListPlansParams'
+        'data' => '\Schematic\Model\PlanResponseData[]',
+        'params' => '\Schematic\Model\ListPlansParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\PlanResponseData[]
+     * @return \Schematic\Model\PlanResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\PlanResponseData[] $data The returned resources
+     * @param \Schematic\Model\PlanResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListPlansParams
+     * @return \Schematic\Model\ListPlansParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListPlansParams $params params
+     * @param \Schematic\Model\ListPlansParams $params params
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * RuleDetailResponseData Class Doc Comment
  *
  * @category Class
  * @description The updated resource
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'condition_groups' => '\OpenAPI\Client\Model\RuleConditionGroupDetailResponseData[]',
-        'conditions' => '\OpenAPI\Client\Model\RuleConditionResponseData[]',
+        'condition_groups' => '\Schematic\Model\RuleConditionGroupDetailResponseData[]',
+        'conditions' => '\Schematic\Model\RuleConditionResponseData[]',
         'created_at' => '\DateTime',
         'environment_id' => 'string',
         'flag_id' => 'string',
@@ -397,7 +397,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets condition_groups
      *
-     * @return \OpenAPI\Client\Model\RuleConditionGroupDetailResponseData[]
+     * @return \Schematic\Model\RuleConditionGroupDetailResponseData[]
      */
     public function getConditionGroups()
     {
@@ -407,7 +407,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets condition_groups
      *
-     * @param \OpenAPI\Client\Model\RuleConditionGroupDetailResponseData[] $condition_groups condition_groups
+     * @param \Schematic\Model\RuleConditionGroupDetailResponseData[] $condition_groups condition_groups
      *
      * @return self
      */
@@ -424,7 +424,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets conditions
      *
-     * @return \OpenAPI\Client\Model\RuleConditionResponseData[]
+     * @return \Schematic\Model\RuleConditionResponseData[]
      */
     public function getConditions()
     {
@@ -434,7 +434,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets conditions
      *
-     * @param \OpenAPI\Client\Model\RuleConditionResponseData[] $conditions conditions
+     * @param \Schematic\Model\RuleConditionResponseData[] $conditions conditions
      *
      * @return self
      */

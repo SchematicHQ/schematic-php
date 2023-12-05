@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CountFlagValuesResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class CountFlagValuesResponse implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\CountResponse',
-        'params' => '\OpenAPI\Client\Model\CountFlagValuesParams'
+        'data' => '\Schematic\Model\CountResponse',
+        'params' => '\Schematic\Model\CountFlagValuesParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class CountFlagValuesResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\CountResponse
+     * @return \Schematic\Model\CountResponse
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class CountFlagValuesResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\CountResponse $data data
+     * @param \Schematic\Model\CountResponse $data data
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class CountFlagValuesResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\CountFlagValuesParams
+     * @return \Schematic\Model\CountFlagValuesParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class CountFlagValuesResponse implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\CountFlagValuesParams $params params
+     * @param \Schematic\Model\CountFlagValuesParams $params params
      *
      * @return self
      */

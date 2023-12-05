@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * SyncCompanyPlansRequestBody Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class SyncCompanyPlansRequestBody implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'company_id' => 'string',
         'plan_id' => 'string',
-        'plans' => '\OpenAPI\Client\Model\CreateOrUpdateCompanyPlanRequestBody[]'
+        'plans' => '\Schematic\Model\CreateOrUpdateCompanyPlanRequestBody[]'
     ];
 
     /**
@@ -377,7 +377,7 @@ class SyncCompanyPlansRequestBody implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets plans
      *
-     * @return \OpenAPI\Client\Model\CreateOrUpdateCompanyPlanRequestBody[]
+     * @return \Schematic\Model\CreateOrUpdateCompanyPlanRequestBody[]
      */
     public function getPlans()
     {
@@ -387,7 +387,7 @@ class SyncCompanyPlansRequestBody implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets plans
      *
-     * @param \OpenAPI\Client\Model\CreateOrUpdateCompanyPlanRequestBody[] $plans plans
+     * @param \Schematic\Model\CreateOrUpdateCompanyPlanRequestBody[] $plans plans
      *
      * @return self
      */

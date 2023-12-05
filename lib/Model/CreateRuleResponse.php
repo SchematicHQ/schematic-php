@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CreateRuleResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class CreateRuleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\RuleDetailResponseData',
+        'data' => '\Schematic\Model\RuleDetailResponseData',
         'params' => 'object'
     ];
 
@@ -305,7 +305,7 @@ class CreateRuleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\RuleDetailResponseData
+     * @return \Schematic\Model\RuleDetailResponseData
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class CreateRuleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\RuleDetailResponseData $data data
+     * @param \Schematic\Model\RuleDetailResponseData $data data
      *
      * @return self
      */

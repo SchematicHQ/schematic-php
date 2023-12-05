@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * EnvironmentDetailResponseData Class Doc Comment
  *
  * @category Class
  * @description The created resource
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'api_keys' => '\OpenAPI\Client\Model\ApiKeyResponseData[]',
+        'api_keys' => '\Schematic\Model\ApiKeyResponseData[]',
         'created_at' => '\DateTime',
         'environment_type' => 'string',
         'id' => 'string',
@@ -346,7 +346,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets api_keys
      *
-     * @return \OpenAPI\Client\Model\ApiKeyResponseData[]
+     * @return \Schematic\Model\ApiKeyResponseData[]
      */
     public function getApiKeys()
     {
@@ -356,7 +356,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets api_keys
      *
-     * @param \OpenAPI\Client\Model\ApiKeyResponseData[] $api_keys api_keys
+     * @param \Schematic\Model\ApiKeyResponseData[] $api_keys api_keys
      *
      * @return self
      */

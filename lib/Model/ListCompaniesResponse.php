@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListCompaniesResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListCompaniesResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\CompanyResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListCompaniesParams'
+        'data' => '\Schematic\Model\CompanyResponseData[]',
+        'params' => '\Schematic\Model\ListCompaniesParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListCompaniesResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\CompanyResponseData[]
+     * @return \Schematic\Model\CompanyResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListCompaniesResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\CompanyResponseData[] $data The returned resources
+     * @param \Schematic\Model\CompanyResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListCompaniesResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListCompaniesParams
+     * @return \Schematic\Model\ListCompaniesParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListCompaniesResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListCompaniesParams $params params
+     * @param \Schematic\Model\ListCompaniesParams $params params
      *
      * @return self
      */

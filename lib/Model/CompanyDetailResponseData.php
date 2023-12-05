@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CompanyDetailResponseData Class Doc Comment
  *
  * @category Class
- * @description The returned resource
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +60,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'created_at' => '\DateTime',
         'environment_id' => 'string',
         'id' => 'string',
-        'keys' => '\OpenAPI\Client\Model\EntityKeyResponseData[]',
+        'keys' => '\Schematic\Model\EntityKeyResponseData[]',
         'last_seen_at' => '\DateTime',
         'name' => 'string',
         'traits' => 'object',
@@ -441,7 +440,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets keys
      *
-     * @return \OpenAPI\Client\Model\EntityKeyResponseData[]
+     * @return \Schematic\Model\EntityKeyResponseData[]
      */
     public function getKeys()
     {
@@ -451,7 +450,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets keys
      *
-     * @param \OpenAPI\Client\Model\EntityKeyResponseData[] $keys keys
+     * @param \Schematic\Model\EntityKeyResponseData[] $keys keys
      *
      * @return self
      */

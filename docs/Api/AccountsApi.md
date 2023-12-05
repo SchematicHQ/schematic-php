@@ -1,4 +1,4 @@
-# OpenAPI\Client\AccountsApi
+# Schematic\AccountsApi
 
 All URIs are relative to https://api.schematichq.com, except if the operation defines another base path.
 
@@ -18,7 +18,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `countApiKeys()`
 
 ```php
-countApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\CountApiKeysResponse
+countApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir): \Schematic\Model\CountApiKeysResponse
 ```
 
 Count api keys
@@ -31,12 +31,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -72,7 +72,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CountApiKeysResponse**](../Model/CountApiKeysResponse.md)
+[**\Schematic\Model\CountApiKeysResponse**](../Model/CountApiKeysResponse.md)
 
 ### Authorization
 
@@ -90,7 +90,7 @@ try {
 ## `createApiKey()`
 
 ```php
-createApiKey($create_api_key_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateApiKeyResponse
+createApiKey($create_api_key_request_body, $x_schematic_environment_id): \Schematic\Model\CreateApiKeyResponse
 ```
 
 Create api key
@@ -103,18 +103,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$create_api_key_request_body = new \OpenAPI\Client\Model\CreateApiKeyRequestBody(); // \OpenAPI\Client\Model\CreateApiKeyRequestBody
+$create_api_key_request_body = new \Schematic\Model\CreateApiKeyRequestBody(); // \Schematic\Model\CreateApiKeyRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
@@ -129,12 +129,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_api_key_request_body** | [**\OpenAPI\Client\Model\CreateApiKeyRequestBody**](../Model/CreateApiKeyRequestBody.md)|  | |
+| **create_api_key_request_body** | [**\Schematic\Model\CreateApiKeyRequestBody**](../Model/CreateApiKeyRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateApiKeyResponse**](../Model/CreateApiKeyResponse.md)
+[**\Schematic\Model\CreateApiKeyResponse**](../Model/CreateApiKeyResponse.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ try {
 ## `createEnvironment()`
 
 ```php
-createEnvironment($create_environment_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateEnvironmentResponse
+createEnvironment($create_environment_request_body, $x_schematic_environment_id): \Schematic\Model\CreateEnvironmentResponse
 ```
 
 Create environment
@@ -165,18 +165,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$create_environment_request_body = new \OpenAPI\Client\Model\CreateEnvironmentRequestBody(); // \OpenAPI\Client\Model\CreateEnvironmentRequestBody
+$create_environment_request_body = new \Schematic\Model\CreateEnvironmentRequestBody(); // \Schematic\Model\CreateEnvironmentRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
@@ -191,12 +191,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_environment_request_body** | [**\OpenAPI\Client\Model\CreateEnvironmentRequestBody**](../Model/CreateEnvironmentRequestBody.md)|  | |
+| **create_environment_request_body** | [**\Schematic\Model\CreateEnvironmentRequestBody**](../Model/CreateEnvironmentRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateEnvironmentResponse**](../Model/CreateEnvironmentResponse.md)
+[**\Schematic\Model\CreateEnvironmentResponse**](../Model/CreateEnvironmentResponse.md)
 
 ### Authorization
 
@@ -214,7 +214,7 @@ try {
 ## `deleteApiKey()`
 
 ```php
-deleteApiKey($api_key_id, $x_schematic_environment_id): \OpenAPI\Client\Model\DeleteApiKeyResponse
+deleteApiKey($api_key_id, $x_schematic_environment_id): \Schematic\Model\DeleteApiKeyResponse
 ```
 
 Delete api key
@@ -227,12 +227,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -258,7 +258,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteApiKeyResponse**](../Model/DeleteApiKeyResponse.md)
+[**\Schematic\Model\DeleteApiKeyResponse**](../Model/DeleteApiKeyResponse.md)
 
 ### Authorization
 
@@ -276,7 +276,7 @@ try {
 ## `deleteEnvironment()`
 
 ```php
-deleteEnvironment($environment_id, $x_schematic_environment_id): \OpenAPI\Client\Model\DeleteEnvironmentResponse
+deleteEnvironment($environment_id, $x_schematic_environment_id): \Schematic\Model\DeleteEnvironmentResponse
 ```
 
 Delete environment
@@ -289,12 +289,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -320,7 +320,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteEnvironmentResponse**](../Model/DeleteEnvironmentResponse.md)
+[**\Schematic\Model\DeleteEnvironmentResponse**](../Model/DeleteEnvironmentResponse.md)
 
 ### Authorization
 
@@ -338,7 +338,7 @@ try {
 ## `getApiKey()`
 
 ```php
-getApiKey($api_key_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetApiKeyResponse
+getApiKey($api_key_id, $x_schematic_environment_id): \Schematic\Model\GetApiKeyResponse
 ```
 
 Get api key
@@ -351,12 +351,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -382,7 +382,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetApiKeyResponse**](../Model/GetApiKeyResponse.md)
+[**\Schematic\Model\GetApiKeyResponse**](../Model/GetApiKeyResponse.md)
 
 ### Authorization
 
@@ -400,7 +400,7 @@ try {
 ## `listApiKeys()`
 
 ```php
-listApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListApiKeysResponse
+listApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir): \Schematic\Model\ListApiKeysResponse
 ```
 
 List api keys
@@ -413,12 +413,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -454,7 +454,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListApiKeysResponse**](../Model/ListApiKeysResponse.md)
+[**\Schematic\Model\ListApiKeysResponse**](../Model/ListApiKeysResponse.md)
 
 ### Authorization
 
@@ -472,7 +472,7 @@ try {
 ## `updateApiKey()`
 
 ```php
-updateApiKey($api_key_id, $update_api_key_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\UpdateApiKeyResponse
+updateApiKey($api_key_id, $update_api_key_request_body, $x_schematic_environment_id): \Schematic\Model\UpdateApiKeyResponse
 ```
 
 Update api key
@@ -485,19 +485,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $api_key_id = 'api_key_id_example'; // string | api_key_id
-$update_api_key_request_body = new \OpenAPI\Client\Model\UpdateApiKeyRequestBody(); // \OpenAPI\Client\Model\UpdateApiKeyRequestBody
+$update_api_key_request_body = new \Schematic\Model\UpdateApiKeyRequestBody(); // \Schematic\Model\UpdateApiKeyRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
@@ -513,12 +513,12 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **api_key_id** | **string**| api_key_id | |
-| **update_api_key_request_body** | [**\OpenAPI\Client\Model\UpdateApiKeyRequestBody**](../Model/UpdateApiKeyRequestBody.md)|  | |
+| **update_api_key_request_body** | [**\Schematic\Model\UpdateApiKeyRequestBody**](../Model/UpdateApiKeyRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UpdateApiKeyResponse**](../Model/UpdateApiKeyResponse.md)
+[**\Schematic\Model\UpdateApiKeyResponse**](../Model/UpdateApiKeyResponse.md)
 
 ### Authorization
 
@@ -536,7 +536,7 @@ try {
 ## `updateEnvironment()`
 
 ```php
-updateEnvironment($environment_id, $update_environment_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\UpdateEnvironmentResponse
+updateEnvironment($environment_id, $update_environment_request_body, $x_schematic_environment_id): \Schematic\Model\UpdateEnvironmentResponse
 ```
 
 Update environment
@@ -549,19 +549,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
 $environment_id = 'environment_id_example'; // string | environment_id
-$update_environment_request_body = new \OpenAPI\Client\Model\UpdateEnvironmentRequestBody(); // \OpenAPI\Client\Model\UpdateEnvironmentRequestBody
+$update_environment_request_body = new \Schematic\Model\UpdateEnvironmentRequestBody(); // \Schematic\Model\UpdateEnvironmentRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
@@ -577,12 +577,12 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **environment_id** | **string**| environment_id | |
-| **update_environment_request_body** | [**\OpenAPI\Client\Model\UpdateEnvironmentRequestBody**](../Model/UpdateEnvironmentRequestBody.md)|  | |
+| **update_environment_request_body** | [**\Schematic\Model\UpdateEnvironmentRequestBody**](../Model/UpdateEnvironmentRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UpdateEnvironmentResponse**](../Model/UpdateEnvironmentResponse.md)
+[**\Schematic\Model\UpdateEnvironmentResponse**](../Model/UpdateEnvironmentResponse.md)
 
 ### Authorization
 

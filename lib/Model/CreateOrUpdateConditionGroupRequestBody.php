@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CreateOrUpdateConditionGroupRequestBody Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class CreateOrUpdateConditionGroupRequestBody implements ModelInterface, ArrayAc
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conditions' => '\OpenAPI\Client\Model\CreateOrUpdateConditionRequestBody[]',
+        'conditions' => '\Schematic\Model\CreateOrUpdateConditionRequestBody[]',
         'flag_id' => 'string',
         'id' => 'string',
         'plan_id' => 'string'
@@ -316,7 +316,7 @@ class CreateOrUpdateConditionGroupRequestBody implements ModelInterface, ArrayAc
     /**
      * Gets conditions
      *
-     * @return \OpenAPI\Client\Model\CreateOrUpdateConditionRequestBody[]
+     * @return \Schematic\Model\CreateOrUpdateConditionRequestBody[]
      */
     public function getConditions()
     {
@@ -326,7 +326,7 @@ class CreateOrUpdateConditionGroupRequestBody implements ModelInterface, ArrayAc
     /**
      * Sets conditions
      *
-     * @param \OpenAPI\Client\Model\CreateOrUpdateConditionRequestBody[] $conditions conditions
+     * @param \Schematic\Model\CreateOrUpdateConditionRequestBody[] $conditions conditions
      *
      * @return self
      */

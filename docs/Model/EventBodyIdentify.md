@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**company** | [**\OpenAPI\Client\Model\EventBodyIdentifyCompany**](EventBodyIdentifyCompany.md) |  | [optional]
+**company** | [**\Schematic\Model\EventBodyIdentifyCompany**](EventBodyIdentifyCompany.md) |  | [optional]
 **keys** | **object** | Key-value pairs to identify the user |
 **name** | **string** | The display name of the user being identified; required only if it is a new user | [optional]
 **traits** | **object** | A map of user trait names to trait values | [optional]

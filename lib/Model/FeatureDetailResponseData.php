@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * FeatureDetailResponseData Class Doc Comment
  *
  * @category Class
  * @description The updated resource
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,9 +61,9 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'created_at' => '\DateTime',
         'description' => 'string',
         'event_subtype' => 'string',
-        'event_summary' => '\OpenAPI\Client\Model\EventSummaryResponseData',
+        'event_summary' => '\Schematic\Model\EventSummaryResponseData',
         'feature_type' => 'string',
-        'flags' => '\OpenAPI\Client\Model\FlagDetailResponseData[]',
+        'flags' => '\Schematic\Model\FlagDetailResponseData[]',
         'id' => 'string',
         'lifecycle_phase' => 'string',
         'name' => 'string',
@@ -472,7 +472,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets event_summary
      *
-     * @return \OpenAPI\Client\Model\EventSummaryResponseData|null
+     * @return \Schematic\Model\EventSummaryResponseData|null
      */
     public function getEventSummary()
     {
@@ -482,7 +482,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets event_summary
      *
-     * @param \OpenAPI\Client\Model\EventSummaryResponseData|null $event_summary event_summary
+     * @param \Schematic\Model\EventSummaryResponseData|null $event_summary event_summary
      *
      * @return self
      */
@@ -526,7 +526,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets flags
      *
-     * @return \OpenAPI\Client\Model\FlagDetailResponseData[]
+     * @return \Schematic\Model\FlagDetailResponseData[]
      */
     public function getFlags()
     {
@@ -536,7 +536,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets flags
      *
-     * @param \OpenAPI\Client\Model\FlagDetailResponseData[] $flags flags
+     * @param \Schematic\Model\FlagDetailResponseData[] $flags flags
      *
      * @return self
      */

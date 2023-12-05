@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CreateEventRequestBody Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'body' => '\OpenAPI\Client\Model\EventBody',
+        'body' => '\Schematic\Model\EventBody',
         'event_type' => 'string',
         'sent_at' => '\DateTime'
     ];
@@ -309,7 +309,7 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets body
      *
-     * @return \OpenAPI\Client\Model\EventBody|null
+     * @return \Schematic\Model\EventBody|null
      */
     public function getBody()
     {
@@ -319,7 +319,7 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets body
      *
-     * @param \OpenAPI\Client\Model\EventBody|null $body body
+     * @param \Schematic\Model\EventBody|null $body body
      *
      * @return self
      */

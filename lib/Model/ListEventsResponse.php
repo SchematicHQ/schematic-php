@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListEventsResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\EventResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListEventsParams'
+        'data' => '\Schematic\Model\EventResponseData[]',
+        'params' => '\Schematic\Model\ListEventsParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\EventResponseData[]
+     * @return \Schematic\Model\EventResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\EventResponseData[] $data The returned resources
+     * @param \Schematic\Model\EventResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListEventsParams
+     * @return \Schematic\Model\ListEventsParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListEventsParams $params params
+     * @param \Schematic\Model\ListEventsParams $params params
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * UserDetailResponseData Class Doc Comment
  *
  * @category Class
- * @description The returned resource
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,11 +57,11 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'company_memberships' => '\OpenAPI\Client\Model\CompanyMembershipDetailResponseData[]',
+        'company_memberships' => '\Schematic\Model\CompanyMembershipDetailResponseData[]',
         'created_at' => '\DateTime',
         'environment_id' => 'string',
         'id' => 'string',
-        'keys' => '\OpenAPI\Client\Model\EntityKeyResponseData[]',
+        'keys' => '\Schematic\Model\EntityKeyResponseData[]',
         'last_seen_at' => '\DateTime',
         'name' => 'string',
         'traits' => 'object',
@@ -370,7 +369,7 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets company_memberships
      *
-     * @return \OpenAPI\Client\Model\CompanyMembershipDetailResponseData[]
+     * @return \Schematic\Model\CompanyMembershipDetailResponseData[]
      */
     public function getCompanyMemberships()
     {
@@ -380,7 +379,7 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets company_memberships
      *
-     * @param \OpenAPI\Client\Model\CompanyMembershipDetailResponseData[] $company_memberships company_memberships
+     * @param \Schematic\Model\CompanyMembershipDetailResponseData[] $company_memberships company_memberships
      *
      * @return self
      */
@@ -478,7 +477,7 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets keys
      *
-     * @return \OpenAPI\Client\Model\EntityKeyResponseData[]
+     * @return \Schematic\Model\EntityKeyResponseData[]
      */
     public function getKeys()
     {
@@ -488,7 +487,7 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets keys
      *
-     * @param \OpenAPI\Client\Model\EntityKeyResponseData[] $keys keys
+     * @param \Schematic\Model\EntityKeyResponseData[] $keys keys
      *
      * @return self
      */

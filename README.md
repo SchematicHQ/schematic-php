@@ -50,12 +50,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\AccountsApi(
+$apiInstance = new Schematic\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -120,9 +120,11 @@ Class | Method | HTTP request | Description
 *FeaturesApi* | [**createRule**](docs/Api/FeaturesApi.md#createrule) | **POST** /rules | Create rule
 *FeaturesApi* | [**deleteFeature**](docs/Api/FeaturesApi.md#deletefeature) | **DELETE** /features/{feature_id} | Delete feature
 *FeaturesApi* | [**deleteFlag**](docs/Api/FeaturesApi.md#deleteflag) | **DELETE** /flags/{flag_id} | Delete flag
+*FeaturesApi* | [**getCompaniesAudience**](docs/Api/FeaturesApi.md#getcompaniesaudience) | **POST** /audience/get-companies | Get Companies audience
 *FeaturesApi* | [**getFeature**](docs/Api/FeaturesApi.md#getfeature) | **GET** /features/{feature_id} | Get feature
 *FeaturesApi* | [**getFlag**](docs/Api/FeaturesApi.md#getflag) | **GET** /flags/{flag_id} | Get flag
 *FeaturesApi* | [**getRule**](docs/Api/FeaturesApi.md#getrule) | **GET** /rules/{rule_id} | Get rule
+*FeaturesApi* | [**getUsersAudience**](docs/Api/FeaturesApi.md#getusersaudience) | **POST** /audience/get-users | Get Users audience
 *FeaturesApi* | [**latestFlagChecks**](docs/Api/FeaturesApi.md#latestflagchecks) | **GET** /flag-checks/latest | Latest flag checks
 *FeaturesApi* | [**listFeatures**](docs/Api/FeaturesApi.md#listfeatures) | **GET** /features | List features
 *FeaturesApi* | [**listFlagChecks**](docs/Api/FeaturesApi.md#listflagchecks) | **GET** /flag-checks | List flag checks
@@ -145,6 +147,7 @@ Class | Method | HTTP request | Description
 - [ApiError](docs/Model/ApiError.md)
 - [ApiKeyCreateResponseData](docs/Model/ApiKeyCreateResponseData.md)
 - [ApiKeyResponseData](docs/Model/ApiKeyResponseData.md)
+- [AudienceRequestBody](docs/Model/AudienceRequestBody.md)
 - [BillingPeriodResponseData](docs/Model/BillingPeriodResponseData.md)
 - [CheckFlagOutputWithFlagKey](docs/Model/CheckFlagOutputWithFlagKey.md)
 - [CheckFlagRequestBody](docs/Model/CheckFlagRequestBody.md)
@@ -212,6 +215,7 @@ Class | Method | HTTP request | Description
 - [FlagDetailResponseData](docs/Model/FlagDetailResponseData.md)
 - [FlagResponseData](docs/Model/FlagResponseData.md)
 - [GetApiKeyResponse](docs/Model/GetApiKeyResponse.md)
+- [GetCompaniesAudienceResponse](docs/Model/GetCompaniesAudienceResponse.md)
 - [GetCompanyResponse](docs/Model/GetCompanyResponse.md)
 - [GetEventResponse](docs/Model/GetEventResponse.md)
 - [GetEventTypeResponse](docs/Model/GetEventTypeResponse.md)
@@ -221,6 +225,7 @@ Class | Method | HTTP request | Description
 - [GetPlanResponse](docs/Model/GetPlanResponse.md)
 - [GetRuleResponse](docs/Model/GetRuleResponse.md)
 - [GetUserResponse](docs/Model/GetUserResponse.md)
+- [GetUsersAudienceResponse](docs/Model/GetUsersAudienceResponse.md)
 - [LatestFlagChecksParams](docs/Model/LatestFlagChecksParams.md)
 - [LatestFlagChecksResponse](docs/Model/LatestFlagChecksResponse.md)
 - [ListApiKeysParams](docs/Model/ListApiKeysParams.md)
@@ -250,6 +255,7 @@ Class | Method | HTTP request | Description
 - [ListUsersParams](docs/Model/ListUsersParams.md)
 - [ListUsersResponse](docs/Model/ListUsersResponse.md)
 - [MetricCountsHourlyResponseData](docs/Model/MetricCountsHourlyResponseData.md)
+- [PaginationFilter](docs/Model/PaginationFilter.md)
 - [PlanResponseData](docs/Model/PlanResponseData.md)
 - [RuleConditionGroupDetailResponseData](docs/Model/RuleConditionGroupDetailResponseData.md)
 - [RuleConditionGroupResponseData](docs/Model/RuleConditionGroupResponseData.md)

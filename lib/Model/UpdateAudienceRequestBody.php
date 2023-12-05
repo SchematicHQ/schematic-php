@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * UpdateAudienceRequestBody Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'condition_groups' => '\OpenAPI\Client\Model\CreateOrUpdateConditionGroupRequestBody[]',
-        'conditions' => '\OpenAPI\Client\Model\CreateOrUpdateConditionRequestBody[]'
+        'condition_groups' => '\Schematic\Model\CreateOrUpdateConditionGroupRequestBody[]',
+        'conditions' => '\Schematic\Model\CreateOrUpdateConditionRequestBody[]'
     ];
 
     /**
@@ -305,7 +305,7 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets condition_groups
      *
-     * @return \OpenAPI\Client\Model\CreateOrUpdateConditionGroupRequestBody[]
+     * @return \Schematic\Model\CreateOrUpdateConditionGroupRequestBody[]
      */
     public function getConditionGroups()
     {
@@ -315,7 +315,7 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets condition_groups
      *
-     * @param \OpenAPI\Client\Model\CreateOrUpdateConditionGroupRequestBody[] $condition_groups condition_groups
+     * @param \Schematic\Model\CreateOrUpdateConditionGroupRequestBody[] $condition_groups condition_groups
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets conditions
      *
-     * @return \OpenAPI\Client\Model\CreateOrUpdateConditionRequestBody[]
+     * @return \Schematic\Model\CreateOrUpdateConditionRequestBody[]
      */
     public function getConditions()
     {
@@ -342,7 +342,7 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets conditions
      *
-     * @param \OpenAPI\Client\Model\CreateOrUpdateConditionRequestBody[] $conditions conditions
+     * @param \Schematic\Model\CreateOrUpdateConditionRequestBody[] $conditions conditions
      *
      * @return self
      */

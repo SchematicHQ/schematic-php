@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**company_memberships** | [**\OpenAPI\Client\Model\CompanyMembershipDetailResponseData[]**](CompanyMembershipDetailResponseData.md) |  |
+**company_memberships** | [**\Schematic\Model\CompanyMembershipDetailResponseData[]**](CompanyMembershipDetailResponseData.md) |  |
 **created_at** | **\DateTime** |  |
 **environment_id** | **string** |  |
 **id** | **string** |  |
-**keys** | [**\OpenAPI\Client\Model\EntityKeyResponseData[]**](EntityKeyResponseData.md) |  |
+**keys** | [**\Schematic\Model\EntityKeyResponseData[]**](EntityKeyResponseData.md) |  |
 **last_seen_at** | **\DateTime** |  | [optional]
 **name** | **string** |  |
 **traits** | **object** | A map of trait names to trait values | [optional]

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * UpdateEnvironmentResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class UpdateEnvironmentResponse implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\EnvironmentResponseData',
+        'data' => '\Schematic\Model\EnvironmentResponseData',
         'params' => 'object'
     ];
 
@@ -305,7 +305,7 @@ class UpdateEnvironmentResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\EnvironmentResponseData
+     * @return \Schematic\Model\EnvironmentResponseData
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class UpdateEnvironmentResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\EnvironmentResponseData $data data
+     * @param \Schematic\Model\EnvironmentResponseData $data data
      *
      * @return self
      */

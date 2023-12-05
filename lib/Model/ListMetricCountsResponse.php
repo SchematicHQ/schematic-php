@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListMetricCountsResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListMetricCountsResponse implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\MetricCountsHourlyResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListMetricCountsParams'
+        'data' => '\Schematic\Model\MetricCountsHourlyResponseData[]',
+        'params' => '\Schematic\Model\ListMetricCountsParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListMetricCountsResponse implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\MetricCountsHourlyResponseData[]
+     * @return \Schematic\Model\MetricCountsHourlyResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListMetricCountsResponse implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\MetricCountsHourlyResponseData[] $data The returned resources
+     * @param \Schematic\Model\MetricCountsHourlyResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListMetricCountsResponse implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListMetricCountsParams
+     * @return \Schematic\Model\ListMetricCountsParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListMetricCountsResponse implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListMetricCountsParams $params params
+     * @param \Schematic\Model\ListMetricCountsParams $params params
      *
      * @return self
      */

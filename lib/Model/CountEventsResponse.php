@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CountEventsResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class CountEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\CountResponse',
-        'params' => '\OpenAPI\Client\Model\CountEventsParams'
+        'data' => '\Schematic\Model\CountResponse',
+        'params' => '\Schematic\Model\CountEventsParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class CountEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\CountResponse
+     * @return \Schematic\Model\CountResponse
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class CountEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\CountResponse $data data
+     * @param \Schematic\Model\CountResponse $data data
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class CountEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\CountEventsParams
+     * @return \Schematic\Model\CountEventsParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class CountEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\CountEventsParams $params params
+     * @param \Schematic\Model\CountEventsParams $params params
      *
      * @return self
      */

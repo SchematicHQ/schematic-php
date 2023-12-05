@@ -10,6 +10,6 @@ Name | Type | Description | Notes
 **flag_type** | **string** |  |
 **key** | **string** |  |
 **name** | **string** |  |
-**rules** | [**\OpenAPI\Client\Model\CreateOrUpdateRuleRequestBody[]**](CreateOrUpdateRuleRequestBody.md) |  |
+**rules** | [**\Schematic\Model\CreateOrUpdateRuleRequestBody[]**](CreateOrUpdateRuleRequestBody.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

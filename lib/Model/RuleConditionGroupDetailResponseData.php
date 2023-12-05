@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * RuleConditionGroupDetailResponseData Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class RuleConditionGroupDetailResponseData implements ModelInterface, ArrayAcces
       * @var string[]
       */
     protected static $openAPITypes = [
-        'conditions' => '\OpenAPI\Client\Model\RuleConditionResponseData[]',
+        'conditions' => '\Schematic\Model\RuleConditionResponseData[]',
         'created_at' => '\DateTime',
         'environment_id' => 'string',
         'flag_id' => 'string',
@@ -359,7 +359,7 @@ class RuleConditionGroupDetailResponseData implements ModelInterface, ArrayAcces
     /**
      * Gets conditions
      *
-     * @return \OpenAPI\Client\Model\RuleConditionResponseData[]
+     * @return \Schematic\Model\RuleConditionResponseData[]
      */
     public function getConditions()
     {
@@ -369,7 +369,7 @@ class RuleConditionGroupDetailResponseData implements ModelInterface, ArrayAcces
     /**
      * Sets conditions
      *
-     * @param \OpenAPI\Client\Model\RuleConditionResponseData[] $conditions conditions
+     * @param \Schematic\Model\RuleConditionResponseData[] $conditions conditions
      *
      * @return self
      */

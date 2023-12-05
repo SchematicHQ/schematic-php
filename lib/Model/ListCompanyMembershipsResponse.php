@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListCompanyMembershipsResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListCompanyMembershipsResponse implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\CompanyMembershipDetailResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListCompanyMembershipsParams'
+        'data' => '\Schematic\Model\CompanyMembershipDetailResponseData[]',
+        'params' => '\Schematic\Model\ListCompanyMembershipsParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListCompanyMembershipsResponse implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\CompanyMembershipDetailResponseData[]
+     * @return \Schematic\Model\CompanyMembershipDetailResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListCompanyMembershipsResponse implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\CompanyMembershipDetailResponseData[] $data The returned resources
+     * @param \Schematic\Model\CompanyMembershipDetailResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListCompanyMembershipsResponse implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListCompanyMembershipsParams
+     * @return \Schematic\Model\ListCompanyMembershipsParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListCompanyMembershipsResponse implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListCompanyMembershipsParams $params params
+     * @param \Schematic\Model\ListCompanyMembershipsParams $params params
      *
      * @return self
      */

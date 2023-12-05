@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**company** | [**\OpenAPI\Client\Model\CompanyResponseData**](CompanyResponseData.md) |  | [optional]
+**company** | [**\Schematic\Model\CompanyResponseData**](CompanyResponseData.md) |  | [optional]
 **company_id** | **string** |  |
 **created_at** | **\DateTime** |  |
 **id** | **string** |  |

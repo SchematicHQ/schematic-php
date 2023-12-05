@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **description** | **string** |  |
 **event_subtype** | **string** |  | [optional]
 **feature_type** | **string** |  |
-**flag** | [**\OpenAPI\Client\Model\CreateOrUpdateFlagRequestBody**](CreateOrUpdateFlagRequestBody.md) |  | [optional]
+**flag** | [**\Schematic\Model\CreateOrUpdateFlagRequestBody**](CreateOrUpdateFlagRequestBody.md) |  | [optional]
 **lifecycle_phase** | **string** |  | [optional]
 **name** | **string** |  |
 **skip_webhooks** | **bool** |  | [optional]

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListFlagChecksResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListFlagChecksResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\FlagCheckLogResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListFlagChecksParams'
+        'data' => '\Schematic\Model\FlagCheckLogResponseData[]',
+        'params' => '\Schematic\Model\ListFlagChecksParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListFlagChecksResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\FlagCheckLogResponseData[]
+     * @return \Schematic\Model\FlagCheckLogResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListFlagChecksResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\FlagCheckLogResponseData[] $data The returned resources
+     * @param \Schematic\Model\FlagCheckLogResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListFlagChecksResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListFlagChecksParams
+     * @return \Schematic\Model\ListFlagChecksParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListFlagChecksResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListFlagChecksParams $params params
+     * @param \Schematic\Model\ListFlagChecksParams $params params
      *
      * @return self
      */

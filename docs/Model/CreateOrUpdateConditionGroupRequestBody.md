@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**conditions** | [**\OpenAPI\Client\Model\CreateOrUpdateConditionRequestBody[]**](CreateOrUpdateConditionRequestBody.md) |  |
+**conditions** | [**\Schematic\Model\CreateOrUpdateConditionRequestBody[]**](CreateOrUpdateConditionRequestBody.md) |  |
 **flag_id** | **string** |  | [optional]
 **id** | **string** |  | [optional]
 **plan_id** | **string** |  | [optional]

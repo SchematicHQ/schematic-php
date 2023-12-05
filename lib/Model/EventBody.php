@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * EventBody Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'company' => '\OpenAPI\Client\Model\EventBodyIdentifyCompany',
+        'company' => '\Schematic\Model\EventBodyIdentifyCompany',
         'event' => 'string',
         'traits' => 'object',
         'user' => 'object',
@@ -333,7 +333,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets company
      *
-     * @return \OpenAPI\Client\Model\EventBodyIdentifyCompany|null
+     * @return \Schematic\Model\EventBodyIdentifyCompany|null
      */
     public function getCompany()
     {
@@ -343,7 +343,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets company
      *
-     * @param \OpenAPI\Client\Model\EventBodyIdentifyCompany|null $company company
+     * @param \Schematic\Model\EventBodyIdentifyCompany|null $company company
      *
      * @return self
      */

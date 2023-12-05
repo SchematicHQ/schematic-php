@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListFeaturesResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListFeaturesResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\FeatureResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListFeaturesParams'
+        'data' => '\Schematic\Model\FeatureResponseData[]',
+        'params' => '\Schematic\Model\ListFeaturesParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListFeaturesResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\FeatureResponseData[]
+     * @return \Schematic\Model\FeatureResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListFeaturesResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\FeatureResponseData[] $data The returned resources
+     * @param \Schematic\Model\FeatureResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListFeaturesResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListFeaturesParams
+     * @return \Schematic\Model\ListFeaturesParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListFeaturesResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListFeaturesParams $params params
+     * @param \Schematic\Model\ListFeaturesParams $params params
      *
      * @return self
      */

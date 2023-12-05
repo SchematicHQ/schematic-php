@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListUsersResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListUsersResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\UserResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListUsersParams'
+        'data' => '\Schematic\Model\UserResponseData[]',
+        'params' => '\Schematic\Model\ListUsersParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListUsersResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\UserResponseData[]
+     * @return \Schematic\Model\UserResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListUsersResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\UserResponseData[] $data The returned resources
+     * @param \Schematic\Model\UserResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListUsersResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListUsersParams
+     * @return \Schematic\Model\ListUsersParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListUsersResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListUsersParams $params params
+     * @param \Schematic\Model\ListUsersParams $params params
      *
      * @return self
      */

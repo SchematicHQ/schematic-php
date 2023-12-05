@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * FlagDetailResponseData Class Doc Comment
  *
  * @category Class
  * @description The updated resource
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -66,7 +66,7 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'id' => 'string',
         'key' => 'string',
         'name' => 'string',
-        'rules' => '\OpenAPI\Client\Model\RuleDetailResponseData[]',
+        'rules' => '\Schematic\Model\RuleDetailResponseData[]',
         'updated_at' => '\DateTime'
     ];
 
@@ -606,7 +606,7 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets rules
      *
-     * @return \OpenAPI\Client\Model\RuleDetailResponseData[]
+     * @return \Schematic\Model\RuleDetailResponseData[]
      */
     public function getRules()
     {
@@ -616,7 +616,7 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets rules
      *
-     * @param \OpenAPI\Client\Model\RuleDetailResponseData[] $rules rules
+     * @param \Schematic\Model\RuleDetailResponseData[] $rules rules
      *
      * @return self
      */

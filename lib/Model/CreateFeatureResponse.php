@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CreateFeatureResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class CreateFeatureResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\FeatureDetailResponseData',
+        'data' => '\Schematic\Model\FeatureDetailResponseData',
         'params' => 'object'
     ];
 
@@ -305,7 +305,7 @@ class CreateFeatureResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\FeatureDetailResponseData
+     * @return \Schematic\Model\FeatureDetailResponseData
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class CreateFeatureResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\FeatureDetailResponseData $data data
+     * @param \Schematic\Model\FeatureDetailResponseData $data data
      *
      * @return self
      */

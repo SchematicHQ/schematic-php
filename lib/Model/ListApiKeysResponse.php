@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListApiKeysResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListApiKeysResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\ApiKeyResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListApiKeysParams'
+        'data' => '\Schematic\Model\ApiKeyResponseData[]',
+        'params' => '\Schematic\Model\ListApiKeysParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListApiKeysResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\ApiKeyResponseData[]
+     * @return \Schematic\Model\ApiKeyResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListApiKeysResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\ApiKeyResponseData[] $data The returned resources
+     * @param \Schematic\Model\ApiKeyResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListApiKeysResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListApiKeysParams
+     * @return \Schematic\Model\ListApiKeysParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListApiKeysResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListApiKeysParams $params params
+     * @param \Schematic\Model\ListApiKeysParams $params params
      *
      * @return self
      */

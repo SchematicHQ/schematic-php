@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace Schematic\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use Schematic\ApiException;
+use Schematic\Configuration;
+use Schematic\HeaderSelector;
+use Schematic\ObjectSerializer;
 
 /**
  * EventsApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -159,9 +159,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CountEventTypesResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     * @return \Schematic\Model\CountEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function countEventTypes($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
@@ -182,9 +182,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CountEventTypesResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\CountEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function countEventTypesWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
@@ -227,83 +227,83 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\CountEventTypesResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\CountEventTypesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\CountEventTypesResponse' !== 'string') {
+                        if ('\Schematic\Model\CountEventTypesResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CountEventTypesResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CountEventTypesResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\CountEventTypesResponse';
+            $returnType = '\Schematic\Model\CountEventTypesResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -324,7 +324,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CountEventTypesResponse',
+                        '\Schematic\Model\CountEventTypesResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -332,7 +332,7 @@ class EventsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -340,7 +340,7 @@ class EventsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -348,7 +348,7 @@ class EventsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -356,7 +356,7 @@ class EventsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -410,7 +410,7 @@ class EventsApi
      */
     public function countEventTypesAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CountEventTypesResponse';
+        $returnType = '\Schematic\Model\CountEventTypesResponse';
         $request = $this->countEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
 
         return $this->client
@@ -607,9 +607,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEvents'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CountEventsResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     * @return \Schematic\Model\CountEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function countEvents($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEvents'][0])
     {
@@ -633,9 +633,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEvents'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CountEventsResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\CountEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function countEventsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEvents'][0])
     {
@@ -678,83 +678,83 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\CountEventsResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\CountEventsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\CountEventsResponse' !== 'string') {
+                        if ('\Schematic\Model\CountEventsResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CountEventsResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CountEventsResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\CountEventsResponse';
+            $returnType = '\Schematic\Model\CountEventsResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -775,7 +775,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CountEventsResponse',
+                        '\Schematic\Model\CountEventsResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -783,7 +783,7 @@ class EventsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -791,7 +791,7 @@ class EventsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -799,7 +799,7 @@ class EventsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -807,7 +807,7 @@ class EventsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -867,7 +867,7 @@ class EventsApi
      */
     public function countEventsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEvents'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CountEventsResponse';
+        $returnType = '\Schematic\Model\CountEventsResponse';
         $request = $this->countEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType);
 
         return $this->client
@@ -1086,13 +1086,13 @@ class EventsApi
      *
      * Create event
      *
-     * @param  \OpenAPI\Client\Model\CreateEventRequestBody $create_event_request_body create_event_request_body (required)
+     * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body create_event_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateEventResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     * @return \Schematic\Model\CreateEventResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function createEvent($create_event_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEvent'][0])
     {
@@ -1105,13 +1105,13 @@ class EventsApi
      *
      * Create event
      *
-     * @param  \OpenAPI\Client\Model\CreateEventRequestBody $create_event_request_body (required)
+     * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateEventResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\CreateEventResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEventWithHttpInfo($create_event_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEvent'][0])
     {
@@ -1154,83 +1154,83 @@ class EventsApi
 
             switch($statusCode) {
                 case 201:
-                    if ('\OpenAPI\Client\Model\CreateEventResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\CreateEventResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\CreateEventResponse' !== 'string') {
+                        if ('\Schematic\Model\CreateEventResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreateEventResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CreateEventResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\CreateEventResponse';
+            $returnType = '\Schematic\Model\CreateEventResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1251,7 +1251,7 @@ class EventsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateEventResponse',
+                        '\Schematic\Model\CreateEventResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1259,7 +1259,7 @@ class EventsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1267,7 +1267,7 @@ class EventsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1275,7 +1275,7 @@ class EventsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1283,7 +1283,7 @@ class EventsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1298,7 +1298,7 @@ class EventsApi
      *
      * Create event
      *
-     * @param  \OpenAPI\Client\Model\CreateEventRequestBody $create_event_request_body (required)
+     * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
@@ -1320,7 +1320,7 @@ class EventsApi
      *
      * Create event
      *
-     * @param  \OpenAPI\Client\Model\CreateEventRequestBody $create_event_request_body (required)
+     * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
@@ -1329,7 +1329,7 @@ class EventsApi
      */
     public function createEventAsyncWithHttpInfo($create_event_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEvent'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateEventResponse';
+        $returnType = '\Schematic\Model\CreateEventResponse';
         $request = $this->createEventRequest($create_event_request_body, $x_schematic_environment_id, $contentType);
 
         return $this->client
@@ -1371,7 +1371,7 @@ class EventsApi
     /**
      * Create request for operation 'createEvent'
      *
-     * @param  \OpenAPI\Client\Model\CreateEventRequestBody $create_event_request_body (required)
+     * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
@@ -1479,9 +1479,9 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEvent'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GetEventResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     * @return \Schematic\Model\GetEventResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function getEvent($event_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEvent'][0])
     {
@@ -1498,9 +1498,9 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEvent'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GetEventResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\GetEventResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEventWithHttpInfo($event_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEvent'][0])
     {
@@ -1543,83 +1543,83 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\GetEventResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\GetEventResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\GetEventResponse' !== 'string') {
+                        if ('\Schematic\Model\GetEventResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetEventResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\GetEventResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 404:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\GetEventResponse';
+            $returnType = '\Schematic\Model\GetEventResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1640,7 +1640,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GetEventResponse',
+                        '\Schematic\Model\GetEventResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1648,7 +1648,7 @@ class EventsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1656,7 +1656,7 @@ class EventsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1664,7 +1664,7 @@ class EventsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1672,7 +1672,7 @@ class EventsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1718,7 +1718,7 @@ class EventsApi
      */
     public function getEventAsyncWithHttpInfo($event_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEvent'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\GetEventResponse';
+        $returnType = '\Schematic\Model\GetEventResponse';
         $request = $this->getEventRequest($event_id, $x_schematic_environment_id, $contentType);
 
         return $this->client
@@ -1869,9 +1869,9 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GetEventTypeResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     * @return \Schematic\Model\GetEventTypeResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function getEventType($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEventType'][0])
     {
@@ -1888,9 +1888,9 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GetEventTypeResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\GetEventTypeResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEventTypeWithHttpInfo($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEventType'][0])
     {
@@ -1933,83 +1933,83 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\GetEventTypeResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\GetEventTypeResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\GetEventTypeResponse' !== 'string') {
+                        if ('\Schematic\Model\GetEventTypeResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetEventTypeResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\GetEventTypeResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 404:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\GetEventTypeResponse';
+            $returnType = '\Schematic\Model\GetEventTypeResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2030,7 +2030,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GetEventTypeResponse',
+                        '\Schematic\Model\GetEventTypeResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2038,7 +2038,7 @@ class EventsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2046,7 +2046,7 @@ class EventsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2054,7 +2054,7 @@ class EventsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2062,7 +2062,7 @@ class EventsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2108,7 +2108,7 @@ class EventsApi
      */
     public function getEventTypeAsyncWithHttpInfo($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEventType'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\GetEventTypeResponse';
+        $returnType = '\Schematic\Model\GetEventTypeResponse';
         $request = $this->getEventTypeRequest($key, $x_schematic_environment_id, $contentType);
 
         return $this->client
@@ -2263,9 +2263,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ListEventTypesResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     * @return \Schematic\Model\ListEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function listEventTypes($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
@@ -2286,9 +2286,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ListEventTypesResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\ListEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listEventTypesWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
@@ -2331,83 +2331,83 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ListEventTypesResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\ListEventTypesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ListEventTypesResponse' !== 'string') {
+                        if ('\Schematic\Model\ListEventTypesResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ListEventTypesResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListEventTypesResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ListEventTypesResponse';
+            $returnType = '\Schematic\Model\ListEventTypesResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2428,7 +2428,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ListEventTypesResponse',
+                        '\Schematic\Model\ListEventTypesResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2436,7 +2436,7 @@ class EventsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2444,7 +2444,7 @@ class EventsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2452,7 +2452,7 @@ class EventsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2460,7 +2460,7 @@ class EventsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2514,7 +2514,7 @@ class EventsApi
      */
     public function listEventTypesAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ListEventTypesResponse';
+        $returnType = '\Schematic\Model\ListEventTypesResponse';
         $request = $this->listEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
 
         return $this->client
@@ -2711,9 +2711,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEvents'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ListEventsResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     * @return \Schematic\Model\ListEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function listEvents($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEvents'][0])
     {
@@ -2737,9 +2737,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEvents'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ListEventsResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\ListEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listEventsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEvents'][0])
     {
@@ -2782,83 +2782,83 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ListEventsResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\ListEventsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ListEventsResponse' !== 'string') {
+                        if ('\Schematic\Model\ListEventsResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ListEventsResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListEventsResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ListEventsResponse';
+            $returnType = '\Schematic\Model\ListEventsResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2879,7 +2879,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ListEventsResponse',
+                        '\Schematic\Model\ListEventsResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2887,7 +2887,7 @@ class EventsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2895,7 +2895,7 @@ class EventsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2903,7 +2903,7 @@ class EventsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2911,7 +2911,7 @@ class EventsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2971,7 +2971,7 @@ class EventsApi
      */
     public function listEventsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ListEventsResponse';
+        $returnType = '\Schematic\Model\ListEventsResponse';
         $request = $this->listEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType);
 
         return $this->client
@@ -3203,9 +3203,9 @@ class EventsApi
      * @param  string $grouping grouping (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCounts'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ListMetricCountsResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     * @return \Schematic\Model\ListMetricCountsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function listMetricCounts($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
@@ -3231,9 +3231,9 @@ class EventsApi
      * @param  string $grouping (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCounts'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ListMetricCountsResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\ListMetricCountsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listMetricCountsWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
@@ -3276,83 +3276,83 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ListMetricCountsResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\ListMetricCountsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ListMetricCountsResponse' !== 'string') {
+                        if ('\Schematic\Model\ListMetricCountsResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ListMetricCountsResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListMetricCountsResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ListMetricCountsResponse';
+            $returnType = '\Schematic\Model\ListMetricCountsResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3373,7 +3373,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ListMetricCountsResponse',
+                        '\Schematic\Model\ListMetricCountsResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3381,7 +3381,7 @@ class EventsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3389,7 +3389,7 @@ class EventsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3397,7 +3397,7 @@ class EventsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3405,7 +3405,7 @@ class EventsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3469,7 +3469,7 @@ class EventsApi
      */
     public function listMetricCountsAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ListMetricCountsResponse';
+        $returnType = '\Schematic\Model\ListMetricCountsResponse';
         $request = $this->listMetricCountsRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $grouping, $contentType);
 
         return $this->client
@@ -3728,9 +3728,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\ListMetricCountsHourlyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     * @return \Schematic\Model\ListMetricCountsHourlyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function listMetricCountsHourly($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
@@ -3755,9 +3755,9 @@ class EventsApi
      * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\ListMetricCountsHourlyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\ListMetricCountsHourlyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listMetricCountsHourlyWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
@@ -3800,83 +3800,83 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\ListMetricCountsHourlyResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\ListMetricCountsHourlyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ListMetricCountsHourlyResponse' !== 'string') {
+                        if ('\Schematic\Model\ListMetricCountsHourlyResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ListMetricCountsHourlyResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListMetricCountsHourlyResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                        if ('\Schematic\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\ListMetricCountsHourlyResponse';
+            $returnType = '\Schematic\Model\ListMetricCountsHourlyResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3897,7 +3897,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ListMetricCountsHourlyResponse',
+                        '\Schematic\Model\ListMetricCountsHourlyResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3905,7 +3905,7 @@ class EventsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3913,7 +3913,7 @@ class EventsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3921,7 +3921,7 @@ class EventsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3929,7 +3929,7 @@ class EventsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ApiError',
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3991,7 +3991,7 @@ class EventsApi
      */
     public function listMetricCountsHourlyAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\ListMetricCountsHourlyResponse';
+        $returnType = '\Schematic\Model\ListMetricCountsHourlyResponse';
         $request = $this->listMetricCountsHourlyRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $contentType);
 
         return $this->client

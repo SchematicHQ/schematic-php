@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CreateOrUpdateFlagRequestBody Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -64,7 +64,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'id' => 'string',
         'key' => 'string',
         'name' => 'string',
-        'rules' => '\OpenAPI\Client\Model\CreateOrUpdateRuleRequestBody[]'
+        'rules' => '\Schematic\Model\CreateOrUpdateRuleRequestBody[]'
     ];
 
     /**
@@ -562,7 +562,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets rules
      *
-     * @return \OpenAPI\Client\Model\CreateOrUpdateRuleRequestBody[]
+     * @return \Schematic\Model\CreateOrUpdateRuleRequestBody[]
      */
     public function getRules()
     {
@@ -572,7 +572,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets rules
      *
-     * @param \OpenAPI\Client\Model\CreateOrUpdateRuleRequestBody[] $rules rules
+     * @param \Schematic\Model\CreateOrUpdateRuleRequestBody[] $rules rules
      *
      * @return self
      */

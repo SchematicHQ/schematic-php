@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * UpdateFeatureRequestBody Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class UpdateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'description' => 'string',
         'event_subtype' => 'string',
         'feature_type' => 'string',
-        'flag' => '\OpenAPI\Client\Model\CreateOrUpdateFlagRequestBody',
+        'flag' => '\Schematic\Model\CreateOrUpdateFlagRequestBody',
         'lifecycle_phase' => 'string',
         'name' => 'string',
         'skip_webhooks' => 'bool',
@@ -443,7 +443,7 @@ class UpdateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets flag
      *
-     * @return \OpenAPI\Client\Model\CreateOrUpdateFlagRequestBody|null
+     * @return \Schematic\Model\CreateOrUpdateFlagRequestBody|null
      */
     public function getFlag()
     {
@@ -453,7 +453,7 @@ class UpdateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets flag
      *
-     * @param \OpenAPI\Client\Model\CreateOrUpdateFlagRequestBody|null $flag flag
+     * @param \Schematic\Model\CreateOrUpdateFlagRequestBody|null $flag flag
      *
      * @return self
      */

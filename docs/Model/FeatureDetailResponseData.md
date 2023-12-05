@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** |  |
 **description** | **string** |  |
 **event_subtype** | **string** |  | [optional]
-**event_summary** | [**\OpenAPI\Client\Model\EventSummaryResponseData**](EventSummaryResponseData.md) |  | [optional]
+**event_summary** | [**\Schematic\Model\EventSummaryResponseData**](EventSummaryResponseData.md) |  | [optional]
 **feature_type** | **string** |  |
-**flags** | [**\OpenAPI\Client\Model\FlagDetailResponseData[]**](FlagDetailResponseData.md) |  |
+**flags** | [**\Schematic\Model\FlagDetailResponseData[]**](FlagDetailResponseData.md) |  |
 **id** | **string** |  |
 **lifecycle_phase** | **string** |  | [optional]
 **name** | **string** |  |

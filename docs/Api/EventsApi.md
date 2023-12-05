@@ -1,4 +1,4 @@
-# OpenAPI\Client\EventsApi
+# Schematic\EventsApi
 
 All URIs are relative to https://api.schematichq.com, except if the operation defines another base path.
 
@@ -18,7 +18,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `countEventTypes()`
 
 ```php
-countEventTypes($x_schematic_environment_id, $q, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\CountEventTypesResponse
+countEventTypes($x_schematic_environment_id, $q, $limit, $offset, $order, $dir): \Schematic\Model\CountEventTypesResponse
 ```
 
 Count event types
@@ -31,12 +31,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\EventsApi(
+$apiInstance = new Schematic\Api\EventsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -70,7 +70,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CountEventTypesResponse**](../Model/CountEventTypesResponse.md)
+[**\Schematic\Model\CountEventTypesResponse**](../Model/CountEventTypesResponse.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ try {
 ## `countEvents()`
 
 ```php
-countEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\CountEventsResponse
+countEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir): \Schematic\Model\CountEventsResponse
 ```
 
 Count events
@@ -101,12 +101,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\EventsApi(
+$apiInstance = new Schematic\Api\EventsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -146,7 +146,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CountEventsResponse**](../Model/CountEventsResponse.md)
+[**\Schematic\Model\CountEventsResponse**](../Model/CountEventsResponse.md)
 
 ### Authorization
 
@@ -164,7 +164,7 @@ try {
 ## `createEvent()`
 
 ```php
-createEvent($create_event_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateEventResponse
+createEvent($create_event_request_body, $x_schematic_environment_id): \Schematic\Model\CreateEventResponse
 ```
 
 Create event
@@ -177,18 +177,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\EventsApi(
+$apiInstance = new Schematic\Api\EventsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$create_event_request_body = new \OpenAPI\Client\Model\CreateEventRequestBody(); // \OpenAPI\Client\Model\CreateEventRequestBody
+$create_event_request_body = new \Schematic\Model\CreateEventRequestBody(); // \Schematic\Model\CreateEventRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
@@ -203,12 +203,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_event_request_body** | [**\OpenAPI\Client\Model\CreateEventRequestBody**](../Model/CreateEventRequestBody.md)|  | |
+| **create_event_request_body** | [**\Schematic\Model\CreateEventRequestBody**](../Model/CreateEventRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateEventResponse**](../Model/CreateEventResponse.md)
+[**\Schematic\Model\CreateEventResponse**](../Model/CreateEventResponse.md)
 
 ### Authorization
 
@@ -226,7 +226,7 @@ try {
 ## `getEvent()`
 
 ```php
-getEvent($event_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetEventResponse
+getEvent($event_id, $x_schematic_environment_id): \Schematic\Model\GetEventResponse
 ```
 
 Get event
@@ -239,12 +239,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\EventsApi(
+$apiInstance = new Schematic\Api\EventsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -270,7 +270,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetEventResponse**](../Model/GetEventResponse.md)
+[**\Schematic\Model\GetEventResponse**](../Model/GetEventResponse.md)
 
 ### Authorization
 
@@ -288,7 +288,7 @@ try {
 ## `getEventType()`
 
 ```php
-getEventType($key, $x_schematic_environment_id): \OpenAPI\Client\Model\GetEventTypeResponse
+getEventType($key, $x_schematic_environment_id): \Schematic\Model\GetEventTypeResponse
 ```
 
 Get event type
@@ -301,12 +301,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\EventsApi(
+$apiInstance = new Schematic\Api\EventsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -332,7 +332,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetEventTypeResponse**](../Model/GetEventTypeResponse.md)
+[**\Schematic\Model\GetEventTypeResponse**](../Model/GetEventTypeResponse.md)
 
 ### Authorization
 
@@ -350,7 +350,7 @@ try {
 ## `listEventTypes()`
 
 ```php
-listEventTypes($x_schematic_environment_id, $q, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListEventTypesResponse
+listEventTypes($x_schematic_environment_id, $q, $limit, $offset, $order, $dir): \Schematic\Model\ListEventTypesResponse
 ```
 
 List event types
@@ -363,12 +363,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\EventsApi(
+$apiInstance = new Schematic\Api\EventsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -402,7 +402,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListEventTypesResponse**](../Model/ListEventTypesResponse.md)
+[**\Schematic\Model\ListEventTypesResponse**](../Model/ListEventTypesResponse.md)
 
 ### Authorization
 
@@ -420,7 +420,7 @@ try {
 ## `listEvents()`
 
 ```php
-listEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListEventsResponse
+listEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir): \Schematic\Model\ListEventsResponse
 ```
 
 List events
@@ -433,12 +433,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\EventsApi(
+$apiInstance = new Schematic\Api\EventsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -478,7 +478,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListEventsResponse**](../Model/ListEventsResponse.md)
+[**\Schematic\Model\ListEventsResponse**](../Model/ListEventsResponse.md)
 
 ### Authorization
 
@@ -496,7 +496,7 @@ try {
 ## `listMetricCounts()`
 
 ```php
-listMetricCounts($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $grouping): \OpenAPI\Client\Model\ListMetricCountsResponse
+listMetricCounts($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $grouping): \Schematic\Model\ListMetricCountsResponse
 ```
 
 List metric counts
@@ -509,12 +509,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\EventsApi(
+$apiInstance = new Schematic\Api\EventsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -558,7 +558,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListMetricCountsResponse**](../Model/ListMetricCountsResponse.md)
+[**\Schematic\Model\ListMetricCountsResponse**](../Model/ListMetricCountsResponse.md)
 
 ### Authorization
 
@@ -576,7 +576,7 @@ try {
 ## `listMetricCountsHourly()`
 
 ```php
-listMetricCountsHourly($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListMetricCountsHourlyResponse
+listMetricCountsHourly($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir): \Schematic\Model\ListMetricCountsHourlyResponse
 ```
 
 List metric counts hourly
@@ -589,12 +589,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: ApiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\EventsApi(
+$apiInstance = new Schematic\Api\EventsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -636,7 +636,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListMetricCountsHourlyResponse**](../Model/ListMetricCountsHourlyResponse.md)
+[**\Schematic\Model\ListMetricCountsHourlyResponse**](../Model/ListMetricCountsHourlyResponse.md)
 
 ### Authorization
 

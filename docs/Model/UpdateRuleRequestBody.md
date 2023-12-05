@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**condition_groups** | [**\OpenAPI\Client\Model\CreateOrUpdateConditionGroupRequestBody[]**](CreateOrUpdateConditionGroupRequestBody.md) |  |
-**conditions** | [**\OpenAPI\Client\Model\CreateOrUpdateConditionRequestBody[]**](CreateOrUpdateConditionRequestBody.md) |  |
+**condition_groups** | [**\Schematic\Model\CreateOrUpdateConditionGroupRequestBody[]**](CreateOrUpdateConditionGroupRequestBody.md) |  |
+**conditions** | [**\Schematic\Model\CreateOrUpdateConditionRequestBody[]**](CreateOrUpdateConditionRequestBody.md) |  |
 **name** | **string** |  |
 **priority** | **int** |  |
 **priority_group** | **int** |  | [optional]

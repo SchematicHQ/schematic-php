@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * ListEventTypesResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,8 +57,8 @@ class ListEventTypesResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\EventSummaryResponseData[]',
-        'params' => '\OpenAPI\Client\Model\ListEventTypesParams'
+        'data' => '\Schematic\Model\EventSummaryResponseData[]',
+        'params' => '\Schematic\Model\ListEventTypesParams'
     ];
 
     /**
@@ -305,7 +305,7 @@ class ListEventTypesResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\EventSummaryResponseData[]
+     * @return \Schematic\Model\EventSummaryResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListEventTypesResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\EventSummaryResponseData[] $data The returned resources
+     * @param \Schematic\Model\EventSummaryResponseData[] $data The returned resources
      *
      * @return self
      */
@@ -332,7 +332,7 @@ class ListEventTypesResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets params
      *
-     * @return \OpenAPI\Client\Model\ListEventTypesParams
+     * @return \Schematic\Model\ListEventTypesParams
      */
     public function getParams()
     {
@@ -342,7 +342,7 @@ class ListEventTypesResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets params
      *
-     * @param \OpenAPI\Client\Model\ListEventTypesParams $params params
+     * @param \Schematic\Model\ListEventTypesParams $params params
      *
      * @return self
      */

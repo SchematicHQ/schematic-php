@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,16 +26,16 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace Schematic\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \Schematic\ObjectSerializer;
 
 /**
  * CheckFlagResponse Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -57,7 +57,7 @@ class CheckFlagResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\OpenAPI\Client\Model\CheckFlagResponseData',
+        'data' => '\Schematic\Model\CheckFlagResponseData',
         'params' => 'object'
     ];
 
@@ -305,7 +305,7 @@ class CheckFlagResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\CheckFlagResponseData
+     * @return \Schematic\Model\CheckFlagResponseData
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class CheckFlagResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\CheckFlagResponseData $data data
+     * @param \Schematic\Model\CheckFlagResponseData $data data
      *
      * @return self
      */
