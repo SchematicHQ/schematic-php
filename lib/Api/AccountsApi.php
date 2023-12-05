@@ -71,6 +71,9 @@ class AccountsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'countApiKeys' => [
+            'application/json',
+        ],
         'createApiKey' => [
             'application/json',
         ],
@@ -81,6 +84,15 @@ class AccountsApi
             'application/json',
         ],
         'deleteEnvironment' => [
+            'application/json',
+        ],
+        'getApiKey' => [
+            'application/json',
+        ],
+        'listApiKeys' => [
+            'application/json',
+        ],
+        'updateApiKey' => [
             'application/json',
         ],
         'updateEnvironment' => [
@@ -135,40 +147,50 @@ class AccountsApi
     }
 
     /**
-     * Operation createApiKey
+     * Operation countApiKeys
      *
-     * Create api key
+     * Count api keys
      *
-     * @param  \OpenAPI\Client\Model\CreateApiKeyRequest $create_api_key_request create_api_key_request (required)
+     * @param  bool $require_environment require_environment (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
+     * @param  string $environment_id environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateApiKey200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\CountApiKeysResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
      */
-    public function createApiKey($create_api_key_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
+    public function countApiKeys($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
     {
-        list($response) = $this->createApiKeyWithHttpInfo($create_api_key_request, $x_schematic_environment_id, $contentType);
+        list($response) = $this->countApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
         return $response;
     }
 
     /**
-     * Operation createApiKeyWithHttpInfo
+     * Operation countApiKeysWithHttpInfo
      *
-     * Create api key
+     * Count api keys
      *
-     * @param  \OpenAPI\Client\Model\CreateApiKeyRequest $create_api_key_request (required)
+     * @param  bool $require_environment (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
+     * @param  string $environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateApiKey200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CountApiKeysResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createApiKeyWithHttpInfo($create_api_key_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
+    public function countApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
     {
-        $request = $this->createApiKeyRequest($create_api_key_request, $x_schematic_environment_id, $contentType);
+        $request = $this->countApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -207,83 +229,83 @@ class AccountsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\CreateApiKey200Response' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\CountApiKeysResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\CreateApiKey200Response' !== 'string') {
+                        if ('\OpenAPI\Client\Model\CountApiKeysResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreateApiKey200Response', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CountApiKeysResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\CreateApiKey200Response';
+            $returnType = '\OpenAPI\Client\Model\CountApiKeysResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -304,7 +326,7 @@ class AccountsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateApiKey200Response',
+                        '\OpenAPI\Client\Model\CountApiKeysResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -312,7 +334,7 @@ class AccountsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -320,7 +342,7 @@ class AccountsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -328,7 +350,7 @@ class AccountsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -336,7 +358,463 @@ class AccountsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation countApiKeysAsync
+     *
+     * Count api keys
+     *
+     * @param  bool $require_environment (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countApiKeysAsync($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
+    {
+        return $this->countApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation countApiKeysAsyncWithHttpInfo
+     *
+     * Count api keys
+     *
+     * @param  bool $require_environment (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\CountApiKeysResponse';
+        $request = $this->countApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'countApiKeys'
+     *
+     * @param  bool $require_environment (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function countApiKeysRequest($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
+    {
+
+        // verify the required parameter 'require_environment' is set
+        if ($require_environment === null || (is_array($require_environment) && count($require_environment) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $require_environment when calling countApiKeys'
+            );
+        }
+
+
+
+
+
+
+
+
+        $resourcePath = '/api-keys/count';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $environment_id,
+            'environment_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $require_environment,
+            'require_environment', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $order,
+            'order', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $dir,
+            'dir', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createApiKey
+     *
+     * Create api key
+     *
+     * @param  \OpenAPI\Client\Model\CreateApiKeyRequestBody $create_api_key_request_body create_api_key_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\CreateApiKeyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     */
+    public function createApiKey($create_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
+    {
+        list($response) = $this->createApiKeyWithHttpInfo($create_api_key_request_body, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createApiKeyWithHttpInfo
+     *
+     * Create api key
+     *
+     * @param  \OpenAPI\Client\Model\CreateApiKeyRequestBody $create_api_key_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\CreateApiKeyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createApiKeyWithHttpInfo($create_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
+    {
+        $request = $this->createApiKeyRequest($create_api_key_request_body, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\OpenAPI\Client\Model\CreateApiKeyResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\CreateApiKeyResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreateApiKeyResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\CreateApiKeyResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\CreateApiKeyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -351,16 +829,16 @@ class AccountsApi
      *
      * Create api key
      *
-     * @param  \OpenAPI\Client\Model\CreateApiKeyRequest $create_api_key_request (required)
+     * @param  \OpenAPI\Client\Model\CreateApiKeyRequestBody $create_api_key_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createApiKeyAsync($create_api_key_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
+    public function createApiKeyAsync($create_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
     {
-        return $this->createApiKeyAsyncWithHttpInfo($create_api_key_request, $x_schematic_environment_id, $contentType)
+        return $this->createApiKeyAsyncWithHttpInfo($create_api_key_request_body, $x_schematic_environment_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -373,17 +851,17 @@ class AccountsApi
      *
      * Create api key
      *
-     * @param  \OpenAPI\Client\Model\CreateApiKeyRequest $create_api_key_request (required)
+     * @param  \OpenAPI\Client\Model\CreateApiKeyRequestBody $create_api_key_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createApiKeyAsyncWithHttpInfo($create_api_key_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
+    public function createApiKeyAsyncWithHttpInfo($create_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateApiKey200Response';
-        $request = $this->createApiKeyRequest($create_api_key_request, $x_schematic_environment_id, $contentType);
+        $returnType = '\OpenAPI\Client\Model\CreateApiKeyResponse';
+        $request = $this->createApiKeyRequest($create_api_key_request_body, $x_schematic_environment_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -424,20 +902,20 @@ class AccountsApi
     /**
      * Create request for operation 'createApiKey'
      *
-     * @param  \OpenAPI\Client\Model\CreateApiKeyRequest $create_api_key_request (required)
+     * @param  \OpenAPI\Client\Model\CreateApiKeyRequestBody $create_api_key_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createApiKey'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createApiKeyRequest($create_api_key_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
+    public function createApiKeyRequest($create_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createApiKey'][0])
     {
 
-        // verify the required parameter 'create_api_key_request' is set
-        if ($create_api_key_request === null || (is_array($create_api_key_request) && count($create_api_key_request) === 0)) {
+        // verify the required parameter 'create_api_key_request_body' is set
+        if ($create_api_key_request_body === null || (is_array($create_api_key_request_body) && count($create_api_key_request_body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_api_key_request when calling createApiKey'
+                'Missing the required parameter $create_api_key_request_body when calling createApiKey'
             );
         }
 
@@ -465,12 +943,12 @@ class AccountsApi
         );
 
         // for model (json/xml)
-        if (isset($create_api_key_request)) {
+        if (isset($create_api_key_request_body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_api_key_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_api_key_request_body));
             } else {
-                $httpBody = $create_api_key_request;
+                $httpBody = $create_api_key_request_body;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -528,17 +1006,17 @@ class AccountsApi
      *
      * Create environment
      *
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request create_environment_request (required)
+     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequestBody $create_environment_request_body create_environment_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnvironment'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\CreateEnvironment200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\CreateEnvironmentResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
      */
-    public function createEnvironment($create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
+    public function createEnvironment($create_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
     {
-        list($response) = $this->createEnvironmentWithHttpInfo($create_environment_request, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createEnvironmentWithHttpInfo($create_environment_request_body, $x_schematic_environment_id, $contentType);
         return $response;
     }
 
@@ -547,17 +1025,17 @@ class AccountsApi
      *
      * Create environment
      *
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request (required)
+     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequestBody $create_environment_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnvironment'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\CreateEnvironment200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\CreateEnvironmentResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEnvironmentWithHttpInfo($create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
+    public function createEnvironmentWithHttpInfo($create_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
     {
-        $request = $this->createEnvironmentRequest($create_environment_request, $x_schematic_environment_id, $contentType);
+        $request = $this->createEnvironmentRequest($create_environment_request_body, $x_schematic_environment_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -595,84 +1073,84 @@ class AccountsApi
             }
 
             switch($statusCode) {
-                case 200:
-                    if ('\OpenAPI\Client\Model\CreateEnvironment200Response' === '\SplFileObject') {
+                case 201:
+                    if ('\OpenAPI\Client\Model\CreateEnvironmentResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\CreateEnvironment200Response' !== 'string') {
+                        if ('\OpenAPI\Client\Model\CreateEnvironmentResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreateEnvironment200Response', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\CreateEnvironmentResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\CreateEnvironment200Response';
+            $returnType = '\OpenAPI\Client\Model\CreateEnvironmentResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -690,10 +1168,10 @@ class AccountsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\CreateEnvironment200Response',
+                        '\OpenAPI\Client\Model\CreateEnvironmentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -701,7 +1179,7 @@ class AccountsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -709,7 +1187,7 @@ class AccountsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -717,7 +1195,7 @@ class AccountsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -725,7 +1203,7 @@ class AccountsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -740,16 +1218,16 @@ class AccountsApi
      *
      * Create environment
      *
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request (required)
+     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequestBody $create_environment_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnvironment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEnvironmentAsync($create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
+    public function createEnvironmentAsync($create_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
     {
-        return $this->createEnvironmentAsyncWithHttpInfo($create_environment_request, $x_schematic_environment_id, $contentType)
+        return $this->createEnvironmentAsyncWithHttpInfo($create_environment_request_body, $x_schematic_environment_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -762,17 +1240,17 @@ class AccountsApi
      *
      * Create environment
      *
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request (required)
+     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequestBody $create_environment_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnvironment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEnvironmentAsyncWithHttpInfo($create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
+    public function createEnvironmentAsyncWithHttpInfo($create_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\CreateEnvironment200Response';
-        $request = $this->createEnvironmentRequest($create_environment_request, $x_schematic_environment_id, $contentType);
+        $returnType = '\OpenAPI\Client\Model\CreateEnvironmentResponse';
+        $request = $this->createEnvironmentRequest($create_environment_request_body, $x_schematic_environment_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -813,20 +1291,20 @@ class AccountsApi
     /**
      * Create request for operation 'createEnvironment'
      *
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request (required)
+     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequestBody $create_environment_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEnvironment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEnvironmentRequest($create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
+    public function createEnvironmentRequest($create_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEnvironment'][0])
     {
 
-        // verify the required parameter 'create_environment_request' is set
-        if ($create_environment_request === null || (is_array($create_environment_request) && count($create_environment_request) === 0)) {
+        // verify the required parameter 'create_environment_request_body' is set
+        if ($create_environment_request_body === null || (is_array($create_environment_request_body) && count($create_environment_request_body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_environment_request when calling createEnvironment'
+                'Missing the required parameter $create_environment_request_body when calling createEnvironment'
             );
         }
 
@@ -854,12 +1332,12 @@ class AccountsApi
         );
 
         // for model (json/xml)
-        if (isset($create_environment_request)) {
+        if (isset($create_environment_request_body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_environment_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_environment_request_body));
             } else {
-                $httpBody = $create_environment_request;
+                $httpBody = $create_environment_request_body;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -923,7 +1401,7 @@ class AccountsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteApiKey200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\DeleteApiKeyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
      */
     public function deleteApiKey($api_key_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteApiKey'][0])
     {
@@ -942,7 +1420,7 @@ class AccountsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteApiKey200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteApiKeyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteApiKeyWithHttpInfo($api_key_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteApiKey'][0])
     {
@@ -985,83 +1463,83 @@ class AccountsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\DeleteApiKey200Response' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\DeleteApiKeyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\DeleteApiKey200Response' !== 'string') {
+                        if ('\OpenAPI\Client\Model\DeleteApiKeyResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DeleteApiKey200Response', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DeleteApiKeyResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\DeleteApiKey200Response';
+            $returnType = '\OpenAPI\Client\Model\DeleteApiKeyResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1082,7 +1560,7 @@ class AccountsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteApiKey200Response',
+                        '\OpenAPI\Client\Model\DeleteApiKeyResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1090,7 +1568,7 @@ class AccountsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1098,7 +1576,7 @@ class AccountsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1106,7 +1584,7 @@ class AccountsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1114,7 +1592,7 @@ class AccountsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1160,7 +1638,7 @@ class AccountsApi
      */
     public function deleteApiKeyAsyncWithHttpInfo($api_key_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteApiKey'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteApiKey200Response';
+        $returnType = '\OpenAPI\Client\Model\DeleteApiKeyResponse';
         $request = $this->deleteApiKeyRequest($api_key_id, $x_schematic_environment_id, $contentType);
 
         return $this->client
@@ -1313,7 +1791,7 @@ class AccountsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DeleteApiKey200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\DeleteEnvironmentResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
      */
     public function deleteEnvironment($environment_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteEnvironment'][0])
     {
@@ -1332,7 +1810,7 @@ class AccountsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DeleteApiKey200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\DeleteEnvironmentResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteEnvironmentWithHttpInfo($environment_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteEnvironment'][0])
     {
@@ -1375,83 +1853,83 @@ class AccountsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\DeleteApiKey200Response' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\DeleteEnvironmentResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\DeleteApiKey200Response' !== 'string') {
+                        if ('\OpenAPI\Client\Model\DeleteEnvironmentResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DeleteApiKey200Response', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\DeleteEnvironmentResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\DeleteApiKey200Response';
+            $returnType = '\OpenAPI\Client\Model\DeleteEnvironmentResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1472,7 +1950,7 @@ class AccountsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DeleteApiKey200Response',
+                        '\OpenAPI\Client\Model\DeleteEnvironmentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1480,7 +1958,7 @@ class AccountsApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1488,7 +1966,7 @@ class AccountsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1496,7 +1974,7 @@ class AccountsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1504,7 +1982,7 @@ class AccountsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1550,7 +2028,7 @@ class AccountsApi
      */
     public function deleteEnvironmentAsyncWithHttpInfo($environment_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteEnvironment'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\DeleteApiKey200Response';
+        $returnType = '\OpenAPI\Client\Model\DeleteEnvironmentResponse';
         $request = $this->deleteEnvironmentRequest($environment_id, $x_schematic_environment_id, $contentType);
 
         return $this->client
@@ -1693,42 +2171,40 @@ class AccountsApi
     }
 
     /**
-     * Operation updateEnvironment
+     * Operation getApiKey
      *
-     * Update environment
+     * Get api key
      *
-     * @param  string $environment_id environment_id (required)
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request create_environment_request (required)
+     * @param  string $api_key_id api_key_id (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEnvironment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiKey'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\UpdateEnvironment200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\GetApiKeyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
      */
-    public function updateEnvironment($environment_id, $create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
+    public function getApiKey($api_key_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiKey'][0])
     {
-        list($response) = $this->updateEnvironmentWithHttpInfo($environment_id, $create_environment_request, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getApiKeyWithHttpInfo($api_key_id, $x_schematic_environment_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation updateEnvironmentWithHttpInfo
+     * Operation getApiKeyWithHttpInfo
      *
-     * Update environment
+     * Get api key
      *
-     * @param  string $environment_id environment_id (required)
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request (required)
+     * @param  string $api_key_id api_key_id (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEnvironment'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiKey'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\UpdateEnvironment200Response|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\GetApiKeyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateEnvironmentWithHttpInfo($environment_id, $create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
+    public function getApiKeyWithHttpInfo($api_key_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiKey'][0])
     {
-        $request = $this->updateEnvironmentRequest($environment_id, $create_environment_request, $x_schematic_environment_id, $contentType);
+        $request = $this->getApiKeyRequest($api_key_id, $x_schematic_environment_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1767,83 +2243,83 @@ class AccountsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\UpdateEnvironment200Response' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\GetApiKeyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\UpdateEnvironment200Response' !== 'string') {
+                        if ('\OpenAPI\Client\Model\GetApiKeyResponse' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\UpdateEnvironment200Response', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\GetApiKeyResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 403:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 404:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 500:
-                    if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Error', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\UpdateEnvironment200Response';
+            $returnType = '\OpenAPI\Client\Model\GetApiKeyResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1864,7 +2340,7 @@ class AccountsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\UpdateEnvironment200Response',
+                        '\OpenAPI\Client\Model\GetApiKeyResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1872,7 +2348,7 @@ class AccountsApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1880,7 +2356,7 @@ class AccountsApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1888,7 +2364,7 @@ class AccountsApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1896,7 +2372,1320 @@ class AccountsApi
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Error',
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getApiKeyAsync
+     *
+     * Get api key
+     *
+     * @param  string $api_key_id api_key_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiKey'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getApiKeyAsync($api_key_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiKey'][0])
+    {
+        return $this->getApiKeyAsyncWithHttpInfo($api_key_id, $x_schematic_environment_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getApiKeyAsyncWithHttpInfo
+     *
+     * Get api key
+     *
+     * @param  string $api_key_id api_key_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiKey'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getApiKeyAsyncWithHttpInfo($api_key_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiKey'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\GetApiKeyResponse';
+        $request = $this->getApiKeyRequest($api_key_id, $x_schematic_environment_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getApiKey'
+     *
+     * @param  string $api_key_id api_key_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiKey'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getApiKeyRequest($api_key_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiKey'][0])
+    {
+
+        // verify the required parameter 'api_key_id' is set
+        if ($api_key_id === null || (is_array($api_key_id) && count($api_key_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_key_id when calling getApiKey'
+            );
+        }
+
+
+
+        $resourcePath = '/api-keys/{api_key_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+        // path params
+        if ($api_key_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'api_key_id' . '}',
+                ObjectSerializer::toPathValue($api_key_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listApiKeys
+     *
+     * List api keys
+     *
+     * @param  bool $require_environment require_environment (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $environment_id environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\ListApiKeysResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     */
+    public function listApiKeys($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    {
+        list($response) = $this->listApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listApiKeysWithHttpInfo
+     *
+     * List api keys
+     *
+     * @param  bool $require_environment (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\ListApiKeysResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    {
+        $request = $this->listApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\ListApiKeysResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ListApiKeysResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ListApiKeysResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\ListApiKeysResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ListApiKeysResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listApiKeysAsync
+     *
+     * List api keys
+     *
+     * @param  bool $require_environment (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listApiKeysAsync($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    {
+        return $this->listApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listApiKeysAsyncWithHttpInfo
+     *
+     * List api keys
+     *
+     * @param  bool $require_environment (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\ListApiKeysResponse';
+        $request = $this->listApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listApiKeys'
+     *
+     * @param  bool $require_environment (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $environment_id (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $order Order by column (optional)
+     * @param  string $dir Order direction (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listApiKeysRequest($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    {
+
+        // verify the required parameter 'require_environment' is set
+        if ($require_environment === null || (is_array($require_environment) && count($require_environment) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $require_environment when calling listApiKeys'
+            );
+        }
+
+
+
+
+
+
+
+
+        $resourcePath = '/api-keys';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $environment_id,
+            'environment_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $require_environment,
+            'require_environment', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $order,
+            'order', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $dir,
+            'dir', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateApiKey
+     *
+     * Update api key
+     *
+     * @param  string $api_key_id api_key_id (required)
+     * @param  \OpenAPI\Client\Model\UpdateApiKeyRequestBody $update_api_key_request_body update_api_key_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\UpdateApiKeyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     */
+    public function updateApiKey($api_key_id, $update_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateApiKey'][0])
+    {
+        list($response) = $this->updateApiKeyWithHttpInfo($api_key_id, $update_api_key_request_body, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateApiKeyWithHttpInfo
+     *
+     * Update api key
+     *
+     * @param  string $api_key_id api_key_id (required)
+     * @param  \OpenAPI\Client\Model\UpdateApiKeyRequestBody $update_api_key_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\UpdateApiKeyResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateApiKeyWithHttpInfo($api_key_id, $update_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateApiKey'][0])
+    {
+        $request = $this->updateApiKeyRequest($api_key_id, $update_api_key_request_body, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\UpdateApiKeyResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\UpdateApiKeyResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\UpdateApiKeyResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\UpdateApiKeyResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\UpdateApiKeyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateApiKeyAsync
+     *
+     * Update api key
+     *
+     * @param  string $api_key_id api_key_id (required)
+     * @param  \OpenAPI\Client\Model\UpdateApiKeyRequestBody $update_api_key_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateApiKeyAsync($api_key_id, $update_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateApiKey'][0])
+    {
+        return $this->updateApiKeyAsyncWithHttpInfo($api_key_id, $update_api_key_request_body, $x_schematic_environment_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateApiKeyAsyncWithHttpInfo
+     *
+     * Update api key
+     *
+     * @param  string $api_key_id api_key_id (required)
+     * @param  \OpenAPI\Client\Model\UpdateApiKeyRequestBody $update_api_key_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateApiKeyAsyncWithHttpInfo($api_key_id, $update_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateApiKey'][0])
+    {
+        $returnType = '\OpenAPI\Client\Model\UpdateApiKeyResponse';
+        $request = $this->updateApiKeyRequest($api_key_id, $update_api_key_request_body, $x_schematic_environment_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateApiKey'
+     *
+     * @param  string $api_key_id api_key_id (required)
+     * @param  \OpenAPI\Client\Model\UpdateApiKeyRequestBody $update_api_key_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateApiKey'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateApiKeyRequest($api_key_id, $update_api_key_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateApiKey'][0])
+    {
+
+        // verify the required parameter 'api_key_id' is set
+        if ($api_key_id === null || (is_array($api_key_id) && count($api_key_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_key_id when calling updateApiKey'
+            );
+        }
+
+        // verify the required parameter 'update_api_key_request_body' is set
+        if ($update_api_key_request_body === null || (is_array($update_api_key_request_body) && count($update_api_key_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $update_api_key_request_body when calling updateApiKey'
+            );
+        }
+
+
+
+        $resourcePath = '/api-keys/{api_key_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+        // path params
+        if ($api_key_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'api_key_id' . '}',
+                ObjectSerializer::toPathValue($api_key_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($update_api_key_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_api_key_request_body));
+            } else {
+                $httpBody = $update_api_key_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateEnvironment
+     *
+     * Update environment
+     *
+     * @param  string $environment_id environment_id (required)
+     * @param  \OpenAPI\Client\Model\UpdateEnvironmentRequestBody $update_environment_request_body update_environment_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEnvironment'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \OpenAPI\Client\Model\UpdateEnvironmentResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError
+     */
+    public function updateEnvironment($environment_id, $update_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
+    {
+        list($response) = $this->updateEnvironmentWithHttpInfo($environment_id, $update_environment_request_body, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateEnvironmentWithHttpInfo
+     *
+     * Update environment
+     *
+     * @param  string $environment_id environment_id (required)
+     * @param  \OpenAPI\Client\Model\UpdateEnvironmentRequestBody $update_environment_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEnvironment'] to see the possible values for this operation
+     *
+     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \OpenAPI\Client\Model\UpdateEnvironmentResponse|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError|\OpenAPI\Client\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateEnvironmentWithHttpInfo($environment_id, $update_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
+    {
+        $request = $this->updateEnvironmentRequest($environment_id, $update_environment_request_body, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\OpenAPI\Client\Model\UpdateEnvironmentResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\UpdateEnvironmentResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\UpdateEnvironmentResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\OpenAPI\Client\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\OpenAPI\Client\Model\UpdateEnvironmentResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\UpdateEnvironmentResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\OpenAPI\Client\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1912,16 +3701,16 @@ class AccountsApi
      * Update environment
      *
      * @param  string $environment_id environment_id (required)
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request (required)
+     * @param  \OpenAPI\Client\Model\UpdateEnvironmentRequestBody $update_environment_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEnvironment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEnvironmentAsync($environment_id, $create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
+    public function updateEnvironmentAsync($environment_id, $update_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
     {
-        return $this->updateEnvironmentAsyncWithHttpInfo($environment_id, $create_environment_request, $x_schematic_environment_id, $contentType)
+        return $this->updateEnvironmentAsyncWithHttpInfo($environment_id, $update_environment_request_body, $x_schematic_environment_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1935,17 +3724,17 @@ class AccountsApi
      * Update environment
      *
      * @param  string $environment_id environment_id (required)
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request (required)
+     * @param  \OpenAPI\Client\Model\UpdateEnvironmentRequestBody $update_environment_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEnvironment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEnvironmentAsyncWithHttpInfo($environment_id, $create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
+    public function updateEnvironmentAsyncWithHttpInfo($environment_id, $update_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
     {
-        $returnType = '\OpenAPI\Client\Model\UpdateEnvironment200Response';
-        $request = $this->updateEnvironmentRequest($environment_id, $create_environment_request, $x_schematic_environment_id, $contentType);
+        $returnType = '\OpenAPI\Client\Model\UpdateEnvironmentResponse';
+        $request = $this->updateEnvironmentRequest($environment_id, $update_environment_request_body, $x_schematic_environment_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1987,14 +3776,14 @@ class AccountsApi
      * Create request for operation 'updateEnvironment'
      *
      * @param  string $environment_id environment_id (required)
-     * @param  \OpenAPI\Client\Model\CreateEnvironmentRequest $create_environment_request (required)
+     * @param  \OpenAPI\Client\Model\UpdateEnvironmentRequestBody $update_environment_request_body (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEnvironment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateEnvironmentRequest($environment_id, $create_environment_request, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
+    public function updateEnvironmentRequest($environment_id, $update_environment_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEnvironment'][0])
     {
 
         // verify the required parameter 'environment_id' is set
@@ -2004,10 +3793,10 @@ class AccountsApi
             );
         }
 
-        // verify the required parameter 'create_environment_request' is set
-        if ($create_environment_request === null || (is_array($create_environment_request) && count($create_environment_request) === 0)) {
+        // verify the required parameter 'update_environment_request_body' is set
+        if ($update_environment_request_body === null || (is_array($update_environment_request_body) && count($update_environment_request_body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_environment_request when calling updateEnvironment'
+                'Missing the required parameter $update_environment_request_body when calling updateEnvironment'
             );
         }
 
@@ -2043,12 +3832,12 @@ class AccountsApi
         );
 
         // for model (json/xml)
-        if (isset($create_environment_request)) {
+        if (isset($update_environment_request_body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_environment_request));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_environment_request_body));
             } else {
-                $httpBody = $create_environment_request;
+                $httpBody = $update_environment_request_body;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

@@ -49,7 +49,7 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'createEvent_request_body';
+    protected static $openAPIModelName = 'CreateEventRequestBody';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,9 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'company' => '\OpenAPI\Client\Model\CreateEventRequestBodyOneOf1Company',
-        'event' => 'string',
-        'traits' => 'object',
-        'user' => 'object',
-        'keys' => 'object',
-        'name' => 'string'
+        'body' => '\OpenAPI\Client\Model\EventBody',
+        'event_type' => 'string',
+        'sent_at' => '\DateTime'
     ];
 
     /**
@@ -73,12 +70,9 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'company' => null,
-        'event' => null,
-        'traits' => null,
-        'user' => null,
-        'keys' => null,
-        'name' => null
+        'body' => null,
+        'event_type' => null,
+        'sent_at' => 'date-time'
     ];
 
     /**
@@ -87,12 +81,9 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'company' => false,
-		'event' => false,
-		'traits' => false,
-		'user' => false,
-		'keys' => false,
-		'name' => false
+        'body' => false,
+		'event_type' => false,
+		'sent_at' => true
     ];
 
     /**
@@ -181,12 +172,9 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'company' => 'company',
-        'event' => 'event',
-        'traits' => 'traits',
-        'user' => 'user',
-        'keys' => 'keys',
-        'name' => 'name'
+        'body' => 'body',
+        'event_type' => 'event_type',
+        'sent_at' => 'sent_at'
     ];
 
     /**
@@ -195,12 +183,9 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'company' => 'setCompany',
-        'event' => 'setEvent',
-        'traits' => 'setTraits',
-        'user' => 'setUser',
-        'keys' => 'setKeys',
-        'name' => 'setName'
+        'body' => 'setBody',
+        'event_type' => 'setEventType',
+        'sent_at' => 'setSentAt'
     ];
 
     /**
@@ -209,12 +194,9 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'company' => 'getCompany',
-        'event' => 'getEvent',
-        'traits' => 'getTraits',
-        'user' => 'getUser',
-        'keys' => 'getKeys',
-        'name' => 'getName'
+        'body' => 'getBody',
+        'event_type' => 'getEventType',
+        'sent_at' => 'getSentAt'
     ];
 
     /**
@@ -274,12 +256,9 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('company', $data ?? [], null);
-        $this->setIfExists('event', $data ?? [], null);
-        $this->setIfExists('traits', $data ?? [], null);
-        $this->setIfExists('user', $data ?? [], null);
-        $this->setIfExists('keys', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('body', $data ?? [], null);
+        $this->setIfExists('event_type', $data ?? [], null);
+        $this->setIfExists('sent_at', $data ?? [], null);
     }
 
     /**
@@ -309,6 +288,9 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
+        if ($this->container['event_type'] === null) {
+            $invalidProperties[] = "'event_type' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -325,163 +307,89 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets company
+     * Gets body
      *
-     * @return \OpenAPI\Client\Model\CreateEventRequestBodyOneOf1Company|null
+     * @return \OpenAPI\Client\Model\EventBody|null
      */
-    public function getCompany()
+    public function getBody()
     {
-        return $this->container['company'];
+        return $this->container['body'];
     }
 
     /**
-     * Sets company
+     * Sets body
      *
-     * @param \OpenAPI\Client\Model\CreateEventRequestBodyOneOf1Company|null $company company
+     * @param \OpenAPI\Client\Model\EventBody|null $body body
      *
      * @return self
      */
-    public function setCompany($company)
+    public function setBody($body)
     {
-        if (is_null($company)) {
-            throw new \InvalidArgumentException('non-nullable company cannot be null');
+        if (is_null($body)) {
+            throw new \InvalidArgumentException('non-nullable body cannot be null');
         }
-        $this->container['company'] = $company;
+        $this->container['body'] = $body;
 
         return $this;
     }
 
     /**
-     * Gets event
+     * Gets event_type
      *
-     * @return string|null
+     * @return string
      */
-    public function getEvent()
+    public function getEventType()
     {
-        return $this->container['event'];
+        return $this->container['event_type'];
     }
 
     /**
-     * Sets event
+     * Sets event_type
      *
-     * @param string|null $event The name of the type of track event
+     * @param string $event_type Either 'identify' or 'track'
      *
      * @return self
      */
-    public function setEvent($event)
+    public function setEventType($event_type)
     {
-        if (is_null($event)) {
-            throw new \InvalidArgumentException('non-nullable event cannot be null');
+        if (is_null($event_type)) {
+            throw new \InvalidArgumentException('non-nullable event_type cannot be null');
         }
-        $this->container['event'] = $event;
+        $this->container['event_type'] = $event_type;
 
         return $this;
     }
 
     /**
-     * Gets traits
+     * Gets sent_at
      *
-     * @return object|null
+     * @return \DateTime|null
      */
-    public function getTraits()
+    public function getSentAt()
     {
-        return $this->container['traits'];
+        return $this->container['sent_at'];
     }
 
     /**
-     * Sets traits
+     * Sets sent_at
      *
-     * @param object|null $traits A map of user trait names to trait values
+     * @param \DateTime|null $sent_at Optionally provide a timestamp at which the event was sent to Schematic
      *
      * @return self
      */
-    public function setTraits($traits)
+    public function setSentAt($sent_at)
     {
-        if (is_null($traits)) {
-            throw new \InvalidArgumentException('non-nullable traits cannot be null');
+        if (is_null($sent_at)) {
+            array_push($this->openAPINullablesSetToNull, 'sent_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sent_at', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['traits'] = $traits;
-
-        return $this;
-    }
-
-    /**
-     * Gets user
-     *
-     * @return object|null
-     */
-    public function getUser()
-    {
-        return $this->container['user'];
-    }
-
-    /**
-     * Sets user
-     *
-     * @param object|null $user Key-value pairs to identify user associated with track event
-     *
-     * @return self
-     */
-    public function setUser($user)
-    {
-        if (is_null($user)) {
-            throw new \InvalidArgumentException('non-nullable user cannot be null');
-        }
-        $this->container['user'] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Gets keys
-     *
-     * @return object|null
-     */
-    public function getKeys()
-    {
-        return $this->container['keys'];
-    }
-
-    /**
-     * Sets keys
-     *
-     * @param object|null $keys Key-value pairs to identify the user
-     *
-     * @return self
-     */
-    public function setKeys($keys)
-    {
-        if (is_null($keys)) {
-            throw new \InvalidArgumentException('non-nullable keys cannot be null');
-        }
-        $this->container['keys'] = $keys;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name The display name of the user being identified; required only if it is a new user
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
+        $this->container['sent_at'] = $sent_at;
 
         return $this;
     }

@@ -5,19 +5,30 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**checkFlag()**](FeaturesApi.md#checkFlag) | **POST** /flags/{key}/check | Check flag |
+| [**checkFlags()**](FeaturesApi.md#checkFlags) | **POST** /flags/check | Check flags |
 | [**countFlagValues()**](FeaturesApi.md#countFlagValues) | **GET** /flag-values/count | Count flag values |
 | [**createFeature()**](FeaturesApi.md#createFeature) | **POST** /features | Create feature |
+| [**createFlag()**](FeaturesApi.md#createFlag) | **POST** /flags | Create flag |
+| [**createRule()**](FeaturesApi.md#createRule) | **POST** /rules | Create rule |
 | [**deleteFeature()**](FeaturesApi.md#deleteFeature) | **DELETE** /features/{feature_id} | Delete feature |
+| [**deleteFlag()**](FeaturesApi.md#deleteFlag) | **DELETE** /flags/{flag_id} | Delete flag |
 | [**getFeature()**](FeaturesApi.md#getFeature) | **GET** /features/{feature_id} | Get feature |
+| [**getFlag()**](FeaturesApi.md#getFlag) | **GET** /flags/{flag_id} | Get flag |
+| [**getRule()**](FeaturesApi.md#getRule) | **GET** /rules/{rule_id} | Get rule |
+| [**latestFlagChecks()**](FeaturesApi.md#latestFlagChecks) | **GET** /flag-checks/latest | Latest flag checks |
 | [**listFeatures()**](FeaturesApi.md#listFeatures) | **GET** /features | List features |
+| [**listFlagChecks()**](FeaturesApi.md#listFlagChecks) | **GET** /flag-checks | List flag checks |
 | [**listFlagValues()**](FeaturesApi.md#listFlagValues) | **GET** /flag-values | List flag values |
+| [**listFlags()**](FeaturesApi.md#listFlags) | **GET** /flags | List flags |
 | [**updateFeature()**](FeaturesApi.md#updateFeature) | **PUT** /features/{feature_id} | Update feature |
+| [**updateFlag()**](FeaturesApi.md#updateFlag) | **PUT** /flags/{flag_id} | Update flag |
+| [**updateRule()**](FeaturesApi.md#updateRule) | **PUT** /rules/{rule_id} | Update rule |
 
 
 ## `checkFlag()`
 
 ```php
-checkFlag($key, $check_flag_request, $x_schematic_environment_id): \OpenAPI\Client\Model\CheckFlag200Response
+checkFlag($key, $check_flag_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CheckFlagResponse
 ```
 
 Check flag
@@ -42,11 +53,11 @@ $apiInstance = new OpenAPI\Client\Api\FeaturesApi(
     $config
 );
 $key = 'key_example'; // string | key
-$check_flag_request = new \OpenAPI\Client\Model\CheckFlagRequest(); // \OpenAPI\Client\Model\CheckFlagRequest
+$check_flag_request_body = new \OpenAPI\Client\Model\CheckFlagRequestBody(); // \OpenAPI\Client\Model\CheckFlagRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->checkFlag($key, $check_flag_request, $x_schematic_environment_id);
+    $result = $apiInstance->checkFlag($key, $check_flag_request_body, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->checkFlag: ', $e->getMessage(), PHP_EOL;
@@ -58,12 +69,74 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **key** | **string**| key | |
-| **check_flag_request** | [**\OpenAPI\Client\Model\CheckFlagRequest**](../Model/CheckFlagRequest.md)|  | |
+| **check_flag_request_body** | [**\OpenAPI\Client\Model\CheckFlagRequestBody**](../Model/CheckFlagRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CheckFlag200Response**](../Model/CheckFlag200Response.md)
+[**\OpenAPI\Client\Model\CheckFlagResponse**](../Model/CheckFlagResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `checkFlags()`
+
+```php
+checkFlags($check_flag_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CheckFlagsResponse
+```
+
+Check flags
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$check_flag_request_body = new \OpenAPI\Client\Model\CheckFlagRequestBody(); // \OpenAPI\Client\Model\CheckFlagRequestBody
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->checkFlags($check_flag_request_body, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->checkFlags: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **check_flag_request_body** | [**\OpenAPI\Client\Model\CheckFlagRequestBody**](../Model/CheckFlagRequestBody.md)|  | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\CheckFlagsResponse**](../Model/CheckFlagsResponse.md)
 
 ### Authorization
 
@@ -81,7 +154,7 @@ try {
 ## `countFlagValues()`
 
 ```php
-countFlagValues($x_schematic_environment_id, $entity_type, $entity_id, $flag_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\CountFlagValues200Response
+countFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\CountFlagValuesResponse
 ```
 
 Count flag values
@@ -105,9 +178,10 @@ $apiInstance = new OpenAPI\Client\Api\FeaturesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $entity_type = 56; // int
-$entity_id = 'entity_id_example'; // string
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+$company_id = 'company_id_example'; // string
+$user_id = 'user_id_example'; // string
 $flag_id = 'flag_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
@@ -115,7 +189,7 @@ $order = 'order_example'; // string | Order by column
 $dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->countFlagValues($x_schematic_environment_id, $entity_type, $entity_id, $flag_id, $limit, $offset, $order, $dir);
+    $result = $apiInstance->countFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->countFlagValues: ', $e->getMessage(), PHP_EOL;
@@ -126,9 +200,10 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **entity_type** | **int**|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
-| **entity_type** | **int**|  | [optional] |
-| **entity_id** | **string**|  | [optional] |
+| **company_id** | **string**|  | [optional] |
+| **user_id** | **string**|  | [optional] |
 | **flag_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -137,7 +212,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CountFlagValues200Response**](../Model/CountFlagValues200Response.md)
+[**\OpenAPI\Client\Model\CountFlagValuesResponse**](../Model/CountFlagValuesResponse.md)
 
 ### Authorization
 
@@ -155,7 +230,7 @@ try {
 ## `createFeature()`
 
 ```php
-createFeature($create_feature_request, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateFeature200Response
+createFeature($create_feature_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateFeatureResponse
 ```
 
 Create feature
@@ -179,11 +254,11 @@ $apiInstance = new OpenAPI\Client\Api\FeaturesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_feature_request = new \OpenAPI\Client\Model\CreateFeatureRequest(); // \OpenAPI\Client\Model\CreateFeatureRequest
+$create_feature_request_body = new \OpenAPI\Client\Model\CreateFeatureRequestBody(); // \OpenAPI\Client\Model\CreateFeatureRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->createFeature($create_feature_request, $x_schematic_environment_id);
+    $result = $apiInstance->createFeature($create_feature_request_body, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->createFeature: ', $e->getMessage(), PHP_EOL;
@@ -194,12 +269,136 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_feature_request** | [**\OpenAPI\Client\Model\CreateFeatureRequest**](../Model/CreateFeatureRequest.md)|  | |
+| **create_feature_request_body** | [**\OpenAPI\Client\Model\CreateFeatureRequestBody**](../Model/CreateFeatureRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateFeature200Response**](../Model/CreateFeature200Response.md)
+[**\OpenAPI\Client\Model\CreateFeatureResponse**](../Model/CreateFeatureResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createFlag()`
+
+```php
+createFlag($create_flag_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateFlagResponse
+```
+
+Create flag
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$create_flag_request_body = new \OpenAPI\Client\Model\CreateFlagRequestBody(); // \OpenAPI\Client\Model\CreateFlagRequestBody
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->createFlag($create_flag_request_body, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->createFlag: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_flag_request_body** | [**\OpenAPI\Client\Model\CreateFlagRequestBody**](../Model/CreateFlagRequestBody.md)|  | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\CreateFlagResponse**](../Model/CreateFlagResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createRule()`
+
+```php
+createRule($create_rule_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateRuleResponse
+```
+
+Create rule
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$create_rule_request_body = new \OpenAPI\Client\Model\CreateRuleRequestBody(); // \OpenAPI\Client\Model\CreateRuleRequestBody
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->createRule($create_rule_request_body, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->createRule: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_rule_request_body** | [**\OpenAPI\Client\Model\CreateRuleRequestBody**](../Model/CreateRuleRequestBody.md)|  | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\CreateRuleResponse**](../Model/CreateRuleResponse.md)
 
 ### Authorization
 
@@ -217,7 +416,7 @@ try {
 ## `deleteFeature()`
 
 ```php
-deleteFeature($feature_id, $x_schematic_environment_id): \OpenAPI\Client\Model\DeleteApiKey200Response
+deleteFeature($feature_id, $x_schematic_environment_id): \OpenAPI\Client\Model\DeleteFeatureResponse
 ```
 
 Delete feature
@@ -261,7 +460,69 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteApiKey200Response**](../Model/DeleteApiKey200Response.md)
+[**\OpenAPI\Client\Model\DeleteFeatureResponse**](../Model/DeleteFeatureResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteFlag()`
+
+```php
+deleteFlag($flag_id, $x_schematic_environment_id): \OpenAPI\Client\Model\DeleteFlagResponse
+```
+
+Delete flag
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flag_id = 'flag_id_example'; // string | flag_id
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->deleteFlag($flag_id, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->deleteFlag: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flag_id** | **string**| flag_id | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\DeleteFlagResponse**](../Model/DeleteFlagResponse.md)
 
 ### Authorization
 
@@ -279,7 +540,7 @@ try {
 ## `getFeature()`
 
 ```php
-getFeature($feature_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetFeature200Response
+getFeature($feature_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetFeatureResponse
 ```
 
 Get feature
@@ -323,7 +584,203 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetFeature200Response**](../Model/GetFeature200Response.md)
+[**\OpenAPI\Client\Model\GetFeatureResponse**](../Model/GetFeatureResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getFlag()`
+
+```php
+getFlag($flag_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetFlagResponse
+```
+
+Get flag
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flag_id = 'flag_id_example'; // string | flag_id
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->getFlag($flag_id, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->getFlag: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flag_id** | **string**| flag_id | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetFlagResponse**](../Model/GetFlagResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getRule()`
+
+```php
+getRule($rule_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetRuleResponse
+```
+
+Get rule
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$rule_id = 'rule_id_example'; // string | rule_id
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->getRule($rule_id, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->getRule: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **rule_id** | **string**| rule_id | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\GetRuleResponse**](../Model/GetRuleResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `latestFlagChecks()`
+
+```php
+latestFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\LatestFlagChecksResponse
+```
+
+Latest flag checks
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+$flag_id = 'flag_id_example'; // string
+$flag_ids = array('flag_ids_example'); // string[]
+$limit = 56; // int | Page limit (default 100)
+$offset = 56; // int | Page offset (default 0)
+$order = 'order_example'; // string | Order by column
+$dir = 'dir_example'; // string | Order direction
+
+try {
+    $result = $apiInstance->latestFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->latestFlagChecks: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+| **flag_id** | **string**|  | [optional] |
+| **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+| **order** | **string**| Order by column | [optional] |
+| **dir** | **string**| Order direction | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\LatestFlagChecksResponse**](../Model/LatestFlagChecksResponse.md)
 
 ### Authorization
 
@@ -341,7 +798,7 @@ try {
 ## `listFeatures()`
 
 ```php
-listFeatures($x_schematic_environment_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListFeatures200Response
+listFeatures($x_schematic_environment_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListFeaturesResponse
 ```
 
 List features
@@ -391,7 +848,79 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListFeatures200Response**](../Model/ListFeatures200Response.md)
+[**\OpenAPI\Client\Model\ListFeaturesResponse**](../Model/ListFeaturesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listFlagChecks()`
+
+```php
+listFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListFlagChecksResponse
+```
+
+List flag checks
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+$flag_id = 'flag_id_example'; // string
+$flag_ids = array('flag_ids_example'); // string[]
+$limit = 56; // int | Page limit (default 100)
+$offset = 56; // int | Page offset (default 0)
+$order = 'order_example'; // string | Order by column
+$dir = 'dir_example'; // string | Order direction
+
+try {
+    $result = $apiInstance->listFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->listFlagChecks: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+| **flag_id** | **string**|  | [optional] |
+| **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+| **order** | **string**| Order by column | [optional] |
+| **dir** | **string**| Order direction | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\ListFlagChecksResponse**](../Model/ListFlagChecksResponse.md)
 
 ### Authorization
 
@@ -409,7 +938,7 @@ try {
 ## `listFlagValues()`
 
 ```php
-listFlagValues($x_schematic_environment_id, $entity_type, $entity_id, $flag_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListFlagValues200Response
+listFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListFlagValuesResponse
 ```
 
 List flag values
@@ -433,9 +962,10 @@ $apiInstance = new OpenAPI\Client\Api\FeaturesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $entity_type = 56; // int
-$entity_id = 'entity_id_example'; // string
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+$company_id = 'company_id_example'; // string
+$user_id = 'user_id_example'; // string
 $flag_id = 'flag_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
@@ -443,7 +973,7 @@ $order = 'order_example'; // string | Order by column
 $dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listFlagValues($x_schematic_environment_id, $entity_type, $entity_id, $flag_id, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->listFlagValues: ', $e->getMessage(), PHP_EOL;
@@ -454,9 +984,10 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **entity_type** | **int**|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
-| **entity_type** | **int**|  | [optional] |
-| **entity_id** | **string**|  | [optional] |
+| **company_id** | **string**|  | [optional] |
+| **user_id** | **string**|  | [optional] |
 | **flag_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -465,7 +996,79 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListFlagValues200Response**](../Model/ListFlagValues200Response.md)
+[**\OpenAPI\Client\Model\ListFlagValuesResponse**](../Model/ListFlagValuesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listFlags()`
+
+```php
+listFlags($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListFlagsResponse
+```
+
+List flags
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+$feature_id = 'feature_id_example'; // string
+$flag_ids = array('flag_ids_example'); // string[]
+$limit = 56; // int | Page limit (default 100)
+$offset = 56; // int | Page offset (default 0)
+$order = 'order_example'; // string | Order by column
+$dir = 'dir_example'; // string | Order direction
+
+try {
+    $result = $apiInstance->listFlags($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $order, $dir);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->listFlags: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+| **feature_id** | **string**|  | [optional] |
+| **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+| **order** | **string**| Order by column | [optional] |
+| **dir** | **string**| Order direction | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\ListFlagsResponse**](../Model/ListFlagsResponse.md)
 
 ### Authorization
 
@@ -483,7 +1086,7 @@ try {
 ## `updateFeature()`
 
 ```php
-updateFeature($feature_id, $create_feature_request, $x_schematic_environment_id): \OpenAPI\Client\Model\GetFeature200Response
+updateFeature($feature_id, $update_feature_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\UpdateFeatureResponse
 ```
 
 Update feature
@@ -508,11 +1111,11 @@ $apiInstance = new OpenAPI\Client\Api\FeaturesApi(
     $config
 );
 $feature_id = 'feature_id_example'; // string | feature_id
-$create_feature_request = new \OpenAPI\Client\Model\CreateFeatureRequest(); // \OpenAPI\Client\Model\CreateFeatureRequest
+$update_feature_request_body = new \OpenAPI\Client\Model\UpdateFeatureRequestBody(); // \OpenAPI\Client\Model\UpdateFeatureRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->updateFeature($feature_id, $create_feature_request, $x_schematic_environment_id);
+    $result = $apiInstance->updateFeature($feature_id, $update_feature_request_body, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->updateFeature: ', $e->getMessage(), PHP_EOL;
@@ -524,12 +1127,140 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **feature_id** | **string**| feature_id | |
-| **create_feature_request** | [**\OpenAPI\Client\Model\CreateFeatureRequest**](../Model/CreateFeatureRequest.md)|  | |
+| **update_feature_request_body** | [**\OpenAPI\Client\Model\UpdateFeatureRequestBody**](../Model/UpdateFeatureRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetFeature200Response**](../Model/GetFeature200Response.md)
+[**\OpenAPI\Client\Model\UpdateFeatureResponse**](../Model/UpdateFeatureResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateFlag()`
+
+```php
+updateFlag($flag_id, $create_flag_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\UpdateFlagResponse
+```
+
+Update flag
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flag_id = 'flag_id_example'; // string | flag_id
+$create_flag_request_body = new \OpenAPI\Client\Model\CreateFlagRequestBody(); // \OpenAPI\Client\Model\CreateFlagRequestBody
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->updateFlag($flag_id, $create_flag_request_body, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->updateFlag: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flag_id** | **string**| flag_id | |
+| **create_flag_request_body** | [**\OpenAPI\Client\Model\CreateFlagRequestBody**](../Model/CreateFlagRequestBody.md)|  | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\UpdateFlagResponse**](../Model/UpdateFlagResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateRule()`
+
+```php
+updateRule($rule_id, $update_rule_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\UpdateRuleResponse
+```
+
+Update rule
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$rule_id = 'rule_id_example'; // string | rule_id
+$update_rule_request_body = new \OpenAPI\Client\Model\UpdateRuleRequestBody(); // \OpenAPI\Client\Model\UpdateRuleRequestBody
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->updateRule($rule_id, $update_rule_request_body, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->updateRule: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **rule_id** | **string**| rule_id | |
+| **update_rule_request_body** | [**\OpenAPI\Client\Model\UpdateRuleRequestBody**](../Model/UpdateRuleRequestBody.md)|  | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\UpdateRuleResponse**](../Model/UpdateRuleResponse.md)
 
 ### Authorization
 

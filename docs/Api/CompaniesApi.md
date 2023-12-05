@@ -5,17 +5,21 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**createCompany()**](CompaniesApi.md#createCompany) | **POST** /companies | Create company |
+| [**createCompanyMembership()**](CompaniesApi.md#createCompanyMembership) | **POST** /company-memberships | Create company membership |
 | [**createUser()**](CompaniesApi.md#createUser) | **POST** /users | Create user |
+| [**deleteCompanyMembership()**](CompaniesApi.md#deleteCompanyMembership) | **DELETE** /company-memberships/{company_membership_id} | Delete company membership |
 | [**getCompany()**](CompaniesApi.md#getCompany) | **GET** /companies/{company_id} | Get company |
 | [**getUser()**](CompaniesApi.md#getUser) | **GET** /users/{user_id} | Get user |
 | [**listCompanies()**](CompaniesApi.md#listCompanies) | **GET** /companies | List companies |
+| [**listCompanyMemberships()**](CompaniesApi.md#listCompanyMemberships) | **GET** /company-memberships | List company memberships |
 | [**listUsers()**](CompaniesApi.md#listUsers) | **GET** /users | List users |
+| [**updateEntityTraitDefinition()**](CompaniesApi.md#updateEntityTraitDefinition) | **PUT** /entity-trait-definitions/{entity_trait_definition_id} | Update entity trait definition |
 
 
 ## `createCompany()`
 
 ```php
-createCompany($create_company_request, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateCompany200Response
+createCompany($upsert_company_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateCompanyResponse
 ```
 
 Create company
@@ -39,11 +43,11 @@ $apiInstance = new OpenAPI\Client\Api\CompaniesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_company_request = new \OpenAPI\Client\Model\CreateCompanyRequest(); // \OpenAPI\Client\Model\CreateCompanyRequest
+$upsert_company_request_body = new \OpenAPI\Client\Model\UpsertCompanyRequestBody(); // \OpenAPI\Client\Model\UpsertCompanyRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->createCompany($create_company_request, $x_schematic_environment_id);
+    $result = $apiInstance->createCompany($upsert_company_request_body, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->createCompany: ', $e->getMessage(), PHP_EOL;
@@ -54,12 +58,74 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_company_request** | [**\OpenAPI\Client\Model\CreateCompanyRequest**](../Model/CreateCompanyRequest.md)|  | |
+| **upsert_company_request_body** | [**\OpenAPI\Client\Model\UpsertCompanyRequestBody**](../Model/UpsertCompanyRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateCompany200Response**](../Model/CreateCompany200Response.md)
+[**\OpenAPI\Client\Model\CreateCompanyResponse**](../Model/CreateCompanyResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createCompanyMembership()`
+
+```php
+createCompanyMembership($get_or_create_company_membership_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateCompanyMembershipResponse
+```
+
+Create company membership
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\CompaniesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$get_or_create_company_membership_request_body = new \OpenAPI\Client\Model\GetOrCreateCompanyMembershipRequestBody(); // \OpenAPI\Client\Model\GetOrCreateCompanyMembershipRequestBody
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->createCompanyMembership($get_or_create_company_membership_request_body, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CompaniesApi->createCompanyMembership: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **get_or_create_company_membership_request_body** | [**\OpenAPI\Client\Model\GetOrCreateCompanyMembershipRequestBody**](../Model/GetOrCreateCompanyMembershipRequestBody.md)|  | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\CreateCompanyMembershipResponse**](../Model/CreateCompanyMembershipResponse.md)
 
 ### Authorization
 
@@ -77,7 +143,7 @@ try {
 ## `createUser()`
 
 ```php
-createUser($create_user_request, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateUser200Response
+createUser($upsert_user_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreateUserResponse
 ```
 
 Create user
@@ -101,11 +167,11 @@ $apiInstance = new OpenAPI\Client\Api\CompaniesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_user_request = new \OpenAPI\Client\Model\CreateUserRequest(); // \OpenAPI\Client\Model\CreateUserRequest
+$upsert_user_request_body = new \OpenAPI\Client\Model\UpsertUserRequestBody(); // \OpenAPI\Client\Model\UpsertUserRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->createUser($create_user_request, $x_schematic_environment_id);
+    $result = $apiInstance->createUser($upsert_user_request_body, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->createUser: ', $e->getMessage(), PHP_EOL;
@@ -116,12 +182,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_user_request** | [**\OpenAPI\Client\Model\CreateUserRequest**](../Model/CreateUserRequest.md)|  | |
+| **upsert_user_request_body** | [**\OpenAPI\Client\Model\UpsertUserRequestBody**](../Model/UpsertUserRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateUser200Response**](../Model/CreateUser200Response.md)
+[**\OpenAPI\Client\Model\CreateUserResponse**](../Model/CreateUserResponse.md)
 
 ### Authorization
 
@@ -136,10 +202,72 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteCompanyMembership()`
+
+```php
+deleteCompanyMembership($company_membership_id, $x_schematic_environment_id): \OpenAPI\Client\Model\DeleteCompanyMembershipResponse
+```
+
+Delete company membership
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\CompaniesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$company_membership_id = 'company_membership_id_example'; // string | company_membership_id
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->deleteCompanyMembership($company_membership_id, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CompaniesApi->deleteCompanyMembership: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_membership_id** | **string**| company_membership_id | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\DeleteCompanyMembershipResponse**](../Model/DeleteCompanyMembershipResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getCompany()`
 
 ```php
-getCompany($company_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetCompany200Response
+getCompany($company_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetCompanyResponse
 ```
 
 Get company
@@ -183,7 +311,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetCompany200Response**](../Model/GetCompany200Response.md)
+[**\OpenAPI\Client\Model\GetCompanyResponse**](../Model/GetCompanyResponse.md)
 
 ### Authorization
 
@@ -201,7 +329,7 @@ try {
 ## `getUser()`
 
 ```php
-getUser($user_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetUser200Response
+getUser($user_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetUserResponse
 ```
 
 Get user
@@ -245,7 +373,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetUser200Response**](../Model/GetUser200Response.md)
+[**\OpenAPI\Client\Model\GetUserResponse**](../Model/GetUserResponse.md)
 
 ### Authorization
 
@@ -263,7 +391,7 @@ try {
 ## `listCompanies()`
 
 ```php
-listCompanies($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListCompanies200Response
+listCompanies($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListCompaniesResponse
 ```
 
 List companies
@@ -315,7 +443,79 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListCompanies200Response**](../Model/ListCompanies200Response.md)
+[**\OpenAPI\Client\Model\ListCompaniesResponse**](../Model/ListCompaniesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listCompanyMemberships()`
+
+```php
+listCompanyMemberships($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListCompanyMembershipsResponse
+```
+
+List company memberships
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\CompaniesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+$company_id = 'company_id_example'; // string
+$user_id = 'user_id_example'; // string
+$limit = 56; // int | Page limit (default 100)
+$offset = 56; // int | Page offset (default 0)
+$order = 'order_example'; // string | Order by column
+$dir = 'dir_example'; // string | Order direction
+
+try {
+    $result = $apiInstance->listCompanyMemberships($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $order, $dir);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CompaniesApi->listCompanyMemberships: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+| **company_id** | **string**|  | [optional] |
+| **user_id** | **string**|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+| **order** | **string**| Order by column | [optional] |
+| **dir** | **string**| Order direction | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\ListCompanyMembershipsResponse**](../Model/ListCompanyMembershipsResponse.md)
 
 ### Authorization
 
@@ -333,7 +533,7 @@ try {
 ## `listUsers()`
 
 ```php
-listUsers($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListUsers200Response
+listUsers($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListUsersResponse
 ```
 
 List users
@@ -385,7 +585,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListUsers200Response**](../Model/ListUsers200Response.md)
+[**\OpenAPI\Client\Model\ListUsersResponse**](../Model/ListUsersResponse.md)
 
 ### Authorization
 
@@ -394,6 +594,70 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateEntityTraitDefinition()`
+
+```php
+updateEntityTraitDefinition($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\UpdateEntityTraitDefinitionResponse
+```
+
+Update entity trait definition
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\CompaniesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$entity_trait_definition_id = 'entity_trait_definition_id_example'; // string | entity_trait_definition_id
+$update_entity_trait_definition_request_body = new \OpenAPI\Client\Model\UpdateEntityTraitDefinitionRequestBody(); // \OpenAPI\Client\Model\UpdateEntityTraitDefinitionRequestBody
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->updateEntityTraitDefinition($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CompaniesApi->updateEntityTraitDefinition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **entity_trait_definition_id** | **string**| entity_trait_definition_id | |
+| **update_entity_trait_definition_request_body** | [**\OpenAPI\Client\Model\UpdateEntityTraitDefinitionRequestBody**](../Model/UpdateEntityTraitDefinitionRequestBody.md)|  | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\UpdateEntityTraitDefinitionResponse**](../Model/UpdateEntityTraitDefinitionResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

@@ -10,13 +10,14 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**listPlans()**](PlansApi.md#listPlans) | **GET** /plans | List plans |
 | [**syncCompanyPlans()**](PlansApi.md#syncCompanyPlans) | **POST** /company-plans/sync | Sync company plans |
 | [**updatePlan()**](PlansApi.md#updatePlan) | **PUT** /plans/{plan_id} | Update plan |
+| [**updatePlanAudience()**](PlansApi.md#updatePlanAudience) | **PUT** /plan-audiences/{plan_audience_id} | Update plan audience |
 | [**upsertBillingPeriod()**](PlansApi.md#upsertBillingPeriod) | **POST** /billing-periods/{key}/upsert | Upsert billing period |
 
 
 ## `createPlan()`
 
 ```php
-createPlan($create_plan_request, $x_schematic_environment_id): \OpenAPI\Client\Model\CreatePlan200Response
+createPlan($create_plan_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\CreatePlanResponse
 ```
 
 Create plan
@@ -40,11 +41,11 @@ $apiInstance = new OpenAPI\Client\Api\PlansApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_plan_request = new \OpenAPI\Client\Model\CreatePlanRequest(); // \OpenAPI\Client\Model\CreatePlanRequest
+$create_plan_request_body = new \OpenAPI\Client\Model\CreatePlanRequestBody(); // \OpenAPI\Client\Model\CreatePlanRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->createPlan($create_plan_request, $x_schematic_environment_id);
+    $result = $apiInstance->createPlan($create_plan_request_body, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PlansApi->createPlan: ', $e->getMessage(), PHP_EOL;
@@ -55,12 +56,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_plan_request** | [**\OpenAPI\Client\Model\CreatePlanRequest**](../Model/CreatePlanRequest.md)|  | |
+| **create_plan_request_body** | [**\OpenAPI\Client\Model\CreatePlanRequestBody**](../Model/CreatePlanRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreatePlan200Response**](../Model/CreatePlan200Response.md)
+[**\OpenAPI\Client\Model\CreatePlanResponse**](../Model/CreatePlanResponse.md)
 
 ### Authorization
 
@@ -78,7 +79,7 @@ try {
 ## `deletePlan()`
 
 ```php
-deletePlan($plan_id, $x_schematic_environment_id): \OpenAPI\Client\Model\DeleteApiKey200Response
+deletePlan($plan_id, $x_schematic_environment_id): \OpenAPI\Client\Model\DeletePlanResponse
 ```
 
 Delete plan
@@ -122,7 +123,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DeleteApiKey200Response**](../Model/DeleteApiKey200Response.md)
+[**\OpenAPI\Client\Model\DeletePlanResponse**](../Model/DeletePlanResponse.md)
 
 ### Authorization
 
@@ -140,7 +141,7 @@ try {
 ## `getPlan()`
 
 ```php
-getPlan($plan_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetPlan200Response
+getPlan($plan_id, $x_schematic_environment_id): \OpenAPI\Client\Model\GetPlanResponse
 ```
 
 Get plan
@@ -184,7 +185,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetPlan200Response**](../Model/GetPlan200Response.md)
+[**\OpenAPI\Client\Model\GetPlanResponse**](../Model/GetPlanResponse.md)
 
 ### Authorization
 
@@ -202,7 +203,7 @@ try {
 ## `listPlans()`
 
 ```php
-listPlans($x_schematic_environment_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListPlans200Response
+listPlans($x_schematic_environment_id, $limit, $offset, $order, $dir): \OpenAPI\Client\Model\ListPlansResponse
 ```
 
 List plans
@@ -252,7 +253,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListPlans200Response**](../Model/ListPlans200Response.md)
+[**\OpenAPI\Client\Model\ListPlansResponse**](../Model/ListPlansResponse.md)
 
 ### Authorization
 
@@ -270,7 +271,7 @@ try {
 ## `syncCompanyPlans()`
 
 ```php
-syncCompanyPlans($sync_company_plans_request, $x_schematic_environment_id): \OpenAPI\Client\Model\SyncCompanyPlans200Response
+syncCompanyPlans($sync_company_plans_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\SyncCompanyPlansResponse
 ```
 
 Sync company plans
@@ -294,11 +295,11 @@ $apiInstance = new OpenAPI\Client\Api\PlansApi(
     new GuzzleHttp\Client(),
     $config
 );
-$sync_company_plans_request = new \OpenAPI\Client\Model\SyncCompanyPlansRequest(); // \OpenAPI\Client\Model\SyncCompanyPlansRequest
+$sync_company_plans_request_body = new \OpenAPI\Client\Model\SyncCompanyPlansRequestBody(); // \OpenAPI\Client\Model\SyncCompanyPlansRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->syncCompanyPlans($sync_company_plans_request, $x_schematic_environment_id);
+    $result = $apiInstance->syncCompanyPlans($sync_company_plans_request_body, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PlansApi->syncCompanyPlans: ', $e->getMessage(), PHP_EOL;
@@ -309,12 +310,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **sync_company_plans_request** | [**\OpenAPI\Client\Model\SyncCompanyPlansRequest**](../Model/SyncCompanyPlansRequest.md)|  | |
+| **sync_company_plans_request_body** | [**\OpenAPI\Client\Model\SyncCompanyPlansRequestBody**](../Model/SyncCompanyPlansRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SyncCompanyPlans200Response**](../Model/SyncCompanyPlans200Response.md)
+[**\OpenAPI\Client\Model\SyncCompanyPlansResponse**](../Model/SyncCompanyPlansResponse.md)
 
 ### Authorization
 
@@ -332,7 +333,7 @@ try {
 ## `updatePlan()`
 
 ```php
-updatePlan($plan_id, $create_plan_request, $x_schematic_environment_id): \OpenAPI\Client\Model\GetPlan200Response
+updatePlan($plan_id, $update_plan_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\UpdatePlanResponse
 ```
 
 Update plan
@@ -357,11 +358,11 @@ $apiInstance = new OpenAPI\Client\Api\PlansApi(
     $config
 );
 $plan_id = 'plan_id_example'; // string | plan_id
-$create_plan_request = new \OpenAPI\Client\Model\CreatePlanRequest(); // \OpenAPI\Client\Model\CreatePlanRequest
+$update_plan_request_body = new \OpenAPI\Client\Model\UpdatePlanRequestBody(); // \OpenAPI\Client\Model\UpdatePlanRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->updatePlan($plan_id, $create_plan_request, $x_schematic_environment_id);
+    $result = $apiInstance->updatePlan($plan_id, $update_plan_request_body, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PlansApi->updatePlan: ', $e->getMessage(), PHP_EOL;
@@ -373,12 +374,76 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_id** | **string**| plan_id | |
-| **create_plan_request** | [**\OpenAPI\Client\Model\CreatePlanRequest**](../Model/CreatePlanRequest.md)|  | |
+| **update_plan_request_body** | [**\OpenAPI\Client\Model\UpdatePlanRequestBody**](../Model/UpdatePlanRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetPlan200Response**](../Model/GetPlan200Response.md)
+[**\OpenAPI\Client\Model\UpdatePlanResponse**](../Model/UpdatePlanResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updatePlanAudience()`
+
+```php
+updatePlanAudience($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\UpdatePlanAudienceResponse
+```
+
+Update plan audience
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\PlansApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$plan_audience_id = 'plan_audience_id_example'; // string | plan_audience_id
+$update_audience_request_body = new \OpenAPI\Client\Model\UpdateAudienceRequestBody(); // \OpenAPI\Client\Model\UpdateAudienceRequestBody
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->updatePlanAudience($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PlansApi->updatePlanAudience: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_audience_id** | **string**| plan_audience_id | |
+| **update_audience_request_body** | [**\OpenAPI\Client\Model\UpdateAudienceRequestBody**](../Model/UpdateAudienceRequestBody.md)|  | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\OpenAPI\Client\Model\UpdatePlanAudienceResponse**](../Model/UpdatePlanAudienceResponse.md)
 
 ### Authorization
 
@@ -396,7 +461,7 @@ try {
 ## `upsertBillingPeriod()`
 
 ```php
-upsertBillingPeriod($key, $upsert_billing_period_request, $x_schematic_environment_id): \OpenAPI\Client\Model\UpsertBillingPeriod200Response
+upsertBillingPeriod($key, $upsert_billing_period_request_body, $x_schematic_environment_id): \OpenAPI\Client\Model\UpsertBillingPeriodResponse
 ```
 
 Upsert billing period
@@ -421,11 +486,11 @@ $apiInstance = new OpenAPI\Client\Api\PlansApi(
     $config
 );
 $key = 'key_example'; // string | key
-$upsert_billing_period_request = new \OpenAPI\Client\Model\UpsertBillingPeriodRequest(); // \OpenAPI\Client\Model\UpsertBillingPeriodRequest
+$upsert_billing_period_request_body = new \OpenAPI\Client\Model\UpsertBillingPeriodRequestBody(); // \OpenAPI\Client\Model\UpsertBillingPeriodRequestBody
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->upsertBillingPeriod($key, $upsert_billing_period_request, $x_schematic_environment_id);
+    $result = $apiInstance->upsertBillingPeriod($key, $upsert_billing_period_request_body, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PlansApi->upsertBillingPeriod: ', $e->getMessage(), PHP_EOL;
@@ -437,12 +502,12 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **key** | **string**| key | |
-| **upsert_billing_period_request** | [**\OpenAPI\Client\Model\UpsertBillingPeriodRequest**](../Model/UpsertBillingPeriodRequest.md)|  | |
+| **upsert_billing_period_request_body** | [**\OpenAPI\Client\Model\UpsertBillingPeriodRequestBody**](../Model/UpsertBillingPeriodRequestBody.md)|  | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UpsertBillingPeriod200Response**](../Model/UpsertBillingPeriod200Response.md)
+[**\OpenAPI\Client\Model\UpsertBillingPeriodResponse**](../Model/UpsertBillingPeriodResponse.md)
 
 ### Authorization
 

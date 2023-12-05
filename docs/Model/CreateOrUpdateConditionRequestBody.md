@@ -1,0 +1,18 @@
+# # CreateOrUpdateConditionRequestBody
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**comparison_trait_id** | **string** | Optionally provide a trait ID to compare a metric or trait value against instead of a value | [optional]
+**condition_type** | **string** |  |
+**event_subtype** | **string** | Name of track event type used to measure this condition | [optional]
+**id** | **string** |  | [optional]
+**metric_period** | **string** | Period of time over which to measure the track event metric | [optional]
+**metric_value** | **int** | Value to compare the track event metric against |
+**operator** | **string** |  |
+**resource_ids** | **string[]** | List of resource IDs (companise, users, or plans) targeted by this condition |
+**trait_id** | **string** | ID of trait to use to measure this condition | [optional]
+**trait_value** | **string** | Value to compare the trait value against | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
