@@ -57,6 +57,7 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
+        'check_status' => 'string',
         'company_id' => 'string',
         'created_at' => '\DateTime',
         'environment_id' => 'string',
@@ -81,6 +82,7 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'check_status' => null,
         'company_id' => null,
         'created_at' => 'date-time',
         'environment_id' => null,
@@ -103,7 +105,8 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'company_id' => true,
+        'check_status' => false,
+		'company_id' => true,
 		'created_at' => false,
 		'environment_id' => false,
 		'error' => true,
@@ -205,6 +208,7 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
+        'check_status' => 'check_status',
         'company_id' => 'company_id',
         'created_at' => 'created_at',
         'environment_id' => 'environment_id',
@@ -227,6 +231,7 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
+        'check_status' => 'setCheckStatus',
         'company_id' => 'setCompanyId',
         'created_at' => 'setCreatedAt',
         'environment_id' => 'setEnvironmentId',
@@ -249,6 +254,7 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
+        'check_status' => 'getCheckStatus',
         'company_id' => 'getCompanyId',
         'created_at' => 'getCreatedAt',
         'environment_id' => 'getEnvironmentId',
@@ -322,6 +328,7 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('check_status', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
@@ -365,6 +372,9 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['check_status'] === null) {
+            $invalidProperties[] = "'check_status' can't be null";
+        }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -406,6 +416,33 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets check_status
+     *
+     * @return string
+     */
+    public function getCheckStatus()
+    {
+        return $this->container['check_status'];
+    }
+
+    /**
+     * Sets check_status
+     *
+     * @param string $check_status check_status
+     *
+     * @return self
+     */
+    public function setCheckStatus($check_status)
+    {
+        if (is_null($check_status)) {
+            throw new \InvalidArgumentException('non-nullable check_status cannot be null');
+        }
+        $this->container['check_status'] = $check_status;
+
+        return $this;
+    }
 
     /**
      * Gets company_id

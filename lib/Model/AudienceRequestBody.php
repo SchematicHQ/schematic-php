@@ -62,7 +62,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
         'dir' => 'string',
         'limit' => 'int',
         'offset' => 'int',
-        'order' => 'string'
+        'order' => 'string',
+        'q' => 'string'
     ];
 
     /**
@@ -78,7 +79,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
         'dir' => null,
         'limit' => null,
         'offset' => null,
-        'order' => null
+        'order' => null,
+        'q' => null
     ];
 
     /**
@@ -92,7 +94,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
 		'dir' => true,
 		'limit' => true,
 		'offset' => true,
-		'order' => true
+		'order' => true,
+		'q' => true
     ];
 
     /**
@@ -186,7 +189,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
         'dir' => 'dir',
         'limit' => 'limit',
         'offset' => 'offset',
-        'order' => 'order'
+        'order' => 'order',
+        'q' => 'q'
     ];
 
     /**
@@ -200,7 +204,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
         'dir' => 'setDir',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
-        'order' => 'setOrder'
+        'order' => 'setOrder',
+        'q' => 'setQ'
     ];
 
     /**
@@ -214,7 +219,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
         'dir' => 'getDir',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
-        'order' => 'getOrder'
+        'order' => 'getOrder',
+        'q' => 'getQ'
     ];
 
     /**
@@ -280,6 +286,7 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('order', $data ?? [], null);
+        $this->setIfExists('q', $data ?? [], null);
     }
 
     /**
@@ -516,6 +523,40 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['order'] = $order;
+
+        return $this;
+    }
+
+    /**
+     * Gets q
+     *
+     * @return string|null
+     */
+    public function getQ()
+    {
+        return $this->container['q'];
+    }
+
+    /**
+     * Sets q
+     *
+     * @param string|null $q q
+     *
+     * @return self
+     */
+    public function setQ($q)
+    {
+        if (is_null($q)) {
+            array_push($this->openAPINullablesSetToNull, 'q');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('q', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['q'] = $q;
 
         return $this;
     }

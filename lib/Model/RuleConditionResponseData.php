@@ -57,6 +57,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
+        'comparison_trait_id' => 'string',
         'condition_group_id' => 'string',
         'condition_type' => 'string',
         'created_at' => '\DateTime',
@@ -67,6 +68,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metric_period' => 'string',
         'metric_value' => 'int',
         'operator' => 'string',
+        'plan_id' => 'string',
         'resource_ids' => 'string[]',
         'rule_id' => 'string',
         'trait_entity_type' => 'string',
@@ -83,6 +85,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'comparison_trait_id' => null,
         'condition_group_id' => null,
         'condition_type' => null,
         'created_at' => 'date-time',
@@ -93,6 +96,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metric_period' => null,
         'metric_value' => null,
         'operator' => null,
+        'plan_id' => null,
         'resource_ids' => null,
         'rule_id' => null,
         'trait_entity_type' => null,
@@ -107,7 +111,8 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'condition_group_id' => true,
+        'comparison_trait_id' => true,
+		'condition_group_id' => true,
 		'condition_type' => false,
 		'created_at' => false,
 		'environment_id' => false,
@@ -117,6 +122,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
 		'metric_period' => true,
 		'metric_value' => false,
 		'operator' => false,
+		'plan_id' => true,
 		'resource_ids' => false,
 		'rule_id' => false,
 		'trait_entity_type' => true,
@@ -211,6 +217,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
+        'comparison_trait_id' => 'comparison_trait_id',
         'condition_group_id' => 'condition_group_id',
         'condition_type' => 'condition_type',
         'created_at' => 'created_at',
@@ -221,6 +228,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metric_period' => 'metric_period',
         'metric_value' => 'metric_value',
         'operator' => 'operator',
+        'plan_id' => 'plan_id',
         'resource_ids' => 'resource_ids',
         'rule_id' => 'rule_id',
         'trait_entity_type' => 'trait_entity_type',
@@ -235,6 +243,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
+        'comparison_trait_id' => 'setComparisonTraitId',
         'condition_group_id' => 'setConditionGroupId',
         'condition_type' => 'setConditionType',
         'created_at' => 'setCreatedAt',
@@ -245,6 +254,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metric_period' => 'setMetricPeriod',
         'metric_value' => 'setMetricValue',
         'operator' => 'setOperator',
+        'plan_id' => 'setPlanId',
         'resource_ids' => 'setResourceIds',
         'rule_id' => 'setRuleId',
         'trait_entity_type' => 'setTraitEntityType',
@@ -259,6 +269,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
+        'comparison_trait_id' => 'getComparisonTraitId',
         'condition_group_id' => 'getConditionGroupId',
         'condition_type' => 'getConditionType',
         'created_at' => 'getCreatedAt',
@@ -269,6 +280,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metric_period' => 'getMetricPeriod',
         'metric_value' => 'getMetricValue',
         'operator' => 'getOperator',
+        'plan_id' => 'getPlanId',
         'resource_ids' => 'getResourceIds',
         'rule_id' => 'getRuleId',
         'trait_entity_type' => 'getTraitEntityType',
@@ -334,6 +346,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('comparison_trait_id', $data ?? [], null);
         $this->setIfExists('condition_group_id', $data ?? [], null);
         $this->setIfExists('condition_type', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
@@ -344,6 +357,7 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('metric_period', $data ?? [], null);
         $this->setIfExists('metric_value', $data ?? [], null);
         $this->setIfExists('operator', $data ?? [], null);
+        $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('resource_ids', $data ?? [], null);
         $this->setIfExists('rule_id', $data ?? [], null);
         $this->setIfExists('trait_entity_type', $data ?? [], null);
@@ -423,6 +437,40 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets comparison_trait_id
+     *
+     * @return string|null
+     */
+    public function getComparisonTraitId()
+    {
+        return $this->container['comparison_trait_id'];
+    }
+
+    /**
+     * Sets comparison_trait_id
+     *
+     * @param string|null $comparison_trait_id comparison_trait_id
+     *
+     * @return self
+     */
+    public function setComparisonTraitId($comparison_trait_id)
+    {
+        if (is_null($comparison_trait_id)) {
+            array_push($this->openAPINullablesSetToNull, 'comparison_trait_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('comparison_trait_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['comparison_trait_id'] = $comparison_trait_id;
+
+        return $this;
+    }
 
     /**
      * Gets condition_group_id
@@ -718,6 +766,40 @@ class RuleConditionResponseData implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable operator cannot be null');
         }
         $this->container['operator'] = $operator;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_id
+     *
+     * @return string|null
+     */
+    public function getPlanId()
+    {
+        return $this->container['plan_id'];
+    }
+
+    /**
+     * Sets plan_id
+     *
+     * @param string|null $plan_id plan_id
+     *
+     * @return self
+     */
+    public function setPlanId($plan_id)
+    {
+        if (is_null($plan_id)) {
+            array_push($this->openAPINullablesSetToNull, 'plan_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('plan_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['plan_id'] = $plan_id;
 
         return $this;
     }

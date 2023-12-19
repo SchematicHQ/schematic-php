@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **plan_id** | **string** |  | [optional]
 **priority** | **int** |  |
 **priority_group** | **int** |  | [optional]
+**skip_webhooks** | **bool** |  | [optional]
 **value** | **bool** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

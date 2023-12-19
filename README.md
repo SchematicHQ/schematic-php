@@ -85,12 +85,16 @@ All URIs are relative to *https://api.schematichq.com*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountsApi* | [**countApiKeys**](docs/Api/AccountsApi.md#countapikeys) | **GET** /api-keys/count | Count api keys
+*AccountsApi* | [**countApiRequests**](docs/Api/AccountsApi.md#countapirequests) | **GET** /api-requests/count | Count api requests
 *AccountsApi* | [**createApiKey**](docs/Api/AccountsApi.md#createapikey) | **POST** /api-keys | Create api key
 *AccountsApi* | [**createEnvironment**](docs/Api/AccountsApi.md#createenvironment) | **POST** /environments | Create environment
 *AccountsApi* | [**deleteApiKey**](docs/Api/AccountsApi.md#deleteapikey) | **DELETE** /api-keys/{api_key_id} | Delete api key
 *AccountsApi* | [**deleteEnvironment**](docs/Api/AccountsApi.md#deleteenvironment) | **DELETE** /environments/{environment_id} | Delete environment
 *AccountsApi* | [**getApiKey**](docs/Api/AccountsApi.md#getapikey) | **GET** /api-keys/{api_key_id} | Get api key
+*AccountsApi* | [**getApiRequest**](docs/Api/AccountsApi.md#getapirequest) | **GET** /api-requests/{api_request_id} | Get api request
+*AccountsApi* | [**getEnvironment**](docs/Api/AccountsApi.md#getenvironment) | **GET** /environments/{environment_id} | Get environment
 *AccountsApi* | [**listApiKeys**](docs/Api/AccountsApi.md#listapikeys) | **GET** /api-keys | List api keys
+*AccountsApi* | [**listApiRequests**](docs/Api/AccountsApi.md#listapirequests) | **GET** /api-requests | List api requests
 *AccountsApi* | [**updateApiKey**](docs/Api/AccountsApi.md#updateapikey) | **PUT** /api-keys/{api_key_id} | Update api key
 *AccountsApi* | [**updateEnvironment**](docs/Api/AccountsApi.md#updateenvironment) | **PUT** /environments/{environment_id} | Update environment
 *CompaniesApi* | [**createCompany**](docs/Api/CompaniesApi.md#createcompany) | **POST** /companies | Create company
@@ -114,7 +118,10 @@ Class | Method | HTTP request | Description
 *EventsApi* | [**listMetricCountsHourly**](docs/Api/EventsApi.md#listmetriccountshourly) | **GET** /metric-counts-hourly | List metric counts hourly
 *FeaturesApi* | [**checkFlag**](docs/Api/FeaturesApi.md#checkflag) | **POST** /flags/{key}/check | Check flag
 *FeaturesApi* | [**checkFlags**](docs/Api/FeaturesApi.md#checkflags) | **POST** /flags/check | Check flags
+*FeaturesApi* | [**countCompaniesAudience**](docs/Api/FeaturesApi.md#countcompaniesaudience) | **POST** /audience/count-companies | Count Companies audience
+*FeaturesApi* | [**countFlagChecks**](docs/Api/FeaturesApi.md#countflagchecks) | **GET** /flag-checks/count | Count flag checks
 *FeaturesApi* | [**countFlagValues**](docs/Api/FeaturesApi.md#countflagvalues) | **GET** /flag-values/count | Count flag values
+*FeaturesApi* | [**countUsersAudience**](docs/Api/FeaturesApi.md#countusersaudience) | **POST** /audience/count-users | Count Users audience
 *FeaturesApi* | [**createFeature**](docs/Api/FeaturesApi.md#createfeature) | **POST** /features | Create feature
 *FeaturesApi* | [**createFlag**](docs/Api/FeaturesApi.md#createflag) | **POST** /flags | Create flag
 *FeaturesApi* | [**createRule**](docs/Api/FeaturesApi.md#createrule) | **POST** /rules | Create rule
@@ -123,6 +130,7 @@ Class | Method | HTTP request | Description
 *FeaturesApi* | [**getCompaniesAudience**](docs/Api/FeaturesApi.md#getcompaniesaudience) | **POST** /audience/get-companies | Get Companies audience
 *FeaturesApi* | [**getFeature**](docs/Api/FeaturesApi.md#getfeature) | **GET** /features/{feature_id} | Get feature
 *FeaturesApi* | [**getFlag**](docs/Api/FeaturesApi.md#getflag) | **GET** /flags/{flag_id} | Get flag
+*FeaturesApi* | [**getFlagCheck**](docs/Api/FeaturesApi.md#getflagcheck) | **GET** /flag-checks/{flag_check_id} | Get flag check
 *FeaturesApi* | [**getRule**](docs/Api/FeaturesApi.md#getrule) | **GET** /rules/{rule_id} | Get rule
 *FeaturesApi* | [**getUsersAudience**](docs/Api/FeaturesApi.md#getusersaudience) | **POST** /audience/get-users | Get Users audience
 *FeaturesApi* | [**latestFlagChecks**](docs/Api/FeaturesApi.md#latestflagchecks) | **GET** /flag-checks/latest | Latest flag checks
@@ -136,8 +144,8 @@ Class | Method | HTTP request | Description
 *PlansApi* | [**createPlan**](docs/Api/PlansApi.md#createplan) | **POST** /plans | Create plan
 *PlansApi* | [**deletePlan**](docs/Api/PlansApi.md#deleteplan) | **DELETE** /plans/{plan_id} | Delete plan
 *PlansApi* | [**getPlan**](docs/Api/PlansApi.md#getplan) | **GET** /plans/{plan_id} | Get plan
+*PlansApi* | [**listCompanyPlans**](docs/Api/PlansApi.md#listcompanyplans) | **GET** /company-plans | List company plans
 *PlansApi* | [**listPlans**](docs/Api/PlansApi.md#listplans) | **GET** /plans | List plans
-*PlansApi* | [**syncCompanyPlans**](docs/Api/PlansApi.md#synccompanyplans) | **POST** /company-plans/sync | Sync company plans
 *PlansApi* | [**updatePlan**](docs/Api/PlansApi.md#updateplan) | **PUT** /plans/{plan_id} | Update plan
 *PlansApi* | [**updatePlanAudience**](docs/Api/PlansApi.md#updateplanaudience) | **PUT** /plan-audiences/{plan_audience_id} | Update plan audience
 *PlansApi* | [**upsertBillingPeriod**](docs/Api/PlansApi.md#upsertbillingperiod) | **POST** /billing-periods/{key}/upsert | Upsert billing period
@@ -146,6 +154,8 @@ Class | Method | HTTP request | Description
 
 - [ApiError](docs/Model/ApiError.md)
 - [ApiKeyCreateResponseData](docs/Model/ApiKeyCreateResponseData.md)
+- [ApiKeyRequestListResponseData](docs/Model/ApiKeyRequestListResponseData.md)
+- [ApiKeyRequestResponseData](docs/Model/ApiKeyRequestResponseData.md)
 - [ApiKeyResponseData](docs/Model/ApiKeyResponseData.md)
 - [AudienceRequestBody](docs/Model/AudienceRequestBody.md)
 - [BillingPeriodResponseData](docs/Model/BillingPeriodResponseData.md)
@@ -162,13 +172,19 @@ Class | Method | HTTP request | Description
 - [CompanyResponseData](docs/Model/CompanyResponseData.md)
 - [CountApiKeysParams](docs/Model/CountApiKeysParams.md)
 - [CountApiKeysResponse](docs/Model/CountApiKeysResponse.md)
+- [CountApiRequestsParams](docs/Model/CountApiRequestsParams.md)
+- [CountApiRequestsResponse](docs/Model/CountApiRequestsResponse.md)
+- [CountCompaniesAudienceResponse](docs/Model/CountCompaniesAudienceResponse.md)
 - [CountEventTypesParams](docs/Model/CountEventTypesParams.md)
 - [CountEventTypesResponse](docs/Model/CountEventTypesResponse.md)
 - [CountEventsParams](docs/Model/CountEventsParams.md)
 - [CountEventsResponse](docs/Model/CountEventsResponse.md)
+- [CountFlagChecksParams](docs/Model/CountFlagChecksParams.md)
+- [CountFlagChecksResponse](docs/Model/CountFlagChecksResponse.md)
 - [CountFlagValuesParams](docs/Model/CountFlagValuesParams.md)
 - [CountFlagValuesResponse](docs/Model/CountFlagValuesResponse.md)
 - [CountResponse](docs/Model/CountResponse.md)
+- [CountUsersAudienceResponse](docs/Model/CountUsersAudienceResponse.md)
 - [CreateApiKeyRequestBody](docs/Model/CreateApiKeyRequestBody.md)
 - [CreateApiKeyResponse](docs/Model/CreateApiKeyResponse.md)
 - [CreateCompanyMembershipResponse](docs/Model/CreateCompanyMembershipResponse.md)
@@ -181,7 +197,6 @@ Class | Method | HTTP request | Description
 - [CreateFeatureResponse](docs/Model/CreateFeatureResponse.md)
 - [CreateFlagRequestBody](docs/Model/CreateFlagRequestBody.md)
 - [CreateFlagResponse](docs/Model/CreateFlagResponse.md)
-- [CreateOrUpdateCompanyPlanRequestBody](docs/Model/CreateOrUpdateCompanyPlanRequestBody.md)
 - [CreateOrUpdateConditionGroupRequestBody](docs/Model/CreateOrUpdateConditionGroupRequestBody.md)
 - [CreateOrUpdateConditionRequestBody](docs/Model/CreateOrUpdateConditionRequestBody.md)
 - [CreateOrUpdateFlagRequestBody](docs/Model/CreateOrUpdateFlagRequestBody.md)
@@ -215,11 +230,14 @@ Class | Method | HTTP request | Description
 - [FlagDetailResponseData](docs/Model/FlagDetailResponseData.md)
 - [FlagResponseData](docs/Model/FlagResponseData.md)
 - [GetApiKeyResponse](docs/Model/GetApiKeyResponse.md)
+- [GetApiRequestResponse](docs/Model/GetApiRequestResponse.md)
 - [GetCompaniesAudienceResponse](docs/Model/GetCompaniesAudienceResponse.md)
 - [GetCompanyResponse](docs/Model/GetCompanyResponse.md)
+- [GetEnvironmentResponse](docs/Model/GetEnvironmentResponse.md)
 - [GetEventResponse](docs/Model/GetEventResponse.md)
 - [GetEventTypeResponse](docs/Model/GetEventTypeResponse.md)
 - [GetFeatureResponse](docs/Model/GetFeatureResponse.md)
+- [GetFlagCheckResponse](docs/Model/GetFlagCheckResponse.md)
 - [GetFlagResponse](docs/Model/GetFlagResponse.md)
 - [GetOrCreateCompanyMembershipRequestBody](docs/Model/GetOrCreateCompanyMembershipRequestBody.md)
 - [GetPlanResponse](docs/Model/GetPlanResponse.md)
@@ -230,10 +248,14 @@ Class | Method | HTTP request | Description
 - [LatestFlagChecksResponse](docs/Model/LatestFlagChecksResponse.md)
 - [ListApiKeysParams](docs/Model/ListApiKeysParams.md)
 - [ListApiKeysResponse](docs/Model/ListApiKeysResponse.md)
+- [ListApiRequestsParams](docs/Model/ListApiRequestsParams.md)
+- [ListApiRequestsResponse](docs/Model/ListApiRequestsResponse.md)
 - [ListCompaniesParams](docs/Model/ListCompaniesParams.md)
 - [ListCompaniesResponse](docs/Model/ListCompaniesResponse.md)
 - [ListCompanyMembershipsParams](docs/Model/ListCompanyMembershipsParams.md)
 - [ListCompanyMembershipsResponse](docs/Model/ListCompanyMembershipsResponse.md)
+- [ListCompanyPlansParams](docs/Model/ListCompanyPlansParams.md)
+- [ListCompanyPlansResponse](docs/Model/ListCompanyPlansResponse.md)
 - [ListEventTypesParams](docs/Model/ListEventTypesParams.md)
 - [ListEventTypesResponse](docs/Model/ListEventTypesResponse.md)
 - [ListEventsParams](docs/Model/ListEventsParams.md)
@@ -262,9 +284,6 @@ Class | Method | HTTP request | Description
 - [RuleConditionResponseData](docs/Model/RuleConditionResponseData.md)
 - [RuleDetailResponseData](docs/Model/RuleDetailResponseData.md)
 - [RuleResponseData](docs/Model/RuleResponseData.md)
-- [SyncCompanyPlansRequestBody](docs/Model/SyncCompanyPlansRequestBody.md)
-- [SyncCompanyPlansResponse](docs/Model/SyncCompanyPlansResponse.md)
-- [SyncCompanyPlansResponseData](docs/Model/SyncCompanyPlansResponseData.md)
 - [UpdateApiKeyRequestBody](docs/Model/UpdateApiKeyRequestBody.md)
 - [UpdateApiKeyResponse](docs/Model/UpdateApiKeyResponse.md)
 - [UpdateAudienceRequestBody](docs/Model/UpdateAudienceRequestBody.md)
@@ -316,4 +335,5 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `0.1`
+    - Package version: `0.0.1`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

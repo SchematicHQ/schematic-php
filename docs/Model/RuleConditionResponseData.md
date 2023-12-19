@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**comparison_trait_id** | **string** |  | [optional]
 **condition_group_id** | **string** |  | [optional]
 **condition_type** | **string** |  |
 **created_at** | **\DateTime** |  |
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **metric_period** | **string** |  | [optional]
 **metric_value** | **int** |  |
 **operator** | **string** |  |
+**plan_id** | **string** |  | [optional]
 **resource_ids** | **string[]** |  |
 **rule_id** | **string** |  |
 **trait_entity_type** | **string** |  | [optional]
