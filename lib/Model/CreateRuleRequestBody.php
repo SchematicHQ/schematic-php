@@ -64,6 +64,7 @@ class CreateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'plan_id' => 'string',
         'priority' => 'int',
         'priority_group' => 'int',
+        'skip_webhooks' => 'bool',
         'value' => 'bool'
     ];
 
@@ -82,6 +83,7 @@ class CreateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'plan_id' => null,
         'priority' => null,
         'priority_group' => null,
+        'skip_webhooks' => null,
         'value' => null
     ];
 
@@ -98,6 +100,7 @@ class CreateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
 		'plan_id' => true,
 		'priority' => false,
 		'priority_group' => true,
+		'skip_webhooks' => true,
 		'value' => false
     ];
 
@@ -194,6 +197,7 @@ class CreateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'plan_id' => 'plan_id',
         'priority' => 'priority',
         'priority_group' => 'priority_group',
+        'skip_webhooks' => 'skip_webhooks',
         'value' => 'value'
     ];
 
@@ -210,6 +214,7 @@ class CreateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'plan_id' => 'setPlanId',
         'priority' => 'setPriority',
         'priority_group' => 'setPriorityGroup',
+        'skip_webhooks' => 'setSkipWebhooks',
         'value' => 'setValue'
     ];
 
@@ -226,6 +231,7 @@ class CreateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'plan_id' => 'getPlanId',
         'priority' => 'getPriority',
         'priority_group' => 'getPriorityGroup',
+        'skip_webhooks' => 'getSkipWebhooks',
         'value' => 'getValue'
     ];
 
@@ -293,6 +299,7 @@ class CreateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('priority_group', $data ?? [], null);
+        $this->setIfExists('skip_webhooks', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
     }
 
@@ -559,6 +566,40 @@ class CreateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['priority_group'] = $priority_group;
+
+        return $this;
+    }
+
+    /**
+     * Gets skip_webhooks
+     *
+     * @return bool|null
+     */
+    public function getSkipWebhooks()
+    {
+        return $this->container['skip_webhooks'];
+    }
+
+    /**
+     * Sets skip_webhooks
+     *
+     * @param bool|null $skip_webhooks skip_webhooks
+     *
+     * @return self
+     */
+    public function setSkipWebhooks($skip_webhooks)
+    {
+        if (is_null($skip_webhooks)) {
+            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('skip_webhooks', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['skip_webhooks'] = $skip_webhooks;
 
         return $this;
     }

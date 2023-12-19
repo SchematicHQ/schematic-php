@@ -64,7 +64,8 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'id' => 'string',
         'key' => 'string',
         'name' => 'string',
-        'rules' => '\Schematic\Model\CreateOrUpdateRuleRequestBody[]'
+        'rules' => '\Schematic\Model\CreateOrUpdateRuleRequestBody[]',
+        'skip_webhooks' => 'bool'
     ];
 
     /**
@@ -82,7 +83,8 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'id' => null,
         'key' => null,
         'name' => null,
-        'rules' => null
+        'rules' => null,
+        'skip_webhooks' => null
     ];
 
     /**
@@ -98,7 +100,8 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
 		'id' => true,
 		'key' => false,
 		'name' => false,
-		'rules' => false
+		'rules' => false,
+		'skip_webhooks' => true
     ];
 
     /**
@@ -194,7 +197,8 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'id' => 'id',
         'key' => 'key',
         'name' => 'name',
-        'rules' => 'rules'
+        'rules' => 'rules',
+        'skip_webhooks' => 'skip_webhooks'
     ];
 
     /**
@@ -210,7 +214,8 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'id' => 'setId',
         'key' => 'setKey',
         'name' => 'setName',
-        'rules' => 'setRules'
+        'rules' => 'setRules',
+        'skip_webhooks' => 'setSkipWebhooks'
     ];
 
     /**
@@ -226,7 +231,8 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'id' => 'getId',
         'key' => 'getKey',
         'name' => 'getName',
-        'rules' => 'getRules'
+        'rules' => 'getRules',
+        'skip_webhooks' => 'getSkipWebhooks'
     ];
 
     /**
@@ -294,6 +300,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('key', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
+        $this->setIfExists('skip_webhooks', $data ?? [], null);
     }
 
     /**
@@ -582,6 +589,40 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable rules cannot be null');
         }
         $this->container['rules'] = $rules;
+
+        return $this;
+    }
+
+    /**
+     * Gets skip_webhooks
+     *
+     * @return bool|null
+     */
+    public function getSkipWebhooks()
+    {
+        return $this->container['skip_webhooks'];
+    }
+
+    /**
+     * Sets skip_webhooks
+     *
+     * @param bool|null $skip_webhooks skip_webhooks
+     *
+     * @return self
+     */
+    public function setSkipWebhooks($skip_webhooks)
+    {
+        if (is_null($skip_webhooks)) {
+            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('skip_webhooks', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['skip_webhooks'] = $skip_webhooks;
 
         return $this;
     }

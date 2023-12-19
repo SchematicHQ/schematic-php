@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**check_status** | **string** |  |
 **company_id** | **string** |  | [optional]
 **created_at** | **\DateTime** |  |
 **environment_id** | **string** |  |

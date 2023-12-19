@@ -35,6 +35,7 @@ use \Schematic\ObjectSerializer;
  * CountResponse Class Doc Comment
  *
  * @category Class
+ * @description The created resource
  * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -274,6 +275,9 @@ class CountResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['count'] === null) {
+            $invalidProperties[] = "'count' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -292,7 +296,7 @@ class CountResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets count
      *
-     * @return int|null
+     * @return int
      */
     public function getCount()
     {
@@ -302,7 +306,7 @@ class CountResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets count
      *
-     * @param int|null $count The number of resources
+     * @param int $count count
      *
      * @return self
      */

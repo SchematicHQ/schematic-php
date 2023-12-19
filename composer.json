@@ -1,5 +1,6 @@
 {
     "name": "schematic",
+    "version": "0.0.1",
     "description": "Schematic API",
     "keywords": [
         "openapitools",

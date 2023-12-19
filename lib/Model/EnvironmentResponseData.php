@@ -35,7 +35,7 @@ use \Schematic\ObjectSerializer;
  * EnvironmentResponseData Class Doc Comment
  *
  * @category Class
- * @description The updated resource
+ * @description The returned resource
  * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
