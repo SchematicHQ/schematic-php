@@ -58,11 +58,9 @@ class CountApiKeysParams implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'dir' => 'string',
         'environment_id' => 'string',
         'limit' => 'int',
         'offset' => 'int',
-        'order' => 'string',
         'require_environment' => 'bool'
     ];
 
@@ -74,11 +72,9 @@ class CountApiKeysParams implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'dir' => null,
         'environment_id' => null,
         'limit' => null,
         'offset' => null,
-        'order' => null,
         'require_environment' => null
     ];
 
@@ -88,11 +84,9 @@ class CountApiKeysParams implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'dir' => false,
-		'environment_id' => false,
+        'environment_id' => false,
 		'limit' => false,
 		'offset' => false,
-		'order' => false,
 		'require_environment' => false
     ];
 
@@ -182,11 +176,9 @@ class CountApiKeysParams implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'dir' => 'dir',
         'environment_id' => 'environment_id',
         'limit' => 'limit',
         'offset' => 'offset',
-        'order' => 'order',
         'require_environment' => 'require_environment'
     ];
 
@@ -196,11 +188,9 @@ class CountApiKeysParams implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'dir' => 'setDir',
         'environment_id' => 'setEnvironmentId',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
-        'order' => 'setOrder',
         'require_environment' => 'setRequireEnvironment'
     ];
 
@@ -210,11 +200,9 @@ class CountApiKeysParams implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'dir' => 'getDir',
         'environment_id' => 'getEnvironmentId',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
-        'order' => 'getOrder',
         'require_environment' => 'getRequireEnvironment'
     ];
 
@@ -275,11 +263,9 @@ class CountApiKeysParams implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('dir', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('require_environment', $data ?? [], null);
     }
 
@@ -324,33 +310,6 @@ class CountApiKeysParams implements ModelInterface, ArrayAccess, \JsonSerializab
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets dir
-     *
-     * @return string|null
-     */
-    public function getDir()
-    {
-        return $this->container['dir'];
-    }
-
-    /**
-     * Sets dir
-     *
-     * @param string|null $dir dir
-     *
-     * @return self
-     */
-    public function setDir($dir)
-    {
-        if (is_null($dir)) {
-            throw new \InvalidArgumentException('non-nullable dir cannot be null');
-        }
-        $this->container['dir'] = $dir;
-
-        return $this;
-    }
 
     /**
      * Gets environment_id
@@ -429,33 +388,6 @@ class CountApiKeysParams implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets order
-     *
-     * @return string|null
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     *
-     * @param string|null $order order
-     *
-     * @return self
-     */
-    public function setOrder($order)
-    {
-        if (is_null($order)) {
-            throw new \InvalidArgumentException('non-nullable order cannot be null');
-        }
-        $this->container['order'] = $order;
 
         return $this;
     }

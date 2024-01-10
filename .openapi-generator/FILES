@@ -82,6 +82,7 @@ docs/Model/EventResponseData.md
 docs/Model/EventSummaryResponseData.md
 docs/Model/FeatureDetailResponseData.md
 docs/Model/FeatureResponseData.md
+docs/Model/FlagCheckLogDetailResponseData.md
 docs/Model/FlagCheckLogResponseData.md
 docs/Model/FlagDetailResponseData.md
 docs/Model/FlagResponseData.md
@@ -245,6 +246,7 @@ lib/Model/EventResponseData.php
 lib/Model/EventSummaryResponseData.php
 lib/Model/FeatureDetailResponseData.php
 lib/Model/FeatureResponseData.php
+lib/Model/FlagCheckLogDetailResponseData.php
 lib/Model/FlagCheckLogResponseData.php
 lib/Model/FlagDetailResponseData.php
 lib/Model/FlagResponseData.php

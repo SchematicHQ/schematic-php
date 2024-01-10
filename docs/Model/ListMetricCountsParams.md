@@ -5,13 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **company_id** | **string** |  | [optional]
-**dir** | **string** |  | [optional]
 **end_time** | **\DateTime** |  | [optional]
 **event_subtype** | **string** |  | [optional]
+**event_subtypes** | **string[]** |  | [optional]
 **grouping** | **string** |  | [optional]
 **limit** | **int** |  | [optional]
 **offset** | **int** |  | [optional]
-**order** | **string** |  | [optional]
 **start_time** | **\DateTime** |  | [optional]
 **user_id** | **string** |  | [optional]
 

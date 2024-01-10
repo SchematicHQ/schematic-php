@@ -95,6 +95,9 @@ class CompaniesApi
         'listCompanyMemberships' => [
             'application/json',
         ],
+        'listCompanyPlans' => [
+            'application/json',
+        ],
         'listUsers' => [
             'application/json',
         ],
@@ -2492,20 +2495,18 @@ class CompaniesApi
      * List companies
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids ids (optional)
+     * @param  string[] $ids ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanies'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanies($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompanies($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-        list($response) = $this->listCompaniesWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listCompaniesWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2515,20 +2516,18 @@ class CompaniesApi
      * List companies
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids (optional)
+     * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanies'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompaniesWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-        $request = $this->listCompaniesRequest($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listCompaniesRequest($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2712,19 +2711,17 @@ class CompaniesApi
      * List companies
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids (optional)
+     * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanies'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompaniesAsync($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesAsync($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-        return $this->listCompaniesAsyncWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir, $contentType)
+        return $this->listCompaniesAsyncWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2738,20 +2735,18 @@ class CompaniesApi
      * List companies
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids (optional)
+     * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanies'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompaniesAsyncWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesAsyncWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
         $returnType = '\Schematic\Model\ListCompaniesResponse';
-        $request = $this->listCompaniesRequest($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listCompaniesRequest($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2793,20 +2788,16 @@ class CompaniesApi
      * Create request for operation 'listCompanies'
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids (optional)
+     * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanies'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompaniesRequest($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesRequest($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-
-
 
 
 
@@ -2843,24 +2834,6 @@ class CompaniesApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -2941,17 +2914,15 @@ class CompaniesApi
      * @param  string $user_id user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyMemberships'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompanyMembershipsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanyMemberships($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMemberships($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
-        list($response) = $this->listCompanyMembershipsWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listCompanyMembershipsWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2965,17 +2936,15 @@ class CompaniesApi
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyMemberships'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompanyMembershipsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompanyMembershipsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMembershipsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
-        $request = $this->listCompanyMembershipsRequest($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listCompanyMembershipsRequest($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3163,16 +3132,14 @@ class CompaniesApi
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyMemberships'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyMembershipsAsync($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMembershipsAsync($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
-        return $this->listCompanyMembershipsAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $order, $dir, $contentType)
+        return $this->listCompanyMembershipsAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3190,17 +3157,15 @@ class CompaniesApi
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyMemberships'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyMembershipsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMembershipsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
         $returnType = '\Schematic\Model\ListCompanyMembershipsResponse';
-        $request = $this->listCompanyMembershipsRequest($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listCompanyMembershipsRequest($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3246,17 +3211,13 @@ class CompaniesApi
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyMemberships'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompanyMembershipsRequest($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMembershipsRequest($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
-
-
 
 
 
@@ -3307,10 +3268,410 @@ class CompaniesApi
             true, // explode
             false // required
         ) ?? []);
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listCompanyPlans
+     *
+     * List company plans
+     *
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $company_id company_id (optional)
+     * @param  string $plan_id plan_id (optional)
+     * @param  bool $active active (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ListCompanyPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function listCompanyPlans($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    {
+        list($response) = $this->listCompanyPlansWithHttpInfo($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listCompanyPlansWithHttpInfo
+     *
+     * List company plans
+     *
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $company_id (optional)
+     * @param  string $plan_id (optional)
+     * @param  bool $active (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ListCompanyPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCompanyPlansWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    {
+        $request = $this->listCompanyPlansRequest($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\ListCompanyPlansResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ListCompanyPlansResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListCompanyPlansResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\ListCompanyPlansResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ListCompanyPlansResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listCompanyPlansAsync
+     *
+     * List company plans
+     *
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $company_id (optional)
+     * @param  string $plan_id (optional)
+     * @param  bool $active (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCompanyPlansAsync($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    {
+        return $this->listCompanyPlansAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listCompanyPlansAsyncWithHttpInfo
+     *
+     * List company plans
+     *
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $company_id (optional)
+     * @param  string $plan_id (optional)
+     * @param  bool $active (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCompanyPlansAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    {
+        $returnType = '\Schematic\Model\ListCompanyPlansResponse';
+        $request = $this->listCompanyPlansRequest($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listCompanyPlans'
+     *
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $company_id (optional)
+     * @param  string $plan_id (optional)
+     * @param  bool $active (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listCompanyPlansRequest($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    {
+
+
+
+
+
+
+
+
+        $resourcePath = '/company-plans';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
+            $company_id,
+            'company_id', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -3318,9 +3679,36 @@ class CompaniesApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
+            $plan_id,
+            'plan_id', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $active,
+            'active', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3397,20 +3785,18 @@ class CompaniesApi
      * List users
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids ids (optional)
+     * @param  string[] $ids ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListUsersResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listUsers($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsers($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-        list($response) = $this->listUsersWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listUsersWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3420,20 +3806,18 @@ class CompaniesApi
      * List users
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids (optional)
+     * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListUsersResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listUsersWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-        $request = $this->listUsersRequest($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listUsersRequest($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3617,19 +4001,17 @@ class CompaniesApi
      * List users
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids (optional)
+     * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUsersAsync($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersAsync($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-        return $this->listUsersAsyncWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir, $contentType)
+        return $this->listUsersAsyncWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3643,20 +4025,18 @@ class CompaniesApi
      * List users
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids (optional)
+     * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUsersAsyncWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersAsyncWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
         $returnType = '\Schematic\Model\ListUsersResponse';
-        $request = $this->listUsersRequest($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listUsersRequest($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3698,20 +4078,16 @@ class CompaniesApi
      * Create request for operation 'listUsers'
      *
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
-     * @param  int[] $ids (optional)
+     * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listUsersRequest($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersRequest($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-
-
 
 
 
@@ -3748,24 +4124,6 @@ class CompaniesApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required

@@ -57,7 +57,7 @@ class GetFlagCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\Schematic\Model\FlagCheckLogResponseData',
+        'data' => '\Schematic\Model\FlagCheckLogDetailResponseData',
         'params' => 'object'
     ];
 
@@ -305,7 +305,7 @@ class GetFlagCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets data
      *
-     * @return \Schematic\Model\FlagCheckLogResponseData
+     * @return \Schematic\Model\FlagCheckLogDetailResponseData
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class GetFlagCheckResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets data
      *
-     * @param \Schematic\Model\FlagCheckLogResponseData $data data
+     * @param \Schematic\Model\FlagCheckLogDetailResponseData $data data
      *
      * @return self
      */

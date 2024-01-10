@@ -57,7 +57,7 @@ class ListFlagChecksResponse implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\Schematic\Model\FlagCheckLogResponseData[]',
+        'data' => '\Schematic\Model\FlagCheckLogDetailResponseData[]',
         'params' => '\Schematic\Model\ListFlagChecksParams'
     ];
 
@@ -305,7 +305,7 @@ class ListFlagChecksResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets data
      *
-     * @return \Schematic\Model\FlagCheckLogResponseData[]
+     * @return \Schematic\Model\FlagCheckLogDetailResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListFlagChecksResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets data
      *
-     * @param \Schematic\Model\FlagCheckLogResponseData[] $data The returned resources
+     * @param \Schematic\Model\FlagCheckLogDetailResponseData[] $data The returned resources
      *
      * @return self
      */

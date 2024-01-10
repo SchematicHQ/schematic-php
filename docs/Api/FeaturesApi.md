@@ -222,7 +222,7 @@ try {
 ## `countFlagChecks()`
 
 ```php
-countFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir): \Schematic\Model\CountFlagChecksResponse
+countFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\CountFlagChecksResponse
 ```
 
 Count flag checks
@@ -249,13 +249,12 @@ $apiInstance = new Schematic\Api\FeaturesApi(
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $flag_id = 'flag_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
+$id = 'id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->countFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir);
+    $result = $apiInstance->countFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->countFlagChecks: ', $e->getMessage(), PHP_EOL;
@@ -269,10 +268,9 @@ try {
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **flag_id** | **string**|  | [optional] |
 | **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -294,7 +292,7 @@ try {
 ## `countFlagValues()`
 
 ```php
-countFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir): \Schematic\Model\CountFlagValuesResponse
+countFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset): \Schematic\Model\CountFlagValuesResponse
 ```
 
 Count flag values
@@ -325,11 +323,9 @@ $user_id = 'user_id_example'; // string
 $flag_id = 'flag_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->countFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir);
+    $result = $apiInstance->countFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->countFlagValues: ', $e->getMessage(), PHP_EOL;
@@ -347,8 +343,6 @@ try {
 | **flag_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -1114,7 +1108,7 @@ try {
 ## `latestFlagChecks()`
 
 ```php
-latestFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir): \Schematic\Model\LatestFlagChecksResponse
+latestFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\LatestFlagChecksResponse
 ```
 
 Latest flag checks
@@ -1141,13 +1135,12 @@ $apiInstance = new Schematic\Api\FeaturesApi(
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $flag_id = 'flag_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
+$id = 'id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->latestFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir);
+    $result = $apiInstance->latestFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->latestFlagChecks: ', $e->getMessage(), PHP_EOL;
@@ -1161,10 +1154,9 @@ try {
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **flag_id** | **string**|  | [optional] |
 | **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -1186,7 +1178,7 @@ try {
 ## `listFeatures()`
 
 ```php
-listFeatures($x_schematic_environment_id, $limit, $offset, $order, $dir): \Schematic\Model\ListFeaturesResponse
+listFeatures($x_schematic_environment_id, $limit, $offset): \Schematic\Model\ListFeaturesResponse
 ```
 
 List features
@@ -1213,11 +1205,9 @@ $apiInstance = new Schematic\Api\FeaturesApi(
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listFeatures($x_schematic_environment_id, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listFeatures($x_schematic_environment_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->listFeatures: ', $e->getMessage(), PHP_EOL;
@@ -1231,8 +1221,6 @@ try {
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -1254,7 +1242,7 @@ try {
 ## `listFlagChecks()`
 
 ```php
-listFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir): \Schematic\Model\ListFlagChecksResponse
+listFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\ListFlagChecksResponse
 ```
 
 List flag checks
@@ -1281,13 +1269,12 @@ $apiInstance = new Schematic\Api\FeaturesApi(
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $flag_id = 'flag_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
+$id = 'id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->listFlagChecks: ', $e->getMessage(), PHP_EOL;
@@ -1301,10 +1288,9 @@ try {
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **flag_id** | **string**|  | [optional] |
 | **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -1326,7 +1312,7 @@ try {
 ## `listFlagValues()`
 
 ```php
-listFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir): \Schematic\Model\ListFlagValuesResponse
+listFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset): \Schematic\Model\ListFlagValuesResponse
 ```
 
 List flag values
@@ -1357,11 +1343,9 @@ $user_id = 'user_id_example'; // string
 $flag_id = 'flag_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->listFlagValues: ', $e->getMessage(), PHP_EOL;
@@ -1379,8 +1363,6 @@ try {
 | **flag_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -1402,7 +1384,7 @@ try {
 ## `listFlags()`
 
 ```php
-listFlags($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $order, $dir): \Schematic\Model\ListFlagsResponse
+listFlags($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset): \Schematic\Model\ListFlagsResponse
 ```
 
 List flags
@@ -1431,11 +1413,9 @@ $feature_id = 'feature_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listFlags($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listFlags($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->listFlags: ', $e->getMessage(), PHP_EOL;
@@ -1451,8 +1431,6 @@ try {
 | **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 

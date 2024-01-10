@@ -58,12 +58,11 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'dir' => 'string',
         'flag_id' => 'string',
         'flag_ids' => 'string[]',
+        'id' => 'string',
         'limit' => 'int',
-        'offset' => 'int',
-        'order' => 'string'
+        'offset' => 'int'
     ];
 
     /**
@@ -74,12 +73,11 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'dir' => null,
         'flag_id' => null,
         'flag_ids' => null,
+        'id' => null,
         'limit' => null,
-        'offset' => null,
-        'order' => null
+        'offset' => null
     ];
 
     /**
@@ -88,12 +86,11 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'dir' => false,
-		'flag_id' => false,
+        'flag_id' => false,
 		'flag_ids' => false,
+		'id' => false,
 		'limit' => false,
-		'offset' => false,
-		'order' => false
+		'offset' => false
     ];
 
     /**
@@ -182,12 +179,11 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'dir' => 'dir',
         'flag_id' => 'flag_id',
         'flag_ids' => 'flag_ids',
+        'id' => 'id',
         'limit' => 'limit',
-        'offset' => 'offset',
-        'order' => 'order'
+        'offset' => 'offset'
     ];
 
     /**
@@ -196,12 +192,11 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'dir' => 'setDir',
         'flag_id' => 'setFlagId',
         'flag_ids' => 'setFlagIds',
+        'id' => 'setId',
         'limit' => 'setLimit',
-        'offset' => 'setOffset',
-        'order' => 'setOrder'
+        'offset' => 'setOffset'
     ];
 
     /**
@@ -210,12 +205,11 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'dir' => 'getDir',
         'flag_id' => 'getFlagId',
         'flag_ids' => 'getFlagIds',
+        'id' => 'getId',
         'limit' => 'getLimit',
-        'offset' => 'getOffset',
-        'order' => 'getOrder'
+        'offset' => 'getOffset'
     ];
 
     /**
@@ -275,12 +269,11 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('dir', $data ?? [], null);
         $this->setIfExists('flag_id', $data ?? [], null);
         $this->setIfExists('flag_ids', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('order', $data ?? [], null);
     }
 
     /**
@@ -324,33 +317,6 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets dir
-     *
-     * @return string|null
-     */
-    public function getDir()
-    {
-        return $this->container['dir'];
-    }
-
-    /**
-     * Sets dir
-     *
-     * @param string|null $dir dir
-     *
-     * @return self
-     */
-    public function setDir($dir)
-    {
-        if (is_null($dir)) {
-            throw new \InvalidArgumentException('non-nullable dir cannot be null');
-        }
-        $this->container['dir'] = $dir;
-
-        return $this;
-    }
 
     /**
      * Gets flag_id
@@ -407,6 +373,33 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * Gets limit
      *
      * @return int|null
@@ -456,33 +449,6 @@ class LatestFlagChecksParams implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets order
-     *
-     * @return string|null
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     *
-     * @param string|null $order order
-     *
-     * @return self
-     */
-    public function setOrder($order)
-    {
-        if (is_null($order)) {
-            throw new \InvalidArgumentException('non-nullable order cannot be null');
-        }
-        $this->container['order'] = $order;
 
         return $this;
     }

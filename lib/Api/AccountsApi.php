@@ -168,17 +168,15 @@ class AccountsApi
      * @param  string $environment_id environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountApiKeysResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countApiKeys($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
+    public function countApiKeys($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiKeys'][0])
     {
-        list($response) = $this->countApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->countApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -192,17 +190,15 @@ class AccountsApi
      * @param  string $environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountApiKeysResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
+    public function countApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiKeys'][0])
     {
-        $request = $this->countApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -390,16 +386,14 @@ class AccountsApi
      * @param  string $environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countApiKeysAsync($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
+    public function countApiKeysAsync($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiKeys'][0])
     {
-        return $this->countApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType)
+        return $this->countApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -417,17 +411,15 @@ class AccountsApi
      * @param  string $environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
+    public function countApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiKeys'][0])
     {
         $returnType = '\Schematic\Model\CountApiKeysResponse';
-        $request = $this->countApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -473,14 +465,12 @@ class AccountsApi
      * @param  string $environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiKeys'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countApiKeysRequest($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiKeys'][0])
+    public function countApiKeysRequest($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiKeys'][0])
     {
 
         // verify the required parameter 'require_environment' is set
@@ -489,8 +479,6 @@ class AccountsApi
                 'Missing the required parameter $require_environment when calling countApiKeys'
             );
         }
-
-
 
 
 
@@ -536,24 +524,6 @@ class AccountsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -633,17 +603,15 @@ class AccountsApi
      * @param  string $q q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countApiRequests($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequests($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
-        list($response) = $this->countApiRequestsWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->countApiRequestsWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -656,17 +624,15 @@ class AccountsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countApiRequestsWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequestsWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
-        $request = $this->countApiRequestsRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countApiRequestsRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -853,16 +819,14 @@ class AccountsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countApiRequestsAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequestsAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
-        return $this->countApiRequestsAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType)
+        return $this->countApiRequestsAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -879,17 +843,15 @@ class AccountsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countApiRequestsAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequestsAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
         $returnType = '\Schematic\Model\CountApiRequestsResponse';
-        $request = $this->countApiRequestsRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countApiRequestsRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -934,17 +896,13 @@ class AccountsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countApiRequestsRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequestsRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
-
-
 
 
 
@@ -981,24 +939,6 @@ class AccountsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3807,17 +3747,15 @@ class AccountsApi
      * @param  string $environment_id environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListApiKeysResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listApiKeys($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    public function listApiKeys($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiKeys'][0])
     {
-        list($response) = $this->listApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3831,17 +3769,15 @@ class AccountsApi
      * @param  string $environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListApiKeysResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    public function listApiKeysWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiKeys'][0])
     {
-        $request = $this->listApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4029,16 +3965,14 @@ class AccountsApi
      * @param  string $environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listApiKeysAsync($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    public function listApiKeysAsync($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiKeys'][0])
     {
-        return $this->listApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType)
+        return $this->listApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4056,17 +3990,15 @@ class AccountsApi
      * @param  string $environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    public function listApiKeysAsyncWithHttpInfo($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiKeys'][0])
     {
         $returnType = '\Schematic\Model\ListApiKeysResponse';
-        $request = $this->listApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listApiKeysRequest($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4112,14 +4044,12 @@ class AccountsApi
      * @param  string $environment_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiKeys'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listApiKeysRequest($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiKeys'][0])
+    public function listApiKeysRequest($require_environment, $x_schematic_environment_id = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiKeys'][0])
     {
 
         // verify the required parameter 'require_environment' is set
@@ -4128,8 +4058,6 @@ class AccountsApi
                 'Missing the required parameter $require_environment when calling listApiKeys'
             );
         }
-
-
 
 
 
@@ -4175,24 +4103,6 @@ class AccountsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -4272,17 +4182,15 @@ class AccountsApi
      * @param  string $q q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listApiRequests($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequests($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
-        list($response) = $this->listApiRequestsWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listApiRequestsWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -4295,17 +4203,15 @@ class AccountsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listApiRequestsWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequestsWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
-        $request = $this->listApiRequestsRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listApiRequestsRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4492,16 +4398,14 @@ class AccountsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listApiRequestsAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequestsAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
-        return $this->listApiRequestsAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType)
+        return $this->listApiRequestsAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4518,17 +4422,15 @@ class AccountsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listApiRequestsAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequestsAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
         $returnType = '\Schematic\Model\ListApiRequestsResponse';
-        $request = $this->listApiRequestsRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listApiRequestsRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4573,17 +4475,13 @@ class AccountsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listApiRequestsRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequestsRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
-
-
 
 
 
@@ -4620,24 +4518,6 @@ class AccountsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required

@@ -59,10 +59,8 @@ class ListCompanyMembershipsParams implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'company_id' => 'string',
-        'dir' => 'string',
         'limit' => 'int',
         'offset' => 'int',
-        'order' => 'string',
         'user_id' => 'string'
     ];
 
@@ -75,10 +73,8 @@ class ListCompanyMembershipsParams implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'company_id' => null,
-        'dir' => null,
         'limit' => null,
         'offset' => null,
-        'order' => null,
         'user_id' => null
     ];
 
@@ -89,10 +85,8 @@ class ListCompanyMembershipsParams implements ModelInterface, ArrayAccess, \Json
       */
     protected static array $openAPINullables = [
         'company_id' => false,
-		'dir' => false,
 		'limit' => false,
 		'offset' => false,
-		'order' => false,
 		'user_id' => false
     ];
 
@@ -183,10 +177,8 @@ class ListCompanyMembershipsParams implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'company_id' => 'company_id',
-        'dir' => 'dir',
         'limit' => 'limit',
         'offset' => 'offset',
-        'order' => 'order',
         'user_id' => 'user_id'
     ];
 
@@ -197,10 +189,8 @@ class ListCompanyMembershipsParams implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'company_id' => 'setCompanyId',
-        'dir' => 'setDir',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
-        'order' => 'setOrder',
         'user_id' => 'setUserId'
     ];
 
@@ -211,10 +201,8 @@ class ListCompanyMembershipsParams implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'company_id' => 'getCompanyId',
-        'dir' => 'getDir',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
-        'order' => 'getOrder',
         'user_id' => 'getUserId'
     ];
 
@@ -276,10 +264,8 @@ class ListCompanyMembershipsParams implements ModelInterface, ArrayAccess, \Json
     public function __construct(array $data = null)
     {
         $this->setIfExists('company_id', $data ?? [], null);
-        $this->setIfExists('dir', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('user_id', $data ?? [], null);
     }
 
@@ -353,33 +339,6 @@ class ListCompanyMembershipsParams implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Gets dir
-     *
-     * @return string|null
-     */
-    public function getDir()
-    {
-        return $this->container['dir'];
-    }
-
-    /**
-     * Sets dir
-     *
-     * @param string|null $dir dir
-     *
-     * @return self
-     */
-    public function setDir($dir)
-    {
-        if (is_null($dir)) {
-            throw new \InvalidArgumentException('non-nullable dir cannot be null');
-        }
-        $this->container['dir'] = $dir;
-
-        return $this;
-    }
-
-    /**
      * Gets limit
      *
      * @return int|null
@@ -429,33 +388,6 @@ class ListCompanyMembershipsParams implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets order
-     *
-     * @return string|null
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     *
-     * @param string|null $order order
-     *
-     * @return self
-     */
-    public function setOrder($order)
-    {
-        if (is_null($order)) {
-            throw new \InvalidArgumentException('non-nullable order cannot be null');
-        }
-        $this->container['order'] = $order;
 
         return $this;
     }

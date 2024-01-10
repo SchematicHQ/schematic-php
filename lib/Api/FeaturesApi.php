@@ -1389,19 +1389,18 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id flag_id (optional)
      * @param  string[] $flag_ids flag_ids (optional)
+     * @param  string $id id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagChecks'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countFlagChecks($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecks($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
-        list($response) = $this->countFlagChecksWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->countFlagChecksWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -1413,19 +1412,18 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagChecks'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countFlagChecksWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecksWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
-        $request = $this->countFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1611,18 +1609,17 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagChecks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFlagChecksAsync($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecksAsync($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
-        return $this->countFlagChecksAsyncWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType)
+        return $this->countFlagChecksAsyncWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1638,19 +1635,18 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagChecks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFlagChecksAsyncWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecksAsyncWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
         $returnType = '\Schematic\Model\CountFlagChecksResponse';
-        $request = $this->countFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1694,18 +1690,16 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagChecks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countFlagChecksRequest($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecksRequest($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
-
 
 
 
@@ -1741,6 +1735,15 @@ class FeaturesApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $id,
+            'id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $limit,
             'limit', // param base name
             'integer', // openApiType
@@ -1753,24 +1756,6 @@ class FeaturesApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -1853,17 +1838,15 @@ class FeaturesApi
      * @param  string $flag_id flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagValues'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountFlagValuesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countFlagValues($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagValues'][0])
+    public function countFlagValues($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagValues'][0])
     {
-        list($response) = $this->countFlagValuesWithHttpInfo($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->countFlagValuesWithHttpInfo($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -1879,17 +1862,15 @@ class FeaturesApi
      * @param  string $flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagValues'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountFlagValuesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countFlagValuesWithHttpInfo($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagValues'][0])
+    public function countFlagValuesWithHttpInfo($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagValues'][0])
     {
-        $request = $this->countFlagValuesRequest($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countFlagValuesRequest($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2079,16 +2060,14 @@ class FeaturesApi
      * @param  string $flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagValues'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFlagValuesAsync($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagValues'][0])
+    public function countFlagValuesAsync($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagValues'][0])
     {
-        return $this->countFlagValuesAsyncWithHttpInfo($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir, $contentType)
+        return $this->countFlagValuesAsyncWithHttpInfo($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2108,17 +2087,15 @@ class FeaturesApi
      * @param  string $flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagValues'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFlagValuesAsyncWithHttpInfo($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagValues'][0])
+    public function countFlagValuesAsyncWithHttpInfo($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagValues'][0])
     {
         $returnType = '\Schematic\Model\CountFlagValuesResponse';
-        $request = $this->countFlagValuesRequest($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countFlagValuesRequest($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2166,14 +2143,12 @@ class FeaturesApi
      * @param  string $flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFlagValues'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countFlagValuesRequest($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countFlagValues'][0])
+    public function countFlagValuesRequest($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagValues'][0])
     {
 
         // verify the required parameter 'entity_type' is set
@@ -2182,8 +2157,6 @@ class FeaturesApi
                 'Missing the required parameter $entity_type when calling countFlagValues'
             );
         }
-
-
 
 
 
@@ -2249,24 +2222,6 @@ class FeaturesApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -7019,19 +6974,18 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id flag_id (optional)
      * @param  string[] $flag_ids flag_ids (optional)
+     * @param  string $id id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestFlagChecks'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\LatestFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function latestFlagChecks($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecks($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
-        list($response) = $this->latestFlagChecksWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->latestFlagChecksWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -7043,19 +6997,18 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestFlagChecks'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\LatestFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function latestFlagChecksWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecksWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
-        $request = $this->latestFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->latestFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7241,18 +7194,17 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestFlagChecks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestFlagChecksAsync($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecksAsync($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
-        return $this->latestFlagChecksAsyncWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType)
+        return $this->latestFlagChecksAsyncWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7268,19 +7220,18 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestFlagChecks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestFlagChecksAsyncWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecksAsyncWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
         $returnType = '\Schematic\Model\LatestFlagChecksResponse';
-        $request = $this->latestFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->latestFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7324,18 +7275,16 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['latestFlagChecks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function latestFlagChecksRequest($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecksRequest($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
-
 
 
 
@@ -7371,6 +7320,15 @@ class FeaturesApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $id,
+            'id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $limit,
             'limit', // param base name
             'integer', // openApiType
@@ -7383,24 +7341,6 @@ class FeaturesApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -7479,17 +7419,15 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListFeaturesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listFeatures($x_schematic_environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeatures($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-        list($response) = $this->listFeaturesWithHttpInfo($x_schematic_environment_id, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listFeaturesWithHttpInfo($x_schematic_environment_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -7501,17 +7439,15 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListFeaturesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFeaturesWithHttpInfo($x_schematic_environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesWithHttpInfo($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-        $request = $this->listFeaturesRequest($x_schematic_environment_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listFeaturesRequest($x_schematic_environment_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7697,16 +7633,14 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFeaturesAsync($x_schematic_environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesAsync($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-        return $this->listFeaturesAsyncWithHttpInfo($x_schematic_environment_id, $limit, $offset, $order, $dir, $contentType)
+        return $this->listFeaturesAsyncWithHttpInfo($x_schematic_environment_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7722,17 +7656,15 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFeaturesAsyncWithHttpInfo($x_schematic_environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesAsyncWithHttpInfo($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
         $returnType = '\Schematic\Model\ListFeaturesResponse';
-        $request = $this->listFeaturesRequest($x_schematic_environment_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listFeaturesRequest($x_schematic_environment_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7776,17 +7708,13 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFeaturesRequest($x_schematic_environment_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesRequest($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-
-
 
 
 
@@ -7813,24 +7741,6 @@ class FeaturesApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -7909,19 +7819,18 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id flag_id (optional)
      * @param  string[] $flag_ids flag_ids (optional)
+     * @param  string $id id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagChecks'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listFlagChecks($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecks($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
-        list($response) = $this->listFlagChecksWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listFlagChecksWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -7933,19 +7842,18 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagChecks'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFlagChecksWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecksWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
-        $request = $this->listFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -8131,18 +8039,17 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagChecks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagChecksAsync($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecksAsync($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
-        return $this->listFlagChecksAsyncWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType)
+        return $this->listFlagChecksAsyncWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8158,19 +8065,18 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagChecks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagChecksAsyncWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecksAsyncWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
         $returnType = '\Schematic\Model\ListFlagChecksResponse';
-        $request = $this->listFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8214,18 +8120,16 @@ class FeaturesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
+     * @param  string $id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagChecks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFlagChecksRequest($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecksRequest($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
-
 
 
 
@@ -8261,6 +8165,15 @@ class FeaturesApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $id,
+            'id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $limit,
             'limit', // param base name
             'integer', // openApiType
@@ -8273,24 +8186,6 @@ class FeaturesApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -8373,17 +8268,15 @@ class FeaturesApi
      * @param  string $flag_id flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagValues'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListFlagValuesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listFlagValues($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagValues'][0])
+    public function listFlagValues($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagValues'][0])
     {
-        list($response) = $this->listFlagValuesWithHttpInfo($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listFlagValuesWithHttpInfo($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -8399,17 +8292,15 @@ class FeaturesApi
      * @param  string $flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagValues'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListFlagValuesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFlagValuesWithHttpInfo($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagValues'][0])
+    public function listFlagValuesWithHttpInfo($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagValues'][0])
     {
-        $request = $this->listFlagValuesRequest($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listFlagValuesRequest($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -8599,16 +8490,14 @@ class FeaturesApi
      * @param  string $flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagValues'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagValuesAsync($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagValues'][0])
+    public function listFlagValuesAsync($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagValues'][0])
     {
-        return $this->listFlagValuesAsyncWithHttpInfo($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir, $contentType)
+        return $this->listFlagValuesAsyncWithHttpInfo($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8628,17 +8517,15 @@ class FeaturesApi
      * @param  string $flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagValues'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagValuesAsyncWithHttpInfo($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagValues'][0])
+    public function listFlagValuesAsyncWithHttpInfo($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagValues'][0])
     {
         $returnType = '\Schematic\Model\ListFlagValuesResponse';
-        $request = $this->listFlagValuesRequest($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listFlagValuesRequest($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8686,14 +8573,12 @@ class FeaturesApi
      * @param  string $flag_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlagValues'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFlagValuesRequest($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlagValues'][0])
+    public function listFlagValuesRequest($entity_type, $x_schematic_environment_id = null, $company_id = null, $user_id = null, $flag_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagValues'][0])
     {
 
         // verify the required parameter 'entity_type' is set
@@ -8702,8 +8587,6 @@ class FeaturesApi
                 'Missing the required parameter $entity_type when calling listFlagValues'
             );
         }
-
-
 
 
 
@@ -8769,24 +8652,6 @@ class FeaturesApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -8867,17 +8732,15 @@ class FeaturesApi
      * @param  string[] $flag_ids flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlags'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListFlagsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listFlags($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlags($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
-        list($response) = $this->listFlagsWithHttpInfo($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listFlagsWithHttpInfo($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -8891,17 +8754,15 @@ class FeaturesApi
      * @param  string[] $flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlags'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListFlagsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFlagsWithHttpInfo($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlagsWithHttpInfo($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
-        $request = $this->listFlagsRequest($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listFlagsRequest($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -9089,16 +8950,14 @@ class FeaturesApi
      * @param  string[] $flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagsAsync($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlagsAsync($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
-        return $this->listFlagsAsyncWithHttpInfo($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $order, $dir, $contentType)
+        return $this->listFlagsAsyncWithHttpInfo($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -9116,17 +8975,15 @@ class FeaturesApi
      * @param  string[] $flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagsAsyncWithHttpInfo($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlagsAsyncWithHttpInfo($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
         $returnType = '\Schematic\Model\ListFlagsResponse';
-        $request = $this->listFlagsRequest($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listFlagsRequest($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -9172,17 +9029,13 @@ class FeaturesApi
      * @param  string[] $flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFlags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFlagsRequest($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlagsRequest($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
-
-
 
 
 
@@ -9229,24 +9082,6 @@ class FeaturesApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required

@@ -58,7 +58,8 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'condition_groups' => '\Schematic\Model\CreateOrUpdateConditionGroupRequestBody[]',
-        'conditions' => '\Schematic\Model\CreateOrUpdateConditionRequestBody[]'
+        'conditions' => '\Schematic\Model\CreateOrUpdateConditionRequestBody[]',
+        'skip_webhooks' => 'bool'
     ];
 
     /**
@@ -70,7 +71,8 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPIFormats = [
         'condition_groups' => null,
-        'conditions' => null
+        'conditions' => null,
+        'skip_webhooks' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static array $openAPINullables = [
         'condition_groups' => false,
-		'conditions' => false
+		'conditions' => false,
+		'skip_webhooks' => true
     ];
 
     /**
@@ -170,7 +173,8 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $attributeMap = [
         'condition_groups' => 'condition_groups',
-        'conditions' => 'conditions'
+        'conditions' => 'conditions',
+        'skip_webhooks' => 'skip_webhooks'
     ];
 
     /**
@@ -180,7 +184,8 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $setters = [
         'condition_groups' => 'setConditionGroups',
-        'conditions' => 'setConditions'
+        'conditions' => 'setConditions',
+        'skip_webhooks' => 'setSkipWebhooks'
     ];
 
     /**
@@ -190,7 +195,8 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $getters = [
         'condition_groups' => 'getConditionGroups',
-        'conditions' => 'getConditions'
+        'conditions' => 'getConditions',
+        'skip_webhooks' => 'getSkipWebhooks'
     ];
 
     /**
@@ -252,6 +258,7 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
     {
         $this->setIfExists('condition_groups', $data ?? [], null);
         $this->setIfExists('conditions', $data ?? [], null);
+        $this->setIfExists('skip_webhooks', $data ?? [], null);
     }
 
     /**
@@ -352,6 +359,40 @@ class UpdateAudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable conditions cannot be null');
         }
         $this->container['conditions'] = $conditions;
+
+        return $this;
+    }
+
+    /**
+     * Gets skip_webhooks
+     *
+     * @return bool|null
+     */
+    public function getSkipWebhooks()
+    {
+        return $this->container['skip_webhooks'];
+    }
+
+    /**
+     * Sets skip_webhooks
+     *
+     * @param bool|null $skip_webhooks skip_webhooks
+     *
+     * @return self
+     */
+    public function setSkipWebhooks($skip_webhooks)
+    {
+        if (is_null($skip_webhooks)) {
+            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('skip_webhooks', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['skip_webhooks'] = $skip_webhooks;
 
         return $this;
     }

@@ -12,6 +12,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**getUser()**](CompaniesApi.md#getUser) | **GET** /users/{user_id} | Get user |
 | [**listCompanies()**](CompaniesApi.md#listCompanies) | **GET** /companies | List companies |
 | [**listCompanyMemberships()**](CompaniesApi.md#listCompanyMemberships) | **GET** /company-memberships | List company memberships |
+| [**listCompanyPlans()**](CompaniesApi.md#listCompanyPlans) | **GET** /company-plans | List company plans |
 | [**listUsers()**](CompaniesApi.md#listUsers) | **GET** /users | List users |
 | [**updateEntityTraitDefinition()**](CompaniesApi.md#updateEntityTraitDefinition) | **PUT** /entity-trait-definitions/{entity_trait_definition_id} | Update entity trait definition |
 
@@ -391,7 +392,7 @@ try {
 ## `listCompanies()`
 
 ```php
-listCompanies($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir): \Schematic\Model\ListCompaniesResponse
+listCompanies($x_schematic_environment_id, $ids, $limit, $offset): \Schematic\Model\ListCompaniesResponse
 ```
 
 List companies
@@ -416,14 +417,12 @@ $apiInstance = new Schematic\Api\CompaniesApi(
     $config
 );
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
-$ids = array(56); // int[]
+$ids = array('ids_example'); // string[]
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listCompanies($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listCompanies($x_schematic_environment_id, $ids, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->listCompanies: ', $e->getMessage(), PHP_EOL;
@@ -435,11 +434,9 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
-| **ids** | [**int[]**](../Model/int.md)|  | [optional] |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -461,7 +458,7 @@ try {
 ## `listCompanyMemberships()`
 
 ```php
-listCompanyMemberships($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $order, $dir): \Schematic\Model\ListCompanyMembershipsResponse
+listCompanyMemberships($x_schematic_environment_id, $company_id, $user_id, $limit, $offset): \Schematic\Model\ListCompanyMembershipsResponse
 ```
 
 List company memberships
@@ -490,11 +487,9 @@ $company_id = 'company_id_example'; // string
 $user_id = 'user_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listCompanyMemberships($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listCompanyMemberships($x_schematic_environment_id, $company_id, $user_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->listCompanyMemberships: ', $e->getMessage(), PHP_EOL;
@@ -510,8 +505,6 @@ try {
 | **user_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -530,10 +523,80 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listCompanyPlans()`
+
+```php
+listCompanyPlans($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset): \Schematic\Model\ListCompanyPlansResponse
+```
+
+List company plans
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new Schematic\Api\CompaniesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+$company_id = 'company_id_example'; // string
+$plan_id = 'plan_id_example'; // string
+$active = True; // bool
+$limit = 56; // int | Page limit (default 100)
+$offset = 56; // int | Page offset (default 0)
+
+try {
+    $result = $apiInstance->listCompanyPlans($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CompaniesApi->listCompanyPlans: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+| **company_id** | **string**|  | [optional] |
+| **plan_id** | **string**|  | [optional] |
+| **active** | **bool**|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListCompanyPlansResponse**](../Model/ListCompanyPlansResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listUsers()`
 
 ```php
-listUsers($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir): \Schematic\Model\ListUsersResponse
+listUsers($x_schematic_environment_id, $ids, $limit, $offset): \Schematic\Model\ListUsersResponse
 ```
 
 List users
@@ -558,14 +621,12 @@ $apiInstance = new Schematic\Api\CompaniesApi(
     $config
 );
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
-$ids = array(56); // int[]
+$ids = array('ids_example'); // string[]
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listUsers($x_schematic_environment_id, $ids, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listUsers($x_schematic_environment_id, $ids, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->listUsers: ', $e->getMessage(), PHP_EOL;
@@ -577,11 +638,9 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
-| **ids** | [**int[]**](../Model/int.md)|  | [optional] |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 

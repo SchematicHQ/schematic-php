@@ -57,10 +57,8 @@ class PaginationFilter implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'dir' => 'string',
         'limit' => 'int',
-        'offset' => 'int',
-        'order' => 'string'
+        'offset' => 'int'
     ];
 
     /**
@@ -71,10 +69,8 @@ class PaginationFilter implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'dir' => null,
         'limit' => null,
-        'offset' => null,
-        'order' => null
+        'offset' => null
     ];
 
     /**
@@ -83,10 +79,8 @@ class PaginationFilter implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'dir' => true,
-		'limit' => true,
-		'offset' => true,
-		'order' => true
+        'limit' => true,
+		'offset' => true
     ];
 
     /**
@@ -175,10 +169,8 @@ class PaginationFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'dir' => 'dir',
         'limit' => 'limit',
-        'offset' => 'offset',
-        'order' => 'order'
+        'offset' => 'offset'
     ];
 
     /**
@@ -187,10 +179,8 @@ class PaginationFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'dir' => 'setDir',
         'limit' => 'setLimit',
-        'offset' => 'setOffset',
-        'order' => 'setOrder'
+        'offset' => 'setOffset'
     ];
 
     /**
@@ -199,10 +189,8 @@ class PaginationFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'dir' => 'getDir',
         'limit' => 'getLimit',
-        'offset' => 'getOffset',
-        'order' => 'getOrder'
+        'offset' => 'getOffset'
     ];
 
     /**
@@ -262,10 +250,8 @@ class PaginationFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('dir', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('order', $data ?? [], null);
     }
 
     /**
@@ -309,40 +295,6 @@ class PaginationFilter implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets dir
-     *
-     * @return string|null
-     */
-    public function getDir()
-    {
-        return $this->container['dir'];
-    }
-
-    /**
-     * Sets dir
-     *
-     * @param string|null $dir Order direction
-     *
-     * @return self
-     */
-    public function setDir($dir)
-    {
-        if (is_null($dir)) {
-            array_push($this->openAPINullablesSetToNull, 'dir');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('dir', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['dir'] = $dir;
-
-        return $this;
-    }
 
     /**
      * Gets limit
@@ -408,40 +360,6 @@ class PaginationFilter implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets order
-     *
-     * @return string|null
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     *
-     * @param string|null $order Order by column
-     *
-     * @return self
-     */
-    public function setOrder($order)
-    {
-        if (is_null($order)) {
-            array_push($this->openAPINullablesSetToNull, 'order');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['order'] = $order;
 
         return $this;
     }

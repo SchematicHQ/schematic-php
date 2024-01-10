@@ -59,13 +59,12 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'company_id' => 'string',
-        'dir' => 'string',
         'end_time' => '\DateTime',
         'event_subtype' => 'string',
+        'event_subtypes' => 'string[]',
         'grouping' => 'string',
         'limit' => 'int',
         'offset' => 'int',
-        'order' => 'string',
         'start_time' => '\DateTime',
         'user_id' => 'string'
     ];
@@ -79,13 +78,12 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'company_id' => null,
-        'dir' => null,
         'end_time' => 'date-time',
         'event_subtype' => null,
+        'event_subtypes' => null,
         'grouping' => null,
         'limit' => null,
         'offset' => null,
-        'order' => null,
         'start_time' => 'date-time',
         'user_id' => null
     ];
@@ -97,13 +95,12 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static array $openAPINullables = [
         'company_id' => false,
-		'dir' => false,
 		'end_time' => false,
 		'event_subtype' => false,
+		'event_subtypes' => false,
 		'grouping' => false,
 		'limit' => false,
 		'offset' => false,
-		'order' => false,
 		'start_time' => false,
 		'user_id' => false
     ];
@@ -195,13 +192,12 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'company_id' => 'company_id',
-        'dir' => 'dir',
         'end_time' => 'end_time',
         'event_subtype' => 'event_subtype',
+        'event_subtypes' => 'event_subtypes',
         'grouping' => 'grouping',
         'limit' => 'limit',
         'offset' => 'offset',
-        'order' => 'order',
         'start_time' => 'start_time',
         'user_id' => 'user_id'
     ];
@@ -213,13 +209,12 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'company_id' => 'setCompanyId',
-        'dir' => 'setDir',
         'end_time' => 'setEndTime',
         'event_subtype' => 'setEventSubtype',
+        'event_subtypes' => 'setEventSubtypes',
         'grouping' => 'setGrouping',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
-        'order' => 'setOrder',
         'start_time' => 'setStartTime',
         'user_id' => 'setUserId'
     ];
@@ -231,13 +226,12 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'company_id' => 'getCompanyId',
-        'dir' => 'getDir',
         'end_time' => 'getEndTime',
         'event_subtype' => 'getEventSubtype',
+        'event_subtypes' => 'getEventSubtypes',
         'grouping' => 'getGrouping',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
-        'order' => 'getOrder',
         'start_time' => 'getStartTime',
         'user_id' => 'getUserId'
     ];
@@ -300,13 +294,12 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(array $data = null)
     {
         $this->setIfExists('company_id', $data ?? [], null);
-        $this->setIfExists('dir', $data ?? [], null);
         $this->setIfExists('end_time', $data ?? [], null);
         $this->setIfExists('event_subtype', $data ?? [], null);
+        $this->setIfExists('event_subtypes', $data ?? [], null);
         $this->setIfExists('grouping', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('start_time', $data ?? [], null);
         $this->setIfExists('user_id', $data ?? [], null);
     }
@@ -381,33 +374,6 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
-     * Gets dir
-     *
-     * @return string|null
-     */
-    public function getDir()
-    {
-        return $this->container['dir'];
-    }
-
-    /**
-     * Sets dir
-     *
-     * @param string|null $dir dir
-     *
-     * @return self
-     */
-    public function setDir($dir)
-    {
-        if (is_null($dir)) {
-            throw new \InvalidArgumentException('non-nullable dir cannot be null');
-        }
-        $this->container['dir'] = $dir;
-
-        return $this;
-    }
-
-    /**
      * Gets end_time
      *
      * @return \DateTime|null
@@ -457,6 +423,33 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable event_subtype cannot be null');
         }
         $this->container['event_subtype'] = $event_subtype;
+
+        return $this;
+    }
+
+    /**
+     * Gets event_subtypes
+     *
+     * @return string[]|null
+     */
+    public function getEventSubtypes()
+    {
+        return $this->container['event_subtypes'];
+    }
+
+    /**
+     * Sets event_subtypes
+     *
+     * @param string[]|null $event_subtypes event_subtypes
+     *
+     * @return self
+     */
+    public function setEventSubtypes($event_subtypes)
+    {
+        if (is_null($event_subtypes)) {
+            throw new \InvalidArgumentException('non-nullable event_subtypes cannot be null');
+        }
+        $this->container['event_subtypes'] = $event_subtypes;
 
         return $this;
     }
@@ -538,33 +531,6 @@ class ListMetricCountsParams implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets order
-     *
-     * @return string|null
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     *
-     * @param string|null $order order
-     *
-     * @return self
-     */
-    public function setOrder($order)
-    {
-        if (is_null($order)) {
-            throw new \InvalidArgumentException('non-nullable order cannot be null');
-        }
-        $this->container['order'] = $order;
 
         return $this;
     }
