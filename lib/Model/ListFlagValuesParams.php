@@ -59,12 +59,10 @@ class ListFlagValuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'company_id' => 'string',
-        'dir' => 'string',
         'entity_type' => 'int',
         'flag_id' => 'string',
         'limit' => 'int',
         'offset' => 'int',
-        'order' => 'string',
         'user_id' => 'string'
     ];
 
@@ -77,12 +75,10 @@ class ListFlagValuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'company_id' => null,
-        'dir' => null,
         'entity_type' => null,
         'flag_id' => null,
         'limit' => null,
         'offset' => null,
-        'order' => null,
         'user_id' => null
     ];
 
@@ -93,12 +89,10 @@ class ListFlagValuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static array $openAPINullables = [
         'company_id' => false,
-		'dir' => false,
 		'entity_type' => false,
 		'flag_id' => false,
 		'limit' => false,
 		'offset' => false,
-		'order' => false,
 		'user_id' => false
     ];
 
@@ -189,12 +183,10 @@ class ListFlagValuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'company_id' => 'company_id',
-        'dir' => 'dir',
         'entity_type' => 'entity_type',
         'flag_id' => 'flag_id',
         'limit' => 'limit',
         'offset' => 'offset',
-        'order' => 'order',
         'user_id' => 'user_id'
     ];
 
@@ -205,12 +197,10 @@ class ListFlagValuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'company_id' => 'setCompanyId',
-        'dir' => 'setDir',
         'entity_type' => 'setEntityType',
         'flag_id' => 'setFlagId',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
-        'order' => 'setOrder',
         'user_id' => 'setUserId'
     ];
 
@@ -221,12 +211,10 @@ class ListFlagValuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'company_id' => 'getCompanyId',
-        'dir' => 'getDir',
         'entity_type' => 'getEntityType',
         'flag_id' => 'getFlagId',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
-        'order' => 'getOrder',
         'user_id' => 'getUserId'
     ];
 
@@ -288,12 +276,10 @@ class ListFlagValuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(array $data = null)
     {
         $this->setIfExists('company_id', $data ?? [], null);
-        $this->setIfExists('dir', $data ?? [], null);
         $this->setIfExists('entity_type', $data ?? [], null);
         $this->setIfExists('flag_id', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('user_id', $data ?? [], null);
     }
 
@@ -362,33 +348,6 @@ class ListFlagValuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable company_id cannot be null');
         }
         $this->container['company_id'] = $company_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets dir
-     *
-     * @return string|null
-     */
-    public function getDir()
-    {
-        return $this->container['dir'];
-    }
-
-    /**
-     * Sets dir
-     *
-     * @param string|null $dir dir
-     *
-     * @return self
-     */
-    public function setDir($dir)
-    {
-        if (is_null($dir)) {
-            throw new \InvalidArgumentException('non-nullable dir cannot be null');
-        }
-        $this->container['dir'] = $dir;
 
         return $this;
     }
@@ -497,33 +456,6 @@ class ListFlagValuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets order
-     *
-     * @return string|null
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     *
-     * @param string|null $order order
-     *
-     * @return self
-     */
-    public function setOrder($order)
-    {
-        if (is_null($order)) {
-            throw new \InvalidArgumentException('non-nullable order cannot be null');
-        }
-        $this->container['order'] = $order;
 
         return $this;
     }

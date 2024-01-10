@@ -22,7 +22,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `countApiKeys()`
 
 ```php
-countApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir): \Schematic\Model\CountApiKeysResponse
+countApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset): \Schematic\Model\CountApiKeysResponse
 ```
 
 Count api keys
@@ -51,11 +51,9 @@ $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | 
 $environment_id = 'environment_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->countApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir);
+    $result = $apiInstance->countApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->countApiKeys: ', $e->getMessage(), PHP_EOL;
@@ -71,8 +69,6 @@ try {
 | **environment_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -94,7 +90,7 @@ try {
 ## `countApiRequests()`
 
 ```php
-countApiRequests($x_schematic_environment_id, $q, $limit, $offset, $order, $dir): \Schematic\Model\CountApiRequestsResponse
+countApiRequests($x_schematic_environment_id, $q, $limit, $offset): \Schematic\Model\CountApiRequestsResponse
 ```
 
 Count api requests
@@ -122,11 +118,9 @@ $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | 
 $q = 'q_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->countApiRequests($x_schematic_environment_id, $q, $limit, $offset, $order, $dir);
+    $result = $apiInstance->countApiRequests($x_schematic_environment_id, $q, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->countApiRequests: ', $e->getMessage(), PHP_EOL;
@@ -141,8 +135,6 @@ try {
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -598,7 +590,7 @@ try {
 ## `listApiKeys()`
 
 ```php
-listApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir): \Schematic\Model\ListApiKeysResponse
+listApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset): \Schematic\Model\ListApiKeysResponse
 ```
 
 List api keys
@@ -627,11 +619,9 @@ $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | 
 $environment_id = 'environment_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->listApiKeys: ', $e->getMessage(), PHP_EOL;
@@ -647,8 +637,6 @@ try {
 | **environment_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -670,7 +658,7 @@ try {
 ## `listApiRequests()`
 
 ```php
-listApiRequests($x_schematic_environment_id, $q, $limit, $offset, $order, $dir): \Schematic\Model\ListApiRequestsResponse
+listApiRequests($x_schematic_environment_id, $q, $limit, $offset): \Schematic\Model\ListApiRequestsResponse
 ```
 
 List api requests
@@ -698,11 +686,9 @@ $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | 
 $q = 'q_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listApiRequests($x_schematic_environment_id, $q, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listApiRequests($x_schematic_environment_id, $q, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->listApiRequests: ', $e->getMessage(), PHP_EOL;
@@ -717,8 +703,6 @@ try {
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 

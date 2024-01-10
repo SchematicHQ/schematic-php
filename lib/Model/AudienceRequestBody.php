@@ -59,10 +59,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPITypes = [
         'condition_groups' => '\Schematic\Model\CreateOrUpdateConditionGroupRequestBody[]',
         'conditions' => '\Schematic\Model\CreateOrUpdateConditionRequestBody[]',
-        'dir' => 'string',
         'limit' => 'int',
         'offset' => 'int',
-        'order' => 'string',
         'q' => 'string'
     ];
 
@@ -76,10 +74,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPIFormats = [
         'condition_groups' => null,
         'conditions' => null,
-        'dir' => null,
         'limit' => null,
         'offset' => null,
-        'order' => null,
         'q' => null
     ];
 
@@ -91,10 +87,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static array $openAPINullables = [
         'condition_groups' => false,
 		'conditions' => false,
-		'dir' => true,
 		'limit' => true,
 		'offset' => true,
-		'order' => true,
 		'q' => true
     ];
 
@@ -186,10 +180,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $attributeMap = [
         'condition_groups' => 'condition_groups',
         'conditions' => 'conditions',
-        'dir' => 'dir',
         'limit' => 'limit',
         'offset' => 'offset',
-        'order' => 'order',
         'q' => 'q'
     ];
 
@@ -201,10 +193,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $setters = [
         'condition_groups' => 'setConditionGroups',
         'conditions' => 'setConditions',
-        'dir' => 'setDir',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
-        'order' => 'setOrder',
         'q' => 'setQ'
     ];
 
@@ -216,10 +206,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $getters = [
         'condition_groups' => 'getConditionGroups',
         'conditions' => 'getConditions',
-        'dir' => 'getDir',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
-        'order' => 'getOrder',
         'q' => 'getQ'
     ];
 
@@ -282,10 +270,8 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $this->setIfExists('condition_groups', $data ?? [], null);
         $this->setIfExists('conditions', $data ?? [], null);
-        $this->setIfExists('dir', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
     }
 
@@ -392,40 +378,6 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
-     * Gets dir
-     *
-     * @return string|null
-     */
-    public function getDir()
-    {
-        return $this->container['dir'];
-    }
-
-    /**
-     * Sets dir
-     *
-     * @param string|null $dir Order direction
-     *
-     * @return self
-     */
-    public function setDir($dir)
-    {
-        if (is_null($dir)) {
-            array_push($this->openAPINullablesSetToNull, 'dir');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('dir', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['dir'] = $dir;
-
-        return $this;
-    }
-
-    /**
      * Gets limit
      *
      * @return int|null
@@ -489,40 +441,6 @@ class AudienceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets order
-     *
-     * @return string|null
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     *
-     * @param string|null $order Order by column
-     *
-     * @return self
-     */
-    public function setOrder($order)
-    {
-        if (is_null($order)) {
-            array_push($this->openAPINullablesSetToNull, 'order');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('order', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['order'] = $order;
 
         return $this;
     }

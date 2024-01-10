@@ -18,7 +18,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `countEventTypes()`
 
 ```php
-countEventTypes($x_schematic_environment_id, $q, $limit, $offset, $order, $dir): \Schematic\Model\CountEventTypesResponse
+countEventTypes($x_schematic_environment_id, $q, $limit, $offset): \Schematic\Model\CountEventTypesResponse
 ```
 
 Count event types
@@ -46,11 +46,9 @@ $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | 
 $q = 'q_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->countEventTypes($x_schematic_environment_id, $q, $limit, $offset, $order, $dir);
+    $result = $apiInstance->countEventTypes($x_schematic_environment_id, $q, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EventsApi->countEventTypes: ', $e->getMessage(), PHP_EOL;
@@ -65,8 +63,6 @@ try {
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -88,7 +84,7 @@ try {
 ## `countEvents()`
 
 ```php
-countEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir): \Schematic\Model\CountEventsResponse
+countEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset): \Schematic\Model\CountEventsResponse
 ```
 
 Count events
@@ -119,11 +115,9 @@ $feature_id = 'feature_id_example'; // string
 $event_subtype = 'event_subtype_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->countEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir);
+    $result = $apiInstance->countEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EventsApi->countEvents: ', $e->getMessage(), PHP_EOL;
@@ -141,8 +135,6 @@ try {
 | **event_subtype** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -350,7 +342,7 @@ try {
 ## `listEventTypes()`
 
 ```php
-listEventTypes($x_schematic_environment_id, $q, $limit, $offset, $order, $dir): \Schematic\Model\ListEventTypesResponse
+listEventTypes($x_schematic_environment_id, $q, $limit, $offset): \Schematic\Model\ListEventTypesResponse
 ```
 
 List event types
@@ -378,11 +370,9 @@ $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | 
 $q = 'q_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listEventTypes($x_schematic_environment_id, $q, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listEventTypes($x_schematic_environment_id, $q, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EventsApi->listEventTypes: ', $e->getMessage(), PHP_EOL;
@@ -397,8 +387,6 @@ try {
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -420,7 +408,7 @@ try {
 ## `listEvents()`
 
 ```php
-listEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir): \Schematic\Model\ListEventsResponse
+listEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset): \Schematic\Model\ListEventsResponse
 ```
 
 List events
@@ -451,11 +439,9 @@ $feature_id = 'feature_id_example'; // string
 $event_subtype = 'event_subtype_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EventsApi->listEvents: ', $e->getMessage(), PHP_EOL;
@@ -473,8 +459,6 @@ try {
 | **event_subtype** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 
@@ -496,7 +480,7 @@ try {
 ## `listMetricCounts()`
 
 ```php
-listMetricCounts($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $grouping): \Schematic\Model\ListMetricCountsResponse
+listMetricCounts($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $grouping): \Schematic\Model\ListMetricCountsResponse
 ```
 
 List metric counts
@@ -524,16 +508,15 @@ $event_subtype = 'event_subtype_example'; // string
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$event_subtypes = array('event_subtypes_example'); // string[]
 $company_id = 'company_id_example'; // string
 $user_id = 'user_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 $grouping = 'grouping_example'; // string
 
 try {
-    $result = $apiInstance->listMetricCounts($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $grouping);
+    $result = $apiInstance->listMetricCounts($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $grouping);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EventsApi->listMetricCounts: ', $e->getMessage(), PHP_EOL;
@@ -548,12 +531,11 @@ try {
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **start_time** | **\DateTime**|  | [optional] |
 | **end_time** | **\DateTime**|  | [optional] |
+| **event_subtypes** | [**string[]**](../Model/string.md)|  | [optional] |
 | **company_id** | **string**|  | [optional] |
 | **user_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 | **grouping** | **string**|  | [optional] |
 
 ### Return type
@@ -576,7 +558,7 @@ try {
 ## `listMetricCountsHourly()`
 
 ```php
-listMetricCountsHourly($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir): \Schematic\Model\ListMetricCountsHourlyResponse
+listMetricCountsHourly($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset): \Schematic\Model\ListMetricCountsHourlyResponse
 ```
 
 List metric counts hourly
@@ -604,15 +586,14 @@ $event_subtype = 'event_subtype_example'; // string
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$event_subtypes = array('event_subtypes_example'); // string[]
 $company_id = 'company_id_example'; // string
 $user_id = 'user_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
-$order = 'order_example'; // string | Order by column
-$dir = 'dir_example'; // string | Order direction
 
 try {
-    $result = $apiInstance->listMetricCountsHourly($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir);
+    $result = $apiInstance->listMetricCountsHourly($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EventsApi->listMetricCountsHourly: ', $e->getMessage(), PHP_EOL;
@@ -627,12 +608,11 @@ try {
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **start_time** | **\DateTime**|  | [optional] |
 | **end_time** | **\DateTime**|  | [optional] |
+| **event_subtypes** | [**string[]**](../Model/string.md)|  | [optional] |
 | **company_id** | **string**|  | [optional] |
 | **user_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
-| **order** | **string**| Order by column | [optional] |
-| **dir** | **string**| Order direction | [optional] |
 
 ### Return type
 

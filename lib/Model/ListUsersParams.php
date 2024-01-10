@@ -58,11 +58,9 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'dir' => 'string',
-        'ids' => 'int[]',
+        'ids' => 'string[]',
         'limit' => 'int',
-        'offset' => 'int',
-        'order' => 'string'
+        'offset' => 'int'
     ];
 
     /**
@@ -73,11 +71,9 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'dir' => null,
         'ids' => null,
         'limit' => null,
-        'offset' => null,
-        'order' => null
+        'offset' => null
     ];
 
     /**
@@ -86,11 +82,9 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'dir' => false,
-		'ids' => false,
+        'ids' => false,
 		'limit' => false,
-		'offset' => false,
-		'order' => false
+		'offset' => false
     ];
 
     /**
@@ -179,11 +173,9 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'dir' => 'dir',
         'ids' => 'ids',
         'limit' => 'limit',
-        'offset' => 'offset',
-        'order' => 'order'
+        'offset' => 'offset'
     ];
 
     /**
@@ -192,11 +184,9 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'dir' => 'setDir',
         'ids' => 'setIds',
         'limit' => 'setLimit',
-        'offset' => 'setOffset',
-        'order' => 'setOrder'
+        'offset' => 'setOffset'
     ];
 
     /**
@@ -205,11 +195,9 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'dir' => 'getDir',
         'ids' => 'getIds',
         'limit' => 'getLimit',
-        'offset' => 'getOffset',
-        'order' => 'getOrder'
+        'offset' => 'getOffset'
     ];
 
     /**
@@ -269,11 +257,9 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('dir', $data ?? [], null);
         $this->setIfExists('ids', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('order', $data ?? [], null);
     }
 
     /**
@@ -319,36 +305,9 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets dir
-     *
-     * @return string|null
-     */
-    public function getDir()
-    {
-        return $this->container['dir'];
-    }
-
-    /**
-     * Sets dir
-     *
-     * @param string|null $dir dir
-     *
-     * @return self
-     */
-    public function setDir($dir)
-    {
-        if (is_null($dir)) {
-            throw new \InvalidArgumentException('non-nullable dir cannot be null');
-        }
-        $this->container['dir'] = $dir;
-
-        return $this;
-    }
-
-    /**
      * Gets ids
      *
-     * @return int[]|null
+     * @return string[]|null
      */
     public function getIds()
     {
@@ -358,7 +317,7 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets ids
      *
-     * @param int[]|null $ids ids
+     * @param string[]|null $ids ids
      *
      * @return self
      */
@@ -422,33 +381,6 @@ class ListUsersParams implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets order
-     *
-     * @return string|null
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     *
-     * @param string|null $order order
-     *
-     * @return self
-     */
-    public function setOrder($order)
-    {
-        if (is_null($order)) {
-            throw new \InvalidArgumentException('non-nullable order cannot be null');
-        }
-        $this->container['order'] = $order;
 
         return $this;
     }

@@ -62,7 +62,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'last_seen_at' => '\DateTime',
         'name' => 'string',
         'skip_webhooks' => 'bool',
-        'traits' => 'object'
+        'traits' => 'object',
+        'update_only' => 'bool'
     ];
 
     /**
@@ -78,7 +79,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'last_seen_at' => 'date-time',
         'name' => null,
         'skip_webhooks' => null,
-        'traits' => null
+        'traits' => null,
+        'update_only' => null
     ];
 
     /**
@@ -92,7 +94,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
 		'last_seen_at' => true,
 		'name' => true,
 		'skip_webhooks' => true,
-		'traits' => false
+		'traits' => false,
+		'update_only' => true
     ];
 
     /**
@@ -186,7 +189,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'last_seen_at' => 'last_seen_at',
         'name' => 'name',
         'skip_webhooks' => 'skip_webhooks',
-        'traits' => 'traits'
+        'traits' => 'traits',
+        'update_only' => 'update_only'
     ];
 
     /**
@@ -200,7 +204,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'last_seen_at' => 'setLastSeenAt',
         'name' => 'setName',
         'skip_webhooks' => 'setSkipWebhooks',
-        'traits' => 'setTraits'
+        'traits' => 'setTraits',
+        'update_only' => 'setUpdateOnly'
     ];
 
     /**
@@ -214,7 +219,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'last_seen_at' => 'getLastSeenAt',
         'name' => 'getName',
         'skip_webhooks' => 'getSkipWebhooks',
-        'traits' => 'getTraits'
+        'traits' => 'getTraits',
+        'update_only' => 'getUpdateOnly'
     ];
 
     /**
@@ -280,6 +286,7 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('skip_webhooks', $data ?? [], null);
         $this->setIfExists('traits', $data ?? [], null);
+        $this->setIfExists('update_only', $data ?? [], null);
     }
 
     /**
@@ -513,6 +520,40 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable traits cannot be null');
         }
         $this->container['traits'] = $traits;
+
+        return $this;
+    }
+
+    /**
+     * Gets update_only
+     *
+     * @return bool|null
+     */
+    public function getUpdateOnly()
+    {
+        return $this->container['update_only'];
+    }
+
+    /**
+     * Sets update_only
+     *
+     * @param bool|null $update_only update_only
+     *
+     * @return self
+     */
+    public function setUpdateOnly($update_only)
+    {
+        if (is_null($update_only)) {
+            array_push($this->openAPINullablesSetToNull, 'update_only');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('update_only', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['update_only'] = $update_only;
 
         return $this;
     }

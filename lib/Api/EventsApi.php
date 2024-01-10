@@ -155,17 +155,15 @@ class EventsApi
      * @param  string $q q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countEventTypes($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypes($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
-        list($response) = $this->countEventTypesWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->countEventTypesWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -178,17 +176,15 @@ class EventsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countEventTypesWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypesWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
-        $request = $this->countEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -375,16 +371,14 @@ class EventsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventTypesAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypesAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
-        return $this->countEventTypesAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType)
+        return $this->countEventTypesAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -401,17 +395,15 @@ class EventsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventTypesAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypesAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
         $returnType = '\Schematic\Model\CountEventTypesResponse';
-        $request = $this->countEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -456,17 +448,13 @@ class EventsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countEventTypesRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypesRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
-
-
 
 
 
@@ -503,24 +491,6 @@ class EventsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -603,17 +573,15 @@ class EventsApi
      * @param  string $event_subtype event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEvents'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countEvents($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEvents($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
-        list($response) = $this->countEventsWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->countEventsWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -629,17 +597,15 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEvents'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countEventsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEventsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
-        $request = $this->countEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -829,16 +795,14 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventsAsync($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEventsAsync($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
-        return $this->countEventsAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType)
+        return $this->countEventsAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -858,17 +822,15 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEventsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
         $returnType = '\Schematic\Model\CountEventsResponse';
-        $request = $this->countEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->countEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -916,17 +878,13 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countEventsRequest($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEventsRequest($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
-
-
 
 
 
@@ -993,24 +951,6 @@ class EventsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -2259,17 +2199,15 @@ class EventsApi
      * @param  string $q q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listEventTypes($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypes($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
-        list($response) = $this->listEventTypesWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listEventTypesWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2282,17 +2220,15 @@ class EventsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listEventTypesWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypesWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
-        $request = $this->listEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2479,16 +2415,14 @@ class EventsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventTypesAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypesAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
-        return $this->listEventTypesAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType)
+        return $this->listEventTypesAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2505,17 +2439,15 @@ class EventsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventTypesAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypesAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
         $returnType = '\Schematic\Model\ListEventTypesResponse';
-        $request = $this->listEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2560,17 +2492,13 @@ class EventsApi
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listEventTypesRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypesRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
-
-
 
 
 
@@ -2607,24 +2535,6 @@ class EventsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -2707,17 +2617,15 @@ class EventsApi
      * @param  string $event_subtype event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEvents'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listEvents($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEvents($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        list($response) = $this->listEventsWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listEventsWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2733,17 +2641,15 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEvents'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listEventsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        $request = $this->listEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2933,16 +2839,14 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventsAsync($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsAsync($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        return $this->listEventsAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType)
+        return $this->listEventsAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2962,17 +2866,15 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
         $returnType = '\Schematic\Model\ListEventsResponse';
-        $request = $this->listEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listEventsRequest($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3020,17 +2922,13 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEvents'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listEventsRequest($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsRequest($x_schematic_environment_id = null, $company_id = null, $user_id = null, $feature_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-
-
 
 
 
@@ -3097,24 +2995,6 @@ class EventsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3194,12 +3074,11 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time start_time (optional)
      * @param  \DateTime $end_time end_time (optional)
+     * @param  string[] $event_subtypes event_subtypes (optional)
      * @param  string $company_id company_id (optional)
      * @param  string $user_id user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $grouping grouping (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCounts'] to see the possible values for this operation
      *
@@ -3207,9 +3086,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListMetricCountsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listMetricCounts($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCounts($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
-        list($response) = $this->listMetricCountsWithHttpInfo($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $grouping, $contentType);
+        list($response) = $this->listMetricCountsWithHttpInfo($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $grouping, $contentType);
         return $response;
     }
 
@@ -3222,12 +3101,11 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
+     * @param  string[] $event_subtypes (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $grouping (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCounts'] to see the possible values for this operation
      *
@@ -3235,9 +3113,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListMetricCountsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listMetricCountsWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCountsWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
-        $request = $this->listMetricCountsRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $grouping, $contentType);
+        $request = $this->listMetricCountsRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $grouping, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3424,21 +3302,20 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
+     * @param  string[] $event_subtypes (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $grouping (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMetricCountsAsync($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCountsAsync($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
-        return $this->listMetricCountsAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $grouping, $contentType)
+        return $this->listMetricCountsAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $grouping, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3455,22 +3332,21 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
+     * @param  string[] $event_subtypes (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $grouping (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMetricCountsAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCountsAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
         $returnType = '\Schematic\Model\ListMetricCountsResponse';
-        $request = $this->listMetricCountsRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $grouping, $contentType);
+        $request = $this->listMetricCountsRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $grouping, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3515,19 +3391,18 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
+     * @param  string[] $event_subtypes (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $grouping (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listMetricCountsRequest($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCountsRequest($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
 
         // verify the required parameter 'event_subtype' is set
@@ -3536,7 +3411,6 @@ class EventsApi
                 'Missing the required parameter $event_subtype when calling listMetricCounts'
             );
         }
-
 
 
 
@@ -3584,6 +3458,15 @@ class EventsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $event_subtypes,
+            'event_subtypes', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $company_id,
             'company_id', // param base name
             'string', // openApiType
@@ -3614,24 +3497,6 @@ class EventsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3720,21 +3585,20 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time start_time (optional)
      * @param  \DateTime $end_time end_time (optional)
+     * @param  string[] $event_subtypes event_subtypes (optional)
      * @param  string $company_id company_id (optional)
      * @param  string $user_id user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListMetricCountsHourlyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listMetricCountsHourly($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourly($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
-        list($response) = $this->listMetricCountsHourlyWithHttpInfo($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $contentType);
+        list($response) = $this->listMetricCountsHourlyWithHttpInfo($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3747,21 +3611,20 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
+     * @param  string[] $event_subtypes (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListMetricCountsHourlyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listMetricCountsHourlyWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourlyWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
-        $request = $this->listMetricCountsHourlyRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listMetricCountsHourlyRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3948,20 +3811,19 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
+     * @param  string[] $event_subtypes (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMetricCountsHourlyAsync($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourlyAsync($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
-        return $this->listMetricCountsHourlyAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $contentType)
+        return $this->listMetricCountsHourlyAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3978,21 +3840,20 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
+     * @param  string[] $event_subtypes (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMetricCountsHourlyAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourlyAsyncWithHttpInfo($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
         $returnType = '\Schematic\Model\ListMetricCountsHourlyResponse';
-        $request = $this->listMetricCountsHourlyRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $company_id, $user_id, $limit, $offset, $order, $dir, $contentType);
+        $request = $this->listMetricCountsHourlyRequest($event_subtype, $x_schematic_environment_id, $start_time, $end_time, $event_subtypes, $company_id, $user_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4037,18 +3898,17 @@ class EventsApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
+     * @param  string[] $event_subtypes (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $order Order by column (optional)
-     * @param  string $dir Order direction (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listMetricCountsHourlyRequest($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $company_id = null, $user_id = null, $limit = null, $offset = null, $order = null, $dir = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourlyRequest($event_subtype, $x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtypes = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
 
         // verify the required parameter 'event_subtype' is set
@@ -4057,7 +3917,6 @@ class EventsApi
                 'Missing the required parameter $event_subtype when calling listMetricCountsHourly'
             );
         }
-
 
 
 
@@ -4104,6 +3963,15 @@ class EventsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $event_subtypes,
+            'event_subtypes', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $company_id,
             'company_id', // param base name
             'string', // openApiType
@@ -4134,24 +4002,6 @@ class EventsApi
             $offset,
             'offset', // param base name
             'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $order,
-            'order', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $dir,
-            'dir', // param base name
-            'string', // openApiType
             'form', // style
             true, // explode
             false // required
