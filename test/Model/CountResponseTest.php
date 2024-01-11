@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Schematic\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,8 +34,8 @@ use PHPUnit\Framework\TestCase;
  * CountResponseTest Class Doc Comment
  *
  * @category    Class
- * @description CountResponse
- * @package     OpenAPI\Client
+ * @description The created resource
+ * @package     Schematic
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

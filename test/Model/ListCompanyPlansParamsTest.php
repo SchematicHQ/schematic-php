@@ -98,15 +98,6 @@ class ListCompanyPlansParamsTest extends TestCase
     }
 
     /**
-     * Test attribute "dir"
-     */
-    public function testPropertyDir()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "limit"
      */
     public function testPropertyLimit()
@@ -119,15 +110,6 @@ class ListCompanyPlansParamsTest extends TestCase
      * Test attribute "offset"
      */
     public function testPropertyOffset()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order"
-     */
-    public function testPropertyOrder()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

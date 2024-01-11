@@ -1,6 +1,6 @@
 {
     "name": "schematichq/schematic-php",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Schematic API",
     "keywords": [
         "openapitools",

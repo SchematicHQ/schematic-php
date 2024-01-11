@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Schematic\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description CreateEventRequestBody
- * @package     OpenAPI\Client
+ * @package     Schematic
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
@@ -80,54 +80,27 @@ class CreateEventRequestBodyTest extends TestCase
     }
 
     /**
-     * Test attribute "company"
+     * Test attribute "body"
      */
-    public function testPropertyCompany()
+    public function testPropertyBody()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "event"
+     * Test attribute "event_type"
      */
-    public function testPropertyEvent()
+    public function testPropertyEventType()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "traits"
+     * Test attribute "sent_at"
      */
-    public function testPropertyTraits()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "user"
-     */
-    public function testPropertyUser()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "keys"
-     */
-    public function testPropertyKeys()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
+    public function testPropertySentAt()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

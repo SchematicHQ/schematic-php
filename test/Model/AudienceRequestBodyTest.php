@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  schematic
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace schematic\Test\Model;
+namespace Schematic\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description AudienceRequestBody
- * @package     schematic
+ * @package     Schematic
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
@@ -98,15 +98,6 @@ class AudienceRequestBodyTest extends TestCase
     }
 
     /**
-     * Test attribute "dir"
-     */
-    public function testPropertyDir()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "limit"
      */
     public function testPropertyLimit()
@@ -125,9 +116,9 @@ class AudienceRequestBodyTest extends TestCase
     }
 
     /**
-     * Test attribute "order"
+     * Test attribute "q"
      */
-    public function testPropertyOrder()
+    public function testPropertyQ()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

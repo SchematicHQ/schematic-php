@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Schematic\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description Input parameters
- * @package     OpenAPI\Client
+ * @package     Schematic
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
@@ -89,15 +89,6 @@ class ListMetricCountsParamsTest extends TestCase
     }
 
     /**
-     * Test attribute "dir"
-     */
-    public function testPropertyDir()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "end_time"
      */
     public function testPropertyEndTime()
@@ -110,6 +101,15 @@ class ListMetricCountsParamsTest extends TestCase
      * Test attribute "event_subtype"
      */
     public function testPropertyEventSubtype()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "event_subtypes"
+     */
+    public function testPropertyEventSubtypes()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -137,15 +137,6 @@ class ListMetricCountsParamsTest extends TestCase
      * Test attribute "offset"
      */
     public function testPropertyOffset()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order"
-     */
-    public function testPropertyOrder()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

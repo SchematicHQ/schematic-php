@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace Schematic\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description FlagCheckLogResponseData
- * @package     OpenAPI\Client
+ * @package     Schematic
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
@@ -74,6 +74,15 @@ class FlagCheckLogResponseDataTest extends TestCase
      * Test "FlagCheckLogResponseData"
      */
     public function testFlagCheckLogResponseData()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "check_status"
+     */
+    public function testPropertyCheckStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

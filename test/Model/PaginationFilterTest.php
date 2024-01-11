@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  schematic
+ * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace schematic\Test\Model;
+namespace Schematic\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description PaginationFilter
- * @package     schematic
+ * @package     Schematic
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
@@ -80,15 +80,6 @@ class PaginationFilterTest extends TestCase
     }
 
     /**
-     * Test attribute "dir"
-     */
-    public function testPropertyDir()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "limit"
      */
     public function testPropertyLimit()
@@ -101,15 +92,6 @@ class PaginationFilterTest extends TestCase
      * Test attribute "offset"
      */
     public function testPropertyOffset()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "order"
-     */
-    public function testPropertyOrder()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

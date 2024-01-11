@@ -3,11 +3,7 @@
 .travis.yml
 README.md
 composer.json
-docs/Api/AccountsApi.md
-docs/Api/CompaniesApi.md
-docs/Api/EventsApi.md
-docs/Api/FeaturesApi.md
-docs/Api/PlansApi.md
+docs/Api/SchematicApi.md
 docs/Model/ApiError.md
 docs/Model/ApiKeyCreateResponseData.md
 docs/Model/ApiKeyRequestListResponseData.md
@@ -164,11 +160,7 @@ docs/Model/UpsertUserSubRequestBody.md
 docs/Model/UserDetailResponseData.md
 docs/Model/UserResponseData.md
 git_push.sh
-lib/Api/AccountsApi.php
-lib/Api/CompaniesApi.php
-lib/Api/EventsApi.php
-lib/Api/FeaturesApi.php
-lib/Api/PlansApi.php
+lib/Api/SchematicApi.php
 lib/ApiException.php
 lib/Configuration.php
 lib/HeaderSelector.php
