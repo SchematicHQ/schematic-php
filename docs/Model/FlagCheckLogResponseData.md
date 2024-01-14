@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **flag_key** | **string** |  |
 **id** | **string** |  |
 **reason** | **string** |  |
-**req_company** | **object** |  |
-**req_user** | **object** |  |
+**req_company** | **object** |  | [optional]
+**req_user** | **object** |  | [optional]
 **rule_id** | **string** |  | [optional]
 **updated_at** | **\DateTime** |  |
 **user_id** | **string** |  | [optional]

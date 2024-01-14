@@ -114,8 +114,8 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
 		'flag_key' => false,
 		'id' => false,
 		'reason' => false,
-		'req_company' => false,
-		'req_user' => false,
+		'req_company' => true,
+		'req_user' => true,
 		'rule_id' => true,
 		'updated_at' => false,
 		'user_id' => true,
@@ -389,12 +389,6 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         }
         if ($this->container['reason'] === null) {
             $invalidProperties[] = "'reason' can't be null";
-        }
-        if ($this->container['req_company'] === null) {
-            $invalidProperties[] = "'req_company' can't be null";
-        }
-        if ($this->container['req_user'] === null) {
-            $invalidProperties[] = "'req_user' can't be null";
         }
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
@@ -684,7 +678,7 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets req_company
      *
-     * @return object
+     * @return object|null
      */
     public function getReqCompany()
     {
@@ -694,14 +688,21 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets req_company
      *
-     * @param object $req_company req_company
+     * @param object|null $req_company req_company
      *
      * @return self
      */
     public function setReqCompany($req_company)
     {
         if (is_null($req_company)) {
-            throw new \InvalidArgumentException('non-nullable req_company cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'req_company');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('req_company', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['req_company'] = $req_company;
 
@@ -711,7 +712,7 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets req_user
      *
-     * @return object
+     * @return object|null
      */
     public function getReqUser()
     {
@@ -721,14 +722,21 @@ class FlagCheckLogResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets req_user
      *
-     * @param object $req_user req_user
+     * @param object|null $req_user req_user
      *
      * @return self
      */
     public function setReqUser($req_user)
     {
         if (is_null($req_user)) {
-            throw new \InvalidArgumentException('non-nullable req_user cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'req_user');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('req_user', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['req_user'] = $req_user;
 

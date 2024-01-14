@@ -79,7 +79,7 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'company' => false,
+        'company' => true,
 		'user' => true
     ];
 
@@ -281,9 +281,6 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['company'] === null) {
-            $invalidProperties[] = "'company' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -302,7 +299,7 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets company
      *
-     * @return object
+     * @return object|null
      */
     public function getCompany()
     {
@@ -312,14 +309,21 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets company
      *
-     * @param object $company company
+     * @param object|null $company company
      *
      * @return self
      */
     public function setCompany($company)
     {
         if (is_null($company)) {
-            throw new \InvalidArgumentException('non-nullable company cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'company');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['company'] = $company;
 

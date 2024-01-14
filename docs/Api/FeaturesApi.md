@@ -8,7 +8,6 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**checkFlags()**](FeaturesApi.md#checkFlags) | **POST** /flags/check | Check flags |
 | [**countCompaniesAudience()**](FeaturesApi.md#countCompaniesAudience) | **POST** /audience/count-companies | Count Companies audience |
 | [**countFlagChecks()**](FeaturesApi.md#countFlagChecks) | **GET** /flag-checks/count | Count flag checks |
-| [**countFlagValues()**](FeaturesApi.md#countFlagValues) | **GET** /flag-values/count | Count flag values |
 | [**countUsersAudience()**](FeaturesApi.md#countUsersAudience) | **POST** /audience/count-users | Count Users audience |
 | [**createFeature()**](FeaturesApi.md#createFeature) | **POST** /features | Create feature |
 | [**createFlag()**](FeaturesApi.md#createFlag) | **POST** /flags | Create flag |
@@ -24,7 +23,6 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**latestFlagChecks()**](FeaturesApi.md#latestFlagChecks) | **GET** /flag-checks/latest | Latest flag checks |
 | [**listFeatures()**](FeaturesApi.md#listFeatures) | **GET** /features | List features |
 | [**listFlagChecks()**](FeaturesApi.md#listFlagChecks) | **GET** /flag-checks | List flag checks |
-| [**listFlagValues()**](FeaturesApi.md#listFlagValues) | **GET** /flag-values | List flag values |
 | [**listFlags()**](FeaturesApi.md#listFlags) | **GET** /flags | List flags |
 | [**updateFeature()**](FeaturesApi.md#updateFeature) | **PUT** /features/{feature_id} | Update feature |
 | [**updateFlag()**](FeaturesApi.md#updateFlag) | **PUT** /flags/{flag_id} | Update flag |
@@ -275,78 +273,6 @@ try {
 ### Return type
 
 [**\Schematic\Model\CountFlagChecksResponse**](../Model/CountFlagChecksResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `countFlagValues()`
-
-```php
-countFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset): \Schematic\Model\CountFlagValuesResponse
-```
-
-Count flag values
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
-
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$entity_type = 56; // int
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
-$company_id = 'company_id_example'; // string
-$user_id = 'user_id_example'; // string
-$flag_id = 'flag_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
-
-try {
-    $result = $apiInstance->countFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->countFlagValues: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | **int**|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
-| **company_id** | **string**|  | [optional] |
-| **user_id** | **string**|  | [optional] |
-| **flag_id** | **string**|  | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\CountFlagValuesResponse**](../Model/CountFlagValuesResponse.md)
 
 ### Authorization
 
@@ -1295,78 +1221,6 @@ try {
 ### Return type
 
 [**\Schematic\Model\ListFlagChecksResponse**](../Model/ListFlagChecksResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `listFlagValues()`
-
-```php
-listFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset): \Schematic\Model\ListFlagValuesResponse
-```
-
-List flag values
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
-
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$entity_type = 56; // int
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
-$company_id = 'company_id_example'; // string
-$user_id = 'user_id_example'; // string
-$flag_id = 'flag_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
-
-try {
-    $result = $apiInstance->listFlagValues($entity_type, $x_schematic_environment_id, $company_id, $user_id, $flag_id, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->listFlagValues: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | **int**|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
-| **company_id** | **string**|  | [optional] |
-| **user_id** | **string**|  | [optional] |
-| **flag_id** | **string**|  | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\ListFlagValuesResponse**](../Model/ListFlagValuesResponse.md)
 
 ### Authorization
 

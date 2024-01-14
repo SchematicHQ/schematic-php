@@ -19,11 +19,11 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+      "url": "https://github.com/SchematicHQ/schematic-go.git"
     }
   ],
   "require": {
-    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
+    "SchematicHQ/schematic-go": "*@dev"
   }
 }
 ```
@@ -119,7 +119,6 @@ Class | Method | HTTP request | Description
 *FeaturesApi* | [**checkFlags**](docs/Api/FeaturesApi.md#checkflags) | **POST** /flags/check | Check flags
 *FeaturesApi* | [**countCompaniesAudience**](docs/Api/FeaturesApi.md#countcompaniesaudience) | **POST** /audience/count-companies | Count Companies audience
 *FeaturesApi* | [**countFlagChecks**](docs/Api/FeaturesApi.md#countflagchecks) | **GET** /flag-checks/count | Count flag checks
-*FeaturesApi* | [**countFlagValues**](docs/Api/FeaturesApi.md#countflagvalues) | **GET** /flag-values/count | Count flag values
 *FeaturesApi* | [**countUsersAudience**](docs/Api/FeaturesApi.md#countusersaudience) | **POST** /audience/count-users | Count Users audience
 *FeaturesApi* | [**createFeature**](docs/Api/FeaturesApi.md#createfeature) | **POST** /features | Create feature
 *FeaturesApi* | [**createFlag**](docs/Api/FeaturesApi.md#createflag) | **POST** /flags | Create flag
@@ -135,7 +134,6 @@ Class | Method | HTTP request | Description
 *FeaturesApi* | [**latestFlagChecks**](docs/Api/FeaturesApi.md#latestflagchecks) | **GET** /flag-checks/latest | Latest flag checks
 *FeaturesApi* | [**listFeatures**](docs/Api/FeaturesApi.md#listfeatures) | **GET** /features | List features
 *FeaturesApi* | [**listFlagChecks**](docs/Api/FeaturesApi.md#listflagchecks) | **GET** /flag-checks | List flag checks
-*FeaturesApi* | [**listFlagValues**](docs/Api/FeaturesApi.md#listflagvalues) | **GET** /flag-values | List flag values
 *FeaturesApi* | [**listFlags**](docs/Api/FeaturesApi.md#listflags) | **GET** /flags | List flags
 *FeaturesApi* | [**updateFeature**](docs/Api/FeaturesApi.md#updatefeature) | **PUT** /features/{feature_id} | Update feature
 *FeaturesApi* | [**updateFlag**](docs/Api/FeaturesApi.md#updateflag) | **PUT** /flags/{flag_id} | Update flag
@@ -179,8 +177,6 @@ Class | Method | HTTP request | Description
 - [CountEventsResponse](docs/Model/CountEventsResponse.md)
 - [CountFlagChecksParams](docs/Model/CountFlagChecksParams.md)
 - [CountFlagChecksResponse](docs/Model/CountFlagChecksResponse.md)
-- [CountFlagValuesParams](docs/Model/CountFlagValuesParams.md)
-- [CountFlagValuesResponse](docs/Model/CountFlagValuesResponse.md)
 - [CountResponse](docs/Model/CountResponse.md)
 - [CountUsersAudienceResponse](docs/Model/CountUsersAudienceResponse.md)
 - [CreateApiKeyRequestBody](docs/Model/CreateApiKeyRequestBody.md)
@@ -211,7 +207,6 @@ Class | Method | HTTP request | Description
 - [DeleteFlagResponse](docs/Model/DeleteFlagResponse.md)
 - [DeletePlanResponse](docs/Model/DeletePlanResponse.md)
 - [DeleteResponse](docs/Model/DeleteResponse.md)
-- [EntityFlagValueResponseData](docs/Model/EntityFlagValueResponseData.md)
 - [EntityKeyResponseData](docs/Model/EntityKeyResponseData.md)
 - [EntityTraitDefinitionResponseData](docs/Model/EntityTraitDefinitionResponseData.md)
 - [EnvironmentDetailResponseData](docs/Model/EnvironmentDetailResponseData.md)
@@ -263,8 +258,6 @@ Class | Method | HTTP request | Description
 - [ListFeaturesResponse](docs/Model/ListFeaturesResponse.md)
 - [ListFlagChecksParams](docs/Model/ListFlagChecksParams.md)
 - [ListFlagChecksResponse](docs/Model/ListFlagChecksResponse.md)
-- [ListFlagValuesParams](docs/Model/ListFlagValuesParams.md)
-- [ListFlagValuesResponse](docs/Model/ListFlagValuesResponse.md)
 - [ListFlagsParams](docs/Model/ListFlagsParams.md)
 - [ListFlagsResponse](docs/Model/ListFlagsResponse.md)
 - [ListMetricCountsHourlyParams](docs/Model/ListMetricCountsHourlyParams.md)

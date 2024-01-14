@@ -37,8 +37,6 @@ docs/Model/CountEventsParams.md
 docs/Model/CountEventsResponse.md
 docs/Model/CountFlagChecksParams.md
 docs/Model/CountFlagChecksResponse.md
-docs/Model/CountFlagValuesParams.md
-docs/Model/CountFlagValuesResponse.md
 docs/Model/CountResponse.md
 docs/Model/CountUsersAudienceResponse.md
 docs/Model/CreateApiKeyRequestBody.md
@@ -69,7 +67,6 @@ docs/Model/DeleteFeatureResponse.md
 docs/Model/DeleteFlagResponse.md
 docs/Model/DeletePlanResponse.md
 docs/Model/DeleteResponse.md
-docs/Model/EntityFlagValueResponseData.md
 docs/Model/EntityKeyResponseData.md
 docs/Model/EntityTraitDefinitionResponseData.md
 docs/Model/EnvironmentDetailResponseData.md
@@ -121,8 +118,6 @@ docs/Model/ListFeaturesParams.md
 docs/Model/ListFeaturesResponse.md
 docs/Model/ListFlagChecksParams.md
 docs/Model/ListFlagChecksResponse.md
-docs/Model/ListFlagValuesParams.md
-docs/Model/ListFlagValuesResponse.md
 docs/Model/ListFlagsParams.md
 docs/Model/ListFlagsResponse.md
 docs/Model/ListMetricCountsHourlyParams.md
@@ -201,8 +196,6 @@ lib/Model/CountEventsParams.php
 lib/Model/CountEventsResponse.php
 lib/Model/CountFlagChecksParams.php
 lib/Model/CountFlagChecksResponse.php
-lib/Model/CountFlagValuesParams.php
-lib/Model/CountFlagValuesResponse.php
 lib/Model/CountResponse.php
 lib/Model/CountUsersAudienceResponse.php
 lib/Model/CreateApiKeyRequestBody.php
@@ -233,7 +226,6 @@ lib/Model/DeleteFeatureResponse.php
 lib/Model/DeleteFlagResponse.php
 lib/Model/DeletePlanResponse.php
 lib/Model/DeleteResponse.php
-lib/Model/EntityFlagValueResponseData.php
 lib/Model/EntityKeyResponseData.php
 lib/Model/EntityTraitDefinitionResponseData.php
 lib/Model/EnvironmentDetailResponseData.php
@@ -285,8 +277,6 @@ lib/Model/ListFeaturesParams.php
 lib/Model/ListFeaturesResponse.php
 lib/Model/ListFlagChecksParams.php
 lib/Model/ListFlagChecksResponse.php
-lib/Model/ListFlagValuesParams.php
-lib/Model/ListFlagValuesResponse.php
 lib/Model/ListFlagsParams.php
 lib/Model/ListFlagsResponse.php
 lib/Model/ListMetricCountsHourlyParams.php
