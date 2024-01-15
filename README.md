@@ -19,11 +19,11 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/SchematicHQ/schematic-go.git"
+      "url": "https://github.com/SchematicHQ/schematic-php.git"
     }
   ],
   "require": {
-    "SchematicHQ/schematic-go": "*@dev"
+    "SchematicHQ/schematic-php": "*@dev"
   }
 }
 ```
