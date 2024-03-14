@@ -7,7 +7,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**countEventTypes()**](EventsApi.md#countEventTypes) | **GET** /event-types/count | Count event types |
 | [**countEvents()**](EventsApi.md#countEvents) | **GET** /events/count | Count events |
 | [**createEvent()**](EventsApi.md#createEvent) | **POST** /events | Create event |
-| [**getEvent()**](EventsApi.md#getEvent) | **GET** /events/{event_id} | Get event |
+| [**getEvent()**](EventsApi.md#getEvent) | **GET** /events/{key} | Get event |
 | [**getEventType()**](EventsApi.md#getEventType) | **GET** /event-types/{key} | Get event type |
 | [**listEventTypes()**](EventsApi.md#listEventTypes) | **GET** /event-types | List event types |
 | [**listEvents()**](EventsApi.md#listEvents) | **GET** /events | List events |
@@ -84,7 +84,7 @@ try {
 ## `countEvents()`
 
 ```php
-countEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset): \Schematic\Model\CountEventsResponse
+countEvents($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset): \Schematic\Model\CountEventsResponse
 ```
 
 Count events
@@ -111,13 +111,12 @@ $apiInstance = new Schematic\Api\EventsApi(
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $company_id = 'company_id_example'; // string
 $user_id = 'user_id_example'; // string
-$feature_id = 'feature_id_example'; // string
 $event_subtype = 'event_subtype_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->countEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset);
+    $result = $apiInstance->countEvents($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EventsApi->countEvents: ', $e->getMessage(), PHP_EOL;
@@ -131,7 +130,6 @@ try {
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **company_id** | **string**|  | [optional] |
 | **user_id** | **string**|  | [optional] |
-| **feature_id** | **string**|  | [optional] |
 | **event_subtype** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -218,7 +216,7 @@ try {
 ## `getEvent()`
 
 ```php
-getEvent($event_id, $x_schematic_environment_id): \Schematic\Model\GetEventResponse
+getEvent($key, $x_schematic_environment_id): \Schematic\Model\GetEventResponse
 ```
 
 Get event
@@ -242,11 +240,11 @@ $apiInstance = new Schematic\Api\EventsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$event_id = 'event_id_example'; // string | event_id
+$key = 'key_example'; // string | key
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getEvent($event_id, $x_schematic_environment_id);
+    $result = $apiInstance->getEvent($key, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EventsApi->getEvent: ', $e->getMessage(), PHP_EOL;
@@ -257,7 +255,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **event_id** | **string**| event_id | |
+| **key** | **string**| key | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
@@ -408,7 +406,7 @@ try {
 ## `listEvents()`
 
 ```php
-listEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset): \Schematic\Model\ListEventsResponse
+listEvents($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset): \Schematic\Model\ListEventsResponse
 ```
 
 List events
@@ -435,13 +433,12 @@ $apiInstance = new Schematic\Api\EventsApi(
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $company_id = 'company_id_example'; // string
 $user_id = 'user_id_example'; // string
-$feature_id = 'feature_id_example'; // string
 $event_subtype = 'event_subtype_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->listEvents($x_schematic_environment_id, $company_id, $user_id, $feature_id, $event_subtype, $limit, $offset);
+    $result = $apiInstance->listEvents($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EventsApi->listEvents: ', $e->getMessage(), PHP_EOL;
@@ -455,7 +452,6 @@ try {
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **company_id** | **string**|  | [optional] |
 | **user_id** | **string**|  | [optional] |
-| **feature_id** | **string**|  | [optional] |
 | **event_subtype** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |

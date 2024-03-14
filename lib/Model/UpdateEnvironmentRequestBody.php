@@ -58,8 +58,7 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'environment_type' => 'string',
-        'name' => 'string',
-        'skip_webhooks' => 'bool'
+        'name' => 'string'
     ];
 
     /**
@@ -71,8 +70,7 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'environment_type' => null,
-        'name' => null,
-        'skip_webhooks' => null
+        'name' => null
     ];
 
     /**
@@ -82,8 +80,7 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
       */
     protected static array $openAPINullables = [
         'environment_type' => true,
-		'name' => true,
-		'skip_webhooks' => true
+		'name' => true
     ];
 
     /**
@@ -173,8 +170,7 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'environment_type' => 'environment_type',
-        'name' => 'name',
-        'skip_webhooks' => 'skip_webhooks'
+        'name' => 'name'
     ];
 
     /**
@@ -184,8 +180,7 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'environment_type' => 'setEnvironmentType',
-        'name' => 'setName',
-        'skip_webhooks' => 'setSkipWebhooks'
+        'name' => 'setName'
     ];
 
     /**
@@ -195,8 +190,7 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'environment_type' => 'getEnvironmentType',
-        'name' => 'getName',
-        'skip_webhooks' => 'getSkipWebhooks'
+        'name' => 'getName'
     ];
 
     /**
@@ -240,6 +234,23 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
+    public const ENVIRONMENT_TYPE_DEVELOPMENT = 'development';
+    public const ENVIRONMENT_TYPE_STAGING = 'staging';
+    public const ENVIRONMENT_TYPE_PRODUCTION = 'production';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEnvironmentTypeAllowableValues()
+    {
+        return [
+            self::ENVIRONMENT_TYPE_DEVELOPMENT,
+            self::ENVIRONMENT_TYPE_STAGING,
+            self::ENVIRONMENT_TYPE_PRODUCTION,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -258,7 +269,6 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('environment_type', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('skip_webhooks', $data ?? [], null);
     }
 
     /**
@@ -287,6 +297,15 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getEnvironmentTypeAllowableValues();
+        if (!is_null($this->container['environment_type']) && !in_array($this->container['environment_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'environment_type', must be one of '%s'",
+                $this->container['environment_type'],
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -332,6 +351,16 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+        $allowedValues = $this->getEnvironmentTypeAllowableValues();
+        if (!is_null($environment_type) && !in_array($environment_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'environment_type', must be one of '%s'",
+                    $environment_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['environment_type'] = $environment_type;
 
         return $this;
@@ -367,40 +396,6 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
             }
         }
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets skip_webhooks
-     *
-     * @return bool|null
-     */
-    public function getSkipWebhooks()
-    {
-        return $this->container['skip_webhooks'];
-    }
-
-    /**
-     * Sets skip_webhooks
-     *
-     * @param bool|null $skip_webhooks skip_webhooks
-     *
-     * @return self
-     */
-    public function setSkipWebhooks($skip_webhooks)
-    {
-        if (is_null($skip_webhooks)) {
-            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('skip_webhooks', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['skip_webhooks'] = $skip_webhooks;
 
         return $this;
     }

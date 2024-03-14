@@ -60,7 +60,6 @@ class CountEventsParams implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $openAPITypes = [
         'company_id' => 'string',
         'event_subtype' => 'string',
-        'feature_id' => 'string',
         'limit' => 'int',
         'offset' => 'int',
         'user_id' => 'string'
@@ -76,7 +75,6 @@ class CountEventsParams implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $openAPIFormats = [
         'company_id' => null,
         'event_subtype' => null,
-        'feature_id' => null,
         'limit' => null,
         'offset' => null,
         'user_id' => null
@@ -90,7 +88,6 @@ class CountEventsParams implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static array $openAPINullables = [
         'company_id' => false,
 		'event_subtype' => false,
-		'feature_id' => false,
 		'limit' => false,
 		'offset' => false,
 		'user_id' => false
@@ -184,7 +181,6 @@ class CountEventsParams implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $attributeMap = [
         'company_id' => 'company_id',
         'event_subtype' => 'event_subtype',
-        'feature_id' => 'feature_id',
         'limit' => 'limit',
         'offset' => 'offset',
         'user_id' => 'user_id'
@@ -198,7 +194,6 @@ class CountEventsParams implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $setters = [
         'company_id' => 'setCompanyId',
         'event_subtype' => 'setEventSubtype',
-        'feature_id' => 'setFeatureId',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
         'user_id' => 'setUserId'
@@ -212,7 +207,6 @@ class CountEventsParams implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $getters = [
         'company_id' => 'getCompanyId',
         'event_subtype' => 'getEventSubtype',
-        'feature_id' => 'getFeatureId',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
         'user_id' => 'getUserId'
@@ -277,7 +271,6 @@ class CountEventsParams implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('event_subtype', $data ?? [], null);
-        $this->setIfExists('feature_id', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('user_id', $data ?? [], null);
@@ -375,33 +368,6 @@ class CountEventsParams implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable event_subtype cannot be null');
         }
         $this->container['event_subtype'] = $event_subtype;
-
-        return $this;
-    }
-
-    /**
-     * Gets feature_id
-     *
-     * @return string|null
-     */
-    public function getFeatureId()
-    {
-        return $this->container['feature_id'];
-    }
-
-    /**
-     * Sets feature_id
-     *
-     * @param string|null $feature_id feature_id
-     *
-     * @return self
-     */
-    public function setFeatureId($feature_id)
-    {
-        if (is_null($feature_id)) {
-            throw new \InvalidArgumentException('non-nullable feature_id cannot be null');
-        }
-        $this->container['feature_id'] = $feature_id;
 
         return $this;
     }

@@ -77,10 +77,25 @@ class CompaniesApi
         'createCompanyMembership' => [
             'application/json',
         ],
+        'createCompanyTrait' => [
+            'application/json',
+        ],
+        'createEntityTraitDefinition' => [
+            'application/json',
+        ],
         'createUser' => [
             'application/json',
         ],
+        'createUserTrait' => [
+            'application/json',
+        ],
+        'deleteCompany' => [
+            'application/json',
+        ],
         'deleteCompanyMembership' => [
+            'application/json',
+        ],
+        'deleteUser' => [
             'application/json',
         ],
         'getCompany' => [
@@ -99,6 +114,12 @@ class CompaniesApi
             'application/json',
         ],
         'listUsers' => [
+            'application/json',
+        ],
+        'lookupCompany' => [
+            'application/json',
+        ],
+        'lookupUser' => [
             'application/json',
         ],
         'updateEntityTraitDefinition' => [
@@ -931,6 +952,784 @@ class CompaniesApi
     }
 
     /**
+     * Operation createCompanyTrait
+     *
+     * Create company trait
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CreateCompanyTraitResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function createCompanyTrait($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    {
+        list($response) = $this->createCompanyTraitWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createCompanyTraitWithHttpInfo
+     *
+     * Create company trait
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CreateCompanyTraitResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createCompanyTraitWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    {
+        $request = $this->createCompanyTraitRequest($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\Schematic\Model\CreateCompanyTraitResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\CreateCompanyTraitResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CreateCompanyTraitResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\CreateCompanyTraitResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CreateCompanyTraitResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createCompanyTraitAsync
+     *
+     * Create company trait
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCompanyTraitAsync($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    {
+        return $this->createCompanyTraitAsyncWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createCompanyTraitAsyncWithHttpInfo
+     *
+     * Create company trait
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCompanyTraitAsyncWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    {
+        $returnType = '\Schematic\Model\CreateCompanyTraitResponse';
+        $request = $this->createCompanyTraitRequest($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createCompanyTrait'
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createCompanyTraitRequest($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    {
+
+        // verify the required parameter 'upsert_trait_request_body' is set
+        if ($upsert_trait_request_body === null || (is_array($upsert_trait_request_body) && count($upsert_trait_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $upsert_trait_request_body when calling createCompanyTrait'
+            );
+        }
+
+
+
+        $resourcePath = '/company-traits';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($upsert_trait_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($upsert_trait_request_body));
+            } else {
+                $httpBody = $upsert_trait_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createEntityTraitDefinition
+     *
+     * Create entity trait definition
+     *
+     * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body create_entity_trait_definition_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CreateEntityTraitDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function createEntityTraitDefinition($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    {
+        list($response) = $this->createEntityTraitDefinitionWithHttpInfo($create_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createEntityTraitDefinitionWithHttpInfo
+     *
+     * Create entity trait definition
+     *
+     * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CreateEntityTraitDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createEntityTraitDefinitionWithHttpInfo($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    {
+        $request = $this->createEntityTraitDefinitionRequest($create_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\Schematic\Model\CreateEntityTraitDefinitionResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\CreateEntityTraitDefinitionResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CreateEntityTraitDefinitionResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\CreateEntityTraitDefinitionResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CreateEntityTraitDefinitionResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createEntityTraitDefinitionAsync
+     *
+     * Create entity trait definition
+     *
+     * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEntityTraitDefinitionAsync($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    {
+        return $this->createEntityTraitDefinitionAsyncWithHttpInfo($create_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createEntityTraitDefinitionAsyncWithHttpInfo
+     *
+     * Create entity trait definition
+     *
+     * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEntityTraitDefinitionAsyncWithHttpInfo($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    {
+        $returnType = '\Schematic\Model\CreateEntityTraitDefinitionResponse';
+        $request = $this->createEntityTraitDefinitionRequest($create_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createEntityTraitDefinition'
+     *
+     * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createEntityTraitDefinitionRequest($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    {
+
+        // verify the required parameter 'create_entity_trait_definition_request_body' is set
+        if ($create_entity_trait_definition_request_body === null || (is_array($create_entity_trait_definition_request_body) && count($create_entity_trait_definition_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_entity_trait_definition_request_body when calling createEntityTraitDefinition'
+            );
+        }
+
+
+
+        $resourcePath = '/entity-trait-definitions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($create_entity_trait_definition_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_entity_trait_definition_request_body));
+            } else {
+                $httpBody = $create_entity_trait_definition_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation createUser
      *
      * Create user
@@ -1320,6 +2119,785 @@ class CompaniesApi
     }
 
     /**
+     * Operation createUserTrait
+     *
+     * Create user trait
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CreateUserTraitResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function createUserTrait($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    {
+        list($response) = $this->createUserTraitWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createUserTraitWithHttpInfo
+     *
+     * Create user trait
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CreateUserTraitResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createUserTraitWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    {
+        $request = $this->createUserTraitRequest($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\Schematic\Model\CreateUserTraitResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\CreateUserTraitResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CreateUserTraitResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\CreateUserTraitResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CreateUserTraitResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createUserTraitAsync
+     *
+     * Create user trait
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createUserTraitAsync($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    {
+        return $this->createUserTraitAsyncWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createUserTraitAsyncWithHttpInfo
+     *
+     * Create user trait
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createUserTraitAsyncWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    {
+        $returnType = '\Schematic\Model\CreateUserTraitResponse';
+        $request = $this->createUserTraitRequest($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createUserTrait'
+     *
+     * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createUserTraitRequest($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    {
+
+        // verify the required parameter 'upsert_trait_request_body' is set
+        if ($upsert_trait_request_body === null || (is_array($upsert_trait_request_body) && count($upsert_trait_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $upsert_trait_request_body when calling createUserTrait'
+            );
+        }
+
+
+
+        $resourcePath = '/user-traits';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($upsert_trait_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($upsert_trait_request_body));
+            } else {
+                $httpBody = $upsert_trait_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteCompany
+     *
+     * Delete company
+     *
+     * @param  string $company_id company_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\DeleteCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function deleteCompany($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    {
+        list($response) = $this->deleteCompanyWithHttpInfo($company_id, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteCompanyWithHttpInfo
+     *
+     * Delete company
+     *
+     * @param  string $company_id company_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\DeleteCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteCompanyWithHttpInfo($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    {
+        $request = $this->deleteCompanyRequest($company_id, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\DeleteCompanyResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\DeleteCompanyResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\DeleteCompanyResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\DeleteCompanyResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeleteCompanyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteCompanyAsync
+     *
+     * Delete company
+     *
+     * @param  string $company_id company_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteCompanyAsync($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    {
+        return $this->deleteCompanyAsyncWithHttpInfo($company_id, $x_schematic_environment_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteCompanyAsyncWithHttpInfo
+     *
+     * Delete company
+     *
+     * @param  string $company_id company_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteCompanyAsyncWithHttpInfo($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    {
+        $returnType = '\Schematic\Model\DeleteCompanyResponse';
+        $request = $this->deleteCompanyRequest($company_id, $x_schematic_environment_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteCompany'
+     *
+     * @param  string $company_id company_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteCompanyRequest($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    {
+
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling deleteCompany'
+            );
+        }
+
+
+
+        $resourcePath = '/companies/{company_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+        // path params
+        if ($company_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'company_id' . '}',
+                ObjectSerializer::toPathValue($company_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteCompanyMembership
      *
      * Delete company membership
@@ -1646,6 +3224,396 @@ class CompaniesApi
             $resourcePath = str_replace(
                 '{' . 'company_membership_id' . '}',
                 ObjectSerializer::toPathValue($company_membership_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteUser
+     *
+     * Delete user
+     *
+     * @param  string $user_id user_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\DeleteUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function deleteUser($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    {
+        list($response) = $this->deleteUserWithHttpInfo($user_id, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteUserWithHttpInfo
+     *
+     * Delete user
+     *
+     * @param  string $user_id user_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\DeleteUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteUserWithHttpInfo($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    {
+        $request = $this->deleteUserRequest($user_id, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\DeleteUserResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\DeleteUserResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\DeleteUserResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\DeleteUserResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeleteUserResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteUserAsync
+     *
+     * Delete user
+     *
+     * @param  string $user_id user_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteUserAsync($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    {
+        return $this->deleteUserAsyncWithHttpInfo($user_id, $x_schematic_environment_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteUserAsyncWithHttpInfo
+     *
+     * Delete user
+     *
+     * @param  string $user_id user_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteUserAsyncWithHttpInfo($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    {
+        $returnType = '\Schematic\Model\DeleteUserResponse';
+        $request = $this->deleteUserRequest($user_id, $x_schematic_environment_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteUser'
+     *
+     * @param  string $user_id user_id (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteUserRequest($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    {
+
+        // verify the required parameter 'user_id' is set
+        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $user_id when calling deleteUser'
+            );
+        }
+
+
+
+        $resourcePath = '/users/{user_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+        // path params
+        if ($user_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'user_id' . '}',
+                ObjectSerializer::toPathValue($user_id),
                 $resourcePath
             );
         }
@@ -3342,7 +5310,6 @@ class CompaniesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id company_id (optional)
      * @param  string $plan_id plan_id (optional)
-     * @param  bool $active active (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
@@ -3351,9 +5318,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompanyPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanyPlans($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlans($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
-        list($response) = $this->listCompanyPlansWithHttpInfo($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset, $contentType);
+        list($response) = $this->listCompanyPlansWithHttpInfo($x_schematic_environment_id, $company_id, $plan_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3365,7 +5332,6 @@ class CompaniesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $plan_id (optional)
-     * @param  bool $active (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
@@ -3374,9 +5340,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompanyPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompanyPlansWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlansWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
-        $request = $this->listCompanyPlansRequest($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset, $contentType);
+        $request = $this->listCompanyPlansRequest($x_schematic_environment_id, $company_id, $plan_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3562,7 +5528,6 @@ class CompaniesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $plan_id (optional)
-     * @param  bool $active (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
@@ -3570,9 +5535,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyPlansAsync($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlansAsync($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
-        return $this->listCompanyPlansAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset, $contentType)
+        return $this->listCompanyPlansAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $plan_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3588,7 +5553,6 @@ class CompaniesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $plan_id (optional)
-     * @param  bool $active (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
@@ -3596,10 +5560,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyPlansAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlansAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
         $returnType = '\Schematic\Model\ListCompanyPlansResponse';
-        $request = $this->listCompanyPlansRequest($x_schematic_environment_id, $company_id, $plan_id, $active, $limit, $offset, $contentType);
+        $request = $this->listCompanyPlansRequest($x_schematic_environment_id, $company_id, $plan_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3643,7 +5607,6 @@ class CompaniesApi
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $plan_id (optional)
-     * @param  bool $active (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyPlans'] to see the possible values for this operation
@@ -3651,9 +5614,8 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompanyPlansRequest($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $active = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlansRequest($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
-
 
 
 
@@ -3682,15 +5644,6 @@ class CompaniesApi
             $plan_id,
             'plan_id', // param base name
             'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $active,
-            'active', // param base name
-            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -4127,6 +6080,788 @@ class CompaniesApi
             'form', // style
             true, // explode
             false // required
+        ) ?? []);
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation lookupCompany
+     *
+     * Lookup company
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\LookupCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function lookupCompany($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    {
+        list($response) = $this->lookupCompanyWithHttpInfo($keys, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation lookupCompanyWithHttpInfo
+     *
+     * Lookup company
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\LookupCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function lookupCompanyWithHttpInfo($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    {
+        $request = $this->lookupCompanyRequest($keys, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\LookupCompanyResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\LookupCompanyResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\LookupCompanyResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\LookupCompanyResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\LookupCompanyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation lookupCompanyAsync
+     *
+     * Lookup company
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function lookupCompanyAsync($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    {
+        return $this->lookupCompanyAsyncWithHttpInfo($keys, $x_schematic_environment_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation lookupCompanyAsyncWithHttpInfo
+     *
+     * Lookup company
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function lookupCompanyAsyncWithHttpInfo($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    {
+        $returnType = '\Schematic\Model\LookupCompanyResponse';
+        $request = $this->lookupCompanyRequest($keys, $x_schematic_environment_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'lookupCompany'
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function lookupCompanyRequest($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    {
+
+        // verify the required parameter 'keys' is set
+        if ($keys === null || (is_array($keys) && count($keys) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $keys when calling lookupCompany'
+            );
+        }
+
+
+
+        $resourcePath = '/companies/lookup';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $keys,
+            'keys', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+        // header params
+        if ($x_schematic_environment_id !== null) {
+            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
+        }
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation lookupUser
+     *
+     * Lookup user
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\LookupUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function lookupUser($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    {
+        list($response) = $this->lookupUserWithHttpInfo($keys, $x_schematic_environment_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation lookupUserWithHttpInfo
+     *
+     * Lookup user
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\LookupUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function lookupUserWithHttpInfo($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    {
+        $request = $this->lookupUserRequest($keys, $x_schematic_environment_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\LookupUserResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\LookupUserResponse' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\LookupUserResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\LookupUserResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\LookupUserResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation lookupUserAsync
+     *
+     * Lookup user
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function lookupUserAsync($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    {
+        return $this->lookupUserAsyncWithHttpInfo($keys, $x_schematic_environment_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation lookupUserAsyncWithHttpInfo
+     *
+     * Lookup user
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function lookupUserAsyncWithHttpInfo($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    {
+        $returnType = '\Schematic\Model\LookupUserResponse';
+        $request = $this->lookupUserRequest($keys, $x_schematic_environment_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'lookupUser'
+     *
+     * @param  object $keys Key/value pairs (required)
+     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function lookupUserRequest($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    {
+
+        // verify the required parameter 'keys' is set
+        if ($keys === null || (is_array($keys) && count($keys) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $keys when calling lookupUser'
+            );
+        }
+
+
+
+        $resourcePath = '/users/lookup';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $keys,
+            'keys', // param base name
+            'object', // openApiType
+            'form', // style
+            true, // explode
+            true // required
         ) ?? []);
 
         // header params

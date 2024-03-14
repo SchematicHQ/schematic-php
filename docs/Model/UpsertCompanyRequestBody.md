@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **keys** | **object** |  |
 **last_seen_at** | **\DateTime** |  | [optional]
 **name** | **string** |  | [optional]
-**skip_webhooks** | **bool** |  | [optional]
 **traits** | **object** | A map of trait names to trait values | [optional]
 **update_only** | **bool** |  | [optional]
 

@@ -63,7 +63,6 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => '\Schematic\Model\CreateOrUpdateFlagRequestBody',
         'lifecycle_phase' => 'string',
         'name' => 'string',
-        'skip_webhooks' => 'bool',
         'trait_id' => 'string'
     ];
 
@@ -81,7 +80,6 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => null,
         'lifecycle_phase' => null,
         'name' => null,
-        'skip_webhooks' => null,
         'trait_id' => null
     ];
 
@@ -97,7 +95,6 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
 		'flag' => false,
 		'lifecycle_phase' => true,
 		'name' => false,
-		'skip_webhooks' => true,
 		'trait_id' => true
     ];
 
@@ -193,7 +190,6 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => 'flag',
         'lifecycle_phase' => 'lifecycle_phase',
         'name' => 'name',
-        'skip_webhooks' => 'skip_webhooks',
         'trait_id' => 'trait_id'
     ];
 
@@ -209,7 +205,6 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => 'setFlag',
         'lifecycle_phase' => 'setLifecyclePhase',
         'name' => 'setName',
-        'skip_webhooks' => 'setSkipWebhooks',
         'trait_id' => 'setTraitId'
     ];
 
@@ -225,7 +220,6 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => 'getFlag',
         'lifecycle_phase' => 'getLifecyclePhase',
         'name' => 'getName',
-        'skip_webhooks' => 'getSkipWebhooks',
         'trait_id' => 'getTraitId'
     ];
 
@@ -270,6 +264,23 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
+    public const FEATURE_TYPE_BOOLEAN = 'boolean';
+    public const FEATURE_TYPE_EVENT = 'event';
+    public const FEATURE_TYPE__TRAIT = 'trait';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFeatureTypeAllowableValues()
+    {
+        return [
+            self::FEATURE_TYPE_BOOLEAN,
+            self::FEATURE_TYPE_EVENT,
+            self::FEATURE_TYPE__TRAIT,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -292,7 +303,6 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('flag', $data ?? [], null);
         $this->setIfExists('lifecycle_phase', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('skip_webhooks', $data ?? [], null);
         $this->setIfExists('trait_id', $data ?? [], null);
     }
 
@@ -329,6 +339,15 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['feature_type'] === null) {
             $invalidProperties[] = "'feature_type' can't be null";
         }
+        $allowedValues = $this->getFeatureTypeAllowableValues();
+        if (!is_null($this->container['feature_type']) && !in_array($this->container['feature_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'feature_type', must be one of '%s'",
+                $this->container['feature_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
@@ -430,6 +449,16 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         if (is_null($feature_type)) {
             throw new \InvalidArgumentException('non-nullable feature_type cannot be null');
         }
+        $allowedValues = $this->getFeatureTypeAllowableValues();
+        if (!in_array($feature_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'feature_type', must be one of '%s'",
+                    $feature_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['feature_type'] = $feature_type;
 
         return $this;
@@ -519,40 +548,6 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets skip_webhooks
-     *
-     * @return bool|null
-     */
-    public function getSkipWebhooks()
-    {
-        return $this->container['skip_webhooks'];
-    }
-
-    /**
-     * Sets skip_webhooks
-     *
-     * @param bool|null $skip_webhooks skip_webhooks
-     *
-     * @return self
-     */
-    public function setSkipWebhooks($skip_webhooks)
-    {
-        if (is_null($skip_webhooks)) {
-            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('skip_webhooks', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['skip_webhooks'] = $skip_webhooks;
 
         return $this;
     }

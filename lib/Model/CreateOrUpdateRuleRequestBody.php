@@ -63,7 +63,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'name' => 'string',
         'priority' => 'int',
         'priority_group' => 'int',
-        'skip_webhooks' => 'bool',
+        'rule_type' => 'string',
         'value' => 'bool'
     ];
 
@@ -81,7 +81,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'name' => null,
         'priority' => null,
         'priority_group' => null,
-        'skip_webhooks' => null,
+        'rule_type' => null,
         'value' => null
     ];
 
@@ -97,7 +97,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
 		'name' => false,
 		'priority' => false,
 		'priority_group' => true,
-		'skip_webhooks' => true,
+		'rule_type' => true,
 		'value' => false
     ];
 
@@ -193,7 +193,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'name' => 'name',
         'priority' => 'priority',
         'priority_group' => 'priority_group',
-        'skip_webhooks' => 'skip_webhooks',
+        'rule_type' => 'rule_type',
         'value' => 'value'
     ];
 
@@ -209,7 +209,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'name' => 'setName',
         'priority' => 'setPriority',
         'priority_group' => 'setPriorityGroup',
-        'skip_webhooks' => 'setSkipWebhooks',
+        'rule_type' => 'setRuleType',
         'value' => 'setValue'
     ];
 
@@ -225,7 +225,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'name' => 'getName',
         'priority' => 'getPriority',
         'priority_group' => 'getPriorityGroup',
-        'skip_webhooks' => 'getSkipWebhooks',
+        'rule_type' => 'getRuleType',
         'value' => 'getValue'
     ];
 
@@ -270,6 +270,29 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
+    public const RULE_TYPE_GLOBAL_OVERRIDE = 'global_override';
+    public const RULE_TYPE_COMPANY_OVERRIDE = 'company_override';
+    public const RULE_TYPE_PLAN_ENTITLEMENT = 'plan_entitlement';
+    public const RULE_TYPE_STANDARD = 'standard';
+    public const RULE_TYPE__DEFAULT = 'default';
+    public const RULE_TYPE_PLAN_AUDIENCE = 'plan_audience';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRuleTypeAllowableValues()
+    {
+        return [
+            self::RULE_TYPE_GLOBAL_OVERRIDE,
+            self::RULE_TYPE_COMPANY_OVERRIDE,
+            self::RULE_TYPE_PLAN_ENTITLEMENT,
+            self::RULE_TYPE_STANDARD,
+            self::RULE_TYPE__DEFAULT,
+            self::RULE_TYPE_PLAN_AUDIENCE,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -292,7 +315,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('priority_group', $data ?? [], null);
-        $this->setIfExists('skip_webhooks', $data ?? [], null);
+        $this->setIfExists('rule_type', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
     }
 
@@ -335,6 +358,15 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['priority'] === null) {
             $invalidProperties[] = "'priority' can't be null";
         }
+        $allowedValues = $this->getRuleTypeAllowableValues();
+        if (!is_null($this->container['rule_type']) && !in_array($this->container['rule_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'rule_type', must be one of '%s'",
+                $this->container['rule_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
         }
@@ -530,35 +562,45 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
-     * Gets skip_webhooks
+     * Gets rule_type
      *
-     * @return bool|null
+     * @return string|null
      */
-    public function getSkipWebhooks()
+    public function getRuleType()
     {
-        return $this->container['skip_webhooks'];
+        return $this->container['rule_type'];
     }
 
     /**
-     * Sets skip_webhooks
+     * Sets rule_type
      *
-     * @param bool|null $skip_webhooks skip_webhooks
+     * @param string|null $rule_type rule_type
      *
      * @return self
      */
-    public function setSkipWebhooks($skip_webhooks)
+    public function setRuleType($rule_type)
     {
-        if (is_null($skip_webhooks)) {
-            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
+        if (is_null($rule_type)) {
+            array_push($this->openAPINullablesSetToNull, 'rule_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('skip_webhooks', $nullablesSetToNull);
+            $index = array_search('rule_type', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['skip_webhooks'] = $skip_webhooks;
+        $allowedValues = $this->getRuleTypeAllowableValues();
+        if (!is_null($rule_type) && !in_array($rule_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'rule_type', must be one of '%s'",
+                    $rule_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['rule_type'] = $rule_type;
 
         return $this;
     }

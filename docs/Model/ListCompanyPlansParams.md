@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **bool** |  | [optional]
 **company_id** | **string** |  | [optional]
 **limit** | **int** |  | [optional]
 **offset** | **int** |  | [optional]

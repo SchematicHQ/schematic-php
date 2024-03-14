@@ -57,7 +57,6 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
       * @var string[]
       */
     protected static $openAPITypes = [
-        'skip_webhooks' => 'bool',
         'trait_type' => 'string'
     ];
 
@@ -69,7 +68,6 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'skip_webhooks' => null,
         'trait_type' => null
     ];
 
@@ -79,8 +77,7 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'skip_webhooks' => true,
-		'trait_type' => false
+        'trait_type' => false
     ];
 
     /**
@@ -169,7 +166,6 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
      * @var string[]
      */
     protected static $attributeMap = [
-        'skip_webhooks' => 'skip_webhooks',
         'trait_type' => 'trait_type'
     ];
 
@@ -179,7 +175,6 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
      * @var string[]
      */
     protected static $setters = [
-        'skip_webhooks' => 'setSkipWebhooks',
         'trait_type' => 'setTraitType'
     ];
 
@@ -189,7 +184,6 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
      * @var string[]
      */
     protected static $getters = [
-        'skip_webhooks' => 'getSkipWebhooks',
         'trait_type' => 'getTraitType'
     ];
 
@@ -234,6 +228,25 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
         return self::$openAPIModelName;
     }
 
+    public const TRAIT_TYPE_BOOL = 'bool';
+    public const TRAIT_TYPE_DATE = 'date';
+    public const TRAIT_TYPE_INT = 'int';
+    public const TRAIT_TYPE_STRING = 'string';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTraitTypeAllowableValues()
+    {
+        return [
+            self::TRAIT_TYPE_BOOL,
+            self::TRAIT_TYPE_DATE,
+            self::TRAIT_TYPE_INT,
+            self::TRAIT_TYPE_STRING,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -250,7 +263,6 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('skip_webhooks', $data ?? [], null);
         $this->setIfExists('trait_type', $data ?? [], null);
     }
 
@@ -284,6 +296,15 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
         if ($this->container['trait_type'] === null) {
             $invalidProperties[] = "'trait_type' can't be null";
         }
+        $allowedValues = $this->getTraitTypeAllowableValues();
+        if (!is_null($this->container['trait_type']) && !in_array($this->container['trait_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'trait_type', must be one of '%s'",
+                $this->container['trait_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -298,40 +319,6 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets skip_webhooks
-     *
-     * @return bool|null
-     */
-    public function getSkipWebhooks()
-    {
-        return $this->container['skip_webhooks'];
-    }
-
-    /**
-     * Sets skip_webhooks
-     *
-     * @param bool|null $skip_webhooks skip_webhooks
-     *
-     * @return self
-     */
-    public function setSkipWebhooks($skip_webhooks)
-    {
-        if (is_null($skip_webhooks)) {
-            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('skip_webhooks', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['skip_webhooks'] = $skip_webhooks;
-
-        return $this;
-    }
 
     /**
      * Gets trait_type
@@ -354,6 +341,16 @@ class UpdateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
     {
         if (is_null($trait_type)) {
             throw new \InvalidArgumentException('non-nullable trait_type cannot be null');
+        }
+        $allowedValues = $this->getTraitTypeAllowableValues();
+        if (!in_array($trait_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'trait_type', must be one of '%s'",
+                    $trait_type,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['trait_type'] = $trait_type;
 

@@ -57,8 +57,7 @@ class CreatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'skip_webhooks' => 'bool'
+        'name' => 'string'
     ];
 
     /**
@@ -69,8 +68,7 @@ class CreatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'skip_webhooks' => null
+        'name' => null
     ];
 
     /**
@@ -79,8 +77,7 @@ class CreatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => false,
-		'skip_webhooks' => true
+        'name' => false
     ];
 
     /**
@@ -169,8 +166,7 @@ class CreatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'skip_webhooks' => 'skip_webhooks'
+        'name' => 'name'
     ];
 
     /**
@@ -179,8 +175,7 @@ class CreatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'skip_webhooks' => 'setSkipWebhooks'
+        'name' => 'setName'
     ];
 
     /**
@@ -189,8 +184,7 @@ class CreatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'skip_webhooks' => 'getSkipWebhooks'
+        'name' => 'getName'
     ];
 
     /**
@@ -251,7 +245,6 @@ class CreatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
     public function __construct(array $data = null)
     {
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('skip_webhooks', $data ?? [], null);
     }
 
     /**
@@ -322,40 +315,6 @@ class CreatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets skip_webhooks
-     *
-     * @return bool|null
-     */
-    public function getSkipWebhooks()
-    {
-        return $this->container['skip_webhooks'];
-    }
-
-    /**
-     * Sets skip_webhooks
-     *
-     * @param bool|null $skip_webhooks skip_webhooks
-     *
-     * @return self
-     */
-    public function setSkipWebhooks($skip_webhooks)
-    {
-        if (is_null($skip_webhooks)) {
-            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('skip_webhooks', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['skip_webhooks'] = $skip_webhooks;
 
         return $this;
     }

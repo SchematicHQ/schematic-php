@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **plan_id** | **string** |  | [optional]
 **priority** | **int** |  |
 **priority_group** | **int** |  | [optional]
+**rule_type** | **string** |  |
 **updated_at** | **\DateTime** |  |
 **value** | **bool** |  |
 

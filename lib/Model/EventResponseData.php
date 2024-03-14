@@ -35,7 +35,7 @@ use \Schematic\ObjectSerializer;
  * EventResponseData Class Doc Comment
  *
  * @category Class
- * @description The created resource
+ * @description The returned resource
  * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -64,12 +64,13 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => 'string',
         'enriched_at' => '\DateTime',
         'environment_id' => 'string',
-        'feature_id' => 'string',
+        'error_message' => 'string',
+        'feature_ids' => 'string[]',
         'id' => 'string',
         'loaded_at' => '\DateTime',
         'processed_at' => '\DateTime',
-        'processing_status' => 'string',
         'sent_at' => '\DateTime',
+        'status' => 'string',
         'subtype' => 'string',
         'type' => 'string',
         'updated_at' => '\DateTime',
@@ -90,12 +91,13 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => null,
         'enriched_at' => 'date-time',
         'environment_id' => null,
-        'feature_id' => null,
+        'error_message' => null,
+        'feature_ids' => null,
         'id' => null,
         'loaded_at' => 'date-time',
         'processed_at' => 'date-time',
-        'processing_status' => null,
         'sent_at' => 'date-time',
+        'status' => null,
         'subtype' => null,
         'type' => null,
         'updated_at' => 'date-time',
@@ -114,12 +116,13 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
 		'company_id' => true,
 		'enriched_at' => true,
 		'environment_id' => true,
-		'feature_id' => true,
+		'error_message' => true,
+		'feature_ids' => false,
 		'id' => false,
 		'loaded_at' => true,
 		'processed_at' => true,
-		'processing_status' => false,
 		'sent_at' => true,
+		'status' => false,
 		'subtype' => true,
 		'type' => false,
 		'updated_at' => false,
@@ -218,12 +221,13 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => 'company_id',
         'enriched_at' => 'enriched_at',
         'environment_id' => 'environment_id',
-        'feature_id' => 'feature_id',
+        'error_message' => 'error_message',
+        'feature_ids' => 'feature_ids',
         'id' => 'id',
         'loaded_at' => 'loaded_at',
         'processed_at' => 'processed_at',
-        'processing_status' => 'processing_status',
         'sent_at' => 'sent_at',
+        'status' => 'status',
         'subtype' => 'subtype',
         'type' => 'type',
         'updated_at' => 'updated_at',
@@ -242,12 +246,13 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => 'setCompanyId',
         'enriched_at' => 'setEnrichedAt',
         'environment_id' => 'setEnvironmentId',
-        'feature_id' => 'setFeatureId',
+        'error_message' => 'setErrorMessage',
+        'feature_ids' => 'setFeatureIds',
         'id' => 'setId',
         'loaded_at' => 'setLoadedAt',
         'processed_at' => 'setProcessedAt',
-        'processing_status' => 'setProcessingStatus',
         'sent_at' => 'setSentAt',
+        'status' => 'setStatus',
         'subtype' => 'setSubtype',
         'type' => 'setType',
         'updated_at' => 'setUpdatedAt',
@@ -266,12 +271,13 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => 'getCompanyId',
         'enriched_at' => 'getEnrichedAt',
         'environment_id' => 'getEnvironmentId',
-        'feature_id' => 'getFeatureId',
+        'error_message' => 'getErrorMessage',
+        'feature_ids' => 'getFeatureIds',
         'id' => 'getId',
         'loaded_at' => 'getLoadedAt',
         'processed_at' => 'getProcessedAt',
-        'processing_status' => 'getProcessingStatus',
         'sent_at' => 'getSentAt',
+        'status' => 'getStatus',
         'subtype' => 'getSubtype',
         'type' => 'getType',
         'updated_at' => 'getUpdatedAt',
@@ -341,12 +347,13 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('enriched_at', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
-        $this->setIfExists('feature_id', $data ?? [], null);
+        $this->setIfExists('error_message', $data ?? [], null);
+        $this->setIfExists('feature_ids', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('loaded_at', $data ?? [], null);
         $this->setIfExists('processed_at', $data ?? [], null);
-        $this->setIfExists('processing_status', $data ?? [], null);
         $this->setIfExists('sent_at', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -386,11 +393,14 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         if ($this->container['captured_at'] === null) {
             $invalidProperties[] = "'captured_at' can't be null";
         }
+        if ($this->container['feature_ids'] === null) {
+            $invalidProperties[] = "'feature_ids' can't be null";
+        }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['processing_status'] === null) {
-            $invalidProperties[] = "'processing_status' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
@@ -604,35 +614,62 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
-     * Gets feature_id
+     * Gets error_message
      *
      * @return string|null
      */
-    public function getFeatureId()
+    public function getErrorMessage()
     {
-        return $this->container['feature_id'];
+        return $this->container['error_message'];
     }
 
     /**
-     * Sets feature_id
+     * Sets error_message
      *
-     * @param string|null $feature_id feature_id
+     * @param string|null $error_message error_message
      *
      * @return self
      */
-    public function setFeatureId($feature_id)
+    public function setErrorMessage($error_message)
     {
-        if (is_null($feature_id)) {
-            array_push($this->openAPINullablesSetToNull, 'feature_id');
+        if (is_null($error_message)) {
+            array_push($this->openAPINullablesSetToNull, 'error_message');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_id', $nullablesSetToNull);
+            $index = array_search('error_message', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['feature_id'] = $feature_id;
+        $this->container['error_message'] = $error_message;
+
+        return $this;
+    }
+
+    /**
+     * Gets feature_ids
+     *
+     * @return string[]
+     */
+    public function getFeatureIds()
+    {
+        return $this->container['feature_ids'];
+    }
+
+    /**
+     * Sets feature_ids
+     *
+     * @param string[] $feature_ids feature_ids
+     *
+     * @return self
+     */
+    public function setFeatureIds($feature_ids)
+    {
+        if (is_null($feature_ids)) {
+            throw new \InvalidArgumentException('non-nullable feature_ids cannot be null');
+        }
+        $this->container['feature_ids'] = $feature_ids;
 
         return $this;
     }
@@ -733,33 +770,6 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
-     * Gets processing_status
-     *
-     * @return string
-     */
-    public function getProcessingStatus()
-    {
-        return $this->container['processing_status'];
-    }
-
-    /**
-     * Sets processing_status
-     *
-     * @param string $processing_status processing_status
-     *
-     * @return self
-     */
-    public function setProcessingStatus($processing_status)
-    {
-        if (is_null($processing_status)) {
-            throw new \InvalidArgumentException('non-nullable processing_status cannot be null');
-        }
-        $this->container['processing_status'] = $processing_status;
-
-        return $this;
-    }
-
-    /**
      * Gets sent_at
      *
      * @return \DateTime|null
@@ -789,6 +799,33 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['sent_at'] = $sent_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }

@@ -10,12 +10,13 @@ Name | Type | Description | Notes
 **company_id** | **string** |  | [optional]
 **enriched_at** | **\DateTime** |  | [optional]
 **environment_id** | **string** |  | [optional]
-**feature_id** | **string** |  | [optional]
+**error_message** | **string** |  | [optional]
+**feature_ids** | **string[]** |  |
 **id** | **string** |  |
 **loaded_at** | **\DateTime** |  | [optional]
 **processed_at** | **\DateTime** |  | [optional]
-**processing_status** | **string** |  |
 **sent_at** | **\DateTime** |  | [optional]
+**status** | **string** |  |
 **subtype** | **string** |  | [optional]
 **type** | **string** |  |
 **updated_at** | **\DateTime** |  |

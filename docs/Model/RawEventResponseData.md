@@ -1,0 +1,12 @@
+# # RawEventResponseData
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**captured_at** | **\DateTime** |  |
+**remote_addr** | **string** |  |
+**remote_ip** | **string** |  |
+**user_agent** | **string** |  |
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

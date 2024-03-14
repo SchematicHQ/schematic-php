@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **company_id** | **string** |  | [optional]
 **event_subtype** | **string** |  | [optional]
-**feature_id** | **string** |  | [optional]
 **limit** | **int** |  | [optional]
 **offset** | **int** |  | [optional]
 **user_id** | **string** |  | [optional]

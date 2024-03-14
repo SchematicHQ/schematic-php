@@ -58,7 +58,6 @@ class ListCompanyPlansParams implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'active' => 'bool',
         'company_id' => 'string',
         'limit' => 'int',
         'offset' => 'int',
@@ -73,7 +72,6 @@ class ListCompanyPlansParams implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'active' => null,
         'company_id' => null,
         'limit' => null,
         'offset' => null,
@@ -86,8 +84,7 @@ class ListCompanyPlansParams implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'active' => false,
-		'company_id' => false,
+        'company_id' => false,
 		'limit' => false,
 		'offset' => false,
 		'plan_id' => false
@@ -179,7 +176,6 @@ class ListCompanyPlansParams implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'active' => 'active',
         'company_id' => 'company_id',
         'limit' => 'limit',
         'offset' => 'offset',
@@ -192,7 +188,6 @@ class ListCompanyPlansParams implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'active' => 'setActive',
         'company_id' => 'setCompanyId',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
@@ -205,7 +200,6 @@ class ListCompanyPlansParams implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'active' => 'getActive',
         'company_id' => 'getCompanyId',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
@@ -269,7 +263,6 @@ class ListCompanyPlansParams implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
@@ -317,33 +310,6 @@ class ListCompanyPlansParams implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets active
-     *
-     * @return bool|null
-     */
-    public function getActive()
-    {
-        return $this->container['active'];
-    }
-
-    /**
-     * Sets active
-     *
-     * @param bool|null $active active
-     *
-     * @return self
-     */
-    public function setActive($active)
-    {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
-        $this->container['active'] = $active;
-
-        return $this;
-    }
 
     /**
      * Gets company_id

@@ -68,6 +68,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => 'string',
         'priority' => 'int',
         'priority_group' => 'int',
+        'rule_type' => 'string',
         'updated_at' => '\DateTime',
         'value' => 'bool'
     ];
@@ -90,6 +91,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => null,
         'priority' => null,
         'priority_group' => null,
+        'rule_type' => null,
         'updated_at' => 'date-time',
         'value' => null
     ];
@@ -110,6 +112,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
 		'plan_id' => true,
 		'priority' => false,
 		'priority_group' => true,
+		'rule_type' => false,
 		'updated_at' => false,
 		'value' => false
     ];
@@ -210,6 +213,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => 'plan_id',
         'priority' => 'priority',
         'priority_group' => 'priority_group',
+        'rule_type' => 'rule_type',
         'updated_at' => 'updated_at',
         'value' => 'value'
     ];
@@ -230,6 +234,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => 'setPlanId',
         'priority' => 'setPriority',
         'priority_group' => 'setPriorityGroup',
+        'rule_type' => 'setRuleType',
         'updated_at' => 'setUpdatedAt',
         'value' => 'setValue'
     ];
@@ -250,6 +255,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => 'getPlanId',
         'priority' => 'getPriority',
         'priority_group' => 'getPriorityGroup',
+        'rule_type' => 'getRuleType',
         'updated_at' => 'getUpdatedAt',
         'value' => 'getValue'
     ];
@@ -321,6 +327,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('priority_group', $data ?? [], null);
+        $this->setIfExists('rule_type', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
     }
@@ -372,6 +379,9 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         }
         if ($this->container['priority'] === null) {
             $invalidProperties[] = "'priority' can't be null";
+        }
+        if ($this->container['rule_type'] === null) {
+            $invalidProperties[] = "'rule_type' can't be null";
         }
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
@@ -681,6 +691,33 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             }
         }
         $this->container['priority_group'] = $priority_group;
+
+        return $this;
+    }
+
+    /**
+     * Gets rule_type
+     *
+     * @return string
+     */
+    public function getRuleType()
+    {
+        return $this->container['rule_type'];
+    }
+
+    /**
+     * Sets rule_type
+     *
+     * @param string $rule_type rule_type
+     *
+     * @return self
+     */
+    public function setRuleType($rule_type)
+    {
+        if (is_null($rule_type)) {
+            throw new \InvalidArgumentException('non-nullable rule_type cannot be null');
+        }
+        $this->container['rule_type'] = $rule_type;
 
         return $this;
     }

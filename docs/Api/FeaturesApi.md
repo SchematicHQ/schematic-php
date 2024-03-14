@@ -11,22 +11,20 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**countUsersAudience()**](FeaturesApi.md#countUsersAudience) | **POST** /audience/count-users | Count Users audience |
 | [**createFeature()**](FeaturesApi.md#createFeature) | **POST** /features | Create feature |
 | [**createFlag()**](FeaturesApi.md#createFlag) | **POST** /flags | Create flag |
-| [**createRule()**](FeaturesApi.md#createRule) | **POST** /rules | Create rule |
 | [**deleteFeature()**](FeaturesApi.md#deleteFeature) | **DELETE** /features/{feature_id} | Delete feature |
 | [**deleteFlag()**](FeaturesApi.md#deleteFlag) | **DELETE** /flags/{flag_id} | Delete flag |
 | [**getCompaniesAudience()**](FeaturesApi.md#getCompaniesAudience) | **POST** /audience/get-companies | Get Companies audience |
 | [**getFeature()**](FeaturesApi.md#getFeature) | **GET** /features/{feature_id} | Get feature |
 | [**getFlag()**](FeaturesApi.md#getFlag) | **GET** /flags/{flag_id} | Get flag |
-| [**getFlagCheck()**](FeaturesApi.md#getFlagCheck) | **GET** /flag-checks/{flag_check_id} | Get flag check |
-| [**getRule()**](FeaturesApi.md#getRule) | **GET** /rules/{rule_id} | Get rule |
+| [**getFlagCheck()**](FeaturesApi.md#getFlagCheck) | **GET** /flag-checks/{key} | Get flag check |
 | [**getUsersAudience()**](FeaturesApi.md#getUsersAudience) | **POST** /audience/get-users | Get Users audience |
 | [**latestFlagChecks()**](FeaturesApi.md#latestFlagChecks) | **GET** /flag-checks/latest | Latest flag checks |
 | [**listFeatures()**](FeaturesApi.md#listFeatures) | **GET** /features | List features |
 | [**listFlagChecks()**](FeaturesApi.md#listFlagChecks) | **GET** /flag-checks | List flag checks |
 | [**listFlags()**](FeaturesApi.md#listFlags) | **GET** /flags | List flags |
+| [**rulesFlag()**](FeaturesApi.md#rulesFlag) | **PUT** /flags/{flag_id}/rules | Rules flag |
 | [**updateFeature()**](FeaturesApi.md#updateFeature) | **PUT** /features/{feature_id} | Update feature |
 | [**updateFlag()**](FeaturesApi.md#updateFlag) | **PUT** /flags/{flag_id} | Update flag |
-| [**updateRule()**](FeaturesApi.md#updateRule) | **PUT** /rules/{rule_id} | Update rule |
 
 
 ## `checkFlag()`
@@ -473,68 +471,6 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createRule()`
-
-```php
-createRule($create_rule_request_body, $x_schematic_environment_id): \Schematic\Model\CreateRuleResponse
-```
-
-Create rule
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
-
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$create_rule_request_body = new \Schematic\Model\CreateRuleRequestBody(); // \Schematic\Model\CreateRuleRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
-
-try {
-    $result = $apiInstance->createRule($create_rule_request_body, $x_schematic_environment_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->createRule: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **create_rule_request_body** | [**\Schematic\Model\CreateRuleRequestBody**](../Model/CreateRuleRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
-
-### Return type
-
-[**\Schematic\Model\CreateRuleResponse**](../Model/CreateRuleResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `deleteFeature()`
 
 ```php
@@ -848,7 +784,7 @@ try {
 ## `getFlagCheck()`
 
 ```php
-getFlagCheck($flag_check_id, $x_schematic_environment_id): \Schematic\Model\GetFlagCheckResponse
+getFlagCheck($key, $x_schematic_environment_id): \Schematic\Model\GetFlagCheckResponse
 ```
 
 Get flag check
@@ -872,11 +808,11 @@ $apiInstance = new Schematic\Api\FeaturesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$flag_check_id = 'flag_check_id_example'; // string | flag_check_id
+$key = 'key_example'; // string | key
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getFlagCheck($flag_check_id, $x_schematic_environment_id);
+    $result = $apiInstance->getFlagCheck($key, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->getFlagCheck: ', $e->getMessage(), PHP_EOL;
@@ -887,74 +823,12 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **flag_check_id** | **string**| flag_check_id | |
+| **key** | **string**| key | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
 [**\Schematic\Model\GetFlagCheckResponse**](../Model/GetFlagCheckResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getRule()`
-
-```php
-getRule($rule_id, $x_schematic_environment_id): \Schematic\Model\GetRuleResponse
-```
-
-Get rule
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
-
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$rule_id = 'rule_id_example'; // string | rule_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
-
-try {
-    $result = $apiInstance->getRule($rule_id, $x_schematic_environment_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->getRule: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **rule_id** | **string**| rule_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
-
-### Return type
-
-[**\Schematic\Model\GetRuleResponse**](../Model/GetRuleResponse.md)
 
 ### Authorization
 
@@ -1303,6 +1177,70 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `rulesFlag()`
+
+```php
+rulesFlag($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id): \Schematic\Model\RulesFlagResponse
+```
+
+Rules flag
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new Schematic\Api\FeaturesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$flag_id = 'flag_id_example'; // string | flag_id
+$update_flag_rules_request_body = new \Schematic\Model\UpdateFlagRulesRequestBody(); // \Schematic\Model\UpdateFlagRulesRequestBody
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->rulesFlag($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FeaturesApi->rulesFlag: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flag_id** | **string**| flag_id | |
+| **update_flag_rules_request_body** | [**\Schematic\Model\UpdateFlagRulesRequestBody**](../Model/UpdateFlagRulesRequestBody.md)|  | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\Schematic\Model\RulesFlagResponse**](../Model/RulesFlagResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `updateFeature()`
 
 ```php
@@ -1417,70 +1355,6 @@ try {
 ### Return type
 
 [**\Schematic\Model\UpdateFlagResponse**](../Model/UpdateFlagResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `updateRule()`
-
-```php
-updateRule($rule_id, $update_rule_request_body, $x_schematic_environment_id): \Schematic\Model\UpdateRuleResponse
-```
-
-Update rule
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
-
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$rule_id = 'rule_id_example'; // string | rule_id
-$update_rule_request_body = new \Schematic\Model\UpdateRuleRequestBody(); // \Schematic\Model\UpdateRuleRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
-
-try {
-    $result = $apiInstance->updateRule($rule_id, $update_rule_request_body, $x_schematic_environment_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->updateRule: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **rule_id** | **string**| rule_id | |
-| **update_rule_request_body** | [**\Schematic\Model\UpdateRuleRequestBody**](../Model/UpdateRuleRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
-
-### Return type
-
-[**\Schematic\Model\UpdateRuleResponse**](../Model/UpdateRuleResponse.md)
 
 ### Authorization
 

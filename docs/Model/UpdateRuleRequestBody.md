@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **name** | **string** |  |
 **priority** | **int** |  |
 **priority_group** | **int** |  | [optional]
-**skip_webhooks** | **bool** |  | [optional]
 **value** | **bool** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

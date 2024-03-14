@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **metric_period** | **string** | Period of time over which to measure the track event metric | [optional]
 **metric_value** | **int** | Value to compare the track event metric against |
 **operator** | **string** |  |
-**resource_ids** | **string[]** | List of resource IDs (companise, users, or plans) targeted by this condition |
+**resource_ids** | **string[]** | List of resource IDs (companies, users, or plans) targeted by this condition |
 **trait_id** | **string** | ID of trait to use to measure this condition | [optional]
 **trait_value** | **string** | Value to compare the trait value against | [optional]
 
