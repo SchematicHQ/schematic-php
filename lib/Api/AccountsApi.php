@@ -2962,7 +2962,7 @@ class AccountsApi
      *
      * Get api request
      *
-     * @param  string $api_request_id api_request_id (required)
+     * @param  string $key key (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
      *
@@ -2970,9 +2970,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetApiRequestResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getApiRequest($api_request_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
+    public function getApiRequest($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
     {
-        list($response) = $this->getApiRequestWithHttpInfo($api_request_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getApiRequestWithHttpInfo($key, $x_schematic_environment_id, $contentType);
         return $response;
     }
 
@@ -2981,7 +2981,7 @@ class AccountsApi
      *
      * Get api request
      *
-     * @param  string $api_request_id api_request_id (required)
+     * @param  string $key key (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
      *
@@ -2989,9 +2989,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetApiRequestResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getApiRequestWithHttpInfo($api_request_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
+    public function getApiRequestWithHttpInfo($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
     {
-        $request = $this->getApiRequestRequest($api_request_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getApiRequestRequest($key, $x_schematic_environment_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3174,16 +3174,16 @@ class AccountsApi
      *
      * Get api request
      *
-     * @param  string $api_request_id api_request_id (required)
+     * @param  string $key key (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getApiRequestAsync($api_request_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
+    public function getApiRequestAsync($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
     {
-        return $this->getApiRequestAsyncWithHttpInfo($api_request_id, $x_schematic_environment_id, $contentType)
+        return $this->getApiRequestAsyncWithHttpInfo($key, $x_schematic_environment_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3196,17 +3196,17 @@ class AccountsApi
      *
      * Get api request
      *
-     * @param  string $api_request_id api_request_id (required)
+     * @param  string $key key (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getApiRequestAsyncWithHttpInfo($api_request_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
+    public function getApiRequestAsyncWithHttpInfo($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
     {
         $returnType = '\Schematic\Model\GetApiRequestResponse';
-        $request = $this->getApiRequestRequest($api_request_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getApiRequestRequest($key, $x_schematic_environment_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3247,26 +3247,26 @@ class AccountsApi
     /**
      * Create request for operation 'getApiRequest'
      *
-     * @param  string $api_request_id api_request_id (required)
+     * @param  string $key key (required)
      * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getApiRequestRequest($api_request_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
+    public function getApiRequestRequest($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getApiRequest'][0])
     {
 
-        // verify the required parameter 'api_request_id' is set
-        if ($api_request_id === null || (is_array($api_request_id) && count($api_request_id) === 0)) {
+        // verify the required parameter 'key' is set
+        if ($key === null || (is_array($key) && count($key) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $api_request_id when calling getApiRequest'
+                'Missing the required parameter $key when calling getApiRequest'
             );
         }
 
 
 
-        $resourcePath = '/api-requests/{api_request_id}';
+        $resourcePath = '/api-requests/{key}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3280,10 +3280,10 @@ class AccountsApi
         }
 
         // path params
-        if ($api_request_id !== null) {
+        if ($key !== null) {
             $resourcePath = str_replace(
-                '{' . 'api_request_id' . '}',
-                ObjectSerializer::toPathValue($api_request_id),
+                '{' . 'key' . '}',
+                ObjectSerializer::toPathValue($key),
                 $resourcePath
             );
         }

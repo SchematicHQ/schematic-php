@@ -282,6 +282,67 @@ class CreateOrUpdateConditionRequestBody implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
+    public const CONDITION_TYPE_COMPANY = 'company';
+    public const CONDITION_TYPE_METRIC = 'metric';
+    public const CONDITION_TYPE__TRAIT = 'trait';
+    public const CONDITION_TYPE_USER = 'user';
+    public const CONDITION_TYPE_PLAN = 'plan';
+    public const METRIC_PERIOD_MONTH = 'current_month';
+    public const METRIC_PERIOD_WEEK = 'current_week';
+    public const METRIC_PERIOD_DAY = 'current_day';
+    public const OPERATOR_EQ = 'eq';
+    public const OPERATOR_NE = 'ne';
+    public const OPERATOR_GT = 'gt';
+    public const OPERATOR_GTE = 'gte';
+    public const OPERATOR_LT = 'lt';
+    public const OPERATOR_LTE = 'lte';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getConditionTypeAllowableValues()
+    {
+        return [
+            self::CONDITION_TYPE_COMPANY,
+            self::CONDITION_TYPE_METRIC,
+            self::CONDITION_TYPE__TRAIT,
+            self::CONDITION_TYPE_USER,
+            self::CONDITION_TYPE_PLAN,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getMetricPeriodAllowableValues()
+    {
+        return [
+            self::METRIC_PERIOD_MONTH,
+            self::METRIC_PERIOD_WEEK,
+            self::METRIC_PERIOD_DAY,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getOperatorAllowableValues()
+    {
+        return [
+            self::OPERATOR_EQ,
+            self::OPERATOR_NE,
+            self::OPERATOR_GT,
+            self::OPERATOR_GTE,
+            self::OPERATOR_LT,
+            self::OPERATOR_LTE,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -340,12 +401,39 @@ class CreateOrUpdateConditionRequestBody implements ModelInterface, ArrayAccess,
         if ($this->container['condition_type'] === null) {
             $invalidProperties[] = "'condition_type' can't be null";
         }
+        $allowedValues = $this->getConditionTypeAllowableValues();
+        if (!is_null($this->container['condition_type']) && !in_array($this->container['condition_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'condition_type', must be one of '%s'",
+                $this->container['condition_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getMetricPeriodAllowableValues();
+        if (!is_null($this->container['metric_period']) && !in_array($this->container['metric_period'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'metric_period', must be one of '%s'",
+                $this->container['metric_period'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['metric_value'] === null) {
             $invalidProperties[] = "'metric_value' can't be null";
         }
         if ($this->container['operator'] === null) {
             $invalidProperties[] = "'operator' can't be null";
         }
+        $allowedValues = $this->getOperatorAllowableValues();
+        if (!is_null($this->container['operator']) && !in_array($this->container['operator'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'operator', must be one of '%s'",
+                $this->container['operator'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['resource_ids'] === null) {
             $invalidProperties[] = "'resource_ids' can't be null";
         }
@@ -419,6 +507,16 @@ class CreateOrUpdateConditionRequestBody implements ModelInterface, ArrayAccess,
     {
         if (is_null($condition_type)) {
             throw new \InvalidArgumentException('non-nullable condition_type cannot be null');
+        }
+        $allowedValues = $this->getConditionTypeAllowableValues();
+        if (!in_array($condition_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'condition_type', must be one of '%s'",
+                    $condition_type,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['condition_type'] = $condition_type;
 
@@ -522,6 +620,16 @@ class CreateOrUpdateConditionRequestBody implements ModelInterface, ArrayAccess,
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+        $allowedValues = $this->getMetricPeriodAllowableValues();
+        if (!is_null($metric_period) && !in_array($metric_period, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'metric_period', must be one of '%s'",
+                    $metric_period,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['metric_period'] = $metric_period;
 
         return $this;
@@ -576,6 +684,16 @@ class CreateOrUpdateConditionRequestBody implements ModelInterface, ArrayAccess,
         if (is_null($operator)) {
             throw new \InvalidArgumentException('non-nullable operator cannot be null');
         }
+        $allowedValues = $this->getOperatorAllowableValues();
+        if (!in_array($operator, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'operator', must be one of '%s'",
+                    $operator,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['operator'] = $operator;
 
         return $this;
@@ -594,7 +712,7 @@ class CreateOrUpdateConditionRequestBody implements ModelInterface, ArrayAccess,
     /**
      * Sets resource_ids
      *
-     * @param string[] $resource_ids List of resource IDs (companise, users, or plans) targeted by this condition
+     * @param string[] $resource_ids List of resource IDs (companies, users, or plans) targeted by this condition
      *
      * @return self
      */

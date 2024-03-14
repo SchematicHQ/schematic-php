@@ -63,9 +63,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => 'string',
         'id' => 'string',
         'key' => 'string',
-        'name' => 'string',
-        'rules' => '\Schematic\Model\CreateOrUpdateRuleRequestBody[]',
-        'skip_webhooks' => 'bool'
+        'name' => 'string'
     ];
 
     /**
@@ -82,9 +80,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => null,
         'id' => null,
         'key' => null,
-        'name' => null,
-        'rules' => null,
-        'skip_webhooks' => null
+        'name' => null
     ];
 
     /**
@@ -99,9 +95,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
 		'flag_type' => false,
 		'id' => true,
 		'key' => false,
-		'name' => false,
-		'rules' => false,
-		'skip_webhooks' => true
+		'name' => false
     ];
 
     /**
@@ -196,9 +190,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => 'flag_type',
         'id' => 'id',
         'key' => 'key',
-        'name' => 'name',
-        'rules' => 'rules',
-        'skip_webhooks' => 'skip_webhooks'
+        'name' => 'name'
     ];
 
     /**
@@ -213,9 +205,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => 'setFlagType',
         'id' => 'setId',
         'key' => 'setKey',
-        'name' => 'setName',
-        'rules' => 'setRules',
-        'skip_webhooks' => 'setSkipWebhooks'
+        'name' => 'setName'
     ];
 
     /**
@@ -230,9 +220,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => 'getFlagType',
         'id' => 'getId',
         'key' => 'getKey',
-        'name' => 'getName',
-        'rules' => 'getRules',
-        'skip_webhooks' => 'getSkipWebhooks'
+        'name' => 'getName'
     ];
 
     /**
@@ -299,8 +287,6 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('key', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('rules', $data ?? [], null);
-        $this->setIfExists('skip_webhooks', $data ?? [], null);
     }
 
     /**
@@ -344,9 +330,6 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['rules'] === null) {
-            $invalidProperties[] = "'rules' can't be null";
         }
         return $invalidProperties;
     }
@@ -562,67 +545,6 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets rules
-     *
-     * @return \Schematic\Model\CreateOrUpdateRuleRequestBody[]
-     */
-    public function getRules()
-    {
-        return $this->container['rules'];
-    }
-
-    /**
-     * Sets rules
-     *
-     * @param \Schematic\Model\CreateOrUpdateRuleRequestBody[] $rules rules
-     *
-     * @return self
-     */
-    public function setRules($rules)
-    {
-        if (is_null($rules)) {
-            throw new \InvalidArgumentException('non-nullable rules cannot be null');
-        }
-        $this->container['rules'] = $rules;
-
-        return $this;
-    }
-
-    /**
-     * Gets skip_webhooks
-     *
-     * @return bool|null
-     */
-    public function getSkipWebhooks()
-    {
-        return $this->container['skip_webhooks'];
-    }
-
-    /**
-     * Sets skip_webhooks
-     *
-     * @param bool|null $skip_webhooks skip_webhooks
-     *
-     * @return self
-     */
-    public function setSkipWebhooks($skip_webhooks)
-    {
-        if (is_null($skip_webhooks)) {
-            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('skip_webhooks', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['skip_webhooks'] = $skip_webhooks;
 
         return $this;
     }

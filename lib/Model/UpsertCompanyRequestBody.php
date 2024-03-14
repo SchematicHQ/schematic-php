@@ -61,7 +61,6 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'keys' => 'object',
         'last_seen_at' => '\DateTime',
         'name' => 'string',
-        'skip_webhooks' => 'bool',
         'traits' => 'object',
         'update_only' => 'bool'
     ];
@@ -78,7 +77,6 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'keys' => null,
         'last_seen_at' => 'date-time',
         'name' => null,
-        'skip_webhooks' => null,
         'traits' => null,
         'update_only' => null
     ];
@@ -93,7 +91,6 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
 		'keys' => false,
 		'last_seen_at' => true,
 		'name' => true,
-		'skip_webhooks' => true,
 		'traits' => false,
 		'update_only' => true
     ];
@@ -188,7 +185,6 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'keys' => 'keys',
         'last_seen_at' => 'last_seen_at',
         'name' => 'name',
-        'skip_webhooks' => 'skip_webhooks',
         'traits' => 'traits',
         'update_only' => 'update_only'
     ];
@@ -203,7 +199,6 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'keys' => 'setKeys',
         'last_seen_at' => 'setLastSeenAt',
         'name' => 'setName',
-        'skip_webhooks' => 'setSkipWebhooks',
         'traits' => 'setTraits',
         'update_only' => 'setUpdateOnly'
     ];
@@ -218,7 +213,6 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'keys' => 'getKeys',
         'last_seen_at' => 'getLastSeenAt',
         'name' => 'getName',
-        'skip_webhooks' => 'getSkipWebhooks',
         'traits' => 'getTraits',
         'update_only' => 'getUpdateOnly'
     ];
@@ -284,7 +278,6 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('keys', $data ?? [], null);
         $this->setIfExists('last_seen_at', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('skip_webhooks', $data ?? [], null);
         $this->setIfExists('traits', $data ?? [], null);
         $this->setIfExists('update_only', $data ?? [], null);
     }
@@ -459,40 +452,6 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             }
         }
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets skip_webhooks
-     *
-     * @return bool|null
-     */
-    public function getSkipWebhooks()
-    {
-        return $this->container['skip_webhooks'];
-    }
-
-    /**
-     * Sets skip_webhooks
-     *
-     * @param bool|null $skip_webhooks skip_webhooks
-     *
-     * @return self
-     */
-    public function setSkipWebhooks($skip_webhooks)
-    {
-        if (is_null($skip_webhooks)) {
-            array_push($this->openAPINullablesSetToNull, 'skip_webhooks');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('skip_webhooks', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['skip_webhooks'] = $skip_webhooks;
 
         return $this;
     }

@@ -57,7 +57,7 @@ class CreateEventResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\Schematic\Model\EventResponseData',
+        'data' => '\Schematic\Model\RawEventResponseData',
         'params' => 'object'
     ];
 
@@ -305,7 +305,7 @@ class CreateEventResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets data
      *
-     * @return \Schematic\Model\EventResponseData
+     * @return \Schematic\Model\RawEventResponseData
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class CreateEventResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets data
      *
-     * @param \Schematic\Model\EventResponseData $data data
+     * @param \Schematic\Model\RawEventResponseData $data data
      *
      * @return self
      */

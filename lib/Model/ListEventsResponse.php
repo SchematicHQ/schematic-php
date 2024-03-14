@@ -57,7 +57,7 @@ class ListEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\Schematic\Model\EventResponseData[]',
+        'data' => '\Schematic\Model\EventListResponseData[]',
         'params' => '\Schematic\Model\ListEventsParams'
     ];
 
@@ -305,7 +305,7 @@ class ListEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets data
      *
-     * @return \Schematic\Model\EventResponseData[]
+     * @return \Schematic\Model\EventListResponseData[]
      */
     public function getData()
     {
@@ -315,7 +315,7 @@ class ListEventsResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets data
      *
-     * @param \Schematic\Model\EventResponseData[] $data The returned resources
+     * @param \Schematic\Model\EventListResponseData[] $data The returned resources
      *
      * @return self
      */

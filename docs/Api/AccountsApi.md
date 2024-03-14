@@ -11,7 +11,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**deleteApiKey()**](AccountsApi.md#deleteApiKey) | **DELETE** /api-keys/{api_key_id} | Delete api key |
 | [**deleteEnvironment()**](AccountsApi.md#deleteEnvironment) | **DELETE** /environments/{environment_id} | Delete environment |
 | [**getApiKey()**](AccountsApi.md#getApiKey) | **GET** /api-keys/{api_key_id} | Get api key |
-| [**getApiRequest()**](AccountsApi.md#getApiRequest) | **GET** /api-requests/{api_request_id} | Get api request |
+| [**getApiRequest()**](AccountsApi.md#getApiRequest) | **GET** /api-requests/{key} | Get api request |
 | [**getEnvironment()**](AccountsApi.md#getEnvironment) | **GET** /environments/{environment_id} | Get environment |
 | [**listApiKeys()**](AccountsApi.md#listApiKeys) | **GET** /api-keys | List api keys |
 | [**listApiRequests()**](AccountsApi.md#listApiRequests) | **GET** /api-requests | List api requests |
@@ -466,7 +466,7 @@ try {
 ## `getApiRequest()`
 
 ```php
-getApiRequest($api_request_id, $x_schematic_environment_id): \Schematic\Model\GetApiRequestResponse
+getApiRequest($key, $x_schematic_environment_id): \Schematic\Model\GetApiRequestResponse
 ```
 
 Get api request
@@ -490,11 +490,11 @@ $apiInstance = new Schematic\Api\AccountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$api_request_id = 'api_request_id_example'; // string | api_request_id
+$key = 'key_example'; // string | key
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getApiRequest($api_request_id, $x_schematic_environment_id);
+    $result = $apiInstance->getApiRequest($key, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AccountsApi->getApiRequest: ', $e->getMessage(), PHP_EOL;
@@ -505,7 +505,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **api_request_id** | **string**| api_request_id | |
+| **key** | **string**| key | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type

@@ -59,11 +59,9 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPITypes = [
         'company_id' => 'string',
         'created_at' => '\DateTime',
-        'ended_at' => '\DateTime',
         'environment_id' => 'string',
         'id' => 'string',
         'plan_id' => 'string',
-        'started_at' => '\DateTime',
         'updated_at' => '\DateTime'
     ];
 
@@ -77,11 +75,9 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPIFormats = [
         'company_id' => null,
         'created_at' => 'date-time',
-        'ended_at' => 'date-time',
         'environment_id' => null,
         'id' => null,
         'plan_id' => null,
-        'started_at' => 'date-time',
         'updated_at' => 'date-time'
     ];
 
@@ -93,11 +89,9 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     protected static array $openAPINullables = [
         'company_id' => false,
 		'created_at' => false,
-		'ended_at' => true,
 		'environment_id' => false,
 		'id' => false,
 		'plan_id' => false,
-		'started_at' => false,
 		'updated_at' => false
     ];
 
@@ -189,11 +183,9 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $attributeMap = [
         'company_id' => 'company_id',
         'created_at' => 'created_at',
-        'ended_at' => 'ended_at',
         'environment_id' => 'environment_id',
         'id' => 'id',
         'plan_id' => 'plan_id',
-        'started_at' => 'started_at',
         'updated_at' => 'updated_at'
     ];
 
@@ -205,11 +197,9 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $setters = [
         'company_id' => 'setCompanyId',
         'created_at' => 'setCreatedAt',
-        'ended_at' => 'setEndedAt',
         'environment_id' => 'setEnvironmentId',
         'id' => 'setId',
         'plan_id' => 'setPlanId',
-        'started_at' => 'setStartedAt',
         'updated_at' => 'setUpdatedAt'
     ];
 
@@ -221,11 +211,9 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $getters = [
         'company_id' => 'getCompanyId',
         'created_at' => 'getCreatedAt',
-        'ended_at' => 'getEndedAt',
         'environment_id' => 'getEnvironmentId',
         'id' => 'getId',
         'plan_id' => 'getPlanId',
-        'started_at' => 'getStartedAt',
         'updated_at' => 'getUpdatedAt'
     ];
 
@@ -288,11 +276,9 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('ended_at', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
-        $this->setIfExists('started_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
     }
 
@@ -337,9 +323,6 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         }
         if ($this->container['plan_id'] === null) {
             $invalidProperties[] = "'plan_id' can't be null";
-        }
-        if ($this->container['started_at'] === null) {
-            $invalidProperties[] = "'started_at' can't be null";
         }
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
@@ -409,40 +392,6 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets ended_at
-     *
-     * @return \DateTime|null
-     */
-    public function getEndedAt()
-    {
-        return $this->container['ended_at'];
-    }
-
-    /**
-     * Sets ended_at
-     *
-     * @param \DateTime|null $ended_at ended_at
-     *
-     * @return self
-     */
-    public function setEndedAt($ended_at)
-    {
-        if (is_null($ended_at)) {
-            array_push($this->openAPINullablesSetToNull, 'ended_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('ended_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['ended_at'] = $ended_at;
 
         return $this;
     }
@@ -524,33 +473,6 @@ class CompanyPlanResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable plan_id cannot be null');
         }
         $this->container['plan_id'] = $plan_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets started_at
-     *
-     * @return \DateTime
-     */
-    public function getStartedAt()
-    {
-        return $this->container['started_at'];
-    }
-
-    /**
-     * Sets started_at
-     *
-     * @param \DateTime $started_at started_at
-     *
-     * @return self
-     */
-    public function setStartedAt($started_at)
-    {
-        if (is_null($started_at)) {
-            throw new \InvalidArgumentException('non-nullable started_at cannot be null');
-        }
-        $this->container['started_at'] = $started_at;
 
         return $this;
     }

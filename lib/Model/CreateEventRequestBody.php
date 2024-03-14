@@ -240,6 +240,21 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
+    public const EVENT_TYPE_IDENTIFY = 'identify';
+    public const EVENT_TYPE_TRACK = 'track';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEventTypeAllowableValues()
+    {
+        return [
+            self::EVENT_TYPE_IDENTIFY,
+            self::EVENT_TYPE_TRACK,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -291,6 +306,15 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['event_type'] === null) {
             $invalidProperties[] = "'event_type' can't be null";
         }
+        $allowedValues = $this->getEventTypeAllowableValues();
+        if (!is_null($this->container['event_type']) && !in_array($this->container['event_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'event_type', must be one of '%s'",
+                $this->container['event_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -354,6 +378,16 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($event_type)) {
             throw new \InvalidArgumentException('non-nullable event_type cannot be null');
+        }
+        $allowedValues = $this->getEventTypeAllowableValues();
+        if (!in_array($event_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'event_type', must be one of '%s'",
+                    $event_type,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['event_type'] = $event_type;
 
