@@ -6,6 +6,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | ------------- | ------------- | ------------- |
 | [**createPlan()**](PlansApi.md#createPlan) | **POST** /plans | Create plan |
 | [**deletePlan()**](PlansApi.md#deletePlan) | **DELETE** /plans/{plan_id} | Delete plan |
+| [**deletePlanAudience()**](PlansApi.md#deletePlanAudience) | **DELETE** /plan-audiences/{plan_audience_id} | Delete plan audience |
 | [**getPlan()**](PlansApi.md#getPlan) | **GET** /plans/{plan_id} | Get plan |
 | [**listPlans()**](PlansApi.md#listPlans) | **GET** /plans | List plans |
 | [**updatePlan()**](PlansApi.md#updatePlan) | **PUT** /plans/{plan_id} | Update plan |
@@ -122,6 +123,68 @@ try {
 ### Return type
 
 [**\Schematic\Model\DeletePlanResponse**](../Model/DeletePlanResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deletePlanAudience()`
+
+```php
+deletePlanAudience($plan_audience_id, $x_schematic_environment_id): \Schematic\Model\DeletePlanAudienceResponse
+```
+
+Delete plan audience
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKeyAuth
+$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+
+
+$apiInstance = new Schematic\Api\PlansApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$plan_audience_id = 'plan_audience_id_example'; // string | plan_audience_id
+$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
+
+try {
+    $result = $apiInstance->deletePlanAudience($plan_audience_id, $x_schematic_environment_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PlansApi->deletePlanAudience: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_audience_id** | **string**| plan_audience_id | |
+| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
+
+### Return type
+
+[**\Schematic\Model\DeletePlanAudienceResponse**](../Model/DeletePlanAudienceResponse.md)
 
 ### Authorization
 

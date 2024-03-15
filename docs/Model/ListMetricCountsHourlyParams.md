@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **company_id** | **string** |  | [optional]
+**company_ids** | **string[]** |  | [optional]
 **end_time** | **\DateTime** |  | [optional]
 **event_subtype** | **string** |  | [optional]
 **event_subtypes** | **string[]** |  | [optional]

@@ -1,0 +1,17 @@
+name: Test
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: php-actions/composer@master
+
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@master

@@ -16,7 +16,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**getCompaniesAudience()**](FeaturesApi.md#getCompaniesAudience) | **POST** /audience/get-companies | Get Companies audience |
 | [**getFeature()**](FeaturesApi.md#getFeature) | **GET** /features/{feature_id} | Get feature |
 | [**getFlag()**](FeaturesApi.md#getFlag) | **GET** /flags/{flag_id} | Get flag |
-| [**getFlagCheck()**](FeaturesApi.md#getFlagCheck) | **GET** /flag-checks/{key} | Get flag check |
+| [**getFlagCheck()**](FeaturesApi.md#getFlagCheck) | **GET** /flag-checks/{flag_check_id} | Get flag check |
 | [**getUsersAudience()**](FeaturesApi.md#getUsersAudience) | **POST** /audience/get-users | Get Users audience |
 | [**latestFlagChecks()**](FeaturesApi.md#latestFlagChecks) | **GET** /flag-checks/latest | Latest flag checks |
 | [**listFeatures()**](FeaturesApi.md#listFeatures) | **GET** /features | List features |
@@ -784,7 +784,7 @@ try {
 ## `getFlagCheck()`
 
 ```php
-getFlagCheck($key, $x_schematic_environment_id): \Schematic\Model\GetFlagCheckResponse
+getFlagCheck($flag_check_id, $x_schematic_environment_id): \Schematic\Model\GetFlagCheckResponse
 ```
 
 Get flag check
@@ -808,11 +808,11 @@ $apiInstance = new Schematic\Api\FeaturesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$key = 'key_example'; // string | key
+$flag_check_id = 'flag_check_id_example'; // string | flag_check_id
 $x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getFlagCheck($key, $x_schematic_environment_id);
+    $result = $apiInstance->getFlagCheck($flag_check_id, $x_schematic_environment_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FeaturesApi->getFlagCheck: ', $e->getMessage(), PHP_EOL;
@@ -823,7 +823,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **key** | **string**| key | |
+| **flag_check_id** | **string**| flag_check_id | |
 | **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
