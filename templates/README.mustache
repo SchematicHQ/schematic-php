@@ -1,0 +1,78 @@
+# {{packageName}}
+
+{{#appDescriptionWithNewLines}}
+{{{.}}}
+{{/appDescriptionWithNewLines}}
+
+{{#infoUrl}}
+For more information, please visit [{{{infoUrl}}}]({{{infoUrl}}}).
+{{/infoUrl}}
+
+## Installation & Usage
+
+### Requirements
+
+PHP 7.4 and later.
+Should also work with PHP 8.0.
+
+### Installation
+
+You can install the Schematic PHP SDK via Composer. Run the following command in your project directory:
+
+```bash
+composer require schematichq/schematic-php
+```
+
+### Usage
+
+To initialize the Schematic client, provide a secret API key; you can issue an API key in the API Keys section of settings in the Schematic web app.
+
+```php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+```
+
+Once you have initialized the Schematic client, you can make API calls using the various API classes provided by the SDK.
+
+```php
+$companies = $schematic->Companies->listCompanies();
+```
+
+The SDK throws exceptions in case of API errors. You can catch and handle these exceptions in your code:
+
+```php
+try {
+    $companies = $schematic->Companies->listCompanies();
+    // Process the companies
+} catch (\Exception $e) {
+    // Handle the exception
+    echo 'Error: ' . $e->getMessage();
+}
+```
+
+## API Endpoints
+
+The following Schematic API endpoints are accessible via this client library. All URIs are relative to *{{basePath}}*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}/{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{summary}}
+{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
+## Models
+
+{{#models}}{{#model}}- [{{{classname}}}]({{modelDocPath}}/{{{classname}}}.md){{/model}}
+{{/models}}
+
+## Author
+
+{{#apiInfo}}{{#apis}}{{#-last}}{{infoEmail}}
+{{/-last}}{{/apis}}{{/apiInfo}}
+
+## Support
+
+If you encounter any issues or have questions regarding the Schematic PHP SDK, please contact our support team at support@schematic.com.

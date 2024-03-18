@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **captured_at** | **\DateTime** |  |
+**event_id** | **string** |  | [optional]
 **remote_addr** | **string** |  |
 **remote_ip** | **string** |  |
 **user_agent** | **string** |  |

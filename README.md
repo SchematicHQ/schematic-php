@@ -1,7 +1,8 @@
-# OpenAPIClient-php
+# schematic-php
 
 Schematic API
 
+For more information, please visit [https://schematichq.com](https://schematichq.com).
 
 ## Installation & Usage
 
@@ -10,75 +11,49 @@ Schematic API
 PHP 7.4 and later.
 Should also work with PHP 8.0.
 
-### Composer
+### Installation
 
-To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
+You can install the Schematic PHP SDK via Composer. Run the following command in your project directory:
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/SchematicHQ/schematic-php.git"
-    }
-  ],
-  "require": {
-    "SchematicHQ/schematic-php": "*@dev"
-  }
-}
+```bash
+composer require schematichq/schematic-php
 ```
 
-Then run `composer install`
+### Usage
 
-### Manual Installation
-
-Download the files and include `autoload.php`:
+To initialize the Schematic client, provide a secret API key; you can issue an API key in the API Keys section of settings in the Schematic web app.
 
 ```php
 <?php
-require_once('/path/to/OpenAPIClient-php/vendor/autoload.php');
+
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 ```
 
-## Getting Started
-
-Please follow the [installation procedure](#installation--usage) and then run the following:
+Once you have initialized the Schematic client, you can make API calls using the various API classes provided by the SDK.
 
 ```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
+$companies = $schematic->Companies->listCompanies();
+```
 
+The SDK throws exceptions in case of API errors. You can catch and handle these exceptions in your code:
 
-
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
-
-
-$apiInstance = new Schematic\Api\AccountsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$require_environment = True; // bool
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
-$environment_id = 'environment_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
-
+```php
 try {
-    $result = $apiInstance->countApiKeys($require_environment, $x_schematic_environment_id, $environment_id, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->countApiKeys: ', $e->getMessage(), PHP_EOL;
+    $companies = $schematic->Companies->listCompanies();
+    // Process the companies
+} catch (\Exception $e) {
+    // Handle the exception
+    echo 'Error: ' . $e->getMessage();
 }
-
 ```
 
 ## API Endpoints
 
-All URIs are relative to *https://api.schematichq.com*
+The following Schematic API endpoints are accessible via this client library. All URIs are relative to *https://api.schematichq.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -89,7 +64,7 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**deleteApiKey**](docs/Api/AccountsApi.md#deleteapikey) | **DELETE** /api-keys/{api_key_id} | Delete api key
 *AccountsApi* | [**deleteEnvironment**](docs/Api/AccountsApi.md#deleteenvironment) | **DELETE** /environments/{environment_id} | Delete environment
 *AccountsApi* | [**getApiKey**](docs/Api/AccountsApi.md#getapikey) | **GET** /api-keys/{api_key_id} | Get api key
-*AccountsApi* | [**getApiRequest**](docs/Api/AccountsApi.md#getapirequest) | **GET** /api-requests/{key} | Get api request
+*AccountsApi* | [**getApiRequest**](docs/Api/AccountsApi.md#getapirequest) | **GET** /api-requests/{api_request_id} | Get api request
 *AccountsApi* | [**getEnvironment**](docs/Api/AccountsApi.md#getenvironment) | **GET** /environments/{environment_id} | Get environment
 *AccountsApi* | [**listApiKeys**](docs/Api/AccountsApi.md#listapikeys) | **GET** /api-keys | List api keys
 *AccountsApi* | [**listApiRequests**](docs/Api/AccountsApi.md#listapirequests) | **GET** /api-requests | List api requests
@@ -126,7 +101,7 @@ Class | Method | HTTP request | Description
 *EventsApi* | [**countEventTypes**](docs/Api/EventsApi.md#counteventtypes) | **GET** /event-types/count | Count event types
 *EventsApi* | [**countEvents**](docs/Api/EventsApi.md#countevents) | **GET** /events/count | Count events
 *EventsApi* | [**createEvent**](docs/Api/EventsApi.md#createevent) | **POST** /events | Create event
-*EventsApi* | [**getEvent**](docs/Api/EventsApi.md#getevent) | **GET** /events/{key} | Get event
+*EventsApi* | [**getEvent**](docs/Api/EventsApi.md#getevent) | **GET** /events/{event_id} | Get event
 *EventsApi* | [**getEventType**](docs/Api/EventsApi.md#geteventtype) | **GET** /event-types/{key} | Get event type
 *EventsApi* | [**listEventTypes**](docs/Api/EventsApi.md#listeventtypes) | **GET** /event-types | List event types
 *EventsApi* | [**listEvents**](docs/Api/EventsApi.md#listevents) | **GET** /events | List events
@@ -144,7 +119,7 @@ Class | Method | HTTP request | Description
 *FeaturesApi* | [**getCompaniesAudience**](docs/Api/FeaturesApi.md#getcompaniesaudience) | **POST** /audience/get-companies | Get Companies audience
 *FeaturesApi* | [**getFeature**](docs/Api/FeaturesApi.md#getfeature) | **GET** /features/{feature_id} | Get feature
 *FeaturesApi* | [**getFlag**](docs/Api/FeaturesApi.md#getflag) | **GET** /flags/{flag_id} | Get flag
-*FeaturesApi* | [**getFlagCheck**](docs/Api/FeaturesApi.md#getflagcheck) | **GET** /flag-checks/{key} | Get flag check
+*FeaturesApi* | [**getFlagCheck**](docs/Api/FeaturesApi.md#getflagcheck) | **GET** /flag-checks/{flag_check_id} | Get flag check
 *FeaturesApi* | [**getUsersAudience**](docs/Api/FeaturesApi.md#getusersaudience) | **POST** /audience/get-users | Get Users audience
 *FeaturesApi* | [**latestFlagChecks**](docs/Api/FeaturesApi.md#latestflagchecks) | **GET** /flag-checks/latest | Latest flag checks
 *FeaturesApi* | [**listFeatures**](docs/Api/FeaturesApi.md#listfeatures) | **GET** /features | List features
@@ -155,6 +130,7 @@ Class | Method | HTTP request | Description
 *FeaturesApi* | [**updateFlag**](docs/Api/FeaturesApi.md#updateflag) | **PUT** /flags/{flag_id} | Update flag
 *PlansApi* | [**createPlan**](docs/Api/PlansApi.md#createplan) | **POST** /plans | Create plan
 *PlansApi* | [**deletePlan**](docs/Api/PlansApi.md#deleteplan) | **DELETE** /plans/{plan_id} | Delete plan
+*PlansApi* | [**deletePlanAudience**](docs/Api/PlansApi.md#deleteplanaudience) | **DELETE** /plan-audiences/{plan_audience_id} | Delete plan audience
 *PlansApi* | [**getPlan**](docs/Api/PlansApi.md#getplan) | **GET** /plans/{plan_id} | Get plan
 *PlansApi* | [**listPlans**](docs/Api/PlansApi.md#listplans) | **GET** /plans | List plans
 *PlansApi* | [**updatePlan**](docs/Api/PlansApi.md#updateplan) | **PUT** /plans/{plan_id} | Update plan
@@ -228,6 +204,7 @@ Class | Method | HTTP request | Description
 - [DeleteEnvironmentResponse](docs/Model/DeleteEnvironmentResponse.md)
 - [DeleteFeatureResponse](docs/Model/DeleteFeatureResponse.md)
 - [DeleteFlagResponse](docs/Model/DeleteFlagResponse.md)
+- [DeletePlanAudienceResponse](docs/Model/DeletePlanAudienceResponse.md)
 - [DeletePlanEntitlementResponse](docs/Model/DeletePlanEntitlementResponse.md)
 - [DeletePlanResponse](docs/Model/DeletePlanResponse.md)
 - [DeleteResponse](docs/Model/DeleteResponse.md)
@@ -342,33 +319,11 @@ Class | Method | HTTP request | Description
 - [UserDetailResponseData](docs/Model/UserDetailResponseData.md)
 - [UserResponseData](docs/Model/UserResponseData.md)
 
-## Authorization
-
-Authentication schemes defined for the API:
-### ApiKeyAuth
-
-- **Type**: API key
-- **API key parameter name**: X-Schematic-Api-Key
-- **Location**: HTTP header
-
-
-## Tests
-
-To run the tests, use:
-
-```bash
-composer install
-vendor/bin/phpunit
-```
-
 ## Author
 
 
 
-## About this package
 
-This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
+## Support
 
-- API version: `0.1`
-    - Package version: `0.0.4`
-- Build package: `org.openapitools.codegen.languages.PhpClientCodegen`
+If you encounter any issues or have questions regarding the Schematic PHP SDK, please contact our support team at support@schematic.com.
