@@ -1,5 +1,6 @@
 .gitignore
 .php-cs-fixer.dist.php
+.travis.yml
 README.md
 composer.json
 docs/Api/AccountsApi.md
@@ -188,6 +189,7 @@ docs/Model/UpsertUserRequestBody.md
 docs/Model/UpsertUserSubRequestBody.md
 docs/Model/UserDetailResponseData.md
 docs/Model/UserResponseData.md
+git_push.sh
 phpunit.xml.dist
 src/Api/AccountsApi.php
 src/Api/CompaniesApi.php

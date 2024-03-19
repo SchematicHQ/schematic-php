@@ -40,14 +40,14 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 Once you have initialized the Schematic client, you can make API calls using the various API classes provided by the SDK.
 
 ```php
-$companies = $schematic->Companies->listCompanies();
+$companies = $schematic->CompaniesApi->listCompanies();
 ```
 
 The SDK throws exceptions in case of API errors. You can catch and handle these exceptions in your code:
 
 ```php
 try {
-    $companies = $schematic->Companies->listCompanies();
+    $companies = $schematic->CompaniesApi->listCompanies();
     // Process the companies
 } catch (\Exception $e) {
     // Handle the exception

@@ -30,7 +30,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `checkFlag()`
 
 ```php
-checkFlag($key, $check_flag_request_body, $x_schematic_environment_id): \Schematic\Model\CheckFlagResponse
+checkFlag($key, $check_flag_request_body): \Schematic\Model\CheckFlagResponse
 ```
 
 Check flag
@@ -39,30 +39,20 @@ Check flag
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $key = 'key_example'; // string | key
 $check_flag_request_body = new \Schematic\Model\CheckFlagRequestBody(); // \Schematic\Model\CheckFlagRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->checkFlag($key, $check_flag_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->checkFlag($key, $check_flag_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->checkFlag: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->checkFlag: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -72,7 +62,6 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **key** | **string**| key | |
 | **check_flag_request_body** | [**\Schematic\Model\CheckFlagRequestBody**](../Model/CheckFlagRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -94,7 +83,7 @@ try {
 ## `checkFlags()`
 
 ```php
-checkFlags($check_flag_request_body, $x_schematic_environment_id): \Schematic\Model\CheckFlagsResponse
+checkFlags($check_flag_request_body): \Schematic\Model\CheckFlagsResponse
 ```
 
 Check flags
@@ -103,29 +92,19 @@ Check flags
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $check_flag_request_body = new \Schematic\Model\CheckFlagRequestBody(); // \Schematic\Model\CheckFlagRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->checkFlags($check_flag_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->checkFlags($check_flag_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->checkFlags: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->checkFlags: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -134,7 +113,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **check_flag_request_body** | [**\Schematic\Model\CheckFlagRequestBody**](../Model/CheckFlagRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -156,7 +134,7 @@ try {
 ## `countCompaniesAudience()`
 
 ```php
-countCompaniesAudience($audience_request_body, $x_schematic_environment_id): \Schematic\Model\CountCompaniesAudienceResponse
+countCompaniesAudience($audience_request_body): \Schematic\Model\CountCompaniesAudienceResponse
 ```
 
 Count Companies audience
@@ -165,29 +143,19 @@ Count Companies audience
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->countCompaniesAudience($audience_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->countCompaniesAudience($audience_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->countCompaniesAudience: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->countCompaniesAudience: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -196,7 +164,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -218,7 +185,7 @@ try {
 ## `countFlagChecks()`
 
 ```php
-countFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\CountFlagChecksResponse
+countFlagChecks($flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\CountFlagChecksResponse
 ```
 
 Count flag checks
@@ -227,22 +194,12 @@ Count flag checks
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $flag_id = 'flag_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
 $id = 'id_example'; // string
@@ -250,10 +207,10 @@ $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->countFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset);
+    $result = $schematic->FeaturesApi->countFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->countFlagChecks: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->countFlagChecks: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -261,7 +218,6 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **flag_id** | **string**|  | [optional] |
 | **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **id** | **string**|  | [optional] |
@@ -288,7 +244,7 @@ try {
 ## `countUsersAudience()`
 
 ```php
-countUsersAudience($audience_request_body, $x_schematic_environment_id): \Schematic\Model\CountUsersAudienceResponse
+countUsersAudience($audience_request_body): \Schematic\Model\CountUsersAudienceResponse
 ```
 
 Count Users audience
@@ -297,29 +253,19 @@ Count Users audience
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->countUsersAudience($audience_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->countUsersAudience($audience_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->countUsersAudience: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->countUsersAudience: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -328,7 +274,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -350,7 +295,7 @@ try {
 ## `createFeature()`
 
 ```php
-createFeature($create_feature_request_body, $x_schematic_environment_id): \Schematic\Model\CreateFeatureResponse
+createFeature($create_feature_request_body): \Schematic\Model\CreateFeatureResponse
 ```
 
 Create feature
@@ -359,29 +304,19 @@ Create feature
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $create_feature_request_body = new \Schematic\Model\CreateFeatureRequestBody(); // \Schematic\Model\CreateFeatureRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->createFeature($create_feature_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->createFeature($create_feature_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->createFeature: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->createFeature: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -390,7 +325,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **create_feature_request_body** | [**\Schematic\Model\CreateFeatureRequestBody**](../Model/CreateFeatureRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -412,7 +346,7 @@ try {
 ## `createFlag()`
 
 ```php
-createFlag($create_flag_request_body, $x_schematic_environment_id): \Schematic\Model\CreateFlagResponse
+createFlag($create_flag_request_body): \Schematic\Model\CreateFlagResponse
 ```
 
 Create flag
@@ -421,29 +355,19 @@ Create flag
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $create_flag_request_body = new \Schematic\Model\CreateFlagRequestBody(); // \Schematic\Model\CreateFlagRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->createFlag($create_flag_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->createFlag($create_flag_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->createFlag: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->createFlag: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -452,7 +376,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **create_flag_request_body** | [**\Schematic\Model\CreateFlagRequestBody**](../Model/CreateFlagRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -474,7 +397,7 @@ try {
 ## `deleteFeature()`
 
 ```php
-deleteFeature($feature_id, $x_schematic_environment_id): \Schematic\Model\DeleteFeatureResponse
+deleteFeature($feature_id): \Schematic\Model\DeleteFeatureResponse
 ```
 
 Delete feature
@@ -483,29 +406,19 @@ Delete feature
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $feature_id = 'feature_id_example'; // string | feature_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->deleteFeature($feature_id, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->deleteFeature($feature_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->deleteFeature: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->deleteFeature: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -514,7 +427,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **feature_id** | **string**| feature_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -536,7 +448,7 @@ try {
 ## `deleteFlag()`
 
 ```php
-deleteFlag($flag_id, $x_schematic_environment_id): \Schematic\Model\DeleteFlagResponse
+deleteFlag($flag_id): \Schematic\Model\DeleteFlagResponse
 ```
 
 Delete flag
@@ -545,29 +457,19 @@ Delete flag
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $flag_id = 'flag_id_example'; // string | flag_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->deleteFlag($flag_id, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->deleteFlag($flag_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->deleteFlag: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->deleteFlag: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -576,7 +478,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **flag_id** | **string**| flag_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -598,7 +499,7 @@ try {
 ## `getCompaniesAudience()`
 
 ```php
-getCompaniesAudience($audience_request_body, $x_schematic_environment_id): \Schematic\Model\GetCompaniesAudienceResponse
+getCompaniesAudience($audience_request_body): \Schematic\Model\GetCompaniesAudienceResponse
 ```
 
 Get Companies audience
@@ -607,29 +508,19 @@ Get Companies audience
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getCompaniesAudience($audience_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->getCompaniesAudience($audience_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->getCompaniesAudience: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->getCompaniesAudience: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -638,7 +529,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -660,7 +550,7 @@ try {
 ## `getFeature()`
 
 ```php
-getFeature($feature_id, $x_schematic_environment_id): \Schematic\Model\GetFeatureResponse
+getFeature($feature_id): \Schematic\Model\GetFeatureResponse
 ```
 
 Get feature
@@ -669,29 +559,19 @@ Get feature
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $feature_id = 'feature_id_example'; // string | feature_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getFeature($feature_id, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->getFeature($feature_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->getFeature: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->getFeature: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -700,7 +580,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **feature_id** | **string**| feature_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -722,7 +601,7 @@ try {
 ## `getFlag()`
 
 ```php
-getFlag($flag_id, $x_schematic_environment_id): \Schematic\Model\GetFlagResponse
+getFlag($flag_id): \Schematic\Model\GetFlagResponse
 ```
 
 Get flag
@@ -731,29 +610,19 @@ Get flag
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $flag_id = 'flag_id_example'; // string | flag_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getFlag($flag_id, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->getFlag($flag_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->getFlag: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->getFlag: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -762,7 +631,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **flag_id** | **string**| flag_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -784,7 +652,7 @@ try {
 ## `getFlagCheck()`
 
 ```php
-getFlagCheck($flag_check_id, $x_schematic_environment_id): \Schematic\Model\GetFlagCheckResponse
+getFlagCheck($flag_check_id): \Schematic\Model\GetFlagCheckResponse
 ```
 
 Get flag check
@@ -793,29 +661,19 @@ Get flag check
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $flag_check_id = 'flag_check_id_example'; // string | flag_check_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getFlagCheck($flag_check_id, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->getFlagCheck($flag_check_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->getFlagCheck: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->getFlagCheck: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -824,7 +682,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **flag_check_id** | **string**| flag_check_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -846,7 +703,7 @@ try {
 ## `getUsersAudience()`
 
 ```php
-getUsersAudience($audience_request_body, $x_schematic_environment_id): \Schematic\Model\GetUsersAudienceResponse
+getUsersAudience($audience_request_body): \Schematic\Model\GetUsersAudienceResponse
 ```
 
 Get Users audience
@@ -855,29 +712,19 @@ Get Users audience
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getUsersAudience($audience_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->getUsersAudience($audience_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->getUsersAudience: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->getUsersAudience: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -886,7 +733,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -908,7 +754,7 @@ try {
 ## `latestFlagChecks()`
 
 ```php
-latestFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\LatestFlagChecksResponse
+latestFlagChecks($flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\LatestFlagChecksResponse
 ```
 
 Latest flag checks
@@ -917,22 +763,12 @@ Latest flag checks
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $flag_id = 'flag_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
 $id = 'id_example'; // string
@@ -940,10 +776,10 @@ $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->latestFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset);
+    $result = $schematic->FeaturesApi->latestFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->latestFlagChecks: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->latestFlagChecks: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -951,7 +787,6 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **flag_id** | **string**|  | [optional] |
 | **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **id** | **string**|  | [optional] |
@@ -978,7 +813,7 @@ try {
 ## `listFeatures()`
 
 ```php
-listFeatures($x_schematic_environment_id, $limit, $offset): \Schematic\Model\ListFeaturesResponse
+listFeatures($limit, $offset): \Schematic\Model\ListFeaturesResponse
 ```
 
 List features
@@ -987,30 +822,20 @@ List features
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->listFeatures($x_schematic_environment_id, $limit, $offset);
+    $result = $schematic->FeaturesApi->listFeatures($limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->listFeatures: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->listFeatures: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1018,7 +843,6 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -1042,7 +866,7 @@ try {
 ## `listFlagChecks()`
 
 ```php
-listFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\ListFlagChecksResponse
+listFlagChecks($flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\ListFlagChecksResponse
 ```
 
 List flag checks
@@ -1051,22 +875,12 @@ List flag checks
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $flag_id = 'flag_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
 $id = 'id_example'; // string
@@ -1074,10 +888,10 @@ $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->listFlagChecks($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset);
+    $result = $schematic->FeaturesApi->listFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->listFlagChecks: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->listFlagChecks: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1085,7 +899,6 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **flag_id** | **string**|  | [optional] |
 | **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **id** | **string**|  | [optional] |
@@ -1112,7 +925,7 @@ try {
 ## `listFlags()`
 
 ```php
-listFlags($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset): \Schematic\Model\ListFlagsResponse
+listFlags($feature_id, $flag_ids, $limit, $offset): \Schematic\Model\ListFlagsResponse
 ```
 
 List flags
@@ -1121,32 +934,22 @@ List flags
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $feature_id = 'feature_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->listFlags($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset);
+    $result = $schematic->FeaturesApi->listFlags($feature_id, $flag_ids, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->listFlags: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->listFlags: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1154,7 +957,6 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **feature_id** | **string**|  | [optional] |
 | **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -1180,7 +982,7 @@ try {
 ## `rulesFlag()`
 
 ```php
-rulesFlag($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id): \Schematic\Model\RulesFlagResponse
+rulesFlag($flag_id, $update_flag_rules_request_body): \Schematic\Model\RulesFlagResponse
 ```
 
 Rules flag
@@ -1189,30 +991,20 @@ Rules flag
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $flag_id = 'flag_id_example'; // string | flag_id
 $update_flag_rules_request_body = new \Schematic\Model\UpdateFlagRulesRequestBody(); // \Schematic\Model\UpdateFlagRulesRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->rulesFlag($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->rulesFlag($flag_id, $update_flag_rules_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->rulesFlag: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->rulesFlag: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1222,7 +1014,6 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flag_id** | **string**| flag_id | |
 | **update_flag_rules_request_body** | [**\Schematic\Model\UpdateFlagRulesRequestBody**](../Model/UpdateFlagRulesRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -1244,7 +1035,7 @@ try {
 ## `updateFeature()`
 
 ```php
-updateFeature($feature_id, $update_feature_request_body, $x_schematic_environment_id): \Schematic\Model\UpdateFeatureResponse
+updateFeature($feature_id, $update_feature_request_body): \Schematic\Model\UpdateFeatureResponse
 ```
 
 Update feature
@@ -1253,30 +1044,20 @@ Update feature
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $feature_id = 'feature_id_example'; // string | feature_id
 $update_feature_request_body = new \Schematic\Model\UpdateFeatureRequestBody(); // \Schematic\Model\UpdateFeatureRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->updateFeature($feature_id, $update_feature_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->updateFeature($feature_id, $update_feature_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->updateFeature: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->updateFeature: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1286,7 +1067,6 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **feature_id** | **string**| feature_id | |
 | **update_feature_request_body** | [**\Schematic\Model\UpdateFeatureRequestBody**](../Model/UpdateFeatureRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -1308,7 +1088,7 @@ try {
 ## `updateFlag()`
 
 ```php
-updateFlag($flag_id, $create_flag_request_body, $x_schematic_environment_id): \Schematic\Model\UpdateFlagResponse
+updateFlag($flag_id, $create_flag_request_body): \Schematic\Model\UpdateFlagResponse
 ```
 
 Update flag
@@ -1317,30 +1097,20 @@ Update flag
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\FeaturesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $flag_id = 'flag_id_example'; // string | flag_id
 $create_flag_request_body = new \Schematic\Model\CreateFlagRequestBody(); // \Schematic\Model\CreateFlagRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->updateFlag($flag_id, $create_flag_request_body, $x_schematic_environment_id);
+    $result = $schematic->FeaturesApi->updateFlag($flag_id, $create_flag_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FeaturesApi->updateFlag: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->updateFlag: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1350,7 +1120,6 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **flag_id** | **string**| flag_id | |
 | **create_flag_request_body** | [**\Schematic\Model\CreateFlagRequestBody**](../Model/CreateFlagRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 

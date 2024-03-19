@@ -155,16 +155,15 @@ class EntitlementsApi
      * Create company override
      *
      * @param  \Schematic\Model\CreateCompanyOverrideRequestBody $create_company_override_request_body create_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyOverride'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateCompanyOverrideResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createCompanyOverride($create_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyOverride'][0])
+    public function createCompanyOverride($create_company_override_request_body, string $contentType = self::contentTypes['createCompanyOverride'][0])
     {
-        list($response) = $this->createCompanyOverrideWithHttpInfo($create_company_override_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createCompanyOverrideWithHttpInfo($create_company_override_request_body, $contentType);
         return $response;
     }
 
@@ -174,16 +173,15 @@ class EntitlementsApi
      * Create company override
      *
      * @param  \Schematic\Model\CreateCompanyOverrideRequestBody $create_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyOverride'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateCompanyOverrideResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createCompanyOverrideWithHttpInfo($create_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyOverride'][0])
+    public function createCompanyOverrideWithHttpInfo($create_company_override_request_body, string $contentType = self::contentTypes['createCompanyOverride'][0])
     {
-        $request = $this->createCompanyOverrideRequest($create_company_override_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createCompanyOverrideRequest($create_company_override_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -439,15 +437,14 @@ class EntitlementsApi
      * Create company override
      *
      * @param  \Schematic\Model\CreateCompanyOverrideRequestBody $create_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCompanyOverrideAsync($create_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyOverride'][0])
+    public function createCompanyOverrideAsync($create_company_override_request_body, string $contentType = self::contentTypes['createCompanyOverride'][0])
     {
-        return $this->createCompanyOverrideAsyncWithHttpInfo($create_company_override_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createCompanyOverrideAsyncWithHttpInfo($create_company_override_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -461,16 +458,15 @@ class EntitlementsApi
      * Create company override
      *
      * @param  \Schematic\Model\CreateCompanyOverrideRequestBody $create_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCompanyOverrideAsyncWithHttpInfo($create_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyOverride'][0])
+    public function createCompanyOverrideAsyncWithHttpInfo($create_company_override_request_body, string $contentType = self::contentTypes['createCompanyOverride'][0])
     {
         $returnType = '\Schematic\Model\CreateCompanyOverrideResponse';
-        $request = $this->createCompanyOverrideRequest($create_company_override_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createCompanyOverrideRequest($create_company_override_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -512,13 +508,12 @@ class EntitlementsApi
      * Create request for operation 'createCompanyOverride'
      *
      * @param  \Schematic\Model\CreateCompanyOverrideRequestBody $create_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createCompanyOverrideRequest($create_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyOverride'][0])
+    public function createCompanyOverrideRequest($create_company_override_request_body, string $contentType = self::contentTypes['createCompanyOverride'][0])
     {
 
         // verify the required parameter 'create_company_override_request_body' is set
@@ -529,7 +524,6 @@ class EntitlementsApi
         }
 
 
-
         $resourcePath = '/company-overrides';
         $formParams = [];
         $queryParams = [];
@@ -538,10 +532,6 @@ class EntitlementsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -616,16 +606,15 @@ class EntitlementsApi
      * Create plan entitlement
      *
      * @param  \Schematic\Model\CreatePlanEntitlementRequestBody $create_plan_entitlement_request_body create_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreatePlanEntitlementResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createPlanEntitlement($create_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlanEntitlement'][0])
+    public function createPlanEntitlement($create_plan_entitlement_request_body, string $contentType = self::contentTypes['createPlanEntitlement'][0])
     {
-        list($response) = $this->createPlanEntitlementWithHttpInfo($create_plan_entitlement_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createPlanEntitlementWithHttpInfo($create_plan_entitlement_request_body, $contentType);
         return $response;
     }
 
@@ -635,16 +624,15 @@ class EntitlementsApi
      * Create plan entitlement
      *
      * @param  \Schematic\Model\CreatePlanEntitlementRequestBody $create_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreatePlanEntitlementResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPlanEntitlementWithHttpInfo($create_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlanEntitlement'][0])
+    public function createPlanEntitlementWithHttpInfo($create_plan_entitlement_request_body, string $contentType = self::contentTypes['createPlanEntitlement'][0])
     {
-        $request = $this->createPlanEntitlementRequest($create_plan_entitlement_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createPlanEntitlementRequest($create_plan_entitlement_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -900,15 +888,14 @@ class EntitlementsApi
      * Create plan entitlement
      *
      * @param  \Schematic\Model\CreatePlanEntitlementRequestBody $create_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPlanEntitlementAsync($create_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlanEntitlement'][0])
+    public function createPlanEntitlementAsync($create_plan_entitlement_request_body, string $contentType = self::contentTypes['createPlanEntitlement'][0])
     {
-        return $this->createPlanEntitlementAsyncWithHttpInfo($create_plan_entitlement_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createPlanEntitlementAsyncWithHttpInfo($create_plan_entitlement_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -922,16 +909,15 @@ class EntitlementsApi
      * Create plan entitlement
      *
      * @param  \Schematic\Model\CreatePlanEntitlementRequestBody $create_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPlanEntitlementAsyncWithHttpInfo($create_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlanEntitlement'][0])
+    public function createPlanEntitlementAsyncWithHttpInfo($create_plan_entitlement_request_body, string $contentType = self::contentTypes['createPlanEntitlement'][0])
     {
         $returnType = '\Schematic\Model\CreatePlanEntitlementResponse';
-        $request = $this->createPlanEntitlementRequest($create_plan_entitlement_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createPlanEntitlementRequest($create_plan_entitlement_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -973,13 +959,12 @@ class EntitlementsApi
      * Create request for operation 'createPlanEntitlement'
      *
      * @param  \Schematic\Model\CreatePlanEntitlementRequestBody $create_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPlanEntitlementRequest($create_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlanEntitlement'][0])
+    public function createPlanEntitlementRequest($create_plan_entitlement_request_body, string $contentType = self::contentTypes['createPlanEntitlement'][0])
     {
 
         // verify the required parameter 'create_plan_entitlement_request_body' is set
@@ -990,7 +975,6 @@ class EntitlementsApi
         }
 
 
-
         $resourcePath = '/plan-entitlements';
         $formParams = [];
         $queryParams = [];
@@ -999,10 +983,6 @@ class EntitlementsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -1077,16 +1057,15 @@ class EntitlementsApi
      * Delete company override
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyOverride'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeleteCompanyOverrideResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deleteCompanyOverride($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
+    public function deleteCompanyOverride($company_override_id, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
     {
-        list($response) = $this->deleteCompanyOverrideWithHttpInfo($company_override_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->deleteCompanyOverrideWithHttpInfo($company_override_id, $contentType);
         return $response;
     }
 
@@ -1096,16 +1075,15 @@ class EntitlementsApi
      * Delete company override
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyOverride'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeleteCompanyOverrideResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteCompanyOverrideWithHttpInfo($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
+    public function deleteCompanyOverrideWithHttpInfo($company_override_id, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
     {
-        $request = $this->deleteCompanyOverrideRequest($company_override_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteCompanyOverrideRequest($company_override_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1361,15 +1339,14 @@ class EntitlementsApi
      * Delete company override
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompanyOverrideAsync($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
+    public function deleteCompanyOverrideAsync($company_override_id, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
     {
-        return $this->deleteCompanyOverrideAsyncWithHttpInfo($company_override_id, $x_schematic_environment_id, $contentType)
+        return $this->deleteCompanyOverrideAsyncWithHttpInfo($company_override_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1383,16 +1360,15 @@ class EntitlementsApi
      * Delete company override
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompanyOverrideAsyncWithHttpInfo($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
+    public function deleteCompanyOverrideAsyncWithHttpInfo($company_override_id, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
     {
         $returnType = '\Schematic\Model\DeleteCompanyOverrideResponse';
-        $request = $this->deleteCompanyOverrideRequest($company_override_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteCompanyOverrideRequest($company_override_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1434,13 +1410,12 @@ class EntitlementsApi
      * Create request for operation 'deleteCompanyOverride'
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCompanyOverrideRequest($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
+    public function deleteCompanyOverrideRequest($company_override_id, string $contentType = self::contentTypes['deleteCompanyOverride'][0])
     {
 
         // verify the required parameter 'company_override_id' is set
@@ -1451,7 +1426,6 @@ class EntitlementsApi
         }
 
 
-
         $resourcePath = '/company-overrides/{company_override_id}';
         $formParams = [];
         $queryParams = [];
@@ -1460,10 +1434,6 @@ class EntitlementsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($company_override_id !== null) {
@@ -1539,16 +1509,15 @@ class EntitlementsApi
      * Delete plan entitlement
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeletePlanEntitlementResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deletePlanEntitlement($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
+    public function deletePlanEntitlement($plan_entitlement_id, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
     {
-        list($response) = $this->deletePlanEntitlementWithHttpInfo($plan_entitlement_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->deletePlanEntitlementWithHttpInfo($plan_entitlement_id, $contentType);
         return $response;
     }
 
@@ -1558,16 +1527,15 @@ class EntitlementsApi
      * Delete plan entitlement
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeletePlanEntitlementResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePlanEntitlementWithHttpInfo($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
+    public function deletePlanEntitlementWithHttpInfo($plan_entitlement_id, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
     {
-        $request = $this->deletePlanEntitlementRequest($plan_entitlement_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deletePlanEntitlementRequest($plan_entitlement_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1823,15 +1791,14 @@ class EntitlementsApi
      * Delete plan entitlement
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePlanEntitlementAsync($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
+    public function deletePlanEntitlementAsync($plan_entitlement_id, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
     {
-        return $this->deletePlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $x_schematic_environment_id, $contentType)
+        return $this->deletePlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1845,16 +1812,15 @@ class EntitlementsApi
      * Delete plan entitlement
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
+    public function deletePlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
     {
         $returnType = '\Schematic\Model\DeletePlanEntitlementResponse';
-        $request = $this->deletePlanEntitlementRequest($plan_entitlement_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deletePlanEntitlementRequest($plan_entitlement_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1896,13 +1862,12 @@ class EntitlementsApi
      * Create request for operation 'deletePlanEntitlement'
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePlanEntitlementRequest($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
+    public function deletePlanEntitlementRequest($plan_entitlement_id, string $contentType = self::contentTypes['deletePlanEntitlement'][0])
     {
 
         // verify the required parameter 'plan_entitlement_id' is set
@@ -1913,7 +1878,6 @@ class EntitlementsApi
         }
 
 
-
         $resourcePath = '/plan-entitlements/{plan_entitlement_id}';
         $formParams = [];
         $queryParams = [];
@@ -1922,10 +1886,6 @@ class EntitlementsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($plan_entitlement_id !== null) {
@@ -2001,16 +1961,15 @@ class EntitlementsApi
      * Get company override
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyOverride'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetCompanyOverrideResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getCompanyOverride($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompanyOverride'][0])
+    public function getCompanyOverride($company_override_id, string $contentType = self::contentTypes['getCompanyOverride'][0])
     {
-        list($response) = $this->getCompanyOverrideWithHttpInfo($company_override_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getCompanyOverrideWithHttpInfo($company_override_id, $contentType);
         return $response;
     }
 
@@ -2020,16 +1979,15 @@ class EntitlementsApi
      * Get company override
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyOverride'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetCompanyOverrideResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCompanyOverrideWithHttpInfo($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompanyOverride'][0])
+    public function getCompanyOverrideWithHttpInfo($company_override_id, string $contentType = self::contentTypes['getCompanyOverride'][0])
     {
-        $request = $this->getCompanyOverrideRequest($company_override_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getCompanyOverrideRequest($company_override_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2285,15 +2243,14 @@ class EntitlementsApi
      * Get company override
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyOverrideAsync($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompanyOverride'][0])
+    public function getCompanyOverrideAsync($company_override_id, string $contentType = self::contentTypes['getCompanyOverride'][0])
     {
-        return $this->getCompanyOverrideAsyncWithHttpInfo($company_override_id, $x_schematic_environment_id, $contentType)
+        return $this->getCompanyOverrideAsyncWithHttpInfo($company_override_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2307,16 +2264,15 @@ class EntitlementsApi
      * Get company override
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyOverrideAsyncWithHttpInfo($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompanyOverride'][0])
+    public function getCompanyOverrideAsyncWithHttpInfo($company_override_id, string $contentType = self::contentTypes['getCompanyOverride'][0])
     {
         $returnType = '\Schematic\Model\GetCompanyOverrideResponse';
-        $request = $this->getCompanyOverrideRequest($company_override_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getCompanyOverrideRequest($company_override_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2358,13 +2314,12 @@ class EntitlementsApi
      * Create request for operation 'getCompanyOverride'
      *
      * @param  string $company_override_id company_override_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCompanyOverrideRequest($company_override_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompanyOverride'][0])
+    public function getCompanyOverrideRequest($company_override_id, string $contentType = self::contentTypes['getCompanyOverride'][0])
     {
 
         // verify the required parameter 'company_override_id' is set
@@ -2375,7 +2330,6 @@ class EntitlementsApi
         }
 
 
-
         $resourcePath = '/company-overrides/{company_override_id}';
         $formParams = [];
         $queryParams = [];
@@ -2384,10 +2338,6 @@ class EntitlementsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($company_override_id !== null) {
@@ -2463,16 +2413,15 @@ class EntitlementsApi
      * Get plan entitlement
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetPlanEntitlementResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getPlanEntitlement($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlanEntitlement'][0])
+    public function getPlanEntitlement($plan_entitlement_id, string $contentType = self::contentTypes['getPlanEntitlement'][0])
     {
-        list($response) = $this->getPlanEntitlementWithHttpInfo($plan_entitlement_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getPlanEntitlementWithHttpInfo($plan_entitlement_id, $contentType);
         return $response;
     }
 
@@ -2482,16 +2431,15 @@ class EntitlementsApi
      * Get plan entitlement
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetPlanEntitlementResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPlanEntitlementWithHttpInfo($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlanEntitlement'][0])
+    public function getPlanEntitlementWithHttpInfo($plan_entitlement_id, string $contentType = self::contentTypes['getPlanEntitlement'][0])
     {
-        $request = $this->getPlanEntitlementRequest($plan_entitlement_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getPlanEntitlementRequest($plan_entitlement_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2747,15 +2695,14 @@ class EntitlementsApi
      * Get plan entitlement
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPlanEntitlementAsync($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlanEntitlement'][0])
+    public function getPlanEntitlementAsync($plan_entitlement_id, string $contentType = self::contentTypes['getPlanEntitlement'][0])
     {
-        return $this->getPlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $x_schematic_environment_id, $contentType)
+        return $this->getPlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2769,16 +2716,15 @@ class EntitlementsApi
      * Get plan entitlement
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlanEntitlement'][0])
+    public function getPlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, string $contentType = self::contentTypes['getPlanEntitlement'][0])
     {
         $returnType = '\Schematic\Model\GetPlanEntitlementResponse';
-        $request = $this->getPlanEntitlementRequest($plan_entitlement_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getPlanEntitlementRequest($plan_entitlement_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2820,13 +2766,12 @@ class EntitlementsApi
      * Create request for operation 'getPlanEntitlement'
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPlanEntitlementRequest($plan_entitlement_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlanEntitlement'][0])
+    public function getPlanEntitlementRequest($plan_entitlement_id, string $contentType = self::contentTypes['getPlanEntitlement'][0])
     {
 
         // verify the required parameter 'plan_entitlement_id' is set
@@ -2837,7 +2782,6 @@ class EntitlementsApi
         }
 
 
-
         $resourcePath = '/plan-entitlements/{plan_entitlement_id}';
         $formParams = [];
         $queryParams = [];
@@ -2846,10 +2790,6 @@ class EntitlementsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($plan_entitlement_id !== null) {
@@ -2924,7 +2864,6 @@ class EntitlementsApi
      *
      * List company overrides
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id company_id (optional)
      * @param  string $feature_id feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -2935,9 +2874,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompanyOverridesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanyOverrides($x_schematic_environment_id = null, $company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
+    public function listCompanyOverrides($company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
     {
-        list($response) = $this->listCompanyOverridesWithHttpInfo($x_schematic_environment_id, $company_id, $feature_id, $limit, $offset, $contentType);
+        list($response) = $this->listCompanyOverridesWithHttpInfo($company_id, $feature_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2946,7 +2885,6 @@ class EntitlementsApi
      *
      * List company overrides
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -2957,9 +2895,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompanyOverridesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompanyOverridesWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
+    public function listCompanyOverridesWithHttpInfo($company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
     {
-        $request = $this->listCompanyOverridesRequest($x_schematic_environment_id, $company_id, $feature_id, $limit, $offset, $contentType);
+        $request = $this->listCompanyOverridesRequest($company_id, $feature_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3214,7 +3152,6 @@ class EntitlementsApi
      *
      * List company overrides
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3224,9 +3161,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyOverridesAsync($x_schematic_environment_id = null, $company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
+    public function listCompanyOverridesAsync($company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
     {
-        return $this->listCompanyOverridesAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $feature_id, $limit, $offset, $contentType)
+        return $this->listCompanyOverridesAsyncWithHttpInfo($company_id, $feature_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3239,7 +3176,6 @@ class EntitlementsApi
      *
      * List company overrides
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3249,10 +3185,10 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyOverridesAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
+    public function listCompanyOverridesAsyncWithHttpInfo($company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
     {
         $returnType = '\Schematic\Model\ListCompanyOverridesResponse';
-        $request = $this->listCompanyOverridesRequest($x_schematic_environment_id, $company_id, $feature_id, $limit, $offset, $contentType);
+        $request = $this->listCompanyOverridesRequest($company_id, $feature_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3293,7 +3229,6 @@ class EntitlementsApi
     /**
      * Create request for operation 'listCompanyOverrides'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3303,9 +3238,8 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompanyOverridesRequest($x_schematic_environment_id = null, $company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
+    public function listCompanyOverridesRequest($company_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyOverrides'][0])
     {
-
 
 
 
@@ -3356,10 +3290,6 @@ class EntitlementsApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -3426,7 +3356,6 @@ class EntitlementsApi
      *
      * List plan entitlements
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $plan_id plan_id (optional)
      * @param  string $feature_id feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3437,9 +3366,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListPlanEntitlementsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listPlanEntitlements($x_schematic_environment_id = null, $plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
+    public function listPlanEntitlements($plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
     {
-        list($response) = $this->listPlanEntitlementsWithHttpInfo($x_schematic_environment_id, $plan_id, $feature_id, $limit, $offset, $contentType);
+        list($response) = $this->listPlanEntitlementsWithHttpInfo($plan_id, $feature_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3448,7 +3377,6 @@ class EntitlementsApi
      *
      * List plan entitlements
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $plan_id (optional)
      * @param  string $feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3459,9 +3387,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListPlanEntitlementsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listPlanEntitlementsWithHttpInfo($x_schematic_environment_id = null, $plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
+    public function listPlanEntitlementsWithHttpInfo($plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
     {
-        $request = $this->listPlanEntitlementsRequest($x_schematic_environment_id, $plan_id, $feature_id, $limit, $offset, $contentType);
+        $request = $this->listPlanEntitlementsRequest($plan_id, $feature_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3716,7 +3644,6 @@ class EntitlementsApi
      *
      * List plan entitlements
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $plan_id (optional)
      * @param  string $feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3726,9 +3653,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlanEntitlementsAsync($x_schematic_environment_id = null, $plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
+    public function listPlanEntitlementsAsync($plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
     {
-        return $this->listPlanEntitlementsAsyncWithHttpInfo($x_schematic_environment_id, $plan_id, $feature_id, $limit, $offset, $contentType)
+        return $this->listPlanEntitlementsAsyncWithHttpInfo($plan_id, $feature_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3741,7 +3668,6 @@ class EntitlementsApi
      *
      * List plan entitlements
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $plan_id (optional)
      * @param  string $feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3751,10 +3677,10 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlanEntitlementsAsyncWithHttpInfo($x_schematic_environment_id = null, $plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
+    public function listPlanEntitlementsAsyncWithHttpInfo($plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
     {
         $returnType = '\Schematic\Model\ListPlanEntitlementsResponse';
-        $request = $this->listPlanEntitlementsRequest($x_schematic_environment_id, $plan_id, $feature_id, $limit, $offset, $contentType);
+        $request = $this->listPlanEntitlementsRequest($plan_id, $feature_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3795,7 +3721,6 @@ class EntitlementsApi
     /**
      * Create request for operation 'listPlanEntitlements'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $plan_id (optional)
      * @param  string $feature_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3805,9 +3730,8 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listPlanEntitlementsRequest($x_schematic_environment_id = null, $plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
+    public function listPlanEntitlementsRequest($plan_id = null, $feature_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanEntitlements'][0])
     {
-
 
 
 
@@ -3858,10 +3782,6 @@ class EntitlementsApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -3930,16 +3850,15 @@ class EntitlementsApi
      *
      * @param  string $company_override_id company_override_id (required)
      * @param  \Schematic\Model\UpdateCompanyOverrideRequestBody $update_company_override_request_body update_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyOverride'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\UpdateCompanyOverrideResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function updateCompanyOverride($company_override_id, $update_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateCompanyOverride'][0])
+    public function updateCompanyOverride($company_override_id, $update_company_override_request_body, string $contentType = self::contentTypes['updateCompanyOverride'][0])
     {
-        list($response) = $this->updateCompanyOverrideWithHttpInfo($company_override_id, $update_company_override_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->updateCompanyOverrideWithHttpInfo($company_override_id, $update_company_override_request_body, $contentType);
         return $response;
     }
 
@@ -3950,16 +3869,15 @@ class EntitlementsApi
      *
      * @param  string $company_override_id company_override_id (required)
      * @param  \Schematic\Model\UpdateCompanyOverrideRequestBody $update_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyOverride'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\UpdateCompanyOverrideResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateCompanyOverrideWithHttpInfo($company_override_id, $update_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateCompanyOverride'][0])
+    public function updateCompanyOverrideWithHttpInfo($company_override_id, $update_company_override_request_body, string $contentType = self::contentTypes['updateCompanyOverride'][0])
     {
-        $request = $this->updateCompanyOverrideRequest($company_override_id, $update_company_override_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updateCompanyOverrideRequest($company_override_id, $update_company_override_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4251,15 +4169,14 @@ class EntitlementsApi
      *
      * @param  string $company_override_id company_override_id (required)
      * @param  \Schematic\Model\UpdateCompanyOverrideRequestBody $update_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateCompanyOverrideAsync($company_override_id, $update_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateCompanyOverride'][0])
+    public function updateCompanyOverrideAsync($company_override_id, $update_company_override_request_body, string $contentType = self::contentTypes['updateCompanyOverride'][0])
     {
-        return $this->updateCompanyOverrideAsyncWithHttpInfo($company_override_id, $update_company_override_request_body, $x_schematic_environment_id, $contentType)
+        return $this->updateCompanyOverrideAsyncWithHttpInfo($company_override_id, $update_company_override_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4274,16 +4191,15 @@ class EntitlementsApi
      *
      * @param  string $company_override_id company_override_id (required)
      * @param  \Schematic\Model\UpdateCompanyOverrideRequestBody $update_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateCompanyOverrideAsyncWithHttpInfo($company_override_id, $update_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateCompanyOverride'][0])
+    public function updateCompanyOverrideAsyncWithHttpInfo($company_override_id, $update_company_override_request_body, string $contentType = self::contentTypes['updateCompanyOverride'][0])
     {
         $returnType = '\Schematic\Model\UpdateCompanyOverrideResponse';
-        $request = $this->updateCompanyOverrideRequest($company_override_id, $update_company_override_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updateCompanyOverrideRequest($company_override_id, $update_company_override_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4326,13 +4242,12 @@ class EntitlementsApi
      *
      * @param  string $company_override_id company_override_id (required)
      * @param  \Schematic\Model\UpdateCompanyOverrideRequestBody $update_company_override_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyOverride'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateCompanyOverrideRequest($company_override_id, $update_company_override_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateCompanyOverride'][0])
+    public function updateCompanyOverrideRequest($company_override_id, $update_company_override_request_body, string $contentType = self::contentTypes['updateCompanyOverride'][0])
     {
 
         // verify the required parameter 'company_override_id' is set
@@ -4350,7 +4265,6 @@ class EntitlementsApi
         }
 
 
-
         $resourcePath = '/company-overrides/{company_override_id}';
         $formParams = [];
         $queryParams = [];
@@ -4359,10 +4273,6 @@ class EntitlementsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($company_override_id !== null) {
@@ -4446,16 +4356,15 @@ class EntitlementsApi
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
      * @param  \Schematic\Model\UpdatePlanEntitlementRequestBody $update_plan_entitlement_request_body update_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\UpdatePlanEntitlementResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function updatePlanEntitlement($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
+    public function updatePlanEntitlement($plan_entitlement_id, $update_plan_entitlement_request_body, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
     {
-        list($response) = $this->updatePlanEntitlementWithHttpInfo($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->updatePlanEntitlementWithHttpInfo($plan_entitlement_id, $update_plan_entitlement_request_body, $contentType);
         return $response;
     }
 
@@ -4466,16 +4375,15 @@ class EntitlementsApi
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
      * @param  \Schematic\Model\UpdatePlanEntitlementRequestBody $update_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\UpdatePlanEntitlementResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePlanEntitlementWithHttpInfo($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
+    public function updatePlanEntitlementWithHttpInfo($plan_entitlement_id, $update_plan_entitlement_request_body, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
     {
-        $request = $this->updatePlanEntitlementRequest($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updatePlanEntitlementRequest($plan_entitlement_id, $update_plan_entitlement_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4767,15 +4675,14 @@ class EntitlementsApi
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
      * @param  \Schematic\Model\UpdatePlanEntitlementRequestBody $update_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePlanEntitlementAsync($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
+    public function updatePlanEntitlementAsync($plan_entitlement_id, $update_plan_entitlement_request_body, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
     {
-        return $this->updatePlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id, $contentType)
+        return $this->updatePlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $update_plan_entitlement_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4790,16 +4697,15 @@ class EntitlementsApi
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
      * @param  \Schematic\Model\UpdatePlanEntitlementRequestBody $update_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
+    public function updatePlanEntitlementAsyncWithHttpInfo($plan_entitlement_id, $update_plan_entitlement_request_body, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
     {
         $returnType = '\Schematic\Model\UpdatePlanEntitlementResponse';
-        $request = $this->updatePlanEntitlementRequest($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updatePlanEntitlementRequest($plan_entitlement_id, $update_plan_entitlement_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4842,13 +4748,12 @@ class EntitlementsApi
      *
      * @param  string $plan_entitlement_id plan_entitlement_id (required)
      * @param  \Schematic\Model\UpdatePlanEntitlementRequestBody $update_plan_entitlement_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanEntitlement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePlanEntitlementRequest($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
+    public function updatePlanEntitlementRequest($plan_entitlement_id, $update_plan_entitlement_request_body, string $contentType = self::contentTypes['updatePlanEntitlement'][0])
     {
 
         // verify the required parameter 'plan_entitlement_id' is set
@@ -4866,7 +4771,6 @@ class EntitlementsApi
         }
 
 
-
         $resourcePath = '/plan-entitlements/{plan_entitlement_id}';
         $formParams = [];
         $queryParams = [];
@@ -4875,10 +4779,6 @@ class EntitlementsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($plan_entitlement_id !== null) {

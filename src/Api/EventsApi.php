@@ -151,7 +151,6 @@ class EventsApi
      *
      * Count event types
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -161,9 +160,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countEventTypes($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypes($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
-        list($response) = $this->countEventTypesWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType);
+        list($response) = $this->countEventTypesWithHttpInfo($q, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -172,7 +171,6 @@ class EventsApi
      *
      * Count event types
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -182,9 +180,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countEventTypesWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypesWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
-        $request = $this->countEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
+        $request = $this->countEventTypesRequest($q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -439,7 +437,6 @@ class EventsApi
      *
      * Count event types
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -448,9 +445,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventTypesAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypesAsync($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
-        return $this->countEventTypesAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType)
+        return $this->countEventTypesAsyncWithHttpInfo($q, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -463,7 +460,6 @@ class EventsApi
      *
      * Count event types
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -472,10 +468,10 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventTypesAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypesAsyncWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
         $returnType = '\Schematic\Model\CountEventTypesResponse';
-        $request = $this->countEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
+        $request = $this->countEventTypesRequest($q, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -516,7 +512,6 @@ class EventsApi
     /**
      * Create request for operation 'countEventTypes'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -525,9 +520,8 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countEventTypesRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventTypesRequest($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
     {
-
 
 
 
@@ -568,10 +562,6 @@ class EventsApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -638,7 +628,6 @@ class EventsApi
      *
      * Count events
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id company_id (optional)
      * @param  string $user_id user_id (optional)
      * @param  string $event_subtype event_subtype (optional)
@@ -650,9 +639,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countEvents($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEvents($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
-        list($response) = $this->countEventsWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
+        list($response) = $this->countEventsWithHttpInfo($company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -661,7 +650,6 @@ class EventsApi
      *
      * Count events
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  string $event_subtype (optional)
@@ -673,9 +661,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countEventsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEventsWithHttpInfo($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
-        $request = $this->countEventsRequest($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
+        $request = $this->countEventsRequest($company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -930,7 +918,6 @@ class EventsApi
      *
      * Count events
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  string $event_subtype (optional)
@@ -941,9 +928,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventsAsync($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEventsAsync($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
-        return $this->countEventsAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset, $contentType)
+        return $this->countEventsAsyncWithHttpInfo($company_id, $user_id, $event_subtype, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -956,7 +943,6 @@ class EventsApi
      *
      * Count events
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  string $event_subtype (optional)
@@ -967,10 +953,10 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEventsAsyncWithHttpInfo($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
         $returnType = '\Schematic\Model\CountEventsResponse';
-        $request = $this->countEventsRequest($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
+        $request = $this->countEventsRequest($company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1011,7 +997,6 @@ class EventsApi
     /**
      * Create request for operation 'countEvents'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  string $event_subtype (optional)
@@ -1022,9 +1007,8 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countEventsRequest($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
+    public function countEventsRequest($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEvents'][0])
     {
-
 
 
 
@@ -1085,10 +1069,6 @@ class EventsApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -1156,16 +1136,15 @@ class EventsApi
      * Create event
      *
      * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body create_event_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateEventResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createEvent($create_event_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEvent'][0])
+    public function createEvent($create_event_request_body, string $contentType = self::contentTypes['createEvent'][0])
     {
-        list($response) = $this->createEventWithHttpInfo($create_event_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createEventWithHttpInfo($create_event_request_body, $contentType);
         return $response;
     }
 
@@ -1175,16 +1154,15 @@ class EventsApi
      * Create event
      *
      * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateEventResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEventWithHttpInfo($create_event_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEvent'][0])
+    public function createEventWithHttpInfo($create_event_request_body, string $contentType = self::contentTypes['createEvent'][0])
     {
-        $request = $this->createEventRequest($create_event_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createEventRequest($create_event_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1440,15 +1418,14 @@ class EventsApi
      * Create event
      *
      * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEventAsync($create_event_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEvent'][0])
+    public function createEventAsync($create_event_request_body, string $contentType = self::contentTypes['createEvent'][0])
     {
-        return $this->createEventAsyncWithHttpInfo($create_event_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createEventAsyncWithHttpInfo($create_event_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1462,16 +1439,15 @@ class EventsApi
      * Create event
      *
      * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEventAsyncWithHttpInfo($create_event_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEvent'][0])
+    public function createEventAsyncWithHttpInfo($create_event_request_body, string $contentType = self::contentTypes['createEvent'][0])
     {
         $returnType = '\Schematic\Model\CreateEventResponse';
-        $request = $this->createEventRequest($create_event_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createEventRequest($create_event_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1513,13 +1489,12 @@ class EventsApi
      * Create request for operation 'createEvent'
      *
      * @param  \Schematic\Model\CreateEventRequestBody $create_event_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEvent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEventRequest($create_event_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEvent'][0])
+    public function createEventRequest($create_event_request_body, string $contentType = self::contentTypes['createEvent'][0])
     {
 
         // verify the required parameter 'create_event_request_body' is set
@@ -1530,7 +1505,6 @@ class EventsApi
         }
 
 
-
         $resourcePath = '/events';
         $formParams = [];
         $queryParams = [];
@@ -1539,10 +1513,6 @@ class EventsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -1617,16 +1587,15 @@ class EventsApi
      * Get event
      *
      * @param  string $event_id event_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEvent'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetEventResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getEvent($event_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEvent'][0])
+    public function getEvent($event_id, string $contentType = self::contentTypes['getEvent'][0])
     {
-        list($response) = $this->getEventWithHttpInfo($event_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getEventWithHttpInfo($event_id, $contentType);
         return $response;
     }
 
@@ -1636,16 +1605,15 @@ class EventsApi
      * Get event
      *
      * @param  string $event_id event_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEvent'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetEventResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEventWithHttpInfo($event_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEvent'][0])
+    public function getEventWithHttpInfo($event_id, string $contentType = self::contentTypes['getEvent'][0])
     {
-        $request = $this->getEventRequest($event_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getEventRequest($event_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1901,15 +1869,14 @@ class EventsApi
      * Get event
      *
      * @param  string $event_id event_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEvent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEventAsync($event_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEvent'][0])
+    public function getEventAsync($event_id, string $contentType = self::contentTypes['getEvent'][0])
     {
-        return $this->getEventAsyncWithHttpInfo($event_id, $x_schematic_environment_id, $contentType)
+        return $this->getEventAsyncWithHttpInfo($event_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1923,16 +1890,15 @@ class EventsApi
      * Get event
      *
      * @param  string $event_id event_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEvent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEventAsyncWithHttpInfo($event_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEvent'][0])
+    public function getEventAsyncWithHttpInfo($event_id, string $contentType = self::contentTypes['getEvent'][0])
     {
         $returnType = '\Schematic\Model\GetEventResponse';
-        $request = $this->getEventRequest($event_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getEventRequest($event_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1974,13 +1940,12 @@ class EventsApi
      * Create request for operation 'getEvent'
      *
      * @param  string $event_id event_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEvent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEventRequest($event_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEvent'][0])
+    public function getEventRequest($event_id, string $contentType = self::contentTypes['getEvent'][0])
     {
 
         // verify the required parameter 'event_id' is set
@@ -1991,7 +1956,6 @@ class EventsApi
         }
 
 
-
         $resourcePath = '/events/{event_id}';
         $formParams = [];
         $queryParams = [];
@@ -2000,10 +1964,6 @@ class EventsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($event_id !== null) {
@@ -2079,16 +2039,15 @@ class EventsApi
      * Get event type
      *
      * @param  string $key key (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetEventTypeResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getEventType($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventType($key, string $contentType = self::contentTypes['getEventType'][0])
     {
-        list($response) = $this->getEventTypeWithHttpInfo($key, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getEventTypeWithHttpInfo($key, $contentType);
         return $response;
     }
 
@@ -2098,16 +2057,15 @@ class EventsApi
      * Get event type
      *
      * @param  string $key key (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetEventTypeResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEventTypeWithHttpInfo($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventTypeWithHttpInfo($key, string $contentType = self::contentTypes['getEventType'][0])
     {
-        $request = $this->getEventTypeRequest($key, $x_schematic_environment_id, $contentType);
+        $request = $this->getEventTypeRequest($key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2363,15 +2321,14 @@ class EventsApi
      * Get event type
      *
      * @param  string $key key (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEventTypeAsync($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventTypeAsync($key, string $contentType = self::contentTypes['getEventType'][0])
     {
-        return $this->getEventTypeAsyncWithHttpInfo($key, $x_schematic_environment_id, $contentType)
+        return $this->getEventTypeAsyncWithHttpInfo($key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2385,16 +2342,15 @@ class EventsApi
      * Get event type
      *
      * @param  string $key key (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEventTypeAsyncWithHttpInfo($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventTypeAsyncWithHttpInfo($key, string $contentType = self::contentTypes['getEventType'][0])
     {
         $returnType = '\Schematic\Model\GetEventTypeResponse';
-        $request = $this->getEventTypeRequest($key, $x_schematic_environment_id, $contentType);
+        $request = $this->getEventTypeRequest($key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2436,13 +2392,12 @@ class EventsApi
      * Create request for operation 'getEventType'
      *
      * @param  string $key key (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEventTypeRequest($key, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventTypeRequest($key, string $contentType = self::contentTypes['getEventType'][0])
     {
 
         // verify the required parameter 'key' is set
@@ -2453,7 +2408,6 @@ class EventsApi
         }
 
 
-
         $resourcePath = '/event-types/{key}';
         $formParams = [];
         $queryParams = [];
@@ -2462,10 +2416,6 @@ class EventsApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($key !== null) {
@@ -2540,7 +2490,6 @@ class EventsApi
      *
      * List event types
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2550,9 +2499,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listEventTypes($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypes($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
-        list($response) = $this->listEventTypesWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType);
+        list($response) = $this->listEventTypesWithHttpInfo($q, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2561,7 +2510,6 @@ class EventsApi
      *
      * List event types
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2571,9 +2519,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listEventTypesWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypesWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
-        $request = $this->listEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
+        $request = $this->listEventTypesRequest($q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2828,7 +2776,6 @@ class EventsApi
      *
      * List event types
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2837,9 +2784,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventTypesAsync($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypesAsync($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
-        return $this->listEventTypesAsyncWithHttpInfo($x_schematic_environment_id, $q, $limit, $offset, $contentType)
+        return $this->listEventTypesAsyncWithHttpInfo($q, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2852,7 +2799,6 @@ class EventsApi
      *
      * List event types
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2861,10 +2807,10 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventTypesAsyncWithHttpInfo($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypesAsyncWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
         $returnType = '\Schematic\Model\ListEventTypesResponse';
-        $request = $this->listEventTypesRequest($x_schematic_environment_id, $q, $limit, $offset, $contentType);
+        $request = $this->listEventTypesRequest($q, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2905,7 +2851,6 @@ class EventsApi
     /**
      * Create request for operation 'listEventTypes'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2914,9 +2859,8 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listEventTypesRequest($x_schematic_environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function listEventTypesRequest($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
     {
-
 
 
 
@@ -2957,10 +2901,6 @@ class EventsApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -3027,7 +2967,6 @@ class EventsApi
      *
      * List events
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id company_id (optional)
      * @param  string $user_id user_id (optional)
      * @param  string $event_subtype event_subtype (optional)
@@ -3039,9 +2978,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listEvents($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEvents($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        list($response) = $this->listEventsWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
+        list($response) = $this->listEventsWithHttpInfo($company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3050,7 +2989,6 @@ class EventsApi
      *
      * List events
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  string $event_subtype (optional)
@@ -3062,9 +3000,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listEventsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsWithHttpInfo($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        $request = $this->listEventsRequest($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
+        $request = $this->listEventsRequest($company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3319,7 +3257,6 @@ class EventsApi
      *
      * List events
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  string $event_subtype (optional)
@@ -3330,9 +3267,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventsAsync($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsAsync($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        return $this->listEventsAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset, $contentType)
+        return $this->listEventsAsyncWithHttpInfo($company_id, $user_id, $event_subtype, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3345,7 +3282,6 @@ class EventsApi
      *
      * List events
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  string $event_subtype (optional)
@@ -3356,10 +3292,10 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsAsyncWithHttpInfo($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
         $returnType = '\Schematic\Model\ListEventsResponse';
-        $request = $this->listEventsRequest($x_schematic_environment_id, $company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
+        $request = $this->listEventsRequest($company_id, $user_id, $event_subtype, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3400,7 +3336,6 @@ class EventsApi
     /**
      * Create request for operation 'listEvents'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  string $event_subtype (optional)
@@ -3411,9 +3346,8 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listEventsRequest($x_schematic_environment_id = null, $company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsRequest($company_id = null, $user_id = null, $event_subtype = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-
 
 
 
@@ -3474,10 +3408,6 @@ class EventsApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -3544,7 +3474,6 @@ class EventsApi
      *
      * List metric counts
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time start_time (optional)
      * @param  \DateTime $end_time end_time (optional)
      * @param  string $event_subtype event_subtype (optional)
@@ -3561,9 +3490,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListMetricCountsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listMetricCounts($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCounts($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
-        list($response) = $this->listMetricCountsWithHttpInfo($x_schematic_environment_id, $start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $grouping, $contentType);
+        list($response) = $this->listMetricCountsWithHttpInfo($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $grouping, $contentType);
         return $response;
     }
 
@@ -3572,7 +3501,6 @@ class EventsApi
      *
      * List metric counts
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
      * @param  string $event_subtype (optional)
@@ -3589,9 +3517,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListMetricCountsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listMetricCountsWithHttpInfo($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCountsWithHttpInfo($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
-        $request = $this->listMetricCountsRequest($x_schematic_environment_id, $start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $grouping, $contentType);
+        $request = $this->listMetricCountsRequest($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $grouping, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3846,7 +3774,6 @@ class EventsApi
      *
      * List metric counts
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
      * @param  string $event_subtype (optional)
@@ -3862,9 +3789,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMetricCountsAsync($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCountsAsync($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
-        return $this->listMetricCountsAsyncWithHttpInfo($x_schematic_environment_id, $start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $grouping, $contentType)
+        return $this->listMetricCountsAsyncWithHttpInfo($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $grouping, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3877,7 +3804,6 @@ class EventsApi
      *
      * List metric counts
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
      * @param  string $event_subtype (optional)
@@ -3893,10 +3819,10 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMetricCountsAsyncWithHttpInfo($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCountsAsyncWithHttpInfo($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
         $returnType = '\Schematic\Model\ListMetricCountsResponse';
-        $request = $this->listMetricCountsRequest($x_schematic_environment_id, $start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $grouping, $contentType);
+        $request = $this->listMetricCountsRequest($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $grouping, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3937,7 +3863,6 @@ class EventsApi
     /**
      * Create request for operation 'listMetricCounts'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
      * @param  string $event_subtype (optional)
@@ -3953,9 +3878,8 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listMetricCountsRequest($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
+    public function listMetricCountsRequest($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, $grouping = null, string $contentType = self::contentTypes['listMetricCounts'][0])
     {
-
 
 
 
@@ -4066,10 +3990,6 @@ class EventsApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -4136,7 +4056,6 @@ class EventsApi
      *
      * List metric counts hourly
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time start_time (optional)
      * @param  \DateTime $end_time end_time (optional)
      * @param  string $event_subtype event_subtype (optional)
@@ -4152,9 +4071,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListMetricCountsHourlyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listMetricCountsHourly($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourly($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
-        list($response) = $this->listMetricCountsHourlyWithHttpInfo($x_schematic_environment_id, $start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType);
+        list($response) = $this->listMetricCountsHourlyWithHttpInfo($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -4163,7 +4082,6 @@ class EventsApi
      *
      * List metric counts hourly
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
      * @param  string $event_subtype (optional)
@@ -4179,9 +4097,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListMetricCountsHourlyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listMetricCountsHourlyWithHttpInfo($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourlyWithHttpInfo($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
-        $request = $this->listMetricCountsHourlyRequest($x_schematic_environment_id, $start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType);
+        $request = $this->listMetricCountsHourlyRequest($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4436,7 +4354,6 @@ class EventsApi
      *
      * List metric counts hourly
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
      * @param  string $event_subtype (optional)
@@ -4451,9 +4368,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMetricCountsHourlyAsync($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourlyAsync($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
-        return $this->listMetricCountsHourlyAsyncWithHttpInfo($x_schematic_environment_id, $start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType)
+        return $this->listMetricCountsHourlyAsyncWithHttpInfo($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4466,7 +4383,6 @@ class EventsApi
      *
      * List metric counts hourly
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
      * @param  string $event_subtype (optional)
@@ -4481,10 +4397,10 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMetricCountsHourlyAsyncWithHttpInfo($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourlyAsyncWithHttpInfo($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
         $returnType = '\Schematic\Model\ListMetricCountsHourlyResponse';
-        $request = $this->listMetricCountsHourlyRequest($x_schematic_environment_id, $start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType);
+        $request = $this->listMetricCountsHourlyRequest($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4525,7 +4441,6 @@ class EventsApi
     /**
      * Create request for operation 'listMetricCountsHourly'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  \DateTime $start_time (optional)
      * @param  \DateTime $end_time (optional)
      * @param  string $event_subtype (optional)
@@ -4540,9 +4455,8 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listMetricCountsHourlyRequest($x_schematic_environment_id = null, $start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
+    public function listMetricCountsHourlyRequest($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
     {
-
 
 
 
@@ -4643,10 +4557,6 @@ class EventsApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 

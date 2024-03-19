@@ -146,16 +146,15 @@ class PlansApi
      * Create plan
      *
      * @param  \Schematic\Model\CreatePlanRequestBody $create_plan_request_body create_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlan'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreatePlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createPlan($create_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlan'][0])
+    public function createPlan($create_plan_request_body, string $contentType = self::contentTypes['createPlan'][0])
     {
-        list($response) = $this->createPlanWithHttpInfo($create_plan_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createPlanWithHttpInfo($create_plan_request_body, $contentType);
         return $response;
     }
 
@@ -165,16 +164,15 @@ class PlansApi
      * Create plan
      *
      * @param  \Schematic\Model\CreatePlanRequestBody $create_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlan'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreatePlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createPlanWithHttpInfo($create_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlan'][0])
+    public function createPlanWithHttpInfo($create_plan_request_body, string $contentType = self::contentTypes['createPlan'][0])
     {
-        $request = $this->createPlanRequest($create_plan_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createPlanRequest($create_plan_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -430,15 +428,14 @@ class PlansApi
      * Create plan
      *
      * @param  \Schematic\Model\CreatePlanRequestBody $create_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPlanAsync($create_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlan'][0])
+    public function createPlanAsync($create_plan_request_body, string $contentType = self::contentTypes['createPlan'][0])
     {
-        return $this->createPlanAsyncWithHttpInfo($create_plan_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createPlanAsyncWithHttpInfo($create_plan_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -452,16 +449,15 @@ class PlansApi
      * Create plan
      *
      * @param  \Schematic\Model\CreatePlanRequestBody $create_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createPlanAsyncWithHttpInfo($create_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlan'][0])
+    public function createPlanAsyncWithHttpInfo($create_plan_request_body, string $contentType = self::contentTypes['createPlan'][0])
     {
         $returnType = '\Schematic\Model\CreatePlanResponse';
-        $request = $this->createPlanRequest($create_plan_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createPlanRequest($create_plan_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -503,13 +499,12 @@ class PlansApi
      * Create request for operation 'createPlan'
      *
      * @param  \Schematic\Model\CreatePlanRequestBody $create_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createPlanRequest($create_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createPlan'][0])
+    public function createPlanRequest($create_plan_request_body, string $contentType = self::contentTypes['createPlan'][0])
     {
 
         // verify the required parameter 'create_plan_request_body' is set
@@ -520,7 +515,6 @@ class PlansApi
         }
 
 
-
         $resourcePath = '/plans';
         $formParams = [];
         $queryParams = [];
@@ -529,10 +523,6 @@ class PlansApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -607,16 +597,15 @@ class PlansApi
      * Delete plan
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlan'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeletePlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deletePlan($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlan'][0])
+    public function deletePlan($plan_id, string $contentType = self::contentTypes['deletePlan'][0])
     {
-        list($response) = $this->deletePlanWithHttpInfo($plan_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->deletePlanWithHttpInfo($plan_id, $contentType);
         return $response;
     }
 
@@ -626,16 +615,15 @@ class PlansApi
      * Delete plan
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlan'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeletePlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePlanWithHttpInfo($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlan'][0])
+    public function deletePlanWithHttpInfo($plan_id, string $contentType = self::contentTypes['deletePlan'][0])
     {
-        $request = $this->deletePlanRequest($plan_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deletePlanRequest($plan_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -891,15 +879,14 @@ class PlansApi
      * Delete plan
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePlanAsync($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlan'][0])
+    public function deletePlanAsync($plan_id, string $contentType = self::contentTypes['deletePlan'][0])
     {
-        return $this->deletePlanAsyncWithHttpInfo($plan_id, $x_schematic_environment_id, $contentType)
+        return $this->deletePlanAsyncWithHttpInfo($plan_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -913,16 +900,15 @@ class PlansApi
      * Delete plan
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePlanAsyncWithHttpInfo($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlan'][0])
+    public function deletePlanAsyncWithHttpInfo($plan_id, string $contentType = self::contentTypes['deletePlan'][0])
     {
         $returnType = '\Schematic\Model\DeletePlanResponse';
-        $request = $this->deletePlanRequest($plan_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deletePlanRequest($plan_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -964,13 +950,12 @@ class PlansApi
      * Create request for operation 'deletePlan'
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePlanRequest($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlan'][0])
+    public function deletePlanRequest($plan_id, string $contentType = self::contentTypes['deletePlan'][0])
     {
 
         // verify the required parameter 'plan_id' is set
@@ -981,7 +966,6 @@ class PlansApi
         }
 
 
-
         $resourcePath = '/plans/{plan_id}';
         $formParams = [];
         $queryParams = [];
@@ -990,10 +974,6 @@ class PlansApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($plan_id !== null) {
@@ -1069,16 +1049,15 @@ class PlansApi
      * Delete plan audience
      *
      * @param  string $plan_audience_id plan_audience_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeletePlanAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deletePlanAudience($plan_audience_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanAudience'][0])
+    public function deletePlanAudience($plan_audience_id, string $contentType = self::contentTypes['deletePlanAudience'][0])
     {
-        list($response) = $this->deletePlanAudienceWithHttpInfo($plan_audience_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->deletePlanAudienceWithHttpInfo($plan_audience_id, $contentType);
         return $response;
     }
 
@@ -1088,16 +1067,15 @@ class PlansApi
      * Delete plan audience
      *
      * @param  string $plan_audience_id plan_audience_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeletePlanAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePlanAudienceWithHttpInfo($plan_audience_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanAudience'][0])
+    public function deletePlanAudienceWithHttpInfo($plan_audience_id, string $contentType = self::contentTypes['deletePlanAudience'][0])
     {
-        $request = $this->deletePlanAudienceRequest($plan_audience_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deletePlanAudienceRequest($plan_audience_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1353,15 +1331,14 @@ class PlansApi
      * Delete plan audience
      *
      * @param  string $plan_audience_id plan_audience_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePlanAudienceAsync($plan_audience_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanAudience'][0])
+    public function deletePlanAudienceAsync($plan_audience_id, string $contentType = self::contentTypes['deletePlanAudience'][0])
     {
-        return $this->deletePlanAudienceAsyncWithHttpInfo($plan_audience_id, $x_schematic_environment_id, $contentType)
+        return $this->deletePlanAudienceAsyncWithHttpInfo($plan_audience_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1375,16 +1352,15 @@ class PlansApi
      * Delete plan audience
      *
      * @param  string $plan_audience_id plan_audience_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePlanAudienceAsyncWithHttpInfo($plan_audience_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanAudience'][0])
+    public function deletePlanAudienceAsyncWithHttpInfo($plan_audience_id, string $contentType = self::contentTypes['deletePlanAudience'][0])
     {
         $returnType = '\Schematic\Model\DeletePlanAudienceResponse';
-        $request = $this->deletePlanAudienceRequest($plan_audience_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deletePlanAudienceRequest($plan_audience_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1426,13 +1402,12 @@ class PlansApi
      * Create request for operation 'deletePlanAudience'
      *
      * @param  string $plan_audience_id plan_audience_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePlanAudienceRequest($plan_audience_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deletePlanAudience'][0])
+    public function deletePlanAudienceRequest($plan_audience_id, string $contentType = self::contentTypes['deletePlanAudience'][0])
     {
 
         // verify the required parameter 'plan_audience_id' is set
@@ -1443,7 +1418,6 @@ class PlansApi
         }
 
 
-
         $resourcePath = '/plan-audiences/{plan_audience_id}';
         $formParams = [];
         $queryParams = [];
@@ -1452,10 +1426,6 @@ class PlansApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($plan_audience_id !== null) {
@@ -1531,16 +1501,15 @@ class PlansApi
      * Get plan
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetPlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getPlan($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlan'][0])
+    public function getPlan($plan_id, string $contentType = self::contentTypes['getPlan'][0])
     {
-        list($response) = $this->getPlanWithHttpInfo($plan_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getPlanWithHttpInfo($plan_id, $contentType);
         return $response;
     }
 
@@ -1550,16 +1519,15 @@ class PlansApi
      * Get plan
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetPlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPlanWithHttpInfo($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlan'][0])
+    public function getPlanWithHttpInfo($plan_id, string $contentType = self::contentTypes['getPlan'][0])
     {
-        $request = $this->getPlanRequest($plan_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getPlanRequest($plan_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1815,15 +1783,14 @@ class PlansApi
      * Get plan
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPlanAsync($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlan'][0])
+    public function getPlanAsync($plan_id, string $contentType = self::contentTypes['getPlan'][0])
     {
-        return $this->getPlanAsyncWithHttpInfo($plan_id, $x_schematic_environment_id, $contentType)
+        return $this->getPlanAsyncWithHttpInfo($plan_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1837,16 +1804,15 @@ class PlansApi
      * Get plan
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPlanAsyncWithHttpInfo($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlan'][0])
+    public function getPlanAsyncWithHttpInfo($plan_id, string $contentType = self::contentTypes['getPlan'][0])
     {
         $returnType = '\Schematic\Model\GetPlanResponse';
-        $request = $this->getPlanRequest($plan_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getPlanRequest($plan_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1888,13 +1854,12 @@ class PlansApi
      * Create request for operation 'getPlan'
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPlanRequest($plan_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getPlan'][0])
+    public function getPlanRequest($plan_id, string $contentType = self::contentTypes['getPlan'][0])
     {
 
         // verify the required parameter 'plan_id' is set
@@ -1905,7 +1870,6 @@ class PlansApi
         }
 
 
-
         $resourcePath = '/plans/{plan_id}';
         $formParams = [];
         $queryParams = [];
@@ -1914,10 +1878,6 @@ class PlansApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($plan_id !== null) {
@@ -1992,7 +1952,6 @@ class PlansApi
      *
      * List plans
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlans'] to see the possible values for this operation
@@ -2001,9 +1960,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listPlans($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlans($limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-        list($response) = $this->listPlansWithHttpInfo($x_schematic_environment_id, $limit, $offset, $contentType);
+        list($response) = $this->listPlansWithHttpInfo($limit, $offset, $contentType);
         return $response;
     }
 
@@ -2012,7 +1971,6 @@ class PlansApi
      *
      * List plans
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlans'] to see the possible values for this operation
@@ -2021,9 +1979,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listPlansWithHttpInfo($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansWithHttpInfo($limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-        $request = $this->listPlansRequest($x_schematic_environment_id, $limit, $offset, $contentType);
+        $request = $this->listPlansRequest($limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2278,7 +2236,6 @@ class PlansApi
      *
      * List plans
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlans'] to see the possible values for this operation
@@ -2286,9 +2243,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlansAsync($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansAsync($limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-        return $this->listPlansAsyncWithHttpInfo($x_schematic_environment_id, $limit, $offset, $contentType)
+        return $this->listPlansAsyncWithHttpInfo($limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2301,7 +2258,6 @@ class PlansApi
      *
      * List plans
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlans'] to see the possible values for this operation
@@ -2309,10 +2265,10 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlansAsyncWithHttpInfo($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansAsyncWithHttpInfo($limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
         $returnType = '\Schematic\Model\ListPlansResponse';
-        $request = $this->listPlansRequest($x_schematic_environment_id, $limit, $offset, $contentType);
+        $request = $this->listPlansRequest($limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2353,7 +2309,6 @@ class PlansApi
     /**
      * Create request for operation 'listPlans'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlans'] to see the possible values for this operation
@@ -2361,9 +2316,8 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listPlansRequest($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansRequest($limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-
 
 
 
@@ -2394,10 +2348,6 @@ class PlansApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -2466,16 +2416,15 @@ class PlansApi
      *
      * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanRequestBody $update_plan_request_body update_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlan'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\UpdatePlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function updatePlan($plan_id, $update_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlan'][0])
+    public function updatePlan($plan_id, $update_plan_request_body, string $contentType = self::contentTypes['updatePlan'][0])
     {
-        list($response) = $this->updatePlanWithHttpInfo($plan_id, $update_plan_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->updatePlanWithHttpInfo($plan_id, $update_plan_request_body, $contentType);
         return $response;
     }
 
@@ -2486,16 +2435,15 @@ class PlansApi
      *
      * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanRequestBody $update_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlan'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\UpdatePlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePlanWithHttpInfo($plan_id, $update_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlan'][0])
+    public function updatePlanWithHttpInfo($plan_id, $update_plan_request_body, string $contentType = self::contentTypes['updatePlan'][0])
     {
-        $request = $this->updatePlanRequest($plan_id, $update_plan_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updatePlanRequest($plan_id, $update_plan_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2787,15 +2735,14 @@ class PlansApi
      *
      * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanRequestBody $update_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePlanAsync($plan_id, $update_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlan'][0])
+    public function updatePlanAsync($plan_id, $update_plan_request_body, string $contentType = self::contentTypes['updatePlan'][0])
     {
-        return $this->updatePlanAsyncWithHttpInfo($plan_id, $update_plan_request_body, $x_schematic_environment_id, $contentType)
+        return $this->updatePlanAsyncWithHttpInfo($plan_id, $update_plan_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2810,16 +2757,15 @@ class PlansApi
      *
      * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanRequestBody $update_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePlanAsyncWithHttpInfo($plan_id, $update_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlan'][0])
+    public function updatePlanAsyncWithHttpInfo($plan_id, $update_plan_request_body, string $contentType = self::contentTypes['updatePlan'][0])
     {
         $returnType = '\Schematic\Model\UpdatePlanResponse';
-        $request = $this->updatePlanRequest($plan_id, $update_plan_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updatePlanRequest($plan_id, $update_plan_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2862,13 +2808,12 @@ class PlansApi
      *
      * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanRequestBody $update_plan_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePlanRequest($plan_id, $update_plan_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlan'][0])
+    public function updatePlanRequest($plan_id, $update_plan_request_body, string $contentType = self::contentTypes['updatePlan'][0])
     {
 
         // verify the required parameter 'plan_id' is set
@@ -2886,7 +2831,6 @@ class PlansApi
         }
 
 
-
         $resourcePath = '/plans/{plan_id}';
         $formParams = [];
         $queryParams = [];
@@ -2895,10 +2839,6 @@ class PlansApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($plan_id !== null) {
@@ -2982,16 +2922,15 @@ class PlansApi
      *
      * @param  string $plan_audience_id plan_audience_id (required)
      * @param  \Schematic\Model\UpdateAudienceRequestBody $update_audience_request_body update_audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\UpdatePlanAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function updatePlanAudience($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanAudience'][0])
+    public function updatePlanAudience($plan_audience_id, $update_audience_request_body, string $contentType = self::contentTypes['updatePlanAudience'][0])
     {
-        list($response) = $this->updatePlanAudienceWithHttpInfo($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->updatePlanAudienceWithHttpInfo($plan_audience_id, $update_audience_request_body, $contentType);
         return $response;
     }
 
@@ -3002,16 +2941,15 @@ class PlansApi
      *
      * @param  string $plan_audience_id plan_audience_id (required)
      * @param  \Schematic\Model\UpdateAudienceRequestBody $update_audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\UpdatePlanAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePlanAudienceWithHttpInfo($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanAudience'][0])
+    public function updatePlanAudienceWithHttpInfo($plan_audience_id, $update_audience_request_body, string $contentType = self::contentTypes['updatePlanAudience'][0])
     {
-        $request = $this->updatePlanAudienceRequest($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updatePlanAudienceRequest($plan_audience_id, $update_audience_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3303,15 +3241,14 @@ class PlansApi
      *
      * @param  string $plan_audience_id plan_audience_id (required)
      * @param  \Schematic\Model\UpdateAudienceRequestBody $update_audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePlanAudienceAsync($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanAudience'][0])
+    public function updatePlanAudienceAsync($plan_audience_id, $update_audience_request_body, string $contentType = self::contentTypes['updatePlanAudience'][0])
     {
-        return $this->updatePlanAudienceAsyncWithHttpInfo($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id, $contentType)
+        return $this->updatePlanAudienceAsyncWithHttpInfo($plan_audience_id, $update_audience_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3326,16 +3263,15 @@ class PlansApi
      *
      * @param  string $plan_audience_id plan_audience_id (required)
      * @param  \Schematic\Model\UpdateAudienceRequestBody $update_audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePlanAudienceAsyncWithHttpInfo($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanAudience'][0])
+    public function updatePlanAudienceAsyncWithHttpInfo($plan_audience_id, $update_audience_request_body, string $contentType = self::contentTypes['updatePlanAudience'][0])
     {
         $returnType = '\Schematic\Model\UpdatePlanAudienceResponse';
-        $request = $this->updatePlanAudienceRequest($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updatePlanAudienceRequest($plan_audience_id, $update_audience_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3378,13 +3314,12 @@ class PlansApi
      *
      * @param  string $plan_audience_id plan_audience_id (required)
      * @param  \Schematic\Model\UpdateAudienceRequestBody $update_audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePlanAudienceRequest($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updatePlanAudience'][0])
+    public function updatePlanAudienceRequest($plan_audience_id, $update_audience_request_body, string $contentType = self::contentTypes['updatePlanAudience'][0])
     {
 
         // verify the required parameter 'plan_audience_id' is set
@@ -3402,7 +3337,6 @@ class PlansApi
         }
 
 
-
         $resourcePath = '/plan-audiences/{plan_audience_id}';
         $formParams = [];
         $queryParams = [];
@@ -3411,10 +3345,6 @@ class PlansApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($plan_audience_id !== null) {
