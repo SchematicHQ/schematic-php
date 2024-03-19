@@ -179,16 +179,15 @@ class CompaniesApi
      * Create company
      *
      * @param  \Schematic\Model\UpsertCompanyRequestBody $upsert_company_request_body upsert_company_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompany'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createCompany($upsert_company_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompany'][0])
+    public function createCompany($upsert_company_request_body, string $contentType = self::contentTypes['createCompany'][0])
     {
-        list($response) = $this->createCompanyWithHttpInfo($upsert_company_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createCompanyWithHttpInfo($upsert_company_request_body, $contentType);
         return $response;
     }
 
@@ -198,16 +197,15 @@ class CompaniesApi
      * Create company
      *
      * @param  \Schematic\Model\UpsertCompanyRequestBody $upsert_company_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompany'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createCompanyWithHttpInfo($upsert_company_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompany'][0])
+    public function createCompanyWithHttpInfo($upsert_company_request_body, string $contentType = self::contentTypes['createCompany'][0])
     {
-        $request = $this->createCompanyRequest($upsert_company_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createCompanyRequest($upsert_company_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -463,15 +461,14 @@ class CompaniesApi
      * Create company
      *
      * @param  \Schematic\Model\UpsertCompanyRequestBody $upsert_company_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCompanyAsync($upsert_company_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompany'][0])
+    public function createCompanyAsync($upsert_company_request_body, string $contentType = self::contentTypes['createCompany'][0])
     {
-        return $this->createCompanyAsyncWithHttpInfo($upsert_company_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createCompanyAsyncWithHttpInfo($upsert_company_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -485,16 +482,15 @@ class CompaniesApi
      * Create company
      *
      * @param  \Schematic\Model\UpsertCompanyRequestBody $upsert_company_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCompanyAsyncWithHttpInfo($upsert_company_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompany'][0])
+    public function createCompanyAsyncWithHttpInfo($upsert_company_request_body, string $contentType = self::contentTypes['createCompany'][0])
     {
         $returnType = '\Schematic\Model\CreateCompanyResponse';
-        $request = $this->createCompanyRequest($upsert_company_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createCompanyRequest($upsert_company_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -536,13 +532,12 @@ class CompaniesApi
      * Create request for operation 'createCompany'
      *
      * @param  \Schematic\Model\UpsertCompanyRequestBody $upsert_company_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createCompanyRequest($upsert_company_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompany'][0])
+    public function createCompanyRequest($upsert_company_request_body, string $contentType = self::contentTypes['createCompany'][0])
     {
 
         // verify the required parameter 'upsert_company_request_body' is set
@@ -553,7 +548,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/companies';
         $formParams = [];
         $queryParams = [];
@@ -562,10 +556,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -640,16 +630,15 @@ class CompaniesApi
      * Create company membership
      *
      * @param  \Schematic\Model\GetOrCreateCompanyMembershipRequestBody $get_or_create_company_membership_request_body get_or_create_company_membership_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyMembership'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateCompanyMembershipResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createCompanyMembership($get_or_create_company_membership_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyMembership'][0])
+    public function createCompanyMembership($get_or_create_company_membership_request_body, string $contentType = self::contentTypes['createCompanyMembership'][0])
     {
-        list($response) = $this->createCompanyMembershipWithHttpInfo($get_or_create_company_membership_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createCompanyMembershipWithHttpInfo($get_or_create_company_membership_request_body, $contentType);
         return $response;
     }
 
@@ -659,16 +648,15 @@ class CompaniesApi
      * Create company membership
      *
      * @param  \Schematic\Model\GetOrCreateCompanyMembershipRequestBody $get_or_create_company_membership_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyMembership'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateCompanyMembershipResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createCompanyMembershipWithHttpInfo($get_or_create_company_membership_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyMembership'][0])
+    public function createCompanyMembershipWithHttpInfo($get_or_create_company_membership_request_body, string $contentType = self::contentTypes['createCompanyMembership'][0])
     {
-        $request = $this->createCompanyMembershipRequest($get_or_create_company_membership_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createCompanyMembershipRequest($get_or_create_company_membership_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -924,15 +912,14 @@ class CompaniesApi
      * Create company membership
      *
      * @param  \Schematic\Model\GetOrCreateCompanyMembershipRequestBody $get_or_create_company_membership_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyMembership'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCompanyMembershipAsync($get_or_create_company_membership_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyMembership'][0])
+    public function createCompanyMembershipAsync($get_or_create_company_membership_request_body, string $contentType = self::contentTypes['createCompanyMembership'][0])
     {
-        return $this->createCompanyMembershipAsyncWithHttpInfo($get_or_create_company_membership_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createCompanyMembershipAsyncWithHttpInfo($get_or_create_company_membership_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -946,16 +933,15 @@ class CompaniesApi
      * Create company membership
      *
      * @param  \Schematic\Model\GetOrCreateCompanyMembershipRequestBody $get_or_create_company_membership_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyMembership'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCompanyMembershipAsyncWithHttpInfo($get_or_create_company_membership_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyMembership'][0])
+    public function createCompanyMembershipAsyncWithHttpInfo($get_or_create_company_membership_request_body, string $contentType = self::contentTypes['createCompanyMembership'][0])
     {
         $returnType = '\Schematic\Model\CreateCompanyMembershipResponse';
-        $request = $this->createCompanyMembershipRequest($get_or_create_company_membership_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createCompanyMembershipRequest($get_or_create_company_membership_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -997,13 +983,12 @@ class CompaniesApi
      * Create request for operation 'createCompanyMembership'
      *
      * @param  \Schematic\Model\GetOrCreateCompanyMembershipRequestBody $get_or_create_company_membership_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyMembership'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createCompanyMembershipRequest($get_or_create_company_membership_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyMembership'][0])
+    public function createCompanyMembershipRequest($get_or_create_company_membership_request_body, string $contentType = self::contentTypes['createCompanyMembership'][0])
     {
 
         // verify the required parameter 'get_or_create_company_membership_request_body' is set
@@ -1014,7 +999,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/company-memberships';
         $formParams = [];
         $queryParams = [];
@@ -1023,10 +1007,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -1101,16 +1081,15 @@ class CompaniesApi
      * Create company trait
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateCompanyTraitResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createCompanyTrait($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    public function createCompanyTrait($upsert_trait_request_body, string $contentType = self::contentTypes['createCompanyTrait'][0])
     {
-        list($response) = $this->createCompanyTraitWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createCompanyTraitWithHttpInfo($upsert_trait_request_body, $contentType);
         return $response;
     }
 
@@ -1120,16 +1099,15 @@ class CompaniesApi
      * Create company trait
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateCompanyTraitResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createCompanyTraitWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    public function createCompanyTraitWithHttpInfo($upsert_trait_request_body, string $contentType = self::contentTypes['createCompanyTrait'][0])
     {
-        $request = $this->createCompanyTraitRequest($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createCompanyTraitRequest($upsert_trait_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1385,15 +1363,14 @@ class CompaniesApi
      * Create company trait
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCompanyTraitAsync($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    public function createCompanyTraitAsync($upsert_trait_request_body, string $contentType = self::contentTypes['createCompanyTrait'][0])
     {
-        return $this->createCompanyTraitAsyncWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createCompanyTraitAsyncWithHttpInfo($upsert_trait_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1407,16 +1384,15 @@ class CompaniesApi
      * Create company trait
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createCompanyTraitAsyncWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    public function createCompanyTraitAsyncWithHttpInfo($upsert_trait_request_body, string $contentType = self::contentTypes['createCompanyTrait'][0])
     {
         $returnType = '\Schematic\Model\CreateCompanyTraitResponse';
-        $request = $this->createCompanyTraitRequest($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createCompanyTraitRequest($upsert_trait_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1458,13 +1434,12 @@ class CompaniesApi
      * Create request for operation 'createCompanyTrait'
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCompanyTrait'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createCompanyTraitRequest($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createCompanyTrait'][0])
+    public function createCompanyTraitRequest($upsert_trait_request_body, string $contentType = self::contentTypes['createCompanyTrait'][0])
     {
 
         // verify the required parameter 'upsert_trait_request_body' is set
@@ -1475,7 +1450,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/company-traits';
         $formParams = [];
         $queryParams = [];
@@ -1484,10 +1458,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -1562,16 +1532,15 @@ class CompaniesApi
      * Create entity trait definition
      *
      * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body create_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateEntityTraitDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createEntityTraitDefinition($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    public function createEntityTraitDefinition($create_entity_trait_definition_request_body, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
     {
-        list($response) = $this->createEntityTraitDefinitionWithHttpInfo($create_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createEntityTraitDefinitionWithHttpInfo($create_entity_trait_definition_request_body, $contentType);
         return $response;
     }
 
@@ -1581,16 +1550,15 @@ class CompaniesApi
      * Create entity trait definition
      *
      * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateEntityTraitDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createEntityTraitDefinitionWithHttpInfo($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    public function createEntityTraitDefinitionWithHttpInfo($create_entity_trait_definition_request_body, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
     {
-        $request = $this->createEntityTraitDefinitionRequest($create_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createEntityTraitDefinitionRequest($create_entity_trait_definition_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1846,15 +1814,14 @@ class CompaniesApi
      * Create entity trait definition
      *
      * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEntityTraitDefinitionAsync($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    public function createEntityTraitDefinitionAsync($create_entity_trait_definition_request_body, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
     {
-        return $this->createEntityTraitDefinitionAsyncWithHttpInfo($create_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createEntityTraitDefinitionAsyncWithHttpInfo($create_entity_trait_definition_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1868,16 +1835,15 @@ class CompaniesApi
      * Create entity trait definition
      *
      * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createEntityTraitDefinitionAsyncWithHttpInfo($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    public function createEntityTraitDefinitionAsyncWithHttpInfo($create_entity_trait_definition_request_body, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
     {
         $returnType = '\Schematic\Model\CreateEntityTraitDefinitionResponse';
-        $request = $this->createEntityTraitDefinitionRequest($create_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createEntityTraitDefinitionRequest($create_entity_trait_definition_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1919,13 +1885,12 @@ class CompaniesApi
      * Create request for operation 'createEntityTraitDefinition'
      *
      * @param  \Schematic\Model\CreateEntityTraitDefinitionRequestBody $create_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEntityTraitDefinitionRequest($create_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
+    public function createEntityTraitDefinitionRequest($create_entity_trait_definition_request_body, string $contentType = self::contentTypes['createEntityTraitDefinition'][0])
     {
 
         // verify the required parameter 'create_entity_trait_definition_request_body' is set
@@ -1936,7 +1901,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/entity-trait-definitions';
         $formParams = [];
         $queryParams = [];
@@ -1945,10 +1909,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -2023,16 +1983,15 @@ class CompaniesApi
      * Create user
      *
      * @param  \Schematic\Model\UpsertUserRequestBody $upsert_user_request_body upsert_user_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createUser($upsert_user_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUser'][0])
+    public function createUser($upsert_user_request_body, string $contentType = self::contentTypes['createUser'][0])
     {
-        list($response) = $this->createUserWithHttpInfo($upsert_user_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createUserWithHttpInfo($upsert_user_request_body, $contentType);
         return $response;
     }
 
@@ -2042,16 +2001,15 @@ class CompaniesApi
      * Create user
      *
      * @param  \Schematic\Model\UpsertUserRequestBody $upsert_user_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createUserWithHttpInfo($upsert_user_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUser'][0])
+    public function createUserWithHttpInfo($upsert_user_request_body, string $contentType = self::contentTypes['createUser'][0])
     {
-        $request = $this->createUserRequest($upsert_user_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createUserRequest($upsert_user_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2307,15 +2265,14 @@ class CompaniesApi
      * Create user
      *
      * @param  \Schematic\Model\UpsertUserRequestBody $upsert_user_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUserAsync($upsert_user_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUser'][0])
+    public function createUserAsync($upsert_user_request_body, string $contentType = self::contentTypes['createUser'][0])
     {
-        return $this->createUserAsyncWithHttpInfo($upsert_user_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createUserAsyncWithHttpInfo($upsert_user_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2329,16 +2286,15 @@ class CompaniesApi
      * Create user
      *
      * @param  \Schematic\Model\UpsertUserRequestBody $upsert_user_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUserAsyncWithHttpInfo($upsert_user_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUser'][0])
+    public function createUserAsyncWithHttpInfo($upsert_user_request_body, string $contentType = self::contentTypes['createUser'][0])
     {
         $returnType = '\Schematic\Model\CreateUserResponse';
-        $request = $this->createUserRequest($upsert_user_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createUserRequest($upsert_user_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2380,13 +2336,12 @@ class CompaniesApi
      * Create request for operation 'createUser'
      *
      * @param  \Schematic\Model\UpsertUserRequestBody $upsert_user_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createUserRequest($upsert_user_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUser'][0])
+    public function createUserRequest($upsert_user_request_body, string $contentType = self::contentTypes['createUser'][0])
     {
 
         // verify the required parameter 'upsert_user_request_body' is set
@@ -2397,7 +2352,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/users';
         $formParams = [];
         $queryParams = [];
@@ -2406,10 +2360,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -2484,16 +2434,15 @@ class CompaniesApi
      * Create user trait
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateUserTraitResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createUserTrait($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    public function createUserTrait($upsert_trait_request_body, string $contentType = self::contentTypes['createUserTrait'][0])
     {
-        list($response) = $this->createUserTraitWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createUserTraitWithHttpInfo($upsert_trait_request_body, $contentType);
         return $response;
     }
 
@@ -2503,16 +2452,15 @@ class CompaniesApi
      * Create user trait
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateUserTraitResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createUserTraitWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    public function createUserTraitWithHttpInfo($upsert_trait_request_body, string $contentType = self::contentTypes['createUserTrait'][0])
     {
-        $request = $this->createUserTraitRequest($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createUserTraitRequest($upsert_trait_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2768,15 +2716,14 @@ class CompaniesApi
      * Create user trait
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUserTraitAsync($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    public function createUserTraitAsync($upsert_trait_request_body, string $contentType = self::contentTypes['createUserTrait'][0])
     {
-        return $this->createUserTraitAsyncWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createUserTraitAsyncWithHttpInfo($upsert_trait_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2790,16 +2737,15 @@ class CompaniesApi
      * Create user trait
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUserTraitAsyncWithHttpInfo($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    public function createUserTraitAsyncWithHttpInfo($upsert_trait_request_body, string $contentType = self::contentTypes['createUserTrait'][0])
     {
         $returnType = '\Schematic\Model\CreateUserTraitResponse';
-        $request = $this->createUserTraitRequest($upsert_trait_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createUserTraitRequest($upsert_trait_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2841,13 +2787,12 @@ class CompaniesApi
      * Create request for operation 'createUserTrait'
      *
      * @param  \Schematic\Model\UpsertTraitRequestBody $upsert_trait_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUserTrait'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createUserTraitRequest($upsert_trait_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createUserTrait'][0])
+    public function createUserTraitRequest($upsert_trait_request_body, string $contentType = self::contentTypes['createUserTrait'][0])
     {
 
         // verify the required parameter 'upsert_trait_request_body' is set
@@ -2858,7 +2803,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/user-traits';
         $formParams = [];
         $queryParams = [];
@@ -2867,10 +2811,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -2945,16 +2885,15 @@ class CompaniesApi
      * Delete company
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeleteCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deleteCompany($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    public function deleteCompany($company_id, string $contentType = self::contentTypes['deleteCompany'][0])
     {
-        list($response) = $this->deleteCompanyWithHttpInfo($company_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->deleteCompanyWithHttpInfo($company_id, $contentType);
         return $response;
     }
 
@@ -2964,16 +2903,15 @@ class CompaniesApi
      * Delete company
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeleteCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteCompanyWithHttpInfo($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    public function deleteCompanyWithHttpInfo($company_id, string $contentType = self::contentTypes['deleteCompany'][0])
     {
-        $request = $this->deleteCompanyRequest($company_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteCompanyRequest($company_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3229,15 +3167,14 @@ class CompaniesApi
      * Delete company
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompanyAsync($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    public function deleteCompanyAsync($company_id, string $contentType = self::contentTypes['deleteCompany'][0])
     {
-        return $this->deleteCompanyAsyncWithHttpInfo($company_id, $x_schematic_environment_id, $contentType)
+        return $this->deleteCompanyAsyncWithHttpInfo($company_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3251,16 +3188,15 @@ class CompaniesApi
      * Delete company
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompanyAsyncWithHttpInfo($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    public function deleteCompanyAsyncWithHttpInfo($company_id, string $contentType = self::contentTypes['deleteCompany'][0])
     {
         $returnType = '\Schematic\Model\DeleteCompanyResponse';
-        $request = $this->deleteCompanyRequest($company_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteCompanyRequest($company_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3302,13 +3238,12 @@ class CompaniesApi
      * Create request for operation 'deleteCompany'
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCompanyRequest($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompany'][0])
+    public function deleteCompanyRequest($company_id, string $contentType = self::contentTypes['deleteCompany'][0])
     {
 
         // verify the required parameter 'company_id' is set
@@ -3319,7 +3254,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/companies/{company_id}';
         $formParams = [];
         $queryParams = [];
@@ -3328,10 +3262,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($company_id !== null) {
@@ -3407,16 +3337,15 @@ class CompaniesApi
      * Delete company membership
      *
      * @param  string $company_membership_id company_membership_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyMembership'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeleteCompanyMembershipResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deleteCompanyMembership($company_membership_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
+    public function deleteCompanyMembership($company_membership_id, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
     {
-        list($response) = $this->deleteCompanyMembershipWithHttpInfo($company_membership_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->deleteCompanyMembershipWithHttpInfo($company_membership_id, $contentType);
         return $response;
     }
 
@@ -3426,16 +3355,15 @@ class CompaniesApi
      * Delete company membership
      *
      * @param  string $company_membership_id company_membership_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyMembership'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeleteCompanyMembershipResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteCompanyMembershipWithHttpInfo($company_membership_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
+    public function deleteCompanyMembershipWithHttpInfo($company_membership_id, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
     {
-        $request = $this->deleteCompanyMembershipRequest($company_membership_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteCompanyMembershipRequest($company_membership_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3691,15 +3619,14 @@ class CompaniesApi
      * Delete company membership
      *
      * @param  string $company_membership_id company_membership_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyMembership'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompanyMembershipAsync($company_membership_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
+    public function deleteCompanyMembershipAsync($company_membership_id, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
     {
-        return $this->deleteCompanyMembershipAsyncWithHttpInfo($company_membership_id, $x_schematic_environment_id, $contentType)
+        return $this->deleteCompanyMembershipAsyncWithHttpInfo($company_membership_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3713,16 +3640,15 @@ class CompaniesApi
      * Delete company membership
      *
      * @param  string $company_membership_id company_membership_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyMembership'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompanyMembershipAsyncWithHttpInfo($company_membership_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
+    public function deleteCompanyMembershipAsyncWithHttpInfo($company_membership_id, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
     {
         $returnType = '\Schematic\Model\DeleteCompanyMembershipResponse';
-        $request = $this->deleteCompanyMembershipRequest($company_membership_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteCompanyMembershipRequest($company_membership_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3764,13 +3690,12 @@ class CompaniesApi
      * Create request for operation 'deleteCompanyMembership'
      *
      * @param  string $company_membership_id company_membership_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanyMembership'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCompanyMembershipRequest($company_membership_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
+    public function deleteCompanyMembershipRequest($company_membership_id, string $contentType = self::contentTypes['deleteCompanyMembership'][0])
     {
 
         // verify the required parameter 'company_membership_id' is set
@@ -3781,7 +3706,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/company-memberships/{company_membership_id}';
         $formParams = [];
         $queryParams = [];
@@ -3790,10 +3714,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($company_membership_id !== null) {
@@ -3869,16 +3789,15 @@ class CompaniesApi
      * Delete user
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeleteUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deleteUser($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    public function deleteUser($user_id, string $contentType = self::contentTypes['deleteUser'][0])
     {
-        list($response) = $this->deleteUserWithHttpInfo($user_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->deleteUserWithHttpInfo($user_id, $contentType);
         return $response;
     }
 
@@ -3888,16 +3807,15 @@ class CompaniesApi
      * Delete user
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeleteUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteUserWithHttpInfo($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    public function deleteUserWithHttpInfo($user_id, string $contentType = self::contentTypes['deleteUser'][0])
     {
-        $request = $this->deleteUserRequest($user_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteUserRequest($user_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4153,15 +4071,14 @@ class CompaniesApi
      * Delete user
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteUserAsync($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    public function deleteUserAsync($user_id, string $contentType = self::contentTypes['deleteUser'][0])
     {
-        return $this->deleteUserAsyncWithHttpInfo($user_id, $x_schematic_environment_id, $contentType)
+        return $this->deleteUserAsyncWithHttpInfo($user_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4175,16 +4092,15 @@ class CompaniesApi
      * Delete user
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteUserAsyncWithHttpInfo($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    public function deleteUserAsyncWithHttpInfo($user_id, string $contentType = self::contentTypes['deleteUser'][0])
     {
         $returnType = '\Schematic\Model\DeleteUserResponse';
-        $request = $this->deleteUserRequest($user_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteUserRequest($user_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4226,13 +4142,12 @@ class CompaniesApi
      * Create request for operation 'deleteUser'
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteUserRequest($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteUser'][0])
+    public function deleteUserRequest($user_id, string $contentType = self::contentTypes['deleteUser'][0])
     {
 
         // verify the required parameter 'user_id' is set
@@ -4243,7 +4158,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/users/{user_id}';
         $formParams = [];
         $queryParams = [];
@@ -4252,10 +4166,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($user_id !== null) {
@@ -4331,16 +4241,15 @@ class CompaniesApi
      * Get company
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompany'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getCompany($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompany'][0])
+    public function getCompany($company_id, string $contentType = self::contentTypes['getCompany'][0])
     {
-        list($response) = $this->getCompanyWithHttpInfo($company_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getCompanyWithHttpInfo($company_id, $contentType);
         return $response;
     }
 
@@ -4350,16 +4259,15 @@ class CompaniesApi
      * Get company
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompany'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCompanyWithHttpInfo($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompany'][0])
+    public function getCompanyWithHttpInfo($company_id, string $contentType = self::contentTypes['getCompany'][0])
     {
-        $request = $this->getCompanyRequest($company_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getCompanyRequest($company_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4615,15 +4523,14 @@ class CompaniesApi
      * Get company
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyAsync($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompany'][0])
+    public function getCompanyAsync($company_id, string $contentType = self::contentTypes['getCompany'][0])
     {
-        return $this->getCompanyAsyncWithHttpInfo($company_id, $x_schematic_environment_id, $contentType)
+        return $this->getCompanyAsyncWithHttpInfo($company_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4637,16 +4544,15 @@ class CompaniesApi
      * Get company
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyAsyncWithHttpInfo($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompany'][0])
+    public function getCompanyAsyncWithHttpInfo($company_id, string $contentType = self::contentTypes['getCompany'][0])
     {
         $returnType = '\Schematic\Model\GetCompanyResponse';
-        $request = $this->getCompanyRequest($company_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getCompanyRequest($company_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4688,13 +4594,12 @@ class CompaniesApi
      * Create request for operation 'getCompany'
      *
      * @param  string $company_id company_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCompanyRequest($company_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompany'][0])
+    public function getCompanyRequest($company_id, string $contentType = self::contentTypes['getCompany'][0])
     {
 
         // verify the required parameter 'company_id' is set
@@ -4705,7 +4610,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/companies/{company_id}';
         $formParams = [];
         $queryParams = [];
@@ -4714,10 +4618,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($company_id !== null) {
@@ -4793,16 +4693,15 @@ class CompaniesApi
      * Get user
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getUser($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUser'][0])
+    public function getUser($user_id, string $contentType = self::contentTypes['getUser'][0])
     {
-        list($response) = $this->getUserWithHttpInfo($user_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getUserWithHttpInfo($user_id, $contentType);
         return $response;
     }
 
@@ -4812,16 +4711,15 @@ class CompaniesApi
      * Get user
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getUserWithHttpInfo($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUser'][0])
+    public function getUserWithHttpInfo($user_id, string $contentType = self::contentTypes['getUser'][0])
     {
-        $request = $this->getUserRequest($user_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getUserRequest($user_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5077,15 +4975,14 @@ class CompaniesApi
      * Get user
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserAsync($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUser'][0])
+    public function getUserAsync($user_id, string $contentType = self::contentTypes['getUser'][0])
     {
-        return $this->getUserAsyncWithHttpInfo($user_id, $x_schematic_environment_id, $contentType)
+        return $this->getUserAsyncWithHttpInfo($user_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5099,16 +4996,15 @@ class CompaniesApi
      * Get user
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserAsyncWithHttpInfo($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUser'][0])
+    public function getUserAsyncWithHttpInfo($user_id, string $contentType = self::contentTypes['getUser'][0])
     {
         $returnType = '\Schematic\Model\GetUserResponse';
-        $request = $this->getUserRequest($user_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getUserRequest($user_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5150,13 +5046,12 @@ class CompaniesApi
      * Create request for operation 'getUser'
      *
      * @param  string $user_id user_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getUserRequest($user_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUser'][0])
+    public function getUserRequest($user_id, string $contentType = self::contentTypes['getUser'][0])
     {
 
         // verify the required parameter 'user_id' is set
@@ -5167,7 +5062,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/users/{user_id}';
         $formParams = [];
         $queryParams = [];
@@ -5176,10 +5070,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($user_id !== null) {
@@ -5254,7 +5144,6 @@ class CompaniesApi
      *
      * List companies
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -5264,9 +5153,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanies($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompanies($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-        list($response) = $this->listCompaniesWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
+        list($response) = $this->listCompaniesWithHttpInfo($ids, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -5275,7 +5164,6 @@ class CompaniesApi
      *
      * List companies
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -5285,9 +5173,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompaniesWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesWithHttpInfo($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-        $request = $this->listCompaniesRequest($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
+        $request = $this->listCompaniesRequest($ids, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5542,7 +5430,6 @@ class CompaniesApi
      *
      * List companies
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -5551,9 +5438,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompaniesAsync($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesAsync($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-        return $this->listCompaniesAsyncWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $contentType)
+        return $this->listCompaniesAsyncWithHttpInfo($ids, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5566,7 +5453,6 @@ class CompaniesApi
      *
      * List companies
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -5575,10 +5461,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompaniesAsyncWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesAsyncWithHttpInfo($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
         $returnType = '\Schematic\Model\ListCompaniesResponse';
-        $request = $this->listCompaniesRequest($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
+        $request = $this->listCompaniesRequest($ids, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5619,7 +5505,6 @@ class CompaniesApi
     /**
      * Create request for operation 'listCompanies'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -5628,9 +5513,8 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompaniesRequest($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesRequest($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-
 
 
 
@@ -5671,10 +5555,6 @@ class CompaniesApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -5741,7 +5621,6 @@ class CompaniesApi
      *
      * List company memberships
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id company_id (optional)
      * @param  string $user_id user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -5752,9 +5631,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompanyMembershipsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanyMemberships($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMemberships($company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
-        list($response) = $this->listCompanyMembershipsWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $contentType);
+        list($response) = $this->listCompanyMembershipsWithHttpInfo($company_id, $user_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -5763,7 +5642,6 @@ class CompaniesApi
      *
      * List company memberships
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -5774,9 +5652,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompanyMembershipsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompanyMembershipsWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMembershipsWithHttpInfo($company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
-        $request = $this->listCompanyMembershipsRequest($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $contentType);
+        $request = $this->listCompanyMembershipsRequest($company_id, $user_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6031,7 +5909,6 @@ class CompaniesApi
      *
      * List company memberships
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -6041,9 +5918,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyMembershipsAsync($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMembershipsAsync($company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
-        return $this->listCompanyMembershipsAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $contentType)
+        return $this->listCompanyMembershipsAsyncWithHttpInfo($company_id, $user_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6056,7 +5933,6 @@ class CompaniesApi
      *
      * List company memberships
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -6066,10 +5942,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyMembershipsAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMembershipsAsyncWithHttpInfo($company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
         $returnType = '\Schematic\Model\ListCompanyMembershipsResponse';
-        $request = $this->listCompanyMembershipsRequest($x_schematic_environment_id, $company_id, $user_id, $limit, $offset, $contentType);
+        $request = $this->listCompanyMembershipsRequest($company_id, $user_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6110,7 +5986,6 @@ class CompaniesApi
     /**
      * Create request for operation 'listCompanyMemberships'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -6120,9 +5995,8 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompanyMembershipsRequest($x_schematic_environment_id = null, $company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
+    public function listCompanyMembershipsRequest($company_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMemberships'][0])
     {
-
 
 
 
@@ -6173,10 +6047,6 @@ class CompaniesApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -6243,7 +6113,6 @@ class CompaniesApi
      *
      * List company plans
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id company_id (optional)
      * @param  string $plan_id plan_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -6254,9 +6123,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompanyPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanyPlans($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlans($company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
-        list($response) = $this->listCompanyPlansWithHttpInfo($x_schematic_environment_id, $company_id, $plan_id, $limit, $offset, $contentType);
+        list($response) = $this->listCompanyPlansWithHttpInfo($company_id, $plan_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -6265,7 +6134,6 @@ class CompaniesApi
      *
      * List company plans
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $plan_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -6276,9 +6144,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompanyPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompanyPlansWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlansWithHttpInfo($company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
-        $request = $this->listCompanyPlansRequest($x_schematic_environment_id, $company_id, $plan_id, $limit, $offset, $contentType);
+        $request = $this->listCompanyPlansRequest($company_id, $plan_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6533,7 +6401,6 @@ class CompaniesApi
      *
      * List company plans
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $plan_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -6543,9 +6410,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyPlansAsync($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlansAsync($company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
-        return $this->listCompanyPlansAsyncWithHttpInfo($x_schematic_environment_id, $company_id, $plan_id, $limit, $offset, $contentType)
+        return $this->listCompanyPlansAsyncWithHttpInfo($company_id, $plan_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6558,7 +6425,6 @@ class CompaniesApi
      *
      * List company plans
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $plan_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -6568,10 +6434,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyPlansAsyncWithHttpInfo($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlansAsyncWithHttpInfo($company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
         $returnType = '\Schematic\Model\ListCompanyPlansResponse';
-        $request = $this->listCompanyPlansRequest($x_schematic_environment_id, $company_id, $plan_id, $limit, $offset, $contentType);
+        $request = $this->listCompanyPlansRequest($company_id, $plan_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6612,7 +6478,6 @@ class CompaniesApi
     /**
      * Create request for operation 'listCompanyPlans'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $company_id (optional)
      * @param  string $plan_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -6622,9 +6487,8 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompanyPlansRequest($x_schematic_environment_id = null, $company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
+    public function listCompanyPlansRequest($company_id = null, $plan_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyPlans'][0])
     {
-
 
 
 
@@ -6675,10 +6539,6 @@ class CompaniesApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -6745,7 +6605,6 @@ class CompaniesApi
      *
      * List users
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -6755,9 +6614,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListUsersResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listUsers($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsers($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-        list($response) = $this->listUsersWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
+        list($response) = $this->listUsersWithHttpInfo($ids, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -6766,7 +6625,6 @@ class CompaniesApi
      *
      * List users
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -6776,9 +6634,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListUsersResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listUsersWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersWithHttpInfo($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-        $request = $this->listUsersRequest($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
+        $request = $this->listUsersRequest($ids, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7033,7 +6891,6 @@ class CompaniesApi
      *
      * List users
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -7042,9 +6899,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUsersAsync($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersAsync($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-        return $this->listUsersAsyncWithHttpInfo($x_schematic_environment_id, $ids, $limit, $offset, $contentType)
+        return $this->listUsersAsyncWithHttpInfo($ids, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7057,7 +6914,6 @@ class CompaniesApi
      *
      * List users
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -7066,10 +6922,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUsersAsyncWithHttpInfo($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersAsyncWithHttpInfo($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
         $returnType = '\Schematic\Model\ListUsersResponse';
-        $request = $this->listUsersRequest($x_schematic_environment_id, $ids, $limit, $offset, $contentType);
+        $request = $this->listUsersRequest($ids, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7110,7 +6966,6 @@ class CompaniesApi
     /**
      * Create request for operation 'listUsers'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string[] $ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -7119,9 +6974,8 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listUsersRequest($x_schematic_environment_id = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersRequest($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-
 
 
 
@@ -7162,10 +7016,6 @@ class CompaniesApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -7233,16 +7083,15 @@ class CompaniesApi
      * Lookup company
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\LookupCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function lookupCompany($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    public function lookupCompany($keys, string $contentType = self::contentTypes['lookupCompany'][0])
     {
-        list($response) = $this->lookupCompanyWithHttpInfo($keys, $x_schematic_environment_id, $contentType);
+        list($response) = $this->lookupCompanyWithHttpInfo($keys, $contentType);
         return $response;
     }
 
@@ -7252,16 +7101,15 @@ class CompaniesApi
      * Lookup company
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\LookupCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function lookupCompanyWithHttpInfo($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    public function lookupCompanyWithHttpInfo($keys, string $contentType = self::contentTypes['lookupCompany'][0])
     {
-        $request = $this->lookupCompanyRequest($keys, $x_schematic_environment_id, $contentType);
+        $request = $this->lookupCompanyRequest($keys, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7517,15 +7365,14 @@ class CompaniesApi
      * Lookup company
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function lookupCompanyAsync($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    public function lookupCompanyAsync($keys, string $contentType = self::contentTypes['lookupCompany'][0])
     {
-        return $this->lookupCompanyAsyncWithHttpInfo($keys, $x_schematic_environment_id, $contentType)
+        return $this->lookupCompanyAsyncWithHttpInfo($keys, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7539,16 +7386,15 @@ class CompaniesApi
      * Lookup company
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function lookupCompanyAsyncWithHttpInfo($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    public function lookupCompanyAsyncWithHttpInfo($keys, string $contentType = self::contentTypes['lookupCompany'][0])
     {
         $returnType = '\Schematic\Model\LookupCompanyResponse';
-        $request = $this->lookupCompanyRequest($keys, $x_schematic_environment_id, $contentType);
+        $request = $this->lookupCompanyRequest($keys, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7590,13 +7436,12 @@ class CompaniesApi
      * Create request for operation 'lookupCompany'
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupCompany'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function lookupCompanyRequest($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupCompany'][0])
+    public function lookupCompanyRequest($keys, string $contentType = self::contentTypes['lookupCompany'][0])
     {
 
         // verify the required parameter 'keys' is set
@@ -7605,7 +7450,6 @@ class CompaniesApi
                 'Missing the required parameter $keys when calling lookupCompany'
             );
         }
-
 
 
         $resourcePath = '/companies/lookup';
@@ -7625,10 +7469,6 @@ class CompaniesApi
             true // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -7696,16 +7536,15 @@ class CompaniesApi
      * Lookup user
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\LookupUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function lookupUser($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    public function lookupUser($keys, string $contentType = self::contentTypes['lookupUser'][0])
     {
-        list($response) = $this->lookupUserWithHttpInfo($keys, $x_schematic_environment_id, $contentType);
+        list($response) = $this->lookupUserWithHttpInfo($keys, $contentType);
         return $response;
     }
 
@@ -7715,16 +7554,15 @@ class CompaniesApi
      * Lookup user
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\LookupUserResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function lookupUserWithHttpInfo($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    public function lookupUserWithHttpInfo($keys, string $contentType = self::contentTypes['lookupUser'][0])
     {
-        $request = $this->lookupUserRequest($keys, $x_schematic_environment_id, $contentType);
+        $request = $this->lookupUserRequest($keys, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7980,15 +7818,14 @@ class CompaniesApi
      * Lookup user
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function lookupUserAsync($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    public function lookupUserAsync($keys, string $contentType = self::contentTypes['lookupUser'][0])
     {
-        return $this->lookupUserAsyncWithHttpInfo($keys, $x_schematic_environment_id, $contentType)
+        return $this->lookupUserAsyncWithHttpInfo($keys, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8002,16 +7839,15 @@ class CompaniesApi
      * Lookup user
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function lookupUserAsyncWithHttpInfo($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    public function lookupUserAsyncWithHttpInfo($keys, string $contentType = self::contentTypes['lookupUser'][0])
     {
         $returnType = '\Schematic\Model\LookupUserResponse';
-        $request = $this->lookupUserRequest($keys, $x_schematic_environment_id, $contentType);
+        $request = $this->lookupUserRequest($keys, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8053,13 +7889,12 @@ class CompaniesApi
      * Create request for operation 'lookupUser'
      *
      * @param  object $keys Key/value pairs (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['lookupUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function lookupUserRequest($keys, $x_schematic_environment_id = null, string $contentType = self::contentTypes['lookupUser'][0])
+    public function lookupUserRequest($keys, string $contentType = self::contentTypes['lookupUser'][0])
     {
 
         // verify the required parameter 'keys' is set
@@ -8068,7 +7903,6 @@ class CompaniesApi
                 'Missing the required parameter $keys when calling lookupUser'
             );
         }
-
 
 
         $resourcePath = '/users/lookup';
@@ -8088,10 +7922,6 @@ class CompaniesApi
             true // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -8160,16 +7990,15 @@ class CompaniesApi
      *
      * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
      * @param  \Schematic\Model\UpdateEntityTraitDefinitionRequestBody $update_entity_trait_definition_request_body update_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\UpdateEntityTraitDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function updateEntityTraitDefinition($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
+    public function updateEntityTraitDefinition($entity_trait_definition_id, $update_entity_trait_definition_request_body, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
     {
-        list($response) = $this->updateEntityTraitDefinitionWithHttpInfo($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->updateEntityTraitDefinitionWithHttpInfo($entity_trait_definition_id, $update_entity_trait_definition_request_body, $contentType);
         return $response;
     }
 
@@ -8180,16 +8009,15 @@ class CompaniesApi
      *
      * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
      * @param  \Schematic\Model\UpdateEntityTraitDefinitionRequestBody $update_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\UpdateEntityTraitDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateEntityTraitDefinitionWithHttpInfo($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
+    public function updateEntityTraitDefinitionWithHttpInfo($entity_trait_definition_id, $update_entity_trait_definition_request_body, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
     {
-        $request = $this->updateEntityTraitDefinitionRequest($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updateEntityTraitDefinitionRequest($entity_trait_definition_id, $update_entity_trait_definition_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -8481,15 +8309,14 @@ class CompaniesApi
      *
      * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
      * @param  \Schematic\Model\UpdateEntityTraitDefinitionRequestBody $update_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEntityTraitDefinitionAsync($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
+    public function updateEntityTraitDefinitionAsync($entity_trait_definition_id, $update_entity_trait_definition_request_body, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
     {
-        return $this->updateEntityTraitDefinitionAsyncWithHttpInfo($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType)
+        return $this->updateEntityTraitDefinitionAsyncWithHttpInfo($entity_trait_definition_id, $update_entity_trait_definition_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8504,16 +8331,15 @@ class CompaniesApi
      *
      * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
      * @param  \Schematic\Model\UpdateEntityTraitDefinitionRequestBody $update_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateEntityTraitDefinitionAsyncWithHttpInfo($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
+    public function updateEntityTraitDefinitionAsyncWithHttpInfo($entity_trait_definition_id, $update_entity_trait_definition_request_body, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
     {
         $returnType = '\Schematic\Model\UpdateEntityTraitDefinitionResponse';
-        $request = $this->updateEntityTraitDefinitionRequest($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updateEntityTraitDefinitionRequest($entity_trait_definition_id, $update_entity_trait_definition_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8556,13 +8382,12 @@ class CompaniesApi
      *
      * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
      * @param  \Schematic\Model\UpdateEntityTraitDefinitionRequestBody $update_entity_trait_definition_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateEntityTraitDefinition'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateEntityTraitDefinitionRequest($entity_trait_definition_id, $update_entity_trait_definition_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
+    public function updateEntityTraitDefinitionRequest($entity_trait_definition_id, $update_entity_trait_definition_request_body, string $contentType = self::contentTypes['updateEntityTraitDefinition'][0])
     {
 
         // verify the required parameter 'entity_trait_definition_id' is set
@@ -8580,7 +8405,6 @@ class CompaniesApi
         }
 
 
-
         $resourcePath = '/entity-trait-definitions/{entity_trait_definition_id}';
         $formParams = [];
         $queryParams = [];
@@ -8589,10 +8413,6 @@ class CompaniesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($entity_trait_definition_id !== null) {

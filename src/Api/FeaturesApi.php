@@ -189,16 +189,15 @@ class FeaturesApi
      *
      * @param  string $key key (required)
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CheckFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function checkFlag($key, $check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlag'][0])
+    public function checkFlag($key, $check_flag_request_body, string $contentType = self::contentTypes['checkFlag'][0])
     {
-        list($response) = $this->checkFlagWithHttpInfo($key, $check_flag_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->checkFlagWithHttpInfo($key, $check_flag_request_body, $contentType);
         return $response;
     }
 
@@ -209,16 +208,15 @@ class FeaturesApi
      *
      * @param  string $key key (required)
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CheckFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function checkFlagWithHttpInfo($key, $check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlag'][0])
+    public function checkFlagWithHttpInfo($key, $check_flag_request_body, string $contentType = self::contentTypes['checkFlag'][0])
     {
-        $request = $this->checkFlagRequest($key, $check_flag_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->checkFlagRequest($key, $check_flag_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -475,15 +473,14 @@ class FeaturesApi
      *
      * @param  string $key key (required)
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function checkFlagAsync($key, $check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlag'][0])
+    public function checkFlagAsync($key, $check_flag_request_body, string $contentType = self::contentTypes['checkFlag'][0])
     {
-        return $this->checkFlagAsyncWithHttpInfo($key, $check_flag_request_body, $x_schematic_environment_id, $contentType)
+        return $this->checkFlagAsyncWithHttpInfo($key, $check_flag_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -498,16 +495,15 @@ class FeaturesApi
      *
      * @param  string $key key (required)
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function checkFlagAsyncWithHttpInfo($key, $check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlag'][0])
+    public function checkFlagAsyncWithHttpInfo($key, $check_flag_request_body, string $contentType = self::contentTypes['checkFlag'][0])
     {
         $returnType = '\Schematic\Model\CheckFlagResponse';
-        $request = $this->checkFlagRequest($key, $check_flag_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->checkFlagRequest($key, $check_flag_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -550,13 +546,12 @@ class FeaturesApi
      *
      * @param  string $key key (required)
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function checkFlagRequest($key, $check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlag'][0])
+    public function checkFlagRequest($key, $check_flag_request_body, string $contentType = self::contentTypes['checkFlag'][0])
     {
 
         // verify the required parameter 'key' is set
@@ -574,7 +569,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/flags/{key}/check';
         $formParams = [];
         $queryParams = [];
@@ -583,10 +577,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($key !== null) {
@@ -669,16 +659,15 @@ class FeaturesApi
      * Check flags
      *
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlags'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CheckFlagsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function checkFlags($check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlags'][0])
+    public function checkFlags($check_flag_request_body, string $contentType = self::contentTypes['checkFlags'][0])
     {
-        list($response) = $this->checkFlagsWithHttpInfo($check_flag_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->checkFlagsWithHttpInfo($check_flag_request_body, $contentType);
         return $response;
     }
 
@@ -688,16 +677,15 @@ class FeaturesApi
      * Check flags
      *
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlags'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CheckFlagsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function checkFlagsWithHttpInfo($check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlags'][0])
+    public function checkFlagsWithHttpInfo($check_flag_request_body, string $contentType = self::contentTypes['checkFlags'][0])
     {
-        $request = $this->checkFlagsRequest($check_flag_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->checkFlagsRequest($check_flag_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -953,15 +941,14 @@ class FeaturesApi
      * Check flags
      *
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function checkFlagsAsync($check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlags'][0])
+    public function checkFlagsAsync($check_flag_request_body, string $contentType = self::contentTypes['checkFlags'][0])
     {
-        return $this->checkFlagsAsyncWithHttpInfo($check_flag_request_body, $x_schematic_environment_id, $contentType)
+        return $this->checkFlagsAsyncWithHttpInfo($check_flag_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -975,16 +962,15 @@ class FeaturesApi
      * Check flags
      *
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function checkFlagsAsyncWithHttpInfo($check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlags'][0])
+    public function checkFlagsAsyncWithHttpInfo($check_flag_request_body, string $contentType = self::contentTypes['checkFlags'][0])
     {
         $returnType = '\Schematic\Model\CheckFlagsResponse';
-        $request = $this->checkFlagsRequest($check_flag_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->checkFlagsRequest($check_flag_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1026,13 +1012,12 @@ class FeaturesApi
      * Create request for operation 'checkFlags'
      *
      * @param  \Schematic\Model\CheckFlagRequestBody $check_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkFlags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function checkFlagsRequest($check_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['checkFlags'][0])
+    public function checkFlagsRequest($check_flag_request_body, string $contentType = self::contentTypes['checkFlags'][0])
     {
 
         // verify the required parameter 'check_flag_request_body' is set
@@ -1043,7 +1028,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/flags/check';
         $formParams = [];
         $queryParams = [];
@@ -1052,10 +1036,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -1130,16 +1110,15 @@ class FeaturesApi
      * Count Companies audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountCompaniesAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countCompaniesAudience($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countCompaniesAudience'][0])
+    public function countCompaniesAudience($audience_request_body, string $contentType = self::contentTypes['countCompaniesAudience'][0])
     {
-        list($response) = $this->countCompaniesAudienceWithHttpInfo($audience_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->countCompaniesAudienceWithHttpInfo($audience_request_body, $contentType);
         return $response;
     }
 
@@ -1149,16 +1128,15 @@ class FeaturesApi
      * Count Companies audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountCompaniesAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countCompaniesAudienceWithHttpInfo($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countCompaniesAudience'][0])
+    public function countCompaniesAudienceWithHttpInfo($audience_request_body, string $contentType = self::contentTypes['countCompaniesAudience'][0])
     {
-        $request = $this->countCompaniesAudienceRequest($audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->countCompaniesAudienceRequest($audience_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1414,15 +1392,14 @@ class FeaturesApi
      * Count Companies audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCompaniesAudienceAsync($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countCompaniesAudience'][0])
+    public function countCompaniesAudienceAsync($audience_request_body, string $contentType = self::contentTypes['countCompaniesAudience'][0])
     {
-        return $this->countCompaniesAudienceAsyncWithHttpInfo($audience_request_body, $x_schematic_environment_id, $contentType)
+        return $this->countCompaniesAudienceAsyncWithHttpInfo($audience_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1436,16 +1413,15 @@ class FeaturesApi
      * Count Companies audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCompaniesAudienceAsyncWithHttpInfo($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countCompaniesAudience'][0])
+    public function countCompaniesAudienceAsyncWithHttpInfo($audience_request_body, string $contentType = self::contentTypes['countCompaniesAudience'][0])
     {
         $returnType = '\Schematic\Model\CountCompaniesAudienceResponse';
-        $request = $this->countCompaniesAudienceRequest($audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->countCompaniesAudienceRequest($audience_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1487,13 +1463,12 @@ class FeaturesApi
      * Create request for operation 'countCompaniesAudience'
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countCompaniesAudienceRequest($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countCompaniesAudience'][0])
+    public function countCompaniesAudienceRequest($audience_request_body, string $contentType = self::contentTypes['countCompaniesAudience'][0])
     {
 
         // verify the required parameter 'audience_request_body' is set
@@ -1504,7 +1479,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/audience/count-companies';
         $formParams = [];
         $queryParams = [];
@@ -1513,10 +1487,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -1590,7 +1560,6 @@ class FeaturesApi
      *
      * Count flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id flag_id (optional)
      * @param  string[] $flag_ids flag_ids (optional)
      * @param  string $id id (optional)
@@ -1602,9 +1571,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countFlagChecks($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecks($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
-        list($response) = $this->countFlagChecksWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
+        list($response) = $this->countFlagChecksWithHttpInfo($flag_id, $flag_ids, $id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -1613,7 +1582,6 @@ class FeaturesApi
      *
      * Count flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -1625,9 +1593,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countFlagChecksWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecksWithHttpInfo($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
-        $request = $this->countFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
+        $request = $this->countFlagChecksRequest($flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1882,7 +1850,6 @@ class FeaturesApi
      *
      * Count flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -1893,9 +1860,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFlagChecksAsync($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecksAsync($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
-        return $this->countFlagChecksAsyncWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType)
+        return $this->countFlagChecksAsyncWithHttpInfo($flag_id, $flag_ids, $id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1908,7 +1875,6 @@ class FeaturesApi
      *
      * Count flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -1919,10 +1885,10 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFlagChecksAsyncWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecksAsyncWithHttpInfo($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
         $returnType = '\Schematic\Model\CountFlagChecksResponse';
-        $request = $this->countFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
+        $request = $this->countFlagChecksRequest($flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1963,7 +1929,6 @@ class FeaturesApi
     /**
      * Create request for operation 'countFlagChecks'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -1974,9 +1939,8 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countFlagChecksRequest($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
+    public function countFlagChecksRequest($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFlagChecks'][0])
     {
-
 
 
 
@@ -2037,10 +2001,6 @@ class FeaturesApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -2108,16 +2068,15 @@ class FeaturesApi
      * Count Users audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countUsersAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountUsersAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countUsersAudience($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countUsersAudience'][0])
+    public function countUsersAudience($audience_request_body, string $contentType = self::contentTypes['countUsersAudience'][0])
     {
-        list($response) = $this->countUsersAudienceWithHttpInfo($audience_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->countUsersAudienceWithHttpInfo($audience_request_body, $contentType);
         return $response;
     }
 
@@ -2127,16 +2086,15 @@ class FeaturesApi
      * Count Users audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countUsersAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountUsersAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countUsersAudienceWithHttpInfo($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countUsersAudience'][0])
+    public function countUsersAudienceWithHttpInfo($audience_request_body, string $contentType = self::contentTypes['countUsersAudience'][0])
     {
-        $request = $this->countUsersAudienceRequest($audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->countUsersAudienceRequest($audience_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2392,15 +2350,14 @@ class FeaturesApi
      * Count Users audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countUsersAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countUsersAudienceAsync($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countUsersAudience'][0])
+    public function countUsersAudienceAsync($audience_request_body, string $contentType = self::contentTypes['countUsersAudience'][0])
     {
-        return $this->countUsersAudienceAsyncWithHttpInfo($audience_request_body, $x_schematic_environment_id, $contentType)
+        return $this->countUsersAudienceAsyncWithHttpInfo($audience_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2414,16 +2371,15 @@ class FeaturesApi
      * Count Users audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countUsersAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countUsersAudienceAsyncWithHttpInfo($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countUsersAudience'][0])
+    public function countUsersAudienceAsyncWithHttpInfo($audience_request_body, string $contentType = self::contentTypes['countUsersAudience'][0])
     {
         $returnType = '\Schematic\Model\CountUsersAudienceResponse';
-        $request = $this->countUsersAudienceRequest($audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->countUsersAudienceRequest($audience_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2465,13 +2421,12 @@ class FeaturesApi
      * Create request for operation 'countUsersAudience'
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countUsersAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countUsersAudienceRequest($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['countUsersAudience'][0])
+    public function countUsersAudienceRequest($audience_request_body, string $contentType = self::contentTypes['countUsersAudience'][0])
     {
 
         // verify the required parameter 'audience_request_body' is set
@@ -2482,7 +2437,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/audience/count-users';
         $formParams = [];
         $queryParams = [];
@@ -2491,10 +2445,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -2569,16 +2519,15 @@ class FeaturesApi
      * Create feature
      *
      * @param  \Schematic\Model\CreateFeatureRequestBody $create_feature_request_body create_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFeature'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateFeatureResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createFeature($create_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFeature'][0])
+    public function createFeature($create_feature_request_body, string $contentType = self::contentTypes['createFeature'][0])
     {
-        list($response) = $this->createFeatureWithHttpInfo($create_feature_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createFeatureWithHttpInfo($create_feature_request_body, $contentType);
         return $response;
     }
 
@@ -2588,16 +2537,15 @@ class FeaturesApi
      * Create feature
      *
      * @param  \Schematic\Model\CreateFeatureRequestBody $create_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFeature'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateFeatureResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createFeatureWithHttpInfo($create_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFeature'][0])
+    public function createFeatureWithHttpInfo($create_feature_request_body, string $contentType = self::contentTypes['createFeature'][0])
     {
-        $request = $this->createFeatureRequest($create_feature_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createFeatureRequest($create_feature_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2853,15 +2801,14 @@ class FeaturesApi
      * Create feature
      *
      * @param  \Schematic\Model\CreateFeatureRequestBody $create_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createFeatureAsync($create_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFeature'][0])
+    public function createFeatureAsync($create_feature_request_body, string $contentType = self::contentTypes['createFeature'][0])
     {
-        return $this->createFeatureAsyncWithHttpInfo($create_feature_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createFeatureAsyncWithHttpInfo($create_feature_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2875,16 +2822,15 @@ class FeaturesApi
      * Create feature
      *
      * @param  \Schematic\Model\CreateFeatureRequestBody $create_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createFeatureAsyncWithHttpInfo($create_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFeature'][0])
+    public function createFeatureAsyncWithHttpInfo($create_feature_request_body, string $contentType = self::contentTypes['createFeature'][0])
     {
         $returnType = '\Schematic\Model\CreateFeatureResponse';
-        $request = $this->createFeatureRequest($create_feature_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createFeatureRequest($create_feature_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2926,13 +2872,12 @@ class FeaturesApi
      * Create request for operation 'createFeature'
      *
      * @param  \Schematic\Model\CreateFeatureRequestBody $create_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createFeatureRequest($create_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFeature'][0])
+    public function createFeatureRequest($create_feature_request_body, string $contentType = self::contentTypes['createFeature'][0])
     {
 
         // verify the required parameter 'create_feature_request_body' is set
@@ -2943,7 +2888,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/features';
         $formParams = [];
         $queryParams = [];
@@ -2952,10 +2896,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -3030,16 +2970,15 @@ class FeaturesApi
      * Create flag
      *
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CreateFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function createFlag($create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFlag'][0])
+    public function createFlag($create_flag_request_body, string $contentType = self::contentTypes['createFlag'][0])
     {
-        list($response) = $this->createFlagWithHttpInfo($create_flag_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->createFlagWithHttpInfo($create_flag_request_body, $contentType);
         return $response;
     }
 
@@ -3049,16 +2988,15 @@ class FeaturesApi
      * Create flag
      *
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CreateFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createFlagWithHttpInfo($create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFlag'][0])
+    public function createFlagWithHttpInfo($create_flag_request_body, string $contentType = self::contentTypes['createFlag'][0])
     {
-        $request = $this->createFlagRequest($create_flag_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createFlagRequest($create_flag_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3314,15 +3252,14 @@ class FeaturesApi
      * Create flag
      *
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createFlagAsync($create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFlag'][0])
+    public function createFlagAsync($create_flag_request_body, string $contentType = self::contentTypes['createFlag'][0])
     {
-        return $this->createFlagAsyncWithHttpInfo($create_flag_request_body, $x_schematic_environment_id, $contentType)
+        return $this->createFlagAsyncWithHttpInfo($create_flag_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3336,16 +3273,15 @@ class FeaturesApi
      * Create flag
      *
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createFlagAsyncWithHttpInfo($create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFlag'][0])
+    public function createFlagAsyncWithHttpInfo($create_flag_request_body, string $contentType = self::contentTypes['createFlag'][0])
     {
         $returnType = '\Schematic\Model\CreateFlagResponse';
-        $request = $this->createFlagRequest($create_flag_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->createFlagRequest($create_flag_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3387,13 +3323,12 @@ class FeaturesApi
      * Create request for operation 'createFlag'
      *
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createFlagRequest($create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['createFlag'][0])
+    public function createFlagRequest($create_flag_request_body, string $contentType = self::contentTypes['createFlag'][0])
     {
 
         // verify the required parameter 'create_flag_request_body' is set
@@ -3404,7 +3339,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/flags';
         $formParams = [];
         $queryParams = [];
@@ -3413,10 +3347,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -3491,16 +3421,15 @@ class FeaturesApi
      * Delete feature
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeature'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeleteFeatureResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deleteFeature($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFeature'][0])
+    public function deleteFeature($feature_id, string $contentType = self::contentTypes['deleteFeature'][0])
     {
-        list($response) = $this->deleteFeatureWithHttpInfo($feature_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->deleteFeatureWithHttpInfo($feature_id, $contentType);
         return $response;
     }
 
@@ -3510,16 +3439,15 @@ class FeaturesApi
      * Delete feature
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeature'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeleteFeatureResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteFeatureWithHttpInfo($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFeature'][0])
+    public function deleteFeatureWithHttpInfo($feature_id, string $contentType = self::contentTypes['deleteFeature'][0])
     {
-        $request = $this->deleteFeatureRequest($feature_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteFeatureRequest($feature_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3775,15 +3703,14 @@ class FeaturesApi
      * Delete feature
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFeatureAsync($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFeature'][0])
+    public function deleteFeatureAsync($feature_id, string $contentType = self::contentTypes['deleteFeature'][0])
     {
-        return $this->deleteFeatureAsyncWithHttpInfo($feature_id, $x_schematic_environment_id, $contentType)
+        return $this->deleteFeatureAsyncWithHttpInfo($feature_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3797,16 +3724,15 @@ class FeaturesApi
      * Delete feature
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFeatureAsyncWithHttpInfo($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFeature'][0])
+    public function deleteFeatureAsyncWithHttpInfo($feature_id, string $contentType = self::contentTypes['deleteFeature'][0])
     {
         $returnType = '\Schematic\Model\DeleteFeatureResponse';
-        $request = $this->deleteFeatureRequest($feature_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteFeatureRequest($feature_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3848,13 +3774,12 @@ class FeaturesApi
      * Create request for operation 'deleteFeature'
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFeatureRequest($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFeature'][0])
+    public function deleteFeatureRequest($feature_id, string $contentType = self::contentTypes['deleteFeature'][0])
     {
 
         // verify the required parameter 'feature_id' is set
@@ -3865,7 +3790,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/features/{feature_id}';
         $formParams = [];
         $queryParams = [];
@@ -3874,10 +3798,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($feature_id !== null) {
@@ -3953,16 +3873,15 @@ class FeaturesApi
      * Delete flag
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeleteFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deleteFlag($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFlag'][0])
+    public function deleteFlag($flag_id, string $contentType = self::contentTypes['deleteFlag'][0])
     {
-        list($response) = $this->deleteFlagWithHttpInfo($flag_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->deleteFlagWithHttpInfo($flag_id, $contentType);
         return $response;
     }
 
@@ -3972,16 +3891,15 @@ class FeaturesApi
      * Delete flag
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeleteFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteFlagWithHttpInfo($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFlag'][0])
+    public function deleteFlagWithHttpInfo($flag_id, string $contentType = self::contentTypes['deleteFlag'][0])
     {
-        $request = $this->deleteFlagRequest($flag_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteFlagRequest($flag_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4237,15 +4155,14 @@ class FeaturesApi
      * Delete flag
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFlagAsync($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFlag'][0])
+    public function deleteFlagAsync($flag_id, string $contentType = self::contentTypes['deleteFlag'][0])
     {
-        return $this->deleteFlagAsyncWithHttpInfo($flag_id, $x_schematic_environment_id, $contentType)
+        return $this->deleteFlagAsyncWithHttpInfo($flag_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4259,16 +4176,15 @@ class FeaturesApi
      * Delete flag
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFlagAsyncWithHttpInfo($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFlag'][0])
+    public function deleteFlagAsyncWithHttpInfo($flag_id, string $contentType = self::contentTypes['deleteFlag'][0])
     {
         $returnType = '\Schematic\Model\DeleteFlagResponse';
-        $request = $this->deleteFlagRequest($flag_id, $x_schematic_environment_id, $contentType);
+        $request = $this->deleteFlagRequest($flag_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4310,13 +4226,12 @@ class FeaturesApi
      * Create request for operation 'deleteFlag'
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFlagRequest($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['deleteFlag'][0])
+    public function deleteFlagRequest($flag_id, string $contentType = self::contentTypes['deleteFlag'][0])
     {
 
         // verify the required parameter 'flag_id' is set
@@ -4327,7 +4242,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/flags/{flag_id}';
         $formParams = [];
         $queryParams = [];
@@ -4336,10 +4250,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($flag_id !== null) {
@@ -4415,16 +4325,15 @@ class FeaturesApi
      * Get Companies audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetCompaniesAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getCompaniesAudience($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompaniesAudience'][0])
+    public function getCompaniesAudience($audience_request_body, string $contentType = self::contentTypes['getCompaniesAudience'][0])
     {
-        list($response) = $this->getCompaniesAudienceWithHttpInfo($audience_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getCompaniesAudienceWithHttpInfo($audience_request_body, $contentType);
         return $response;
     }
 
@@ -4434,16 +4343,15 @@ class FeaturesApi
      * Get Companies audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetCompaniesAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCompaniesAudienceWithHttpInfo($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompaniesAudience'][0])
+    public function getCompaniesAudienceWithHttpInfo($audience_request_body, string $contentType = self::contentTypes['getCompaniesAudience'][0])
     {
-        $request = $this->getCompaniesAudienceRequest($audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->getCompaniesAudienceRequest($audience_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4699,15 +4607,14 @@ class FeaturesApi
      * Get Companies audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompaniesAudienceAsync($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompaniesAudience'][0])
+    public function getCompaniesAudienceAsync($audience_request_body, string $contentType = self::contentTypes['getCompaniesAudience'][0])
     {
-        return $this->getCompaniesAudienceAsyncWithHttpInfo($audience_request_body, $x_schematic_environment_id, $contentType)
+        return $this->getCompaniesAudienceAsyncWithHttpInfo($audience_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4721,16 +4628,15 @@ class FeaturesApi
      * Get Companies audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompaniesAudienceAsyncWithHttpInfo($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompaniesAudience'][0])
+    public function getCompaniesAudienceAsyncWithHttpInfo($audience_request_body, string $contentType = self::contentTypes['getCompaniesAudience'][0])
     {
         $returnType = '\Schematic\Model\GetCompaniesAudienceResponse';
-        $request = $this->getCompaniesAudienceRequest($audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->getCompaniesAudienceRequest($audience_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4772,13 +4678,12 @@ class FeaturesApi
      * Create request for operation 'getCompaniesAudience'
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompaniesAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCompaniesAudienceRequest($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getCompaniesAudience'][0])
+    public function getCompaniesAudienceRequest($audience_request_body, string $contentType = self::contentTypes['getCompaniesAudience'][0])
     {
 
         // verify the required parameter 'audience_request_body' is set
@@ -4789,7 +4694,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/audience/get-companies';
         $formParams = [];
         $queryParams = [];
@@ -4798,10 +4702,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -4876,16 +4776,15 @@ class FeaturesApi
      * Get feature
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeature'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetFeatureResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getFeature($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFeature'][0])
+    public function getFeature($feature_id, string $contentType = self::contentTypes['getFeature'][0])
     {
-        list($response) = $this->getFeatureWithHttpInfo($feature_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getFeatureWithHttpInfo($feature_id, $contentType);
         return $response;
     }
 
@@ -4895,16 +4794,15 @@ class FeaturesApi
      * Get feature
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeature'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetFeatureResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getFeatureWithHttpInfo($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFeature'][0])
+    public function getFeatureWithHttpInfo($feature_id, string $contentType = self::contentTypes['getFeature'][0])
     {
-        $request = $this->getFeatureRequest($feature_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getFeatureRequest($feature_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5160,15 +5058,14 @@ class FeaturesApi
      * Get feature
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFeatureAsync($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFeature'][0])
+    public function getFeatureAsync($feature_id, string $contentType = self::contentTypes['getFeature'][0])
     {
-        return $this->getFeatureAsyncWithHttpInfo($feature_id, $x_schematic_environment_id, $contentType)
+        return $this->getFeatureAsyncWithHttpInfo($feature_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5182,16 +5079,15 @@ class FeaturesApi
      * Get feature
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFeatureAsyncWithHttpInfo($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFeature'][0])
+    public function getFeatureAsyncWithHttpInfo($feature_id, string $contentType = self::contentTypes['getFeature'][0])
     {
         $returnType = '\Schematic\Model\GetFeatureResponse';
-        $request = $this->getFeatureRequest($feature_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getFeatureRequest($feature_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5233,13 +5129,12 @@ class FeaturesApi
      * Create request for operation 'getFeature'
      *
      * @param  string $feature_id feature_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFeatureRequest($feature_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFeature'][0])
+    public function getFeatureRequest($feature_id, string $contentType = self::contentTypes['getFeature'][0])
     {
 
         // verify the required parameter 'feature_id' is set
@@ -5250,7 +5145,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/features/{feature_id}';
         $formParams = [];
         $queryParams = [];
@@ -5259,10 +5153,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($feature_id !== null) {
@@ -5338,16 +5228,15 @@ class FeaturesApi
      * Get flag
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getFlag($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlag'][0])
+    public function getFlag($flag_id, string $contentType = self::contentTypes['getFlag'][0])
     {
-        list($response) = $this->getFlagWithHttpInfo($flag_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getFlagWithHttpInfo($flag_id, $contentType);
         return $response;
     }
 
@@ -5357,16 +5246,15 @@ class FeaturesApi
      * Get flag
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getFlagWithHttpInfo($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlag'][0])
+    public function getFlagWithHttpInfo($flag_id, string $contentType = self::contentTypes['getFlag'][0])
     {
-        $request = $this->getFlagRequest($flag_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getFlagRequest($flag_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5622,15 +5510,14 @@ class FeaturesApi
      * Get flag
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFlagAsync($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlag'][0])
+    public function getFlagAsync($flag_id, string $contentType = self::contentTypes['getFlag'][0])
     {
-        return $this->getFlagAsyncWithHttpInfo($flag_id, $x_schematic_environment_id, $contentType)
+        return $this->getFlagAsyncWithHttpInfo($flag_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5644,16 +5531,15 @@ class FeaturesApi
      * Get flag
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFlagAsyncWithHttpInfo($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlag'][0])
+    public function getFlagAsyncWithHttpInfo($flag_id, string $contentType = self::contentTypes['getFlag'][0])
     {
         $returnType = '\Schematic\Model\GetFlagResponse';
-        $request = $this->getFlagRequest($flag_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getFlagRequest($flag_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5695,13 +5581,12 @@ class FeaturesApi
      * Create request for operation 'getFlag'
      *
      * @param  string $flag_id flag_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFlagRequest($flag_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlag'][0])
+    public function getFlagRequest($flag_id, string $contentType = self::contentTypes['getFlag'][0])
     {
 
         // verify the required parameter 'flag_id' is set
@@ -5712,7 +5597,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/flags/{flag_id}';
         $formParams = [];
         $queryParams = [];
@@ -5721,10 +5605,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($flag_id !== null) {
@@ -5800,16 +5680,15 @@ class FeaturesApi
      * Get flag check
      *
      * @param  string $flag_check_id flag_check_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlagCheck'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetFlagCheckResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getFlagCheck($flag_check_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlagCheck'][0])
+    public function getFlagCheck($flag_check_id, string $contentType = self::contentTypes['getFlagCheck'][0])
     {
-        list($response) = $this->getFlagCheckWithHttpInfo($flag_check_id, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getFlagCheckWithHttpInfo($flag_check_id, $contentType);
         return $response;
     }
 
@@ -5819,16 +5698,15 @@ class FeaturesApi
      * Get flag check
      *
      * @param  string $flag_check_id flag_check_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlagCheck'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetFlagCheckResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getFlagCheckWithHttpInfo($flag_check_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlagCheck'][0])
+    public function getFlagCheckWithHttpInfo($flag_check_id, string $contentType = self::contentTypes['getFlagCheck'][0])
     {
-        $request = $this->getFlagCheckRequest($flag_check_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getFlagCheckRequest($flag_check_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6084,15 +5962,14 @@ class FeaturesApi
      * Get flag check
      *
      * @param  string $flag_check_id flag_check_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlagCheck'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFlagCheckAsync($flag_check_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlagCheck'][0])
+    public function getFlagCheckAsync($flag_check_id, string $contentType = self::contentTypes['getFlagCheck'][0])
     {
-        return $this->getFlagCheckAsyncWithHttpInfo($flag_check_id, $x_schematic_environment_id, $contentType)
+        return $this->getFlagCheckAsyncWithHttpInfo($flag_check_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6106,16 +5983,15 @@ class FeaturesApi
      * Get flag check
      *
      * @param  string $flag_check_id flag_check_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlagCheck'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFlagCheckAsyncWithHttpInfo($flag_check_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlagCheck'][0])
+    public function getFlagCheckAsyncWithHttpInfo($flag_check_id, string $contentType = self::contentTypes['getFlagCheck'][0])
     {
         $returnType = '\Schematic\Model\GetFlagCheckResponse';
-        $request = $this->getFlagCheckRequest($flag_check_id, $x_schematic_environment_id, $contentType);
+        $request = $this->getFlagCheckRequest($flag_check_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6157,13 +6033,12 @@ class FeaturesApi
      * Create request for operation 'getFlagCheck'
      *
      * @param  string $flag_check_id flag_check_id (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFlagCheck'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFlagCheckRequest($flag_check_id, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getFlagCheck'][0])
+    public function getFlagCheckRequest($flag_check_id, string $contentType = self::contentTypes['getFlagCheck'][0])
     {
 
         // verify the required parameter 'flag_check_id' is set
@@ -6174,7 +6049,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/flag-checks/{flag_check_id}';
         $formParams = [];
         $queryParams = [];
@@ -6183,10 +6057,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($flag_check_id !== null) {
@@ -6262,16 +6132,15 @@ class FeaturesApi
      * Get Users audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsersAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetUsersAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getUsersAudience($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUsersAudience'][0])
+    public function getUsersAudience($audience_request_body, string $contentType = self::contentTypes['getUsersAudience'][0])
     {
-        list($response) = $this->getUsersAudienceWithHttpInfo($audience_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->getUsersAudienceWithHttpInfo($audience_request_body, $contentType);
         return $response;
     }
 
@@ -6281,16 +6150,15 @@ class FeaturesApi
      * Get Users audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsersAudience'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetUsersAudienceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getUsersAudienceWithHttpInfo($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUsersAudience'][0])
+    public function getUsersAudienceWithHttpInfo($audience_request_body, string $contentType = self::contentTypes['getUsersAudience'][0])
     {
-        $request = $this->getUsersAudienceRequest($audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->getUsersAudienceRequest($audience_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6546,15 +6414,14 @@ class FeaturesApi
      * Get Users audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsersAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUsersAudienceAsync($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUsersAudience'][0])
+    public function getUsersAudienceAsync($audience_request_body, string $contentType = self::contentTypes['getUsersAudience'][0])
     {
-        return $this->getUsersAudienceAsyncWithHttpInfo($audience_request_body, $x_schematic_environment_id, $contentType)
+        return $this->getUsersAudienceAsyncWithHttpInfo($audience_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6568,16 +6435,15 @@ class FeaturesApi
      * Get Users audience
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsersAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUsersAudienceAsyncWithHttpInfo($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUsersAudience'][0])
+    public function getUsersAudienceAsyncWithHttpInfo($audience_request_body, string $contentType = self::contentTypes['getUsersAudience'][0])
     {
         $returnType = '\Schematic\Model\GetUsersAudienceResponse';
-        $request = $this->getUsersAudienceRequest($audience_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->getUsersAudienceRequest($audience_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6619,13 +6485,12 @@ class FeaturesApi
      * Create request for operation 'getUsersAudience'
      *
      * @param  \Schematic\Model\AudienceRequestBody $audience_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsersAudience'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getUsersAudienceRequest($audience_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['getUsersAudience'][0])
+    public function getUsersAudienceRequest($audience_request_body, string $contentType = self::contentTypes['getUsersAudience'][0])
     {
 
         // verify the required parameter 'audience_request_body' is set
@@ -6636,7 +6501,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/audience/get-users';
         $formParams = [];
         $queryParams = [];
@@ -6645,10 +6509,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -6722,7 +6582,6 @@ class FeaturesApi
      *
      * Latest flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id flag_id (optional)
      * @param  string[] $flag_ids flag_ids (optional)
      * @param  string $id id (optional)
@@ -6734,9 +6593,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\LatestFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function latestFlagChecks($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecks($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
-        list($response) = $this->latestFlagChecksWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
+        list($response) = $this->latestFlagChecksWithHttpInfo($flag_id, $flag_ids, $id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -6745,7 +6604,6 @@ class FeaturesApi
      *
      * Latest flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -6757,9 +6615,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\LatestFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function latestFlagChecksWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecksWithHttpInfo($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
-        $request = $this->latestFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
+        $request = $this->latestFlagChecksRequest($flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7014,7 +6872,6 @@ class FeaturesApi
      *
      * Latest flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -7025,9 +6882,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestFlagChecksAsync($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecksAsync($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
-        return $this->latestFlagChecksAsyncWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType)
+        return $this->latestFlagChecksAsyncWithHttpInfo($flag_id, $flag_ids, $id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7040,7 +6897,6 @@ class FeaturesApi
      *
      * Latest flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -7051,10 +6907,10 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function latestFlagChecksAsyncWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecksAsyncWithHttpInfo($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
         $returnType = '\Schematic\Model\LatestFlagChecksResponse';
-        $request = $this->latestFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
+        $request = $this->latestFlagChecksRequest($flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7095,7 +6951,6 @@ class FeaturesApi
     /**
      * Create request for operation 'latestFlagChecks'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -7106,9 +6961,8 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function latestFlagChecksRequest($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
+    public function latestFlagChecksRequest($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['latestFlagChecks'][0])
     {
-
 
 
 
@@ -7169,10 +7023,6 @@ class FeaturesApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -7239,7 +7089,6 @@ class FeaturesApi
      *
      * List features
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -7248,9 +7097,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListFeaturesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listFeatures($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeatures($limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-        list($response) = $this->listFeaturesWithHttpInfo($x_schematic_environment_id, $limit, $offset, $contentType);
+        list($response) = $this->listFeaturesWithHttpInfo($limit, $offset, $contentType);
         return $response;
     }
 
@@ -7259,7 +7108,6 @@ class FeaturesApi
      *
      * List features
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -7268,9 +7116,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListFeaturesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFeaturesWithHttpInfo($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesWithHttpInfo($limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-        $request = $this->listFeaturesRequest($x_schematic_environment_id, $limit, $offset, $contentType);
+        $request = $this->listFeaturesRequest($limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7525,7 +7373,6 @@ class FeaturesApi
      *
      * List features
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -7533,9 +7380,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFeaturesAsync($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesAsync($limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-        return $this->listFeaturesAsyncWithHttpInfo($x_schematic_environment_id, $limit, $offset, $contentType)
+        return $this->listFeaturesAsyncWithHttpInfo($limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7548,7 +7395,6 @@ class FeaturesApi
      *
      * List features
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -7556,10 +7402,10 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFeaturesAsyncWithHttpInfo($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesAsyncWithHttpInfo($limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
         $returnType = '\Schematic\Model\ListFeaturesResponse';
-        $request = $this->listFeaturesRequest($x_schematic_environment_id, $limit, $offset, $contentType);
+        $request = $this->listFeaturesRequest($limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7600,7 +7446,6 @@ class FeaturesApi
     /**
      * Create request for operation 'listFeatures'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -7608,9 +7453,8 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFeaturesRequest($x_schematic_environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesRequest($limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-
 
 
 
@@ -7641,10 +7485,6 @@ class FeaturesApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -7711,7 +7551,6 @@ class FeaturesApi
      *
      * List flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id flag_id (optional)
      * @param  string[] $flag_ids flag_ids (optional)
      * @param  string $id id (optional)
@@ -7723,9 +7562,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listFlagChecks($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecks($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
-        list($response) = $this->listFlagChecksWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
+        list($response) = $this->listFlagChecksWithHttpInfo($flag_id, $flag_ids, $id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -7734,7 +7573,6 @@ class FeaturesApi
      *
      * List flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -7746,9 +7584,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListFlagChecksResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFlagChecksWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecksWithHttpInfo($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
-        $request = $this->listFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
+        $request = $this->listFlagChecksRequest($flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -8003,7 +7841,6 @@ class FeaturesApi
      *
      * List flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -8014,9 +7851,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagChecksAsync($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecksAsync($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
-        return $this->listFlagChecksAsyncWithHttpInfo($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType)
+        return $this->listFlagChecksAsyncWithHttpInfo($flag_id, $flag_ids, $id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8029,7 +7866,6 @@ class FeaturesApi
      *
      * List flag checks
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -8040,10 +7876,10 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagChecksAsyncWithHttpInfo($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecksAsyncWithHttpInfo($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
         $returnType = '\Schematic\Model\ListFlagChecksResponse';
-        $request = $this->listFlagChecksRequest($x_schematic_environment_id, $flag_id, $flag_ids, $id, $limit, $offset, $contentType);
+        $request = $this->listFlagChecksRequest($flag_id, $flag_ids, $id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8084,7 +7920,6 @@ class FeaturesApi
     /**
      * Create request for operation 'listFlagChecks'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $flag_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  string $id (optional)
@@ -8095,9 +7930,8 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFlagChecksRequest($x_schematic_environment_id = null, $flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
+    public function listFlagChecksRequest($flag_id = null, $flag_ids = null, $id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlagChecks'][0])
     {
-
 
 
 
@@ -8158,10 +7992,6 @@ class FeaturesApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -8228,7 +8058,6 @@ class FeaturesApi
      *
      * List flags
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $feature_id feature_id (optional)
      * @param  string[] $flag_ids flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8239,9 +8068,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListFlagsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listFlags($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlags($feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
-        list($response) = $this->listFlagsWithHttpInfo($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $contentType);
+        list($response) = $this->listFlagsWithHttpInfo($feature_id, $flag_ids, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -8250,7 +8079,6 @@ class FeaturesApi
      *
      * List flags
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $feature_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8261,9 +8089,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListFlagsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFlagsWithHttpInfo($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlagsWithHttpInfo($feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
-        $request = $this->listFlagsRequest($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $contentType);
+        $request = $this->listFlagsRequest($feature_id, $flag_ids, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -8518,7 +8346,6 @@ class FeaturesApi
      *
      * List flags
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $feature_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8528,9 +8355,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagsAsync($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlagsAsync($feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
-        return $this->listFlagsAsyncWithHttpInfo($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $contentType)
+        return $this->listFlagsAsyncWithHttpInfo($feature_id, $flag_ids, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8543,7 +8370,6 @@ class FeaturesApi
      *
      * List flags
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $feature_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8553,10 +8379,10 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFlagsAsyncWithHttpInfo($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlagsAsyncWithHttpInfo($feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
         $returnType = '\Schematic\Model\ListFlagsResponse';
-        $request = $this->listFlagsRequest($x_schematic_environment_id, $feature_id, $flag_ids, $limit, $offset, $contentType);
+        $request = $this->listFlagsRequest($feature_id, $flag_ids, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8597,7 +8423,6 @@ class FeaturesApi
     /**
      * Create request for operation 'listFlags'
      *
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $feature_id (optional)
      * @param  string[] $flag_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8607,9 +8432,8 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFlagsRequest($x_schematic_environment_id = null, $feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
+    public function listFlagsRequest($feature_id = null, $flag_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFlags'][0])
     {
-
 
 
 
@@ -8660,10 +8484,6 @@ class FeaturesApi
             false // required
         ) ?? []);
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
 
 
@@ -8732,16 +8552,15 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\UpdateFlagRulesRequestBody $update_flag_rules_request_body update_flag_rules_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rulesFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\RulesFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function rulesFlag($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['rulesFlag'][0])
+    public function rulesFlag($flag_id, $update_flag_rules_request_body, string $contentType = self::contentTypes['rulesFlag'][0])
     {
-        list($response) = $this->rulesFlagWithHttpInfo($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->rulesFlagWithHttpInfo($flag_id, $update_flag_rules_request_body, $contentType);
         return $response;
     }
 
@@ -8752,16 +8571,15 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\UpdateFlagRulesRequestBody $update_flag_rules_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rulesFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\RulesFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function rulesFlagWithHttpInfo($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['rulesFlag'][0])
+    public function rulesFlagWithHttpInfo($flag_id, $update_flag_rules_request_body, string $contentType = self::contentTypes['rulesFlag'][0])
     {
-        $request = $this->rulesFlagRequest($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->rulesFlagRequest($flag_id, $update_flag_rules_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -9053,15 +8871,14 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\UpdateFlagRulesRequestBody $update_flag_rules_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rulesFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function rulesFlagAsync($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['rulesFlag'][0])
+    public function rulesFlagAsync($flag_id, $update_flag_rules_request_body, string $contentType = self::contentTypes['rulesFlag'][0])
     {
-        return $this->rulesFlagAsyncWithHttpInfo($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id, $contentType)
+        return $this->rulesFlagAsyncWithHttpInfo($flag_id, $update_flag_rules_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -9076,16 +8893,15 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\UpdateFlagRulesRequestBody $update_flag_rules_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rulesFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function rulesFlagAsyncWithHttpInfo($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['rulesFlag'][0])
+    public function rulesFlagAsyncWithHttpInfo($flag_id, $update_flag_rules_request_body, string $contentType = self::contentTypes['rulesFlag'][0])
     {
         $returnType = '\Schematic\Model\RulesFlagResponse';
-        $request = $this->rulesFlagRequest($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->rulesFlagRequest($flag_id, $update_flag_rules_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -9128,13 +8944,12 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\UpdateFlagRulesRequestBody $update_flag_rules_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rulesFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function rulesFlagRequest($flag_id, $update_flag_rules_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['rulesFlag'][0])
+    public function rulesFlagRequest($flag_id, $update_flag_rules_request_body, string $contentType = self::contentTypes['rulesFlag'][0])
     {
 
         // verify the required parameter 'flag_id' is set
@@ -9152,7 +8967,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/flags/{flag_id}/rules';
         $formParams = [];
         $queryParams = [];
@@ -9161,10 +8975,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($flag_id !== null) {
@@ -9248,16 +9058,15 @@ class FeaturesApi
      *
      * @param  string $feature_id feature_id (required)
      * @param  \Schematic\Model\UpdateFeatureRequestBody $update_feature_request_body update_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFeature'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\UpdateFeatureResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function updateFeature($feature_id, $update_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFeature'][0])
+    public function updateFeature($feature_id, $update_feature_request_body, string $contentType = self::contentTypes['updateFeature'][0])
     {
-        list($response) = $this->updateFeatureWithHttpInfo($feature_id, $update_feature_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->updateFeatureWithHttpInfo($feature_id, $update_feature_request_body, $contentType);
         return $response;
     }
 
@@ -9268,16 +9077,15 @@ class FeaturesApi
      *
      * @param  string $feature_id feature_id (required)
      * @param  \Schematic\Model\UpdateFeatureRequestBody $update_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFeature'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\UpdateFeatureResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateFeatureWithHttpInfo($feature_id, $update_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFeature'][0])
+    public function updateFeatureWithHttpInfo($feature_id, $update_feature_request_body, string $contentType = self::contentTypes['updateFeature'][0])
     {
-        $request = $this->updateFeatureRequest($feature_id, $update_feature_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updateFeatureRequest($feature_id, $update_feature_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -9569,15 +9377,14 @@ class FeaturesApi
      *
      * @param  string $feature_id feature_id (required)
      * @param  \Schematic\Model\UpdateFeatureRequestBody $update_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateFeatureAsync($feature_id, $update_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFeature'][0])
+    public function updateFeatureAsync($feature_id, $update_feature_request_body, string $contentType = self::contentTypes['updateFeature'][0])
     {
-        return $this->updateFeatureAsyncWithHttpInfo($feature_id, $update_feature_request_body, $x_schematic_environment_id, $contentType)
+        return $this->updateFeatureAsyncWithHttpInfo($feature_id, $update_feature_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -9592,16 +9399,15 @@ class FeaturesApi
      *
      * @param  string $feature_id feature_id (required)
      * @param  \Schematic\Model\UpdateFeatureRequestBody $update_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateFeatureAsyncWithHttpInfo($feature_id, $update_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFeature'][0])
+    public function updateFeatureAsyncWithHttpInfo($feature_id, $update_feature_request_body, string $contentType = self::contentTypes['updateFeature'][0])
     {
         $returnType = '\Schematic\Model\UpdateFeatureResponse';
-        $request = $this->updateFeatureRequest($feature_id, $update_feature_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updateFeatureRequest($feature_id, $update_feature_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -9644,13 +9450,12 @@ class FeaturesApi
      *
      * @param  string $feature_id feature_id (required)
      * @param  \Schematic\Model\UpdateFeatureRequestBody $update_feature_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFeature'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateFeatureRequest($feature_id, $update_feature_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFeature'][0])
+    public function updateFeatureRequest($feature_id, $update_feature_request_body, string $contentType = self::contentTypes['updateFeature'][0])
     {
 
         // verify the required parameter 'feature_id' is set
@@ -9668,7 +9473,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/features/{feature_id}';
         $formParams = [];
         $queryParams = [];
@@ -9677,10 +9481,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($feature_id !== null) {
@@ -9764,16 +9564,15 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\UpdateFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function updateFlag($flag_id, $create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFlag'][0])
+    public function updateFlag($flag_id, $create_flag_request_body, string $contentType = self::contentTypes['updateFlag'][0])
     {
-        list($response) = $this->updateFlagWithHttpInfo($flag_id, $create_flag_request_body, $x_schematic_environment_id, $contentType);
+        list($response) = $this->updateFlagWithHttpInfo($flag_id, $create_flag_request_body, $contentType);
         return $response;
     }
 
@@ -9784,16 +9583,15 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlag'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\UpdateFlagResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateFlagWithHttpInfo($flag_id, $create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFlag'][0])
+    public function updateFlagWithHttpInfo($flag_id, $create_flag_request_body, string $contentType = self::contentTypes['updateFlag'][0])
     {
-        $request = $this->updateFlagRequest($flag_id, $create_flag_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updateFlagRequest($flag_id, $create_flag_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -10085,15 +9883,14 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateFlagAsync($flag_id, $create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFlag'][0])
+    public function updateFlagAsync($flag_id, $create_flag_request_body, string $contentType = self::contentTypes['updateFlag'][0])
     {
-        return $this->updateFlagAsyncWithHttpInfo($flag_id, $create_flag_request_body, $x_schematic_environment_id, $contentType)
+        return $this->updateFlagAsyncWithHttpInfo($flag_id, $create_flag_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -10108,16 +9905,15 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateFlagAsyncWithHttpInfo($flag_id, $create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFlag'][0])
+    public function updateFlagAsyncWithHttpInfo($flag_id, $create_flag_request_body, string $contentType = self::contentTypes['updateFlag'][0])
     {
         $returnType = '\Schematic\Model\UpdateFlagResponse';
-        $request = $this->updateFlagRequest($flag_id, $create_flag_request_body, $x_schematic_environment_id, $contentType);
+        $request = $this->updateFlagRequest($flag_id, $create_flag_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -10160,13 +9956,12 @@ class FeaturesApi
      *
      * @param  string $flag_id flag_id (required)
      * @param  \Schematic\Model\CreateFlagRequestBody $create_flag_request_body (required)
-     * @param  string $x_schematic_environment_id If the request is made using an API key that is not environment-scoped, specify the environment using this header (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateFlag'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateFlagRequest($flag_id, $create_flag_request_body, $x_schematic_environment_id = null, string $contentType = self::contentTypes['updateFlag'][0])
+    public function updateFlagRequest($flag_id, $create_flag_request_body, string $contentType = self::contentTypes['updateFlag'][0])
     {
 
         // verify the required parameter 'flag_id' is set
@@ -10184,7 +9979,6 @@ class FeaturesApi
         }
 
 
-
         $resourcePath = '/flags/{flag_id}';
         $formParams = [];
         $queryParams = [];
@@ -10193,10 +9987,6 @@ class FeaturesApi
         $multipart = false;
 
 
-        // header params
-        if ($x_schematic_environment_id !== null) {
-            $headerParams['X-Schematic-Environment-Id'] = ObjectSerializer::toHeaderValue($x_schematic_environment_id);
-        }
 
         // path params
         if ($flag_id !== null) {

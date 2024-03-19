@@ -19,7 +19,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `createCompanyOverride()`
 
 ```php
-createCompanyOverride($create_company_override_request_body, $x_schematic_environment_id): \Schematic\Model\CreateCompanyOverrideResponse
+createCompanyOverride($create_company_override_request_body): \Schematic\Model\CreateCompanyOverrideResponse
 ```
 
 Create company override
@@ -28,29 +28,19 @@ Create company override
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $create_company_override_request_body = new \Schematic\Model\CreateCompanyOverrideRequestBody(); // \Schematic\Model\CreateCompanyOverrideRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->createCompanyOverride($create_company_override_request_body, $x_schematic_environment_id);
+    $result = $schematic->EntitlementsApi->createCompanyOverride($create_company_override_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->createCompanyOverride: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->createCompanyOverride: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -59,7 +49,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **create_company_override_request_body** | [**\Schematic\Model\CreateCompanyOverrideRequestBody**](../Model/CreateCompanyOverrideRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -81,7 +70,7 @@ try {
 ## `createPlanEntitlement()`
 
 ```php
-createPlanEntitlement($create_plan_entitlement_request_body, $x_schematic_environment_id): \Schematic\Model\CreatePlanEntitlementResponse
+createPlanEntitlement($create_plan_entitlement_request_body): \Schematic\Model\CreatePlanEntitlementResponse
 ```
 
 Create plan entitlement
@@ -90,29 +79,19 @@ Create plan entitlement
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $create_plan_entitlement_request_body = new \Schematic\Model\CreatePlanEntitlementRequestBody(); // \Schematic\Model\CreatePlanEntitlementRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->createPlanEntitlement($create_plan_entitlement_request_body, $x_schematic_environment_id);
+    $result = $schematic->EntitlementsApi->createPlanEntitlement($create_plan_entitlement_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->createPlanEntitlement: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->createPlanEntitlement: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -121,7 +100,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **create_plan_entitlement_request_body** | [**\Schematic\Model\CreatePlanEntitlementRequestBody**](../Model/CreatePlanEntitlementRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -143,7 +121,7 @@ try {
 ## `deleteCompanyOverride()`
 
 ```php
-deleteCompanyOverride($company_override_id, $x_schematic_environment_id): \Schematic\Model\DeleteCompanyOverrideResponse
+deleteCompanyOverride($company_override_id): \Schematic\Model\DeleteCompanyOverrideResponse
 ```
 
 Delete company override
@@ -152,29 +130,19 @@ Delete company override
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $company_override_id = 'company_override_id_example'; // string | company_override_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->deleteCompanyOverride($company_override_id, $x_schematic_environment_id);
+    $result = $schematic->EntitlementsApi->deleteCompanyOverride($company_override_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->deleteCompanyOverride: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->deleteCompanyOverride: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -183,7 +151,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **company_override_id** | **string**| company_override_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -205,7 +172,7 @@ try {
 ## `deletePlanEntitlement()`
 
 ```php
-deletePlanEntitlement($plan_entitlement_id, $x_schematic_environment_id): \Schematic\Model\DeletePlanEntitlementResponse
+deletePlanEntitlement($plan_entitlement_id): \Schematic\Model\DeletePlanEntitlementResponse
 ```
 
 Delete plan entitlement
@@ -214,29 +181,19 @@ Delete plan entitlement
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $plan_entitlement_id = 'plan_entitlement_id_example'; // string | plan_entitlement_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->deletePlanEntitlement($plan_entitlement_id, $x_schematic_environment_id);
+    $result = $schematic->EntitlementsApi->deletePlanEntitlement($plan_entitlement_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->deletePlanEntitlement: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->deletePlanEntitlement: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -245,7 +202,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_entitlement_id** | **string**| plan_entitlement_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -267,7 +223,7 @@ try {
 ## `getCompanyOverride()`
 
 ```php
-getCompanyOverride($company_override_id, $x_schematic_environment_id): \Schematic\Model\GetCompanyOverrideResponse
+getCompanyOverride($company_override_id): \Schematic\Model\GetCompanyOverrideResponse
 ```
 
 Get company override
@@ -276,29 +232,19 @@ Get company override
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $company_override_id = 'company_override_id_example'; // string | company_override_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getCompanyOverride($company_override_id, $x_schematic_environment_id);
+    $result = $schematic->EntitlementsApi->getCompanyOverride($company_override_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->getCompanyOverride: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->getCompanyOverride: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -307,7 +253,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **company_override_id** | **string**| company_override_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -329,7 +274,7 @@ try {
 ## `getPlanEntitlement()`
 
 ```php
-getPlanEntitlement($plan_entitlement_id, $x_schematic_environment_id): \Schematic\Model\GetPlanEntitlementResponse
+getPlanEntitlement($plan_entitlement_id): \Schematic\Model\GetPlanEntitlementResponse
 ```
 
 Get plan entitlement
@@ -338,29 +283,19 @@ Get plan entitlement
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $plan_entitlement_id = 'plan_entitlement_id_example'; // string | plan_entitlement_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getPlanEntitlement($plan_entitlement_id, $x_schematic_environment_id);
+    $result = $schematic->EntitlementsApi->getPlanEntitlement($plan_entitlement_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->getPlanEntitlement: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->getPlanEntitlement: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -369,7 +304,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_entitlement_id** | **string**| plan_entitlement_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -391,7 +325,7 @@ try {
 ## `listCompanyOverrides()`
 
 ```php
-listCompanyOverrides($x_schematic_environment_id, $company_id, $feature_id, $limit, $offset): \Schematic\Model\ListCompanyOverridesResponse
+listCompanyOverrides($company_id, $feature_id, $limit, $offset): \Schematic\Model\ListCompanyOverridesResponse
 ```
 
 List company overrides
@@ -400,32 +334,22 @@ List company overrides
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $company_id = 'company_id_example'; // string
 $feature_id = 'feature_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->listCompanyOverrides($x_schematic_environment_id, $company_id, $feature_id, $limit, $offset);
+    $result = $schematic->EntitlementsApi->listCompanyOverrides($company_id, $feature_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->listCompanyOverrides: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->listCompanyOverrides: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -433,7 +357,6 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **company_id** | **string**|  | [optional] |
 | **feature_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -459,7 +382,7 @@ try {
 ## `listPlanEntitlements()`
 
 ```php
-listPlanEntitlements($x_schematic_environment_id, $plan_id, $feature_id, $limit, $offset): \Schematic\Model\ListPlanEntitlementsResponse
+listPlanEntitlements($plan_id, $feature_id, $limit, $offset): \Schematic\Model\ListPlanEntitlementsResponse
 ```
 
 List plan entitlements
@@ -468,32 +391,22 @@ List plan entitlements
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $plan_id = 'plan_id_example'; // string
 $feature_id = 'feature_id_example'; // string
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->listPlanEntitlements($x_schematic_environment_id, $plan_id, $feature_id, $limit, $offset);
+    $result = $schematic->EntitlementsApi->listPlanEntitlements($plan_id, $feature_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->listPlanEntitlements: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->listPlanEntitlements: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -501,7 +414,6 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **plan_id** | **string**|  | [optional] |
 | **feature_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -527,7 +439,7 @@ try {
 ## `updateCompanyOverride()`
 
 ```php
-updateCompanyOverride($company_override_id, $update_company_override_request_body, $x_schematic_environment_id): \Schematic\Model\UpdateCompanyOverrideResponse
+updateCompanyOverride($company_override_id, $update_company_override_request_body): \Schematic\Model\UpdateCompanyOverrideResponse
 ```
 
 Update company override
@@ -536,30 +448,20 @@ Update company override
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $company_override_id = 'company_override_id_example'; // string | company_override_id
 $update_company_override_request_body = new \Schematic\Model\UpdateCompanyOverrideRequestBody(); // \Schematic\Model\UpdateCompanyOverrideRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->updateCompanyOverride($company_override_id, $update_company_override_request_body, $x_schematic_environment_id);
+    $result = $schematic->EntitlementsApi->updateCompanyOverride($company_override_id, $update_company_override_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->updateCompanyOverride: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->updateCompanyOverride: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -569,7 +471,6 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **company_override_id** | **string**| company_override_id | |
 | **update_company_override_request_body** | [**\Schematic\Model\UpdateCompanyOverrideRequestBody**](../Model/UpdateCompanyOverrideRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -591,7 +492,7 @@ try {
 ## `updatePlanEntitlement()`
 
 ```php
-updatePlanEntitlement($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id): \Schematic\Model\UpdatePlanEntitlementResponse
+updatePlanEntitlement($plan_entitlement_id, $update_plan_entitlement_request_body): \Schematic\Model\UpdatePlanEntitlementResponse
 ```
 
 Update plan entitlement
@@ -600,30 +501,20 @@ Update plan entitlement
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\EntitlementsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $plan_entitlement_id = 'plan_entitlement_id_example'; // string | plan_entitlement_id
 $update_plan_entitlement_request_body = new \Schematic\Model\UpdatePlanEntitlementRequestBody(); // \Schematic\Model\UpdatePlanEntitlementRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->updatePlanEntitlement($plan_entitlement_id, $update_plan_entitlement_request_body, $x_schematic_environment_id);
+    $result = $schematic->EntitlementsApi->updatePlanEntitlement($plan_entitlement_id, $update_plan_entitlement_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling EntitlementsApi->updatePlanEntitlement: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EntitlementsApi->updatePlanEntitlement: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -633,7 +524,6 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_entitlement_id** | **string**| plan_entitlement_id | |
 | **update_plan_entitlement_request_body** | [**\Schematic\Model\UpdatePlanEntitlementRequestBody**](../Model/UpdatePlanEntitlementRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 

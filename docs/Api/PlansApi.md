@@ -16,7 +16,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `createPlan()`
 
 ```php
-createPlan($create_plan_request_body, $x_schematic_environment_id): \Schematic\Model\CreatePlanResponse
+createPlan($create_plan_request_body): \Schematic\Model\CreatePlanResponse
 ```
 
 Create plan
@@ -25,29 +25,19 @@ Create plan
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\PlansApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $create_plan_request_body = new \Schematic\Model\CreatePlanRequestBody(); // \Schematic\Model\CreatePlanRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->createPlan($create_plan_request_body, $x_schematic_environment_id);
+    $result = $schematic->PlansApi->createPlan($create_plan_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PlansApi->createPlan: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->PlansApi->createPlan: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -56,7 +46,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **create_plan_request_body** | [**\Schematic\Model\CreatePlanRequestBody**](../Model/CreatePlanRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -78,7 +67,7 @@ try {
 ## `deletePlan()`
 
 ```php
-deletePlan($plan_id, $x_schematic_environment_id): \Schematic\Model\DeletePlanResponse
+deletePlan($plan_id): \Schematic\Model\DeletePlanResponse
 ```
 
 Delete plan
@@ -87,29 +76,19 @@ Delete plan
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\PlansApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $plan_id = 'plan_id_example'; // string | plan_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->deletePlan($plan_id, $x_schematic_environment_id);
+    $result = $schematic->PlansApi->deletePlan($plan_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PlansApi->deletePlan: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->PlansApi->deletePlan: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -118,7 +97,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_id** | **string**| plan_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -140,7 +118,7 @@ try {
 ## `deletePlanAudience()`
 
 ```php
-deletePlanAudience($plan_audience_id, $x_schematic_environment_id): \Schematic\Model\DeletePlanAudienceResponse
+deletePlanAudience($plan_audience_id): \Schematic\Model\DeletePlanAudienceResponse
 ```
 
 Delete plan audience
@@ -149,29 +127,19 @@ Delete plan audience
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\PlansApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $plan_audience_id = 'plan_audience_id_example'; // string | plan_audience_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->deletePlanAudience($plan_audience_id, $x_schematic_environment_id);
+    $result = $schematic->PlansApi->deletePlanAudience($plan_audience_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PlansApi->deletePlanAudience: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->PlansApi->deletePlanAudience: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -180,7 +148,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_audience_id** | **string**| plan_audience_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -202,7 +169,7 @@ try {
 ## `getPlan()`
 
 ```php
-getPlan($plan_id, $x_schematic_environment_id): \Schematic\Model\GetPlanResponse
+getPlan($plan_id): \Schematic\Model\GetPlanResponse
 ```
 
 Get plan
@@ -211,29 +178,19 @@ Get plan
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\PlansApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $plan_id = 'plan_id_example'; // string | plan_id
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->getPlan($plan_id, $x_schematic_environment_id);
+    $result = $schematic->PlansApi->getPlan($plan_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PlansApi->getPlan: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->PlansApi->getPlan: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -242,7 +199,6 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_id** | **string**| plan_id | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -264,7 +220,7 @@ try {
 ## `listPlans()`
 
 ```php
-listPlans($x_schematic_environment_id, $limit, $offset): \Schematic\Model\ListPlansResponse
+listPlans($limit, $offset): \Schematic\Model\ListPlansResponse
 ```
 
 List plans
@@ -273,30 +229,20 @@ List plans
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\PlansApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 $limit = 56; // int | Page limit (default 100)
 $offset = 56; // int | Page offset (default 0)
 
 try {
-    $result = $apiInstance->listPlans($x_schematic_environment_id, $limit, $offset);
+    $result = $schematic->PlansApi->listPlans($limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PlansApi->listPlans: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->PlansApi->listPlans: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -304,7 +250,6 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -328,7 +273,7 @@ try {
 ## `updatePlan()`
 
 ```php
-updatePlan($plan_id, $update_plan_request_body, $x_schematic_environment_id): \Schematic\Model\UpdatePlanResponse
+updatePlan($plan_id, $update_plan_request_body): \Schematic\Model\UpdatePlanResponse
 ```
 
 Update plan
@@ -337,30 +282,20 @@ Update plan
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\PlansApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $plan_id = 'plan_id_example'; // string | plan_id
 $update_plan_request_body = new \Schematic\Model\UpdatePlanRequestBody(); // \Schematic\Model\UpdatePlanRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->updatePlan($plan_id, $update_plan_request_body, $x_schematic_environment_id);
+    $result = $schematic->PlansApi->updatePlan($plan_id, $update_plan_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PlansApi->updatePlan: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->PlansApi->updatePlan: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -370,7 +305,6 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_id** | **string**| plan_id | |
 | **update_plan_request_body** | [**\Schematic\Model\UpdatePlanRequestBody**](../Model/UpdatePlanRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 
@@ -392,7 +326,7 @@ try {
 ## `updatePlanAudience()`
 
 ```php
-updatePlanAudience($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id): \Schematic\Model\UpdatePlanAudienceResponse
+updatePlanAudience($plan_audience_id, $update_audience_request_body): \Schematic\Model\UpdatePlanAudienceResponse
 ```
 
 Update plan audience
@@ -401,30 +335,20 @@ Update plan audience
 
 ```php
 <?php
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
+use Schematic\Schematic;
 
-// Configure API key authorization: ApiKeyAuth
-$config = Schematic\Configuration::getDefaultConfiguration()->setApiKey('X-Schematic-Api-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Schematic\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-Schematic-Api-Key', 'Bearer');
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-
-$apiInstance = new Schematic\Api\PlansApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
 $plan_audience_id = 'plan_audience_id_example'; // string | plan_audience_id
 $update_audience_request_body = new \Schematic\Model\UpdateAudienceRequestBody(); // \Schematic\Model\UpdateAudienceRequestBody
-$x_schematic_environment_id = 'x_schematic_environment_id_example'; // string | If the request is made using an API key that is not environment-scoped, specify the environment using this header
 
 try {
-    $result = $apiInstance->updatePlanAudience($plan_audience_id, $update_audience_request_body, $x_schematic_environment_id);
+    $result = $schematic->PlansApi->updatePlanAudience($plan_audience_id, $update_audience_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PlansApi->updatePlanAudience: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->PlansApi->updatePlanAudience: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -434,7 +358,6 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_audience_id** | **string**| plan_audience_id | |
 | **update_audience_request_body** | [**\Schematic\Model\UpdateAudienceRequestBody**](../Model/UpdateAudienceRequestBody.md)|  | |
-| **x_schematic_environment_id** | **string**| If the request is made using an API key that is not environment-scoped, specify the environment using this header | [optional] |
 
 ### Return type
 

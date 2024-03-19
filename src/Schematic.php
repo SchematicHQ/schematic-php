@@ -12,12 +12,12 @@ use Schematic\Api\PlansApi;
 
 class Schematic
 {
-    public $Accounts;
-    public $Companies;
-    public $Entitlements;
-    public $Events;
-    public $Features;
-    public $Plans;
+    public $AccountsApi;
+    public $CompaniesApi;
+    public $EntitlementsApi;
+    public $EventsApi;
+    public $FeaturesApi;
+    public $PlansApi;
 
     /**
      * @param string $apiKey
@@ -43,12 +43,12 @@ class Schematic
 
         $httpClient = new \GuzzleHttp\Client();
 
-        $this->Accounts = new AccountsApi($httpClient, $config);
-        $this->Companies = new CompaniesApi($httpClient, $config);
-        $this->Entitlements = new EntitlementsApi($httpClient, $config);
-        $this->Events = new EventsApi($httpClient, $config);
-        $this->Features = new FeaturesApi($httpClient, $config);
-        $this->Plans = new PlansApi($httpClient, $config);
+        $this->AccountsApi = new AccountsApi($httpClient, $config);
+        $this->CompaniesApi = new CompaniesApi($httpClient, $config);
+        $this->EntitlementsApi = new EntitlementsApi($httpClient, $config);
+        $this->EventsApi = new EventsApi($httpClient, $config);
+        $this->FeaturesApi = new FeaturesApi($httpClient, $config);
+        $this->PlansApi = new PlansApi($httpClient, $config);
     }
 }
 
