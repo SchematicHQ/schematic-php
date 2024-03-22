@@ -342,8 +342,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string
 $feature_id = 'feature_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->EntitlementsApi->listCompanyOverrides($company_id, $feature_id, $limit, $offset);
@@ -399,8 +399,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $plan_id = 'plan_id_example'; // string
 $feature_id = 'feature_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->EntitlementsApi->listPlanEntitlements($plan_id, $feature_id, $limit, $offset);

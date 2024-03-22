@@ -39,8 +39,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $require_environment = True; // bool
 $environment_id = 'environment_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->AccountsApi->countApiKeys($require_environment, $environment_id, $limit, $offset);
@@ -95,8 +95,8 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $q = 'q_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->AccountsApi->countApiRequests($q, $limit, $offset);
@@ -508,8 +508,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $require_environment = True; // bool
 $environment_id = 'environment_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->AccountsApi->listApiKeys($require_environment, $environment_id, $limit, $offset);
@@ -564,8 +564,8 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $q = 'q_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->AccountsApi->listApiRequests($q, $limit, $offset);
