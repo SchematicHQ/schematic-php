@@ -235,8 +235,8 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->PlansApi->listPlans($limit, $offset);

@@ -203,8 +203,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $flag_id = 'flag_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
 $id = 'id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->FeaturesApi->countFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
@@ -772,8 +772,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $flag_id = 'flag_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
 $id = 'id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->FeaturesApi->latestFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
@@ -828,8 +828,8 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->FeaturesApi->listFeatures($limit, $offset);
@@ -884,8 +884,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $flag_id = 'flag_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
 $id = 'id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->FeaturesApi->listFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
@@ -942,8 +942,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $feature_id = 'feature_id_example'; // string
 $flag_ids = array('flag_ids_example'); // string[]
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->FeaturesApi->listFlags($feature_id, $flag_ids, $limit, $offset);

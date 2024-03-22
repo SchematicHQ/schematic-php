@@ -34,8 +34,8 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $q = 'q_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->EventsApi->countEventTypes($q, $limit, $offset);
@@ -91,8 +91,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $company_id = 'company_id_example'; // string
 $user_id = 'user_id_example'; // string
 $event_subtype = 'event_subtype_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->EventsApi->countEvents($company_id, $user_id, $event_subtype, $limit, $offset);
@@ -301,8 +301,8 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $q = 'q_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->EventsApi->listEventTypes($q, $limit, $offset);
@@ -358,8 +358,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $company_id = 'company_id_example'; // string
 $user_id = 'user_id_example'; // string
 $event_subtype = 'event_subtype_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->EventsApi->listEvents($company_id, $user_id, $event_subtype, $limit, $offset);
@@ -421,8 +421,8 @@ $event_subtypes = array('event_subtypes_example'); // string[]
 $company_id = 'company_id_example'; // string
 $company_ids = array('company_ids_example'); // string[]
 $user_id = 'user_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 $grouping = 'grouping_example'; // string
 
 try {
@@ -490,8 +490,8 @@ $event_subtypes = array('event_subtypes_example'); // string[]
 $company_id = 'company_id_example'; // string
 $company_ids = array('company_ids_example'); // string[]
 $user_id = 'user_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->EventsApi->listMetricCountsHourly($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset);

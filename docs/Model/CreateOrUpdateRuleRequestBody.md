@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **id** | **string** |  | [optional]
 **name** | **string** |  |
 **priority** | **int** |  |
-**priority_group** | **int** |  | [optional]
 **rule_type** | **string** |  | [optional]
 **value** | **bool** |  |
 

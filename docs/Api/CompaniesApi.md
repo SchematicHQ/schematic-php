@@ -604,8 +604,8 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->CompaniesApi->listCompanies($ids, $limit, $offset);
@@ -660,8 +660,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string
 $user_id = 'user_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->CompaniesApi->listCompanyMemberships($company_id, $user_id, $limit, $offset);
@@ -717,8 +717,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string
 $plan_id = 'plan_id_example'; // string
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->CompaniesApi->listCompanyPlans($company_id, $plan_id, $limit, $offset);
@@ -773,8 +773,8 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
-$limit = 56; // int | Page limit (default 100)
-$offset = 56; // int | Page offset (default 0)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
 
 try {
     $result = $schematic->CompaniesApi->listUsers($ids, $limit, $offset);
