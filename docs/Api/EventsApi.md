@@ -4,24 +4,24 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**countEventTypes()**](EventsApi.md#countEventTypes) | **GET** /event-types/count | Count event types |
+| [**countEventSummaries()**](EventsApi.md#countEventSummaries) | **GET** /event-types/count | Count event summaries |
 | [**countEvents()**](EventsApi.md#countEvents) | **GET** /events/count | Count events |
 | [**createEvent()**](EventsApi.md#createEvent) | **POST** /events | Create event |
+| [**createEventBatch()**](EventsApi.md#createEventBatch) | **POST** /event-batch | Create event batch |
 | [**getEvent()**](EventsApi.md#getEvent) | **GET** /events/{event_id} | Get event |
-| [**getEventType()**](EventsApi.md#getEventType) | **GET** /event-types/{key} | Get event type |
-| [**listEventTypes()**](EventsApi.md#listEventTypes) | **GET** /event-types | List event types |
+| [**getEventSummaries()**](EventsApi.md#getEventSummaries) | **GET** /event-types | Get event summaries |
+| [**getEventSummaryBySubtype()**](EventsApi.md#getEventSummaryBySubtype) | **GET** /event-types/{key} | Get event summary by subtype |
 | [**listEvents()**](EventsApi.md#listEvents) | **GET** /events | List events |
 | [**listMetricCounts()**](EventsApi.md#listMetricCounts) | **GET** /metric-counts | List metric counts |
-| [**listMetricCountsHourly()**](EventsApi.md#listMetricCountsHourly) | **GET** /metric-counts-hourly | List metric counts hourly |
 
 
-## `countEventTypes()`
+## `countEventSummaries()`
 
 ```php
-countEventTypes($q, $limit, $offset): \Schematic\Model\CountEventTypesResponse
+countEventSummaries($q, $limit, $offset): \Schematic\Model\CountEventSummariesResponse
 ```
 
-Count event types
+Count event summaries
 
 ### Example
 
@@ -38,10 +38,10 @@ $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->EventsApi->countEventTypes($q, $limit, $offset);
+    $result = $schematic->EventsApi->countEventSummaries($q, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling Schematic->EventsApi->countEventTypes: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EventsApi->countEventSummaries: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -55,7 +55,7 @@ try {
 
 ### Return type
 
-[**\Schematic\Model\CountEventTypesResponse**](../Model/CountEventTypesResponse.md)
+[**\Schematic\Model\CountEventSummariesResponse**](../Model/CountEventSummariesResponse.md)
 
 ### Authorization
 
@@ -180,6 +180,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `createEventBatch()`
+
+```php
+createEventBatch($create_event_batch_request_body): \Schematic\Model\CreateEventBatchResponse
+```
+
+Create event batch
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$create_event_batch_request_body = new \Schematic\Model\CreateEventBatchRequestBody(); // \Schematic\Model\CreateEventBatchRequestBody
+
+try {
+    $result = $schematic->EventsApi->createEventBatch($create_event_batch_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EventsApi->createEventBatch: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_event_batch_request_body** | [**\Schematic\Model\CreateEventBatchRequestBody**](../Model/CreateEventBatchRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\CreateEventBatchResponse**](../Model/CreateEventBatchResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getEvent()`
 
 ```php
@@ -231,64 +282,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getEventType()`
+## `getEventSummaries()`
 
 ```php
-getEventType($key): \Schematic\Model\GetEventTypeResponse
+getEventSummaries($q, $limit, $offset): \Schematic\Model\GetEventSummariesResponse
 ```
 
-Get event type
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$key = 'key_example'; // string | key
-
-try {
-    $result = $schematic->EventsApi->getEventType($key);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->EventsApi->getEventType: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **key** | **string**| key | |
-
-### Return type
-
-[**\Schematic\Model\GetEventTypeResponse**](../Model/GetEventTypeResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `listEventTypes()`
-
-```php
-listEventTypes($q, $limit, $offset): \Schematic\Model\ListEventTypesResponse
-```
-
-List event types
+Get event summaries
 
 ### Example
 
@@ -305,10 +305,10 @@ $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->EventsApi->listEventTypes($q, $limit, $offset);
+    $result = $schematic->EventsApi->getEventSummaries($q, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling Schematic->EventsApi->listEventTypes: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->EventsApi->getEventSummaries: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -322,7 +322,58 @@ try {
 
 ### Return type
 
-[**\Schematic\Model\ListEventTypesResponse**](../Model/ListEventTypesResponse.md)
+[**\Schematic\Model\GetEventSummariesResponse**](../Model/GetEventSummariesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getEventSummaryBySubtype()`
+
+```php
+getEventSummaryBySubtype($key): \Schematic\Model\GetEventSummaryBySubtypeResponse
+```
+
+Get event summary by subtype
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$key = 'key_example'; // string | key
+
+try {
+    $result = $schematic->EventsApi->getEventSummaryBySubtype($key);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EventsApi->getEventSummaryBySubtype: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **key** | **string**| key | |
+
+### Return type
+
+[**\Schematic\Model\GetEventSummaryBySubtypeResponse**](../Model/GetEventSummaryBySubtypeResponse.md)
 
 ### Authorization
 
@@ -451,73 +502,6 @@ try {
 ### Return type
 
 [**\Schematic\Model\ListMetricCountsResponse**](../Model/ListMetricCountsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `listMetricCountsHourly()`
-
-```php
-listMetricCountsHourly($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset): \Schematic\Model\ListMetricCountsHourlyResponse
-```
-
-List metric counts hourly
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
-$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
-$event_subtype = 'event_subtype_example'; // string
-$event_subtypes = array('event_subtypes_example'); // string[]
-$company_id = 'company_id_example'; // string
-$company_ids = array('company_ids_example'); // string[]
-$user_id = 'user_id_example'; // string
-$limit = 100; // int | Page limit (default 100)
-$offset = 0; // int | Page offset (default 0)
-
-try {
-    $result = $schematic->EventsApi->listMetricCountsHourly($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->EventsApi->listMetricCountsHourly: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **start_time** | **\DateTime**|  | [optional] |
-| **end_time** | **\DateTime**|  | [optional] |
-| **event_subtype** | **string**|  | [optional] |
-| **event_subtypes** | [**string[]**](../Model/string.md)|  | [optional] |
-| **company_id** | **string**|  | [optional] |
-| **company_ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **user_id** | **string**|  | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\ListMetricCountsHourlyResponse**](../Model/ListMetricCountsHourlyResponse.md)
 
 ### Authorization
 

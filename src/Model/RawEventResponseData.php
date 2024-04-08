@@ -36,7 +36,6 @@ use \Schematic\ObjectSerializer;
  * RawEventResponseData Class Doc Comment
  *
  * @category Class
- * @description The created resource
  * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

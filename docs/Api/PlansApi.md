@@ -5,12 +5,12 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**createPlan()**](PlansApi.md#createPlan) | **POST** /plans | Create plan |
+| [**deleteAudience()**](PlansApi.md#deleteAudience) | **DELETE** /plan-audiences/{plan_audience_id} | Delete audience |
 | [**deletePlan()**](PlansApi.md#deletePlan) | **DELETE** /plans/{plan_id} | Delete plan |
-| [**deletePlanAudience()**](PlansApi.md#deletePlanAudience) | **DELETE** /plan-audiences/{plan_audience_id} | Delete plan audience |
 | [**getPlan()**](PlansApi.md#getPlan) | **GET** /plans/{plan_id} | Get plan |
 | [**listPlans()**](PlansApi.md#listPlans) | **GET** /plans | List plans |
+| [**updateAudience()**](PlansApi.md#updateAudience) | **PUT** /plan-audiences/{plan_audience_id} | Update audience |
 | [**updatePlan()**](PlansApi.md#updatePlan) | **PUT** /plans/{plan_id} | Update plan |
-| [**updatePlanAudience()**](PlansApi.md#updatePlanAudience) | **PUT** /plan-audiences/{plan_audience_id} | Update plan audience |
 
 
 ## `createPlan()`
@@ -64,6 +64,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteAudience()`
+
+```php
+deleteAudience($plan_audience_id): \Schematic\Model\DeleteAudienceResponse
+```
+
+Delete audience
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$plan_audience_id = 'plan_audience_id_example'; // string | plan_audience_id
+
+try {
+    $result = $schematic->PlansApi->deleteAudience($plan_audience_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->PlansApi->deleteAudience: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_audience_id** | **string**| plan_audience_id | |
+
+### Return type
+
+[**\Schematic\Model\DeleteAudienceResponse**](../Model/DeleteAudienceResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deletePlan()`
 
 ```php
@@ -101,57 +152,6 @@ try {
 ### Return type
 
 [**\Schematic\Model\DeletePlanResponse**](../Model/DeletePlanResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `deletePlanAudience()`
-
-```php
-deletePlanAudience($plan_audience_id): \Schematic\Model\DeletePlanAudienceResponse
-```
-
-Delete plan audience
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$plan_audience_id = 'plan_audience_id_example'; // string | plan_audience_id
-
-try {
-    $result = $schematic->PlansApi->deletePlanAudience($plan_audience_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->PlansApi->deletePlanAudience: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **plan_audience_id** | **string**| plan_audience_id | |
-
-### Return type
-
-[**\Schematic\Model\DeletePlanAudienceResponse**](../Model/DeletePlanAudienceResponse.md)
 
 ### Authorization
 
@@ -270,6 +270,59 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `updateAudience()`
+
+```php
+updateAudience($plan_audience_id, $update_audience_request_body): \Schematic\Model\UpdateAudienceResponse
+```
+
+Update audience
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$plan_audience_id = 'plan_audience_id_example'; // string | plan_audience_id
+$update_audience_request_body = new \Schematic\Model\UpdateAudienceRequestBody(); // \Schematic\Model\UpdateAudienceRequestBody
+
+try {
+    $result = $schematic->PlansApi->updateAudience($plan_audience_id, $update_audience_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->PlansApi->updateAudience: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_audience_id** | **string**| plan_audience_id | |
+| **update_audience_request_body** | [**\Schematic\Model\UpdateAudienceRequestBody**](../Model/UpdateAudienceRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpdateAudienceResponse**](../Model/UpdateAudienceResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `updatePlan()`
 
 ```php
@@ -309,59 +362,6 @@ try {
 ### Return type
 
 [**\Schematic\Model\UpdatePlanResponse**](../Model/UpdatePlanResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `updatePlanAudience()`
-
-```php
-updatePlanAudience($plan_audience_id, $update_audience_request_body): \Schematic\Model\UpdatePlanAudienceResponse
-```
-
-Update plan audience
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$plan_audience_id = 'plan_audience_id_example'; // string | plan_audience_id
-$update_audience_request_body = new \Schematic\Model\UpdateAudienceRequestBody(); // \Schematic\Model\UpdateAudienceRequestBody
-
-try {
-    $result = $schematic->PlansApi->updatePlanAudience($plan_audience_id, $update_audience_request_body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->PlansApi->updatePlanAudience: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **plan_audience_id** | **string**| plan_audience_id | |
-| **update_audience_request_body** | [**\Schematic\Model\UpdateAudienceRequestBody**](../Model/UpdateAudienceRequestBody.md)|  | |
-
-### Return type
-
-[**\Schematic\Model\UpdatePlanAudienceResponse**](../Model/UpdatePlanAudienceResponse.md)
 
 ### Authorization
 

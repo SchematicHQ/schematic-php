@@ -79,7 +79,7 @@ try {
 ## `countApiRequests()`
 
 ```php
-countApiRequests($q, $limit, $offset): \Schematic\Model\CountApiRequestsResponse
+countApiRequests($q, $request_type, $limit, $offset): \Schematic\Model\CountApiRequestsResponse
 ```
 
 Count api requests
@@ -95,11 +95,12 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $q = 'q_example'; // string
+$request_type = 'request_type_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->AccountsApi->countApiRequests($q, $limit, $offset);
+    $result = $schematic->AccountsApi->countApiRequests($q, $request_type, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->AccountsApi->countApiRequests: ', $e->getMessage(), PHP_EOL;
@@ -111,6 +112,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **q** | **string**|  | [optional] |
+| **request_type** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -548,7 +550,7 @@ try {
 ## `listApiRequests()`
 
 ```php
-listApiRequests($q, $limit, $offset): \Schematic\Model\ListApiRequestsResponse
+listApiRequests($q, $request_type, $limit, $offset): \Schematic\Model\ListApiRequestsResponse
 ```
 
 List api requests
@@ -564,11 +566,12 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $q = 'q_example'; // string
+$request_type = 'request_type_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->AccountsApi->listApiRequests($q, $limit, $offset);
+    $result = $schematic->AccountsApi->listApiRequests($q, $request_type, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->AccountsApi->listApiRequests: ', $e->getMessage(), PHP_EOL;
@@ -580,6 +583,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **q** | **string**|  | [optional] |
+| **request_type** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 

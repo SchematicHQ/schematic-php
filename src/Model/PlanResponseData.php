@@ -36,7 +36,6 @@ use \Schematic\ObjectSerializer;
  * PlanResponseData Class Doc Comment
  *
  * @category Class
- * @description The updated resource
  * @package  Schematic
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

@@ -72,7 +72,7 @@ class EventsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'countEventTypes' => [
+        'countEventSummaries' => [
             'application/json',
         ],
         'countEvents' => [
@@ -81,22 +81,22 @@ class EventsApi
         'createEvent' => [
             'application/json',
         ],
+        'createEventBatch' => [
+            'application/json',
+        ],
         'getEvent' => [
             'application/json',
         ],
-        'getEventType' => [
+        'getEventSummaries' => [
             'application/json',
         ],
-        'listEventTypes' => [
+        'getEventSummaryBySubtype' => [
             'application/json',
         ],
         'listEvents' => [
             'application/json',
         ],
         'listMetricCounts' => [
-            'application/json',
-        ],
-        'listMetricCountsHourly' => [
             'application/json',
         ],
     ];
@@ -148,42 +148,42 @@ class EventsApi
     }
 
     /**
-     * Operation countEventTypes
+     * Operation countEventSummaries
      *
-     * Count event types
+     * Count event summaries
      *
      * @param  string $q q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventSummaries'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Schematic\Model\CountEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     * @return \Schematic\Model\CountEventSummariesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countEventTypes($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventSummaries($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventSummaries'][0])
     {
-        list($response) = $this->countEventTypesWithHttpInfo($q, $limit, $offset, $contentType);
+        list($response) = $this->countEventSummariesWithHttpInfo($q, $limit, $offset, $contentType);
         return $response;
     }
 
     /**
-     * Operation countEventTypesWithHttpInfo
+     * Operation countEventSummariesWithHttpInfo
      *
-     * Count event types
+     * Count event summaries
      *
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventSummaries'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\CountEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\CountEventSummariesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countEventTypesWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventSummariesWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventSummaries'][0])
     {
-        $request = $this->countEventTypesRequest($q, $limit, $offset, $contentType);
+        $request = $this->countEventSummariesRequest($q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -222,11 +222,11 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Schematic\Model\CountEventTypesResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\CountEventSummariesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Schematic\Model\CountEventTypesResponse' !== 'string') {
+                        if ('\Schematic\Model\CountEventSummariesResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -244,7 +244,7 @@ class EventsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\CountEventTypesResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CountEventSummariesResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -358,7 +358,7 @@ class EventsApi
                     ];
             }
 
-            $returnType = '\Schematic\Model\CountEventTypesResponse';
+            $returnType = '\Schematic\Model\CountEventSummariesResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -391,7 +391,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Schematic\Model\CountEventTypesResponse',
+                        '\Schematic\Model\CountEventSummariesResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -434,21 +434,21 @@ class EventsApi
     }
 
     /**
-     * Operation countEventTypesAsync
+     * Operation countEventSummariesAsync
      *
-     * Count event types
+     * Count event summaries
      *
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventSummaries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventTypesAsync($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventSummariesAsync($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventSummaries'][0])
     {
-        return $this->countEventTypesAsyncWithHttpInfo($q, $limit, $offset, $contentType)
+        return $this->countEventSummariesAsyncWithHttpInfo($q, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -457,22 +457,22 @@ class EventsApi
     }
 
     /**
-     * Operation countEventTypesAsyncWithHttpInfo
+     * Operation countEventSummariesAsyncWithHttpInfo
      *
-     * Count event types
+     * Count event summaries
      *
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventSummaries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countEventTypesAsyncWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventSummariesAsyncWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventSummaries'][0])
     {
-        $returnType = '\Schematic\Model\CountEventTypesResponse';
-        $request = $this->countEventTypesRequest($q, $limit, $offset, $contentType);
+        $returnType = '\Schematic\Model\CountEventSummariesResponse';
+        $request = $this->countEventSummariesRequest($q, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -511,17 +511,17 @@ class EventsApi
     }
 
     /**
-     * Create request for operation 'countEventTypes'
+     * Create request for operation 'countEventSummaries'
      *
      * @param  string $q (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventTypes'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEventSummaries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countEventTypesRequest($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventTypes'][0])
+    public function countEventSummariesRequest($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEventSummaries'][0])
     {
 
 
@@ -1583,6 +1583,457 @@ class EventsApi
     }
 
     /**
+     * Operation createEventBatch
+     *
+     * Create event batch
+     *
+     * @param  \Schematic\Model\CreateEventBatchRequestBody $create_event_batch_request_body create_event_batch_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEventBatch'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CreateEventBatchResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function createEventBatch($create_event_batch_request_body, string $contentType = self::contentTypes['createEventBatch'][0])
+    {
+        list($response) = $this->createEventBatchWithHttpInfo($create_event_batch_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createEventBatchWithHttpInfo
+     *
+     * Create event batch
+     *
+     * @param  \Schematic\Model\CreateEventBatchRequestBody $create_event_batch_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEventBatch'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CreateEventBatchResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createEventBatchWithHttpInfo($create_event_batch_request_body, string $contentType = self::contentTypes['createEventBatch'][0])
+    {
+        $request = $this->createEventBatchRequest($create_event_batch_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\Schematic\Model\CreateEventBatchResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\CreateEventBatchResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CreateEventBatchResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\CreateEventBatchResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CreateEventBatchResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createEventBatchAsync
+     *
+     * Create event batch
+     *
+     * @param  \Schematic\Model\CreateEventBatchRequestBody $create_event_batch_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEventBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEventBatchAsync($create_event_batch_request_body, string $contentType = self::contentTypes['createEventBatch'][0])
+    {
+        return $this->createEventBatchAsyncWithHttpInfo($create_event_batch_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createEventBatchAsyncWithHttpInfo
+     *
+     * Create event batch
+     *
+     * @param  \Schematic\Model\CreateEventBatchRequestBody $create_event_batch_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEventBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createEventBatchAsyncWithHttpInfo($create_event_batch_request_body, string $contentType = self::contentTypes['createEventBatch'][0])
+    {
+        $returnType = '\Schematic\Model\CreateEventBatchResponse';
+        $request = $this->createEventBatchRequest($create_event_batch_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createEventBatch'
+     *
+     * @param  \Schematic\Model\CreateEventBatchRequestBody $create_event_batch_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createEventBatch'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createEventBatchRequest($create_event_batch_request_body, string $contentType = self::contentTypes['createEventBatch'][0])
+    {
+
+        // verify the required parameter 'create_event_batch_request_body' is set
+        if ($create_event_batch_request_body === null || (is_array($create_event_batch_request_body) && count($create_event_batch_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_event_batch_request_body when calling createEventBatch'
+            );
+        }
+
+
+        $resourcePath = '/event-batch';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($create_event_batch_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_event_batch_request_body));
+            } else {
+                $httpBody = $create_event_batch_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getEvent
      *
      * Get event
@@ -2035,38 +2486,42 @@ class EventsApi
     }
 
     /**
-     * Operation getEventType
+     * Operation getEventSummaries
      *
-     * Get event type
+     * Get event summaries
      *
-     * @param  string $key key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
+     * @param  string $q q (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaries'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Schematic\Model\GetEventTypeResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     * @return \Schematic\Model\GetEventSummariesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getEventType($key, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventSummaries($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEventSummaries'][0])
     {
-        list($response) = $this->getEventTypeWithHttpInfo($key, $contentType);
+        list($response) = $this->getEventSummariesWithHttpInfo($q, $limit, $offset, $contentType);
         return $response;
     }
 
     /**
-     * Operation getEventTypeWithHttpInfo
+     * Operation getEventSummariesWithHttpInfo
      *
-     * Get event type
+     * Get event summaries
      *
-     * @param  string $key key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
+     * @param  string $q (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaries'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\GetEventTypeResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\GetEventSummariesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEventTypeWithHttpInfo($key, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventSummariesWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEventSummaries'][0])
     {
-        $request = $this->getEventTypeRequest($key, $contentType);
+        $request = $this->getEventSummariesRequest($q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2105,11 +2560,11 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Schematic\Model\GetEventTypeResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\GetEventSummariesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Schematic\Model\GetEventTypeResponse' !== 'string') {
+                        if ('\Schematic\Model\GetEventSummariesResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2127,7 +2582,34 @@ class EventsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\GetEventTypeResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\GetEventSummariesResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2185,33 +2667,6 @@ class EventsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 404:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 500:
                     if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2241,7 +2696,7 @@ class EventsApi
                     ];
             }
 
-            $returnType = '\Schematic\Model\GetEventTypeResponse';
+            $returnType = '\Schematic\Model\GetEventSummariesResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2274,7 +2729,15 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Schematic\Model\GetEventTypeResponse',
+                        '\Schematic\Model\GetEventSummariesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2288,14 +2751,6 @@ class EventsApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Schematic\Model\ApiError',
@@ -2317,19 +2772,21 @@ class EventsApi
     }
 
     /**
-     * Operation getEventTypeAsync
+     * Operation getEventSummariesAsync
      *
-     * Get event type
+     * Get event summaries
      *
-     * @param  string $key key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
+     * @param  string $q (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEventTypeAsync($key, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventSummariesAsync($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEventSummaries'][0])
     {
-        return $this->getEventTypeAsyncWithHttpInfo($key, $contentType)
+        return $this->getEventSummariesAsyncWithHttpInfo($q, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2338,20 +2795,22 @@ class EventsApi
     }
 
     /**
-     * Operation getEventTypeAsyncWithHttpInfo
+     * Operation getEventSummariesAsyncWithHttpInfo
      *
-     * Get event type
+     * Get event summaries
      *
-     * @param  string $key key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
+     * @param  string $q (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEventTypeAsyncWithHttpInfo($key, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventSummariesAsyncWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEventSummaries'][0])
     {
-        $returnType = '\Schematic\Model\GetEventTypeResponse';
-        $request = $this->getEventTypeRequest($key, $contentType);
+        $returnType = '\Schematic\Model\GetEventSummariesResponse';
+        $request = $this->getEventSummariesRequest($q, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2390,42 +2849,59 @@ class EventsApi
     }
 
     /**
-     * Create request for operation 'getEventType'
+     * Create request for operation 'getEventSummaries'
      *
-     * @param  string $key key (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventType'] to see the possible values for this operation
+     * @param  string $q (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEventTypeRequest($key, string $contentType = self::contentTypes['getEventType'][0])
+    public function getEventSummariesRequest($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEventSummaries'][0])
     {
 
-        // verify the required parameter 'key' is set
-        if ($key === null || (is_array($key) && count($key) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $key when calling getEventType'
-            );
-        }
 
 
-        $resourcePath = '/event-types/{key}';
+
+
+        $resourcePath = '/event-types';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $q,
+            'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
-        // path params
-        if ($key !== null) {
-            $resourcePath = str_replace(
-                '{' . 'key' . '}',
-                ObjectSerializer::toPathValue($key),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -2487,42 +2963,38 @@ class EventsApi
     }
 
     /**
-     * Operation listEventTypes
+     * Operation getEventSummaryBySubtype
      *
-     * List event types
+     * Get event summary by subtype
      *
-     * @param  string $q q (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
+     * @param  string $key key (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaryBySubtype'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Schematic\Model\ListEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     * @return \Schematic\Model\GetEventSummaryBySubtypeResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listEventTypes($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function getEventSummaryBySubtype($key, string $contentType = self::contentTypes['getEventSummaryBySubtype'][0])
     {
-        list($response) = $this->listEventTypesWithHttpInfo($q, $limit, $offset, $contentType);
+        list($response) = $this->getEventSummaryBySubtypeWithHttpInfo($key, $contentType);
         return $response;
     }
 
     /**
-     * Operation listEventTypesWithHttpInfo
+     * Operation getEventSummaryBySubtypeWithHttpInfo
      *
-     * List event types
+     * Get event summary by subtype
      *
-     * @param  string $q (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
+     * @param  string $key key (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaryBySubtype'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\ListEventTypesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\GetEventSummaryBySubtypeResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listEventTypesWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function getEventSummaryBySubtypeWithHttpInfo($key, string $contentType = self::contentTypes['getEventSummaryBySubtype'][0])
     {
-        $request = $this->listEventTypesRequest($q, $limit, $offset, $contentType);
+        $request = $this->getEventSummaryBySubtypeRequest($key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2561,11 +3033,11 @@ class EventsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Schematic\Model\ListEventTypesResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\GetEventSummaryBySubtypeResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ListEventTypesResponse' !== 'string') {
+                        if ('\Schematic\Model\GetEventSummaryBySubtypeResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2583,34 +3055,7 @@ class EventsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListEventTypesResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\GetEventSummaryBySubtypeResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2668,6 +3113,33 @@ class EventsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 case 500:
                     if ('\Schematic\Model\ApiError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2697,7 +3169,7 @@ class EventsApi
                     ];
             }
 
-            $returnType = '\Schematic\Model\ListEventTypesResponse';
+            $returnType = '\Schematic\Model\GetEventSummaryBySubtypeResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2730,15 +3202,7 @@ class EventsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Schematic\Model\ListEventTypesResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
+                        '\Schematic\Model\GetEventSummaryBySubtypeResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2752,6 +3216,14 @@ class EventsApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Schematic\Model\ApiError',
@@ -2773,21 +3245,19 @@ class EventsApi
     }
 
     /**
-     * Operation listEventTypesAsync
+     * Operation getEventSummaryBySubtypeAsync
      *
-     * List event types
+     * Get event summary by subtype
      *
-     * @param  string $q (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
+     * @param  string $key key (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaryBySubtype'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventTypesAsync($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function getEventSummaryBySubtypeAsync($key, string $contentType = self::contentTypes['getEventSummaryBySubtype'][0])
     {
-        return $this->listEventTypesAsyncWithHttpInfo($q, $limit, $offset, $contentType)
+        return $this->getEventSummaryBySubtypeAsyncWithHttpInfo($key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2796,22 +3266,20 @@ class EventsApi
     }
 
     /**
-     * Operation listEventTypesAsyncWithHttpInfo
+     * Operation getEventSummaryBySubtypeAsyncWithHttpInfo
      *
-     * List event types
+     * Get event summary by subtype
      *
-     * @param  string $q (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
+     * @param  string $key key (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaryBySubtype'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventTypesAsyncWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function getEventSummaryBySubtypeAsyncWithHttpInfo($key, string $contentType = self::contentTypes['getEventSummaryBySubtype'][0])
     {
-        $returnType = '\Schematic\Model\ListEventTypesResponse';
-        $request = $this->listEventTypesRequest($q, $limit, $offset, $contentType);
+        $returnType = '\Schematic\Model\GetEventSummaryBySubtypeResponse';
+        $request = $this->getEventSummaryBySubtypeRequest($key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2850,59 +3318,42 @@ class EventsApi
     }
 
     /**
-     * Create request for operation 'listEventTypes'
+     * Create request for operation 'getEventSummaryBySubtype'
      *
-     * @param  string $q (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listEventTypes'] to see the possible values for this operation
+     * @param  string $key key (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEventSummaryBySubtype'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listEventTypesRequest($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEventTypes'][0])
+    public function getEventSummaryBySubtypeRequest($key, string $contentType = self::contentTypes['getEventSummaryBySubtype'][0])
     {
 
+        // verify the required parameter 'key' is set
+        if ($key === null || (is_array($key) && count($key) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $key when calling getEventSummaryBySubtype'
+            );
+        }
 
 
-
-
-        $resourcePath = '/event-types';
+        $resourcePath = '/event-types/{key}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $q,
-            'q', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $limit,
-            'limit', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $offset,
-            'offset', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
 
 
+        // path params
+        if ($key !== null) {
+            $resourcePath = str_replace(
+                '{' . 'key' . '}',
+                ObjectSerializer::toPathValue($key),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -3986,573 +4437,6 @@ class EventsApi
             $grouping,
             'grouping', // param base name
             'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
-        if ($apiKey !== null) {
-            $headers['X-Schematic-Api-Key'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation listMetricCountsHourly
-     *
-     * List metric counts hourly
-     *
-     * @param  \DateTime $start_time start_time (optional)
-     * @param  \DateTime $end_time end_time (optional)
-     * @param  string $event_subtype event_subtype (optional)
-     * @param  string[] $event_subtypes event_subtypes (optional)
-     * @param  string $company_id company_id (optional)
-     * @param  string[] $company_ids company_ids (optional)
-     * @param  string $user_id user_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Schematic\Model\ListMetricCountsHourlyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
-     */
-    public function listMetricCountsHourly($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
-    {
-        list($response) = $this->listMetricCountsHourlyWithHttpInfo($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation listMetricCountsHourlyWithHttpInfo
-     *
-     * List metric counts hourly
-     *
-     * @param  \DateTime $start_time (optional)
-     * @param  \DateTime $end_time (optional)
-     * @param  string $event_subtype (optional)
-     * @param  string[] $event_subtypes (optional)
-     * @param  string $company_id (optional)
-     * @param  string[] $company_ids (optional)
-     * @param  string $user_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\ListMetricCountsHourlyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function listMetricCountsHourlyWithHttpInfo($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
-    {
-        $request = $this->listMetricCountsHourlyRequest($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Schematic\Model\ListMetricCountsHourlyResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ListMetricCountsHourlyResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListMetricCountsHourlyResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 401:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 403:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 500:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Schematic\Model\ListMetricCountsHourlyResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ListMetricCountsHourlyResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation listMetricCountsHourlyAsync
-     *
-     * List metric counts hourly
-     *
-     * @param  \DateTime $start_time (optional)
-     * @param  \DateTime $end_time (optional)
-     * @param  string $event_subtype (optional)
-     * @param  string[] $event_subtypes (optional)
-     * @param  string $company_id (optional)
-     * @param  string[] $company_ids (optional)
-     * @param  string $user_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function listMetricCountsHourlyAsync($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
-    {
-        return $this->listMetricCountsHourlyAsyncWithHttpInfo($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation listMetricCountsHourlyAsyncWithHttpInfo
-     *
-     * List metric counts hourly
-     *
-     * @param  \DateTime $start_time (optional)
-     * @param  \DateTime $end_time (optional)
-     * @param  string $event_subtype (optional)
-     * @param  string[] $event_subtypes (optional)
-     * @param  string $company_id (optional)
-     * @param  string[] $company_ids (optional)
-     * @param  string $user_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function listMetricCountsHourlyAsyncWithHttpInfo($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
-    {
-        $returnType = '\Schematic\Model\ListMetricCountsHourlyResponse';
-        $request = $this->listMetricCountsHourlyRequest($start_time, $end_time, $event_subtype, $event_subtypes, $company_id, $company_ids, $user_id, $limit, $offset, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'listMetricCountsHourly'
-     *
-     * @param  \DateTime $start_time (optional)
-     * @param  \DateTime $end_time (optional)
-     * @param  string $event_subtype (optional)
-     * @param  string[] $event_subtypes (optional)
-     * @param  string $company_id (optional)
-     * @param  string[] $company_ids (optional)
-     * @param  string $user_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listMetricCountsHourly'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function listMetricCountsHourlyRequest($start_time = null, $end_time = null, $event_subtype = null, $event_subtypes = null, $company_id = null, $company_ids = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMetricCountsHourly'][0])
-    {
-
-
-
-
-
-
-
-
-
-
-
-        $resourcePath = '/metric-counts-hourly';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $start_time,
-            'start_time', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $end_time,
-            'end_time', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $event_subtype,
-            'event_subtype', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $event_subtypes,
-            'event_subtypes', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $company_id,
-            'company_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $company_ids,
-            'company_ids', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $user_id,
-            'user_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $limit,
-            'limit', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $offset,
-            'offset', // param base name
-            'integer', // openApiType
             'form', // style
             true, // explode
             false // required

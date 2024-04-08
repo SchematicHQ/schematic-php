@@ -6,9 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **\DateTime** |  |
 **environment_id** | **string** |  |
+**feature** | [**\Schematic\Model\FeatureResponseData**](FeatureResponseData.md) |  | [optional]
 **feature_id** | **string** |  |
 **id** | **string** |  |
 **metric_period** | **string** |  | [optional]
+**plan** | [**\Schematic\Model\PlanResponseData**](PlanResponseData.md) |  | [optional]
 **plan_id** | **string** |  |
 **rule_id** | **string** |  |
 **updated_at** | **\DateTime** |  |

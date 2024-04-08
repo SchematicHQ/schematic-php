@@ -663,6 +663,7 @@ class AccountsApi
      * Count api requests
      *
      * @param  string $q q (optional)
+     * @param  string $request_type request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
@@ -671,9 +672,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countApiRequests($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequests($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
-        list($response) = $this->countApiRequestsWithHttpInfo($q, $limit, $offset, $contentType);
+        list($response) = $this->countApiRequestsWithHttpInfo($q, $request_type, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -683,6 +684,7 @@ class AccountsApi
      * Count api requests
      *
      * @param  string $q (optional)
+     * @param  string $request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
@@ -691,9 +693,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countApiRequestsWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequestsWithHttpInfo($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
-        $request = $this->countApiRequestsRequest($q, $limit, $offset, $contentType);
+        $request = $this->countApiRequestsRequest($q, $request_type, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -949,6 +951,7 @@ class AccountsApi
      * Count api requests
      *
      * @param  string $q (optional)
+     * @param  string $request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
@@ -956,9 +959,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countApiRequestsAsync($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequestsAsync($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
-        return $this->countApiRequestsAsyncWithHttpInfo($q, $limit, $offset, $contentType)
+        return $this->countApiRequestsAsyncWithHttpInfo($q, $request_type, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -972,6 +975,7 @@ class AccountsApi
      * Count api requests
      *
      * @param  string $q (optional)
+     * @param  string $request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
@@ -979,10 +983,10 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countApiRequestsAsyncWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequestsAsyncWithHttpInfo($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
         $returnType = '\Schematic\Model\CountApiRequestsResponse';
-        $request = $this->countApiRequestsRequest($q, $limit, $offset, $contentType);
+        $request = $this->countApiRequestsRequest($q, $request_type, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1024,6 +1028,7 @@ class AccountsApi
      * Create request for operation 'countApiRequests'
      *
      * @param  string $q (optional)
+     * @param  string $request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
@@ -1031,8 +1036,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countApiRequestsRequest($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
+    public function countApiRequestsRequest($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
     {
+
 
 
 
@@ -1049,6 +1055,15 @@ class AccountsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $q,
             'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $request_type,
+            'request_type', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -4800,6 +4815,7 @@ class AccountsApi
      * List api requests
      *
      * @param  string $q q (optional)
+     * @param  string $request_type request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
@@ -4808,9 +4824,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listApiRequests($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequests($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
-        list($response) = $this->listApiRequestsWithHttpInfo($q, $limit, $offset, $contentType);
+        list($response) = $this->listApiRequestsWithHttpInfo($q, $request_type, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -4820,6 +4836,7 @@ class AccountsApi
      * List api requests
      *
      * @param  string $q (optional)
+     * @param  string $request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
@@ -4828,9 +4845,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listApiRequestsWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequestsWithHttpInfo($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
-        $request = $this->listApiRequestsRequest($q, $limit, $offset, $contentType);
+        $request = $this->listApiRequestsRequest($q, $request_type, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5086,6 +5103,7 @@ class AccountsApi
      * List api requests
      *
      * @param  string $q (optional)
+     * @param  string $request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
@@ -5093,9 +5111,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listApiRequestsAsync($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequestsAsync($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
-        return $this->listApiRequestsAsyncWithHttpInfo($q, $limit, $offset, $contentType)
+        return $this->listApiRequestsAsyncWithHttpInfo($q, $request_type, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5109,6 +5127,7 @@ class AccountsApi
      * List api requests
      *
      * @param  string $q (optional)
+     * @param  string $request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
@@ -5116,10 +5135,10 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listApiRequestsAsyncWithHttpInfo($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequestsAsyncWithHttpInfo($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
         $returnType = '\Schematic\Model\ListApiRequestsResponse';
-        $request = $this->listApiRequestsRequest($q, $limit, $offset, $contentType);
+        $request = $this->listApiRequestsRequest($q, $request_type, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5161,6 +5180,7 @@ class AccountsApi
      * Create request for operation 'listApiRequests'
      *
      * @param  string $q (optional)
+     * @param  string $request_type (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
@@ -5168,8 +5188,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listApiRequestsRequest($q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
+    public function listApiRequestsRequest($q = null, $request_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
     {
+
 
 
 
@@ -5186,6 +5207,15 @@ class AccountsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $q,
             'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $request_type,
+            'request_type', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
