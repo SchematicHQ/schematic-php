@@ -4,9 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**company** | [**\Schematic\Model\CompanyResponseData**](CompanyResponseData.md) |  | [optional]
 **company_id** | **string** |  |
 **created_at** | **\DateTime** |  |
 **environment_id** | **string** |  |
+**feature** | [**\Schematic\Model\FeatureResponseData**](FeatureResponseData.md) |  | [optional]
 **feature_id** | **string** |  |
 **id** | **string** |  |
 **metric_period** | **string** |  | [optional]

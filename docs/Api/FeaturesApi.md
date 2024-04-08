@@ -6,25 +6,25 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | ------------- | ------------- | ------------- |
 | [**checkFlag()**](FeaturesApi.md#checkFlag) | **POST** /flags/{key}/check | Check flag |
 | [**checkFlags()**](FeaturesApi.md#checkFlags) | **POST** /flags/check | Check flags |
-| [**countCompaniesAudience()**](FeaturesApi.md#countCompaniesAudience) | **POST** /audience/count-companies | Count Companies audience |
+| [**countAudienceCompanies()**](FeaturesApi.md#countAudienceCompanies) | **POST** /audience/count-companies | Count audience companies |
+| [**countAudienceUsers()**](FeaturesApi.md#countAudienceUsers) | **POST** /audience/count-users | Count audience users |
 | [**countFlagChecks()**](FeaturesApi.md#countFlagChecks) | **GET** /flag-checks/count | Count flag checks |
-| [**countUsersAudience()**](FeaturesApi.md#countUsersAudience) | **POST** /audience/count-users | Count Users audience |
 | [**createFeature()**](FeaturesApi.md#createFeature) | **POST** /features | Create feature |
 | [**createFlag()**](FeaturesApi.md#createFlag) | **POST** /flags | Create flag |
 | [**deleteFeature()**](FeaturesApi.md#deleteFeature) | **DELETE** /features/{feature_id} | Delete feature |
 | [**deleteFlag()**](FeaturesApi.md#deleteFlag) | **DELETE** /flags/{flag_id} | Delete flag |
-| [**getCompaniesAudience()**](FeaturesApi.md#getCompaniesAudience) | **POST** /audience/get-companies | Get Companies audience |
 | [**getFeature()**](FeaturesApi.md#getFeature) | **GET** /features/{feature_id} | Get feature |
 | [**getFlag()**](FeaturesApi.md#getFlag) | **GET** /flags/{flag_id} | Get flag |
 | [**getFlagCheck()**](FeaturesApi.md#getFlagCheck) | **GET** /flag-checks/{flag_check_id} | Get flag check |
-| [**getUsersAudience()**](FeaturesApi.md#getUsersAudience) | **POST** /audience/get-users | Get Users audience |
-| [**latestFlagChecks()**](FeaturesApi.md#latestFlagChecks) | **GET** /flag-checks/latest | Latest flag checks |
+| [**getLatestFlagChecks()**](FeaturesApi.md#getLatestFlagChecks) | **GET** /flag-checks/latest | Get latest flag checks |
+| [**listAudienceCompanies()**](FeaturesApi.md#listAudienceCompanies) | **POST** /audience/get-companies | List audience companies |
+| [**listAudienceUsers()**](FeaturesApi.md#listAudienceUsers) | **POST** /audience/get-users | List audience users |
 | [**listFeatures()**](FeaturesApi.md#listFeatures) | **GET** /features | List features |
 | [**listFlagChecks()**](FeaturesApi.md#listFlagChecks) | **GET** /flag-checks | List flag checks |
 | [**listFlags()**](FeaturesApi.md#listFlags) | **GET** /flags | List flags |
-| [**rulesFlag()**](FeaturesApi.md#rulesFlag) | **PUT** /flags/{flag_id}/rules | Rules flag |
 | [**updateFeature()**](FeaturesApi.md#updateFeature) | **PUT** /features/{feature_id} | Update feature |
 | [**updateFlag()**](FeaturesApi.md#updateFlag) | **PUT** /flags/{flag_id} | Update flag |
+| [**updateFlagRules()**](FeaturesApi.md#updateFlagRules) | **PUT** /flags/{flag_id}/rules | Update flag rules |
 
 
 ## `checkFlag()`
@@ -131,13 +131,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `countCompaniesAudience()`
+## `countAudienceCompanies()`
 
 ```php
-countCompaniesAudience($audience_request_body): \Schematic\Model\CountCompaniesAudienceResponse
+countAudienceCompanies($audience_request_body): \Schematic\Model\CountAudienceCompaniesResponse
 ```
 
-Count Companies audience
+Count audience companies
 
 ### Example
 
@@ -152,10 +152,10 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
 
 try {
-    $result = $schematic->FeaturesApi->countCompaniesAudience($audience_request_body);
+    $result = $schematic->FeaturesApi->countAudienceCompanies($audience_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->countCompaniesAudience: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->countAudienceCompanies: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -167,7 +167,58 @@ try {
 
 ### Return type
 
-[**\Schematic\Model\CountCompaniesAudienceResponse**](../Model/CountCompaniesAudienceResponse.md)
+[**\Schematic\Model\CountAudienceCompaniesResponse**](../Model/CountAudienceCompaniesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `countAudienceUsers()`
+
+```php
+countAudienceUsers($audience_request_body): \Schematic\Model\CountAudienceUsersResponse
+```
+
+Count audience users
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
+
+try {
+    $result = $schematic->FeaturesApi->countAudienceUsers($audience_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->FeaturesApi->countAudienceUsers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\CountAudienceUsersResponse**](../Model/CountAudienceUsersResponse.md)
 
 ### Authorization
 
@@ -235,57 +286,6 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `countUsersAudience()`
-
-```php
-countUsersAudience($audience_request_body): \Schematic\Model\CountUsersAudienceResponse
-```
-
-Count Users audience
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-
-try {
-    $result = $schematic->FeaturesApi->countUsersAudience($audience_request_body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->countUsersAudience: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-
-### Return type
-
-[**\Schematic\Model\CountUsersAudienceResponse**](../Model/CountUsersAudienceResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -496,57 +496,6 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getCompaniesAudience()`
-
-```php
-getCompaniesAudience($audience_request_body): \Schematic\Model\GetCompaniesAudienceResponse
-```
-
-Get Companies audience
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-
-try {
-    $result = $schematic->FeaturesApi->getCompaniesAudience($audience_request_body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->getCompaniesAudience: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-
-### Return type
-
-[**\Schematic\Model\GetCompaniesAudienceResponse**](../Model/GetCompaniesAudienceResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `getFeature()`
 
 ```php
@@ -700,64 +649,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getUsersAudience()`
+## `getLatestFlagChecks()`
 
 ```php
-getUsersAudience($audience_request_body): \Schematic\Model\GetUsersAudienceResponse
+getLatestFlagChecks($flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\GetLatestFlagChecksResponse
 ```
 
-Get Users audience
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-
-try {
-    $result = $schematic->FeaturesApi->getUsersAudience($audience_request_body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->getUsersAudience: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-
-### Return type
-
-[**\Schematic\Model\GetUsersAudienceResponse**](../Model/GetUsersAudienceResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `latestFlagChecks()`
-
-```php
-latestFlagChecks($flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\LatestFlagChecksResponse
-```
-
-Latest flag checks
+Get latest flag checks
 
 ### Example
 
@@ -776,10 +674,10 @@ $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->FeaturesApi->latestFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
+    $result = $schematic->FeaturesApi->getLatestFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->latestFlagChecks: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->getLatestFlagChecks: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -795,7 +693,7 @@ try {
 
 ### Return type
 
-[**\Schematic\Model\LatestFlagChecksResponse**](../Model/LatestFlagChecksResponse.md)
+[**\Schematic\Model\GetLatestFlagChecksResponse**](../Model/GetLatestFlagChecksResponse.md)
 
 ### Authorization
 
@@ -804,6 +702,108 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listAudienceCompanies()`
+
+```php
+listAudienceCompanies($audience_request_body): \Schematic\Model\ListAudienceCompaniesResponse
+```
+
+List audience companies
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
+
+try {
+    $result = $schematic->FeaturesApi->listAudienceCompanies($audience_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->FeaturesApi->listAudienceCompanies: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\ListAudienceCompaniesResponse**](../Model/ListAudienceCompaniesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listAudienceUsers()`
+
+```php
+listAudienceUsers($audience_request_body): \Schematic\Model\ListAudienceUsersResponse
+```
+
+List audience users
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
+
+try {
+    $result = $schematic->FeaturesApi->listAudienceUsers($audience_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->FeaturesApi->listAudienceUsers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\ListAudienceUsersResponse**](../Model/ListAudienceUsersResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -979,59 +979,6 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `rulesFlag()`
-
-```php
-rulesFlag($flag_id, $update_flag_rules_request_body): \Schematic\Model\RulesFlagResponse
-```
-
-Rules flag
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$flag_id = 'flag_id_example'; // string | flag_id
-$update_flag_rules_request_body = new \Schematic\Model\UpdateFlagRulesRequestBody(); // \Schematic\Model\UpdateFlagRulesRequestBody
-
-try {
-    $result = $schematic->FeaturesApi->rulesFlag($flag_id, $update_flag_rules_request_body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->rulesFlag: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **flag_id** | **string**| flag_id | |
-| **update_flag_rules_request_body** | [**\Schematic\Model\UpdateFlagRulesRequestBody**](../Model/UpdateFlagRulesRequestBody.md)|  | |
-
-### Return type
-
-[**\Schematic\Model\RulesFlagResponse**](../Model/RulesFlagResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `updateFeature()`
 
 ```php
@@ -1124,6 +1071,59 @@ try {
 ### Return type
 
 [**\Schematic\Model\UpdateFlagResponse**](../Model/UpdateFlagResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateFlagRules()`
+
+```php
+updateFlagRules($flag_id, $update_flag_rules_request_body): \Schematic\Model\UpdateFlagRulesResponse
+```
+
+Update flag rules
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$flag_id = 'flag_id_example'; // string | flag_id
+$update_flag_rules_request_body = new \Schematic\Model\UpdateFlagRulesRequestBody(); // \Schematic\Model\UpdateFlagRulesRequestBody
+
+try {
+    $result = $schematic->FeaturesApi->updateFlagRules($flag_id, $update_flag_rules_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->FeaturesApi->updateFlagRules: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **flag_id** | **string**| flag_id | |
+| **update_flag_rules_request_body** | [**\Schematic\Model\UpdateFlagRulesRequestBody**](../Model/UpdateFlagRulesRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpdateFlagRulesResponse**](../Model/UpdateFlagRulesResponse.md)
 
 ### Authorization
 

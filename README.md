@@ -70,16 +70,16 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**listApiRequests**](docs/Api/AccountsApi.md#listapirequests) | **GET** /api-requests | List api requests
 *AccountsApi* | [**updateApiKey**](docs/Api/AccountsApi.md#updateapikey) | **PUT** /api-keys/{api_key_id} | Update api key
 *AccountsApi* | [**updateEnvironment**](docs/Api/AccountsApi.md#updateenvironment) | **PUT** /environments/{environment_id} | Update environment
-*CompaniesApi* | [**createCompany**](docs/Api/CompaniesApi.md#createcompany) | **POST** /companies | Create company
-*CompaniesApi* | [**createCompanyMembership**](docs/Api/CompaniesApi.md#createcompanymembership) | **POST** /company-memberships | Create company membership
-*CompaniesApi* | [**createCompanyTrait**](docs/Api/CompaniesApi.md#createcompanytrait) | **POST** /company-traits | Create company trait
-*CompaniesApi* | [**createEntityTraitDefinition**](docs/Api/CompaniesApi.md#createentitytraitdefinition) | **POST** /entity-trait-definitions | Create entity trait definition
-*CompaniesApi* | [**createUser**](docs/Api/CompaniesApi.md#createuser) | **POST** /users | Create user
-*CompaniesApi* | [**createUserTrait**](docs/Api/CompaniesApi.md#createusertrait) | **POST** /user-traits | Create user trait
+*CompaniesApi* | [**createCompany**](docs/Api/CompaniesApi.md#createcompany) | **POST** /companies/create | Create company
+*CompaniesApi* | [**createUser**](docs/Api/CompaniesApi.md#createuser) | **POST** /users/create | Create user
 *CompaniesApi* | [**deleteCompany**](docs/Api/CompaniesApi.md#deletecompany) | **DELETE** /companies/{company_id} | Delete company
+*CompaniesApi* | [**deleteCompanyByKeys**](docs/Api/CompaniesApi.md#deletecompanybykeys) | **POST** /companies/delete | Delete company by keys
 *CompaniesApi* | [**deleteCompanyMembership**](docs/Api/CompaniesApi.md#deletecompanymembership) | **DELETE** /company-memberships/{company_membership_id} | Delete company membership
 *CompaniesApi* | [**deleteUser**](docs/Api/CompaniesApi.md#deleteuser) | **DELETE** /users/{user_id} | Delete user
+*CompaniesApi* | [**deleteUserByKeys**](docs/Api/CompaniesApi.md#deleteuserbykeys) | **POST** /users/delete | Delete user by keys
 *CompaniesApi* | [**getCompany**](docs/Api/CompaniesApi.md#getcompany) | **GET** /companies/{company_id} | Get company
+*CompaniesApi* | [**getOrCreateCompanyMembership**](docs/Api/CompaniesApi.md#getorcreatecompanymembership) | **POST** /company-memberships | Get or create company membership
+*CompaniesApi* | [**getOrCreateEntityTraitDefinition**](docs/Api/CompaniesApi.md#getorcreateentitytraitdefinition) | **POST** /entity-trait-definitions | Get or create entity trait definition
 *CompaniesApi* | [**getUser**](docs/Api/CompaniesApi.md#getuser) | **GET** /users/{user_id} | Get user
 *CompaniesApi* | [**listCompanies**](docs/Api/CompaniesApi.md#listcompanies) | **GET** /companies | List companies
 *CompaniesApi* | [**listCompanyMemberships**](docs/Api/CompaniesApi.md#listcompanymemberships) | **GET** /company-memberships | List company memberships
@@ -88,6 +88,10 @@ Class | Method | HTTP request | Description
 *CompaniesApi* | [**lookupCompany**](docs/Api/CompaniesApi.md#lookupcompany) | **GET** /companies/lookup | Lookup company
 *CompaniesApi* | [**lookupUser**](docs/Api/CompaniesApi.md#lookupuser) | **GET** /users/lookup | Lookup user
 *CompaniesApi* | [**updateEntityTraitDefinition**](docs/Api/CompaniesApi.md#updateentitytraitdefinition) | **PUT** /entity-trait-definitions/{entity_trait_definition_id} | Update entity trait definition
+*CompaniesApi* | [**upsertCompany**](docs/Api/CompaniesApi.md#upsertcompany) | **POST** /companies | Upsert company
+*CompaniesApi* | [**upsertCompanyTrait**](docs/Api/CompaniesApi.md#upsertcompanytrait) | **POST** /company-traits | Upsert company trait
+*CompaniesApi* | [**upsertUser**](docs/Api/CompaniesApi.md#upsertuser) | **POST** /users | Upsert user
+*CompaniesApi* | [**upsertUserTrait**](docs/Api/CompaniesApi.md#upsertusertrait) | **POST** /user-traits | Upsert user trait
 *EntitlementsApi* | [**createCompanyOverride**](docs/Api/EntitlementsApi.md#createcompanyoverride) | **POST** /company-overrides | Create company override
 *EntitlementsApi* | [**createPlanEntitlement**](docs/Api/EntitlementsApi.md#createplanentitlement) | **POST** /plan-entitlements | Create plan entitlement
 *EntitlementsApi* | [**deleteCompanyOverride**](docs/Api/EntitlementsApi.md#deletecompanyoverride) | **DELETE** /company-overrides/{company_override_id} | Delete company override
@@ -98,43 +102,43 @@ Class | Method | HTTP request | Description
 *EntitlementsApi* | [**listPlanEntitlements**](docs/Api/EntitlementsApi.md#listplanentitlements) | **GET** /plan-entitlements | List plan entitlements
 *EntitlementsApi* | [**updateCompanyOverride**](docs/Api/EntitlementsApi.md#updatecompanyoverride) | **PUT** /company-overrides/{company_override_id} | Update company override
 *EntitlementsApi* | [**updatePlanEntitlement**](docs/Api/EntitlementsApi.md#updateplanentitlement) | **PUT** /plan-entitlements/{plan_entitlement_id} | Update plan entitlement
-*EventsApi* | [**countEventTypes**](docs/Api/EventsApi.md#counteventtypes) | **GET** /event-types/count | Count event types
+*EventsApi* | [**countEventSummaries**](docs/Api/EventsApi.md#counteventsummaries) | **GET** /event-types/count | Count event summaries
 *EventsApi* | [**countEvents**](docs/Api/EventsApi.md#countevents) | **GET** /events/count | Count events
 *EventsApi* | [**createEvent**](docs/Api/EventsApi.md#createevent) | **POST** /events | Create event
+*EventsApi* | [**createEventBatch**](docs/Api/EventsApi.md#createeventbatch) | **POST** /event-batch | Create event batch
 *EventsApi* | [**getEvent**](docs/Api/EventsApi.md#getevent) | **GET** /events/{event_id} | Get event
-*EventsApi* | [**getEventType**](docs/Api/EventsApi.md#geteventtype) | **GET** /event-types/{key} | Get event type
-*EventsApi* | [**listEventTypes**](docs/Api/EventsApi.md#listeventtypes) | **GET** /event-types | List event types
+*EventsApi* | [**getEventSummaries**](docs/Api/EventsApi.md#geteventsummaries) | **GET** /event-types | Get event summaries
+*EventsApi* | [**getEventSummaryBySubtype**](docs/Api/EventsApi.md#geteventsummarybysubtype) | **GET** /event-types/{key} | Get event summary by subtype
 *EventsApi* | [**listEvents**](docs/Api/EventsApi.md#listevents) | **GET** /events | List events
 *EventsApi* | [**listMetricCounts**](docs/Api/EventsApi.md#listmetriccounts) | **GET** /metric-counts | List metric counts
-*EventsApi* | [**listMetricCountsHourly**](docs/Api/EventsApi.md#listmetriccountshourly) | **GET** /metric-counts-hourly | List metric counts hourly
 *FeaturesApi* | [**checkFlag**](docs/Api/FeaturesApi.md#checkflag) | **POST** /flags/{key}/check | Check flag
 *FeaturesApi* | [**checkFlags**](docs/Api/FeaturesApi.md#checkflags) | **POST** /flags/check | Check flags
-*FeaturesApi* | [**countCompaniesAudience**](docs/Api/FeaturesApi.md#countcompaniesaudience) | **POST** /audience/count-companies | Count Companies audience
+*FeaturesApi* | [**countAudienceCompanies**](docs/Api/FeaturesApi.md#countaudiencecompanies) | **POST** /audience/count-companies | Count audience companies
+*FeaturesApi* | [**countAudienceUsers**](docs/Api/FeaturesApi.md#countaudienceusers) | **POST** /audience/count-users | Count audience users
 *FeaturesApi* | [**countFlagChecks**](docs/Api/FeaturesApi.md#countflagchecks) | **GET** /flag-checks/count | Count flag checks
-*FeaturesApi* | [**countUsersAudience**](docs/Api/FeaturesApi.md#countusersaudience) | **POST** /audience/count-users | Count Users audience
 *FeaturesApi* | [**createFeature**](docs/Api/FeaturesApi.md#createfeature) | **POST** /features | Create feature
 *FeaturesApi* | [**createFlag**](docs/Api/FeaturesApi.md#createflag) | **POST** /flags | Create flag
 *FeaturesApi* | [**deleteFeature**](docs/Api/FeaturesApi.md#deletefeature) | **DELETE** /features/{feature_id} | Delete feature
 *FeaturesApi* | [**deleteFlag**](docs/Api/FeaturesApi.md#deleteflag) | **DELETE** /flags/{flag_id} | Delete flag
-*FeaturesApi* | [**getCompaniesAudience**](docs/Api/FeaturesApi.md#getcompaniesaudience) | **POST** /audience/get-companies | Get Companies audience
 *FeaturesApi* | [**getFeature**](docs/Api/FeaturesApi.md#getfeature) | **GET** /features/{feature_id} | Get feature
 *FeaturesApi* | [**getFlag**](docs/Api/FeaturesApi.md#getflag) | **GET** /flags/{flag_id} | Get flag
 *FeaturesApi* | [**getFlagCheck**](docs/Api/FeaturesApi.md#getflagcheck) | **GET** /flag-checks/{flag_check_id} | Get flag check
-*FeaturesApi* | [**getUsersAudience**](docs/Api/FeaturesApi.md#getusersaudience) | **POST** /audience/get-users | Get Users audience
-*FeaturesApi* | [**latestFlagChecks**](docs/Api/FeaturesApi.md#latestflagchecks) | **GET** /flag-checks/latest | Latest flag checks
+*FeaturesApi* | [**getLatestFlagChecks**](docs/Api/FeaturesApi.md#getlatestflagchecks) | **GET** /flag-checks/latest | Get latest flag checks
+*FeaturesApi* | [**listAudienceCompanies**](docs/Api/FeaturesApi.md#listaudiencecompanies) | **POST** /audience/get-companies | List audience companies
+*FeaturesApi* | [**listAudienceUsers**](docs/Api/FeaturesApi.md#listaudienceusers) | **POST** /audience/get-users | List audience users
 *FeaturesApi* | [**listFeatures**](docs/Api/FeaturesApi.md#listfeatures) | **GET** /features | List features
 *FeaturesApi* | [**listFlagChecks**](docs/Api/FeaturesApi.md#listflagchecks) | **GET** /flag-checks | List flag checks
 *FeaturesApi* | [**listFlags**](docs/Api/FeaturesApi.md#listflags) | **GET** /flags | List flags
-*FeaturesApi* | [**rulesFlag**](docs/Api/FeaturesApi.md#rulesflag) | **PUT** /flags/{flag_id}/rules | Rules flag
 *FeaturesApi* | [**updateFeature**](docs/Api/FeaturesApi.md#updatefeature) | **PUT** /features/{feature_id} | Update feature
 *FeaturesApi* | [**updateFlag**](docs/Api/FeaturesApi.md#updateflag) | **PUT** /flags/{flag_id} | Update flag
+*FeaturesApi* | [**updateFlagRules**](docs/Api/FeaturesApi.md#updateflagrules) | **PUT** /flags/{flag_id}/rules | Update flag rules
 *PlansApi* | [**createPlan**](docs/Api/PlansApi.md#createplan) | **POST** /plans | Create plan
+*PlansApi* | [**deleteAudience**](docs/Api/PlansApi.md#deleteaudience) | **DELETE** /plan-audiences/{plan_audience_id} | Delete audience
 *PlansApi* | [**deletePlan**](docs/Api/PlansApi.md#deleteplan) | **DELETE** /plans/{plan_id} | Delete plan
-*PlansApi* | [**deletePlanAudience**](docs/Api/PlansApi.md#deleteplanaudience) | **DELETE** /plan-audiences/{plan_audience_id} | Delete plan audience
 *PlansApi* | [**getPlan**](docs/Api/PlansApi.md#getplan) | **GET** /plans/{plan_id} | Get plan
 *PlansApi* | [**listPlans**](docs/Api/PlansApi.md#listplans) | **GET** /plans | List plans
+*PlansApi* | [**updateAudience**](docs/Api/PlansApi.md#updateaudience) | **PUT** /plan-audiences/{plan_audience_id} | Update audience
 *PlansApi* | [**updatePlan**](docs/Api/PlansApi.md#updateplan) | **PUT** /plans/{plan_id} | Update plan
-*PlansApi* | [**updatePlanAudience**](docs/Api/PlansApi.md#updateplanaudience) | **PUT** /plan-audiences/{plan_audience_id} | Update plan audience
 
 ## Models
 
@@ -160,26 +164,25 @@ Class | Method | HTTP request | Description
 - [CountApiKeysResponse](docs/Model/CountApiKeysResponse.md)
 - [CountApiRequestsParams](docs/Model/CountApiRequestsParams.md)
 - [CountApiRequestsResponse](docs/Model/CountApiRequestsResponse.md)
-- [CountCompaniesAudienceResponse](docs/Model/CountCompaniesAudienceResponse.md)
-- [CountEventTypesParams](docs/Model/CountEventTypesParams.md)
-- [CountEventTypesResponse](docs/Model/CountEventTypesResponse.md)
+- [CountAudienceCompaniesResponse](docs/Model/CountAudienceCompaniesResponse.md)
+- [CountAudienceUsersResponse](docs/Model/CountAudienceUsersResponse.md)
+- [CountEventSummariesParams](docs/Model/CountEventSummariesParams.md)
+- [CountEventSummariesResponse](docs/Model/CountEventSummariesResponse.md)
 - [CountEventsParams](docs/Model/CountEventsParams.md)
 - [CountEventsResponse](docs/Model/CountEventsResponse.md)
 - [CountFlagChecksParams](docs/Model/CountFlagChecksParams.md)
 - [CountFlagChecksResponse](docs/Model/CountFlagChecksResponse.md)
 - [CountResponse](docs/Model/CountResponse.md)
-- [CountUsersAudienceResponse](docs/Model/CountUsersAudienceResponse.md)
 - [CreateApiKeyRequestBody](docs/Model/CreateApiKeyRequestBody.md)
 - [CreateApiKeyResponse](docs/Model/CreateApiKeyResponse.md)
-- [CreateCompanyMembershipResponse](docs/Model/CreateCompanyMembershipResponse.md)
 - [CreateCompanyOverrideRequestBody](docs/Model/CreateCompanyOverrideRequestBody.md)
 - [CreateCompanyOverrideResponse](docs/Model/CreateCompanyOverrideResponse.md)
 - [CreateCompanyResponse](docs/Model/CreateCompanyResponse.md)
-- [CreateCompanyTraitResponse](docs/Model/CreateCompanyTraitResponse.md)
 - [CreateEntityTraitDefinitionRequestBody](docs/Model/CreateEntityTraitDefinitionRequestBody.md)
-- [CreateEntityTraitDefinitionResponse](docs/Model/CreateEntityTraitDefinitionResponse.md)
 - [CreateEnvironmentRequestBody](docs/Model/CreateEnvironmentRequestBody.md)
 - [CreateEnvironmentResponse](docs/Model/CreateEnvironmentResponse.md)
+- [CreateEventBatchRequestBody](docs/Model/CreateEventBatchRequestBody.md)
+- [CreateEventBatchResponse](docs/Model/CreateEventBatchResponse.md)
 - [CreateEventRequestBody](docs/Model/CreateEventRequestBody.md)
 - [CreateEventResponse](docs/Model/CreateEventResponse.md)
 - [CreateFeatureRequestBody](docs/Model/CreateFeatureRequestBody.md)
@@ -196,18 +199,19 @@ Class | Method | HTTP request | Description
 - [CreatePlanResponse](docs/Model/CreatePlanResponse.md)
 - [CreateReqCommon](docs/Model/CreateReqCommon.md)
 - [CreateUserResponse](docs/Model/CreateUserResponse.md)
-- [CreateUserTraitResponse](docs/Model/CreateUserTraitResponse.md)
 - [DeleteApiKeyResponse](docs/Model/DeleteApiKeyResponse.md)
+- [DeleteAudienceResponse](docs/Model/DeleteAudienceResponse.md)
+- [DeleteCompanyByKeysResponse](docs/Model/DeleteCompanyByKeysResponse.md)
 - [DeleteCompanyMembershipResponse](docs/Model/DeleteCompanyMembershipResponse.md)
 - [DeleteCompanyOverrideResponse](docs/Model/DeleteCompanyOverrideResponse.md)
 - [DeleteCompanyResponse](docs/Model/DeleteCompanyResponse.md)
 - [DeleteEnvironmentResponse](docs/Model/DeleteEnvironmentResponse.md)
 - [DeleteFeatureResponse](docs/Model/DeleteFeatureResponse.md)
 - [DeleteFlagResponse](docs/Model/DeleteFlagResponse.md)
-- [DeletePlanAudienceResponse](docs/Model/DeletePlanAudienceResponse.md)
 - [DeletePlanEntitlementResponse](docs/Model/DeletePlanEntitlementResponse.md)
 - [DeletePlanResponse](docs/Model/DeletePlanResponse.md)
 - [DeleteResponse](docs/Model/DeleteResponse.md)
+- [DeleteUserByKeysResponse](docs/Model/DeleteUserByKeysResponse.md)
 - [DeleteUserResponse](docs/Model/DeleteUserResponse.md)
 - [EntityKeyResponseData](docs/Model/EntityKeyResponseData.md)
 - [EntityTraitDefinitionResponseData](docs/Model/EntityTraitDefinitionResponseData.md)
@@ -228,26 +232,31 @@ Class | Method | HTTP request | Description
 - [FlagResponseData](docs/Model/FlagResponseData.md)
 - [GetApiKeyResponse](docs/Model/GetApiKeyResponse.md)
 - [GetApiRequestResponse](docs/Model/GetApiRequestResponse.md)
-- [GetCompaniesAudienceResponse](docs/Model/GetCompaniesAudienceResponse.md)
 - [GetCompanyOverrideResponse](docs/Model/GetCompanyOverrideResponse.md)
 - [GetCompanyResponse](docs/Model/GetCompanyResponse.md)
 - [GetEnvironmentResponse](docs/Model/GetEnvironmentResponse.md)
 - [GetEventResponse](docs/Model/GetEventResponse.md)
-- [GetEventTypeResponse](docs/Model/GetEventTypeResponse.md)
+- [GetEventSummariesParams](docs/Model/GetEventSummariesParams.md)
+- [GetEventSummariesResponse](docs/Model/GetEventSummariesResponse.md)
+- [GetEventSummaryBySubtypeResponse](docs/Model/GetEventSummaryBySubtypeResponse.md)
 - [GetFeatureResponse](docs/Model/GetFeatureResponse.md)
 - [GetFlagCheckResponse](docs/Model/GetFlagCheckResponse.md)
 - [GetFlagResponse](docs/Model/GetFlagResponse.md)
+- [GetLatestFlagChecksParams](docs/Model/GetLatestFlagChecksParams.md)
+- [GetLatestFlagChecksResponse](docs/Model/GetLatestFlagChecksResponse.md)
 - [GetOrCreateCompanyMembershipRequestBody](docs/Model/GetOrCreateCompanyMembershipRequestBody.md)
+- [GetOrCreateCompanyMembershipResponse](docs/Model/GetOrCreateCompanyMembershipResponse.md)
+- [GetOrCreateEntityTraitDefinitionResponse](docs/Model/GetOrCreateEntityTraitDefinitionResponse.md)
 - [GetPlanEntitlementResponse](docs/Model/GetPlanEntitlementResponse.md)
 - [GetPlanResponse](docs/Model/GetPlanResponse.md)
 - [GetUserResponse](docs/Model/GetUserResponse.md)
-- [GetUsersAudienceResponse](docs/Model/GetUsersAudienceResponse.md)
-- [LatestFlagChecksParams](docs/Model/LatestFlagChecksParams.md)
-- [LatestFlagChecksResponse](docs/Model/LatestFlagChecksResponse.md)
+- [KeysRequestBody](docs/Model/KeysRequestBody.md)
 - [ListApiKeysParams](docs/Model/ListApiKeysParams.md)
 - [ListApiKeysResponse](docs/Model/ListApiKeysResponse.md)
 - [ListApiRequestsParams](docs/Model/ListApiRequestsParams.md)
 - [ListApiRequestsResponse](docs/Model/ListApiRequestsResponse.md)
+- [ListAudienceCompaniesResponse](docs/Model/ListAudienceCompaniesResponse.md)
+- [ListAudienceUsersResponse](docs/Model/ListAudienceUsersResponse.md)
 - [ListCompaniesParams](docs/Model/ListCompaniesParams.md)
 - [ListCompaniesResponse](docs/Model/ListCompaniesResponse.md)
 - [ListCompanyMembershipsParams](docs/Model/ListCompanyMembershipsParams.md)
@@ -256,8 +265,6 @@ Class | Method | HTTP request | Description
 - [ListCompanyOverridesResponse](docs/Model/ListCompanyOverridesResponse.md)
 - [ListCompanyPlansParams](docs/Model/ListCompanyPlansParams.md)
 - [ListCompanyPlansResponse](docs/Model/ListCompanyPlansResponse.md)
-- [ListEventTypesParams](docs/Model/ListEventTypesParams.md)
-- [ListEventTypesResponse](docs/Model/ListEventTypesResponse.md)
 - [ListEventsParams](docs/Model/ListEventsParams.md)
 - [ListEventsResponse](docs/Model/ListEventsResponse.md)
 - [ListFeaturesParams](docs/Model/ListFeaturesParams.md)
@@ -266,8 +273,6 @@ Class | Method | HTTP request | Description
 - [ListFlagChecksResponse](docs/Model/ListFlagChecksResponse.md)
 - [ListFlagsParams](docs/Model/ListFlagsParams.md)
 - [ListFlagsResponse](docs/Model/ListFlagsResponse.md)
-- [ListMetricCountsHourlyParams](docs/Model/ListMetricCountsHourlyParams.md)
-- [ListMetricCountsHourlyResponse](docs/Model/ListMetricCountsHourlyResponse.md)
 - [ListMetricCountsParams](docs/Model/ListMetricCountsParams.md)
 - [ListMetricCountsResponse](docs/Model/ListMetricCountsResponse.md)
 - [ListPlanEntitlementsParams](docs/Model/ListPlanEntitlementsParams.md)
@@ -282,8 +287,11 @@ Class | Method | HTTP request | Description
 - [LookupUserResponse](docs/Model/LookupUserResponse.md)
 - [MetricCountsHourlyResponseData](docs/Model/MetricCountsHourlyResponseData.md)
 - [PaginationFilter](docs/Model/PaginationFilter.md)
+- [PlanAudienceDetailResponseData](docs/Model/PlanAudienceDetailResponseData.md)
+- [PlanAudienceResponseData](docs/Model/PlanAudienceResponseData.md)
 - [PlanEntitlementResponseData](docs/Model/PlanEntitlementResponseData.md)
 - [PlanResponseData](docs/Model/PlanResponseData.md)
+- [RawEventBatchResponseData](docs/Model/RawEventBatchResponseData.md)
 - [RawEventResponseData](docs/Model/RawEventResponseData.md)
 - [RuleConditionGroupDetailResponseData](docs/Model/RuleConditionGroupDetailResponseData.md)
 - [RuleConditionGroupResponseData](docs/Model/RuleConditionGroupResponseData.md)
@@ -291,10 +299,10 @@ Class | Method | HTTP request | Description
 - [RuleDetailResponseData](docs/Model/RuleDetailResponseData.md)
 - [RuleResponseData](docs/Model/RuleResponseData.md)
 - [RulesDetailResponseData](docs/Model/RulesDetailResponseData.md)
-- [RulesFlagResponse](docs/Model/RulesFlagResponse.md)
 - [UpdateApiKeyRequestBody](docs/Model/UpdateApiKeyRequestBody.md)
 - [UpdateApiKeyResponse](docs/Model/UpdateApiKeyResponse.md)
 - [UpdateAudienceRequestBody](docs/Model/UpdateAudienceRequestBody.md)
+- [UpdateAudienceResponse](docs/Model/UpdateAudienceResponse.md)
 - [UpdateCompanyOverrideRequestBody](docs/Model/UpdateCompanyOverrideRequestBody.md)
 - [UpdateCompanyOverrideResponse](docs/Model/UpdateCompanyOverrideResponse.md)
 - [UpdateEntityTraitDefinitionRequestBody](docs/Model/UpdateEntityTraitDefinitionRequestBody.md)
@@ -305,7 +313,7 @@ Class | Method | HTTP request | Description
 - [UpdateFeatureResponse](docs/Model/UpdateFeatureResponse.md)
 - [UpdateFlagResponse](docs/Model/UpdateFlagResponse.md)
 - [UpdateFlagRulesRequestBody](docs/Model/UpdateFlagRulesRequestBody.md)
-- [UpdatePlanAudienceResponse](docs/Model/UpdatePlanAudienceResponse.md)
+- [UpdateFlagRulesResponse](docs/Model/UpdateFlagRulesResponse.md)
 - [UpdatePlanEntitlementRequestBody](docs/Model/UpdatePlanEntitlementRequestBody.md)
 - [UpdatePlanEntitlementResponse](docs/Model/UpdatePlanEntitlementResponse.md)
 - [UpdatePlanRequestBody](docs/Model/UpdatePlanRequestBody.md)
@@ -313,9 +321,13 @@ Class | Method | HTTP request | Description
 - [UpdateReqCommon](docs/Model/UpdateReqCommon.md)
 - [UpdateRuleRequestBody](docs/Model/UpdateRuleRequestBody.md)
 - [UpsertCompanyRequestBody](docs/Model/UpsertCompanyRequestBody.md)
+- [UpsertCompanyResponse](docs/Model/UpsertCompanyResponse.md)
+- [UpsertCompanyTraitResponse](docs/Model/UpsertCompanyTraitResponse.md)
 - [UpsertTraitRequestBody](docs/Model/UpsertTraitRequestBody.md)
 - [UpsertUserRequestBody](docs/Model/UpsertUserRequestBody.md)
+- [UpsertUserResponse](docs/Model/UpsertUserResponse.md)
 - [UpsertUserSubRequestBody](docs/Model/UpsertUserSubRequestBody.md)
+- [UpsertUserTraitResponse](docs/Model/UpsertUserTraitResponse.md)
 - [UserDetailResponseData](docs/Model/UserDetailResponseData.md)
 - [UserResponseData](docs/Model/UserResponseData.md)
 

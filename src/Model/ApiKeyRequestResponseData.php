@@ -65,11 +65,19 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'id' => 'string',
         'method' => 'string',
         'req_body' => 'string',
+        'request_type' => 'string',
+        'resource_id' => 'int',
+        'resource_id_string' => 'string',
+        'resource_name' => 'string',
+        'resource_type' => 'string',
         'resp_body' => 'string',
         'resp_code' => 'int',
+        'secondary_resource' => 'string',
         'started_at' => '\DateTime',
         'url' => 'string',
-        'user_agent' => 'string'
+        'user_agent' => 'string',
+        'user_id' => 'string',
+        'user_name' => 'string'
     ];
 
     /**
@@ -86,11 +94,19 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'id' => null,
         'method' => null,
         'req_body' => null,
+        'request_type' => null,
+        'resource_id' => null,
+        'resource_id_string' => null,
+        'resource_name' => null,
+        'resource_type' => null,
         'resp_body' => null,
         'resp_code' => null,
+        'secondary_resource' => null,
         'started_at' => 'date-time',
         'url' => null,
-        'user_agent' => null
+        'user_agent' => null,
+        'user_id' => null,
+        'user_name' => null
     ];
 
     /**
@@ -105,11 +121,19 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'id' => false,
         'method' => false,
         'req_body' => true,
+        'request_type' => true,
+        'resource_id' => true,
+        'resource_id_string' => true,
+        'resource_name' => true,
+        'resource_type' => true,
         'resp_body' => true,
         'resp_code' => true,
+        'secondary_resource' => true,
         'started_at' => false,
         'url' => false,
-        'user_agent' => true
+        'user_agent' => true,
+        'user_id' => true,
+        'user_name' => true
     ];
 
     /**
@@ -204,11 +228,19 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'id' => 'id',
         'method' => 'method',
         'req_body' => 'req_body',
+        'request_type' => 'request_type',
+        'resource_id' => 'resource_id',
+        'resource_id_string' => 'resource_id_string',
+        'resource_name' => 'resource_name',
+        'resource_type' => 'resource_type',
         'resp_body' => 'resp_body',
         'resp_code' => 'resp_code',
+        'secondary_resource' => 'secondary_resource',
         'started_at' => 'started_at',
         'url' => 'url',
-        'user_agent' => 'user_agent'
+        'user_agent' => 'user_agent',
+        'user_id' => 'user_id',
+        'user_name' => 'user_name'
     ];
 
     /**
@@ -223,11 +255,19 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'id' => 'setId',
         'method' => 'setMethod',
         'req_body' => 'setReqBody',
+        'request_type' => 'setRequestType',
+        'resource_id' => 'setResourceId',
+        'resource_id_string' => 'setResourceIdString',
+        'resource_name' => 'setResourceName',
+        'resource_type' => 'setResourceType',
         'resp_body' => 'setRespBody',
         'resp_code' => 'setRespCode',
+        'secondary_resource' => 'setSecondaryResource',
         'started_at' => 'setStartedAt',
         'url' => 'setUrl',
-        'user_agent' => 'setUserAgent'
+        'user_agent' => 'setUserAgent',
+        'user_id' => 'setUserId',
+        'user_name' => 'setUserName'
     ];
 
     /**
@@ -242,11 +282,19 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'id' => 'getId',
         'method' => 'getMethod',
         'req_body' => 'getReqBody',
+        'request_type' => 'getRequestType',
+        'resource_id' => 'getResourceId',
+        'resource_id_string' => 'getResourceIdString',
+        'resource_name' => 'getResourceName',
+        'resource_type' => 'getResourceType',
         'resp_body' => 'getRespBody',
         'resp_code' => 'getRespCode',
+        'secondary_resource' => 'getSecondaryResource',
         'started_at' => 'getStartedAt',
         'url' => 'getUrl',
-        'user_agent' => 'getUserAgent'
+        'user_agent' => 'getUserAgent',
+        'user_id' => 'getUserId',
+        'user_name' => 'getUserName'
     ];
 
     /**
@@ -312,11 +360,19 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('method', $data ?? [], null);
         $this->setIfExists('req_body', $data ?? [], null);
+        $this->setIfExists('request_type', $data ?? [], null);
+        $this->setIfExists('resource_id', $data ?? [], null);
+        $this->setIfExists('resource_id_string', $data ?? [], null);
+        $this->setIfExists('resource_name', $data ?? [], null);
+        $this->setIfExists('resource_type', $data ?? [], null);
         $this->setIfExists('resp_body', $data ?? [], null);
         $this->setIfExists('resp_code', $data ?? [], null);
+        $this->setIfExists('secondary_resource', $data ?? [], null);
         $this->setIfExists('started_at', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
         $this->setIfExists('user_agent', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
+        $this->setIfExists('user_name', $data ?? [], null);
     }
 
     /**
@@ -560,6 +616,176 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Gets request_type
+     *
+     * @return string|null
+     */
+    public function getRequestType()
+    {
+        return $this->container['request_type'];
+    }
+
+    /**
+     * Sets request_type
+     *
+     * @param string|null $request_type request_type
+     *
+     * @return self
+     */
+    public function setRequestType($request_type)
+    {
+        if (is_null($request_type)) {
+            array_push($this->openAPINullablesSetToNull, 'request_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('request_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['request_type'] = $request_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource_id
+     *
+     * @return int|null
+     */
+    public function getResourceId()
+    {
+        return $this->container['resource_id'];
+    }
+
+    /**
+     * Sets resource_id
+     *
+     * @param int|null $resource_id resource_id
+     *
+     * @return self
+     */
+    public function setResourceId($resource_id)
+    {
+        if (is_null($resource_id)) {
+            array_push($this->openAPINullablesSetToNull, 'resource_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resource_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['resource_id'] = $resource_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource_id_string
+     *
+     * @return string|null
+     */
+    public function getResourceIdString()
+    {
+        return $this->container['resource_id_string'];
+    }
+
+    /**
+     * Sets resource_id_string
+     *
+     * @param string|null $resource_id_string resource_id_string
+     *
+     * @return self
+     */
+    public function setResourceIdString($resource_id_string)
+    {
+        if (is_null($resource_id_string)) {
+            array_push($this->openAPINullablesSetToNull, 'resource_id_string');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resource_id_string', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['resource_id_string'] = $resource_id_string;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource_name
+     *
+     * @return string|null
+     */
+    public function getResourceName()
+    {
+        return $this->container['resource_name'];
+    }
+
+    /**
+     * Sets resource_name
+     *
+     * @param string|null $resource_name resource_name
+     *
+     * @return self
+     */
+    public function setResourceName($resource_name)
+    {
+        if (is_null($resource_name)) {
+            array_push($this->openAPINullablesSetToNull, 'resource_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resource_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['resource_name'] = $resource_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets resource_type
+     *
+     * @return string|null
+     */
+    public function getResourceType()
+    {
+        return $this->container['resource_type'];
+    }
+
+    /**
+     * Sets resource_type
+     *
+     * @param string|null $resource_type resource_type
+     *
+     * @return self
+     */
+    public function setResourceType($resource_type)
+    {
+        if (is_null($resource_type)) {
+            array_push($this->openAPINullablesSetToNull, 'resource_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resource_type', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['resource_type'] = $resource_type;
+
+        return $this;
+    }
+
+    /**
      * Gets resp_body
      *
      * @return string|null
@@ -623,6 +849,40 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['resp_code'] = $resp_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets secondary_resource
+     *
+     * @return string|null
+     */
+    public function getSecondaryResource()
+    {
+        return $this->container['secondary_resource'];
+    }
+
+    /**
+     * Sets secondary_resource
+     *
+     * @param string|null $secondary_resource secondary_resource
+     *
+     * @return self
+     */
+    public function setSecondaryResource($secondary_resource)
+    {
+        if (is_null($secondary_resource)) {
+            array_push($this->openAPINullablesSetToNull, 'secondary_resource');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('secondary_resource', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['secondary_resource'] = $secondary_resource;
 
         return $this;
     }
@@ -711,6 +971,74 @@ class ApiKeyRequestResponseData implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['user_agent'] = $user_agent;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     *
+     * @return string|null
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     *
+     * @param string|null $user_id user_id
+     *
+     * @return self
+     */
+    public function setUserId($user_id)
+    {
+        if (is_null($user_id)) {
+            array_push($this->openAPINullablesSetToNull, 'user_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('user_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['user_id'] = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_name
+     *
+     * @return string|null
+     */
+    public function getUserName()
+    {
+        return $this->container['user_name'];
+    }
+
+    /**
+     * Sets user_name
+     *
+     * @param string|null $user_name user_name
+     *
+     * @return self
+     */
+    public function setUserName($user_name)
+    {
+        if (is_null($user_name)) {
+            array_push($this->openAPINullablesSetToNull, 'user_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('user_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['user_name'] = $user_name;
 
         return $this;
     }

@@ -101,7 +101,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = 'OpenAPI-Generator/0.4.0/PHP';
+    protected $userAgent = 'schematic-php@0.4.0';
 
     /**
      * Debug switch (default set to false)

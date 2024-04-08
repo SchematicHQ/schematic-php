@@ -61,7 +61,8 @@ class ListApiRequestsParams implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPITypes = [
         'limit' => 'int',
         'offset' => 'int',
-        'q' => 'string'
+        'q' => 'string',
+        'request_type' => 'string'
     ];
 
     /**
@@ -74,7 +75,8 @@ class ListApiRequestsParams implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $openAPIFormats = [
         'limit' => null,
         'offset' => null,
-        'q' => null
+        'q' => null,
+        'request_type' => null
     ];
 
     /**
@@ -85,7 +87,8 @@ class ListApiRequestsParams implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static array $openAPINullables = [
         'limit' => false,
         'offset' => false,
-        'q' => false
+        'q' => false,
+        'request_type' => false
     ];
 
     /**
@@ -176,7 +179,8 @@ class ListApiRequestsParams implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $attributeMap = [
         'limit' => 'limit',
         'offset' => 'offset',
-        'q' => 'q'
+        'q' => 'q',
+        'request_type' => 'request_type'
     ];
 
     /**
@@ -187,7 +191,8 @@ class ListApiRequestsParams implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $setters = [
         'limit' => 'setLimit',
         'offset' => 'setOffset',
-        'q' => 'setQ'
+        'q' => 'setQ',
+        'request_type' => 'setRequestType'
     ];
 
     /**
@@ -198,7 +203,8 @@ class ListApiRequestsParams implements ModelInterface, ArrayAccess, \JsonSeriali
     protected static $getters = [
         'limit' => 'getLimit',
         'offset' => 'getOffset',
-        'q' => 'getQ'
+        'q' => 'getQ',
+        'request_type' => 'getRequestType'
     ];
 
     /**
@@ -261,6 +267,7 @@ class ListApiRequestsParams implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
+        $this->setIfExists('request_type', $data ?? [], null);
     }
 
     /**
@@ -382,6 +389,33 @@ class ListApiRequestsParams implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable q cannot be null');
         }
         $this->container['q'] = $q;
+
+        return $this;
+    }
+
+    /**
+     * Gets request_type
+     *
+     * @return string|null
+     */
+    public function getRequestType()
+    {
+        return $this->container['request_type'];
+    }
+
+    /**
+     * Sets request_type
+     *
+     * @param string|null $request_type request_type
+     *
+     * @return self
+     */
+    public function setRequestType($request_type)
+    {
+        if (is_null($request_type)) {
+            throw new \InvalidArgumentException('non-nullable request_type cannot be null');
+        }
+        $this->container['request_type'] = $request_type;
 
         return $this;
     }

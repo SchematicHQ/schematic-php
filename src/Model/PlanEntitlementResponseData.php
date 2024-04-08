@@ -61,9 +61,11 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'created_at' => '\DateTime',
         'environment_id' => 'string',
+        'feature' => '\Schematic\Model\FeatureResponseData',
         'feature_id' => 'string',
         'id' => 'string',
         'metric_period' => 'string',
+        'plan' => '\Schematic\Model\PlanResponseData',
         'plan_id' => 'string',
         'rule_id' => 'string',
         'updated_at' => '\DateTime',
@@ -83,9 +85,11 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'created_at' => 'date-time',
         'environment_id' => null,
+        'feature' => null,
         'feature_id' => null,
         'id' => null,
         'metric_period' => null,
+        'plan' => null,
         'plan_id' => null,
         'rule_id' => null,
         'updated_at' => 'date-time',
@@ -103,9 +107,11 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     protected static array $openAPINullables = [
         'created_at' => false,
         'environment_id' => false,
+        'feature' => false,
         'feature_id' => false,
         'id' => false,
         'metric_period' => true,
+        'plan' => false,
         'plan_id' => false,
         'rule_id' => false,
         'updated_at' => false,
@@ -203,9 +209,11 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'created_at' => 'created_at',
         'environment_id' => 'environment_id',
+        'feature' => 'feature',
         'feature_id' => 'feature_id',
         'id' => 'id',
         'metric_period' => 'metric_period',
+        'plan' => 'plan',
         'plan_id' => 'plan_id',
         'rule_id' => 'rule_id',
         'updated_at' => 'updated_at',
@@ -223,9 +231,11 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'created_at' => 'setCreatedAt',
         'environment_id' => 'setEnvironmentId',
+        'feature' => 'setFeature',
         'feature_id' => 'setFeatureId',
         'id' => 'setId',
         'metric_period' => 'setMetricPeriod',
+        'plan' => 'setPlan',
         'plan_id' => 'setPlanId',
         'rule_id' => 'setRuleId',
         'updated_at' => 'setUpdatedAt',
@@ -243,9 +253,11 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'created_at' => 'getCreatedAt',
         'environment_id' => 'getEnvironmentId',
+        'feature' => 'getFeature',
         'feature_id' => 'getFeatureId',
         'id' => 'getId',
         'metric_period' => 'getMetricPeriod',
+        'plan' => 'getPlan',
         'plan_id' => 'getPlanId',
         'rule_id' => 'getRuleId',
         'updated_at' => 'getUpdatedAt',
@@ -314,9 +326,11 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     {
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
+        $this->setIfExists('feature', $data ?? [], null);
         $this->setIfExists('feature_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('metric_period', $data ?? [], null);
+        $this->setIfExists('plan', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('rule_id', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -447,6 +461,33 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * Gets feature
+     *
+     * @return \Schematic\Model\FeatureResponseData|null
+     */
+    public function getFeature()
+    {
+        return $this->container['feature'];
+    }
+
+    /**
+     * Sets feature
+     *
+     * @param \Schematic\Model\FeatureResponseData|null $feature feature
+     *
+     * @return self
+     */
+    public function setFeature($feature)
+    {
+        if (is_null($feature)) {
+            throw new \InvalidArgumentException('non-nullable feature cannot be null');
+        }
+        $this->container['feature'] = $feature;
+
+        return $this;
+    }
+
+    /**
      * Gets feature_id
      *
      * @return string
@@ -530,6 +571,33 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             }
         }
         $this->container['metric_period'] = $metric_period;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan
+     *
+     * @return \Schematic\Model\PlanResponseData|null
+     */
+    public function getPlan()
+    {
+        return $this->container['plan'];
+    }
+
+    /**
+     * Sets plan
+     *
+     * @param \Schematic\Model\PlanResponseData|null $plan plan
+     *
+     * @return self
+     */
+    public function setPlan($plan)
+    {
+        if (is_null($plan)) {
+            throw new \InvalidArgumentException('non-nullable plan cannot be null');
+        }
+        $this->container['plan'] = $plan;
 
         return $this;
     }

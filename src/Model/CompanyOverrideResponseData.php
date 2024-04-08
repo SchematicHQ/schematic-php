@@ -59,9 +59,11 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
+        'company' => '\Schematic\Model\CompanyResponseData',
         'company_id' => 'string',
         'created_at' => '\DateTime',
         'environment_id' => 'string',
+        'feature' => '\Schematic\Model\FeatureResponseData',
         'feature_id' => 'string',
         'id' => 'string',
         'metric_period' => 'string',
@@ -81,9 +83,11 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'company' => null,
         'company_id' => null,
         'created_at' => 'date-time',
         'environment_id' => null,
+        'feature' => null,
         'feature_id' => null,
         'id' => null,
         'metric_period' => null,
@@ -101,9 +105,11 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'company' => false,
         'company_id' => false,
         'created_at' => false,
         'environment_id' => false,
+        'feature' => false,
         'feature_id' => false,
         'id' => false,
         'metric_period' => true,
@@ -201,9 +207,11 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
+        'company' => 'company',
         'company_id' => 'company_id',
         'created_at' => 'created_at',
         'environment_id' => 'environment_id',
+        'feature' => 'feature',
         'feature_id' => 'feature_id',
         'id' => 'id',
         'metric_period' => 'metric_period',
@@ -221,9 +229,11 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
+        'company' => 'setCompany',
         'company_id' => 'setCompanyId',
         'created_at' => 'setCreatedAt',
         'environment_id' => 'setEnvironmentId',
+        'feature' => 'setFeature',
         'feature_id' => 'setFeatureId',
         'id' => 'setId',
         'metric_period' => 'setMetricPeriod',
@@ -241,9 +251,11 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
+        'company' => 'getCompany',
         'company_id' => 'getCompanyId',
         'created_at' => 'getCreatedAt',
         'environment_id' => 'getEnvironmentId',
+        'feature' => 'getFeature',
         'feature_id' => 'getFeatureId',
         'id' => 'getId',
         'metric_period' => 'getMetricPeriod',
@@ -312,9 +324,11 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('company', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
+        $this->setIfExists('feature', $data ?? [], null);
         $this->setIfExists('feature_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('metric_period', $data ?? [], null);
@@ -393,6 +407,33 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
+     * Gets company
+     *
+     * @return \Schematic\Model\CompanyResponseData|null
+     */
+    public function getCompany()
+    {
+        return $this->container['company'];
+    }
+
+    /**
+     * Sets company
+     *
+     * @param \Schematic\Model\CompanyResponseData|null $company company
+     *
+     * @return self
+     */
+    public function setCompany($company)
+    {
+        if (is_null($company)) {
+            throw new \InvalidArgumentException('non-nullable company cannot be null');
+        }
+        $this->container['company'] = $company;
+
+        return $this;
+    }
+
+    /**
      * Gets company_id
      *
      * @return string
@@ -469,6 +510,33 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable environment_id cannot be null');
         }
         $this->container['environment_id'] = $environment_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets feature
+     *
+     * @return \Schematic\Model\FeatureResponseData|null
+     */
+    public function getFeature()
+    {
+        return $this->container['feature'];
+    }
+
+    /**
+     * Sets feature
+     *
+     * @param \Schematic\Model\FeatureResponseData|null $feature feature
+     *
+     * @return self
+     */
+    public function setFeature($feature)
+    {
+        if (is_null($feature)) {
+            throw new \InvalidArgumentException('non-nullable feature cannot be null');
+        }
+        $this->container['feature'] = $feature;
 
         return $this;
     }

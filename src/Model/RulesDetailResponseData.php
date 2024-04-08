@@ -59,6 +59,7 @@ class RulesDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
+        'flag' => '\Schematic\Model\FlagResponseData',
         'rules' => '\Schematic\Model\RuleDetailResponseData[]'
     ];
 
@@ -70,6 +71,7 @@ class RulesDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'flag' => null,
         'rules' => null
     ];
 
@@ -79,6 +81,7 @@ class RulesDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'flag' => false,
         'rules' => false
     ];
 
@@ -168,6 +171,7 @@ class RulesDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
+        'flag' => 'Flag',
         'rules' => 'rules'
     ];
 
@@ -177,6 +181,7 @@ class RulesDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
+        'flag' => 'setFlag',
         'rules' => 'setRules'
     ];
 
@@ -186,6 +191,7 @@ class RulesDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
+        'flag' => 'getFlag',
         'rules' => 'getRules'
     ];
 
@@ -246,6 +252,7 @@ class RulesDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('flag', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
     }
 
@@ -293,6 +300,33 @@ class RulesDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets flag
+     *
+     * @return \Schematic\Model\FlagResponseData|null
+     */
+    public function getFlag()
+    {
+        return $this->container['flag'];
+    }
+
+    /**
+     * Sets flag
+     *
+     * @param \Schematic\Model\FlagResponseData|null $flag flag
+     *
+     * @return self
+     */
+    public function setFlag($flag)
+    {
+        if (is_null($flag)) {
+            throw new \InvalidArgumentException('non-nullable flag cannot be null');
+        }
+        $this->container['flag'] = $flag;
+
+        return $this;
+    }
 
     /**
      * Gets rules
