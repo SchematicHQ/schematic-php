@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **event_subtype** | **string** | Name of track event type used to measure this condition | [optional]
 **id** | **string** |  | [optional]
 **metric_period** | **string** | Period of time over which to measure the track event metric | [optional]
-**metric_value** | **int** | Value to compare the track event metric against |
+**metric_period_month_reset** | **string** | When metric_period&#x3D;current_month, specify whether the month restarts based on the calendar month or the billing period | [optional]
+**metric_value** | **int** | Value to compare the track event metric against | [optional]
 **operator** | **string** |  |
 **resource_ids** | **string[]** | List of resource IDs (companies, users, or plans) targeted by this condition |
 **trait_id** | **string** | ID of trait to use to measure this condition | [optional]

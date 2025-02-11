@@ -5,8 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **company_id** | **string** |  |
+**expiration_date** | **\DateTime** |  | [optional]
 **feature_id** | **string** |  |
 **metric_period** | **string** |  | [optional]
+**metric_period_month_reset** | **string** |  | [optional]
 **value_bool** | **bool** |  | [optional]
 **value_numeric** | **int** |  | [optional]
 **value_trait_id** | **string** |  | [optional]

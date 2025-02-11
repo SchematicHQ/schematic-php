@@ -8,7 +8,9 @@ Name | Type | Description | Notes
 **event_subtype** | **string** |  | [optional]
 **feature_type** | **string** |  |
 **flag** | [**\Schematic\Model\CreateOrUpdateFlagRequestBody**](CreateOrUpdateFlagRequestBody.md) |  | [optional]
+**icon** | **string** |  | [optional]
 **lifecycle_phase** | **string** |  | [optional]
+**maintainer_id** | **string** |  | [optional]
 **name** | **string** |  |
 **trait_id** | **string** |  | [optional]
 

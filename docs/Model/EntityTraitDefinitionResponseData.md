@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **\DateTime** |  |
+**display_name** | **string** |  |
 **entity_type** | **string** |  |
 **hierarchy** | **string[]** |  |
 **id** | **string** |  |
