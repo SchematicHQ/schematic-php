@@ -13,7 +13,8 @@ Name | Type | Description | Notes
 **flag_id** | **string** |  | [optional]
 **id** | **string** |  |
 **metric_period** | **string** |  | [optional]
-**metric_value** | **int** |  |
+**metric_period_month_reset** | **string** |  | [optional]
+**metric_value** | **int** |  | [optional]
 **operator** | **string** |  |
 **plan_id** | **string** |  | [optional]
 **resource_ids** | **string[]** |  |

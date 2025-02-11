@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**conditions** | [**\Schematic\Model\RuleConditionResponseData[]**](RuleConditionResponseData.md) |  |
+**conditions** | [**\Schematic\Model\RuleConditionDetailResponseData[]**](RuleConditionDetailResponseData.md) |  |
 **created_at** | **\DateTime** |  |
 **environment_id** | **string** |  |
 **flag_id** | **string** |  | [optional]

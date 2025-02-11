@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  | [optional]
-**keys** | **object** |  |
+**id** | **string** | If you know the Schematic ID, you can use that here instead of keys | [optional]
+**keys** | **array<string,string>** |  |
 **last_seen_at** | **\DateTime** |  | [optional]
 **name** | **string** |  | [optional]
 **traits** | **object** | A map of trait names to trait values | [optional]

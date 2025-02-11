@@ -15,6 +15,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**getEnvironment()**](AccountsApi.md#getEnvironment) | **GET** /environments/{environment_id} | Get environment |
 | [**listApiKeys()**](AccountsApi.md#listApiKeys) | **GET** /api-keys | List api keys |
 | [**listApiRequests()**](AccountsApi.md#listApiRequests) | **GET** /api-requests | List api requests |
+| [**listEnvironments()**](AccountsApi.md#listEnvironments) | **GET** /environments | List environments |
 | [**updateApiKey()**](AccountsApi.md#updateApiKey) | **PUT** /api-keys/{api_key_id} | Update api key |
 | [**updateEnvironment()**](AccountsApi.md#updateEnvironment) | **PUT** /environments/{environment_id} | Update environment |
 
@@ -79,7 +80,7 @@ try {
 ## `countApiRequests()`
 
 ```php
-countApiRequests($q, $request_type, $limit, $offset): \Schematic\Model\CountApiRequestsResponse
+countApiRequests($q, $request_type, $environment_id, $limit, $offset): \Schematic\Model\CountApiRequestsResponse
 ```
 
 Count api requests
@@ -96,11 +97,12 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $q = 'q_example'; // string
 $request_type = 'request_type_example'; // string
+$environment_id = 'environment_id_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->AccountsApi->countApiRequests($q, $request_type, $limit, $offset);
+    $result = $schematic->AccountsApi->countApiRequests($q, $request_type, $environment_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->AccountsApi->countApiRequests: ', $e->getMessage(), PHP_EOL;
@@ -113,6 +115,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **q** | **string**|  | [optional] |
 | **request_type** | **string**|  | [optional] |
+| **environment_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -550,7 +553,7 @@ try {
 ## `listApiRequests()`
 
 ```php
-listApiRequests($q, $request_type, $limit, $offset): \Schematic\Model\ListApiRequestsResponse
+listApiRequests($q, $request_type, $environment_id, $limit, $offset): \Schematic\Model\ListApiRequestsResponse
 ```
 
 List api requests
@@ -567,11 +570,12 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $q = 'q_example'; // string
 $request_type = 'request_type_example'; // string
+$environment_id = 'environment_id_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->AccountsApi->listApiRequests($q, $request_type, $limit, $offset);
+    $result = $schematic->AccountsApi->listApiRequests($q, $request_type, $environment_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->AccountsApi->listApiRequests: ', $e->getMessage(), PHP_EOL;
@@ -584,12 +588,68 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **q** | **string**|  | [optional] |
 | **request_type** | **string**|  | [optional] |
+| **environment_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
 [**\Schematic\Model\ListApiRequestsResponse**](../Model/ListApiRequestsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listEnvironments()`
+
+```php
+listEnvironments($ids, $limit, $offset): \Schematic\Model\ListEnvironmentsResponse
+```
+
+List environments
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$ids = array('ids_example'); // string[]
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->AccountsApi->listEnvironments($ids, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->listEnvironments: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListEnvironmentsResponse**](../Model/ListEnvironmentsResponse.md)
 
 ### Authorization
 

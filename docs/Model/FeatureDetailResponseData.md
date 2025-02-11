@@ -10,9 +10,13 @@ Name | Type | Description | Notes
 **event_summary** | [**\Schematic\Model\EventSummaryResponseData**](EventSummaryResponseData.md) |  | [optional]
 **feature_type** | **string** |  |
 **flags** | [**\Schematic\Model\FlagDetailResponseData[]**](FlagDetailResponseData.md) |  |
+**icon** | **string** |  |
 **id** | **string** |  |
 **lifecycle_phase** | **string** |  | [optional]
+**maintainer_id** | **string** |  | [optional]
 **name** | **string** |  |
+**plans** | [**\Schematic\Model\PreviewObject[]**](PreviewObject.md) |  |
+**trait** | [**\Schematic\Model\EntityTraitDefinitionResponseData**](EntityTraitDefinitionResponseData.md) |  | [optional]
 **trait_id** | **string** |  | [optional]
 **updated_at** | **\DateTime** |  |
 

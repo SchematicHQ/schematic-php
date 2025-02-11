@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **feature_id** | **string** |  | [optional]
 **flag_type** | **string** |  |
 **key** | **string** |  |
+**maintainer_id** | **string** |  | [optional]
 **name** | **string** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

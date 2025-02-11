@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **environment_id** | **string** |  |
 **id** | **string** |  |
 **last_seen_at** | **\DateTime** |  | [optional]
+**logo_url** | **string** |  | [optional]
 **name** | **string** |  |
 **updated_at** | **\DateTime** |  |
 

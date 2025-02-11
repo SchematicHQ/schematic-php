@@ -8,19 +8,17 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**checkFlags()**](FeaturesApi.md#checkFlags) | **POST** /flags/check | Check flags |
 | [**countAudienceCompanies()**](FeaturesApi.md#countAudienceCompanies) | **POST** /audience/count-companies | Count audience companies |
 | [**countAudienceUsers()**](FeaturesApi.md#countAudienceUsers) | **POST** /audience/count-users | Count audience users |
-| [**countFlagChecks()**](FeaturesApi.md#countFlagChecks) | **GET** /flag-checks/count | Count flag checks |
+| [**countFeatures()**](FeaturesApi.md#countFeatures) | **GET** /features/count | Count features |
+| [**countFlags()**](FeaturesApi.md#countFlags) | **GET** /flags/count | Count flags |
 | [**createFeature()**](FeaturesApi.md#createFeature) | **POST** /features | Create feature |
 | [**createFlag()**](FeaturesApi.md#createFlag) | **POST** /flags | Create flag |
 | [**deleteFeature()**](FeaturesApi.md#deleteFeature) | **DELETE** /features/{feature_id} | Delete feature |
 | [**deleteFlag()**](FeaturesApi.md#deleteFlag) | **DELETE** /flags/{flag_id} | Delete flag |
 | [**getFeature()**](FeaturesApi.md#getFeature) | **GET** /features/{feature_id} | Get feature |
 | [**getFlag()**](FeaturesApi.md#getFlag) | **GET** /flags/{flag_id} | Get flag |
-| [**getFlagCheck()**](FeaturesApi.md#getFlagCheck) | **GET** /flag-checks/{flag_check_id} | Get flag check |
-| [**getLatestFlagChecks()**](FeaturesApi.md#getLatestFlagChecks) | **GET** /flag-checks/latest | Get latest flag checks |
 | [**listAudienceCompanies()**](FeaturesApi.md#listAudienceCompanies) | **POST** /audience/get-companies | List audience companies |
 | [**listAudienceUsers()**](FeaturesApi.md#listAudienceUsers) | **POST** /audience/get-users | List audience users |
 | [**listFeatures()**](FeaturesApi.md#listFeatures) | **GET** /features | List features |
-| [**listFlagChecks()**](FeaturesApi.md#listFlagChecks) | **GET** /flag-checks | List flag checks |
 | [**listFlags()**](FeaturesApi.md#listFlags) | **GET** /flags | List flags |
 | [**updateFeature()**](FeaturesApi.md#updateFeature) | **PUT** /features/{feature_id} | Update feature |
 | [**updateFlag()**](FeaturesApi.md#updateFlag) | **PUT** /flags/{flag_id} | Update flag |
@@ -233,13 +231,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `countFlagChecks()`
+## `countFeatures()`
 
 ```php
-countFlagChecks($flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\CountFlagChecksResponse
+countFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset): \Schematic\Model\CountFeaturesResponse
 ```
 
-Count flag checks
+Count features
 
 ### Example
 
@@ -251,17 +249,18 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$flag_id = 'flag_id_example'; // string
-$flag_ids = array('flag_ids_example'); // string[]
-$id = 'id_example'; // string
+$ids = array('ids_example'); // string[]
+$q = 'q_example'; // string
+$without_company_override_for = 'without_company_override_for_example'; // string | Filter out features that already have a company override for the specified company ID
+$without_plan_entitlement_for = 'without_plan_entitlement_for_example'; // string | Filter out features that already have a plan entitlement for the specified plan ID
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->FeaturesApi->countFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
+    $result = $schematic->FeaturesApi->countFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->countFlagChecks: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->countFeatures: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -269,15 +268,75 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **flag_id** | **string**|  | [optional] |
-| **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **id** | **string**|  | [optional] |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **q** | **string**|  | [optional] |
+| **without_company_override_for** | **string**| Filter out features that already have a company override for the specified company ID | [optional] |
+| **without_plan_entitlement_for** | **string**| Filter out features that already have a plan entitlement for the specified plan ID | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
-[**\Schematic\Model\CountFlagChecksResponse**](../Model/CountFlagChecksResponse.md)
+[**\Schematic\Model\CountFeaturesResponse**](../Model/CountFeaturesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `countFlags()`
+
+```php
+countFlags($feature_id, $ids, $q, $limit, $offset): \Schematic\Model\CountFlagsResponse
+```
+
+Count flags
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$feature_id = 'feature_id_example'; // string
+$ids = array('ids_example'); // string[]
+$q = 'q_example'; // string
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->FeaturesApi->countFlags($feature_id, $ids, $q, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->FeaturesApi->countFlags: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **feature_id** | **string**|  | [optional] |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **q** | **string**|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\CountFlagsResponse**](../Model/CountFlagsResponse.md)
 
 ### Authorization
 
@@ -598,116 +657,6 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getFlagCheck()`
-
-```php
-getFlagCheck($flag_check_id): \Schematic\Model\GetFlagCheckResponse
-```
-
-Get flag check
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$flag_check_id = 'flag_check_id_example'; // string | flag_check_id
-
-try {
-    $result = $schematic->FeaturesApi->getFlagCheck($flag_check_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->getFlagCheck: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **flag_check_id** | **string**| flag_check_id | |
-
-### Return type
-
-[**\Schematic\Model\GetFlagCheckResponse**](../Model/GetFlagCheckResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getLatestFlagChecks()`
-
-```php
-getLatestFlagChecks($flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\GetLatestFlagChecksResponse
-```
-
-Get latest flag checks
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$flag_id = 'flag_id_example'; // string
-$flag_ids = array('flag_ids_example'); // string[]
-$id = 'id_example'; // string
-$limit = 100; // int | Page limit (default 100)
-$offset = 0; // int | Page offset (default 0)
-
-try {
-    $result = $schematic->FeaturesApi->getLatestFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->getLatestFlagChecks: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **flag_id** | **string**|  | [optional] |
-| **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **id** | **string**|  | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\GetLatestFlagChecksResponse**](../Model/GetLatestFlagChecksResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `listAudienceCompanies()`
 
 ```php
@@ -813,7 +762,7 @@ try {
 ## `listFeatures()`
 
 ```php
-listFeatures($limit, $offset): \Schematic\Model\ListFeaturesResponse
+listFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset): \Schematic\Model\ListFeaturesResponse
 ```
 
 List features
@@ -828,11 +777,15 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
+$ids = array('ids_example'); // string[]
+$q = 'q_example'; // string
+$without_company_override_for = 'without_company_override_for_example'; // string | Filter out features that already have a company override for the specified company ID
+$without_plan_entitlement_for = 'without_plan_entitlement_for_example'; // string | Filter out features that already have a plan entitlement for the specified plan ID
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->FeaturesApi->listFeatures($limit, $offset);
+    $result = $schematic->FeaturesApi->listFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->FeaturesApi->listFeatures: ', $e->getMessage(), PHP_EOL;
@@ -843,6 +796,10 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **q** | **string**|  | [optional] |
+| **without_company_override_for** | **string**| Filter out features that already have a company override for the specified company ID | [optional] |
+| **without_plan_entitlement_for** | **string**| Filter out features that already have a plan entitlement for the specified plan ID | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -863,69 +820,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listFlagChecks()`
-
-```php
-listFlagChecks($flag_id, $flag_ids, $id, $limit, $offset): \Schematic\Model\ListFlagChecksResponse
-```
-
-List flag checks
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$flag_id = 'flag_id_example'; // string
-$flag_ids = array('flag_ids_example'); // string[]
-$id = 'id_example'; // string
-$limit = 100; // int | Page limit (default 100)
-$offset = 0; // int | Page offset (default 0)
-
-try {
-    $result = $schematic->FeaturesApi->listFlagChecks($flag_id, $flag_ids, $id, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->listFlagChecks: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **flag_id** | **string**|  | [optional] |
-| **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **id** | **string**|  | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\ListFlagChecksResponse**](../Model/ListFlagChecksResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `listFlags()`
 
 ```php
-listFlags($feature_id, $flag_ids, $limit, $offset): \Schematic\Model\ListFlagsResponse
+listFlags($feature_id, $ids, $q, $limit, $offset): \Schematic\Model\ListFlagsResponse
 ```
 
 List flags
@@ -941,12 +839,13 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $feature_id = 'feature_id_example'; // string
-$flag_ids = array('flag_ids_example'); // string[]
+$ids = array('ids_example'); // string[]
+$q = 'q_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->FeaturesApi->listFlags($feature_id, $flag_ids, $limit, $offset);
+    $result = $schematic->FeaturesApi->listFlags($feature_id, $ids, $q, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->FeaturesApi->listFlags: ', $e->getMessage(), PHP_EOL;
@@ -958,7 +857,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **feature_id** | **string**|  | [optional] |
-| **flag_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 

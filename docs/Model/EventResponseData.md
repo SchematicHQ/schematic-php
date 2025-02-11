@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **api_key** | **string** |  | [optional]
 **body** | **object** |  |
+**body_preview** | **string** |  |
 **captured_at** | **\DateTime** |  |
 **company_id** | **string** |  | [optional]
 **enriched_at** | **\DateTime** |  | [optional]
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 **id** | **string** |  |
 **loaded_at** | **\DateTime** |  | [optional]
 **processed_at** | **\DateTime** |  | [optional]
+**quantity** | **int** |  |
 **sent_at** | **\DateTime** |  | [optional]
 **status** | **string** |  |
 **subtype** | **string** |  | [optional]

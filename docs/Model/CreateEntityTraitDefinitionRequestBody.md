@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**display_name** | **string** |  | [optional]
 **entity_type** | **string** |  |
 **hierarchy** | **string[]** |  |
 **trait_type** | **string** |  |

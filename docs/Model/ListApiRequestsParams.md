@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**limit** | **int** |  | [optional]
-**offset** | **int** |  | [optional]
+**environment_id** | **string** |  | [optional]
+**limit** | **int** | Page limit (default 100) | [optional]
+**offset** | **int** | Page offset (default 0) | [optional]
 **q** | **string** |  | [optional]
 **request_type** | **string** |  | [optional]
 

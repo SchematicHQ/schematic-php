@@ -6,9 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **company_memberships** | [**\Schematic\Model\CompanyMembershipDetailResponseData[]**](CompanyMembershipDetailResponseData.md) |  |
 **created_at** | **\DateTime** |  |
+**entity_traits** | [**\Schematic\Model\EntityTraitDetailResponseData[]**](EntityTraitDetailResponseData.md) |  |
 **environment_id** | **string** |  |
 **id** | **string** |  |
-**keys** | [**\Schematic\Model\EntityKeyResponseData[]**](EntityKeyResponseData.md) |  |
+**keys** | [**\Schematic\Model\EntityKeyDetailResponseData[]**](EntityKeyDetailResponseData.md) |  |
 **last_seen_at** | **\DateTime** |  | [optional]
 **name** | **string** |  |
 **traits** | **object** | A map of trait names to trait values | [optional]

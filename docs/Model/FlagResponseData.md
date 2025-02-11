@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **flag_type** | **string** |  |
 **id** | **string** |  |
 **key** | **string** |  |
+**maintainer_id** | **string** |  | [optional]
 **name** | **string** |  |
 **updated_at** | **\DateTime** |  |
 
