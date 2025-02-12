@@ -3,7 +3,7 @@
 namespace Schematic;
 
 use Schematic\Configuration;
-use Schematic\Api\AccessTokensApi;
+use Schematic\Api\AccesstokensApi;
 use Schematic\Api\AccountsApi;
 use Schematic\Api\BillingApi;
 use Schematic\Api\CheckoutApi;
@@ -18,7 +18,7 @@ use Schematic\Api\WebhooksApi;
 
 class Schematic
 {
-    public $AccessTokensApi;
+    public $AccesstokensApi;
     public $AccountsApi;
     public $BillingApi;
     public $CheckoutApi;
@@ -55,7 +55,7 @@ class Schematic
 
         $httpClient = new \GuzzleHttp\Client();
 
-        $this->AccessTokensApi = new AccessTokensApi($httpClient, $config);
+        $this->AccesstokensApi = new AccesstokensApi($httpClient, $config);
         $this->AccountsApi = new AccountsApi($httpClient, $config);
         $this->BillingApi = new BillingApi($httpClient, $config);
         $this->CheckoutApi = new CheckoutApi($httpClient, $config);
