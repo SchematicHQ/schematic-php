@@ -5,6 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **lookup** | **array<string,string>** |  |
-**resource_type** | **string** |  |
+**resource_type** | [**\Schematic\Model\TemporaryAccessTokenResourceType**](TemporaryAccessTokenResourceType.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -5,9 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **add_ons** | [**\Schematic\Model\CompanyPlanWithBillingSubView[]**](CompanyPlanWithBillingSubView.md) |  |
+**billing_credit_balances** | **array<string,float>** |  | [optional]
 **billing_subscription** | [**\Schematic\Model\BillingSubscriptionView**](BillingSubscriptionView.md) |  | [optional]
 **billing_subscriptions** | [**\Schematic\Model\BillingSubscriptionView[]**](BillingSubscriptionView.md) |  |
 **created_at** | **\DateTime** |  |
+**default_payment_method** | [**\Schematic\Model\PaymentMethodResponseData**](PaymentMethodResponseData.md) |  | [optional]
+**entitlements** | [**\Schematic\Model\FeatureEntitlement[]**](FeatureEntitlement.md) |  |
 **entity_traits** | [**\Schematic\Model\EntityTraitDetailResponseData[]**](EntityTraitDetailResponseData.md) |  |
 **environment_id** | **string** |  |
 **id** | **string** |  |
@@ -16,8 +19,10 @@ Name | Type | Description | Notes
 **logo_url** | **string** |  | [optional]
 **metrics** | [**\Schematic\Model\CompanyEventPeriodMetricsResponseData[]**](CompanyEventPeriodMetricsResponseData.md) |  |
 **name** | **string** |  |
+**payment_methods** | [**\Schematic\Model\PaymentMethodResponseData[]**](PaymentMethodResponseData.md) |  |
 **plan** | [**\Schematic\Model\CompanyPlanWithBillingSubView**](CompanyPlanWithBillingSubView.md) |  | [optional]
 **plans** | [**\Schematic\Model\GenericPreviewObject[]**](GenericPreviewObject.md) |  |
+**rules** | [**\Schematic\Model\Rule[]**](Rule.md) |  |
 **traits** | **object** | A map of trait names to trait values | [optional]
 **updated_at** | **\DateTime** |  |
 **user_count** | **int** |  |

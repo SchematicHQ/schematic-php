@@ -6,16 +6,21 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | ------------- | ------------- | ------------- |
 | [**countApiKeys()**](AccountsApi.md#countApiKeys) | **GET** /api-keys/count | Count api keys |
 | [**countApiRequests()**](AccountsApi.md#countApiRequests) | **GET** /api-requests/count | Count api requests |
+| [**countAuditLogs()**](AccountsApi.md#countAuditLogs) | **GET** /audit-log/count | Count audit logs |
 | [**createApiKey()**](AccountsApi.md#createApiKey) | **POST** /api-keys | Create api key |
 | [**createEnvironment()**](AccountsApi.md#createEnvironment) | **POST** /environments | Create environment |
 | [**deleteApiKey()**](AccountsApi.md#deleteApiKey) | **DELETE** /api-keys/{api_key_id} | Delete api key |
 | [**deleteEnvironment()**](AccountsApi.md#deleteEnvironment) | **DELETE** /environments/{environment_id} | Delete environment |
 | [**getApiKey()**](AccountsApi.md#getApiKey) | **GET** /api-keys/{api_key_id} | Get api key |
 | [**getApiRequest()**](AccountsApi.md#getApiRequest) | **GET** /api-requests/{api_request_id} | Get api request |
+| [**getAuditLog()**](AccountsApi.md#getAuditLog) | **GET** /audit-log/{audit_log_id} | Get audit log |
 | [**getEnvironment()**](AccountsApi.md#getEnvironment) | **GET** /environments/{environment_id} | Get environment |
+| [**getWhoAmI()**](AccountsApi.md#getWhoAmI) | **GET** /whoami | Get who am i |
 | [**listApiKeys()**](AccountsApi.md#listApiKeys) | **GET** /api-keys | List api keys |
 | [**listApiRequests()**](AccountsApi.md#listApiRequests) | **GET** /api-requests | List api requests |
+| [**listAuditLogs()**](AccountsApi.md#listAuditLogs) | **GET** /audit-log | List audit logs |
 | [**listEnvironments()**](AccountsApi.md#listEnvironments) | **GET** /environments | List environments |
+| [**quickstart()**](AccountsApi.md#quickstart) | **POST** /quickstart | Quickstart |
 | [**updateApiKey()**](AccountsApi.md#updateApiKey) | **PUT** /api-keys/{api_key_id} | Update api key |
 | [**updateEnvironment()**](AccountsApi.md#updateEnvironment) | **PUT** /environments/{environment_id} | Update environment |
 
@@ -122,6 +127,65 @@ try {
 ### Return type
 
 [**\Schematic\Model\CountApiRequestsResponse**](../Model/CountApiRequestsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `countAuditLogs()`
+
+```php
+countAuditLogs($actor_type, $environment_id, $q, $limit, $offset): \Schematic\Model\CountAuditLogsResponse
+```
+
+Count audit logs
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$actor_type = new \Schematic\Model\ActorType(); // ActorType
+$environment_id = 'environment_id_example'; // string
+$q = 'q_example'; // string
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->AccountsApi->countAuditLogs($actor_type, $environment_id, $q, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->countAuditLogs: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **actor_type** | [**ActorType**](../Model/.md)|  | [optional] |
+| **environment_id** | **string**|  | [optional] |
+| **q** | **string**|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\CountAuditLogsResponse**](../Model/CountAuditLogsResponse.md)
 
 ### Authorization
 
@@ -442,6 +506,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAuditLog()`
+
+```php
+getAuditLog($audit_log_id): \Schematic\Model\GetAuditLogResponse
+```
+
+Get audit log
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$audit_log_id = 'audit_log_id_example'; // string | audit_log_id
+
+try {
+    $result = $schematic->AccountsApi->getAuditLog($audit_log_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->getAuditLog: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **audit_log_id** | **string**| audit_log_id | |
+
+### Return type
+
+[**\Schematic\Model\GetAuditLogResponse**](../Model/GetAuditLogResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getEnvironment()`
 
 ```php
@@ -479,6 +594,54 @@ try {
 ### Return type
 
 [**\Schematic\Model\GetEnvironmentResponse**](../Model/GetEnvironmentResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getWhoAmI()`
+
+```php
+getWhoAmI(): \Schematic\Model\GetWhoAmIResponse
+```
+
+Get who am i
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+
+try {
+    $result = $schematic->AccountsApi->getWhoAmI();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->getWhoAmI: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Schematic\Model\GetWhoAmIResponse**](../Model/GetWhoAmIResponse.md)
 
 ### Authorization
 
@@ -609,6 +772,65 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listAuditLogs()`
+
+```php
+listAuditLogs($actor_type, $environment_id, $q, $limit, $offset): \Schematic\Model\ListAuditLogsResponse
+```
+
+List audit logs
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$actor_type = new \Schematic\Model\ActorType(); // ActorType
+$environment_id = 'environment_id_example'; // string
+$q = 'q_example'; // string
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->AccountsApi->listAuditLogs($actor_type, $environment_id, $q, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->listAuditLogs: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **actor_type** | [**ActorType**](../Model/.md)|  | [optional] |
+| **environment_id** | **string**|  | [optional] |
+| **q** | **string**|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListAuditLogsResponse**](../Model/ListAuditLogsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listEnvironments()`
 
 ```php
@@ -650,6 +872,54 @@ try {
 ### Return type
 
 [**\Schematic\Model\ListEnvironmentsResponse**](../Model/ListEnvironmentsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `quickstart()`
+
+```php
+quickstart(): \Schematic\Model\QuickstartResponse
+```
+
+Quickstart
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+
+try {
+    $result = $schematic->AccountsApi->quickstart();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->quickstart: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Schematic\Model\QuickstartResponse**](../Model/QuickstartResponse.md)
 
 ### Authorization
 

@@ -15,6 +15,5 @@ Name | Type | Description | Notes
 **card_last4** | **string** |  | [optional]
 **customer_external_id** | **string** |  |
 **payment_method_type** | **string** |  |
-**subscription_external_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -6,14 +6,16 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | ------------- | ------------- | ------------- |
 | [**countBillingProducts()**](BillingApi.md#countBillingProducts) | **GET** /billing/products/count | Count billing products |
 | [**countCustomers()**](BillingApi.md#countCustomers) | **GET** /billing/customers/count | Count customers |
+| [**deleteBillingProduct()**](BillingApi.md#deleteBillingProduct) | **DELETE** /billing/product/{billing_id} | Delete billing product |
 | [**deleteProductPrice()**](BillingApi.md#deleteProductPrice) | **DELETE** /billing/product/prices/{billing_id} | Delete product price |
+| [**listBillingPrices()**](BillingApi.md#listBillingPrices) | **GET** /billing/price | List billing prices |
+| [**listBillingProductPrices()**](BillingApi.md#listBillingProductPrices) | **GET** /billing/product/prices | List billing product prices |
 | [**listBillingProducts()**](BillingApi.md#listBillingProducts) | **GET** /billing/products | List billing products |
-| [**listCustomers()**](BillingApi.md#listCustomers) | **GET** /billing/customers | List customers |
+| [**listCoupons()**](BillingApi.md#listCoupons) | **GET** /billing/coupons | List coupons |
+| [**listCustomersWithSubscriptions()**](BillingApi.md#listCustomersWithSubscriptions) | **GET** /billing/customers | List customers with subscriptions |
 | [**listInvoices()**](BillingApi.md#listInvoices) | **GET** /billing/invoices | List invoices |
 | [**listMeters()**](BillingApi.md#listMeters) | **GET** /billing/meter | List meters |
 | [**listPaymentMethods()**](BillingApi.md#listPaymentMethods) | **GET** /billing/payment-methods | List payment methods |
-| [**listProductPrices()**](BillingApi.md#listProductPrices) | **GET** /billing/product/prices | List product prices |
-| [**searchBillingPrices()**](BillingApi.md#searchBillingPrices) | **GET** /billing/price | Search billing prices |
 | [**upsertBillingCoupon()**](BillingApi.md#upsertBillingCoupon) | **POST** /billing/coupons | Upsert billing coupon |
 | [**upsertBillingCustomer()**](BillingApi.md#upsertBillingCustomer) | **POST** /billing/customer/upsert | Upsert billing customer |
 | [**upsertBillingMeter()**](BillingApi.md#upsertBillingMeter) | **POST** /billing/meter/upsert | Upsert billing meter |
@@ -27,7 +29,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `countBillingProducts()`
 
 ```php
-countBillingProducts($ids, $name, $q, $price_usage_type, $without_linked_to_plan, $with_zero_price, $with_prices_only, $limit, $offset): \Schematic\Model\CountBillingProductsResponse
+countBillingProducts($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset): \Schematic\Model\CountBillingProductsResponse
 ```
 
 Count billing products
@@ -43,17 +45,20 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
+$is_active = True; // bool | Filter products that are active. Defaults to true if not specified
 $name = 'name_example'; // string
+$price_usage_type = new \Schematic\Model\BillingPriceUsageType(); // BillingPriceUsageType
+$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
 $q = 'q_example'; // string
-$price_usage_type = 'price_usage_type_example'; // string
-$without_linked_to_plan = True; // bool | Filter products that are not linked to any plan
-$with_zero_price = True; // bool | Filter products that have zero price for free subscription type
+$with_one_time_charges = True; // bool | Filter products that are one time charges
 $with_prices_only = True; // bool | Filter products that have prices
+$with_zero_price = True; // bool | Filter products that have zero price for free subscription type
+$without_linked_to_plan = True; // bool | Filter products that are not linked to any plan
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->BillingApi->countBillingProducts($ids, $name, $q, $price_usage_type, $without_linked_to_plan, $with_zero_price, $with_prices_only, $limit, $offset);
+    $result = $schematic->BillingApi->countBillingProducts($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->BillingApi->countBillingProducts: ', $e->getMessage(), PHP_EOL;
@@ -65,12 +70,15 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **is_active** | **bool**| Filter products that are active. Defaults to true if not specified | [optional] |
 | **name** | **string**|  | [optional] |
+| **price_usage_type** | [**BillingPriceUsageType**](../Model/.md)|  | [optional] |
+| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **price_usage_type** | **string**|  | [optional] |
-| **without_linked_to_plan** | **bool**| Filter products that are not linked to any plan | [optional] |
-| **with_zero_price** | **bool**| Filter products that have zero price for free subscription type | [optional] |
+| **with_one_time_charges** | **bool**| Filter products that are one time charges | [optional] |
 | **with_prices_only** | **bool**| Filter products that have prices | [optional] |
+| **with_zero_price** | **bool**| Filter products that have zero price for free subscription type | [optional] |
+| **without_linked_to_plan** | **bool**| Filter products that are not linked to any plan | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -94,7 +102,7 @@ try {
 ## `countCustomers()`
 
 ```php
-countCustomers($name, $failed_to_import, $q, $limit, $offset): \Schematic\Model\CountCustomersResponse
+countCustomers($company_ids, $name, $provider_type, $q, $limit, $offset): \Schematic\Model\CountCustomersResponse
 ```
 
 Count customers
@@ -109,14 +117,15 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
+$company_ids = array('company_ids_example'); // string[]
 $name = 'name_example'; // string
-$failed_to_import = True; // bool
+$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
 $q = 'q_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->BillingApi->countCustomers($name, $failed_to_import, $q, $limit, $offset);
+    $result = $schematic->BillingApi->countCustomers($company_ids, $name, $provider_type, $q, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->BillingApi->countCustomers: ', $e->getMessage(), PHP_EOL;
@@ -127,8 +136,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **company_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **name** | **string**|  | [optional] |
-| **failed_to_import** | **bool**|  | [optional] |
+| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -136,6 +146,57 @@ try {
 ### Return type
 
 [**\Schematic\Model\CountCustomersResponse**](../Model/CountCustomersResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteBillingProduct()`
+
+```php
+deleteBillingProduct($billing_id): \Schematic\Model\DeleteBillingProductResponse
+```
+
+Delete billing product
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$billing_id = 'billing_id_example'; // string | billing_id
+
+try {
+    $result = $schematic->BillingApi->deleteBillingProduct($billing_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->BillingApi->deleteBillingProduct: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **billing_id** | **string**| billing_id | |
+
+### Return type
+
+[**\Schematic\Model\DeleteBillingProductResponse**](../Model/DeleteBillingProductResponse.md)
 
 ### Authorization
 
@@ -201,10 +262,168 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listBillingPrices()`
+
+```php
+listBillingPrices($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset): \Schematic\Model\ListBillingPricesResponse
+```
+
+List billing prices
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$for_initial_plan = True; // bool | Filter for prices valid for initial plans (free prices only)
+$for_trial_expiry_plan = True; // bool | Filter for prices valid for trial expiry plans (free prices only)
+$ids = array('ids_example'); // string[]
+$interval = 'interval_example'; // string
+$is_active = True; // bool | Filter for active prices on active products (defaults to true if not specified)
+$price = 56; // int
+$product_id = 'product_id_example'; // string
+$product_ids = array('product_ids_example'); // string[]
+$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
+$q = 'q_example'; // string
+$tiers_mode = new \Schematic\Model\BillingTiersMode(); // BillingTiersMode
+$usage_type = new \Schematic\Model\BillingPriceUsageType(); // BillingPriceUsageType
+$with_meter = True; // bool | Filter for prices with a meter
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->BillingApi->listBillingPrices($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->BillingApi->listBillingPrices: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **for_initial_plan** | **bool**| Filter for prices valid for initial plans (free prices only) | [optional] |
+| **for_trial_expiry_plan** | **bool**| Filter for prices valid for trial expiry plans (free prices only) | [optional] |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **interval** | **string**|  | [optional] |
+| **is_active** | **bool**| Filter for active prices on active products (defaults to true if not specified) | [optional] |
+| **price** | **int**|  | [optional] |
+| **product_id** | **string**|  | [optional] |
+| **product_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
+| **q** | **string**|  | [optional] |
+| **tiers_mode** | [**BillingTiersMode**](../Model/.md)|  | [optional] |
+| **usage_type** | [**BillingPriceUsageType**](../Model/.md)|  | [optional] |
+| **with_meter** | **bool**| Filter for prices with a meter | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListBillingPricesResponse**](../Model/ListBillingPricesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listBillingProductPrices()`
+
+```php
+listBillingProductPrices($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset): \Schematic\Model\ListBillingProductPricesResponse
+```
+
+List billing product prices
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$for_initial_plan = True; // bool | Filter for prices valid for initial plans (free prices only)
+$for_trial_expiry_plan = True; // bool | Filter for prices valid for trial expiry plans (free prices only)
+$ids = array('ids_example'); // string[]
+$interval = 'interval_example'; // string
+$is_active = True; // bool | Filter for active prices on active products (defaults to true if not specified)
+$price = 56; // int
+$product_id = 'product_id_example'; // string
+$product_ids = array('product_ids_example'); // string[]
+$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
+$q = 'q_example'; // string
+$tiers_mode = new \Schematic\Model\BillingTiersMode(); // BillingTiersMode
+$usage_type = new \Schematic\Model\BillingPriceUsageType(); // BillingPriceUsageType
+$with_meter = True; // bool | Filter for prices with a meter
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->BillingApi->listBillingProductPrices($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->BillingApi->listBillingProductPrices: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **for_initial_plan** | **bool**| Filter for prices valid for initial plans (free prices only) | [optional] |
+| **for_trial_expiry_plan** | **bool**| Filter for prices valid for trial expiry plans (free prices only) | [optional] |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **interval** | **string**|  | [optional] |
+| **is_active** | **bool**| Filter for active prices on active products (defaults to true if not specified) | [optional] |
+| **price** | **int**|  | [optional] |
+| **product_id** | **string**|  | [optional] |
+| **product_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
+| **q** | **string**|  | [optional] |
+| **tiers_mode** | [**BillingTiersMode**](../Model/.md)|  | [optional] |
+| **usage_type** | [**BillingPriceUsageType**](../Model/.md)|  | [optional] |
+| **with_meter** | **bool**| Filter for prices with a meter | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListBillingProductPricesResponse**](../Model/ListBillingProductPricesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listBillingProducts()`
 
 ```php
-listBillingProducts($ids, $name, $q, $price_usage_type, $without_linked_to_plan, $with_zero_price, $with_prices_only, $limit, $offset): \Schematic\Model\ListBillingProductsResponse
+listBillingProducts($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset): \Schematic\Model\ListBillingProductsResponse
 ```
 
 List billing products
@@ -220,17 +439,20 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
+$is_active = True; // bool | Filter products that are active. Defaults to true if not specified
 $name = 'name_example'; // string
+$price_usage_type = new \Schematic\Model\BillingPriceUsageType(); // BillingPriceUsageType
+$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
 $q = 'q_example'; // string
-$price_usage_type = 'price_usage_type_example'; // string
-$without_linked_to_plan = True; // bool | Filter products that are not linked to any plan
-$with_zero_price = True; // bool | Filter products that have zero price for free subscription type
+$with_one_time_charges = True; // bool | Filter products that are one time charges
 $with_prices_only = True; // bool | Filter products that have prices
+$with_zero_price = True; // bool | Filter products that have zero price for free subscription type
+$without_linked_to_plan = True; // bool | Filter products that are not linked to any plan
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->BillingApi->listBillingProducts($ids, $name, $q, $price_usage_type, $without_linked_to_plan, $with_zero_price, $with_prices_only, $limit, $offset);
+    $result = $schematic->BillingApi->listBillingProducts($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->BillingApi->listBillingProducts: ', $e->getMessage(), PHP_EOL;
@@ -242,12 +464,15 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **is_active** | **bool**| Filter products that are active. Defaults to true if not specified | [optional] |
 | **name** | **string**|  | [optional] |
+| **price_usage_type** | [**BillingPriceUsageType**](../Model/.md)|  | [optional] |
+| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **price_usage_type** | **string**|  | [optional] |
-| **without_linked_to_plan** | **bool**| Filter products that are not linked to any plan | [optional] |
-| **with_zero_price** | **bool**| Filter products that have zero price for free subscription type | [optional] |
+| **with_one_time_charges** | **bool**| Filter products that are one time charges | [optional] |
 | **with_prices_only** | **bool**| Filter products that have prices | [optional] |
+| **with_zero_price** | **bool**| Filter products that have zero price for free subscription type | [optional] |
+| **without_linked_to_plan** | **bool**| Filter products that are not linked to any plan | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -268,13 +493,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listCustomers()`
+## `listCoupons()`
 
 ```php
-listCustomers($name, $failed_to_import, $q, $limit, $offset): \Schematic\Model\ListCustomersResponse
+listCoupons($is_active, $q, $limit, $offset): \Schematic\Model\ListCouponsResponse
 ```
 
-List customers
+List coupons
 
 ### Example
 
@@ -286,17 +511,16 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$name = 'name_example'; // string
-$failed_to_import = True; // bool
+$is_active = True; // bool
 $q = 'q_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->BillingApi->listCustomers($name, $failed_to_import, $q, $limit, $offset);
+    $result = $schematic->BillingApi->listCoupons($is_active, $q, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling Schematic->BillingApi->listCustomers: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->BillingApi->listCoupons: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -304,15 +528,75 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **name** | **string**|  | [optional] |
-| **failed_to_import** | **bool**|  | [optional] |
+| **is_active** | **bool**|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
-[**\Schematic\Model\ListCustomersResponse**](../Model/ListCustomersResponse.md)
+[**\Schematic\Model\ListCouponsResponse**](../Model/ListCouponsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listCustomersWithSubscriptions()`
+
+```php
+listCustomersWithSubscriptions($company_ids, $name, $provider_type, $q, $limit, $offset): \Schematic\Model\ListCustomersWithSubscriptionsResponse
+```
+
+List customers with subscriptions
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_ids = array('company_ids_example'); // string[]
+$name = 'name_example'; // string
+$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
+$q = 'q_example'; // string
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->BillingApi->listCustomersWithSubscriptions($company_ids, $name, $provider_type, $q, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->BillingApi->listCustomersWithSubscriptions: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **name** | **string**|  | [optional] |
+| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
+| **q** | **string**|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListCustomersWithSubscriptionsResponse**](../Model/ListCustomersWithSubscriptionsResponse.md)
 
 ### Authorization
 
@@ -330,7 +614,7 @@ try {
 ## `listInvoices()`
 
 ```php
-listInvoices($customer_external_id, $company_id, $subscription_external_id, $limit, $offset): \Schematic\Model\ListInvoicesResponse
+listInvoices($customer_external_id, $subscription_external_id, $company_id, $limit, $offset): \Schematic\Model\ListInvoicesResponse
 ```
 
 List invoices
@@ -346,13 +630,13 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $customer_external_id = 'customer_external_id_example'; // string
-$company_id = 'company_id_example'; // string
 $subscription_external_id = 'subscription_external_id_example'; // string
+$company_id = 'company_id_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->BillingApi->listInvoices($customer_external_id, $company_id, $subscription_external_id, $limit, $offset);
+    $result = $schematic->BillingApi->listInvoices($customer_external_id, $subscription_external_id, $company_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->BillingApi->listInvoices: ', $e->getMessage(), PHP_EOL;
@@ -364,8 +648,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **customer_external_id** | **string**|  | |
+| **subscription_external_id** | **string**|  | |
 | **company_id** | **string**|  | [optional] |
-| **subscription_external_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -444,7 +728,7 @@ try {
 ## `listPaymentMethods()`
 
 ```php
-listPaymentMethods($customer_external_id, $company_id, $subscription_external_id, $limit, $offset): \Schematic\Model\ListPaymentMethodsResponse
+listPaymentMethods($customer_external_id, $company_id, $limit, $offset): \Schematic\Model\ListPaymentMethodsResponse
 ```
 
 List payment methods
@@ -461,12 +745,11 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $customer_external_id = 'customer_external_id_example'; // string
 $company_id = 'company_id_example'; // string
-$subscription_external_id = 'subscription_external_id_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->BillingApi->listPaymentMethods($customer_external_id, $company_id, $subscription_external_id, $limit, $offset);
+    $result = $schematic->BillingApi->listPaymentMethods($customer_external_id, $company_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->BillingApi->listPaymentMethods: ', $e->getMessage(), PHP_EOL;
@@ -479,141 +762,12 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **customer_external_id** | **string**|  | |
 | **company_id** | **string**|  | [optional] |
-| **subscription_external_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
 [**\Schematic\Model\ListPaymentMethodsResponse**](../Model/ListPaymentMethodsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `listProductPrices()`
-
-```php
-listProductPrices($ids, $name, $q, $price_usage_type, $without_linked_to_plan, $with_zero_price, $with_prices_only, $limit, $offset): \Schematic\Model\ListProductPricesResponse
-```
-
-List product prices
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$ids = array('ids_example'); // string[]
-$name = 'name_example'; // string
-$q = 'q_example'; // string
-$price_usage_type = 'price_usage_type_example'; // string
-$without_linked_to_plan = True; // bool | Filter products that are not linked to any plan
-$with_zero_price = True; // bool | Filter products that have zero price for free subscription type
-$with_prices_only = True; // bool | Filter products that have prices
-$limit = 100; // int | Page limit (default 100)
-$offset = 0; // int | Page offset (default 0)
-
-try {
-    $result = $schematic->BillingApi->listProductPrices($ids, $name, $q, $price_usage_type, $without_linked_to_plan, $with_zero_price, $with_prices_only, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->BillingApi->listProductPrices: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **name** | **string**|  | [optional] |
-| **q** | **string**|  | [optional] |
-| **price_usage_type** | **string**|  | [optional] |
-| **without_linked_to_plan** | **bool**| Filter products that are not linked to any plan | [optional] |
-| **with_zero_price** | **bool**| Filter products that have zero price for free subscription type | [optional] |
-| **with_prices_only** | **bool**| Filter products that have prices | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\ListProductPricesResponse**](../Model/ListProductPricesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `searchBillingPrices()`
-
-```php
-searchBillingPrices($ids, $interval, $usage_type, $price, $limit, $offset): \Schematic\Model\SearchBillingPricesResponse
-```
-
-Search billing prices
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$ids = array('ids_example'); // string[]
-$interval = 'interval_example'; // string
-$usage_type = 'usage_type_example'; // string
-$price = 56; // int
-$limit = 100; // int | Page limit (default 100)
-$offset = 0; // int | Page offset (default 0)
-
-try {
-    $result = $schematic->BillingApi->searchBillingPrices($ids, $interval, $usage_type, $price, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->BillingApi->searchBillingPrices: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **interval** | **string**|  | [optional] |
-| **usage_type** | **string**|  | [optional] |
-| **price** | **int**|  | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\SearchBillingPricesResponse**](../Model/SearchBillingPricesResponse.md)
 
 ### Authorization
 
@@ -886,7 +1040,7 @@ try {
 ## `upsertBillingSubscription()`
 
 ```php
-upsertBillingSubscription($create_billing_subscriptions_request_body): \Schematic\Model\UpsertBillingSubscriptionResponse
+upsertBillingSubscription($create_billing_subscription_request_body): \Schematic\Model\UpsertBillingSubscriptionResponse
 ```
 
 Upsert billing subscription
@@ -901,10 +1055,10 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$create_billing_subscriptions_request_body = new \Schematic\Model\CreateBillingSubscriptionsRequestBody(); // \Schematic\Model\CreateBillingSubscriptionsRequestBody
+$create_billing_subscription_request_body = new \Schematic\Model\CreateBillingSubscriptionRequestBody(); // \Schematic\Model\CreateBillingSubscriptionRequestBody
 
 try {
-    $result = $schematic->BillingApi->upsertBillingSubscription($create_billing_subscriptions_request_body);
+    $result = $schematic->BillingApi->upsertBillingSubscription($create_billing_subscription_request_body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->BillingApi->upsertBillingSubscription: ', $e->getMessage(), PHP_EOL;
@@ -915,7 +1069,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **create_billing_subscriptions_request_body** | [**\Schematic\Model\CreateBillingSubscriptionsRequestBody**](../Model/CreateBillingSubscriptionsRequestBody.md)|  | |
+| **create_billing_subscription_request_body** | [**\Schematic\Model\CreateBillingSubscriptionRequestBody**](../Model/CreateBillingSubscriptionRequestBody.md)|  | |
 
 ### Return type
 

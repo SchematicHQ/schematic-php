@@ -13,8 +13,10 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**createPlanEntitlement()**](EntitlementsApi.md#createPlanEntitlement) | **POST** /plan-entitlements | Create plan entitlement |
 | [**deleteCompanyOverride()**](EntitlementsApi.md#deleteCompanyOverride) | **DELETE** /company-overrides/{company_override_id} | Delete company override |
 | [**deletePlanEntitlement()**](EntitlementsApi.md#deletePlanEntitlement) | **DELETE** /plan-entitlements/{plan_entitlement_id} | Delete plan entitlement |
+| [**duplicatePlanEntitlements()**](EntitlementsApi.md#duplicatePlanEntitlements) | **POST** /plan-entitlements/duplicate | Duplicate plan entitlements |
 | [**getCompanyOverride()**](EntitlementsApi.md#getCompanyOverride) | **GET** /company-overrides/{company_override_id} | Get company override |
 | [**getFeatureUsageByCompany()**](EntitlementsApi.md#getFeatureUsageByCompany) | **GET** /usage-by-company | Get feature usage by company |
+| [**getFeatureUsageTimeSeries()**](EntitlementsApi.md#getFeatureUsageTimeSeries) | **GET** /feature-usage-timeseries | Get feature usage time series |
 | [**getPlanEntitlement()**](EntitlementsApi.md#getPlanEntitlement) | **GET** /plan-entitlements/{plan_entitlement_id} | Get plan entitlement |
 | [**listCompanyOverrides()**](EntitlementsApi.md#listCompanyOverrides) | **GET** /company-overrides | List company overrides |
 | [**listFeatureCompanies()**](EntitlementsApi.md#listFeatureCompanies) | **GET** /feature-companies | List feature companies |
@@ -152,7 +154,7 @@ try {
 ## `countFeatureUsage()`
 
 ```php
-countFeatureUsage($company_id, $company_keys, $feature_ids, $q, $without_negative_entitlements, $limit, $offset): \Schematic\Model\CountFeatureUsageResponse
+countFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset): \Schematic\Model\CountFeatureUsageResponse
 ```
 
 Count feature usage
@@ -170,13 +172,14 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $company_id = 'company_id_example'; // string
 $company_keys = array('key' => 'company_keys_example'); // array<string,string>
 $feature_ids = array('feature_ids_example'); // string[]
+$include_usage_aggregation = True; // bool | Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance.
 $q = 'q_example'; // string
 $without_negative_entitlements = True; // bool
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->EntitlementsApi->countFeatureUsage($company_id, $company_keys, $feature_ids, $q, $without_negative_entitlements, $limit, $offset);
+    $result = $schematic->EntitlementsApi->countFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->EntitlementsApi->countFeatureUsage: ', $e->getMessage(), PHP_EOL;
@@ -190,6 +193,7 @@ try {
 | **company_id** | **string**|  | [optional] |
 | **company_keys** | [**array<string,string>**](../Model/string.md)|  | [optional] |
 | **feature_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **include_usage_aggregation** | **bool**| Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. | [optional] |
 | **q** | **string**|  | [optional] |
 | **without_negative_entitlements** | **bool**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -272,7 +276,7 @@ try {
 ## `countPlanEntitlements()`
 
 ```php
-countPlanEntitlements($feature_id, $feature_ids, $ids, $plan_id, $plan_ids, $q, $with_metered_products, $limit, $offset): \Schematic\Model\CountPlanEntitlementsResponse
+countPlanEntitlements($feature_id, $feature_ids, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $with_metered_products, $limit, $offset): \Schematic\Model\CountPlanEntitlementsResponse
 ```
 
 Count plan entitlements
@@ -292,13 +296,15 @@ $feature_ids = array('feature_ids_example'); // string[] | Filter plan entitleme
 $ids = array('ids_example'); // string[] | Filter plan entitlements by multiple plan entitlement IDs (starting with pltl_)
 $plan_id = 'plan_id_example'; // string | Filter plan entitlements by a single plan ID (starting with plan_)
 $plan_ids = array('plan_ids_example'); // string[] | Filter plan entitlements by multiple plan IDs (starting with plan_)
+$plan_version_id = 'plan_version_id_example'; // string | Filter plan entitlements by a single plan version ID (starting with plvr_)
+$plan_version_ids = array('plan_version_ids_example'); // string[] | Filter plan entitlements by multiple plan version IDs (starting with plvr_)
 $q = 'q_example'; // string | Search for plan entitlements by feature or company name
 $with_metered_products = True; // bool | Filter plan entitlements only with metered products
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->EntitlementsApi->countPlanEntitlements($feature_id, $feature_ids, $ids, $plan_id, $plan_ids, $q, $with_metered_products, $limit, $offset);
+    $result = $schematic->EntitlementsApi->countPlanEntitlements($feature_id, $feature_ids, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $with_metered_products, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->EntitlementsApi->countPlanEntitlements: ', $e->getMessage(), PHP_EOL;
@@ -314,6 +320,8 @@ try {
 | **ids** | [**string[]**](../Model/string.md)| Filter plan entitlements by multiple plan entitlement IDs (starting with pltl_) | [optional] |
 | **plan_id** | **string**| Filter plan entitlements by a single plan ID (starting with plan_) | [optional] |
 | **plan_ids** | [**string[]**](../Model/string.md)| Filter plan entitlements by multiple plan IDs (starting with plan_) | [optional] |
+| **plan_version_id** | **string**| Filter plan entitlements by a single plan version ID (starting with plvr_) | [optional] |
+| **plan_version_ids** | [**string[]**](../Model/string.md)| Filter plan entitlements by multiple plan version IDs (starting with plvr_) | [optional] |
 | **q** | **string**| Search for plan entitlements by feature or company name | [optional] |
 | **with_metered_products** | **bool**| Filter plan entitlements only with metered products | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -540,6 +548,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `duplicatePlanEntitlements()`
+
+```php
+duplicatePlanEntitlements($duplicate_plan_entitlements_request_body): \Schematic\Model\DuplicatePlanEntitlementsResponse
+```
+
+Duplicate plan entitlements
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$duplicate_plan_entitlements_request_body = new \Schematic\Model\DuplicatePlanEntitlementsRequestBody(); // \Schematic\Model\DuplicatePlanEntitlementsRequestBody
+
+try {
+    $result = $schematic->EntitlementsApi->duplicatePlanEntitlements($duplicate_plan_entitlements_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EntitlementsApi->duplicatePlanEntitlements: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **duplicate_plan_entitlements_request_body** | [**\Schematic\Model\DuplicatePlanEntitlementsRequestBody**](../Model/DuplicatePlanEntitlementsRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\DuplicatePlanEntitlementsResponse**](../Model/DuplicatePlanEntitlementsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getCompanyOverride()`
 
 ```php
@@ -609,7 +668,7 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$keys = array('key' => new \stdClass); // object | Key/value pairs
+$keys = array('key' => 'keys_example'); // array<string,string> | Key/value pairs
 
 try {
     $result = $schematic->EntitlementsApi->getFeatureUsageByCompany($keys);
@@ -623,11 +682,70 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **keys** | [**object**](../Model/.md)| Key/value pairs | |
+| **keys** | [**array<string,string>**](../Model/string.md)| Key/value pairs | |
 
 ### Return type
 
 [**\Schematic\Model\GetFeatureUsageByCompanyResponse**](../Model/GetFeatureUsageByCompanyResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getFeatureUsageTimeSeries()`
+
+```php
+getFeatureUsageTimeSeries($company_id, $end_time, $feature_id, $start_time, $granularity): \Schematic\Model\GetFeatureUsageTimeSeriesResponse
+```
+
+Get feature usage time series
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string
+$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$feature_id = 'feature_id_example'; // string
+$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$granularity = new \Schematic\Model\TimeSeriesGranularity(); // TimeSeriesGranularity
+
+try {
+    $result = $schematic->EntitlementsApi->getFeatureUsageTimeSeries($company_id, $end_time, $feature_id, $start_time, $granularity);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EntitlementsApi->getFeatureUsageTimeSeries: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**|  | |
+| **end_time** | **\DateTime**|  | |
+| **feature_id** | **string**|  | |
+| **start_time** | **\DateTime**|  | |
+| **granularity** | [**TimeSeriesGranularity**](../Model/.md)|  | [optional] |
+
+### Return type
+
+[**\Schematic\Model\GetFeatureUsageTimeSeriesResponse**](../Model/GetFeatureUsageTimeSeriesResponse.md)
 
 ### Authorization
 
@@ -820,7 +938,7 @@ try {
 ## `listFeatureUsage()`
 
 ```php
-listFeatureUsage($company_id, $company_keys, $feature_ids, $q, $without_negative_entitlements, $limit, $offset): \Schematic\Model\ListFeatureUsageResponse
+listFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset): \Schematic\Model\ListFeatureUsageResponse
 ```
 
 List feature usage
@@ -838,13 +956,14 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $company_id = 'company_id_example'; // string
 $company_keys = array('key' => 'company_keys_example'); // array<string,string>
 $feature_ids = array('feature_ids_example'); // string[]
+$include_usage_aggregation = True; // bool | Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance.
 $q = 'q_example'; // string
 $without_negative_entitlements = True; // bool
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->EntitlementsApi->listFeatureUsage($company_id, $company_keys, $feature_ids, $q, $without_negative_entitlements, $limit, $offset);
+    $result = $schematic->EntitlementsApi->listFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->EntitlementsApi->listFeatureUsage: ', $e->getMessage(), PHP_EOL;
@@ -858,6 +977,7 @@ try {
 | **company_id** | **string**|  | [optional] |
 | **company_keys** | [**array<string,string>**](../Model/string.md)|  | [optional] |
 | **feature_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **include_usage_aggregation** | **bool**| Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. | [optional] |
 | **q** | **string**|  | [optional] |
 | **without_negative_entitlements** | **bool**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -940,7 +1060,7 @@ try {
 ## `listPlanEntitlements()`
 
 ```php
-listPlanEntitlements($feature_id, $feature_ids, $ids, $plan_id, $plan_ids, $q, $with_metered_products, $limit, $offset): \Schematic\Model\ListPlanEntitlementsResponse
+listPlanEntitlements($feature_id, $feature_ids, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $with_metered_products, $limit, $offset): \Schematic\Model\ListPlanEntitlementsResponse
 ```
 
 List plan entitlements
@@ -960,13 +1080,15 @@ $feature_ids = array('feature_ids_example'); // string[] | Filter plan entitleme
 $ids = array('ids_example'); // string[] | Filter plan entitlements by multiple plan entitlement IDs (starting with pltl_)
 $plan_id = 'plan_id_example'; // string | Filter plan entitlements by a single plan ID (starting with plan_)
 $plan_ids = array('plan_ids_example'); // string[] | Filter plan entitlements by multiple plan IDs (starting with plan_)
+$plan_version_id = 'plan_version_id_example'; // string | Filter plan entitlements by a single plan version ID (starting with plvr_)
+$plan_version_ids = array('plan_version_ids_example'); // string[] | Filter plan entitlements by multiple plan version IDs (starting with plvr_)
 $q = 'q_example'; // string | Search for plan entitlements by feature or company name
 $with_metered_products = True; // bool | Filter plan entitlements only with metered products
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->EntitlementsApi->listPlanEntitlements($feature_id, $feature_ids, $ids, $plan_id, $plan_ids, $q, $with_metered_products, $limit, $offset);
+    $result = $schematic->EntitlementsApi->listPlanEntitlements($feature_id, $feature_ids, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $with_metered_products, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->EntitlementsApi->listPlanEntitlements: ', $e->getMessage(), PHP_EOL;
@@ -982,6 +1104,8 @@ try {
 | **ids** | [**string[]**](../Model/string.md)| Filter plan entitlements by multiple plan entitlement IDs (starting with pltl_) | [optional] |
 | **plan_id** | **string**| Filter plan entitlements by a single plan ID (starting with plan_) | [optional] |
 | **plan_ids** | [**string[]**](../Model/string.md)| Filter plan entitlements by multiple plan IDs (starting with plan_) | [optional] |
+| **plan_version_id** | **string**| Filter plan entitlements by a single plan version ID (starting with plvr_) | [optional] |
+| **plan_version_ids** | [**string[]**](../Model/string.md)| Filter plan entitlements by multiple plan version IDs (starting with plvr_) | [optional] |
 | **q** | **string**| Search for plan entitlements by feature or company name | [optional] |
 | **with_metered_products** | **bool**| Filter plan entitlements only with metered products | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |

@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**cancel_at** | **\DateTime** |  | [optional]
+**cancel_at_period_end** | **bool** |  |
 **currency** | **string** |  |
 **customer_external_id** | **string** |  |
 **discounts** | [**\Schematic\Model\BillingSubscriptionDiscountView[]**](BillingSubscriptionDiscountView.md) |  |

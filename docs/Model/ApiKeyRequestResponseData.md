@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**api_key** | [**\Schematic\Model\ApiKeyResponseData**](ApiKeyResponseData.md) |  | [optional]
 **api_key_id** | **string** |  |
 **ended_at** | **\DateTime** |  | [optional]
 **environment_id** | **string** |  | [optional]

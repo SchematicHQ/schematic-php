@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **environment_id** | **string** |  |
 **expired_at** | **\DateTime** |  |
 **id** | **string** |  |
-**resource_type** | **string** |  |
+**resource_type** | [**\Schematic\Model\TemporaryAccessTokenResourceType**](TemporaryAccessTokenResourceType.md) |  |
 **token** | **string** |  |
 **updated_at** | **\DateTime** |  |
 

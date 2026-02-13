@@ -5,32 +5,42 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**countCompanies()**](CompaniesApi.md#countCompanies) | **GET** /companies/count | Count companies |
+| [**countCompaniesForAdvancedFilter()**](CompaniesApi.md#countCompaniesForAdvancedFilter) | **GET** /companies/count2 | Count companies for advanced filter |
 | [**countEntityKeyDefinitions()**](CompaniesApi.md#countEntityKeyDefinitions) | **GET** /entity-key-definitions/count | Count entity key definitions |
 | [**countEntityTraitDefinitions()**](CompaniesApi.md#countEntityTraitDefinitions) | **GET** /entity-trait-definitions/count | Count entity trait definitions |
+| [**countPlanTraits()**](CompaniesApi.md#countPlanTraits) | **GET** /plan-traits/count | Count plan traits |
 | [**countUsers()**](CompaniesApi.md#countUsers) | **GET** /users/count | Count users |
 | [**createCompany()**](CompaniesApi.md#createCompany) | **POST** /companies/create | Create company |
+| [**createPlanTrait()**](CompaniesApi.md#createPlanTrait) | **POST** /plan-traits | Create plan trait |
 | [**createUser()**](CompaniesApi.md#createUser) | **POST** /users/create | Create user |
 | [**deleteCompany()**](CompaniesApi.md#deleteCompany) | **DELETE** /companies/{company_id} | Delete company |
 | [**deleteCompanyByKeys()**](CompaniesApi.md#deleteCompanyByKeys) | **POST** /companies/delete | Delete company by keys |
 | [**deleteCompanyMembership()**](CompaniesApi.md#deleteCompanyMembership) | **DELETE** /company-memberships/{company_membership_id} | Delete company membership |
+| [**deletePlanTrait()**](CompaniesApi.md#deletePlanTrait) | **DELETE** /plan-traits/{plan_trait_id} | Delete plan trait |
 | [**deleteUser()**](CompaniesApi.md#deleteUser) | **DELETE** /users/{user_id} | Delete user |
 | [**deleteUserByKeys()**](CompaniesApi.md#deleteUserByKeys) | **POST** /users/delete | Delete user by keys |
 | [**getActiveCompanySubscription()**](CompaniesApi.md#getActiveCompanySubscription) | **GET** /company-subscriptions | Get active company subscription |
-| [**getActiveDeals()**](CompaniesApi.md#getActiveDeals) | **GET** /company-crm-deals | Get active deals |
 | [**getCompany()**](CompaniesApi.md#getCompany) | **GET** /companies/{company_id} | Get company |
 | [**getEntityTraitDefinition()**](CompaniesApi.md#getEntityTraitDefinition) | **GET** /entity-trait-definitions/{entity_trait_definition_id} | Get entity trait definition |
 | [**getEntityTraitValues()**](CompaniesApi.md#getEntityTraitValues) | **GET** /entity-trait-values | Get entity trait values |
 | [**getOrCreateCompanyMembership()**](CompaniesApi.md#getOrCreateCompanyMembership) | **POST** /company-memberships | Get or create company membership |
 | [**getOrCreateEntityTraitDefinition()**](CompaniesApi.md#getOrCreateEntityTraitDefinition) | **POST** /entity-trait-definitions | Get or create entity trait definition |
+| [**getPlanChange()**](CompaniesApi.md#getPlanChange) | **GET** /plan-changes/{plan_change_id} | Get plan change |
+| [**getPlanTrait()**](CompaniesApi.md#getPlanTrait) | **GET** /plan-traits/{plan_trait_id} | Get plan trait |
 | [**getUser()**](CompaniesApi.md#getUser) | **GET** /users/{user_id} | Get user |
 | [**listCompanies()**](CompaniesApi.md#listCompanies) | **GET** /companies | List companies |
+| [**listCompaniesForAdvancedFilter()**](CompaniesApi.md#listCompaniesForAdvancedFilter) | **GET** /companies/list2 | List companies for advanced filter |
 | [**listCompanyMemberships()**](CompaniesApi.md#listCompanyMemberships) | **GET** /company-memberships | List company memberships |
 | [**listEntityKeyDefinitions()**](CompaniesApi.md#listEntityKeyDefinitions) | **GET** /entity-key-definitions | List entity key definitions |
 | [**listEntityTraitDefinitions()**](CompaniesApi.md#listEntityTraitDefinitions) | **GET** /entity-trait-definitions | List entity trait definitions |
+| [**listPlanChanges()**](CompaniesApi.md#listPlanChanges) | **GET** /plan-changes | List plan changes |
+| [**listPlanTraits()**](CompaniesApi.md#listPlanTraits) | **GET** /plan-traits | List plan traits |
 | [**listUsers()**](CompaniesApi.md#listUsers) | **GET** /users | List users |
 | [**lookupCompany()**](CompaniesApi.md#lookupCompany) | **GET** /companies/lookup | Lookup company |
 | [**lookupUser()**](CompaniesApi.md#lookupUser) | **GET** /users/lookup | Lookup user |
 | [**updateEntityTraitDefinition()**](CompaniesApi.md#updateEntityTraitDefinition) | **PUT** /entity-trait-definitions/{entity_trait_definition_id} | Update entity trait definition |
+| [**updatePlanTrait()**](CompaniesApi.md#updatePlanTrait) | **PUT** /plan-traits/{plan_trait_id} | Update plan trait |
+| [**updatePlanTraitsBulk()**](CompaniesApi.md#updatePlanTraitsBulk) | **POST** /plan-traits/bulk | Update plan traits bulk |
 | [**upsertCompany()**](CompaniesApi.md#upsertCompany) | **POST** /companies | Upsert company |
 | [**upsertCompanyTrait()**](CompaniesApi.md#upsertCompanyTrait) | **POST** /company-traits | Upsert company trait |
 | [**upsertUser()**](CompaniesApi.md#upsertUser) | **POST** /users | Upsert user |
@@ -40,7 +50,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `countCompanies()`
 
 ```php
-countCompanies($ids, $plan_id, $q, $without_feature_override_for, $without_plan, $limit, $offset): \Schematic\Model\CountCompaniesResponse
+countCompanies($credit_type_ids, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset): \Schematic\Model\CountCompaniesResponse
 ```
 
 Count companies
@@ -55,16 +65,25 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
+$credit_type_ids = array('credit_type_ids_example'); // string[] | Filter companies by one or more credit type IDs (each ID starts with bcrd_)
 $ids = array('ids_example'); // string[] | Filter companies by multiple company IDs (starts with comp_)
+$monetized_subscriptions = True; // bool | Filter companies that have monetized subscriptions
 $plan_id = 'plan_id_example'; // string | Filter companies by plan ID (starts with plan_)
+$plan_ids = array('plan_ids_example'); // string[] | Filter companies by one or more plan IDs (each ID starts with plan_)
 $q = 'q_example'; // string | Search for companies by name, keys or string traits
+$sort_order_column = 'sort_order_column_example'; // string | Column to sort by (e.g. name, created_at, last_seen_at)
+$sort_order_direction = new \Schematic\Model\SortDirection(); // SortDirection | Direction to sort by (asc or desc)
+$subscription_statuses = array(new \Schematic\Model\\Schematic\Model\SubscriptionStatus()); // \Schematic\Model\SubscriptionStatus[] | Filter companies by one or more subscription statuses
+$subscription_types = array(new \Schematic\Model\\Schematic\Model\SubscriptionType()); // \Schematic\Model\SubscriptionType[] | Filter companies by one or more subscription types
 $without_feature_override_for = 'without_feature_override_for_example'; // string | Filter out companies that already have a company override for the specified feature ID
 $without_plan = True; // bool | Filter out companies that have a plan
+$without_subscription = True; // bool | Filter out companies that have a subscription
+$with_subscription = True; // bool | Filter companies that have a subscription
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CompaniesApi->countCompanies($ids, $plan_id, $q, $without_feature_override_for, $without_plan, $limit, $offset);
+    $result = $schematic->CompaniesApi->countCompanies($credit_type_ids, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CompaniesApi->countCompanies: ', $e->getMessage(), PHP_EOL;
@@ -75,17 +94,105 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **credit_type_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more credit type IDs (each ID starts with bcrd_) | [optional] |
 | **ids** | [**string[]**](../Model/string.md)| Filter companies by multiple company IDs (starts with comp_) | [optional] |
+| **monetized_subscriptions** | **bool**| Filter companies that have monetized subscriptions | [optional] |
 | **plan_id** | **string**| Filter companies by plan ID (starts with plan_) | [optional] |
+| **plan_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan IDs (each ID starts with plan_) | [optional] |
 | **q** | **string**| Search for companies by name, keys or string traits | [optional] |
+| **sort_order_column** | **string**| Column to sort by (e.g. name, created_at, last_seen_at) | [optional] |
+| **sort_order_direction** | [**SortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |
+| **subscription_statuses** | [**\Schematic\Model\SubscriptionStatus[]**](../Model/\Schematic\Model\SubscriptionStatus.md)| Filter companies by one or more subscription statuses | [optional] |
+| **subscription_types** | [**\Schematic\Model\SubscriptionType[]**](../Model/\Schematic\Model\SubscriptionType.md)| Filter companies by one or more subscription types | [optional] |
 | **without_feature_override_for** | **string**| Filter out companies that already have a company override for the specified feature ID | [optional] |
 | **without_plan** | **bool**| Filter out companies that have a plan | [optional] |
+| **without_subscription** | **bool**| Filter out companies that have a subscription | [optional] |
+| **with_subscription** | **bool**| Filter companies that have a subscription | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
 [**\Schematic\Model\CountCompaniesResponse**](../Model/CountCompaniesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `countCompaniesForAdvancedFilter()`
+
+```php
+countCompaniesForAdvancedFilter($ids, $plan_ids, $feature_ids, $credit_type_ids, $subscription_statuses, $subscription_types, $monetized_subscriptions, $q, $without_plan, $without_subscription, $sort_order_column, $sort_order_direction, $display_properties, $limit, $offset): \Schematic\Model\CountCompaniesForAdvancedFilterResponse
+```
+
+Count companies for advanced filter
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$ids = array('ids_example'); // string[] | Filter companies by multiple company IDs (starts with comp_)
+$plan_ids = array('plan_ids_example'); // string[] | Filter companies by one or more plan IDs (each ID starts with plan_)
+$feature_ids = array('feature_ids_example'); // string[] | Filter companies by one or more feature IDs (each ID starts with feat_)
+$credit_type_ids = array('credit_type_ids_example'); // string[] | Filter companies by one or more credit type IDs (each ID starts with bcrd_)
+$subscription_statuses = array(new \Schematic\Model\\Schematic\Model\SubscriptionStatus()); // \Schematic\Model\SubscriptionStatus[] | Filter companies by one or more subscription statuses (active, canceled, expired, incomplete, incomplete_expired, past_due, paused, trialing, unpaid)
+$subscription_types = array(new \Schematic\Model\\Schematic\Model\SubscriptionType()); // \Schematic\Model\SubscriptionType[] | Filter companies by one or more subscription types (paid, free, trial)
+$monetized_subscriptions = True; // bool | Filter companies that have monetized subscriptions
+$q = 'q_example'; // string | Search for companies by name, keys or string traits
+$without_plan = True; // bool | Filter out companies that have a plan
+$without_subscription = True; // bool | Filter out companies that have a subscription
+$sort_order_column = 'sort_order_column_example'; // string | Column to sort by (e.g. name, created_at, last_seen_at)
+$sort_order_direction = new \Schematic\Model\SortDirection(); // SortDirection | Direction to sort by (asc or desc)
+$display_properties = array('display_properties_example'); // string[] | Select the display columns to return (e.g. plan, subscription, users, last_seen_at)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CompaniesApi->countCompaniesForAdvancedFilter($ids, $plan_ids, $feature_ids, $credit_type_ids, $subscription_statuses, $subscription_types, $monetized_subscriptions, $q, $without_plan, $without_subscription, $sort_order_column, $sort_order_direction, $display_properties, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->countCompaniesForAdvancedFilter: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ids** | [**string[]**](../Model/string.md)| Filter companies by multiple company IDs (starts with comp_) | [optional] |
+| **plan_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan IDs (each ID starts with plan_) | [optional] |
+| **feature_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more feature IDs (each ID starts with feat_) | [optional] |
+| **credit_type_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more credit type IDs (each ID starts with bcrd_) | [optional] |
+| **subscription_statuses** | [**\Schematic\Model\SubscriptionStatus[]**](../Model/\Schematic\Model\SubscriptionStatus.md)| Filter companies by one or more subscription statuses (active, canceled, expired, incomplete, incomplete_expired, past_due, paused, trialing, unpaid) | [optional] |
+| **subscription_types** | [**\Schematic\Model\SubscriptionType[]**](../Model/\Schematic\Model\SubscriptionType.md)| Filter companies by one or more subscription types (paid, free, trial) | [optional] |
+| **monetized_subscriptions** | **bool**| Filter companies that have monetized subscriptions | [optional] |
+| **q** | **string**| Search for companies by name, keys or string traits | [optional] |
+| **without_plan** | **bool**| Filter out companies that have a plan | [optional] |
+| **without_subscription** | **bool**| Filter out companies that have a subscription | [optional] |
+| **sort_order_column** | **string**| Column to sort by (e.g. name, created_at, last_seen_at) | [optional] |
+| **sort_order_direction** | [**SortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |
+| **display_properties** | [**string[]**](../Model/string.md)| Select the display columns to return (e.g. plan, subscription, users, last_seen_at) | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\CountCompaniesForAdvancedFilterResponse**](../Model/CountCompaniesForAdvancedFilterResponse.md)
 
 ### Authorization
 
@@ -118,7 +225,7 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$entity_type = 'entity_type_example'; // string
+$entity_type = new \Schematic\Model\EntityType(); // EntityType
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string
 $limit = 100; // int | Page limit (default 100)
@@ -136,7 +243,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | **string**|  | [optional] |
+| **entity_type** | [**EntityType**](../Model/.md)|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -162,7 +269,7 @@ try {
 ## `countEntityTraitDefinitions()`
 
 ```php
-countEntityTraitDefinitions($entity_type, $ids, $q, $trait_type, $limit, $offset): \Schematic\Model\CountEntityTraitDefinitionsResponse
+countEntityTraitDefinitions($entity_type, $ids, $q, $trait_type, $trait_types, $limit, $offset): \Schematic\Model\CountEntityTraitDefinitionsResponse
 ```
 
 Count entity trait definitions
@@ -177,15 +284,16 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$entity_type = 'entity_type_example'; // string
+$entity_type = new \Schematic\Model\EntityType(); // EntityType
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string
-$trait_type = 'trait_type_example'; // string
+$trait_type = new \Schematic\Model\TraitType(); // TraitType
+$trait_types = array(new \Schematic\Model\\Schematic\Model\TraitType()); // \Schematic\Model\TraitType[]
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CompaniesApi->countEntityTraitDefinitions($entity_type, $ids, $q, $trait_type, $limit, $offset);
+    $result = $schematic->CompaniesApi->countEntityTraitDefinitions($entity_type, $ids, $q, $trait_type, $trait_types, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CompaniesApi->countEntityTraitDefinitions: ', $e->getMessage(), PHP_EOL;
@@ -196,16 +304,78 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | **string**|  | [optional] |
+| **entity_type** | [**EntityType**](../Model/.md)|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **trait_type** | **string**|  | [optional] |
+| **trait_type** | [**TraitType**](../Model/.md)|  | [optional] |
+| **trait_types** | [**\Schematic\Model\TraitType[]**](../Model/\Schematic\Model\TraitType.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
 [**\Schematic\Model\CountEntityTraitDefinitionsResponse**](../Model/CountEntityTraitDefinitionsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `countPlanTraits()`
+
+```php
+countPlanTraits($ids, $plan_id, $trait_id, $trait_ids, $limit, $offset): \Schematic\Model\CountPlanTraitsResponse
+```
+
+Count plan traits
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$ids = array('ids_example'); // string[]
+$plan_id = 'plan_id_example'; // string
+$trait_id = 'trait_id_example'; // string
+$trait_ids = array('trait_ids_example'); // string[]
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CompaniesApi->countPlanTraits($ids, $plan_id, $trait_id, $trait_ids, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->countPlanTraits: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **plan_id** | **string**|  | [optional] |
+| **trait_id** | **string**|  | [optional] |
+| **trait_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\CountPlanTraitsResponse**](../Model/CountPlanTraitsResponse.md)
 
 ### Authorization
 
@@ -332,6 +502,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `createPlanTrait()`
+
+```php
+createPlanTrait($create_plan_trait_request_body): \Schematic\Model\CreatePlanTraitResponse
+```
+
+Create plan trait
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$create_plan_trait_request_body = new \Schematic\Model\CreatePlanTraitRequestBody(); // \Schematic\Model\CreatePlanTraitRequestBody
+
+try {
+    $result = $schematic->CompaniesApi->createPlanTrait($create_plan_trait_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->createPlanTrait: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_plan_trait_request_body** | [**\Schematic\Model\CreatePlanTraitRequestBody**](../Model/CreatePlanTraitRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\CreatePlanTraitResponse**](../Model/CreatePlanTraitResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `createUser()`
 
 ```php
@@ -386,7 +607,7 @@ try {
 ## `deleteCompany()`
 
 ```php
-deleteCompany($company_id): \Schematic\Model\DeleteCompanyResponse
+deleteCompany($company_id, $cancel_subscription, $prorate): \Schematic\Model\DeleteCompanyResponse
 ```
 
 Delete company
@@ -402,9 +623,11 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string | company_id
+$cancel_subscription = True; // bool
+$prorate = True; // bool
 
 try {
-    $result = $schematic->CompaniesApi->deleteCompany($company_id);
+    $result = $schematic->CompaniesApi->deleteCompany($company_id, $cancel_subscription, $prorate);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CompaniesApi->deleteCompany: ', $e->getMessage(), PHP_EOL;
@@ -416,6 +639,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **company_id** | **string**| company_id | |
+| **cancel_subscription** | **bool**|  | [optional] |
+| **prorate** | **bool**|  | [optional] |
 
 ### Return type
 
@@ -522,6 +747,57 @@ try {
 ### Return type
 
 [**\Schematic\Model\DeleteCompanyMembershipResponse**](../Model/DeleteCompanyMembershipResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deletePlanTrait()`
+
+```php
+deletePlanTrait($plan_trait_id): \Schematic\Model\DeletePlanTraitResponse
+```
+
+Delete plan trait
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$plan_trait_id = 'plan_trait_id_example'; // string | plan_trait_id
+
+try {
+    $result = $schematic->CompaniesApi->deletePlanTrait($plan_trait_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->deletePlanTrait: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_trait_id** | **string**| plan_trait_id | |
+
+### Return type
+
+[**\Schematic\Model\DeletePlanTraitResponse**](../Model/DeletePlanTraitResponse.md)
 
 ### Authorization
 
@@ -681,63 +957,6 @@ try {
 ### Return type
 
 [**\Schematic\Model\GetActiveCompanySubscriptionResponse**](../Model/GetActiveCompanySubscriptionResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getActiveDeals()`
-
-```php
-getActiveDeals($company_id, $deal_stage, $limit, $offset): \Schematic\Model\GetActiveDealsResponse
-```
-
-Get active deals
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$company_id = 'company_id_example'; // string
-$deal_stage = 'deal_stage_example'; // string
-$limit = 100; // int | Page limit (default 100)
-$offset = 0; // int | Page offset (default 0)
-
-try {
-    $result = $schematic->CompaniesApi->getActiveDeals($company_id, $deal_stage, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->CompaniesApi->getActiveDeals: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **company_id** | **string**|  | |
-| **deal_stage** | **string**|  | |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\GetActiveDealsResponse**](../Model/GetActiveDealsResponse.md)
 
 ### Authorization
 
@@ -1013,6 +1232,108 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getPlanChange()`
+
+```php
+getPlanChange($plan_change_id): \Schematic\Model\GetPlanChangeResponse
+```
+
+Get plan change
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$plan_change_id = 'plan_change_id_example'; // string | plan_change_id
+
+try {
+    $result = $schematic->CompaniesApi->getPlanChange($plan_change_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->getPlanChange: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_change_id** | **string**| plan_change_id | |
+
+### Return type
+
+[**\Schematic\Model\GetPlanChangeResponse**](../Model/GetPlanChangeResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getPlanTrait()`
+
+```php
+getPlanTrait($plan_trait_id): \Schematic\Model\GetPlanTraitResponse
+```
+
+Get plan trait
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$plan_trait_id = 'plan_trait_id_example'; // string | plan_trait_id
+
+try {
+    $result = $schematic->CompaniesApi->getPlanTrait($plan_trait_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->getPlanTrait: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_trait_id** | **string**| plan_trait_id | |
+
+### Return type
+
+[**\Schematic\Model\GetPlanTraitResponse**](../Model/GetPlanTraitResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getUser()`
 
 ```php
@@ -1067,7 +1388,7 @@ try {
 ## `listCompanies()`
 
 ```php
-listCompanies($ids, $plan_id, $q, $without_feature_override_for, $without_plan, $limit, $offset): \Schematic\Model\ListCompaniesResponse
+listCompanies($credit_type_ids, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset): \Schematic\Model\ListCompaniesResponse
 ```
 
 List companies
@@ -1082,16 +1403,25 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
+$credit_type_ids = array('credit_type_ids_example'); // string[] | Filter companies by one or more credit type IDs (each ID starts with bcrd_)
 $ids = array('ids_example'); // string[] | Filter companies by multiple company IDs (starts with comp_)
+$monetized_subscriptions = True; // bool | Filter companies that have monetized subscriptions
 $plan_id = 'plan_id_example'; // string | Filter companies by plan ID (starts with plan_)
+$plan_ids = array('plan_ids_example'); // string[] | Filter companies by one or more plan IDs (each ID starts with plan_)
 $q = 'q_example'; // string | Search for companies by name, keys or string traits
+$sort_order_column = 'sort_order_column_example'; // string | Column to sort by (e.g. name, created_at, last_seen_at)
+$sort_order_direction = new \Schematic\Model\SortDirection(); // SortDirection | Direction to sort by (asc or desc)
+$subscription_statuses = array(new \Schematic\Model\\Schematic\Model\SubscriptionStatus()); // \Schematic\Model\SubscriptionStatus[] | Filter companies by one or more subscription statuses
+$subscription_types = array(new \Schematic\Model\\Schematic\Model\SubscriptionType()); // \Schematic\Model\SubscriptionType[] | Filter companies by one or more subscription types
 $without_feature_override_for = 'without_feature_override_for_example'; // string | Filter out companies that already have a company override for the specified feature ID
 $without_plan = True; // bool | Filter out companies that have a plan
+$without_subscription = True; // bool | Filter out companies that have a subscription
+$with_subscription = True; // bool | Filter companies that have a subscription
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CompaniesApi->listCompanies($ids, $plan_id, $q, $without_feature_override_for, $without_plan, $limit, $offset);
+    $result = $schematic->CompaniesApi->listCompanies($credit_type_ids, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CompaniesApi->listCompanies: ', $e->getMessage(), PHP_EOL;
@@ -1102,17 +1432,105 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **credit_type_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more credit type IDs (each ID starts with bcrd_) | [optional] |
 | **ids** | [**string[]**](../Model/string.md)| Filter companies by multiple company IDs (starts with comp_) | [optional] |
+| **monetized_subscriptions** | **bool**| Filter companies that have monetized subscriptions | [optional] |
 | **plan_id** | **string**| Filter companies by plan ID (starts with plan_) | [optional] |
+| **plan_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan IDs (each ID starts with plan_) | [optional] |
 | **q** | **string**| Search for companies by name, keys or string traits | [optional] |
+| **sort_order_column** | **string**| Column to sort by (e.g. name, created_at, last_seen_at) | [optional] |
+| **sort_order_direction** | [**SortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |
+| **subscription_statuses** | [**\Schematic\Model\SubscriptionStatus[]**](../Model/\Schematic\Model\SubscriptionStatus.md)| Filter companies by one or more subscription statuses | [optional] |
+| **subscription_types** | [**\Schematic\Model\SubscriptionType[]**](../Model/\Schematic\Model\SubscriptionType.md)| Filter companies by one or more subscription types | [optional] |
 | **without_feature_override_for** | **string**| Filter out companies that already have a company override for the specified feature ID | [optional] |
 | **without_plan** | **bool**| Filter out companies that have a plan | [optional] |
+| **without_subscription** | **bool**| Filter out companies that have a subscription | [optional] |
+| **with_subscription** | **bool**| Filter companies that have a subscription | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
 [**\Schematic\Model\ListCompaniesResponse**](../Model/ListCompaniesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listCompaniesForAdvancedFilter()`
+
+```php
+listCompaniesForAdvancedFilter($ids, $plan_ids, $feature_ids, $credit_type_ids, $subscription_statuses, $subscription_types, $monetized_subscriptions, $q, $without_plan, $without_subscription, $sort_order_column, $sort_order_direction, $display_properties, $limit, $offset): \Schematic\Model\ListCompaniesForAdvancedFilterResponse
+```
+
+List companies for advanced filter
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$ids = array('ids_example'); // string[] | Filter companies by multiple company IDs (starts with comp_)
+$plan_ids = array('plan_ids_example'); // string[] | Filter companies by one or more plan IDs (each ID starts with plan_)
+$feature_ids = array('feature_ids_example'); // string[] | Filter companies by one or more feature IDs (each ID starts with feat_)
+$credit_type_ids = array('credit_type_ids_example'); // string[] | Filter companies by one or more credit type IDs (each ID starts with bcrd_)
+$subscription_statuses = array(new \Schematic\Model\\Schematic\Model\SubscriptionStatus()); // \Schematic\Model\SubscriptionStatus[] | Filter companies by one or more subscription statuses (active, canceled, expired, incomplete, incomplete_expired, past_due, paused, trialing, unpaid)
+$subscription_types = array(new \Schematic\Model\\Schematic\Model\SubscriptionType()); // \Schematic\Model\SubscriptionType[] | Filter companies by one or more subscription types (paid, free, trial)
+$monetized_subscriptions = True; // bool | Filter companies that have monetized subscriptions
+$q = 'q_example'; // string | Search for companies by name, keys or string traits
+$without_plan = True; // bool | Filter out companies that have a plan
+$without_subscription = True; // bool | Filter out companies that have a subscription
+$sort_order_column = 'sort_order_column_example'; // string | Column to sort by (e.g. name, created_at, last_seen_at)
+$sort_order_direction = new \Schematic\Model\SortDirection(); // SortDirection | Direction to sort by (asc or desc)
+$display_properties = array('display_properties_example'); // string[] | Select the display columns to return (e.g. plan, subscription, users, last_seen_at)
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CompaniesApi->listCompaniesForAdvancedFilter($ids, $plan_ids, $feature_ids, $credit_type_ids, $subscription_statuses, $subscription_types, $monetized_subscriptions, $q, $without_plan, $without_subscription, $sort_order_column, $sort_order_direction, $display_properties, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->listCompaniesForAdvancedFilter: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ids** | [**string[]**](../Model/string.md)| Filter companies by multiple company IDs (starts with comp_) | [optional] |
+| **plan_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan IDs (each ID starts with plan_) | [optional] |
+| **feature_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more feature IDs (each ID starts with feat_) | [optional] |
+| **credit_type_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more credit type IDs (each ID starts with bcrd_) | [optional] |
+| **subscription_statuses** | [**\Schematic\Model\SubscriptionStatus[]**](../Model/\Schematic\Model\SubscriptionStatus.md)| Filter companies by one or more subscription statuses (active, canceled, expired, incomplete, incomplete_expired, past_due, paused, trialing, unpaid) | [optional] |
+| **subscription_types** | [**\Schematic\Model\SubscriptionType[]**](../Model/\Schematic\Model\SubscriptionType.md)| Filter companies by one or more subscription types (paid, free, trial) | [optional] |
+| **monetized_subscriptions** | **bool**| Filter companies that have monetized subscriptions | [optional] |
+| **q** | **string**| Search for companies by name, keys or string traits | [optional] |
+| **without_plan** | **bool**| Filter out companies that have a plan | [optional] |
+| **without_subscription** | **bool**| Filter out companies that have a subscription | [optional] |
+| **sort_order_column** | **string**| Column to sort by (e.g. name, created_at, last_seen_at) | [optional] |
+| **sort_order_direction** | [**SortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |
+| **display_properties** | [**string[]**](../Model/string.md)| Select the display columns to return (e.g. plan, subscription, users, last_seen_at) | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListCompaniesForAdvancedFilterResponse**](../Model/ListCompaniesForAdvancedFilterResponse.md)
 
 ### Authorization
 
@@ -1202,7 +1620,7 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$entity_type = 'entity_type_example'; // string
+$entity_type = new \Schematic\Model\EntityType(); // EntityType
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string
 $limit = 100; // int | Page limit (default 100)
@@ -1220,7 +1638,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | **string**|  | [optional] |
+| **entity_type** | [**EntityType**](../Model/.md)|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -1246,7 +1664,7 @@ try {
 ## `listEntityTraitDefinitions()`
 
 ```php
-listEntityTraitDefinitions($entity_type, $ids, $q, $trait_type, $limit, $offset): \Schematic\Model\ListEntityTraitDefinitionsResponse
+listEntityTraitDefinitions($entity_type, $ids, $q, $trait_type, $trait_types, $limit, $offset): \Schematic\Model\ListEntityTraitDefinitionsResponse
 ```
 
 List entity trait definitions
@@ -1261,15 +1679,16 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$entity_type = 'entity_type_example'; // string
+$entity_type = new \Schematic\Model\EntityType(); // EntityType
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string
-$trait_type = 'trait_type_example'; // string
+$trait_type = new \Schematic\Model\TraitType(); // TraitType
+$trait_types = array(new \Schematic\Model\\Schematic\Model\TraitType()); // \Schematic\Model\TraitType[]
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CompaniesApi->listEntityTraitDefinitions($entity_type, $ids, $q, $trait_type, $limit, $offset);
+    $result = $schematic->CompaniesApi->listEntityTraitDefinitions($entity_type, $ids, $q, $trait_type, $trait_types, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CompaniesApi->listEntityTraitDefinitions: ', $e->getMessage(), PHP_EOL;
@@ -1280,16 +1699,141 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | **string**|  | [optional] |
+| **entity_type** | [**EntityType**](../Model/.md)|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **trait_type** | **string**|  | [optional] |
+| **trait_type** | [**TraitType**](../Model/.md)|  | [optional] |
+| **trait_types** | [**\Schematic\Model\TraitType[]**](../Model/\Schematic\Model\TraitType.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
 [**\Schematic\Model\ListEntityTraitDefinitionsResponse**](../Model/ListEntityTraitDefinitionsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listPlanChanges()`
+
+```php
+listPlanChanges($action, $base_plan_action, $company_id, $company_ids, $plan_ids, $limit, $offset): \Schematic\Model\ListPlanChangesResponse
+```
+
+List plan changes
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$action = 'action_example'; // string
+$base_plan_action = 'base_plan_action_example'; // string
+$company_id = 'company_id_example'; // string
+$company_ids = array('company_ids_example'); // string[]
+$plan_ids = array('plan_ids_example'); // string[]
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CompaniesApi->listPlanChanges($action, $base_plan_action, $company_id, $company_ids, $plan_ids, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->listPlanChanges: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **action** | **string**|  | [optional] |
+| **base_plan_action** | **string**|  | [optional] |
+| **company_id** | **string**|  | [optional] |
+| **company_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **plan_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListPlanChangesResponse**](../Model/ListPlanChangesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listPlanTraits()`
+
+```php
+listPlanTraits($ids, $plan_id, $trait_id, $trait_ids, $limit, $offset): \Schematic\Model\ListPlanTraitsResponse
+```
+
+List plan traits
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$ids = array('ids_example'); // string[]
+$plan_id = 'plan_id_example'; // string
+$trait_id = 'trait_id_example'; // string
+$trait_ids = array('trait_ids_example'); // string[]
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CompaniesApi->listPlanTraits($ids, $plan_id, $trait_id, $trait_ids, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->listPlanTraits: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **plan_id** | **string**|  | [optional] |
+| **trait_id** | **string**|  | [optional] |
+| **trait_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListPlanTraitsResponse**](../Model/ListPlanTraitsResponse.md)
 
 ### Authorization
 
@@ -1383,7 +1927,7 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$keys = array('key' => new \stdClass); // object | Key/value pairs
+$keys = array('key' => 'keys_example'); // array<string,string> | Key/value pairs
 
 try {
     $result = $schematic->CompaniesApi->lookupCompany($keys);
@@ -1397,7 +1941,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **keys** | [**object**](../Model/.md)| Key/value pairs | |
+| **keys** | [**array<string,string>**](../Model/string.md)| Key/value pairs | |
 
 ### Return type
 
@@ -1434,7 +1978,7 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$keys = array('key' => new \stdClass); // object | Key/value pairs
+$keys = array('key' => 'keys_example'); // array<string,string> | Key/value pairs
 
 try {
     $result = $schematic->CompaniesApi->lookupUser($keys);
@@ -1448,7 +1992,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **keys** | [**object**](../Model/.md)| Key/value pairs | |
+| **keys** | [**array<string,string>**](../Model/string.md)| Key/value pairs | |
 
 ### Return type
 
@@ -1506,6 +2050,110 @@ try {
 ### Return type
 
 [**\Schematic\Model\UpdateEntityTraitDefinitionResponse**](../Model/UpdateEntityTraitDefinitionResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updatePlanTrait()`
+
+```php
+updatePlanTrait($plan_trait_id, $update_plan_trait_request_body): \Schematic\Model\UpdatePlanTraitResponse
+```
+
+Update plan trait
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$plan_trait_id = 'plan_trait_id_example'; // string | plan_trait_id
+$update_plan_trait_request_body = new \Schematic\Model\UpdatePlanTraitRequestBody(); // \Schematic\Model\UpdatePlanTraitRequestBody
+
+try {
+    $result = $schematic->CompaniesApi->updatePlanTrait($plan_trait_id, $update_plan_trait_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->updatePlanTrait: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_trait_id** | **string**| plan_trait_id | |
+| **update_plan_trait_request_body** | [**\Schematic\Model\UpdatePlanTraitRequestBody**](../Model/UpdatePlanTraitRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpdatePlanTraitResponse**](../Model/UpdatePlanTraitResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updatePlanTraitsBulk()`
+
+```php
+updatePlanTraitsBulk($update_plan_trait_bulk_request_body): \Schematic\Model\UpdatePlanTraitsBulkResponse
+```
+
+Update plan traits bulk
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$update_plan_trait_bulk_request_body = new \Schematic\Model\UpdatePlanTraitBulkRequestBody(); // \Schematic\Model\UpdatePlanTraitBulkRequestBody
+
+try {
+    $result = $schematic->CompaniesApi->updatePlanTraitsBulk($update_plan_trait_bulk_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->updatePlanTraitsBulk: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **update_plan_trait_bulk_request_body** | [**\Schematic\Model\UpdatePlanTraitBulkRequestBody**](../Model/UpdatePlanTraitBulkRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpdatePlanTraitsBulkResponse**](../Model/UpdatePlanTraitsBulkResponse.md)
 
 ### Authorization
 

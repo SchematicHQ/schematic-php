@@ -4,11 +4,65 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**cancelSubscription()**](CheckoutApi.md#cancelSubscription) | **POST** /manage-plan/subscription/cancel | Cancel subscription |
 | [**checkoutInternal()**](CheckoutApi.md#checkoutInternal) | **POST** /checkout-internal | Checkout internal |
-| [**getCheckoutData()**](CheckoutApi.md#getCheckoutData) | **GET** /checkout-internal/{checkout_internal_id}/data | Get checkout data |
+| [**getCheckoutData()**](CheckoutApi.md#getCheckoutData) | **POST** /checkout-internal/data | Get checkout data |
+| [**managePlan()**](CheckoutApi.md#managePlan) | **POST** /manage-plan | Manage plan |
 | [**previewCheckoutInternal()**](CheckoutApi.md#previewCheckoutInternal) | **POST** /checkout-internal/preview | Preview checkout internal |
+| [**previewManagePlan()**](CheckoutApi.md#previewManagePlan) | **POST** /manage-plan/preview | Preview manage plan |
 | [**updateCustomerSubscriptionTrialEnd()**](CheckoutApi.md#updateCustomerSubscriptionTrialEnd) | **PUT** /subscription/{subscription_id}/edit-trial-end | Update customer subscription trial end |
 
+
+## `cancelSubscription()`
+
+```php
+cancelSubscription($cancel_subscription_request): \Schematic\Model\CancelSubscriptionResponse
+```
+
+Cancel subscription
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$cancel_subscription_request = new \Schematic\Model\CancelSubscriptionRequest(); // \Schematic\Model\CancelSubscriptionRequest
+
+try {
+    $result = $schematic->CheckoutApi->cancelSubscription($cancel_subscription_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CheckoutApi->cancelSubscription: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **cancel_subscription_request** | [**\Schematic\Model\CancelSubscriptionRequest**](../Model/CancelSubscriptionRequest.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\CancelSubscriptionResponse**](../Model/CancelSubscriptionResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `checkoutInternal()`
 
@@ -64,7 +118,7 @@ try {
 ## `getCheckoutData()`
 
 ```php
-getCheckoutData($checkout_internal_id): \Schematic\Model\GetCheckoutDataResponse
+getCheckoutData($checkout_data_request_body): \Schematic\Model\GetCheckoutDataResponse
 ```
 
 Get checkout data
@@ -79,10 +133,10 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$checkout_internal_id = 'checkout_internal_id_example'; // string | checkout_internal_id
+$checkout_data_request_body = new \Schematic\Model\CheckoutDataRequestBody(); // \Schematic\Model\CheckoutDataRequestBody
 
 try {
-    $result = $schematic->CheckoutApi->getCheckoutData($checkout_internal_id);
+    $result = $schematic->CheckoutApi->getCheckoutData($checkout_data_request_body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CheckoutApi->getCheckoutData: ', $e->getMessage(), PHP_EOL;
@@ -93,7 +147,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **checkout_internal_id** | **string**| checkout_internal_id | |
+| **checkout_data_request_body** | [**\Schematic\Model\CheckoutDataRequestBody**](../Model/CheckoutDataRequestBody.md)|  | |
 
 ### Return type
 
@@ -105,7 +159,58 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `managePlan()`
+
+```php
+managePlan($manage_plan_request): \Schematic\Model\ManagePlanResponse
+```
+
+Manage plan
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$manage_plan_request = new \Schematic\Model\ManagePlanRequest(); // \Schematic\Model\ManagePlanRequest
+
+try {
+    $result = $schematic->CheckoutApi->managePlan($manage_plan_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CheckoutApi->managePlan: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **manage_plan_request** | [**\Schematic\Model\ManagePlanRequest**](../Model/ManagePlanRequest.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\ManagePlanResponse**](../Model/ManagePlanResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -149,6 +254,57 @@ try {
 ### Return type
 
 [**\Schematic\Model\PreviewCheckoutInternalResponse**](../Model/PreviewCheckoutInternalResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `previewManagePlan()`
+
+```php
+previewManagePlan($manage_plan_request): \Schematic\Model\PreviewManagePlanResponse
+```
+
+Preview manage plan
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$manage_plan_request = new \Schematic\Model\ManagePlanRequest(); // \Schematic\Model\ManagePlanRequest
+
+try {
+    $result = $schematic->CheckoutApi->previewManagePlan($manage_plan_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CheckoutApi->previewManagePlan: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **manage_plan_request** | [**\Schematic\Model\ManagePlanRequest**](../Model/ManagePlanRequest.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\PreviewManagePlanResponse**](../Model/PreviewManagePlanResponse.md)
 
 ### Authorization
 

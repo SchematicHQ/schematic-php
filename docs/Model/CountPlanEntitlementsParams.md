@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **offset** | **int** | Page offset (default 0) | [optional]
 **plan_id** | **string** | Filter plan entitlements by a single plan ID (starting with plan_) | [optional]
 **plan_ids** | **string[]** | Filter plan entitlements by multiple plan IDs (starting with plan_) | [optional]
+**plan_version_id** | **string** | Filter plan entitlements by a single plan version ID (starting with plvr_) | [optional]
+**plan_version_ids** | **string[]** | Filter plan entitlements by multiple plan version IDs (starting with plvr_) | [optional]
 **q** | **string** | Search for plan entitlements by feature or company name | [optional]
 **with_metered_products** | **bool** | Filter plan entitlements only with metered products | [optional]
 

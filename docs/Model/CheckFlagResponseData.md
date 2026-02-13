@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **error** | **string** | If an error occurred while checking the flag, the error message | [optional]
 **feature_allocation** | **int** | If a numeric feature entitlement rule was matched, its allocation | [optional]
 **feature_usage** | **int** | If a numeric feature entitlement rule was matched, the company&#39;s usage | [optional]
+**feature_usage_event** | **string** | If an event-based numeric feature entitlement rule was matched, the event used to track its usage | [optional]
 **feature_usage_period** | **string** | For event-based feature entitlement rules, the period over which usage is tracked (current_month, current_day, current_week, all_time) | [optional]
 **feature_usage_reset_at** | **\DateTime** | For event-based feature entitlement rules, when the usage period will reset | [optional]
 **flag** | **string** | The key used to check the flag |

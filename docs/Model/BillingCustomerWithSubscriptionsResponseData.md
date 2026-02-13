@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **deleted_at** | **\DateTime** |  | [optional]
 **email** | **string** |  |
 **external_id** | **string** |  |
-**failed_to_import** | **bool** |  |
 **id** | **string** |  |
 **name** | **string** |  |
+**provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |
 **subscriptions** | [**\Schematic\Model\BillingCustomerSubscription[]**](BillingCustomerSubscription.md) |  |
 **updated_at** | **\DateTime** |  |
 

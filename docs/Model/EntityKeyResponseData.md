@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** |  |
 **definition_id** | **string** |  |
 **entity_id** | **string** |  |
-**entity_type** | **string** |  |
+**entity_type** | [**\Schematic\Model\EntityType**](EntityType.md) |  |
 **environment_id** | **string** |  |
 **id** | **string** |  |
 **key** | **string** |  |
