@@ -1,5 +1,5 @@
 generatorName: php
-inputSpec: https://openapi.schematichq.com/latest.yml
+inputSpec: https://openapi.schematichq.com/prod/api/apikeysecret.yml
 templateDir: templates
 additionalProperties:
   artifactUrl: https://schematichq.com
