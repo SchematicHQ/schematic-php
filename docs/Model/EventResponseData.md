@@ -18,10 +18,10 @@ Name | Type | Description | Notes
 **processed_at** | **\DateTime** |  | [optional]
 **quantity** | **int** |  |
 **sent_at** | **\DateTime** |  | [optional]
-**status** | **string** |  |
+**status** | [**\Schematic\Model\EventStatus**](EventStatus.md) |  |
 **subtype** | **string** |  | [optional]
-**type** | **string** |  |
-**updated_at** | **\DateTime** |  |
+**type** | [**\Schematic\Model\EventType**](EventType.md) |  |
+**updated_at** | **\DateTime** |  | [optional]
 **user_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

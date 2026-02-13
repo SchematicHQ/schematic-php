@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **external_id** | **string** |  | [optional]
 **id** | **string** |  |
 **payment_method_external_id** | **string** |  | [optional]
+**provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |
 **subscription_external_id** | **string** |  | [optional]
 **subtotal** | **int** |  |
 **updated_at** | **\DateTime** |  |

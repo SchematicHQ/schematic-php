@@ -16,7 +16,8 @@ Name | Type | Description | Notes
 **max_redemptions** | **int** |  | [optional]
 **metadata** | **object** |  |
 **name** | **string** |  |
-**percent_off** | **int** |  | [optional]
+**percent_off** | **float** |  | [optional]
+**provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |
 **times_redeemed** | **int** |  |
 **valid_from** | **\DateTime** |  | [optional]
 **valid_until** | **\DateTime** |  | [optional]

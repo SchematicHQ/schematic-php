@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **\DateTime** |  |
-**environment_type** | **string** |  |
+**environment_type** | [**\Schematic\Model\EnvironmentType**](EnvironmentType.md) |  |
 **id** | **string** |  |
 **name** | **string** |  |
 **updated_at** | **\DateTime** |  |

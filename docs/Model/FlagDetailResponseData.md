@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **description** | **string** |  |
 **feature** | [**\Schematic\Model\FeatureResponseData**](FeatureResponseData.md) |  | [optional]
 **feature_id** | **string** |  | [optional]
-**flag_type** | **string** |  |
+**flag_type** | [**\Schematic\Model\FlagType**](FlagType.md) |  |
 **id** | **string** |  |
 **key** | **string** |  |
 **last_checked_at** | **\DateTime** |  | [optional]

@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **environment_id** | **string** |  |
 **flag_id** | **string** |  | [optional]
 **id** | **string** |  |
-**plan_id** | **string** |  | [optional]
 **rule_id** | **string** |  |
 **updated_at** | **\DateTime** |  |
 

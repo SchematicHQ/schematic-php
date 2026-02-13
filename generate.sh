@@ -29,6 +29,7 @@ if [ -n "$INPUT_SPEC" ]; then
     COMMAND="$COMMAND --input-spec=$INPUT_SPEC"
 fi
 
-# Execute the command
+# Clean generated directories before regenerating
+rm -rf src/Api/ src/Model/ test/Api/ test/Model/ docs/
 eval $COMMAND
 vendor/bin/php-cs-fixer fix

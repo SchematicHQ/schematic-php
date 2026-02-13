@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **\DateTime** |  |
-**entity_type** | **string** |  |
+**entity_type** | [**\Schematic\Model\EntityType**](EntityType.md) |  |
 **id** | **string** |  |
 **key** | **string** |  |
 **updated_at** | **\DateTime** |  |

@@ -4,10 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**company** | **array<string,string>** | Optionally specify company using key/value pairs |
-**company_id** | **string** | Optionally specify company using Schematic company ID | [optional]
+**companies** | **array<string,string>[]** | Optionally specify companies using array of key/value pairs | [optional]
+**company** | **array<string,string>** | Add user to this company. Takes priority over companies. For exhaustive list of companies, use companies | [optional]
+**company_id** | **string** | Add user to this company. Takes priority over company_ids. For exhaustive list of companies, use company_ids | [optional]
+**company_ids** | **string[]** | Optionally specify companies using Schematic company ID | [optional]
 **id** | **string** | If you know the Schematic ID, you can use that here instead of keys | [optional]
-**keys** | **array<string,string>** |  |
+**keys** | **array<string,string>** | See [Key Management](https://docs.schematichq.com/developer_resources/key_management) for more information |
 **last_seen_at** | **\DateTime** |  | [optional]
 **name** | **string** |  | [optional]
 **traits** | **object** | A map of trait names to trait values | [optional]

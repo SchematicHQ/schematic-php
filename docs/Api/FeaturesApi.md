@@ -6,8 +6,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | ------------- | ------------- | ------------- |
 | [**checkFlag()**](FeaturesApi.md#checkFlag) | **POST** /flags/{key}/check | Check flag |
 | [**checkFlags()**](FeaturesApi.md#checkFlags) | **POST** /flags/check | Check flags |
-| [**countAudienceCompanies()**](FeaturesApi.md#countAudienceCompanies) | **POST** /audience/count-companies | Count audience companies |
-| [**countAudienceUsers()**](FeaturesApi.md#countAudienceUsers) | **POST** /audience/count-users | Count audience users |
+| [**checkFlagsBulk()**](FeaturesApi.md#checkFlagsBulk) | **POST** /flags/check-bulk | Check flags bulk |
 | [**countFeatures()**](FeaturesApi.md#countFeatures) | **GET** /features/count | Count features |
 | [**countFlags()**](FeaturesApi.md#countFlags) | **GET** /flags/count | Count flags |
 | [**createFeature()**](FeaturesApi.md#createFeature) | **POST** /features | Create feature |
@@ -16,8 +15,6 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**deleteFlag()**](FeaturesApi.md#deleteFlag) | **DELETE** /flags/{flag_id} | Delete flag |
 | [**getFeature()**](FeaturesApi.md#getFeature) | **GET** /features/{feature_id} | Get feature |
 | [**getFlag()**](FeaturesApi.md#getFlag) | **GET** /flags/{flag_id} | Get flag |
-| [**listAudienceCompanies()**](FeaturesApi.md#listAudienceCompanies) | **POST** /audience/get-companies | List audience companies |
-| [**listAudienceUsers()**](FeaturesApi.md#listAudienceUsers) | **POST** /audience/get-users | List audience users |
 | [**listFeatures()**](FeaturesApi.md#listFeatures) | **GET** /features | List features |
 | [**listFlags()**](FeaturesApi.md#listFlags) | **GET** /flags | List flags |
 | [**updateFeature()**](FeaturesApi.md#updateFeature) | **PUT** /features/{feature_id} | Update feature |
@@ -129,13 +126,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `countAudienceCompanies()`
+## `checkFlagsBulk()`
 
 ```php
-countAudienceCompanies($audience_request_body): \Schematic\Model\CountAudienceCompaniesResponse
+checkFlagsBulk($check_flags_bulk_request_body): \Schematic\Model\CheckFlagsBulkResponse
 ```
 
-Count audience companies
+Check flags bulk
 
 ### Example
 
@@ -147,13 +144,13 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
+$check_flags_bulk_request_body = new \Schematic\Model\CheckFlagsBulkRequestBody(); // \Schematic\Model\CheckFlagsBulkRequestBody
 
 try {
-    $result = $schematic->FeaturesApi->countAudienceCompanies($audience_request_body);
+    $result = $schematic->FeaturesApi->checkFlagsBulk($check_flags_bulk_request_body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->countAudienceCompanies: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->FeaturesApi->checkFlagsBulk: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -161,62 +158,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
+| **check_flags_bulk_request_body** | [**\Schematic\Model\CheckFlagsBulkRequestBody**](../Model/CheckFlagsBulkRequestBody.md)|  | |
 
 ### Return type
 
-[**\Schematic\Model\CountAudienceCompaniesResponse**](../Model/CountAudienceCompaniesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `countAudienceUsers()`
-
-```php
-countAudienceUsers($audience_request_body): \Schematic\Model\CountAudienceUsersResponse
-```
-
-Count audience users
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-
-try {
-    $result = $schematic->FeaturesApi->countAudienceUsers($audience_request_body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->countAudienceUsers: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-
-### Return type
-
-[**\Schematic\Model\CountAudienceUsersResponse**](../Model/CountAudienceUsersResponse.md)
+[**\Schematic\Model\CheckFlagsBulkResponse**](../Model/CheckFlagsBulkResponse.md)
 
 ### Authorization
 
@@ -234,7 +180,7 @@ try {
 ## `countFeatures()`
 
 ```php
-countFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset): \Schematic\Model\CountFeaturesResponse
+countFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset): \Schematic\Model\CountFeaturesResponse
 ```
 
 Count features
@@ -250,14 +196,16 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
-$q = 'q_example'; // string
+$q = 'q_example'; // string | Search by feature name or ID
 $without_company_override_for = 'without_company_override_for_example'; // string | Filter out features that already have a company override for the specified company ID
 $without_plan_entitlement_for = 'without_plan_entitlement_for_example'; // string | Filter out features that already have a plan entitlement for the specified plan ID
+$feature_type = array(new \Schematic\Model\\Schematic\Model\FeatureType()); // \Schematic\Model\FeatureType[] | Filter by one or more feature types (boolean, event, trait)
+$boolean_require_event = True; // bool | Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter.
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->FeaturesApi->countFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset);
+    $result = $schematic->FeaturesApi->countFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->FeaturesApi->countFeatures: ', $e->getMessage(), PHP_EOL;
@@ -269,9 +217,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **q** | **string**|  | [optional] |
+| **q** | **string**| Search by feature name or ID | [optional] |
 | **without_company_override_for** | **string**| Filter out features that already have a company override for the specified company ID | [optional] |
 | **without_plan_entitlement_for** | **string**| Filter out features that already have a plan entitlement for the specified plan ID | [optional] |
+| **feature_type** | [**\Schematic\Model\FeatureType[]**](../Model/\Schematic\Model\FeatureType.md)| Filter by one or more feature types (boolean, event, trait) | [optional] |
+| **boolean_require_event** | **bool**| Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -312,7 +262,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $feature_id = 'feature_id_example'; // string
 $ids = array('ids_example'); // string[]
-$q = 'q_example'; // string
+$q = 'q_example'; // string | Search by flag name, key, or ID
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -330,7 +280,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **feature_id** | **string**|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **q** | **string**|  | [optional] |
+| **q** | **string**| Search by flag name, key, or ID | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -657,112 +607,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listAudienceCompanies()`
-
-```php
-listAudienceCompanies($audience_request_body): \Schematic\Model\ListAudienceCompaniesResponse
-```
-
-List audience companies
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-
-try {
-    $result = $schematic->FeaturesApi->listAudienceCompanies($audience_request_body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->listAudienceCompanies: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-
-### Return type
-
-[**\Schematic\Model\ListAudienceCompaniesResponse**](../Model/ListAudienceCompaniesResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `listAudienceUsers()`
-
-```php
-listAudienceUsers($audience_request_body): \Schematic\Model\ListAudienceUsersResponse
-```
-
-List audience users
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$audience_request_body = new \Schematic\Model\AudienceRequestBody(); // \Schematic\Model\AudienceRequestBody
-
-try {
-    $result = $schematic->FeaturesApi->listAudienceUsers($audience_request_body);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->FeaturesApi->listAudienceUsers: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **audience_request_body** | [**\Schematic\Model\AudienceRequestBody**](../Model/AudienceRequestBody.md)|  | |
-
-### Return type
-
-[**\Schematic\Model\ListAudienceUsersResponse**](../Model/ListAudienceUsersResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `listFeatures()`
 
 ```php
-listFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset): \Schematic\Model\ListFeaturesResponse
+listFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset): \Schematic\Model\ListFeaturesResponse
 ```
 
 List features
@@ -778,14 +626,16 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
-$q = 'q_example'; // string
+$q = 'q_example'; // string | Search by feature name or ID
 $without_company_override_for = 'without_company_override_for_example'; // string | Filter out features that already have a company override for the specified company ID
 $without_plan_entitlement_for = 'without_plan_entitlement_for_example'; // string | Filter out features that already have a plan entitlement for the specified plan ID
+$feature_type = array(new \Schematic\Model\\Schematic\Model\FeatureType()); // \Schematic\Model\FeatureType[] | Filter by one or more feature types (boolean, event, trait)
+$boolean_require_event = True; // bool | Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter.
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->FeaturesApi->listFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset);
+    $result = $schematic->FeaturesApi->listFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->FeaturesApi->listFeatures: ', $e->getMessage(), PHP_EOL;
@@ -797,9 +647,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **q** | **string**|  | [optional] |
+| **q** | **string**| Search by feature name or ID | [optional] |
 | **without_company_override_for** | **string**| Filter out features that already have a company override for the specified company ID | [optional] |
 | **without_plan_entitlement_for** | **string**| Filter out features that already have a plan entitlement for the specified plan ID | [optional] |
+| **feature_type** | [**\Schematic\Model\FeatureType[]**](../Model/\Schematic\Model\FeatureType.md)| Filter by one or more feature types (boolean, event, trait) | [optional] |
+| **boolean_require_event** | **bool**| Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -840,7 +692,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $feature_id = 'feature_id_example'; // string
 $ids = array('ids_example'); // string[]
-$q = 'q_example'; // string
+$q = 'q_example'; // string | Search by flag name, key, or ID
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -858,7 +710,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **feature_id** | **string**|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **q** | **string**|  | [optional] |
+| **q** | **string**| Search by flag name, key, or ID | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 

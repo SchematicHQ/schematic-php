@@ -17,12 +17,11 @@ Name | Type | Description | Notes
 **metric_period_month_reset** | **string** |  | [optional]
 **metric_value** | **int** |  | [optional]
 **operator** | **string** |  |
-**plan_id** | **string** |  | [optional]
 **resource_ids** | **string[]** |  |
 **resources** | [**\Schematic\Model\PreviewObjectResponseData[]**](PreviewObjectResponseData.md) |  |
 **rule_id** | **string** |  |
 **trait** | [**\Schematic\Model\EntityTraitDefinitionResponseData**](EntityTraitDefinitionResponseData.md) |  | [optional]
-**trait_entity_type** | **string** |  | [optional]
+**trait_entity_type** | [**\Schematic\Model\EntityType**](EntityType.md) |  | [optional]
 **trait_id** | **string** |  | [optional]
 **trait_value** | **string** |  |
 **updated_at** | **\DateTime** |  |

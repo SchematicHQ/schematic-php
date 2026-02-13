@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** |  |
 **id** | **string** |  |
 **payload** | **string** |  | [optional]
-**request_type** | **string** |  |
+**request_type** | [**\Schematic\Model\WebhookRequestType**](WebhookRequestType.md) |  |
 **response_code** | **int** |  | [optional]
 **sent_at** | **\DateTime** |  | [optional]
-**status** | **string** |  |
+**status** | [**\Schematic\Model\WebhookEventStatus**](WebhookEventStatus.md) |  |
 **updated_at** | **\DateTime** |  |
 **webhook** | [**\Schematic\Model\WebhookResponseData**](WebhookResponseData.md) |  | [optional]
 **webhook_id** | **string** |  |

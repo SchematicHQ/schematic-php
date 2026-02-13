@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** | If you know the Schematic ID, you can use that here instead of keys | [optional]
-**keys** | **array<string,string>** |  |
+**keys** | **array<string,string>** | See [Key Management](https://docs.schematichq.com/developer_resources/key_management) for more information |
 **last_seen_at** | **\DateTime** |  | [optional]
 **name** | **string** |  | [optional]
 **traits** | **object** | A map of trait names to trait values | [optional]

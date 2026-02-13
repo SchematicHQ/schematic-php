@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **default_value** | **bool** |  |
 **description** | **string** |  |
 **feature_id** | **string** |  | [optional]
-**flag_type** | **string** |  |
+**flag_type** | [**\Schematic\Model\FlagType**](FlagType.md) |  |
 **id** | **string** |  |
 **key** | **string** |  |
 **maintainer_id** | **string** |  | [optional]

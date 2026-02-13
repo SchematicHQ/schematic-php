@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **environment_id** | **string** |  |
 **expired_at** | **\DateTime** |  |
 **id** | **string** |  |
-**resource_type** | **string** |  |
+**resource_type** | [**\Schematic\Model\TemporaryAccessTokenResourceType**](TemporaryAccessTokenResourceType.md) |  |
 **updated_at** | **\DateTime** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

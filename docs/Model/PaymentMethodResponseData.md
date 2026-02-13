@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **external_id** | **string** |  |
 **id** | **string** |  |
 **payment_method_type** | **string** |  |
-**subscription_external_id** | **string** |  | [optional]
+**provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |
 **updated_at** | **\DateTime** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

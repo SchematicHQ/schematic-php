@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **flag_id** | **string** |  | [optional]
 **id** | **string** |  |
 **name** | **string** |  |
-**plan_id** | **string** |  | [optional]
 **priority** | **int** |  |
 **rule_type** | **string** |  |
 **updated_at** | **\DateTime** |  |

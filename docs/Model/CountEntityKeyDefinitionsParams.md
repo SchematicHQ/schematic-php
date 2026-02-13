@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity_type** | **string** |  | [optional]
+**entity_type** | [**\Schematic\Model\EntityType**](EntityType.md) |  | [optional]
 **ids** | **string[]** |  | [optional]
 **limit** | **int** | Page limit (default 100) | [optional]
 **offset** | **int** | Page offset (default 0) | [optional]

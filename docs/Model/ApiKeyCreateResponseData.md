@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **string** |  |
 **last_used_at** | **\DateTime** |  | [optional]
 **name** | **string** |  |
-**scopes** | **string[]** |  |
+**scopes** | [**\Schematic\Model\ApiKeyScope[]**](ApiKeyScope.md) |  |
 **secret** | **string** |  |
 **updated_at** | **\DateTime** |  |
 
