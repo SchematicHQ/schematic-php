@@ -106,6 +106,14 @@ try {
 }
 ```
 
+### Versioning
+
+The SDK version is defined in `config.yaml` (`artifactVersion` and `httpUserAgent`). Running `./generate.sh` propagates it to `composer.json` and `src/Configuration.php`. To release a new version:
+
+1. Update `artifactVersion` and `httpUserAgent` in `config.yaml`
+2. Run `./generate.sh`
+3. Commit, tag, and push
+
 ## Development Notes
 
 - PHP 7.4 or 8.0+ is required for development
