@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **include_draft_versions** | **bool** | Include billing settings from draft versions for plans which have draft version | [optional]
 **limit** | **int** | Page limit (default 100) | [optional]
 **offset** | **int** | Page offset (default 0) | [optional]
-**plan_type** | [**\Schematic\Model\PlanType**](PlanType.md) |  | [optional]
+**plan_type** | [**\Schematic\Model\PlanType**](PlanType.md) | Filter by plan type | [optional]
 **q** | **string** |  | [optional]
 **scoped_to_company_id** | **string** | Filter plans scoped to a specific company (custom plans) | [optional]
 **with_entitlements** | **bool** | Include each plan&#39;s entitlements in the response | [optional]

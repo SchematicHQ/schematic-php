@@ -51,8 +51,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $ids = array('ids_example'); // string[]
 $is_active = True; // bool | Filter products that are active. Defaults to true if not specified
 $name = 'name_example'; // string
-$price_usage_type = new \Schematic\Model\BillingPriceUsageType(); // BillingPriceUsageType
-$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
+$price_usage_type = new \Schematic\Model\\Schematic\Model\BillingPriceUsageType(); // \Schematic\Model\BillingPriceUsageType
+$provider_type = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType
 $q = 'q_example'; // string
 $recurring_charges_only = True; // bool | Filter to products that have at least one recurring price
 $with_one_time_charges = True; // bool | Filter products that are one time charges
@@ -77,8 +77,8 @@ try {
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **is_active** | **bool**| Filter products that are active. Defaults to true if not specified | [optional] |
 | **name** | **string**|  | [optional] |
-| **price_usage_type** | [**BillingPriceUsageType**](../Model/.md)|  | [optional] |
-| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
+| **price_usage_type** | [**\Schematic\Model\BillingPriceUsageType**](../Model/.md)|  | [optional] |
+| **provider_type** | [**\Schematic\Model\BillingProviderType**](../Model/.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **recurring_charges_only** | **bool**| Filter to products that have at least one recurring price | [optional] |
 | **with_one_time_charges** | **bool**| Filter products that are one time charges | [optional] |
@@ -125,7 +125,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_ids = array('company_ids_example'); // string[]
 $name = 'name_example'; // string
-$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
+$provider_type = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType
 $q = 'q_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
@@ -144,7 +144,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **company_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **name** | **string**|  | [optional] |
-| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
+| **provider_type** | [**\Schematic\Model\BillingProviderType**](../Model/.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -500,10 +500,10 @@ $plan_version_id = 'plan_version_id_example'; // string | Filter for prices belo
 $price = 56; // int
 $product_id = 'product_id_example'; // string
 $product_ids = array('product_ids_example'); // string[]
-$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
+$provider_type = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType
 $q = 'q_example'; // string
-$tiers_mode = new \Schematic\Model\BillingTiersMode(); // BillingTiersMode
-$usage_type = new \Schematic\Model\BillingPriceUsageType(); // BillingPriceUsageType
+$tiers_mode = new \Schematic\Model\\Schematic\Model\BillingTiersMode(); // \Schematic\Model\BillingTiersMode
+$usage_type = new \Schematic\Model\\Schematic\Model\BillingPriceUsageType(); // \Schematic\Model\BillingPriceUsageType
 $with_meter = True; // bool | Filter for prices with a meter
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
@@ -530,10 +530,10 @@ try {
 | **price** | **int**|  | [optional] |
 | **product_id** | **string**|  | [optional] |
 | **product_ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
+| **provider_type** | [**\Schematic\Model\BillingProviderType**](../Model/.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **tiers_mode** | [**BillingTiersMode**](../Model/.md)|  | [optional] |
-| **usage_type** | [**BillingPriceUsageType**](../Model/.md)|  | [optional] |
+| **tiers_mode** | [**\Schematic\Model\BillingTiersMode**](../Model/.md)|  | [optional] |
+| **usage_type** | [**\Schematic\Model\BillingPriceUsageType**](../Model/.md)|  | [optional] |
 | **with_meter** | **bool**| Filter for prices with a meter | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -583,10 +583,10 @@ $plan_version_id = 'plan_version_id_example'; // string | Filter for prices belo
 $price = 56; // int
 $product_id = 'product_id_example'; // string
 $product_ids = array('product_ids_example'); // string[]
-$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
+$provider_type = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType
 $q = 'q_example'; // string
-$tiers_mode = new \Schematic\Model\BillingTiersMode(); // BillingTiersMode
-$usage_type = new \Schematic\Model\BillingPriceUsageType(); // BillingPriceUsageType
+$tiers_mode = new \Schematic\Model\\Schematic\Model\BillingTiersMode(); // \Schematic\Model\BillingTiersMode
+$usage_type = new \Schematic\Model\\Schematic\Model\BillingPriceUsageType(); // \Schematic\Model\BillingPriceUsageType
 $with_meter = True; // bool | Filter for prices with a meter
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
@@ -613,10 +613,10 @@ try {
 | **price** | **int**|  | [optional] |
 | **product_id** | **string**|  | [optional] |
 | **product_ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
+| **provider_type** | [**\Schematic\Model\BillingProviderType**](../Model/.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **tiers_mode** | [**BillingTiersMode**](../Model/.md)|  | [optional] |
-| **usage_type** | [**BillingPriceUsageType**](../Model/.md)|  | [optional] |
+| **tiers_mode** | [**\Schematic\Model\BillingTiersMode**](../Model/.md)|  | [optional] |
+| **usage_type** | [**\Schematic\Model\BillingPriceUsageType**](../Model/.md)|  | [optional] |
 | **with_meter** | **bool**| Filter for prices with a meter | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -659,8 +659,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $ids = array('ids_example'); // string[]
 $is_active = True; // bool | Filter products that are active. Defaults to true if not specified
 $name = 'name_example'; // string
-$price_usage_type = new \Schematic\Model\BillingPriceUsageType(); // BillingPriceUsageType
-$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
+$price_usage_type = new \Schematic\Model\\Schematic\Model\BillingPriceUsageType(); // \Schematic\Model\BillingPriceUsageType
+$provider_type = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType
 $q = 'q_example'; // string
 $recurring_charges_only = True; // bool | Filter to products that have at least one recurring price
 $with_one_time_charges = True; // bool | Filter products that are one time charges
@@ -685,8 +685,8 @@ try {
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **is_active** | **bool**| Filter products that are active. Defaults to true if not specified | [optional] |
 | **name** | **string**|  | [optional] |
-| **price_usage_type** | [**BillingPriceUsageType**](../Model/.md)|  | [optional] |
-| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
+| **price_usage_type** | [**\Schematic\Model\BillingPriceUsageType**](../Model/.md)|  | [optional] |
+| **provider_type** | [**\Schematic\Model\BillingProviderType**](../Model/.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **recurring_charges_only** | **bool**| Filter to products that have at least one recurring price | [optional] |
 | **with_one_time_charges** | **bool**| Filter products that are one time charges | [optional] |
@@ -790,7 +790,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_ids = array('company_ids_example'); // string[]
 $name = 'name_example'; // string
-$provider_type = new \Schematic\Model\BillingProviderType(); // BillingProviderType
+$provider_type = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType
 $q = 'q_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
@@ -809,7 +809,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **company_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **name** | **string**|  | [optional] |
-| **provider_type** | [**BillingProviderType**](../Model/.md)|  | [optional] |
+| **provider_type** | [**\Schematic\Model\BillingProviderType**](../Model/.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |

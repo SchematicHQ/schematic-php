@@ -35,7 +35,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $migration_id = 'migration_id_example'; // string
 $q = 'q_example'; // string
-$status = new \Schematic\Model\PlanVersionCompanyMigrationStatus(); // PlanVersionCompanyMigrationStatus
+$status = new \Schematic\Model\\Schematic\Model\PlanVersionCompanyMigrationStatus(); // \Schematic\Model\PlanVersionCompanyMigrationStatus
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -53,7 +53,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **migration_id** | **string**|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **status** | [**PlanVersionCompanyMigrationStatus**](../Model/.md)|  | [optional] |
+| **status** | [**\Schematic\Model\PlanVersionCompanyMigrationStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -93,7 +93,7 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $plan_version_id = 'plan_version_id_example'; // string
-$status = new \Schematic\Model\PlanVersionMigrationStatus(); // PlanVersionMigrationStatus
+$status = new \Schematic\Model\\Schematic\Model\PlanVersionMigrationStatus(); // \Schematic\Model\PlanVersionMigrationStatus
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -110,7 +110,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_version_id** | **string**|  | [optional] |
-| **status** | [**PlanVersionMigrationStatus**](../Model/.md)|  | [optional] |
+| **status** | [**\Schematic\Model\PlanVersionMigrationStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -253,7 +253,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $migration_id = 'migration_id_example'; // string
 $q = 'q_example'; // string
-$status = new \Schematic\Model\PlanVersionCompanyMigrationStatus(); // PlanVersionCompanyMigrationStatus
+$status = new \Schematic\Model\\Schematic\Model\PlanVersionCompanyMigrationStatus(); // \Schematic\Model\PlanVersionCompanyMigrationStatus
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -271,7 +271,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **migration_id** | **string**|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **status** | [**PlanVersionCompanyMigrationStatus**](../Model/.md)|  | [optional] |
+| **status** | [**\Schematic\Model\PlanVersionCompanyMigrationStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -311,7 +311,7 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $plan_version_id = 'plan_version_id_example'; // string
-$status = new \Schematic\Model\PlanVersionMigrationStatus(); // PlanVersionMigrationStatus
+$status = new \Schematic\Model\\Schematic\Model\PlanVersionMigrationStatus(); // \Schematic\Model\PlanVersionMigrationStatus
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -328,7 +328,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **plan_version_id** | **string**|  | [optional] |
-| **status** | [**PlanVersionMigrationStatus**](../Model/.md)|  | [optional] |
+| **status** | [**\Schematic\Model\PlanVersionMigrationStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 

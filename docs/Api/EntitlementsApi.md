@@ -174,7 +174,7 @@ $company_id = 'company_id_example'; // string
 $company_keys = array('key' => 'company_keys_example'); // array<string,string>
 $feature_ids = array('feature_ids_example'); // string[]
 $include_usage_aggregation = True; // bool | Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance.
-$managed_by = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
+$managed_by = new \Schematic\Model\\SchematicModelBillingProviderType(); // \SchematicModelBillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
 $q = 'q_example'; // string
 $without_negative_entitlements = True; // bool
 $limit = 100; // int | Page limit (default 100)
@@ -196,7 +196,7 @@ try {
 | **company_keys** | [**array<string,string>**](../Model/string.md)|  | [optional] |
 | **feature_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **include_usage_aggregation** | **bool**| Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. | [optional] |
-| **managed_by** | [**\Schematic\Model\BillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
+| **managed_by** | [**\SchematicModelBillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
 | **q** | **string**|  | [optional] |
 | **without_negative_entitlements** | **bool**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -723,10 +723,10 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string
-$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
 $feature_id = 'feature_id_example'; // string
-$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
-$granularity = new \Schematic\Model\TimeSeriesGranularity(); // TimeSeriesGranularity
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
+$granularity = new \Schematic\Model\\Schematic\Model\TimeSeriesGranularity(); // \Schematic\Model\TimeSeriesGranularity
 
 try {
     $result = $schematic->EntitlementsApi->getFeatureUsageTimeSeries($company_id, $end_time, $feature_id, $start_time, $granularity);
@@ -744,7 +744,7 @@ try {
 | **end_time** | **\DateTime**|  | |
 | **feature_id** | **string**|  | |
 | **start_time** | **\DateTime**|  | |
-| **granularity** | [**TimeSeriesGranularity**](../Model/.md)|  | [optional] |
+| **granularity** | [**\Schematic\Model\TimeSeriesGranularity**](../Model/.md)|  | [optional] |
 
 ### Return type
 
@@ -960,7 +960,7 @@ $company_id = 'company_id_example'; // string
 $company_keys = array('key' => 'company_keys_example'); // array<string,string>
 $feature_ids = array('feature_ids_example'); // string[]
 $include_usage_aggregation = True; // bool | Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance.
-$managed_by = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
+$managed_by = new \Schematic\Model\\SchematicModelBillingProviderType(); // \SchematicModelBillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
 $q = 'q_example'; // string
 $without_negative_entitlements = True; // bool
 $limit = 100; // int | Page limit (default 100)
@@ -982,7 +982,7 @@ try {
 | **company_keys** | [**array<string,string>**](../Model/string.md)|  | [optional] |
 | **feature_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **include_usage_aggregation** | **bool**| Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. | [optional] |
-| **managed_by** | [**\Schematic\Model\BillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
+| **managed_by** | [**\SchematicModelBillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
 | **q** | **string**|  | [optional] |
 | **without_negative_entitlements** | **bool**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |

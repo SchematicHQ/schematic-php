@@ -875,6 +875,7 @@ src/Api/ScheduledcheckoutApi.php
 src/Api/WebhooksApi.php
 src/ApiException.php
 src/Configuration.php
+src/FormDataProcessor.php
 src/HeaderSelector.php
 src/Model/AccountMemberPermission.php
 src/Model/AccountMemberResponseData.php

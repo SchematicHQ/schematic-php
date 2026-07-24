@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **feature_type** | [**\Schematic\Model\FeatureType[]**](FeatureType.md) | Filter by one or more feature types (boolean, event, trait) | [optional]
 **ids** | **string[]** |  | [optional]
 **limit** | **int** | Page limit (default 100) | [optional]
-**managed_by** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  | [optional]
+**managed_by** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) | Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional]
 **offset** | **int** | Page offset (default 0) | [optional]
 **plan_version_id** | **string** | Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used | [optional]
 **q** | **string** | Search by feature name or ID | [optional]

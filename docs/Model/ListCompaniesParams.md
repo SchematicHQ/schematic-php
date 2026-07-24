@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **plan_version_ids** | **string[]** | Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. | [optional]
 **q** | **string** | Search for companies by name, keys or string traits | [optional]
 **sort_order_column** | **string** | Column to sort by (e.g. name, created_at, last_seen_at) | [optional]
-**sort_order_direction** | [**\Schematic\Model\SortDirection**](SortDirection.md) |  | [optional]
+**sort_order_direction** | [**\Schematic\Model\SortDirection**](SortDirection.md) | Direction to sort by (asc or desc) | [optional]
 **subscription_statuses** | [**\Schematic\Model\SubscriptionStatus[]**](SubscriptionStatus.md) | Filter companies by one or more subscription statuses | [optional]
 **subscription_types** | [**\Schematic\Model\SubscriptionType[]**](SubscriptionType.md) | Filter companies by one or more subscription types | [optional]
 **with_entitlement_for** | **string** | Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID | [optional]

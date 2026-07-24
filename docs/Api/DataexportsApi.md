@@ -181,8 +181,8 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$export_type = new \Schematic\Model\DataExportType(); // DataExportType
-$status = new \Schematic\Model\DataExportStatus(); // DataExportStatus
+$export_type = new \Schematic\Model\\Schematic\Model\DataExportType(); // \Schematic\Model\DataExportType
+$status = new \Schematic\Model\\Schematic\Model\DataExportStatus(); // \Schematic\Model\DataExportStatus
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -198,8 +198,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **export_type** | [**DataExportType**](../Model/.md)|  | [optional] |
-| **status** | [**DataExportStatus**](../Model/.md)|  | [optional] |
+| **export_type** | [**\Schematic\Model\DataExportType**](../Model/.md)|  | [optional] |
+| **status** | [**\Schematic\Model\DataExportStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 

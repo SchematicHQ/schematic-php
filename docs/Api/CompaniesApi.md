@@ -72,7 +72,7 @@ $plan_version_id = 'plan_version_id_example'; // string | Filter companies by pl
 $plan_version_ids = array('plan_version_ids_example'); // string[] | Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set.
 $q = 'q_example'; // string | Search for companies by name, keys or string traits
 $sort_order_column = 'sort_order_column_example'; // string | Column to sort by (e.g. name, created_at, last_seen_at)
-$sort_order_direction = new \Schematic\Model\\Schematic\Model\SortDirection(); // \Schematic\Model\SortDirection | Direction to sort by (asc or desc)
+$sort_order_direction = new \Schematic\Model\\SchematicModelSortDirection(); // \SchematicModelSortDirection | Direction to sort by (asc or desc)
 $subscription_statuses = array(new \Schematic\Model\\Schematic\Model\SubscriptionStatus()); // \Schematic\Model\SubscriptionStatus[] | Filter companies by one or more subscription statuses
 $subscription_types = array(new \Schematic\Model\\Schematic\Model\SubscriptionType()); // \Schematic\Model\SubscriptionType[] | Filter companies by one or more subscription types
 $with_entitlement_for = 'with_entitlement_for_example'; // string | Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID
@@ -105,7 +105,7 @@ try {
 | **plan_version_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. | [optional] |
 | **q** | **string**| Search for companies by name, keys or string traits | [optional] |
 | **sort_order_column** | **string**| Column to sort by (e.g. name, created_at, last_seen_at) | [optional] |
-| **sort_order_direction** | [**\Schematic\Model\SortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |
+| **sort_order_direction** | [**\SchematicModelSortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |
 | **subscription_statuses** | [**\Schematic\Model\SubscriptionStatus[]**](../Model/\Schematic\Model\SubscriptionStatus.md)| Filter companies by one or more subscription statuses | [optional] |
 | **subscription_types** | [**\Schematic\Model\SubscriptionType[]**](../Model/\Schematic\Model\SubscriptionType.md)| Filter companies by one or more subscription types | [optional] |
 | **with_entitlement_for** | **string**| Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID | [optional] |
@@ -151,7 +151,7 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$entity_type = new \Schematic\Model\EntityType(); // EntityType
+$entity_type = new \Schematic\Model\\Schematic\Model\EntityType(); // \Schematic\Model\EntityType
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string
 $limit = 100; // int | Page limit (default 100)
@@ -169,7 +169,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | [**EntityType**](../Model/.md)|  | [optional] |
+| **entity_type** | [**\Schematic\Model\EntityType**](../Model/.md)|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -210,10 +210,10 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$entity_type = new \Schematic\Model\EntityType(); // EntityType
+$entity_type = new \Schematic\Model\\Schematic\Model\EntityType(); // \Schematic\Model\EntityType
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string
-$trait_type = new \Schematic\Model\TraitType(); // TraitType
+$trait_type = new \Schematic\Model\\Schematic\Model\TraitType(); // \Schematic\Model\TraitType
 $trait_types = array(new \Schematic\Model\\Schematic\Model\TraitType()); // \Schematic\Model\TraitType[]
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
@@ -230,10 +230,10 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | [**EntityType**](../Model/.md)|  | [optional] |
+| **entity_type** | [**\Schematic\Model\EntityType**](../Model/.md)|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **trait_type** | [**TraitType**](../Model/.md)|  | [optional] |
+| **trait_type** | [**\Schematic\Model\TraitType**](../Model/.md)|  | [optional] |
 | **trait_types** | [**\Schematic\Model\TraitType[]**](../Model/\Schematic\Model\TraitType.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -1339,7 +1339,7 @@ $plan_version_id = 'plan_version_id_example'; // string | Filter companies by pl
 $plan_version_ids = array('plan_version_ids_example'); // string[] | Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set.
 $q = 'q_example'; // string | Search for companies by name, keys or string traits
 $sort_order_column = 'sort_order_column_example'; // string | Column to sort by (e.g. name, created_at, last_seen_at)
-$sort_order_direction = new \Schematic\Model\\Schematic\Model\SortDirection(); // \Schematic\Model\SortDirection | Direction to sort by (asc or desc)
+$sort_order_direction = new \Schematic\Model\\SchematicModelSortDirection(); // \SchematicModelSortDirection | Direction to sort by (asc or desc)
 $subscription_statuses = array(new \Schematic\Model\\Schematic\Model\SubscriptionStatus()); // \Schematic\Model\SubscriptionStatus[] | Filter companies by one or more subscription statuses
 $subscription_types = array(new \Schematic\Model\\Schematic\Model\SubscriptionType()); // \Schematic\Model\SubscriptionType[] | Filter companies by one or more subscription types
 $with_entitlement_for = 'with_entitlement_for_example'; // string | Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID
@@ -1372,7 +1372,7 @@ try {
 | **plan_version_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. | [optional] |
 | **q** | **string**| Search for companies by name, keys or string traits | [optional] |
 | **sort_order_column** | **string**| Column to sort by (e.g. name, created_at, last_seen_at) | [optional] |
-| **sort_order_direction** | [**\Schematic\Model\SortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |
+| **sort_order_direction** | [**\SchematicModelSortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |
 | **subscription_statuses** | [**\Schematic\Model\SubscriptionStatus[]**](../Model/\Schematic\Model\SubscriptionStatus.md)| Filter companies by one or more subscription statuses | [optional] |
 | **subscription_types** | [**\Schematic\Model\SubscriptionType[]**](../Model/\Schematic\Model\SubscriptionType.md)| Filter companies by one or more subscription types | [optional] |
 | **with_entitlement_for** | **string**| Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID | [optional] |
@@ -1475,7 +1475,7 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$entity_type = new \Schematic\Model\EntityType(); // EntityType
+$entity_type = new \Schematic\Model\\Schematic\Model\EntityType(); // \Schematic\Model\EntityType
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string
 $limit = 100; // int | Page limit (default 100)
@@ -1493,7 +1493,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | [**EntityType**](../Model/.md)|  | [optional] |
+| **entity_type** | [**\Schematic\Model\EntityType**](../Model/.md)|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -1534,10 +1534,10 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$entity_type = new \Schematic\Model\EntityType(); // EntityType
+$entity_type = new \Schematic\Model\\Schematic\Model\EntityType(); // \Schematic\Model\EntityType
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string
-$trait_type = new \Schematic\Model\TraitType(); // TraitType
+$trait_type = new \Schematic\Model\\Schematic\Model\TraitType(); // \Schematic\Model\TraitType
 $trait_types = array(new \Schematic\Model\\Schematic\Model\TraitType()); // \Schematic\Model\TraitType[]
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
@@ -1554,10 +1554,10 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **entity_type** | [**EntityType**](../Model/.md)|  | [optional] |
+| **entity_type** | [**\Schematic\Model\EntityType**](../Model/.md)|  | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**|  | [optional] |
-| **trait_type** | [**TraitType**](../Model/.md)|  | [optional] |
+| **trait_type** | [**\Schematic\Model\TraitType**](../Model/.md)|  | [optional] |
 | **trait_types** | [**\Schematic\Model\TraitType[]**](../Model/\Schematic\Model\TraitType.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -1597,8 +1597,8 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$action = new \Schematic\Model\PlanChangeAction(); // PlanChangeAction
-$base_plan_action = new \Schematic\Model\PlanChangeBasePlanAction(); // PlanChangeBasePlanAction
+$action = new \Schematic\Model\\Schematic\Model\PlanChangeAction(); // \Schematic\Model\PlanChangeAction
+$base_plan_action = new \Schematic\Model\\Schematic\Model\PlanChangeBasePlanAction(); // \Schematic\Model\PlanChangeBasePlanAction
 $company_id = 'company_id_example'; // string
 $company_ids = array('company_ids_example'); // string[]
 $plan_ids = array('plan_ids_example'); // string[]
@@ -1617,8 +1617,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **action** | [**PlanChangeAction**](../Model/.md)|  | [optional] |
-| **base_plan_action** | [**PlanChangeBasePlanAction**](../Model/.md)|  | [optional] |
+| **action** | [**\Schematic\Model\PlanChangeAction**](../Model/.md)|  | [optional] |
+| **base_plan_action** | [**\Schematic\Model\PlanChangeBasePlanAction**](../Model/.md)|  | [optional] |
 | **company_id** | **string**|  | [optional] |
 | **company_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **plan_ids** | [**string[]**](../Model/string.md)|  | [optional] |

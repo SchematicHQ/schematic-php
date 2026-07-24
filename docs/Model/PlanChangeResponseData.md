@@ -11,19 +11,19 @@ Name | Type | Description | Notes
 **api_key** | [**\Schematic\Model\ApiKeyResponseData**](ApiKeyResponseData.md) |  | [optional]
 **audit_log** | [**\Schematic\Model\AuditLogListResponseData**](AuditLogListResponseData.md) |  | [optional]
 **base_plan** | [**\Schematic\Model\PlanSnapshotView**](PlanSnapshotView.md) |  | [optional]
-**base_plan_action** | [**\Schematic\Model\PlanChangeBasePlanAction**](PlanChangeBasePlanAction.md) |  | [optional]
-**base_plan_version** | [**\Schematic\Model\PlanVersionSnapshotView**](PlanVersionSnapshotView.md) |  | [optional]
+**base_plan_action** | [**\Schematic\Model\PlanChangeBasePlanAction**](PlanChangeBasePlanAction.md) | Any special behavior that affected the assignment of the base plan during this change. | [optional]
+**base_plan_version** | [**\Schematic\Model\PlanVersionSnapshotView**](PlanVersionSnapshotView.md) | The plan version that was assigned during this change. | [optional]
 **company** | [**\Schematic\Model\CompanyResponseData**](CompanyResponseData.md) |  | [optional]
 **company_id** | **string** |  |
 **created_at** | **\DateTime** |  |
 **environment_id** | **string** |  |
 **id** | **string** |  |
-**integration** | [**\Schematic\Model\IntegrationResponseData**](IntegrationResponseData.md) |  | [optional]
+**integration** | [**\Schematic\Model\IntegrationResponseData**](IntegrationResponseData.md) | The integration that performed this change, when the actor is an integration-owned API key (e.g. a billing-provider sync). | [optional]
 **is_version_upgrade** | **bool** | True when this change moved the company to a different version of the same plan (e.g. a plan version migration) rather than to a different plan. |
 **previous_base_plan** | [**\Schematic\Model\PlanSnapshotView**](PlanSnapshotView.md) |  | [optional]
-**previous_base_plan_version** | [**\Schematic\Model\PlanVersionSnapshotView**](PlanVersionSnapshotView.md) |  | [optional]
+**previous_base_plan_version** | [**\Schematic\Model\PlanVersionSnapshotView**](PlanVersionSnapshotView.md) | The plan version of the previous base plan before this change. | [optional]
 **request_id** | **string** |  | [optional]
-**subscription_change_action** | [**\Schematic\Model\PlanChangeSubscriptionAction**](PlanChangeSubscriptionAction.md) |  | [optional]
+**subscription_change_action** | [**\Schematic\Model\PlanChangeSubscriptionAction**](PlanChangeSubscriptionAction.md) | If a subscription was changed as a part of this plan change, indicates the type of change that was made. | [optional]
 **traits_updated** | [**\Schematic\Model\SubscriptionTraitUpdate[]**](SubscriptionTraitUpdate.md) | Any traits were updated as part of this plan change (via pay-in-advance entitlements). |
 **updated_at** | **\DateTime** |  |
 **user_id** | **string** |  | [optional]

@@ -108,7 +108,7 @@ $for_trial_expiry_plan = True; // bool | Filter for plans valid as trial expiry 
 $has_product_id = True; // bool | Filter out plans that do not have a billing product ID
 $ids = array('ids_example'); // string[]
 $include_draft_versions = True; // bool | Include billing settings from draft versions for plans which have draft version
-$plan_type = new \Schematic\Model\\Schematic\Model\PlanType(); // \Schematic\Model\PlanType | Filter by plan type
+$plan_type = new \Schematic\Model\\SchematicModelPlanType(); // \SchematicModelPlanType | Filter by plan type
 $q = 'q_example'; // string
 $scoped_to_company_id = 'scoped_to_company_id_example'; // string | Filter plans scoped to a specific company (custom plans)
 $with_entitlements = True; // bool | Include each plan's entitlements in the response
@@ -138,7 +138,7 @@ try {
 | **has_product_id** | **bool**| Filter out plans that do not have a billing product ID | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **include_draft_versions** | **bool**| Include billing settings from draft versions for plans which have draft version | [optional] |
-| **plan_type** | [**\Schematic\Model\PlanType**](../Model/.md)| Filter by plan type | [optional] |
+| **plan_type** | [**\SchematicModelPlanType**](../Model/.md)| Filter by plan type | [optional] |
 | **q** | **string**|  | [optional] |
 | **scoped_to_company_id** | **string**| Filter plans scoped to a specific company (custom plans) | [optional] |
 | **with_entitlements** | **bool**| Include each plan&#39;s entitlements in the response | [optional] |
@@ -500,7 +500,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string | Filter by company ID
 $plan_id = 'plan_id_example'; // string | Filter by plan ID
-$status = new \Schematic\Model\\Schematic\Model\CustomPlanBillingStatus(); // \Schematic\Model\CustomPlanBillingStatus | Filter by billing status
+$status = new \Schematic\Model\\SchematicModelCustomPlanBillingStatus(); // \SchematicModelCustomPlanBillingStatus | Filter by billing status
 $statuses = array(new \Schematic\Model\\Schematic\Model\CustomPlanBillingStatus()); // \Schematic\Model\CustomPlanBillingStatus[] | Filter by multiple billing statuses
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
@@ -519,7 +519,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **company_id** | **string**| Filter by company ID | [optional] |
 | **plan_id** | **string**| Filter by plan ID | [optional] |
-| **status** | [**\Schematic\Model\CustomPlanBillingStatus**](../Model/.md)| Filter by billing status | [optional] |
+| **status** | [**\SchematicModelCustomPlanBillingStatus**](../Model/.md)| Filter by billing status | [optional] |
 | **statuses** | [**\Schematic\Model\CustomPlanBillingStatus[]**](../Model/\Schematic\Model\CustomPlanBillingStatus.md)| Filter by multiple billing statuses | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
@@ -621,7 +621,7 @@ $for_trial_expiry_plan = True; // bool | Filter for plans valid as trial expiry 
 $has_product_id = True; // bool | Filter out plans that do not have a billing product ID
 $ids = array('ids_example'); // string[]
 $include_draft_versions = True; // bool | Include billing settings from draft versions for plans which have draft version
-$plan_type = new \Schematic\Model\\Schematic\Model\PlanType(); // \Schematic\Model\PlanType | Filter by plan type
+$plan_type = new \Schematic\Model\\SchematicModelPlanType(); // \SchematicModelPlanType | Filter by plan type
 $q = 'q_example'; // string
 $scoped_to_company_id = 'scoped_to_company_id_example'; // string | Filter plans scoped to a specific company (custom plans)
 $with_entitlements = True; // bool | Include each plan's entitlements in the response
@@ -651,7 +651,7 @@ try {
 | **has_product_id** | **bool**| Filter out plans that do not have a billing product ID | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **include_draft_versions** | **bool**| Include billing settings from draft versions for plans which have draft version | [optional] |
-| **plan_type** | [**\Schematic\Model\PlanType**](../Model/.md)| Filter by plan type | [optional] |
+| **plan_type** | [**\SchematicModelPlanType**](../Model/.md)| Filter by plan type | [optional] |
 | **q** | **string**|  | [optional] |
 | **scoped_to_company_id** | **string**| Filter plans scoped to a specific company (custom plans) | [optional] |
 | **with_entitlements** | **bool**| Include each plan&#39;s entitlements in the response | [optional] |
