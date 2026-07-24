@@ -199,7 +199,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $boolean_require_event = True; // bool | Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter.
 $feature_type = array(new \Schematic\Model\\Schematic\Model\FeatureType()); // \Schematic\Model\FeatureType[] | Filter by one or more feature types (boolean, event, trait)
 $ids = array('ids_example'); // string[]
-$managed_by = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
+$managed_by = new \Schematic\Model\\SchematicModelBillingProviderType(); // \SchematicModelBillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
 $plan_version_id = 'plan_version_id_example'; // string | Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used
 $q = 'q_example'; // string | Search by feature name or ID
 $without_company_override_for = 'without_company_override_for_example'; // string | Filter out features that already have a company override for the specified company ID
@@ -222,7 +222,7 @@ try {
 | **boolean_require_event** | **bool**| Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. | [optional] |
 | **feature_type** | [**\Schematic\Model\FeatureType[]**](../Model/\Schematic\Model\FeatureType.md)| Filter by one or more feature types (boolean, event, trait) | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **managed_by** | [**\Schematic\Model\BillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
+| **managed_by** | [**\SchematicModelBillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
 | **plan_version_id** | **string**| Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used | [optional] |
 | **q** | **string**| Search by feature name or ID | [optional] |
 | **without_company_override_for** | **string**| Filter out features that already have a company override for the specified company ID | [optional] |
@@ -633,7 +633,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $boolean_require_event = True; // bool | Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter.
 $feature_type = array(new \Schematic\Model\\Schematic\Model\FeatureType()); // \Schematic\Model\FeatureType[] | Filter by one or more feature types (boolean, event, trait)
 $ids = array('ids_example'); // string[]
-$managed_by = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
+$managed_by = new \Schematic\Model\\SchematicModelBillingProviderType(); // \SchematicModelBillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
 $plan_version_id = 'plan_version_id_example'; // string | Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used
 $q = 'q_example'; // string | Search by feature name or ID
 $without_company_override_for = 'without_company_override_for_example'; // string | Filter out features that already have a company override for the specified company ID
@@ -656,7 +656,7 @@ try {
 | **boolean_require_event** | **bool**| Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. | [optional] |
 | **feature_type** | [**\Schematic\Model\FeatureType[]**](../Model/\Schematic\Model\FeatureType.md)| Filter by one or more feature types (boolean, event, trait) | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **managed_by** | [**\Schematic\Model\BillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
+| **managed_by** | [**\SchematicModelBillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
 | **plan_version_id** | **string**| Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used | [optional] |
 | **q** | **string**| Search by feature name or ID | [optional] |
 | **without_company_override_for** | **string**| Filter out features that already have a company override for the specified company ID | [optional] |

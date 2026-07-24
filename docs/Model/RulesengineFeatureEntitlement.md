@@ -16,12 +16,12 @@ Name | Type | Description | Notes
 **event_subtype** | **string** | For event-based or credit-metered feature entitlements, the event subtype whose usage is tracked | [optional]
 **feature_id** | **string** | The ID of the feature |
 **feature_key** | **string** | The key of the flag associated with the feature |
-**metric_period** | [**\Schematic\Model\RulesengineMetricPeriod**](RulesengineMetricPeriod.md) |  | [optional]
+**metric_period** | [**\Schematic\Model\RulesengineMetricPeriod**](RulesengineMetricPeriod.md) | For event-based feature entitlements, the period over which usage is tracked | [optional]
 **metric_reset_at** | **\DateTime** | For event-based feature entitlements, when the usage period will reset | [optional]
-**month_reset** | [**\Schematic\Model\RulesengineMetricPeriodMonthReset**](RulesengineMetricPeriodMonthReset.md) |  | [optional]
+**month_reset** | [**\Schematic\Model\RulesengineMetricPeriodMonthReset**](RulesengineMetricPeriodMonthReset.md) | For event-based feature entitlements that have a monthly period, whether that monthly reset is based on the calendar month or a billing cycle | [optional]
 **soft_limit** | **int** | For usage-based pricing, the soft limit for overage charges or the next tier boundary | [optional]
 **usage** | **int** | If the company has a numeric entitlement for this feature, the current usage amount | [optional]
-**value_type** | [**\Schematic\Model\RulesengineEntitlementValueType**](RulesengineEntitlementValueType.md) |  |
+**value_type** | [**\Schematic\Model\RulesengineEntitlementValueType**](RulesengineEntitlementValueType.md) | The type of the entitlement value |
 **warning_tiers** | [**\Schematic\Model\RulesengineWarningTier[]**](RulesengineWarningTier.md) | Customer-defined usage warning thresholds configured on this entitlement | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

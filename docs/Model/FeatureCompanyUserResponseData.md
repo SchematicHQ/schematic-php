@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **access** | **bool** | Whether further usage is permitted. |
 **allocation** | **int** | The maximum amount of usage that is permitted; a null value indicates that unlimited usage is permitted. | [optional]
-**allocation_type** | [**\Schematic\Model\EntitlementValueType**](EntitlementValueType.md) |  |
+**allocation_type** | [**\Schematic\Model\EntitlementValueType**](EntitlementValueType.md) | The type of allocation that is being used. |
 **company** | [**\Schematic\Model\CompanyDetailResponseData**](CompanyDetailResponseData.md) |  | [optional]
 **entitlement_id** | **string** |  |
 **entitlement_type** | [**\Schematic\Model\EntitlementType**](EntitlementType.md) |  |
 **feature** | [**\Schematic\Model\FeatureDetailResponseData**](FeatureDetailResponseData.md) |  | [optional]
 **metric_reset_at** | **\DateTime** | The time at which the metric will resets. | [optional]
-**month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) |  | [optional]
-**period** | [**\Schematic\Model\MetricPeriod**](MetricPeriod.md) |  | [optional]
+**month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) | If the period is current_month, when the month resets. | [optional]
+**period** | [**\Schematic\Model\MetricPeriod**](MetricPeriod.md) | The period over which usage is measured. | [optional]
 **plan** | [**\Schematic\Model\PlanResponseData**](PlanResponseData.md) |  | [optional]
 **usage** | **int** | The amount of usage that has been consumed; a null value indicates that usage is not being measured. | [optional]
 **user** | [**\Schematic\Model\UserResponseData**](UserResponseData.md) |  | [optional]

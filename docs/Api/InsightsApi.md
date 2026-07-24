@@ -81,10 +81,10 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
 $feature_id = 'feature_id_example'; // string
-$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
-$granularity = new \Schematic\Model\TimeSeriesGranularity(); // TimeSeriesGranularity
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
+$granularity = new \Schematic\Model\\Schematic\Model\TimeSeriesGranularity(); // \Schematic\Model\TimeSeriesGranularity
 
 try {
     $result = $schematic->InsightsApi->getEnvironmentFeatureUsageTimeSeries($end_time, $feature_id, $start_time, $granularity);
@@ -101,7 +101,7 @@ try {
 | **end_time** | **\DateTime**|  | |
 | **feature_id** | **string**|  | |
 | **start_time** | **\DateTime**|  | |
-| **granularity** | [**TimeSeriesGranularity**](../Model/.md)|  | [optional] |
+| **granularity** | [**\Schematic\Model\TimeSeriesGranularity**](../Model/.md)|  | [optional] |
 
 ### Return type
 
@@ -138,10 +138,10 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
 $feature_id = 'feature_id_example'; // string
-$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
-$granularity = new \Schematic\Model\TimeSeriesGranularity(); // TimeSeriesGranularity
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
+$granularity = new \Schematic\Model\\Schematic\Model\TimeSeriesGranularity(); // \Schematic\Model\TimeSeriesGranularity
 
 try {
     $result = $schematic->InsightsApi->getEnvironmentTraitUsageTimeSeries($end_time, $feature_id, $start_time, $granularity);
@@ -158,7 +158,7 @@ try {
 | **end_time** | **\DateTime**|  | |
 | **feature_id** | **string**|  | |
 | **start_time** | **\DateTime**|  | |
-| **granularity** | [**TimeSeriesGranularity**](../Model/.md)|  | [optional] |
+| **granularity** | [**\Schematic\Model\TimeSeriesGranularity**](../Model/.md)|  | [optional] |
 
 ### Return type
 
@@ -294,8 +294,8 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
-$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
 $limit = 56; // int
 
 try {

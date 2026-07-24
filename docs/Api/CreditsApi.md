@@ -285,8 +285,8 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string
-$order = new \Schematic\Model\CreditGrantSortOrder(); // CreditGrantSortOrder
-$dir = new \Schematic\Model\SortDirection(); // SortDirection
+$order = new \Schematic\Model\\Schematic\Model\CreditGrantSortOrder(); // \Schematic\Model\CreditGrantSortOrder
+$dir = new \Schematic\Model\\Schematic\Model\SortDirection(); // \Schematic\Model\SortDirection
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -303,8 +303,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **company_id** | **string**|  | [optional] |
-| **order** | [**CreditGrantSortOrder**](../Model/.md)|  | [optional] |
-| **dir** | [**SortDirection**](../Model/.md)|  | [optional] |
+| **order** | [**\Schematic\Model\CreditGrantSortOrder**](../Model/.md)|  | [optional] |
+| **dir** | [**\Schematic\Model\SortDirection**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -345,8 +345,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
 $credit_id = 'credit_id_example'; // string
-$status = new \Schematic\Model\BillingCreditBundleStatus(); // BillingCreditBundleStatus
-$bundle_type = new \Schematic\Model\BillingCreditBundleType(); // BillingCreditBundleType
+$status = new \Schematic\Model\\Schematic\Model\BillingCreditBundleStatus(); // \Schematic\Model\BillingCreditBundleStatus
+$bundle_type = new \Schematic\Model\\Schematic\Model\BillingCreditBundleType(); // \Schematic\Model\BillingCreditBundleType
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -364,8 +364,8 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **credit_id** | **string**|  | [optional] |
-| **status** | [**BillingCreditBundleStatus**](../Model/.md)|  | [optional] |
-| **bundle_type** | [**BillingCreditBundleType**](../Model/.md)|  | [optional] |
+| **status** | [**\Schematic\Model\BillingCreditBundleStatus**](../Model/.md)|  | [optional] |
+| **bundle_type** | [**\Schematic\Model\BillingCreditBundleType**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -407,7 +407,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $company_id = 'company_id_example'; // string
 $billing_credit_id = 'billing_credit_id_example'; // string
 $end_time = 'end_time_example'; // string
-$event_type = new \Schematic\Model\CreditEventType(); // CreditEventType
+$event_type = new \Schematic\Model\\Schematic\Model\CreditEventType(); // \Schematic\Model\CreditEventType
 $feature_id = 'feature_id_example'; // string
 $start_time = 'start_time_example'; // string
 $limit = 100; // int | Page limit (default 100)
@@ -428,7 +428,7 @@ try {
 | **company_id** | **string**|  | |
 | **billing_credit_id** | **string**|  | [optional] |
 | **end_time** | **string**|  | [optional] |
-| **event_type** | [**CreditEventType**](../Model/.md)|  | [optional] |
+| **event_type** | [**\Schematic\Model\CreditEventType**](../Model/.md)|  | [optional] |
 | **feature_id** | **string**|  | [optional] |
 | **start_time** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -1157,8 +1157,8 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string
-$order = new \Schematic\Model\CreditGrantSortOrder(); // CreditGrantSortOrder
-$dir = new \Schematic\Model\SortDirection(); // SortDirection
+$order = new \Schematic\Model\\Schematic\Model\CreditGrantSortOrder(); // \Schematic\Model\CreditGrantSortOrder
+$dir = new \Schematic\Model\\Schematic\Model\SortDirection(); // \Schematic\Model\SortDirection
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -1175,8 +1175,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **company_id** | **string**|  | [optional] |
-| **order** | [**CreditGrantSortOrder**](../Model/.md)|  | [optional] |
-| **dir** | [**SortDirection**](../Model/.md)|  | [optional] |
+| **order** | [**\Schematic\Model\CreditGrantSortOrder**](../Model/.md)|  | [optional] |
+| **dir** | [**\Schematic\Model\SortDirection**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -1217,8 +1217,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
 $credit_id = 'credit_id_example'; // string
-$status = new \Schematic\Model\BillingCreditBundleStatus(); // BillingCreditBundleStatus
-$bundle_type = new \Schematic\Model\BillingCreditBundleType(); // BillingCreditBundleType
+$status = new \Schematic\Model\\Schematic\Model\BillingCreditBundleStatus(); // \Schematic\Model\BillingCreditBundleStatus
+$bundle_type = new \Schematic\Model\\Schematic\Model\BillingCreditBundleType(); // \Schematic\Model\BillingCreditBundleType
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -1236,8 +1236,8 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **credit_id** | **string**|  | [optional] |
-| **status** | [**BillingCreditBundleStatus**](../Model/.md)|  | [optional] |
-| **bundle_type** | [**BillingCreditBundleType**](../Model/.md)|  | [optional] |
+| **status** | [**\Schematic\Model\BillingCreditBundleStatus**](../Model/.md)|  | [optional] |
+| **bundle_type** | [**\Schematic\Model\BillingCreditBundleType**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -1279,7 +1279,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $company_id = 'company_id_example'; // string
 $billing_credit_id = 'billing_credit_id_example'; // string
 $end_time = 'end_time_example'; // string
-$event_type = new \Schematic\Model\CreditEventType(); // CreditEventType
+$event_type = new \Schematic\Model\\Schematic\Model\CreditEventType(); // \Schematic\Model\CreditEventType
 $feature_id = 'feature_id_example'; // string
 $start_time = 'start_time_example'; // string
 $limit = 100; // int | Page limit (default 100)
@@ -1300,7 +1300,7 @@ try {
 | **company_id** | **string**|  | |
 | **billing_credit_id** | **string**|  | [optional] |
 | **end_time** | **string**|  | [optional] |
-| **event_type** | [**CreditEventType**](../Model/.md)|  | [optional] |
+| **event_type** | [**\Schematic\Model\CreditEventType**](../Model/.md)|  | [optional] |
 | **feature_id** | **string**|  | [optional] |
 | **start_time** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |

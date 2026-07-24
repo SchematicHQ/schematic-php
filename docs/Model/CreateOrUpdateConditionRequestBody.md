@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **credit_id** | **string** | ID of credit to use to measure this condition | [optional]
 **event_subtype** | **string** | Name of track event type used to measure this condition | [optional]
 **id** | **string** |  | [optional]
-**metric_period** | [**\Schematic\Model\MetricPeriod**](MetricPeriod.md) |  | [optional]
-**metric_period_month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) |  | [optional]
+**metric_period** | [**\Schematic\Model\MetricPeriod**](MetricPeriod.md) | Period of time over which to measure the track event metric | [optional]
+**metric_period_month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) | When metric_period&#x3D;current_month, specify whether the month restarts based on the calendar month or the billing period | [optional]
 **metric_value** | **int** | Value to compare the track event metric against | [optional]
 **operator** | [**\Schematic\Model\ComparableOperator**](ComparableOperator.md) |  |
 **resource_ids** | **string[]** | List of resource IDs (companies, users, or plans) targeted by this condition |

@@ -240,8 +240,8 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $billing_only = True; // bool
 $exclude_ids = array('exclude_ids_example'); // string[]
 $id = 'id_example'; // string
-$state = new \Schematic\Model\IntegrationState(); // IntegrationState
-$type = new \Schematic\Model\IntegrationType(); // IntegrationType
+$state = new \Schematic\Model\\Schematic\Model\IntegrationState(); // \Schematic\Model\IntegrationState
+$type = new \Schematic\Model\\Schematic\Model\IntegrationType(); // \Schematic\Model\IntegrationType
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -260,8 +260,8 @@ try {
 | **billing_only** | **bool**|  | [optional] |
 | **exclude_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **id** | **string**|  | [optional] |
-| **state** | [**IntegrationState**](../Model/.md)|  | [optional] |
-| **type** | [**IntegrationType**](../Model/.md)|  | [optional] |
+| **state** | [**\Schematic\Model\IntegrationState**](../Model/.md)|  | [optional] |
+| **type** | [**\Schematic\Model\IntegrationType**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 

@@ -6,16 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **access** | **bool** | Whether further usage is permitted. |
 **allocation** | **int** | The maximum amount of usage that is permitted; a null value indicates that unlimited usage is permitted or that this is a credit-based entitlement (use credit_remaining instead). | [optional]
-**allocation_type** | [**\Schematic\Model\EntitlementValueType**](EntitlementValueType.md) |  |
+**allocation_type** | [**\Schematic\Model\EntitlementValueType**](EntitlementValueType.md) | The type of allocation that is being used. |
 **company_override** | [**\Schematic\Model\CompanyOverrideResponseData**](CompanyOverrideResponseData.md) |  | [optional]
 **credit_consumption_rate** | **float** | The rate at which credits are consumed per unit of usage | [optional]
 **credit_grant_counts** | **array<string,float>** |  | [optional]
 **credit_grant_details** | [**\Schematic\Model\CreditGrantDetail[]**](CreditGrantDetail.md) |  | [optional]
-**credit_grant_reason** | [**\Schematic\Model\BillingCreditGrantReason**](BillingCreditGrantReason.md) |  | [optional]
+**credit_grant_reason** | [**\Schematic\Model\BillingCreditGrantReason**](BillingCreditGrantReason.md) | Reason for the credit grant | [optional]
 **credit_remaining** | **float** |  | [optional]
 **credit_total** | **float** | Deprecated: Use credit_remaining instead. | [optional]
 **credit_type_icon** | **string** | Icon identifier for the credit type | [optional]
-**credit_usage_aggregation** | [**\Schematic\Model\CreditUsageAggregation**](CreditUsageAggregation.md) |  | [optional]
+**credit_usage_aggregation** | [**\Schematic\Model\CreditUsageAggregation**](CreditUsageAggregation.md) | Aggregated credit usage by time period (day, week, month, billing period) | [optional]
 **credit_used** | **float** |  | [optional]
 **effective_limit** | **int** | Effective limit for usage calculations. For overage pricing, this is the soft limit where overage charges begin. For tiered pricing, this is the first tier boundary. For other pricing models, this is the base allocation. Used to calculate usage percentages and determine access thresholds. | [optional]
 **effective_price** | **float** | Per-unit price for current usage scenario | [optional]
@@ -27,11 +27,11 @@ Name | Type | Description | Notes
 **has_valid_allocation** | **bool** | Whether a valid allocation exists | [optional]
 **is_unlimited** | **bool** | Whether this is an unlimited allocation | [optional]
 **metric_reset_at** | **\DateTime** | The time at which the metric will reset. | [optional]
-**month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) |  | [optional]
+**month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) | If the period is current_month, when the month resets. | [optional]
 **monthly_usage_based_price** | [**\Schematic\Model\BillingPriceView**](BillingPriceView.md) |  | [optional]
 **overuse** | **int** | Amount of usage exceeding soft limit (overage pricing only) | [optional]
 **percent_used** | **float** | Percentage of allocation consumed (0-100+) | [optional]
-**period** | [**\Schematic\Model\MetricPeriod**](MetricPeriod.md) |  | [optional]
+**period** | [**\Schematic\Model\MetricPeriod**](MetricPeriod.md) | The period over which usage is measured. | [optional]
 **plan** | [**\Schematic\Model\PlanResponseData**](PlanResponseData.md) |  | [optional]
 **plan_entitlement** | [**\Schematic\Model\PlanEntitlementResponseData**](PlanEntitlementResponseData.md) |  | [optional]
 **price_behavior** | [**\Schematic\Model\EntitlementPriceBehavior**](EntitlementPriceBehavior.md) |  | [optional]

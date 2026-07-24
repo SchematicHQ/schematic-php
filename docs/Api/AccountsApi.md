@@ -45,7 +45,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string | Search filter
-$role = new \Schematic\Model\\Schematic\Model\AccountMemberRole(); // \Schematic\Model\AccountMemberRole | Filter by member role
+$role = new \Schematic\Model\\SchematicModelAccountMemberRole(); // \SchematicModelAccountMemberRole | Filter by member role
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -63,7 +63,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**| Search filter | [optional] |
-| **role** | [**\Schematic\Model\AccountMemberRole**](../Model/.md)| Filter by member role | [optional] |
+| **role** | [**\SchematicModelAccountMemberRole**](../Model/.md)| Filter by member role | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -159,11 +159,11 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$actor_type = new \Schematic\Model\ActorType(); // ActorType
-$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$actor_type = new \Schematic\Model\\Schematic\Model\ActorType(); // \Schematic\Model\ActorType
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
 $environment_id = 'environment_id_example'; // string
 $q = 'q_example'; // string
-$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -179,7 +179,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **actor_type** | [**ActorType**](../Model/.md)|  | [optional] |
+| **actor_type** | [**\Schematic\Model\ActorType**](../Model/.md)|  | [optional] |
 | **end_time** | **\DateTime**|  | [optional] |
 | **environment_id** | **string**|  | [optional] |
 | **q** | **string**|  | [optional] |
@@ -680,7 +680,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $ids = array('ids_example'); // string[]
 $q = 'q_example'; // string | Search filter
-$role = new \Schematic\Model\\Schematic\Model\AccountMemberRole(); // \Schematic\Model\AccountMemberRole | Filter by member role
+$role = new \Schematic\Model\\SchematicModelAccountMemberRole(); // \SchematicModelAccountMemberRole | Filter by member role
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -698,7 +698,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **q** | **string**| Search filter | [optional] |
-| **role** | [**\Schematic\Model\AccountMemberRole**](../Model/.md)| Filter by member role | [optional] |
+| **role** | [**\SchematicModelAccountMemberRole**](../Model/.md)| Filter by member role | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -794,11 +794,11 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$actor_type = new \Schematic\Model\ActorType(); // ActorType
-$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$actor_type = new \Schematic\Model\\Schematic\Model\ActorType(); // \Schematic\Model\ActorType
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
 $environment_id = 'environment_id_example'; // string
 $q = 'q_example'; // string
-$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -814,7 +814,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **actor_type** | [**ActorType**](../Model/.md)|  | [optional] |
+| **actor_type** | [**\Schematic\Model\ActorType**](../Model/.md)|  | [optional] |
 | **end_time** | **\DateTime**|  | [optional] |
 | **environment_id** | **string**|  | [optional] |
 | **q** | **string**|  | [optional] |

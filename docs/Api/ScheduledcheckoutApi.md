@@ -131,7 +131,7 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string
-$status = new \Schematic\Model\ScheduledCheckoutStatus(); // ScheduledCheckoutStatus
+$status = new \Schematic\Model\\Schematic\Model\ScheduledCheckoutStatus(); // \Schematic\Model\ScheduledCheckoutStatus
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
@@ -148,7 +148,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **company_id** | **string**|  | [optional] |
-| **status** | [**ScheduledCheckoutStatus**](../Model/.md)|  | [optional] |
+| **status** | [**\Schematic\Model\ScheduledCheckoutStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
