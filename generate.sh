@@ -32,4 +32,9 @@ fi
 # Clean generated directories before regenerating
 rm -rf src/Api/ src/Model/ test/Api/ test/Model/ docs/
 eval $COMMAND
-vendor/bin/php-cs-fixer fix
+
+# The .php-cs-fixer config enables risky rules (strict_comparison, strict_param),
+# so --allow-risky=yes is required or the fixer aborts and leaves generated code
+# unformatted. Set PHP_CS_FIXER_IGNORE_ENV=1 if your local PHP is newer than the
+# SDK's supported range (7.4–8.3), otherwise the fixer refuses to run.
+vendor/bin/php-cs-fixer fix --allow-risky=yes

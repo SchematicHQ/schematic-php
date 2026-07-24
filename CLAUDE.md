@@ -77,6 +77,19 @@ This SDK is generated using [OpenAPI Generator](https://openapi-generator.tech/)
 
 The script runs the OpenAPI generator and then applies `php-cs-fixer` to the output. Files listed in `.openapi-generator-ignore` (e.g. `src/Schematic.php`) are preserved during generation.
 
+#### Wiring new API clients
+
+`src/Schematic.php` is the hand-maintained main client and is **not** regenerated (it's in `.openapi-generator-ignore`). It manually instantiates one property per API class in `src/Api/`. When the spec adds a new top-level client (e.g. a new `FooApi`), the generator writes `src/Api/FooApi.php` but does **not** wire it into `Schematic.php` — you must add the `use` import, the public property, and the `new FooApi($httpClient, $config)` line by hand. Forgetting this leaves the client generated but unreachable via `new Schematic(...)`.
+
+After regenerating, diff `src/Api/` against `main` for added classes and confirm every one is wired:
+
+```bash
+# Every class in src/Api/ should appear in src/Schematic.php
+comm -23 <(ls src/Api/ | sed 's/\.php$//' | sort) <(grep -oE 'new [A-Za-z]+Api\(' src/Schematic.php | sed 's/new //;s/(//' | sort)
+```
+
+Any name printed is an API class present in `src/Api/` but missing from `Schematic.php`.
+
 ### Usage Pattern
 
 The typical usage pattern is:
