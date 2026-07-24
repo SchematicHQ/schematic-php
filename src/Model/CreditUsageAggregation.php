@@ -72,10 +72,10 @@ class CreditUsageAggregation implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'usage_this_billing_period' => null,
-        'usage_this_calendar_month' => null,
-        'usage_this_week' => null,
-        'usage_today' => null
+        'usage_this_billing_period' => 'double',
+        'usage_this_calendar_month' => 'double',
+        'usage_this_week' => 'double',
+        'usage_today' => 'double'
     ];
 
     /**
@@ -334,8 +334,8 @@ class CreditUsageAggregation implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'usage_this_billing_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('usage_this_billing_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('usage_this_billing_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -368,8 +368,8 @@ class CreditUsageAggregation implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'usage_this_calendar_month');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('usage_this_calendar_month', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('usage_this_calendar_month', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -402,8 +402,8 @@ class CreditUsageAggregation implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'usage_this_week');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('usage_this_week', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('usage_this_week', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -436,8 +436,8 @@ class CreditUsageAggregation implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'usage_today');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('usage_today', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('usage_today', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -510,7 +510,7 @@ class CreditUsageAggregation implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **string** |  |
 **name** | **string** |  |
 **priority** | **int** |  |
-**rule_type** | **string** |  |
+**rule_type** | [**\Schematic\Model\RuleType**](RuleType.md) |  |
 **updated_at** | **\DateTime** |  |
 **value** | **bool** |  |
 

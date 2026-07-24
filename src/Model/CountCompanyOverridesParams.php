@@ -83,8 +83,8 @@ class CountCompanyOverridesParams implements ModelInterface, ArrayAccess, \JsonS
         'feature_id' => null,
         'feature_ids' => null,
         'ids' => null,
-        'limit' => null,
-        'offset' => null,
+        'limit' => 'int64',
+        'offset' => 'int64',
         'q' => null,
         'without_expired' => null
     ];
@@ -332,6 +332,26 @@ class CountCompanyOverridesParams implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['company_ids']) && (count($this->container['company_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'company_ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['feature_ids']) && (count($this->container['feature_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'feature_ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['ids']) && (count($this->container['ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -396,6 +416,10 @@ class CountCompanyOverridesParams implements ModelInterface, ArrayAccess, \JsonS
         if (is_null($company_ids)) {
             throw new \InvalidArgumentException('non-nullable company_ids cannot be null');
         }
+
+        if ((count($company_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $company_ids when calling CountCompanyOverridesParams., number of items must be less than or equal to 100.');
+        }
         $this->container['company_ids'] = $company_ids;
 
         return $this;
@@ -450,6 +474,10 @@ class CountCompanyOverridesParams implements ModelInterface, ArrayAccess, \JsonS
         if (is_null($feature_ids)) {
             throw new \InvalidArgumentException('non-nullable feature_ids cannot be null');
         }
+
+        if ((count($feature_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $feature_ids when calling CountCompanyOverridesParams., number of items must be less than or equal to 100.');
+        }
         $this->container['feature_ids'] = $feature_ids;
 
         return $this;
@@ -476,6 +504,10 @@ class CountCompanyOverridesParams implements ModelInterface, ArrayAccess, \JsonS
     {
         if (is_null($ids)) {
             throw new \InvalidArgumentException('non-nullable ids cannot be null');
+        }
+
+        if ((count($ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ids when calling CountCompanyOverridesParams., number of items must be less than or equal to 100.');
         }
         $this->container['ids'] = $ids;
 
@@ -504,6 +536,14 @@ class CountCompanyOverridesParams implements ModelInterface, ArrayAccess, \JsonS
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountCompanyOverridesParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountCompanyOverridesParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -653,7 +693,7 @@ class CountCompanyOverridesParams implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

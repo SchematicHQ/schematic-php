@@ -64,17 +64,21 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'credit_icon' => 'string',
         'credit_id' => 'string',
         'credit_name' => 'string',
+        'currency' => 'string',
         'expires_at' => '\DateTime',
         'grant_reason' => '\Schematic\Model\BillingCreditGrantReason',
         'id' => 'string',
         'plan_id' => 'string',
         'plan_name' => 'string',
         'price' => '\Schematic\Model\BillingPriceResponseData',
-        'quantity' => 'int',
+        'quantity' => 'float',
         'quantity_remaining' => 'float',
         'quantity_used' => 'float',
         'renewal_enabled' => 'bool',
         'renewal_period' => '\Schematic\Model\BillingPlanCreditGrantResetCadence',
+        'reserved' => 'float',
+        'settled' => 'float',
+        'source_grant_id' => 'string',
         'source_label' => 'string',
         'transfers' => '\Schematic\Model\CreditTransferResponseData[]',
         'updated_at' => '\DateTime',
@@ -97,17 +101,21 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'credit_icon' => null,
         'credit_id' => null,
         'credit_name' => null,
+        'currency' => null,
         'expires_at' => 'date-time',
         'grant_reason' => null,
         'id' => null,
         'plan_id' => null,
         'plan_name' => null,
         'price' => null,
-        'quantity' => null,
-        'quantity_remaining' => null,
-        'quantity_used' => null,
+        'quantity' => 'double',
+        'quantity_remaining' => 'double',
+        'quantity_used' => 'double',
         'renewal_enabled' => null,
         'renewal_period' => null,
+        'reserved' => 'double',
+        'settled' => 'double',
+        'source_grant_id' => null,
         'source_label' => null,
         'transfers' => null,
         'updated_at' => 'date-time',
@@ -128,6 +136,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'credit_icon' => true,
         'credit_id' => false,
         'credit_name' => false,
+        'currency' => true,
         'expires_at' => true,
         'grant_reason' => false,
         'id' => false,
@@ -139,6 +148,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'quantity_used' => false,
         'renewal_enabled' => false,
         'renewal_period' => true,
+        'reserved' => true,
+        'settled' => true,
+        'source_grant_id' => true,
         'source_label' => false,
         'transfers' => false,
         'updated_at' => false,
@@ -239,6 +251,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'credit_icon' => 'credit_icon',
         'credit_id' => 'credit_id',
         'credit_name' => 'credit_name',
+        'currency' => 'currency',
         'expires_at' => 'expires_at',
         'grant_reason' => 'grant_reason',
         'id' => 'id',
@@ -250,6 +263,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'quantity_used' => 'quantity_used',
         'renewal_enabled' => 'renewal_enabled',
         'renewal_period' => 'renewal_period',
+        'reserved' => 'reserved',
+        'settled' => 'settled',
+        'source_grant_id' => 'source_grant_id',
         'source_label' => 'source_label',
         'transfers' => 'transfers',
         'updated_at' => 'updated_at',
@@ -270,6 +286,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'credit_icon' => 'setCreditIcon',
         'credit_id' => 'setCreditId',
         'credit_name' => 'setCreditName',
+        'currency' => 'setCurrency',
         'expires_at' => 'setExpiresAt',
         'grant_reason' => 'setGrantReason',
         'id' => 'setId',
@@ -281,6 +298,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'quantity_used' => 'setQuantityUsed',
         'renewal_enabled' => 'setRenewalEnabled',
         'renewal_period' => 'setRenewalPeriod',
+        'reserved' => 'setReserved',
+        'settled' => 'setSettled',
+        'source_grant_id' => 'setSourceGrantId',
         'source_label' => 'setSourceLabel',
         'transfers' => 'setTransfers',
         'updated_at' => 'setUpdatedAt',
@@ -301,6 +321,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'credit_icon' => 'getCreditIcon',
         'credit_id' => 'getCreditId',
         'credit_name' => 'getCreditName',
+        'currency' => 'getCurrency',
         'expires_at' => 'getExpiresAt',
         'grant_reason' => 'getGrantReason',
         'id' => 'getId',
@@ -312,6 +333,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'quantity_used' => 'getQuantityUsed',
         'renewal_enabled' => 'getRenewalEnabled',
         'renewal_period' => 'getRenewalPeriod',
+        'reserved' => 'getReserved',
+        'settled' => 'getSettled',
+        'source_grant_id' => 'getSourceGrantId',
         'source_label' => 'getSourceLabel',
         'transfers' => 'getTransfers',
         'updated_at' => 'getUpdatedAt',
@@ -383,6 +407,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('credit_icon', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('credit_name', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
         $this->setIfExists('grant_reason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -394,6 +419,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('quantity_used', $data ?? [], null);
         $this->setIfExists('renewal_enabled', $data ?? [], null);
         $this->setIfExists('renewal_period', $data ?? [], null);
+        $this->setIfExists('reserved', $data ?? [], null);
+        $this->setIfExists('settled', $data ?? [], null);
+        $this->setIfExists('source_grant_id', $data ?? [], null);
         $this->setIfExists('source_label', $data ?? [], null);
         $this->setIfExists('transfers', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -465,6 +493,10 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         if ($this->container['source_label'] === null) {
             $invalidProperties[] = "'source_label' can't be null";
         }
+        if (!is_null($this->container['transfers']) && (count($this->container['transfers']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'transfers', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -587,8 +619,8 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'credit_icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -653,6 +685,40 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency currency
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
      * Gets expires_at
      *
      * @return \DateTime|null
@@ -675,8 +741,8 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'expires_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expires_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expires_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -763,8 +829,8 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -797,8 +863,8 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'plan_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plan_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -838,7 +904,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets quantity
      *
-     * @return int
+     * @return float
      */
     public function getQuantity()
     {
@@ -848,7 +914,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets quantity
      *
-     * @param int $quantity quantity
+     * @param float $quantity quantity
      *
      * @return self
      */
@@ -966,13 +1032,115 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'renewal_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('renewal_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('renewal_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['renewal_period'] = $renewal_period;
+
+        return $this;
+    }
+
+    /**
+     * Gets reserved
+     *
+     * @return float|null
+     */
+    public function getReserved()
+    {
+        return $this->container['reserved'];
+    }
+
+    /**
+     * Sets reserved
+     *
+     * @param float|null $reserved reserved
+     *
+     * @return self
+     */
+    public function setReserved($reserved)
+    {
+        if (is_null($reserved)) {
+            array_push($this->openAPINullablesSetToNull, 'reserved');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('reserved', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['reserved'] = $reserved;
+
+        return $this;
+    }
+
+    /**
+     * Gets settled
+     *
+     * @return float|null
+     */
+    public function getSettled()
+    {
+        return $this->container['settled'];
+    }
+
+    /**
+     * Sets settled
+     *
+     * @param float|null $settled settled
+     *
+     * @return self
+     */
+    public function setSettled($settled)
+    {
+        if (is_null($settled)) {
+            array_push($this->openAPINullablesSetToNull, 'settled');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('settled', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['settled'] = $settled;
+
+        return $this;
+    }
+
+    /**
+     * Gets source_grant_id
+     *
+     * @return string|null
+     */
+    public function getSourceGrantId()
+    {
+        return $this->container['source_grant_id'];
+    }
+
+    /**
+     * Sets source_grant_id
+     *
+     * @param string|null $source_grant_id For rollover grants, the ID of the source grant that this grant rolled from.
+     *
+     * @return self
+     */
+    public function setSourceGrantId($source_grant_id)
+    {
+        if (is_null($source_grant_id)) {
+            array_push($this->openAPINullablesSetToNull, 'source_grant_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('source_grant_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['source_grant_id'] = $source_grant_id;
 
         return $this;
     }
@@ -1025,6 +1193,10 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
     {
         if (is_null($transfers)) {
             throw new \InvalidArgumentException('non-nullable transfers cannot be null');
+        }
+
+        if ((count($transfers) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $transfers when calling BillingCreditGrantResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['transfers'] = $transfers;
 
@@ -1081,8 +1253,8 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'valid_from');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('valid_from', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('valid_from', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1115,8 +1287,8 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'zeroed_out_date');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('zeroed_out_date', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('zeroed_out_date', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1149,8 +1321,8 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'zeroed_out_reason');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('zeroed_out_reason', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('zeroed_out_reason', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1223,7 +1395,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

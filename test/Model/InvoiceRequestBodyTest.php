@@ -144,9 +144,36 @@ class InvoiceRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "ending_balance"
+     */
+    public function testPropertyEndingBalance()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "payment_method_external_id"
      */
     public function testPropertyPaymentMethodExternalId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "starting_balance"
+     */
+    public function testPropertyStartingBalance()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "status"
+     */
+    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

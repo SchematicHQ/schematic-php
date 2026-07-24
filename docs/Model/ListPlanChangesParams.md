@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **string** |  | [optional]
-**base_plan_action** | **string** |  | [optional]
+**action** | [**\Schematic\Model\PlanChangeAction**](PlanChangeAction.md) |  | [optional]
+**base_plan_action** | [**\Schematic\Model\PlanChangeBasePlanAction**](PlanChangeBasePlanAction.md) |  | [optional]
 **company_id** | **string** |  | [optional]
 **company_ids** | **string[]** |  | [optional]
 **limit** | **int** | Page limit (default 100) | [optional]

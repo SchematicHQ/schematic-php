@@ -5,8 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actor_type** | [**\Schematic\Model\ActorType**](ActorType.md) |  |
+**api_key** | [**\Schematic\Model\ApiKeyResponseData**](ApiKeyResponseData.md) |  | [optional]
 **api_key_id** | **string** |  | [optional]
 **ended_at** | **\DateTime** |  | [optional]
+**environment** | [**\Schematic\Model\EnvironmentResponseData**](EnvironmentResponseData.md) |  | [optional]
 **environment_id** | **string** |  | [optional]
 **id** | **string** |  |
 **method** | **string** |  |

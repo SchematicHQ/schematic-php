@@ -44,7 +44,7 @@ class RulesEngineSchemaVersion
     /**
      * Possible values of this enum
      */
-    public const V0F048DD3 = 'v0f048dd3';
+    public const V5B3E7220 = 'v5b3e7220';
 
     public const PLACEHOLDER_FOR_FERN_COMPATIBILITY = 'placeholder-for-fern-compatibility';
 
@@ -55,7 +55,7 @@ class RulesEngineSchemaVersion
     public static function getAllowableEnumValues()
     {
         return [
-            self::V0F048DD3,
+            self::V5B3E7220,
             self::PLACEHOLDER_FOR_FERN_COMPATIBILITY
         ];
     }

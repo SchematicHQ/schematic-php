@@ -263,4 +263,16 @@ class FeaturesApiTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for upsertFeatureForBillingProduct
+     *
+     * Upsert feature for billing product.
+     *
+     */
+    public function testUpsertFeatureForBillingProduct()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

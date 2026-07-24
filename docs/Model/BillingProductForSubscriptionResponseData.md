@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **external_id** | **string** |  |
 **id** | **string** |  |
 **interval** | **string** |  |
+**interval_count** | **int** |  | [optional]
 **meter_id** | **string** |  | [optional]
 **name** | **string** |  |
 **package_size** | **int** |  |

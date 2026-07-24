@@ -59,7 +59,7 @@ class GetPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'data' => '\Schematic\Model\PlanDetailResponseData',
-        'params' => 'object'
+        'params' => '\Schematic\Model\GetPlanParams'
     ];
 
     /**
@@ -333,7 +333,7 @@ class GetPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets params
      *
-     * @return object
+     * @return \Schematic\Model\GetPlanParams
      */
     public function getParams()
     {
@@ -343,7 +343,7 @@ class GetPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets params
      *
-     * @param object $params Input parameters
+     * @param \Schematic\Model\GetPlanParams $params params
      *
      * @return self
      */
@@ -420,7 +420,7 @@ class GetPlanResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

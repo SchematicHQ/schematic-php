@@ -59,7 +59,8 @@ class ListPlanIssuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'plan_id' => 'string'
+        'plan_id' => 'string',
+        'plan_version_id' => 'string'
     ];
 
     /**
@@ -70,7 +71,8 @@ class ListPlanIssuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'plan_id' => null
+        'plan_id' => null,
+        'plan_version_id' => null
     ];
 
     /**
@@ -79,7 +81,8 @@ class ListPlanIssuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'plan_id' => false
+        'plan_id' => false,
+        'plan_version_id' => false
     ];
 
     /**
@@ -168,7 +171,8 @@ class ListPlanIssuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'plan_id' => 'plan_id'
+        'plan_id' => 'plan_id',
+        'plan_version_id' => 'plan_version_id'
     ];
 
     /**
@@ -177,7 +181,8 @@ class ListPlanIssuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'plan_id' => 'setPlanId'
+        'plan_id' => 'setPlanId',
+        'plan_version_id' => 'setPlanVersionId'
     ];
 
     /**
@@ -186,7 +191,8 @@ class ListPlanIssuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'plan_id' => 'getPlanId'
+        'plan_id' => 'getPlanId',
+        'plan_version_id' => 'getPlanVersionId'
     ];
 
     /**
@@ -247,6 +253,7 @@ class ListPlanIssuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(array $data = null)
     {
         $this->setIfExists('plan_id', $data ?? [], null);
+        $this->setIfExists('plan_version_id', $data ?? [], null);
     }
 
     /**
@@ -317,6 +324,33 @@ class ListPlanIssuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
 
         return $this;
     }
+
+    /**
+     * Gets plan_version_id
+     *
+     * @return string|null
+     */
+    public function getPlanVersionId()
+    {
+        return $this->container['plan_version_id'];
+    }
+
+    /**
+     * Sets plan_version_id
+     *
+     * @param string|null $plan_version_id plan_version_id
+     *
+     * @return self
+     */
+    public function setPlanVersionId($plan_version_id)
+    {
+        if (is_null($plan_version_id)) {
+            throw new \InvalidArgumentException('non-nullable plan_version_id cannot be null');
+        }
+        $this->container['plan_version_id'] = $plan_version_id;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -381,7 +415,7 @@ class ListPlanIssuesParams implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

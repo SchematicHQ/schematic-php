@@ -65,9 +65,11 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         'discounts' => '\Schematic\Model\BillingSubscriptionDiscountView[]',
         'expired_at' => '\DateTime',
         'interval' => 'string',
+        'is_initial' => 'bool',
         'latest_invoice' => '\Schematic\Model\InvoiceResponseData',
         'payment_method' => '\Schematic\Model\PaymentMethodResponseData',
         'products' => '\Schematic\Model\BillingProductForSubscriptionResponseData[]',
+        'provider_type' => '\Schematic\Model\BillingProviderType',
         'status' => 'string',
         'subscription_external_id' => 'string',
         'total_price' => 'int',
@@ -89,12 +91,14 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         'discounts' => null,
         'expired_at' => 'date-time',
         'interval' => null,
+        'is_initial' => null,
         'latest_invoice' => null,
         'payment_method' => null,
         'products' => null,
+        'provider_type' => null,
         'status' => null,
         'subscription_external_id' => null,
-        'total_price' => null,
+        'total_price' => 'int64',
         'trial_end' => 'date-time'
     ];
 
@@ -111,9 +115,11 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         'discounts' => false,
         'expired_at' => true,
         'interval' => false,
+        'is_initial' => false,
         'latest_invoice' => false,
         'payment_method' => false,
         'products' => false,
+        'provider_type' => false,
         'status' => false,
         'subscription_external_id' => false,
         'total_price' => false,
@@ -213,9 +219,11 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         'discounts' => 'discounts',
         'expired_at' => 'expired_at',
         'interval' => 'interval',
+        'is_initial' => 'is_initial',
         'latest_invoice' => 'latest_invoice',
         'payment_method' => 'payment_method',
         'products' => 'products',
+        'provider_type' => 'provider_type',
         'status' => 'status',
         'subscription_external_id' => 'subscription_external_id',
         'total_price' => 'total_price',
@@ -235,9 +243,11 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         'discounts' => 'setDiscounts',
         'expired_at' => 'setExpiredAt',
         'interval' => 'setInterval',
+        'is_initial' => 'setIsInitial',
         'latest_invoice' => 'setLatestInvoice',
         'payment_method' => 'setPaymentMethod',
         'products' => 'setProducts',
+        'provider_type' => 'setProviderType',
         'status' => 'setStatus',
         'subscription_external_id' => 'setSubscriptionExternalId',
         'total_price' => 'setTotalPrice',
@@ -257,9 +267,11 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         'discounts' => 'getDiscounts',
         'expired_at' => 'getExpiredAt',
         'interval' => 'getInterval',
+        'is_initial' => 'getIsInitial',
         'latest_invoice' => 'getLatestInvoice',
         'payment_method' => 'getPaymentMethod',
         'products' => 'getProducts',
+        'provider_type' => 'getProviderType',
         'status' => 'getStatus',
         'subscription_external_id' => 'getSubscriptionExternalId',
         'total_price' => 'getTotalPrice',
@@ -330,9 +342,11 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('discounts', $data ?? [], null);
         $this->setIfExists('expired_at', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
+        $this->setIfExists('is_initial', $data ?? [], null);
         $this->setIfExists('latest_invoice', $data ?? [], null);
         $this->setIfExists('payment_method', $data ?? [], null);
         $this->setIfExists('products', $data ?? [], null);
+        $this->setIfExists('provider_type', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('subscription_external_id', $data ?? [], null);
         $this->setIfExists('total_price', $data ?? [], null);
@@ -378,11 +392,25 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         if ($this->container['discounts'] === null) {
             $invalidProperties[] = "'discounts' can't be null";
         }
+        if ((count($this->container['discounts']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'discounts', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['interval'] === null) {
             $invalidProperties[] = "'interval' can't be null";
         }
+        if ($this->container['is_initial'] === null) {
+            $invalidProperties[] = "'is_initial' can't be null";
+        }
         if ($this->container['products'] === null) {
             $invalidProperties[] = "'products' can't be null";
+        }
+        if ((count($this->container['products']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'products', number of items must be less than or equal to 1000.";
+        }
+
+        if ($this->container['provider_type'] === null) {
+            $invalidProperties[] = "'provider_type' can't be null";
         }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
@@ -431,8 +459,8 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'cancel_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cancel_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('cancel_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -545,6 +573,10 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         if (is_null($discounts)) {
             throw new \InvalidArgumentException('non-nullable discounts cannot be null');
         }
+
+        if ((count($discounts) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $discounts when calling CompanySubscriptionResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['discounts'] = $discounts;
 
         return $this;
@@ -573,8 +605,8 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'expired_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expired_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expired_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -607,6 +639,33 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             throw new \InvalidArgumentException('non-nullable interval cannot be null');
         }
         $this->container['interval'] = $interval;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_initial
+     *
+     * @return bool
+     */
+    public function getIsInitial()
+    {
+        return $this->container['is_initial'];
+    }
+
+    /**
+     * Sets is_initial
+     *
+     * @param bool $is_initial is_initial
+     *
+     * @return self
+     */
+    public function setIsInitial($is_initial)
+    {
+        if (is_null($is_initial)) {
+            throw new \InvalidArgumentException('non-nullable is_initial cannot be null');
+        }
+        $this->container['is_initial'] = $is_initial;
 
         return $this;
     }
@@ -687,7 +746,38 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         if (is_null($products)) {
             throw new \InvalidArgumentException('non-nullable products cannot be null');
         }
+
+        if ((count($products) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $products when calling CompanySubscriptionResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['products'] = $products;
+
+        return $this;
+    }
+
+    /**
+     * Gets provider_type
+     *
+     * @return \Schematic\Model\BillingProviderType
+     */
+    public function getProviderType()
+    {
+        return $this->container['provider_type'];
+    }
+
+    /**
+     * Sets provider_type
+     *
+     * @param \Schematic\Model\BillingProviderType $provider_type provider_type
+     *
+     * @return self
+     */
+    public function setProviderType($provider_type)
+    {
+        if (is_null($provider_type)) {
+            throw new \InvalidArgumentException('non-nullable provider_type cannot be null');
+        }
+        $this->container['provider_type'] = $provider_type;
 
         return $this;
     }
@@ -796,8 +886,8 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'trial_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -870,7 +960,7 @@ class CompanySubscriptionResponseData implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

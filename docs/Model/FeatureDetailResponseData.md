@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**billing_linked_resource** | [**\Schematic\Model\BillingLinkedResourceResponseData**](BillingLinkedResourceResponseData.md) |  | [optional]
 **created_at** | **\DateTime** |  |
 **description** | **string** |  |
 **event_subtype** | **string** |  | [optional]
@@ -13,7 +14,8 @@ Name | Type | Description | Notes
 **icon** | **string** |  |
 **id** | **string** |  |
 **lifecycle_phase** | [**\Schematic\Model\FeatureLifecyclePhase**](FeatureLifecyclePhase.md) |  | [optional]
-**maintainer_id** | **string** |  | [optional]
+**maintainer** | [**\Schematic\Model\AccountMemberResponseData**](AccountMemberResponseData.md) |  | [optional]
+**maintainer_account_member_id** | **string** |  | [optional]
 **name** | **string** |  |
 **plans** | [**\Schematic\Model\PreviewObject[]**](PreviewObject.md) |  |
 **plural_name** | **string** |  | [optional]

@@ -58,6 +58,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
+        'billing_linked_resource' => '\Schematic\Model\BillingLinkedResourceResponseData',
         'created_at' => '\DateTime',
         'description' => 'string',
         'event_subtype' => 'string',
@@ -67,7 +68,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'icon' => 'string',
         'id' => 'string',
         'lifecycle_phase' => '\Schematic\Model\FeatureLifecyclePhase',
-        'maintainer_id' => 'string',
+        'maintainer' => '\Schematic\Model\AccountMemberResponseData',
+        'maintainer_account_member_id' => 'string',
         'name' => 'string',
         'plans' => '\Schematic\Model\PreviewObject[]',
         'plural_name' => 'string',
@@ -85,6 +87,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'billing_linked_resource' => null,
         'created_at' => 'date-time',
         'description' => null,
         'event_subtype' => null,
@@ -94,7 +97,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'icon' => null,
         'id' => null,
         'lifecycle_phase' => null,
-        'maintainer_id' => null,
+        'maintainer' => null,
+        'maintainer_account_member_id' => null,
         'name' => null,
         'plans' => null,
         'plural_name' => null,
@@ -110,6 +114,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'billing_linked_resource' => false,
         'created_at' => false,
         'description' => false,
         'event_subtype' => true,
@@ -119,7 +124,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'icon' => false,
         'id' => false,
         'lifecycle_phase' => true,
-        'maintainer_id' => true,
+        'maintainer' => false,
+        'maintainer_account_member_id' => true,
         'name' => false,
         'plans' => false,
         'plural_name' => true,
@@ -215,6 +221,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
+        'billing_linked_resource' => 'billing_linked_resource',
         'created_at' => 'created_at',
         'description' => 'description',
         'event_subtype' => 'event_subtype',
@@ -224,7 +231,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'icon' => 'icon',
         'id' => 'id',
         'lifecycle_phase' => 'lifecycle_phase',
-        'maintainer_id' => 'maintainer_id',
+        'maintainer' => 'maintainer',
+        'maintainer_account_member_id' => 'maintainer_account_member_id',
         'name' => 'name',
         'plans' => 'plans',
         'plural_name' => 'plural_name',
@@ -240,6 +248,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
+        'billing_linked_resource' => 'setBillingLinkedResource',
         'created_at' => 'setCreatedAt',
         'description' => 'setDescription',
         'event_subtype' => 'setEventSubtype',
@@ -249,7 +258,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'icon' => 'setIcon',
         'id' => 'setId',
         'lifecycle_phase' => 'setLifecyclePhase',
-        'maintainer_id' => 'setMaintainerId',
+        'maintainer' => 'setMaintainer',
+        'maintainer_account_member_id' => 'setMaintainerAccountMemberId',
         'name' => 'setName',
         'plans' => 'setPlans',
         'plural_name' => 'setPluralName',
@@ -265,6 +275,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
+        'billing_linked_resource' => 'getBillingLinkedResource',
         'created_at' => 'getCreatedAt',
         'description' => 'getDescription',
         'event_subtype' => 'getEventSubtype',
@@ -274,7 +285,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'icon' => 'getIcon',
         'id' => 'getId',
         'lifecycle_phase' => 'getLifecyclePhase',
-        'maintainer_id' => 'getMaintainerId',
+        'maintainer' => 'getMaintainer',
+        'maintainer_account_member_id' => 'getMaintainerAccountMemberId',
         'name' => 'getName',
         'plans' => 'getPlans',
         'plural_name' => 'getPluralName',
@@ -341,6 +353,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('billing_linked_resource', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('event_subtype', $data ?? [], null);
@@ -350,7 +363,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('lifecycle_phase', $data ?? [], null);
-        $this->setIfExists('maintainer_id', $data ?? [], null);
+        $this->setIfExists('maintainer', $data ?? [], null);
+        $this->setIfExists('maintainer_account_member_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('plans', $data ?? [], null);
         $this->setIfExists('plural_name', $data ?? [], null);
@@ -399,6 +413,10 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['flags'] === null) {
             $invalidProperties[] = "'flags' can't be null";
         }
+        if ((count($this->container['flags']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'flags', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['icon'] === null) {
             $invalidProperties[] = "'icon' can't be null";
         }
@@ -411,6 +429,10 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['plans'] === null) {
             $invalidProperties[] = "'plans' can't be null";
         }
+        if ((count($this->container['plans']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'plans', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -428,6 +450,33 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets billing_linked_resource
+     *
+     * @return \Schematic\Model\BillingLinkedResourceResponseData|null
+     */
+    public function getBillingLinkedResource()
+    {
+        return $this->container['billing_linked_resource'];
+    }
+
+    /**
+     * Sets billing_linked_resource
+     *
+     * @param \Schematic\Model\BillingLinkedResourceResponseData|null $billing_linked_resource billing_linked_resource
+     *
+     * @return self
+     */
+    public function setBillingLinkedResource($billing_linked_resource)
+    {
+        if (is_null($billing_linked_resource)) {
+            throw new \InvalidArgumentException('non-nullable billing_linked_resource cannot be null');
+        }
+        $this->container['billing_linked_resource'] = $billing_linked_resource;
+
+        return $this;
+    }
 
     /**
      * Gets created_at
@@ -506,8 +555,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'event_subtype');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_subtype', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('event_subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -593,6 +642,10 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($flags)) {
             throw new \InvalidArgumentException('non-nullable flags cannot be null');
         }
+
+        if ((count($flags) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $flags when calling FeatureDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['flags'] = $flags;
 
         return $this;
@@ -675,8 +728,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'lifecycle_phase');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('lifecycle_phase', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('lifecycle_phase', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -687,35 +740,62 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Gets maintainer_id
+     * Gets maintainer
      *
-     * @return string|null
+     * @return \Schematic\Model\AccountMemberResponseData|null
      */
-    public function getMaintainerId()
+    public function getMaintainer()
     {
-        return $this->container['maintainer_id'];
+        return $this->container['maintainer'];
     }
 
     /**
-     * Sets maintainer_id
+     * Sets maintainer
      *
-     * @param string|null $maintainer_id maintainer_id
+     * @param \Schematic\Model\AccountMemberResponseData|null $maintainer maintainer
      *
      * @return self
      */
-    public function setMaintainerId($maintainer_id)
+    public function setMaintainer($maintainer)
     {
-        if (is_null($maintainer_id)) {
-            array_push($this->openAPINullablesSetToNull, 'maintainer_id');
+        if (is_null($maintainer)) {
+            throw new \InvalidArgumentException('non-nullable maintainer cannot be null');
+        }
+        $this->container['maintainer'] = $maintainer;
+
+        return $this;
+    }
+
+    /**
+     * Gets maintainer_account_member_id
+     *
+     * @return string|null
+     */
+    public function getMaintainerAccountMemberId()
+    {
+        return $this->container['maintainer_account_member_id'];
+    }
+
+    /**
+     * Sets maintainer_account_member_id
+     *
+     * @param string|null $maintainer_account_member_id maintainer_account_member_id
+     *
+     * @return self
+     */
+    public function setMaintainerAccountMemberId($maintainer_account_member_id)
+    {
+        if (is_null($maintainer_account_member_id)) {
+            array_push($this->openAPINullablesSetToNull, 'maintainer_account_member_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('maintainer_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('maintainer_account_member_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['maintainer_id'] = $maintainer_id;
+        $this->container['maintainer_account_member_id'] = $maintainer_account_member_id;
 
         return $this;
     }
@@ -769,6 +849,10 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($plans)) {
             throw new \InvalidArgumentException('non-nullable plans cannot be null');
         }
+
+        if ((count($plans) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $plans when calling FeatureDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['plans'] = $plans;
 
         return $this;
@@ -797,8 +881,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -831,8 +915,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -892,8 +976,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -993,7 +1077,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

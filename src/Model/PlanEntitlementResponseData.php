@@ -58,17 +58,20 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
+        'billing_linked_resource' => '\Schematic\Model\BillingLinkedResourceResponseData',
         'billing_threshold' => 'int',
         'consumption_rate' => 'float',
         'created_at' => '\DateTime',
+        'currency_prices' => '\Schematic\Model\EntitlementCurrencyPricesResponseData[]',
         'environment_id' => 'string',
         'feature' => '\Schematic\Model\FeatureResponseData',
         'feature_id' => 'string',
         'id' => 'string',
         'metered_monthly_price' => '\Schematic\Model\BillingPriceView',
+        'metered_quarterly_price' => '\Schematic\Model\BillingPriceView',
         'metered_yearly_price' => '\Schematic\Model\BillingPriceView',
-        'metric_period' => 'string',
-        'metric_period_month_reset' => 'string',
+        'metric_period' => '\Schematic\Model\MetricPeriod',
+        'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'plan' => '\Schematic\Model\PlanResponseData',
         'plan_id' => 'string',
         'price_behavior' => '\Schematic\Model\EntitlementPriceBehavior',
@@ -77,12 +80,14 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'soft_limit' => 'int',
         'updated_at' => '\DateTime',
         'usage_based_product' => '\Schematic\Model\BillingProductResponseData',
+        'usage_quantity' => 'int',
         'value_bool' => 'bool',
         'value_credit' => '\Schematic\Model\BillingCreditResponseData',
         'value_numeric' => 'int',
         'value_trait' => '\Schematic\Model\EntityTraitDefinitionResponseData',
         'value_trait_id' => 'string',
-        'value_type' => '\Schematic\Model\EntitlementValueType'
+        'value_type' => '\Schematic\Model\EntitlementValueType',
+        'warning_tiers' => '\Schematic\Model\WarningTierResponseData[]'
     ];
 
     /**
@@ -93,14 +98,17 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'billing_threshold' => null,
-        'consumption_rate' => null,
+        'billing_linked_resource' => null,
+        'billing_threshold' => 'int64',
+        'consumption_rate' => 'double',
         'created_at' => 'date-time',
+        'currency_prices' => null,
         'environment_id' => null,
         'feature' => null,
         'feature_id' => null,
         'id' => null,
         'metered_monthly_price' => null,
+        'metered_quarterly_price' => null,
         'metered_yearly_price' => null,
         'metric_period' => null,
         'metric_period_month_reset' => null,
@@ -109,15 +117,17 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'price_behavior' => null,
         'rule_id' => null,
         'rule_id_usage_exceeded' => null,
-        'soft_limit' => null,
+        'soft_limit' => 'int64',
         'updated_at' => 'date-time',
         'usage_based_product' => null,
+        'usage_quantity' => 'int64',
         'value_bool' => null,
         'value_credit' => null,
-        'value_numeric' => null,
+        'value_numeric' => 'int64',
         'value_trait' => null,
         'value_trait_id' => null,
-        'value_type' => null
+        'value_type' => null,
+        'warning_tiers' => null
     ];
 
     /**
@@ -126,14 +136,17 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'billing_linked_resource' => false,
         'billing_threshold' => true,
         'consumption_rate' => true,
         'created_at' => false,
+        'currency_prices' => false,
         'environment_id' => false,
         'feature' => false,
         'feature_id' => false,
         'id' => false,
         'metered_monthly_price' => false,
+        'metered_quarterly_price' => false,
         'metered_yearly_price' => false,
         'metric_period' => true,
         'metric_period_month_reset' => true,
@@ -145,12 +158,14 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'soft_limit' => true,
         'updated_at' => false,
         'usage_based_product' => false,
+        'usage_quantity' => true,
         'value_bool' => true,
         'value_credit' => false,
         'value_numeric' => true,
         'value_trait' => false,
         'value_trait_id' => true,
-        'value_type' => false
+        'value_type' => false,
+        'warning_tiers' => false
     ];
 
     /**
@@ -239,14 +254,17 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
+        'billing_linked_resource' => 'billing_linked_resource',
         'billing_threshold' => 'billing_threshold',
         'consumption_rate' => 'consumption_rate',
         'created_at' => 'created_at',
+        'currency_prices' => 'currency_prices',
         'environment_id' => 'environment_id',
         'feature' => 'feature',
         'feature_id' => 'feature_id',
         'id' => 'id',
         'metered_monthly_price' => 'metered_monthly_price',
+        'metered_quarterly_price' => 'metered_quarterly_price',
         'metered_yearly_price' => 'metered_yearly_price',
         'metric_period' => 'metric_period',
         'metric_period_month_reset' => 'metric_period_month_reset',
@@ -258,12 +276,14 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'soft_limit' => 'soft_limit',
         'updated_at' => 'updated_at',
         'usage_based_product' => 'usage_based_product',
+        'usage_quantity' => 'usage_quantity',
         'value_bool' => 'value_bool',
         'value_credit' => 'value_credit',
         'value_numeric' => 'value_numeric',
         'value_trait' => 'value_trait',
         'value_trait_id' => 'value_trait_id',
-        'value_type' => 'value_type'
+        'value_type' => 'value_type',
+        'warning_tiers' => 'warning_tiers'
     ];
 
     /**
@@ -272,14 +292,17 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
+        'billing_linked_resource' => 'setBillingLinkedResource',
         'billing_threshold' => 'setBillingThreshold',
         'consumption_rate' => 'setConsumptionRate',
         'created_at' => 'setCreatedAt',
+        'currency_prices' => 'setCurrencyPrices',
         'environment_id' => 'setEnvironmentId',
         'feature' => 'setFeature',
         'feature_id' => 'setFeatureId',
         'id' => 'setId',
         'metered_monthly_price' => 'setMeteredMonthlyPrice',
+        'metered_quarterly_price' => 'setMeteredQuarterlyPrice',
         'metered_yearly_price' => 'setMeteredYearlyPrice',
         'metric_period' => 'setMetricPeriod',
         'metric_period_month_reset' => 'setMetricPeriodMonthReset',
@@ -291,12 +314,14 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'soft_limit' => 'setSoftLimit',
         'updated_at' => 'setUpdatedAt',
         'usage_based_product' => 'setUsageBasedProduct',
+        'usage_quantity' => 'setUsageQuantity',
         'value_bool' => 'setValueBool',
         'value_credit' => 'setValueCredit',
         'value_numeric' => 'setValueNumeric',
         'value_trait' => 'setValueTrait',
         'value_trait_id' => 'setValueTraitId',
-        'value_type' => 'setValueType'
+        'value_type' => 'setValueType',
+        'warning_tiers' => 'setWarningTiers'
     ];
 
     /**
@@ -305,14 +330,17 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
+        'billing_linked_resource' => 'getBillingLinkedResource',
         'billing_threshold' => 'getBillingThreshold',
         'consumption_rate' => 'getConsumptionRate',
         'created_at' => 'getCreatedAt',
+        'currency_prices' => 'getCurrencyPrices',
         'environment_id' => 'getEnvironmentId',
         'feature' => 'getFeature',
         'feature_id' => 'getFeatureId',
         'id' => 'getId',
         'metered_monthly_price' => 'getMeteredMonthlyPrice',
+        'metered_quarterly_price' => 'getMeteredQuarterlyPrice',
         'metered_yearly_price' => 'getMeteredYearlyPrice',
         'metric_period' => 'getMetricPeriod',
         'metric_period_month_reset' => 'getMetricPeriodMonthReset',
@@ -324,12 +352,14 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'soft_limit' => 'getSoftLimit',
         'updated_at' => 'getUpdatedAt',
         'usage_based_product' => 'getUsageBasedProduct',
+        'usage_quantity' => 'getUsageQuantity',
         'value_bool' => 'getValueBool',
         'value_credit' => 'getValueCredit',
         'value_numeric' => 'getValueNumeric',
         'value_trait' => 'getValueTrait',
         'value_trait_id' => 'getValueTraitId',
-        'value_type' => 'getValueType'
+        'value_type' => 'getValueType',
+        'warning_tiers' => 'getWarningTiers'
     ];
 
     /**
@@ -389,14 +419,17 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('billing_linked_resource', $data ?? [], null);
         $this->setIfExists('billing_threshold', $data ?? [], null);
         $this->setIfExists('consumption_rate', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('feature', $data ?? [], null);
         $this->setIfExists('feature_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('metered_monthly_price', $data ?? [], null);
+        $this->setIfExists('metered_quarterly_price', $data ?? [], null);
         $this->setIfExists('metered_yearly_price', $data ?? [], null);
         $this->setIfExists('metric_period', $data ?? [], null);
         $this->setIfExists('metric_period_month_reset', $data ?? [], null);
@@ -408,12 +441,14 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('soft_limit', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('usage_based_product', $data ?? [], null);
+        $this->setIfExists('usage_quantity', $data ?? [], null);
         $this->setIfExists('value_bool', $data ?? [], null);
         $this->setIfExists('value_credit', $data ?? [], null);
         $this->setIfExists('value_numeric', $data ?? [], null);
         $this->setIfExists('value_trait', $data ?? [], null);
         $this->setIfExists('value_trait_id', $data ?? [], null);
         $this->setIfExists('value_type', $data ?? [], null);
+        $this->setIfExists('warning_tiers', $data ?? [], null);
     }
 
     /**
@@ -446,6 +481,13 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
+        if ($this->container['currency_prices'] === null) {
+            $invalidProperties[] = "'currency_prices' can't be null";
+        }
+        if ((count($this->container['currency_prices']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['environment_id'] === null) {
             $invalidProperties[] = "'environment_id' can't be null";
         }
@@ -467,6 +509,13 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         if ($this->container['value_type'] === null) {
             $invalidProperties[] = "'value_type' can't be null";
         }
+        if ($this->container['warning_tiers'] === null) {
+            $invalidProperties[] = "'warning_tiers' can't be null";
+        }
+        if ((count($this->container['warning_tiers']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'warning_tiers', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -481,6 +530,33 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets billing_linked_resource
+     *
+     * @return \Schematic\Model\BillingLinkedResourceResponseData|null
+     */
+    public function getBillingLinkedResource()
+    {
+        return $this->container['billing_linked_resource'];
+    }
+
+    /**
+     * Sets billing_linked_resource
+     *
+     * @param \Schematic\Model\BillingLinkedResourceResponseData|null $billing_linked_resource billing_linked_resource
+     *
+     * @return self
+     */
+    public function setBillingLinkedResource($billing_linked_resource)
+    {
+        if (is_null($billing_linked_resource)) {
+            throw new \InvalidArgumentException('non-nullable billing_linked_resource cannot be null');
+        }
+        $this->container['billing_linked_resource'] = $billing_linked_resource;
+
+        return $this;
+    }
 
     /**
      * Gets billing_threshold
@@ -505,8 +581,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'billing_threshold');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_threshold', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_threshold', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -539,8 +615,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -573,6 +649,37 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\EntitlementCurrencyPricesResponseData[]
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\EntitlementCurrencyPricesResponseData[] $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            throw new \InvalidArgumentException('non-nullable currency_prices cannot be null');
+        }
+
+        if ((count($currency_prices) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling PlanEntitlementResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
 
         return $this;
     }
@@ -713,6 +820,33 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * Gets metered_quarterly_price
+     *
+     * @return \Schematic\Model\BillingPriceView|null
+     */
+    public function getMeteredQuarterlyPrice()
+    {
+        return $this->container['metered_quarterly_price'];
+    }
+
+    /**
+     * Sets metered_quarterly_price
+     *
+     * @param \Schematic\Model\BillingPriceView|null $metered_quarterly_price metered_quarterly_price
+     *
+     * @return self
+     */
+    public function setMeteredQuarterlyPrice($metered_quarterly_price)
+    {
+        if (is_null($metered_quarterly_price)) {
+            throw new \InvalidArgumentException('non-nullable metered_quarterly_price cannot be null');
+        }
+        $this->container['metered_quarterly_price'] = $metered_quarterly_price;
+
+        return $this;
+    }
+
+    /**
      * Gets metered_yearly_price
      *
      * @return \Schematic\Model\BillingPriceView|null
@@ -742,7 +876,7 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -752,7 +886,7 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period metric_period
+     * @param \Schematic\Model\MetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -762,8 +896,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -776,7 +910,7 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets metric_period_month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMetricPeriodMonthReset()
     {
@@ -786,7 +920,7 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets metric_period_month_reset
      *
-     * @param string|null $metric_period_month_reset metric_period_month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $metric_period_month_reset metric_period_month_reset
      *
      * @return self
      */
@@ -796,8 +930,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'metric_period_month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period_month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period_month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -884,8 +1018,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'price_behavior');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_behavior', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -945,8 +1079,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'rule_id_usage_exceeded');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_id_usage_exceeded', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_id_usage_exceeded', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -979,8 +1113,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'soft_limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('soft_limit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('soft_limit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1045,6 +1179,40 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * Gets usage_quantity
+     *
+     * @return int|null
+     */
+    public function getUsageQuantity()
+    {
+        return $this->container['usage_quantity'];
+    }
+
+    /**
+     * Sets usage_quantity
+     *
+     * @param int|null $usage_quantity The committed unit quantity for this entitlement. For custom plans this is the quantity the company is contractually committed to; for standard plans it is the quantity pre-filled when subscribing. Only applies to pay-in-advance entitlements. Note: this is not yet enforced/auto-provisioned as a true default — it is currently stored for downstream billing use.
+     *
+     * @return self
+     */
+    public function setUsageQuantity($usage_quantity)
+    {
+        if (is_null($usage_quantity)) {
+            array_push($this->openAPINullablesSetToNull, 'usage_quantity');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('usage_quantity', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['usage_quantity'] = $usage_quantity;
+
+        return $this;
+    }
+
+    /**
      * Gets value_bool
      *
      * @return bool|null
@@ -1067,8 +1235,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'value_bool');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_bool', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_bool', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1128,8 +1296,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'value_numeric');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_numeric', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_numeric', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1189,8 +1357,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'value_trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1223,6 +1391,37 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable value_type cannot be null');
         }
         $this->container['value_type'] = $value_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets warning_tiers
+     *
+     * @return \Schematic\Model\WarningTierResponseData[]
+     */
+    public function getWarningTiers()
+    {
+        return $this->container['warning_tiers'];
+    }
+
+    /**
+     * Sets warning_tiers
+     *
+     * @param \Schematic\Model\WarningTierResponseData[] $warning_tiers warning_tiers
+     *
+     * @return self
+     */
+    public function setWarningTiers($warning_tiers)
+    {
+        if (is_null($warning_tiers)) {
+            throw new \InvalidArgumentException('non-nullable warning_tiers cannot be null');
+        }
+
+        if ((count($warning_tiers) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $warning_tiers when calling PlanEntitlementResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['warning_tiers'] = $warning_tiers;
 
         return $this;
     }
@@ -1290,7 +1489,7 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

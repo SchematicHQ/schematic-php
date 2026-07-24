@@ -99,6 +99,15 @@ class PlanCreditGrantViewTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_credit_auto_topup_availability"
+     */
+    public function testPropertyBillingCreditAutoTopupAvailability()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "billing_credit_auto_topup_enabled"
      */
     public function testPropertyBillingCreditAutoTopupEnabled()
@@ -135,6 +144,24 @@ class PlanCreditGrantViewTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_credit_auto_topup_self_service"
+     */
+    public function testPropertyBillingCreditAutoTopupSelfService()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_credit_auto_topup_threshold_credits"
+     */
+    public function testPropertyBillingCreditAutoTopupThresholdCredits()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "billing_credit_auto_topup_threshold_percent"
      */
     public function testPropertyBillingCreditAutoTopupThresholdPercent()
@@ -144,9 +171,27 @@ class PlanCreditGrantViewTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_credit_can_buy_bundles"
+     */
+    public function testPropertyBillingCreditCanBuyBundles()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "credit"
+     */
+    public function testPropertyCredit()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -252,6 +297,15 @@ class PlanCreditGrantViewTest extends TestCase
     }
 
     /**
+     * Test attribute "plan_version_id"
+     */
+    public function testPropertyPlanVersionId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "plural_name"
      */
     public function testPropertyPluralName()
@@ -282,6 +336,15 @@ class PlanCreditGrantViewTest extends TestCase
      * Test attribute "reset_type"
      */
     public function testPropertyResetType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "rollover_percentage"
+     */
+    public function testPropertyRolloverPercentage()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

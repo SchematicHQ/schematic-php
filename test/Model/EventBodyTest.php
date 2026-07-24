@@ -99,6 +99,15 @@ class EventBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "lease_id"
+     */
+    public function testPropertyLeaseId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "quantity"
      */
     public function testPropertyQuantity()
@@ -228,6 +237,105 @@ class EventBodyTest extends TestCase
      * Test attribute "name"
      */
     public function testPropertyName()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cached_input_tokens"
+     */
+    public function testPropertyCachedInputTokens()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cost"
+     */
+    public function testPropertyCost()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "input_tokens"
+     */
+    public function testPropertyInputTokens()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "operation"
+     */
+    public function testPropertyOperation()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "output_tokens"
+     */
+    public function testPropertyOutputTokens()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "provider"
+     */
+    public function testPropertyProvider()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "reasoning_tokens"
+     */
+    public function testPropertyReasoningTokens()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "request_model"
+     */
+    public function testPropertyRequestModel()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "requests"
+     */
+    public function testPropertyRequests()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "response_model"
+     */
+    public function testPropertyResponseModel()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

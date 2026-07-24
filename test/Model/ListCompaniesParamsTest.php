@@ -90,6 +90,15 @@ class ListCompaniesParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "has_scheduled_downgrade"
+     */
+    public function testPropertyHasScheduledDowngrade()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "ids"
      */
     public function testPropertyIds()
@@ -144,6 +153,24 @@ class ListCompaniesParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "plan_version_id"
+     */
+    public function testPropertyPlanVersionId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "plan_version_ids"
+     */
+    public function testPropertyPlanVersionIds()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "q"
      */
     public function testPropertyQ()
@@ -183,6 +210,15 @@ class ListCompaniesParamsTest extends TestCase
      * Test attribute "subscription_types"
      */
     public function testPropertySubscriptionTypes()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "with_entitlement_for"
+     */
+    public function testPropertyWithEntitlementFor()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

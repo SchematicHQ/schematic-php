@@ -61,6 +61,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
         'billing_periods_count' => 'int',
         'company_id' => 'string',
         'credit_id' => 'string',
+        'currency' => 'string',
         'expires_at' => '\DateTime',
         'expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
@@ -79,14 +80,15 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'billing_periods_count' => null,
+        'billing_periods_count' => 'int64',
         'company_id' => null,
         'credit_id' => null,
+        'currency' => null,
         'expires_at' => 'date-time',
         'expiry_type' => null,
         'expiry_unit' => null,
-        'expiry_unit_count' => null,
-        'quantity' => null,
+        'expiry_unit_count' => 'int64',
+        'quantity' => 'int64',
         'reason' => null,
         'renewal_enabled' => null,
         'renewal_period' => null
@@ -101,6 +103,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
         'billing_periods_count' => true,
         'company_id' => false,
         'credit_id' => false,
+        'currency' => true,
         'expires_at' => true,
         'expiry_type' => true,
         'expiry_unit' => true,
@@ -200,6 +203,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
         'billing_periods_count' => 'billing_periods_count',
         'company_id' => 'company_id',
         'credit_id' => 'credit_id',
+        'currency' => 'currency',
         'expires_at' => 'expires_at',
         'expiry_type' => 'expiry_type',
         'expiry_unit' => 'expiry_unit',
@@ -219,6 +223,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
         'billing_periods_count' => 'setBillingPeriodsCount',
         'company_id' => 'setCompanyId',
         'credit_id' => 'setCreditId',
+        'currency' => 'setCurrency',
         'expires_at' => 'setExpiresAt',
         'expiry_type' => 'setExpiryType',
         'expiry_unit' => 'setExpiryUnit',
@@ -238,6 +243,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
         'billing_periods_count' => 'getBillingPeriodsCount',
         'company_id' => 'getCompanyId',
         'credit_id' => 'getCreditId',
+        'currency' => 'getCurrency',
         'expires_at' => 'getExpiresAt',
         'expiry_type' => 'getExpiryType',
         'expiry_unit' => 'getExpiryUnit',
@@ -308,6 +314,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('billing_periods_count', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
         $this->setIfExists('expiry_type', $data ?? [], null);
         $this->setIfExists('expiry_unit', $data ?? [], null);
@@ -355,6 +362,10 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['credit_id'] === null) {
             $invalidProperties[] = "'credit_id' can't be null";
         }
+        if (!is_null($this->container['currency']) && (mb_strlen($this->container['currency']) > 3)) {
+            $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
+        }
+
         if (!is_null($this->container['expiry_unit_count']) && ($this->container['expiry_unit_count'] < 1)) {
             $invalidProperties[] = "invalid value for 'expiry_unit_count', must be bigger than or equal to 1.";
         }
@@ -407,8 +418,8 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'billing_periods_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_periods_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_periods_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -478,6 +489,44 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency currency
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($currency) && (mb_strlen($currency) > 3)) {
+            throw new \InvalidArgumentException('invalid length for $currency when calling CreateCompanyCreditGrant., must be smaller than or equal to 3.');
+        }
+
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
      * Gets expires_at
      *
      * @return \DateTime|null
@@ -500,8 +549,8 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'expires_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expires_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expires_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -534,8 +583,8 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'expiry_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -568,8 +617,8 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -602,8 +651,8 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -700,8 +749,8 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'renewal_enabled');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('renewal_enabled', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('renewal_enabled', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -734,8 +783,8 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'renewal_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('renewal_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('renewal_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -808,7 +857,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

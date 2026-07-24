@@ -64,7 +64,9 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
         'limit' => 'int',
         'offset' => 'int',
         'plan_id' => 'string',
-        'plan_ids' => 'string[]'
+        'plan_ids' => 'string[]',
+        'plan_version_id' => 'string',
+        'plan_version_ids' => 'string[]'
     ];
 
     /**
@@ -77,10 +79,12 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
     protected static $openAPIFormats = [
         'credit_id' => null,
         'ids' => null,
-        'limit' => null,
-        'offset' => null,
+        'limit' => 'int64',
+        'offset' => 'int64',
         'plan_id' => null,
-        'plan_ids' => null
+        'plan_ids' => null,
+        'plan_version_id' => null,
+        'plan_version_ids' => null
     ];
 
     /**
@@ -94,7 +98,9 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
         'limit' => false,
         'offset' => false,
         'plan_id' => false,
-        'plan_ids' => false
+        'plan_ids' => false,
+        'plan_version_id' => false,
+        'plan_version_ids' => false
     ];
 
     /**
@@ -188,7 +194,9 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
         'limit' => 'limit',
         'offset' => 'offset',
         'plan_id' => 'plan_id',
-        'plan_ids' => 'plan_ids'
+        'plan_ids' => 'plan_ids',
+        'plan_version_id' => 'plan_version_id',
+        'plan_version_ids' => 'plan_version_ids'
     ];
 
     /**
@@ -202,7 +210,9 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
         'limit' => 'setLimit',
         'offset' => 'setOffset',
         'plan_id' => 'setPlanId',
-        'plan_ids' => 'setPlanIds'
+        'plan_ids' => 'setPlanIds',
+        'plan_version_id' => 'setPlanVersionId',
+        'plan_version_ids' => 'setPlanVersionIds'
     ];
 
     /**
@@ -216,7 +226,9 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
         'limit' => 'getLimit',
         'offset' => 'getOffset',
         'plan_id' => 'getPlanId',
-        'plan_ids' => 'getPlanIds'
+        'plan_ids' => 'getPlanIds',
+        'plan_version_id' => 'getPlanVersionId',
+        'plan_version_ids' => 'getPlanVersionIds'
     ];
 
     /**
@@ -282,6 +294,8 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_ids', $data ?? [], null);
+        $this->setIfExists('plan_version_id', $data ?? [], null);
+        $this->setIfExists('plan_version_ids', $data ?? [], null);
     }
 
     /**
@@ -310,6 +324,26 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['ids']) && (count($this->container['ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['plan_ids']) && (count($this->container['plan_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'plan_ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['plan_version_ids']) && (count($this->container['plan_version_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'plan_version_ids', number of items must be less than or equal to 100.";
+        }
 
         return $invalidProperties;
     }
@@ -375,6 +409,10 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
         if (is_null($ids)) {
             throw new \InvalidArgumentException('non-nullable ids cannot be null');
         }
+
+        if ((count($ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ids when calling ListBillingPlanCreditGrantsParams., number of items must be less than or equal to 100.');
+        }
         $this->container['ids'] = $ids;
 
         return $this;
@@ -402,6 +440,14 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListBillingPlanCreditGrantsParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListBillingPlanCreditGrantsParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -483,7 +529,69 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
         if (is_null($plan_ids)) {
             throw new \InvalidArgumentException('non-nullable plan_ids cannot be null');
         }
+
+        if ((count($plan_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $plan_ids when calling ListBillingPlanCreditGrantsParams., number of items must be less than or equal to 100.');
+        }
         $this->container['plan_ids'] = $plan_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_id
+     *
+     * @return string|null
+     */
+    public function getPlanVersionId()
+    {
+        return $this->container['plan_version_id'];
+    }
+
+    /**
+     * Sets plan_version_id
+     *
+     * @param string|null $plan_version_id plan_version_id
+     *
+     * @return self
+     */
+    public function setPlanVersionId($plan_version_id)
+    {
+        if (is_null($plan_version_id)) {
+            throw new \InvalidArgumentException('non-nullable plan_version_id cannot be null');
+        }
+        $this->container['plan_version_id'] = $plan_version_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_ids
+     *
+     * @return string[]|null
+     */
+    public function getPlanVersionIds()
+    {
+        return $this->container['plan_version_ids'];
+    }
+
+    /**
+     * Sets plan_version_ids
+     *
+     * @param string[]|null $plan_version_ids plan_version_ids
+     *
+     * @return self
+     */
+    public function setPlanVersionIds($plan_version_ids)
+    {
+        if (is_null($plan_version_ids)) {
+            throw new \InvalidArgumentException('non-nullable plan_version_ids cannot be null');
+        }
+
+        if ((count($plan_version_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $plan_version_ids when calling ListBillingPlanCreditGrantsParams., number of items must be less than or equal to 100.');
+        }
+        $this->container['plan_version_ids'] = $plan_version_ids;
 
         return $this;
     }
@@ -551,7 +659,7 @@ class ListBillingPlanCreditGrantsParams implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

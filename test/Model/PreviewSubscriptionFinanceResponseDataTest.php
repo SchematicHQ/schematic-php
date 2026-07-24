@@ -90,6 +90,15 @@ class PreviewSubscriptionFinanceResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "discounts"
+     */
+    public function testPropertyDiscounts()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "due_now"
      */
     public function testPropertyDueNow()
@@ -111,6 +120,15 @@ class PreviewSubscriptionFinanceResponseDataTest extends TestCase
      * Test attribute "percent_off"
      */
     public function testPropertyPercentOff()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "period_end"
+     */
+    public function testPropertyPeriodEnd()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -90,6 +90,15 @@ class EventDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "api_key_view"
+     */
+    public function testPropertyApiKeyView()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "body"
      */
     public function testPropertyBody()
@@ -183,6 +192,24 @@ class EventDetailResponseDataTest extends TestCase
      * Test attribute "id"
      */
     public function testPropertyId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "idempotency_key"
+     */
+    public function testPropertyIdempotencyKey()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "lease_id"
+     */
+    public function testPropertyLeaseId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

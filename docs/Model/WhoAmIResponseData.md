@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_id** | **string** |  |
 **account_name** | **string** |  |
-**actor_type** | **string** |  |
+**actor_type** | [**\Schematic\Model\ActorType**](ActorType.md) |  |
 **api_key_id** | **string** |  | [optional]
 **environment_id** | **string** |  | [optional]
 **environments** | [**\Schematic\Model\EnvironmentResponseData[]**](EnvironmentResponseData.md) |  |

@@ -117,6 +117,15 @@ class CreateBillingPriceRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "interval_count"
+     */
+    public function testPropertyIntervalCount()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "is_active"
      */
     public function testPropertyIsActive()
@@ -129,6 +138,15 @@ class CreateBillingPriceRequestBodyTest extends TestCase
      * Test attribute "meter_id"
      */
     public function testPropertyMeterId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "nickname"
+     */
+    public function testPropertyNickname()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

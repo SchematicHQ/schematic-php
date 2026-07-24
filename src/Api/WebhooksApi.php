@@ -96,6 +96,9 @@ class WebhooksApi
         'listWebhooks' => [
             'application/json',
         ],
+        'sendTestWebhookAction' => [
+            'application/json',
+        ],
         'updateWebhook' => [
             'application/json',
         ],
@@ -224,7 +227,7 @@ class WebhooksApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountWebhookEventsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -569,9 +572,18 @@ class WebhooksApi
     public function countWebhookEventsRequest($ids = null, $q = null, $webhook_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countWebhookEvents'][0])
     {
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling WebhooksApi.countWebhookEvents, number of items must be less than or equal to 100.');
+        }
 
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling WebhooksApi.countWebhookEvents, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling WebhooksApi.countWebhookEvents, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -762,7 +774,7 @@ class WebhooksApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountWebhooksResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1102,6 +1114,12 @@ class WebhooksApi
     {
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling WebhooksApi.countWebhooks, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling WebhooksApi.countWebhooks, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -1270,7 +1288,7 @@ class WebhooksApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateWebhookResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1756,7 +1774,7 @@ class WebhooksApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteWebhookResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2243,7 +2261,7 @@ class WebhooksApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetWebhookResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2695,7 +2713,7 @@ class WebhooksApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetWebhookEventResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3155,7 +3173,7 @@ class WebhooksApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListWebhookEventsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3500,9 +3518,18 @@ class WebhooksApi
     public function listWebhookEventsRequest($ids = null, $q = null, $webhook_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listWebhookEvents'][0])
     {
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling WebhooksApi.listWebhookEvents, number of items must be less than or equal to 100.');
+        }
 
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling WebhooksApi.listWebhookEvents, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling WebhooksApi.listWebhookEvents, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -3693,7 +3720,7 @@ class WebhooksApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListWebhooksResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4033,6 +4060,12 @@ class WebhooksApi
     {
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling WebhooksApi.listWebhooks, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling WebhooksApi.listWebhooks, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -4133,6 +4166,512 @@ class WebhooksApi
     }
 
     /**
+     * Operation sendTestWebhookAction
+     *
+     * Send test webhook action
+     *
+     * @param  string $webhook_id webhook_id (required)
+     * @param  \Schematic\Model\TestWebhookRequestBody $test_webhook_request_body test_webhook_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTestWebhookAction'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\SendTestWebhookActionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function sendTestWebhookAction($webhook_id, $test_webhook_request_body, string $contentType = self::contentTypes['sendTestWebhookAction'][0])
+    {
+        list($response) = $this->sendTestWebhookActionWithHttpInfo($webhook_id, $test_webhook_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation sendTestWebhookActionWithHttpInfo
+     *
+     * Send test webhook action
+     *
+     * @param  string $webhook_id webhook_id (required)
+     * @param  \Schematic\Model\TestWebhookRequestBody $test_webhook_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTestWebhookAction'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\SendTestWebhookActionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function sendTestWebhookActionWithHttpInfo($webhook_id, $test_webhook_request_body, string $contentType = self::contentTypes['sendTestWebhookAction'][0])
+    {
+        $request = $this->sendTestWebhookActionRequest($webhook_id, $test_webhook_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\SendTestWebhookActionResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\SendTestWebhookActionResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\SendTestWebhookActionResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\SendTestWebhookActionResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\SendTestWebhookActionResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation sendTestWebhookActionAsync
+     *
+     * Send test webhook action
+     *
+     * @param  string $webhook_id webhook_id (required)
+     * @param  \Schematic\Model\TestWebhookRequestBody $test_webhook_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTestWebhookAction'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function sendTestWebhookActionAsync($webhook_id, $test_webhook_request_body, string $contentType = self::contentTypes['sendTestWebhookAction'][0])
+    {
+        return $this->sendTestWebhookActionAsyncWithHttpInfo($webhook_id, $test_webhook_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation sendTestWebhookActionAsyncWithHttpInfo
+     *
+     * Send test webhook action
+     *
+     * @param  string $webhook_id webhook_id (required)
+     * @param  \Schematic\Model\TestWebhookRequestBody $test_webhook_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTestWebhookAction'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function sendTestWebhookActionAsyncWithHttpInfo($webhook_id, $test_webhook_request_body, string $contentType = self::contentTypes['sendTestWebhookAction'][0])
+    {
+        $returnType = '\Schematic\Model\SendTestWebhookActionResponse';
+        $request = $this->sendTestWebhookActionRequest($webhook_id, $test_webhook_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'sendTestWebhookAction'
+     *
+     * @param  string $webhook_id webhook_id (required)
+     * @param  \Schematic\Model\TestWebhookRequestBody $test_webhook_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendTestWebhookAction'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function sendTestWebhookActionRequest($webhook_id, $test_webhook_request_body, string $contentType = self::contentTypes['sendTestWebhookAction'][0])
+    {
+
+        // verify the required parameter 'webhook_id' is set
+        if ($webhook_id === null || (is_array($webhook_id) && count($webhook_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $webhook_id when calling sendTestWebhookAction'
+            );
+        }
+
+        // verify the required parameter 'test_webhook_request_body' is set
+        if ($test_webhook_request_body === null || (is_array($test_webhook_request_body) && count($test_webhook_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $test_webhook_request_body when calling sendTestWebhookAction'
+            );
+        }
+
+
+        $resourcePath = '/webhooks/{webhook_id}/test';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($webhook_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'webhook_id' . '}',
+                ObjectSerializer::toPathValue($webhook_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($test_webhook_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($test_webhook_request_body));
+            } else {
+                $httpBody = $test_webhook_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation updateWebhook
      *
      * Update webhook
@@ -4203,7 +4742,7 @@ class WebhooksApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateWebhookResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

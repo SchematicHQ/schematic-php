@@ -341,6 +341,14 @@ class WebhookResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
+        if (!is_null($this->container['credit_trigger_configs']) && (count($this->container['credit_trigger_configs']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credit_trigger_configs', number of items must be less than or equal to 1000.";
+        }
+
+        if (!is_null($this->container['entitlement_trigger_configs']) && (count($this->container['entitlement_trigger_configs']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'entitlement_trigger_configs', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
@@ -350,6 +358,10 @@ class WebhookResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         if ($this->container['request_types'] === null) {
             $invalidProperties[] = "'request_types' can't be null";
         }
+        if ((count($this->container['request_types']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'request_types', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['secret'] === null) {
             $invalidProperties[] = "'secret' can't be null";
         }
@@ -427,11 +439,15 @@ class WebhookResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'credit_trigger_configs');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_trigger_configs', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_trigger_configs', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($credit_trigger_configs) && (count($credit_trigger_configs) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credit_trigger_configs when calling WebhookResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['credit_trigger_configs'] = $credit_trigger_configs;
 
@@ -461,11 +477,15 @@ class WebhookResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
             array_push($this->openAPINullablesSetToNull, 'entitlement_trigger_configs');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('entitlement_trigger_configs', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('entitlement_trigger_configs', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($entitlement_trigger_configs) && (count($entitlement_trigger_configs) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $entitlement_trigger_configs when calling WebhookResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['entitlement_trigger_configs'] = $entitlement_trigger_configs;
 
@@ -547,6 +567,10 @@ class WebhookResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         if (is_null($request_types)) {
             throw new \InvalidArgumentException('non-nullable request_types cannot be null');
+        }
+
+        if ((count($request_types) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $request_types when calling WebhookResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['request_types'] = $request_types;
 
@@ -724,7 +748,7 @@ class WebhookResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

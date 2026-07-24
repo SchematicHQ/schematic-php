@@ -68,6 +68,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'component' => '\Schematic\Model\ComponentResponseData',
         'credit_bundles' => '\Schematic\Model\BillingCreditBundleView[]',
         'credit_grants' => '\Schematic\Model\CreditCompanyGrantView[]',
+        'custom_checkout_fields' => '\Schematic\Model\CheckoutFieldWithValue[]',
         'default_plan' => '\Schematic\Model\PlanDetailResponseData',
         'display_settings' => '\Schematic\Model\ComponentDisplaySettings',
         'feature_usage' => '\Schematic\Model\FeatureUsageDetailResponseData',
@@ -75,6 +76,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'prevent_self_service_downgrade' => 'bool',
         'prevent_self_service_downgrade_button_text' => 'string',
         'prevent_self_service_downgrade_url' => 'string',
+        'scheduled_downgrade' => '\Schematic\Model\ScheduledDowngradeResponseData',
         'show_as_monthly_prices' => 'bool',
         'show_credits' => 'bool',
         'show_period_toggle' => 'bool',
@@ -103,6 +105,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'component' => null,
         'credit_bundles' => null,
         'credit_grants' => null,
+        'custom_checkout_fields' => null,
         'default_plan' => null,
         'display_settings' => null,
         'feature_usage' => null,
@@ -110,6 +113,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'prevent_self_service_downgrade' => null,
         'prevent_self_service_downgrade_button_text' => null,
         'prevent_self_service_downgrade_url' => null,
+        'scheduled_downgrade' => null,
         'show_as_monthly_prices' => null,
         'show_credits' => null,
         'show_period_toggle' => null,
@@ -136,6 +140,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'component' => false,
         'credit_bundles' => false,
         'credit_grants' => false,
+        'custom_checkout_fields' => false,
         'default_plan' => false,
         'display_settings' => false,
         'feature_usage' => false,
@@ -143,6 +148,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'prevent_self_service_downgrade' => false,
         'prevent_self_service_downgrade_button_text' => true,
         'prevent_self_service_downgrade_url' => true,
+        'scheduled_downgrade' => false,
         'show_as_monthly_prices' => false,
         'show_credits' => false,
         'show_period_toggle' => false,
@@ -249,6 +255,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'component' => 'component',
         'credit_bundles' => 'credit_bundles',
         'credit_grants' => 'credit_grants',
+        'custom_checkout_fields' => 'custom_checkout_fields',
         'default_plan' => 'default_plan',
         'display_settings' => 'display_settings',
         'feature_usage' => 'feature_usage',
@@ -256,6 +263,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'prevent_self_service_downgrade' => 'prevent_self_service_downgrade',
         'prevent_self_service_downgrade_button_text' => 'prevent_self_service_downgrade_button_text',
         'prevent_self_service_downgrade_url' => 'prevent_self_service_downgrade_url',
+        'scheduled_downgrade' => 'scheduled_downgrade',
         'show_as_monthly_prices' => 'show_as_monthly_prices',
         'show_credits' => 'show_credits',
         'show_period_toggle' => 'show_period_toggle',
@@ -282,6 +290,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'component' => 'setComponent',
         'credit_bundles' => 'setCreditBundles',
         'credit_grants' => 'setCreditGrants',
+        'custom_checkout_fields' => 'setCustomCheckoutFields',
         'default_plan' => 'setDefaultPlan',
         'display_settings' => 'setDisplaySettings',
         'feature_usage' => 'setFeatureUsage',
@@ -289,6 +298,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'prevent_self_service_downgrade' => 'setPreventSelfServiceDowngrade',
         'prevent_self_service_downgrade_button_text' => 'setPreventSelfServiceDowngradeButtonText',
         'prevent_self_service_downgrade_url' => 'setPreventSelfServiceDowngradeUrl',
+        'scheduled_downgrade' => 'setScheduledDowngrade',
         'show_as_monthly_prices' => 'setShowAsMonthlyPrices',
         'show_credits' => 'setShowCredits',
         'show_period_toggle' => 'setShowPeriodToggle',
@@ -315,6 +325,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'component' => 'getComponent',
         'credit_bundles' => 'getCreditBundles',
         'credit_grants' => 'getCreditGrants',
+        'custom_checkout_fields' => 'getCustomCheckoutFields',
         'default_plan' => 'getDefaultPlan',
         'display_settings' => 'getDisplaySettings',
         'feature_usage' => 'getFeatureUsage',
@@ -322,6 +333,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         'prevent_self_service_downgrade' => 'getPreventSelfServiceDowngrade',
         'prevent_self_service_downgrade_button_text' => 'getPreventSelfServiceDowngradeButtonText',
         'prevent_self_service_downgrade_url' => 'getPreventSelfServiceDowngradeUrl',
+        'scheduled_downgrade' => 'getScheduledDowngrade',
         'show_as_monthly_prices' => 'getShowAsMonthlyPrices',
         'show_credits' => 'getShowCredits',
         'show_period_toggle' => 'getShowPeriodToggle',
@@ -399,6 +411,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('component', $data ?? [], null);
         $this->setIfExists('credit_bundles', $data ?? [], null);
         $this->setIfExists('credit_grants', $data ?? [], null);
+        $this->setIfExists('custom_checkout_fields', $data ?? [], null);
         $this->setIfExists('default_plan', $data ?? [], null);
         $this->setIfExists('display_settings', $data ?? [], null);
         $this->setIfExists('feature_usage', $data ?? [], null);
@@ -406,6 +419,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('prevent_self_service_downgrade', $data ?? [], null);
         $this->setIfExists('prevent_self_service_downgrade_button_text', $data ?? [], null);
         $this->setIfExists('prevent_self_service_downgrade_url', $data ?? [], null);
+        $this->setIfExists('scheduled_downgrade', $data ?? [], null);
         $this->setIfExists('show_as_monthly_prices', $data ?? [], null);
         $this->setIfExists('show_credits', $data ?? [], null);
         $this->setIfExists('show_period_toggle', $data ?? [], null);
@@ -446,24 +460,55 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         if ($this->container['active_add_ons'] === null) {
             $invalidProperties[] = "'active_add_ons' can't be null";
         }
+        if ((count($this->container['active_add_ons']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'active_add_ons', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['active_plans'] === null) {
             $invalidProperties[] = "'active_plans' can't be null";
         }
+        if ((count($this->container['active_plans']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'active_plans', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['active_usage_based_entitlements'] === null) {
             $invalidProperties[] = "'active_usage_based_entitlements' can't be null";
         }
+        if ((count($this->container['active_usage_based_entitlements']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'active_usage_based_entitlements', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['add_on_compatibilities'] === null) {
             $invalidProperties[] = "'add_on_compatibilities' can't be null";
         }
+        if ((count($this->container['add_on_compatibilities']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'add_on_compatibilities', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['checkout_settings'] === null) {
             $invalidProperties[] = "'checkout_settings' can't be null";
         }
         if ($this->container['credit_bundles'] === null) {
             $invalidProperties[] = "'credit_bundles' can't be null";
         }
+        if ((count($this->container['credit_bundles']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credit_bundles', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['credit_grants'] === null) {
             $invalidProperties[] = "'credit_grants' can't be null";
         }
+        if ((count($this->container['credit_grants']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credit_grants', number of items must be less than or equal to 1000.";
+        }
+
+        if ($this->container['custom_checkout_fields'] === null) {
+            $invalidProperties[] = "'custom_checkout_fields' can't be null";
+        }
+        if ((count($this->container['custom_checkout_fields']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'custom_checkout_fields', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['display_settings'] === null) {
             $invalidProperties[] = "'display_settings' can't be null";
         }
@@ -519,6 +564,10 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         if (is_null($active_add_ons)) {
             throw new \InvalidArgumentException('non-nullable active_add_ons cannot be null');
         }
+
+        if ((count($active_add_ons) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $active_add_ons when calling ComponentHydrateResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['active_add_ons'] = $active_add_ons;
 
         return $this;
@@ -545,6 +594,10 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
     {
         if (is_null($active_plans)) {
             throw new \InvalidArgumentException('non-nullable active_plans cannot be null');
+        }
+
+        if ((count($active_plans) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $active_plans when calling ComponentHydrateResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['active_plans'] = $active_plans;
 
@@ -573,6 +626,10 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         if (is_null($active_usage_based_entitlements)) {
             throw new \InvalidArgumentException('non-nullable active_usage_based_entitlements cannot be null');
         }
+
+        if ((count($active_usage_based_entitlements) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $active_usage_based_entitlements when calling ComponentHydrateResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['active_usage_based_entitlements'] = $active_usage_based_entitlements;
 
         return $this;
@@ -599,6 +656,10 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
     {
         if (is_null($add_on_compatibilities)) {
             throw new \InvalidArgumentException('non-nullable add_on_compatibilities cannot be null');
+        }
+
+        if ((count($add_on_compatibilities) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $add_on_compatibilities when calling ComponentHydrateResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['add_on_compatibilities'] = $add_on_compatibilities;
 
@@ -735,6 +796,10 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         if (is_null($credit_bundles)) {
             throw new \InvalidArgumentException('non-nullable credit_bundles cannot be null');
         }
+
+        if ((count($credit_bundles) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credit_bundles when calling ComponentHydrateResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['credit_bundles'] = $credit_bundles;
 
         return $this;
@@ -762,7 +827,42 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
         if (is_null($credit_grants)) {
             throw new \InvalidArgumentException('non-nullable credit_grants cannot be null');
         }
+
+        if ((count($credit_grants) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credit_grants when calling ComponentHydrateResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['credit_grants'] = $credit_grants;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_checkout_fields
+     *
+     * @return \Schematic\Model\CheckoutFieldWithValue[]
+     */
+    public function getCustomCheckoutFields()
+    {
+        return $this->container['custom_checkout_fields'];
+    }
+
+    /**
+     * Sets custom_checkout_fields
+     *
+     * @param \Schematic\Model\CheckoutFieldWithValue[] $custom_checkout_fields custom_checkout_fields
+     *
+     * @return self
+     */
+    public function setCustomCheckoutFields($custom_checkout_fields)
+    {
+        if (is_null($custom_checkout_fields)) {
+            throw new \InvalidArgumentException('non-nullable custom_checkout_fields cannot be null');
+        }
+
+        if ((count($custom_checkout_fields) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $custom_checkout_fields when calling ComponentHydrateResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['custom_checkout_fields'] = $custom_checkout_fields;
 
         return $this;
     }
@@ -925,8 +1025,8 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'prevent_self_service_downgrade_button_text');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('prevent_self_service_downgrade_button_text', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('prevent_self_service_downgrade_button_text', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -959,13 +1059,40 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'prevent_self_service_downgrade_url');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('prevent_self_service_downgrade_url', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('prevent_self_service_downgrade_url', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['prevent_self_service_downgrade_url'] = $prevent_self_service_downgrade_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets scheduled_downgrade
+     *
+     * @return \Schematic\Model\ScheduledDowngradeResponseData|null
+     */
+    public function getScheduledDowngrade()
+    {
+        return $this->container['scheduled_downgrade'];
+    }
+
+    /**
+     * Sets scheduled_downgrade
+     *
+     * @param \Schematic\Model\ScheduledDowngradeResponseData|null $scheduled_downgrade scheduled_downgrade
+     *
+     * @return self
+     */
+    public function setScheduledDowngrade($scheduled_downgrade)
+    {
+        if (is_null($scheduled_downgrade)) {
+            throw new \InvalidArgumentException('non-nullable scheduled_downgrade cannot be null');
+        }
+        $this->container['scheduled_downgrade'] = $scheduled_downgrade;
 
         return $this;
     }
@@ -1163,8 +1290,8 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'trial_payment_method_required');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_payment_method_required', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_payment_method_required', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1264,7 +1391,7 @@ class ComponentHydrateResponseData implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

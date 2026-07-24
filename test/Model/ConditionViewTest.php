@@ -243,15 +243,6 @@ class ConditionViewTest extends TestCase
     }
 
     /**
-     * Test attribute "plan_version_id"
-     */
-    public function testPropertyPlanVersionId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "plan_versions"
      */
     public function testPropertyPlanVersions()

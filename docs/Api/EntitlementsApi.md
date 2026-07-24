@@ -25,6 +25,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**listPlanEntitlements()**](EntitlementsApi.md#listPlanEntitlements) | **GET** /plan-entitlements | List plan entitlements |
 | [**updateCompanyOverride()**](EntitlementsApi.md#updateCompanyOverride) | **PUT** /company-overrides/{company_override_id} | Update company override |
 | [**updatePlanEntitlement()**](EntitlementsApi.md#updatePlanEntitlement) | **PUT** /plan-entitlements/{plan_entitlement_id} | Update plan entitlement |
+| [**upsertPlanEntitlementForBillingProduct()**](EntitlementsApi.md#upsertPlanEntitlementForBillingProduct) | **POST** /plan-entitlements/billing-linked | Upsert plan entitlement for billing product |
 
 
 ## `countCompanyOverrides()`
@@ -154,7 +155,7 @@ try {
 ## `countFeatureUsage()`
 
 ```php
-countFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset): \Schematic\Model\CountFeatureUsageResponse
+countFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset): \Schematic\Model\CountFeatureUsageResponse
 ```
 
 Count feature usage
@@ -173,13 +174,14 @@ $company_id = 'company_id_example'; // string
 $company_keys = array('key' => 'company_keys_example'); // array<string,string>
 $feature_ids = array('feature_ids_example'); // string[]
 $include_usage_aggregation = True; // bool | Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance.
+$managed_by = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
 $q = 'q_example'; // string
 $without_negative_entitlements = True; // bool
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->EntitlementsApi->countFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset);
+    $result = $schematic->EntitlementsApi->countFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->EntitlementsApi->countFeatureUsage: ', $e->getMessage(), PHP_EOL;
@@ -194,6 +196,7 @@ try {
 | **company_keys** | [**array<string,string>**](../Model/string.md)|  | [optional] |
 | **feature_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **include_usage_aggregation** | **bool**| Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. | [optional] |
+| **managed_by** | [**\Schematic\Model\BillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
 | **q** | **string**|  | [optional] |
 | **without_negative_entitlements** | **bool**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -938,7 +941,7 @@ try {
 ## `listFeatureUsage()`
 
 ```php
-listFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset): \Schematic\Model\ListFeatureUsageResponse
+listFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset): \Schematic\Model\ListFeatureUsageResponse
 ```
 
 List feature usage
@@ -957,13 +960,14 @@ $company_id = 'company_id_example'; // string
 $company_keys = array('key' => 'company_keys_example'); // array<string,string>
 $feature_ids = array('feature_ids_example'); // string[]
 $include_usage_aggregation = True; // bool | Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance.
+$managed_by = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
 $q = 'q_example'; // string
 $without_negative_entitlements = True; // bool
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->EntitlementsApi->listFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset);
+    $result = $schematic->EntitlementsApi->listFeatureUsage($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->EntitlementsApi->listFeatureUsage: ', $e->getMessage(), PHP_EOL;
@@ -978,6 +982,7 @@ try {
 | **company_keys** | [**array<string,string>**](../Model/string.md)|  | [optional] |
 | **feature_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **include_usage_aggregation** | **bool**| Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. | [optional] |
+| **managed_by** | [**\Schematic\Model\BillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
 | **q** | **string**|  | [optional] |
 | **without_negative_entitlements** | **bool**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -1220,6 +1225,57 @@ try {
 ### Return type
 
 [**\Schematic\Model\UpdatePlanEntitlementResponse**](../Model/UpdatePlanEntitlementResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `upsertPlanEntitlementForBillingProduct()`
+
+```php
+upsertPlanEntitlementForBillingProduct($create_billing_linked_plan_entitlement_request_body): \Schematic\Model\UpsertPlanEntitlementForBillingProductResponse
+```
+
+Upsert plan entitlement for billing product
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$create_billing_linked_plan_entitlement_request_body = new \Schematic\Model\CreateBillingLinkedPlanEntitlementRequestBody(); // \Schematic\Model\CreateBillingLinkedPlanEntitlementRequestBody
+
+try {
+    $result = $schematic->EntitlementsApi->upsertPlanEntitlementForBillingProduct($create_billing_linked_plan_entitlement_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EntitlementsApi->upsertPlanEntitlementForBillingProduct: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_billing_linked_plan_entitlement_request_body** | [**\Schematic\Model\CreateBillingLinkedPlanEntitlementRequestBody**](../Model/CreateBillingLinkedPlanEntitlementRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpsertPlanEntitlementForBillingProductResponse**](../Model/UpsertPlanEntitlementForBillingProductResponse.md)
 
 ### Authorization
 

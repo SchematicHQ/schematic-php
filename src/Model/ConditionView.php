@@ -64,7 +64,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         'comparison_trait' => '\Schematic\Model\EntityTraitDefinitionResponseData',
         'comparison_trait_id' => 'string',
         'condition_group_id' => 'string',
-        'condition_type' => 'string',
+        'condition_type' => '\Schematic\Model\ConditionType',
         'consumption_rate' => 'float',
         'created_at' => '\DateTime',
         'credit_id' => 'string',
@@ -72,11 +72,10 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         'event_subtype' => 'string',
         'flag_id' => 'string',
         'id' => 'string',
-        'metric_period' => 'string',
-        'metric_period_month_reset' => 'string',
+        'metric_period' => '\Schematic\Model\MetricPeriod',
+        'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'metric_value' => 'int',
-        'operator' => 'string',
-        'plan_version_id' => 'string',
+        'operator' => '\Schematic\Model\ComparableOperator',
         'plan_versions' => '\Schematic\Model\GenericPreviewObject[]',
         'plans' => '\Schematic\Model\GenericPreviewObject[]',
         'resource_unspecified_ids' => 'string[]',
@@ -107,7 +106,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         'comparison_trait_id' => null,
         'condition_group_id' => null,
         'condition_type' => null,
-        'consumption_rate' => null,
+        'consumption_rate' => 'double',
         'created_at' => 'date-time',
         'credit_id' => null,
         'environment_id' => null,
@@ -116,9 +115,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => null,
         'metric_period' => null,
         'metric_period_month_reset' => null,
-        'metric_value' => null,
+        'metric_value' => 'int64',
         'operator' => null,
-        'plan_version_id' => null,
         'plan_versions' => null,
         'plans' => null,
         'resource_unspecified_ids' => null,
@@ -129,7 +127,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         'trait_value' => null,
         'trait_value_bool' => null,
         'trait_value_date' => 'date-time',
-        'trait_value_int' => null,
+        'trait_value_int' => 'int64',
         'updated_at' => 'date-time',
         'users' => null
     ];
@@ -158,7 +156,6 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         'metric_period_month_reset' => true,
         'metric_value' => true,
         'operator' => false,
-        'plan_version_id' => true,
         'plan_versions' => false,
         'plans' => false,
         'resource_unspecified_ids' => false,
@@ -278,7 +275,6 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         'metric_period_month_reset' => 'metric_period_month_reset',
         'metric_value' => 'metric_value',
         'operator' => 'operator',
-        'plan_version_id' => 'plan_version_id',
         'plan_versions' => 'plan_versions',
         'plans' => 'plans',
         'resource_unspecified_ids' => 'resource_unspecified_ids',
@@ -318,7 +314,6 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         'metric_period_month_reset' => 'setMetricPeriodMonthReset',
         'metric_value' => 'setMetricValue',
         'operator' => 'setOperator',
-        'plan_version_id' => 'setPlanVersionId',
         'plan_versions' => 'setPlanVersions',
         'plans' => 'setPlans',
         'resource_unspecified_ids' => 'setResourceUnspecifiedIds',
@@ -358,7 +353,6 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         'metric_period_month_reset' => 'getMetricPeriodMonthReset',
         'metric_value' => 'getMetricValue',
         'operator' => 'getOperator',
-        'plan_version_id' => 'getPlanVersionId',
         'plan_versions' => 'getPlanVersions',
         'plans' => 'getPlans',
         'resource_unspecified_ids' => 'getResourceUnspecifiedIds',
@@ -449,7 +443,6 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('metric_period_month_reset', $data ?? [], null);
         $this->setIfExists('metric_value', $data ?? [], null);
         $this->setIfExists('operator', $data ?? [], null);
-        $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('plan_versions', $data ?? [], null);
         $this->setIfExists('plans', $data ?? [], null);
         $this->setIfExists('resource_unspecified_ids', $data ?? [], null);
@@ -498,9 +491,17 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['billing_products'] === null) {
             $invalidProperties[] = "'billing_products' can't be null";
         }
+        if ((count($this->container['billing_products']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'billing_products', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['companies'] === null) {
             $invalidProperties[] = "'companies' can't be null";
         }
+        if ((count($this->container['companies']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'companies', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['condition_type'] === null) {
             $invalidProperties[] = "'condition_type' can't be null";
         }
@@ -519,12 +520,24 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['plan_versions'] === null) {
             $invalidProperties[] = "'plan_versions' can't be null";
         }
+        if ((count($this->container['plan_versions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'plan_versions', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['plans'] === null) {
             $invalidProperties[] = "'plans' can't be null";
         }
+        if ((count($this->container['plans']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'plans', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['resource_unspecified_ids'] === null) {
             $invalidProperties[] = "'resource_unspecified_ids' can't be null";
         }
+        if ((count($this->container['resource_unspecified_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'resource_unspecified_ids', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['rule_id'] === null) {
             $invalidProperties[] = "'rule_id' can't be null";
         }
@@ -543,6 +556,10 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['users'] === null) {
             $invalidProperties[] = "'users' can't be null";
         }
+        if ((count($this->container['users']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'users', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -607,6 +624,10 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($billing_products)) {
             throw new \InvalidArgumentException('non-nullable billing_products cannot be null');
         }
+
+        if ((count($billing_products) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $billing_products when calling ConditionView., number of items must be less than or equal to 1000.');
+        }
         $this->container['billing_products'] = $billing_products;
 
         return $this;
@@ -633,6 +654,10 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($companies)) {
             throw new \InvalidArgumentException('non-nullable companies cannot be null');
+        }
+
+        if ((count($companies) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $companies when calling ConditionView., number of items must be less than or equal to 1000.');
         }
         $this->container['companies'] = $companies;
 
@@ -689,8 +714,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'comparison_trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('comparison_trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('comparison_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -723,8 +748,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'condition_group_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('condition_group_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('condition_group_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -737,7 +762,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets condition_type
      *
-     * @return string
+     * @return \Schematic\Model\ConditionType
      */
     public function getConditionType()
     {
@@ -747,7 +772,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets condition_type
      *
-     * @param string $condition_type condition_type
+     * @param \Schematic\Model\ConditionType $condition_type condition_type
      *
      * @return self
      */
@@ -784,8 +809,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -845,8 +870,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'credit_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -906,8 +931,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'event_subtype');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_subtype', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('event_subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -940,8 +965,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -981,7 +1006,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -991,7 +1016,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period metric_period
+     * @param \Schematic\Model\MetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -1001,8 +1026,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1015,7 +1040,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metric_period_month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMetricPeriodMonthReset()
     {
@@ -1025,7 +1050,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metric_period_month_reset
      *
-     * @param string|null $metric_period_month_reset metric_period_month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $metric_period_month_reset metric_period_month_reset
      *
      * @return self
      */
@@ -1035,8 +1060,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'metric_period_month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period_month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period_month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1069,8 +1094,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'metric_value');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_value', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_value', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1083,7 +1108,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets operator
      *
-     * @return string
+     * @return \Schematic\Model\ComparableOperator
      */
     public function getOperator()
     {
@@ -1093,7 +1118,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets operator
      *
-     * @param string $operator operator
+     * @param \Schematic\Model\ComparableOperator $operator operator
      *
      * @return self
      */
@@ -1103,40 +1128,6 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable operator cannot be null');
         }
         $this->container['operator'] = $operator;
-
-        return $this;
-    }
-
-    /**
-     * Gets plan_version_id
-     *
-     * @return string|null
-     */
-    public function getPlanVersionId()
-    {
-        return $this->container['plan_version_id'];
-    }
-
-    /**
-     * Sets plan_version_id
-     *
-     * @param string|null $plan_version_id plan_version_id
-     *
-     * @return self
-     */
-    public function setPlanVersionId($plan_version_id)
-    {
-        if (is_null($plan_version_id)) {
-            array_push($this->openAPINullablesSetToNull, 'plan_version_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_version_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['plan_version_id'] = $plan_version_id;
 
         return $this;
     }
@@ -1162,6 +1153,10 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($plan_versions)) {
             throw new \InvalidArgumentException('non-nullable plan_versions cannot be null');
+        }
+
+        if ((count($plan_versions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $plan_versions when calling ConditionView., number of items must be less than or equal to 1000.');
         }
         $this->container['plan_versions'] = $plan_versions;
 
@@ -1190,6 +1185,10 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($plans)) {
             throw new \InvalidArgumentException('non-nullable plans cannot be null');
         }
+
+        if ((count($plans) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $plans when calling ConditionView., number of items must be less than or equal to 1000.');
+        }
         $this->container['plans'] = $plans;
 
         return $this;
@@ -1216,6 +1215,10 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($resource_unspecified_ids)) {
             throw new \InvalidArgumentException('non-nullable resource_unspecified_ids cannot be null');
+        }
+
+        if ((count($resource_unspecified_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $resource_unspecified_ids when calling ConditionView., number of items must be less than or equal to 1000.');
         }
         $this->container['resource_unspecified_ids'] = $resource_unspecified_ids;
 
@@ -1299,8 +1302,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'trait_entity_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_entity_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_entity_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1333,8 +1336,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1421,8 +1424,8 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'trait_value_date');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_value_date', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_value_date', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1508,6 +1511,10 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($users)) {
             throw new \InvalidArgumentException('non-nullable users cannot be null');
         }
+
+        if ((count($users) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $users when calling ConditionView., number of items must be less than or equal to 1000.');
+        }
         $this->container['users'] = $users;
 
         return $this;
@@ -1576,7 +1583,7 @@ class ConditionView implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

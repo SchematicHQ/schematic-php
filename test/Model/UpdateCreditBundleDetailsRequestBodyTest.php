@@ -90,6 +90,15 @@ class UpdateCreditBundleDetailsRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "currency_prices"
+     */
+    public function testPropertyCurrencyPrices()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "expiry_type"
      */
     public function testPropertyExpiryType()

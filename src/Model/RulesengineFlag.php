@@ -328,6 +328,10 @@ class RulesengineFlag implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['rules'] === null) {
             $invalidProperties[] = "'rules' can't be null";
         }
+        if ((count($this->container['rules']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'rules', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -500,6 +504,10 @@ class RulesengineFlag implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($rules)) {
             throw new \InvalidArgumentException('non-nullable rules cannot be null');
         }
+
+        if ((count($rules) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $rules when calling RulesengineFlag., number of items must be less than or equal to 1000.');
+        }
         $this->container['rules'] = $rules;
 
         return $this;
@@ -568,7 +576,7 @@ class RulesengineFlag implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

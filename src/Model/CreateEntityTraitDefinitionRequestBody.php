@@ -306,6 +306,10 @@ class CreateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
         if ($this->container['hierarchy'] === null) {
             $invalidProperties[] = "'hierarchy' can't be null";
         }
+        if ((count($this->container['hierarchy']) > 100)) {
+            $invalidProperties[] = "invalid value for 'hierarchy', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['trait_type'] === null) {
             $invalidProperties[] = "'trait_type' can't be null";
         }
@@ -347,8 +351,8 @@ class CreateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
             array_push($this->openAPINullablesSetToNull, 'display_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('display_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('display_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -410,6 +414,10 @@ class CreateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
     {
         if (is_null($hierarchy)) {
             throw new \InvalidArgumentException('non-nullable hierarchy cannot be null');
+        }
+
+        if ((count($hierarchy) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $hierarchy when calling CreateEntityTraitDefinitionRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['hierarchy'] = $hierarchy;
 
@@ -506,7 +514,7 @@ class CreateEntityTraitDefinitionRequestBody implements ModelInterface, ArrayAcc
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

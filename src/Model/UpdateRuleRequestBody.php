@@ -76,7 +76,7 @@ class UpdateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'condition_groups' => null,
         'conditions' => null,
         'name' => null,
-        'priority' => null,
+        'priority' => 'int64',
         'value' => null
     ];
 
@@ -555,7 +555,7 @@ class UpdateRuleRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

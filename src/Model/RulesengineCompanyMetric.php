@@ -63,8 +63,8 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
         'created_at' => '\DateTime',
         'environment_id' => 'string',
         'event_subtype' => 'string',
-        'month_reset' => 'string',
-        'period' => 'string',
+        'month_reset' => '\Schematic\Model\RulesengineMetricPeriodMonthReset',
+        'period' => '\Schematic\Model\RulesengineMetricPeriod',
         'valid_until' => '\DateTime',
         'value' => 'int'
     ];
@@ -85,7 +85,7 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
         'month_reset' => null,
         'period' => null,
         'valid_until' => 'date-time',
-        'value' => null
+        'value' => 'int64'
     ];
 
     /**
@@ -277,40 +277,6 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    public const MONTH_RESET_FIRST_OF_MONTH = 'first_of_month';
-    public const MONTH_RESET_BILLING_CYCLE = 'billing_cycle';
-    public const PERIOD_ALL_TIME = 'all_time';
-    public const PERIOD_CURRENT_DAY = 'current_day';
-    public const PERIOD_CURRENT_MONTH = 'current_month';
-    public const PERIOD_CURRENT_WEEK = 'current_week';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMonthResetAllowableValues()
-    {
-        return [
-            self::MONTH_RESET_FIRST_OF_MONTH,
-            self::MONTH_RESET_BILLING_CYCLE,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getPeriodAllowableValues()
-    {
-        return [
-            self::PERIOD_ALL_TIME,
-            self::PERIOD_CURRENT_DAY,
-            self::PERIOD_CURRENT_MONTH,
-            self::PERIOD_CURRENT_WEEK,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -383,27 +349,9 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['month_reset'] === null) {
             $invalidProperties[] = "'month_reset' can't be null";
         }
-        $allowedValues = $this->getMonthResetAllowableValues();
-        if (!is_null($this->container['month_reset']) && !in_array($this->container['month_reset'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'month_reset', must be one of '%s'",
-                $this->container['month_reset'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['period'] === null) {
             $invalidProperties[] = "'period' can't be null";
         }
-        $allowedValues = $this->getPeriodAllowableValues();
-        if (!is_null($this->container['period']) && !in_array($this->container['period'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'period', must be one of '%s'",
-                $this->container['period'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
         }
@@ -560,7 +508,7 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets month_reset
      *
-     * @return string
+     * @return \Schematic\Model\RulesengineMetricPeriodMonthReset
      */
     public function getMonthReset()
     {
@@ -570,7 +518,7 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets month_reset
      *
-     * @param string $month_reset month_reset
+     * @param \Schematic\Model\RulesengineMetricPeriodMonthReset $month_reset month_reset
      *
      * @return self
      */
@@ -578,16 +526,6 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
     {
         if (is_null($month_reset)) {
             throw new \InvalidArgumentException('non-nullable month_reset cannot be null');
-        }
-        $allowedValues = $this->getMonthResetAllowableValues();
-        if (!in_array($month_reset, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'month_reset', must be one of '%s'",
-                    $month_reset,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['month_reset'] = $month_reset;
 
@@ -597,7 +535,7 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets period
      *
-     * @return string
+     * @return \Schematic\Model\RulesengineMetricPeriod
      */
     public function getPeriod()
     {
@@ -607,7 +545,7 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets period
      *
-     * @param string $period period
+     * @param \Schematic\Model\RulesengineMetricPeriod $period period
      *
      * @return self
      */
@@ -615,16 +553,6 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
     {
         if (is_null($period)) {
             throw new \InvalidArgumentException('non-nullable period cannot be null');
-        }
-        $allowedValues = $this->getPeriodAllowableValues();
-        if (!in_array($period, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'period', must be one of '%s'",
-                    $period,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['period'] = $period;
 
@@ -654,8 +582,8 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'valid_until');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('valid_until', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('valid_until', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -755,7 +683,7 @@ class RulesengineCompanyMetric implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

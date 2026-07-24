@@ -378,6 +378,15 @@ class FeatureCompanyResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "quarterly_usage_based_price"
+     */
+    public function testPropertyQuarterlyUsageBasedPrice()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "soft_limit"
      */
     public function testPropertySoftLimit()

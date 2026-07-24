@@ -76,14 +76,14 @@ class CouponRequestBody implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount_off' => null,
+        'amount_off' => 'int64',
         'currency' => null,
         'duration' => null,
-        'duration_in_months' => null,
-        'max_redemptions' => null,
+        'duration_in_months' => 'int64',
+        'max_redemptions' => 'int64',
         'name' => null,
-        'percent_off' => null,
-        'times_redeemed' => null
+        'percent_off' => 'double',
+        'times_redeemed' => 'int64'
     ];
 
     /**
@@ -422,8 +422,8 @@ class CouponRequestBody implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'currency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -670,7 +670,7 @@ class CouponRequestBody implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

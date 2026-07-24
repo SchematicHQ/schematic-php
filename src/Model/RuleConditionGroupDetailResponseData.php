@@ -320,6 +320,10 @@ class RuleConditionGroupDetailResponseData implements ModelInterface, ArrayAcces
         if ($this->container['conditions'] === null) {
             $invalidProperties[] = "'conditions' can't be null";
         }
+        if ((count($this->container['conditions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'conditions', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -371,6 +375,10 @@ class RuleConditionGroupDetailResponseData implements ModelInterface, ArrayAcces
     {
         if (is_null($conditions)) {
             throw new \InvalidArgumentException('non-nullable conditions cannot be null');
+        }
+
+        if ((count($conditions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $conditions when calling RuleConditionGroupDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['conditions'] = $conditions;
 
@@ -454,8 +462,8 @@ class RuleConditionGroupDetailResponseData implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -609,7 +617,7 @@ class RuleConditionGroupDetailResponseData implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

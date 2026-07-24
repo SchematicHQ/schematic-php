@@ -117,6 +117,24 @@ class BillingPriceResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "interval_count"
+     */
+    public function testPropertyIntervalCount()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "nickname"
+     */
+    public function testPropertyNickname()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "price"
      */
     public function testPropertyPrice()

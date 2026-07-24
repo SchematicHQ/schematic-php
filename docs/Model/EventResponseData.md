@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **error_message** | **string** |  | [optional]
 **feature_ids** | **string[]** |  |
 **id** | **string** |  |
+**idempotency_key** | **string** |  | [optional]
+**lease_id** | **string** |  | [optional]
 **loaded_at** | **\DateTime** |  | [optional]
 **processed_at** | **\DateTime** |  | [optional]
 **quantity** | **int** |  |

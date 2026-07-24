@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **flag** | [**\Schematic\Model\CreateOrUpdateFlagRequestBody**](CreateOrUpdateFlagRequestBody.md) |  | [optional]
 **icon** | **string** |  | [optional]
 **lifecycle_phase** | [**\Schematic\Model\FeatureLifecyclePhase**](FeatureLifecyclePhase.md) |  | [optional]
-**maintainer_id** | **string** |  | [optional]
+**maintainer_account_member_id** | **string** |  | [optional]
 **name** | **string** |  |
 **plural_name** | **string** |  | [optional]
 **singular_name** | **string** |  | [optional]

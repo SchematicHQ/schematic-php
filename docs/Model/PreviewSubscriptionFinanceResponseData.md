@@ -5,9 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount_off** | **int** |  |
+**discounts** | [**\Schematic\Model\PreviewSubscriptionDiscountResponseData[]**](PreviewSubscriptionDiscountResponseData.md) |  |
 **due_now** | **int** |  |
 **new_charges** | **int** |  |
 **percent_off** | **float** |  |
+**period_end** | **\DateTime** |  |
 **period_start** | **\DateTime** |  |
 **promo_code_applied** | **bool** |  |
 **proration** | **int** |  |

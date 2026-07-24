@@ -59,7 +59,7 @@ class UpdatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'description' => 'string',
-        'icon' => 'string',
+        'icon' => '\Schematic\Model\PlanIcon',
         'name' => 'string'
     ];
 
@@ -297,10 +297,6 @@ class UpdatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
             $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 0.";
         }
 
-        if (!is_null($this->container['icon']) && (mb_strlen($this->container['icon']) > 64)) {
-            $invalidProperties[] = "invalid value for 'icon', the character length must be smaller than or equal to 64.";
-        }
-
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
@@ -350,8 +346,8 @@ class UpdatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('description', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -371,7 +367,7 @@ class UpdatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets icon
      *
-     * @return string|null
+     * @return \Schematic\Model\PlanIcon|null
      */
     public function getIcon()
     {
@@ -381,7 +377,7 @@ class UpdatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets icon
      *
-     * @param string|null $icon icon
+     * @param \Schematic\Model\PlanIcon|null $icon icon
      *
      * @return self
      */
@@ -391,16 +387,12 @@ class UpdatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        if (!is_null($icon) && (mb_strlen($icon) > 64)) {
-            throw new \InvalidArgumentException('invalid length for $icon when calling UpdatePlanRequestBody., must be smaller than or equal to 64.');
-        }
-
         $this->container['icon'] = $icon;
 
         return $this;
@@ -503,7 +495,7 @@ class UpdatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **flag_type** | [**\Schematic\Model\FlagType**](FlagType.md) |  |
 **id** | **string** |  |
 **key** | **string** |  |
-**maintainer_id** | **string** |  | [optional]
+**maintainer_account_member_id** | **string** |  | [optional]
 **name** | **string** |  |
 **updated_at** | **\DateTime** |  |
 

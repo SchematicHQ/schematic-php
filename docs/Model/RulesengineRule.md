@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **id** | **string** |  |
 **name** | **string** |  |
 **priority** | **int** |  |
-**rule_type** | **string** |  |
+**rule_type** | [**\Schematic\Model\RulesengineRuleType**](RulesengineRuleType.md) |  |
 **value** | **bool** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

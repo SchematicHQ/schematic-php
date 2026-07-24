@@ -108,6 +108,15 @@ class ComponentSettingsResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "show_hard_limit"
+     */
+    public function testPropertyShowHardLimit()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "show_period_toggle"
      */
     public function testPropertyShowPeriodToggle()

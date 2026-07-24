@@ -43,6 +43,8 @@ class BillingCreditGrantReason
     /**
      * Possible values of this enum
      */
+    public const ADJUSTMENT = 'adjustment';
+
     public const BILLING_CREDIT_AUTO_TOPUP = 'billing_credit_auto_topup';
 
     public const FREE = 'free';
@@ -51,6 +53,8 @@ class BillingCreditGrantReason
 
     public const PURCHASED = 'purchased';
 
+    public const ROLLOVER = 'rollover';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -58,10 +62,12 @@ class BillingCreditGrantReason
     public static function getAllowableEnumValues()
     {
         return [
+            self::ADJUSTMENT,
             self::BILLING_CREDIT_AUTO_TOPUP,
             self::FREE,
             self::PLAN,
-            self::PURCHASED
+            self::PURCHASED,
+            self::ROLLOVER
         ];
     }
 }

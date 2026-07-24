@@ -81,6 +81,15 @@ class PlanEntitlementResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_linked_resource"
+     */
+    public function testPropertyBillingLinkedResource()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "billing_threshold"
      */
     public function testPropertyBillingThreshold()
@@ -102,6 +111,15 @@ class PlanEntitlementResponseDataTest extends TestCase
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "currency_prices"
+     */
+    public function testPropertyCurrencyPrices()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -147,6 +165,15 @@ class PlanEntitlementResponseDataTest extends TestCase
      * Test attribute "metered_monthly_price"
      */
     public function testPropertyMeteredMonthlyPrice()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "metered_quarterly_price"
+     */
+    public function testPropertyMeteredQuarterlyPrice()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -252,6 +279,15 @@ class PlanEntitlementResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "usage_quantity"
+     */
+    public function testPropertyUsageQuantity()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "value_bool"
      */
     public function testPropertyValueBool()
@@ -300,6 +336,15 @@ class PlanEntitlementResponseDataTest extends TestCase
      * Test attribute "value_type"
      */
     public function testPropertyValueType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "warning_tiers"
+     */
+    public function testPropertyWarningTiers()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

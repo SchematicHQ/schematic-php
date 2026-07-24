@@ -59,19 +59,24 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPITypes = [
         'allocation' => 'int',
+        'consumption_rate' => 'float',
         'credit_id' => 'string',
         'credit_remaining' => 'float',
+        'credit_reserved' => 'float',
+        'credit_settled' => 'float',
         'credit_total' => 'float',
         'credit_used' => 'float',
         'event_name' => 'string',
+        'event_subtype' => 'string',
         'feature_id' => 'string',
         'feature_key' => 'string',
-        'metric_period' => 'string',
+        'metric_period' => '\Schematic\Model\RulesengineMetricPeriod',
         'metric_reset_at' => '\DateTime',
-        'month_reset' => 'string',
+        'month_reset' => '\Schematic\Model\RulesengineMetricPeriodMonthReset',
         'soft_limit' => 'int',
         'usage' => 'int',
-        'value_type' => 'RulesengineEntitlementValueType'
+        'value_type' => '\Schematic\Model\RulesengineEntitlementValueType',
+        'warning_tiers' => '\Schematic\Model\RulesengineWarningTier[]'
     ];
 
     /**
@@ -82,20 +87,25 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'allocation' => null,
+        'allocation' => 'int64',
+        'consumption_rate' => 'double',
         'credit_id' => null,
-        'credit_remaining' => null,
-        'credit_total' => null,
-        'credit_used' => null,
+        'credit_remaining' => 'double',
+        'credit_reserved' => 'double',
+        'credit_settled' => 'double',
+        'credit_total' => 'double',
+        'credit_used' => 'double',
         'event_name' => null,
+        'event_subtype' => null,
         'feature_id' => null,
         'feature_key' => null,
         'metric_period' => null,
         'metric_reset_at' => 'date-time',
         'month_reset' => null,
-        'soft_limit' => null,
-        'usage' => null,
-        'value_type' => null
+        'soft_limit' => 'int64',
+        'usage' => 'int64',
+        'value_type' => null,
+        'warning_tiers' => null
     ];
 
     /**
@@ -105,11 +115,15 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
       */
     protected static array $openAPINullables = [
         'allocation' => true,
+        'consumption_rate' => true,
         'credit_id' => true,
         'credit_remaining' => true,
+        'credit_reserved' => true,
+        'credit_settled' => true,
         'credit_total' => true,
         'credit_used' => true,
         'event_name' => true,
+        'event_subtype' => true,
         'feature_id' => false,
         'feature_key' => false,
         'metric_period' => true,
@@ -117,7 +131,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
         'month_reset' => true,
         'soft_limit' => true,
         'usage' => true,
-        'value_type' => false
+        'value_type' => false,
+        'warning_tiers' => false
     ];
 
     /**
@@ -207,11 +222,15 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $attributeMap = [
         'allocation' => 'allocation',
+        'consumption_rate' => 'consumption_rate',
         'credit_id' => 'credit_id',
         'credit_remaining' => 'credit_remaining',
+        'credit_reserved' => 'credit_reserved',
+        'credit_settled' => 'credit_settled',
         'credit_total' => 'credit_total',
         'credit_used' => 'credit_used',
         'event_name' => 'event_name',
+        'event_subtype' => 'event_subtype',
         'feature_id' => 'feature_id',
         'feature_key' => 'feature_key',
         'metric_period' => 'metric_period',
@@ -219,7 +238,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
         'month_reset' => 'month_reset',
         'soft_limit' => 'soft_limit',
         'usage' => 'usage',
-        'value_type' => 'value_type'
+        'value_type' => 'value_type',
+        'warning_tiers' => 'warning_tiers'
     ];
 
     /**
@@ -229,11 +249,15 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $setters = [
         'allocation' => 'setAllocation',
+        'consumption_rate' => 'setConsumptionRate',
         'credit_id' => 'setCreditId',
         'credit_remaining' => 'setCreditRemaining',
+        'credit_reserved' => 'setCreditReserved',
+        'credit_settled' => 'setCreditSettled',
         'credit_total' => 'setCreditTotal',
         'credit_used' => 'setCreditUsed',
         'event_name' => 'setEventName',
+        'event_subtype' => 'setEventSubtype',
         'feature_id' => 'setFeatureId',
         'feature_key' => 'setFeatureKey',
         'metric_period' => 'setMetricPeriod',
@@ -241,7 +265,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
         'month_reset' => 'setMonthReset',
         'soft_limit' => 'setSoftLimit',
         'usage' => 'setUsage',
-        'value_type' => 'setValueType'
+        'value_type' => 'setValueType',
+        'warning_tiers' => 'setWarningTiers'
     ];
 
     /**
@@ -251,11 +276,15 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $getters = [
         'allocation' => 'getAllocation',
+        'consumption_rate' => 'getConsumptionRate',
         'credit_id' => 'getCreditId',
         'credit_remaining' => 'getCreditRemaining',
+        'credit_reserved' => 'getCreditReserved',
+        'credit_settled' => 'getCreditSettled',
         'credit_total' => 'getCreditTotal',
         'credit_used' => 'getCreditUsed',
         'event_name' => 'getEventName',
+        'event_subtype' => 'getEventSubtype',
         'feature_id' => 'getFeatureId',
         'feature_key' => 'getFeatureKey',
         'metric_period' => 'getMetricPeriod',
@@ -263,7 +292,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
         'month_reset' => 'getMonthReset',
         'soft_limit' => 'getSoftLimit',
         'usage' => 'getUsage',
-        'value_type' => 'getValueType'
+        'value_type' => 'getValueType',
+        'warning_tiers' => 'getWarningTiers'
     ];
 
     /**
@@ -307,40 +337,6 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
-    public const METRIC_PERIOD_ALL_TIME = 'all_time';
-    public const METRIC_PERIOD_CURRENT_DAY = 'current_day';
-    public const METRIC_PERIOD_CURRENT_MONTH = 'current_month';
-    public const METRIC_PERIOD_CURRENT_WEEK = 'current_week';
-    public const MONTH_RESET_FIRST_OF_MONTH = 'first_of_month';
-    public const MONTH_RESET_BILLING_CYCLE = 'billing_cycle';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMetricPeriodAllowableValues()
-    {
-        return [
-            self::METRIC_PERIOD_ALL_TIME,
-            self::METRIC_PERIOD_CURRENT_DAY,
-            self::METRIC_PERIOD_CURRENT_MONTH,
-            self::METRIC_PERIOD_CURRENT_WEEK,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMonthResetAllowableValues()
-    {
-        return [
-            self::MONTH_RESET_FIRST_OF_MONTH,
-            self::MONTH_RESET_BILLING_CYCLE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -358,11 +354,15 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
     public function __construct(array $data = null)
     {
         $this->setIfExists('allocation', $data ?? [], null);
+        $this->setIfExists('consumption_rate', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('credit_remaining', $data ?? [], null);
+        $this->setIfExists('credit_reserved', $data ?? [], null);
+        $this->setIfExists('credit_settled', $data ?? [], null);
         $this->setIfExists('credit_total', $data ?? [], null);
         $this->setIfExists('credit_used', $data ?? [], null);
         $this->setIfExists('event_name', $data ?? [], null);
+        $this->setIfExists('event_subtype', $data ?? [], null);
         $this->setIfExists('feature_id', $data ?? [], null);
         $this->setIfExists('feature_key', $data ?? [], null);
         $this->setIfExists('metric_period', $data ?? [], null);
@@ -371,6 +371,7 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('soft_limit', $data ?? [], null);
         $this->setIfExists('usage', $data ?? [], null);
         $this->setIfExists('value_type', $data ?? [], null);
+        $this->setIfExists('warning_tiers', $data ?? [], null);
     }
 
     /**
@@ -406,27 +407,13 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['feature_key'] === null) {
             $invalidProperties[] = "'feature_key' can't be null";
         }
-        $allowedValues = $this->getMetricPeriodAllowableValues();
-        if (!is_null($this->container['metric_period']) && !in_array($this->container['metric_period'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'metric_period', must be one of '%s'",
-                $this->container['metric_period'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getMonthResetAllowableValues();
-        if (!is_null($this->container['month_reset']) && !in_array($this->container['month_reset'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'month_reset', must be one of '%s'",
-                $this->container['month_reset'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['value_type'] === null) {
             $invalidProperties[] = "'value_type' can't be null";
         }
+        if (!is_null($this->container['warning_tiers']) && (count($this->container['warning_tiers']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'warning_tiers', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -465,13 +452,47 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'allocation');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('allocation', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('allocation', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['allocation'] = $allocation;
+
+        return $this;
+    }
+
+    /**
+     * Gets consumption_rate
+     *
+     * @return float|null
+     */
+    public function getConsumptionRate()
+    {
+        return $this->container['consumption_rate'];
+    }
+
+    /**
+     * Sets consumption_rate
+     *
+     * @param float|null $consumption_rate If the company has a credit-based entitlement for this feature, the credit cost per unit of usage
+     *
+     * @return self
+     */
+    public function setConsumptionRate($consumption_rate)
+    {
+        if (is_null($consumption_rate)) {
+            array_push($this->openAPINullablesSetToNull, 'consumption_rate');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['consumption_rate'] = $consumption_rate;
 
         return $this;
     }
@@ -499,8 +520,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'credit_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -523,7 +544,7 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets credit_remaining
      *
-     * @param float|null $credit_remaining If the company has a credit-based entitlement for this feature, the remaining credit amount
+     * @param float|null $credit_remaining If the company has a credit-based entitlement for this feature, the credit available to fund new consumption or a new lease hold — open lease holds are excluded. Clients that hold a lease should gate on this plus their own unspent hold; clients with no lease awareness should use credit_settled instead
      *
      * @return self
      */
@@ -533,13 +554,81 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'credit_remaining');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_remaining', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_remaining', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['credit_remaining'] = $credit_remaining;
+
+        return $this;
+    }
+
+    /**
+     * Gets credit_reserved
+     *
+     * @return float|null
+     */
+    public function getCreditReserved()
+    {
+        return $this->container['credit_reserved'];
+    }
+
+    /**
+     * Sets credit_reserved
+     *
+     * @param float|null $credit_reserved If the company has a credit-based entitlement for this feature, the unspent amount held by an open credit lease. Returns to credit_remaining when the lease is released
+     *
+     * @return self
+     */
+    public function setCreditReserved($credit_reserved)
+    {
+        if (is_null($credit_reserved)) {
+            array_push($this->openAPINullablesSetToNull, 'credit_reserved');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('credit_reserved', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['credit_reserved'] = $credit_reserved;
+
+        return $this;
+    }
+
+    /**
+     * Gets credit_settled
+     *
+     * @return float|null
+     */
+    public function getCreditSettled()
+    {
+        return $this->container['credit_settled'];
+    }
+
+    /**
+     * Sets credit_settled
+     *
+     * @param float|null $credit_settled If the company has a credit-based entitlement for this feature, the balance net of actual consumption, unaffected by open lease holds (credit_remaining plus credit_reserved). The number to display to end users
+     *
+     * @return self
+     */
+    public function setCreditSettled($credit_settled)
+    {
+        if (is_null($credit_settled)) {
+            array_push($this->openAPINullablesSetToNull, 'credit_settled');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('credit_settled', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['credit_settled'] = $credit_settled;
 
         return $this;
     }
@@ -567,8 +656,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'credit_total');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_total', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_total', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -601,8 +690,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'credit_used');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_used', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_used', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -635,13 +724,47 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'event_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('event_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['event_name'] = $event_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets event_subtype
+     *
+     * @return string|null
+     */
+    public function getEventSubtype()
+    {
+        return $this->container['event_subtype'];
+    }
+
+    /**
+     * Sets event_subtype
+     *
+     * @param string|null $event_subtype For event-based or credit-metered feature entitlements, the event subtype whose usage is tracked
+     *
+     * @return self
+     */
+    public function setEventSubtype($event_subtype)
+    {
+        if (is_null($event_subtype)) {
+            array_push($this->openAPINullablesSetToNull, 'event_subtype');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('event_subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['event_subtype'] = $event_subtype;
 
         return $this;
     }
@@ -703,7 +826,7 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\RulesengineMetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -713,7 +836,7 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period For event-based feature entitlements, the period over which usage is tracked
+     * @param \Schematic\Model\RulesengineMetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -723,21 +846,11 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getMetricPeriodAllowableValues();
-        if (!is_null($metric_period) && !in_array($metric_period, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'metric_period', must be one of '%s'",
-                    $metric_period,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['metric_period'] = $metric_period;
 
@@ -767,8 +880,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'metric_reset_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_reset_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_reset_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -781,7 +894,7 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\RulesengineMetricPeriodMonthReset|null
      */
     public function getMonthReset()
     {
@@ -791,7 +904,7 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets month_reset
      *
-     * @param string|null $month_reset For event-based feature entitlements that have a monthly period, whether that monthly reset is based on the calendar month or a billing cycle
+     * @param \Schematic\Model\RulesengineMetricPeriodMonthReset|null $month_reset month_reset
      *
      * @return self
      */
@@ -801,21 +914,11 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getMonthResetAllowableValues();
-        if (!is_null($month_reset) && !in_array($month_reset, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'month_reset', must be one of '%s'",
-                    $month_reset,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['month_reset'] = $month_reset;
 
@@ -845,8 +948,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'soft_limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('soft_limit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('soft_limit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -879,8 +982,8 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'usage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('usage', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('usage', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -893,7 +996,7 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets value_type
      *
-     * @return RulesengineEntitlementValueType
+     * @return \Schematic\Model\RulesengineEntitlementValueType
      */
     public function getValueType()
     {
@@ -903,7 +1006,7 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets value_type
      *
-     * @param RulesengineEntitlementValueType $value_type value_type
+     * @param \Schematic\Model\RulesengineEntitlementValueType $value_type value_type
      *
      * @return self
      */
@@ -913,6 +1016,37 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable value_type cannot be null');
         }
         $this->container['value_type'] = $value_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets warning_tiers
+     *
+     * @return \Schematic\Model\RulesengineWarningTier[]|null
+     */
+    public function getWarningTiers()
+    {
+        return $this->container['warning_tiers'];
+    }
+
+    /**
+     * Sets warning_tiers
+     *
+     * @param \Schematic\Model\RulesengineWarningTier[]|null $warning_tiers Customer-defined usage warning thresholds configured on this entitlement
+     *
+     * @return self
+     */
+    public function setWarningTiers($warning_tiers)
+    {
+        if (is_null($warning_tiers)) {
+            throw new \InvalidArgumentException('non-nullable warning_tiers cannot be null');
+        }
+
+        if ((count($warning_tiers) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $warning_tiers when calling RulesengineFeatureEntitlement., number of items must be less than or equal to 1000.');
+        }
+        $this->container['warning_tiers'] = $warning_tiers;
 
         return $this;
     }
@@ -980,7 +1114,7 @@ class RulesengineFeatureEntitlement implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

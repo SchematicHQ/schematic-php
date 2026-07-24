@@ -126,6 +126,15 @@ class CreatePlanGroupRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "custom_checkout_fields"
+     */
+    public function testPropertyCustomCheckoutFields()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "custom_plan_config"
      */
     public function testPropertyCustomPlanConfig()
@@ -174,6 +183,33 @@ class CreatePlanGroupRequestBodyTest extends TestCase
      * Test attribute "initial_plan_price_id"
      */
     public function testPropertyInitialPlanPriceId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "opt_in_enabled"
+     */
+    public function testPropertyOptInEnabled()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "opt_in_text"
+     */
+    public function testPropertyOptInText()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "opt_in_title"
+     */
+    public function testPropertyOptInTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -291,6 +327,15 @@ class CreatePlanGroupRequestBodyTest extends TestCase
      * Test attribute "show_feature_description"
      */
     public function testPropertyShowFeatureDescription()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "show_hard_limit"
+     */
+    public function testPropertyShowHardLimit()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

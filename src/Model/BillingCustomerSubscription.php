@@ -78,8 +78,8 @@ class BillingCustomerSubscription implements ModelInterface, ArrayAccess, \JsonS
         'expired_at' => 'date-time',
         'interval' => null,
         'metered_usage' => null,
-        'per_unit_price' => null,
-        'total_price' => null
+        'per_unit_price' => 'int64',
+        'total_price' => 'int64'
     ];
 
     /**
@@ -390,8 +390,8 @@ class BillingCustomerSubscription implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'expired_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expired_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expired_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -572,7 +572,7 @@ class BillingCustomerSubscription implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

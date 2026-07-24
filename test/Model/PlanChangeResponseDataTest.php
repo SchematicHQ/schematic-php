@@ -126,9 +126,9 @@ class PlanChangeResponseDataTest extends TestCase
     }
 
     /**
-     * Test attribute "api_key_request"
+     * Test attribute "audit_log"
      */
-    public function testPropertyApiKeyRequest()
+    public function testPropertyAuditLog()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -147,6 +147,15 @@ class PlanChangeResponseDataTest extends TestCase
      * Test attribute "base_plan_action"
      */
     public function testPropertyBasePlanAction()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "base_plan_version"
+     */
+    public function testPropertyBasePlanVersion()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -198,9 +207,36 @@ class PlanChangeResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "integration"
+     */
+    public function testPropertyIntegration()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "is_version_upgrade"
+     */
+    public function testPropertyIsVersionUpgrade()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "previous_base_plan"
      */
     public function testPropertyPreviousBasePlan()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "previous_base_plan_version"
+     */
+    public function testPropertyPreviousBasePlanVersion()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -126,6 +126,15 @@ class CheckoutDataResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "custom_checkout_fields"
+     */
+    public function testPropertyCustomCheckoutFields()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "feature_usage"
      */
     public function testPropertyFeatureUsage()

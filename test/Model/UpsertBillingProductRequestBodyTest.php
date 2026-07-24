@@ -90,6 +90,15 @@ class UpsertBillingProductRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_strategy"
+     */
+    public function testPropertyBillingStrategy()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "charge_type"
      */
     public function testPropertyChargeType()
@@ -102,6 +111,15 @@ class UpsertBillingProductRequestBodyTest extends TestCase
      * Test attribute "currency"
      */
     public function testPropertyCurrency()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "currency_prices"
+     */
+    public function testPropertyCurrencyPrices()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -147,6 +165,24 @@ class UpsertBillingProductRequestBodyTest extends TestCase
      * Test attribute "one_time_price_id"
      */
     public function testPropertyOneTimePriceId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "quarterly_price"
+     */
+    public function testPropertyQuarterlyPrice()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "quarterly_price_id"
+     */
+    public function testPropertyQuarterlyPriceId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

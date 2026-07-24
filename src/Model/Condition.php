@@ -60,16 +60,16 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'account_id' => 'string',
         'comparison_trait_definition' => '\Schematic\Model\TraitDefinition',
-        'condition_type' => 'string',
+        'condition_type' => '\Schematic\Model\ConditionType',
         'consumption_rate' => 'float',
         'credit_id' => 'string',
         'environment_id' => 'string',
         'event_subtype' => 'string',
         'id' => 'string',
-        'metric_period' => 'string',
-        'metric_period_month_reset' => 'string',
+        'metric_period' => '\Schematic\Model\MetricPeriod',
+        'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'metric_value' => 'int',
-        'operator' => 'string',
+        'operator' => '\Schematic\Model\ComparableOperator',
         'resource_ids' => 'string[]',
         'trait_definition' => '\Schematic\Model\TraitDefinition',
         'trait_value' => 'string'
@@ -86,14 +86,14 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
         'account_id' => null,
         'comparison_trait_definition' => null,
         'condition_type' => null,
-        'consumption_rate' => null,
+        'consumption_rate' => 'double',
         'credit_id' => null,
         'environment_id' => null,
         'event_subtype' => null,
         'id' => null,
         'metric_period' => null,
         'metric_period_month_reset' => null,
-        'metric_value' => null,
+        'metric_value' => 'int64',
         'operator' => null,
         'resource_ids' => null,
         'trait_definition' => null,
@@ -313,96 +313,6 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const CONDITION_TYPE_BASE_PLAN = 'base_plan';
-    public const CONDITION_TYPE_BILLING_PRODUCT = 'billing_product';
-    public const CONDITION_TYPE_COMPANY = 'company';
-    public const CONDITION_TYPE_CREDIT = 'credit';
-    public const CONDITION_TYPE_METRIC = 'metric';
-    public const CONDITION_TYPE_PLAN = 'plan';
-    public const CONDITION_TYPE_PLAN_VERSION = 'plan_version';
-    public const CONDITION_TYPE__TRAIT = 'trait';
-    public const CONDITION_TYPE_USER = 'user';
-    public const METRIC_PERIOD_ALL_TIME = 'all_time';
-    public const METRIC_PERIOD_CURRENT_DAY = 'current_day';
-    public const METRIC_PERIOD_CURRENT_MONTH = 'current_month';
-    public const METRIC_PERIOD_CURRENT_WEEK = 'current_week';
-    public const METRIC_PERIOD_MONTH_RESET_FIRST_OF_MONTH = 'first_of_month';
-    public const METRIC_PERIOD_MONTH_RESET_BILLING_CYCLE = 'billing_cycle';
-    public const OPERATOR_EQ = 'eq';
-    public const OPERATOR_NE = 'ne';
-    public const OPERATOR_GT = 'gt';
-    public const OPERATOR_LT = 'lt';
-    public const OPERATOR_GTE = 'gte';
-    public const OPERATOR_LTE = 'lte';
-    public const OPERATOR_IS_EMPTY = 'is_empty';
-    public const OPERATOR_NOT_EMPTY = 'not_empty';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getConditionTypeAllowableValues()
-    {
-        return [
-            self::CONDITION_TYPE_BASE_PLAN,
-            self::CONDITION_TYPE_BILLING_PRODUCT,
-            self::CONDITION_TYPE_COMPANY,
-            self::CONDITION_TYPE_CREDIT,
-            self::CONDITION_TYPE_METRIC,
-            self::CONDITION_TYPE_PLAN,
-            self::CONDITION_TYPE_PLAN_VERSION,
-            self::CONDITION_TYPE__TRAIT,
-            self::CONDITION_TYPE_USER,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMetricPeriodAllowableValues()
-    {
-        return [
-            self::METRIC_PERIOD_ALL_TIME,
-            self::METRIC_PERIOD_CURRENT_DAY,
-            self::METRIC_PERIOD_CURRENT_MONTH,
-            self::METRIC_PERIOD_CURRENT_WEEK,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMetricPeriodMonthResetAllowableValues()
-    {
-        return [
-            self::METRIC_PERIOD_MONTH_RESET_FIRST_OF_MONTH,
-            self::METRIC_PERIOD_MONTH_RESET_BILLING_CYCLE,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getOperatorAllowableValues()
-    {
-        return [
-            self::OPERATOR_EQ,
-            self::OPERATOR_NE,
-            self::OPERATOR_GT,
-            self::OPERATOR_LT,
-            self::OPERATOR_GTE,
-            self::OPERATOR_LTE,
-            self::OPERATOR_IS_EMPTY,
-            self::OPERATOR_NOT_EMPTY,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -469,54 +379,22 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['condition_type'] === null) {
             $invalidProperties[] = "'condition_type' can't be null";
         }
-        $allowedValues = $this->getConditionTypeAllowableValues();
-        if (!is_null($this->container['condition_type']) && !in_array($this->container['condition_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'condition_type', must be one of '%s'",
-                $this->container['condition_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['environment_id'] === null) {
             $invalidProperties[] = "'environment_id' can't be null";
         }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
-        $allowedValues = $this->getMetricPeriodAllowableValues();
-        if (!is_null($this->container['metric_period']) && !in_array($this->container['metric_period'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'metric_period', must be one of '%s'",
-                $this->container['metric_period'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getMetricPeriodMonthResetAllowableValues();
-        if (!is_null($this->container['metric_period_month_reset']) && !in_array($this->container['metric_period_month_reset'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'metric_period_month_reset', must be one of '%s'",
-                $this->container['metric_period_month_reset'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['operator'] === null) {
             $invalidProperties[] = "'operator' can't be null";
         }
-        $allowedValues = $this->getOperatorAllowableValues();
-        if (!is_null($this->container['operator']) && !in_array($this->container['operator'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'operator', must be one of '%s'",
-                $this->container['operator'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['resource_ids'] === null) {
             $invalidProperties[] = "'resource_ids' can't be null";
         }
+        if ((count($this->container['resource_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'resource_ids', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['trait_value'] === null) {
             $invalidProperties[] = "'trait_value' can't be null";
         }
@@ -592,7 +470,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets condition_type
      *
-     * @return string
+     * @return \Schematic\Model\ConditionType
      */
     public function getConditionType()
     {
@@ -602,7 +480,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets condition_type
      *
-     * @param string $condition_type condition_type
+     * @param \Schematic\Model\ConditionType $condition_type condition_type
      *
      * @return self
      */
@@ -610,16 +488,6 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($condition_type)) {
             throw new \InvalidArgumentException('non-nullable condition_type cannot be null');
-        }
-        $allowedValues = $this->getConditionTypeAllowableValues();
-        if (!in_array($condition_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'condition_type', must be one of '%s'",
-                    $condition_type,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['condition_type'] = $condition_type;
 
@@ -649,8 +517,8 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -683,8 +551,8 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'credit_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -744,8 +612,8 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'event_subtype');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_subtype', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('event_subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -785,7 +653,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -795,7 +663,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period metric_period
+     * @param \Schematic\Model\MetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -805,21 +673,11 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getMetricPeriodAllowableValues();
-        if (!is_null($metric_period) && !in_array($metric_period, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'metric_period', must be one of '%s'",
-                    $metric_period,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['metric_period'] = $metric_period;
 
@@ -829,7 +687,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metric_period_month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMetricPeriodMonthReset()
     {
@@ -839,7 +697,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metric_period_month_reset
      *
-     * @param string|null $metric_period_month_reset metric_period_month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $metric_period_month_reset metric_period_month_reset
      *
      * @return self
      */
@@ -849,21 +707,11 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'metric_period_month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period_month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period_month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getMetricPeriodMonthResetAllowableValues();
-        if (!is_null($metric_period_month_reset) && !in_array($metric_period_month_reset, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'metric_period_month_reset', must be one of '%s'",
-                    $metric_period_month_reset,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['metric_period_month_reset'] = $metric_period_month_reset;
 
@@ -893,8 +741,8 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'metric_value');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_value', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_value', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -907,7 +755,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets operator
      *
-     * @return string
+     * @return \Schematic\Model\ComparableOperator
      */
     public function getOperator()
     {
@@ -917,7 +765,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets operator
      *
-     * @param string $operator operator
+     * @param \Schematic\Model\ComparableOperator $operator operator
      *
      * @return self
      */
@@ -925,16 +773,6 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($operator)) {
             throw new \InvalidArgumentException('non-nullable operator cannot be null');
-        }
-        $allowedValues = $this->getOperatorAllowableValues();
-        if (!in_array($operator, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'operator', must be one of '%s'",
-                    $operator,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['operator'] = $operator;
 
@@ -962,6 +800,10 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($resource_ids)) {
             throw new \InvalidArgumentException('non-nullable resource_ids cannot be null');
+        }
+
+        if ((count($resource_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $resource_ids when calling Condition., number of items must be less than or equal to 1000.');
         }
         $this->container['resource_ids'] = $resource_ids;
 
@@ -1085,7 +927,7 @@ class Condition implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

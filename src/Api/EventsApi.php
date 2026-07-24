@@ -207,7 +207,7 @@ class EventsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateEventResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -693,7 +693,7 @@ class EventsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateEventBatchResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1179,7 +1179,7 @@ class EventsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetEventResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1637,7 +1637,7 @@ class EventsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetEventSummariesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1982,11 +1982,17 @@ class EventsApi
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling EventsApi.getEventSummaries, must be smaller than or equal to 512.');
         }
-        
-        if ($event_subtypes !== null && count($event_subtypes) > 255) {
-            throw new \InvalidArgumentException('invalid value for "$event_subtypes" when calling EventsApi.getEventSummaries, number of items must be less than or equal to 255.');
+
+        if ($event_subtypes !== null && count($event_subtypes) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$event_subtypes" when calling EventsApi.getEventSummaries, number of items must be less than or equal to 100.');
         }
-        
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EventsApi.getEventSummaries, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EventsApi.getEventSummaries, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -2162,7 +2168,7 @@ class EventsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetSegmentIntegrationStatusResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2536,6 +2542,7 @@ class EventsApi
      * @param  string $event_subtype event_subtype (optional)
      * @param  \Schematic\Model\EventType[] $event_types event_types (optional)
      * @param  string $flag_id flag_id (optional)
+     * @param  string $idempotency_key idempotency_key (optional)
      * @param  string $user_id user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2545,9 +2552,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listEvents($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEvents($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $idempotency_key = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        list($response) = $this->listEventsWithHttpInfo($company_id, $event_subtype, $event_types, $flag_id, $user_id, $limit, $offset, $contentType);
+        list($response) = $this->listEventsWithHttpInfo($company_id, $event_subtype, $event_types, $flag_id, $idempotency_key, $user_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2560,6 +2567,7 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  \Schematic\Model\EventType[] $event_types (optional)
      * @param  string $flag_id (optional)
+     * @param  string $idempotency_key (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2569,9 +2577,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListEventsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listEventsWithHttpInfo($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsWithHttpInfo($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $idempotency_key = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        $request = $this->listEventsRequest($company_id, $event_subtype, $event_types, $flag_id, $user_id, $limit, $offset, $contentType);
+        $request = $this->listEventsRequest($company_id, $event_subtype, $event_types, $flag_id, $idempotency_key, $user_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2608,7 +2616,7 @@ class EventsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListEventsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2865,6 +2873,7 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  \Schematic\Model\EventType[] $event_types (optional)
      * @param  string $flag_id (optional)
+     * @param  string $idempotency_key (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2873,9 +2882,9 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventsAsync($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsAsync($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $idempotency_key = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
-        return $this->listEventsAsyncWithHttpInfo($company_id, $event_subtype, $event_types, $flag_id, $user_id, $limit, $offset, $contentType)
+        return $this->listEventsAsyncWithHttpInfo($company_id, $event_subtype, $event_types, $flag_id, $idempotency_key, $user_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2892,6 +2901,7 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  \Schematic\Model\EventType[] $event_types (optional)
      * @param  string $flag_id (optional)
+     * @param  string $idempotency_key (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2900,10 +2910,10 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listEventsAsyncWithHttpInfo($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsAsyncWithHttpInfo($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $idempotency_key = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
         $returnType = '\Schematic\Model\ListEventsResponse';
-        $request = $this->listEventsRequest($company_id, $event_subtype, $event_types, $flag_id, $user_id, $limit, $offset, $contentType);
+        $request = $this->listEventsRequest($company_id, $event_subtype, $event_types, $flag_id, $idempotency_key, $user_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2948,6 +2958,7 @@ class EventsApi
      * @param  string $event_subtype (optional)
      * @param  \Schematic\Model\EventType[] $event_types (optional)
      * @param  string $flag_id (optional)
+     * @param  string $idempotency_key (optional)
      * @param  string $user_id (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
@@ -2956,17 +2967,30 @@ class EventsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listEventsRequest($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
+    public function listEventsRequest($company_id = null, $event_subtype = null, $event_types = null, $flag_id = null, $idempotency_key = null, $user_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEvents'][0])
     {
 
 
         if ($event_subtype !== null && strlen($event_subtype) > 255) {
             throw new \InvalidArgumentException('invalid length for "$event_subtype" when calling EventsApi.listEvents, must be smaller than or equal to 255.');
         }
-        
+
+        if ($event_types !== null && count($event_types) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$event_types" when calling EventsApi.listEvents, number of items must be less than or equal to 100.');
+        }
 
 
+        if ($idempotency_key !== null && strlen($idempotency_key) > 255) {
+            throw new \InvalidArgumentException('invalid length for "$idempotency_key" when calling EventsApi.listEvents, must be smaller than or equal to 255.');
+        }
 
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EventsApi.listEvents, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EventsApi.listEvents, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -3008,6 +3032,15 @@ class EventsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $flag_id,
             'flag_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $idempotency_key,
+            'idempotency_key', // param base name
             'string', // openApiType
             'form', // style
             true, // explode

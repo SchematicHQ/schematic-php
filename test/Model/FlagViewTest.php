@@ -171,15 +171,6 @@ class FlagViewTest extends TestCase
     }
 
     /**
-     * Test attribute "maintainer_id"
-     */
-    public function testPropertyMaintainerId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "name"
      */
     public function testPropertyName()

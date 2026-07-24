@@ -63,6 +63,7 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => '\Schematic\Model\UsageBasedEntitlementResponseData[]',
         'available_credit_bundles' => '\Schematic\Model\BillingCreditBundleResponseData[]',
         'company' => '\Schematic\Model\CompanyDetailResponseData',
+        'custom_checkout_fields' => '\Schematic\Model\CheckoutFieldWithValue[]',
         'feature_usage' => '\Schematic\Model\FeatureUsageDetailResponseData',
         'selected_credit_bundles' => '\Schematic\Model\CreditBundlePurchaseResponseData[]',
         'selected_plan' => '\Schematic\Model\PlanDetailResponseData',
@@ -83,6 +84,7 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => null,
         'available_credit_bundles' => null,
         'company' => null,
+        'custom_checkout_fields' => null,
         'feature_usage' => null,
         'selected_credit_bundles' => null,
         'selected_plan' => null,
@@ -101,6 +103,7 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => false,
         'available_credit_bundles' => false,
         'company' => false,
+        'custom_checkout_fields' => false,
         'feature_usage' => false,
         'selected_credit_bundles' => false,
         'selected_plan' => false,
@@ -199,6 +202,7 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => 'active_usage_based_entitlements',
         'available_credit_bundles' => 'available_credit_bundles',
         'company' => 'company',
+        'custom_checkout_fields' => 'custom_checkout_fields',
         'feature_usage' => 'feature_usage',
         'selected_credit_bundles' => 'selected_credit_bundles',
         'selected_plan' => 'selected_plan',
@@ -217,6 +221,7 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => 'setActiveUsageBasedEntitlements',
         'available_credit_bundles' => 'setAvailableCreditBundles',
         'company' => 'setCompany',
+        'custom_checkout_fields' => 'setCustomCheckoutFields',
         'feature_usage' => 'setFeatureUsage',
         'selected_credit_bundles' => 'setSelectedCreditBundles',
         'selected_plan' => 'setSelectedPlan',
@@ -235,6 +240,7 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => 'getActiveUsageBasedEntitlements',
         'available_credit_bundles' => 'getAvailableCreditBundles',
         'company' => 'getCompany',
+        'custom_checkout_fields' => 'getCustomCheckoutFields',
         'feature_usage' => 'getFeatureUsage',
         'selected_credit_bundles' => 'getSelectedCreditBundles',
         'selected_plan' => 'getSelectedPlan',
@@ -304,6 +310,7 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('active_usage_based_entitlements', $data ?? [], null);
         $this->setIfExists('available_credit_bundles', $data ?? [], null);
         $this->setIfExists('company', $data ?? [], null);
+        $this->setIfExists('custom_checkout_fields', $data ?? [], null);
         $this->setIfExists('feature_usage', $data ?? [], null);
         $this->setIfExists('selected_credit_bundles', $data ?? [], null);
         $this->setIfExists('selected_plan', $data ?? [], null);
@@ -341,18 +348,45 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['active_add_ons'] === null) {
             $invalidProperties[] = "'active_add_ons' can't be null";
         }
+        if ((count($this->container['active_add_ons']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'active_add_ons', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['active_usage_based_entitlements'] === null) {
             $invalidProperties[] = "'active_usage_based_entitlements' can't be null";
         }
+        if ((count($this->container['active_usage_based_entitlements']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'active_usage_based_entitlements', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['available_credit_bundles'] === null) {
             $invalidProperties[] = "'available_credit_bundles' can't be null";
         }
+        if ((count($this->container['available_credit_bundles']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'available_credit_bundles', number of items must be less than or equal to 1000.";
+        }
+
+        if ($this->container['custom_checkout_fields'] === null) {
+            $invalidProperties[] = "'custom_checkout_fields' can't be null";
+        }
+        if ((count($this->container['custom_checkout_fields']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'custom_checkout_fields', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['selected_credit_bundles'] === null) {
             $invalidProperties[] = "'selected_credit_bundles' can't be null";
         }
+        if ((count($this->container['selected_credit_bundles']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'selected_credit_bundles', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['selected_usage_based_entitlements'] === null) {
             $invalidProperties[] = "'selected_usage_based_entitlements' can't be null";
         }
+        if ((count($this->container['selected_usage_based_entitlements']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'selected_usage_based_entitlements', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -389,6 +423,10 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         if (is_null($active_add_ons)) {
             throw new \InvalidArgumentException('non-nullable active_add_ons cannot be null');
+        }
+
+        if ((count($active_add_ons) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $active_add_ons when calling CheckoutDataResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['active_add_ons'] = $active_add_ons;
 
@@ -444,6 +482,10 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         if (is_null($active_usage_based_entitlements)) {
             throw new \InvalidArgumentException('non-nullable active_usage_based_entitlements cannot be null');
         }
+
+        if ((count($active_usage_based_entitlements) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $active_usage_based_entitlements when calling CheckoutDataResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['active_usage_based_entitlements'] = $active_usage_based_entitlements;
 
         return $this;
@@ -470,6 +512,10 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         if (is_null($available_credit_bundles)) {
             throw new \InvalidArgumentException('non-nullable available_credit_bundles cannot be null');
+        }
+
+        if ((count($available_credit_bundles) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $available_credit_bundles when calling CheckoutDataResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['available_credit_bundles'] = $available_credit_bundles;
 
@@ -499,6 +545,37 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable company cannot be null');
         }
         $this->container['company'] = $company;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_checkout_fields
+     *
+     * @return \Schematic\Model\CheckoutFieldWithValue[]
+     */
+    public function getCustomCheckoutFields()
+    {
+        return $this->container['custom_checkout_fields'];
+    }
+
+    /**
+     * Sets custom_checkout_fields
+     *
+     * @param \Schematic\Model\CheckoutFieldWithValue[] $custom_checkout_fields custom_checkout_fields
+     *
+     * @return self
+     */
+    public function setCustomCheckoutFields($custom_checkout_fields)
+    {
+        if (is_null($custom_checkout_fields)) {
+            throw new \InvalidArgumentException('non-nullable custom_checkout_fields cannot be null');
+        }
+
+        if ((count($custom_checkout_fields) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $custom_checkout_fields when calling CheckoutDataResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['custom_checkout_fields'] = $custom_checkout_fields;
 
         return $this;
     }
@@ -551,6 +628,10 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         if (is_null($selected_credit_bundles)) {
             throw new \InvalidArgumentException('non-nullable selected_credit_bundles cannot be null');
+        }
+
+        if ((count($selected_credit_bundles) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $selected_credit_bundles when calling CheckoutDataResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['selected_credit_bundles'] = $selected_credit_bundles;
 
@@ -605,6 +686,10 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         if (is_null($selected_usage_based_entitlements)) {
             throw new \InvalidArgumentException('non-nullable selected_usage_based_entitlements cannot be null');
+        }
+
+        if ((count($selected_usage_based_entitlements) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $selected_usage_based_entitlements when calling CheckoutDataResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['selected_usage_based_entitlements'] = $selected_usage_based_entitlements;
 
@@ -701,7 +786,7 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

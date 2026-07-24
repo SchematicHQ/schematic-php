@@ -65,7 +65,10 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
         'currency' => 'string',
         'customer_external_id' => 'string',
         'due_date' => '\DateTime',
+        'ending_balance' => 'int',
         'payment_method_external_id' => 'string',
+        'starting_balance' => 'int',
+        'status' => '\Schematic\Model\InvoiceStatus',
         'subscription_external_id' => 'string',
         'subtotal' => 'int',
         'url' => 'string'
@@ -79,16 +82,19 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount_due' => null,
-        'amount_paid' => null,
-        'amount_remaining' => null,
+        'amount_due' => 'int64',
+        'amount_paid' => 'int64',
+        'amount_remaining' => 'int64',
         'collection_method' => null,
         'currency' => null,
         'customer_external_id' => null,
         'due_date' => 'date-time',
+        'ending_balance' => 'int64',
         'payment_method_external_id' => null,
+        'starting_balance' => 'int64',
+        'status' => null,
         'subscription_external_id' => null,
-        'subtotal' => null,
+        'subtotal' => 'int64',
         'url' => null
     ];
 
@@ -105,7 +111,10 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
         'currency' => false,
         'customer_external_id' => false,
         'due_date' => true,
+        'ending_balance' => true,
         'payment_method_external_id' => true,
+        'starting_balance' => true,
+        'status' => true,
         'subscription_external_id' => true,
         'subtotal' => false,
         'url' => true
@@ -204,7 +213,10 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
         'currency' => 'currency',
         'customer_external_id' => 'customer_external_id',
         'due_date' => 'due_date',
+        'ending_balance' => 'ending_balance',
         'payment_method_external_id' => 'payment_method_external_id',
+        'starting_balance' => 'starting_balance',
+        'status' => 'status',
         'subscription_external_id' => 'subscription_external_id',
         'subtotal' => 'subtotal',
         'url' => 'url'
@@ -223,7 +235,10 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
         'currency' => 'setCurrency',
         'customer_external_id' => 'setCustomerExternalId',
         'due_date' => 'setDueDate',
+        'ending_balance' => 'setEndingBalance',
         'payment_method_external_id' => 'setPaymentMethodExternalId',
+        'starting_balance' => 'setStartingBalance',
+        'status' => 'setStatus',
         'subscription_external_id' => 'setSubscriptionExternalId',
         'subtotal' => 'setSubtotal',
         'url' => 'setUrl'
@@ -242,7 +257,10 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
         'currency' => 'getCurrency',
         'customer_external_id' => 'getCustomerExternalId',
         'due_date' => 'getDueDate',
+        'ending_balance' => 'getEndingBalance',
         'payment_method_external_id' => 'getPaymentMethodExternalId',
+        'starting_balance' => 'getStartingBalance',
+        'status' => 'getStatus',
         'subscription_external_id' => 'getSubscriptionExternalId',
         'subtotal' => 'getSubtotal',
         'url' => 'getUrl'
@@ -312,7 +330,10 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('customer_external_id', $data ?? [], null);
         $this->setIfExists('due_date', $data ?? [], null);
+        $this->setIfExists('ending_balance', $data ?? [], null);
         $this->setIfExists('payment_method_external_id', $data ?? [], null);
+        $this->setIfExists('starting_balance', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('subscription_external_id', $data ?? [], null);
         $this->setIfExists('subtotal', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
@@ -602,13 +623,47 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'due_date');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('due_date', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('due_date', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['due_date'] = $due_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets ending_balance
+     *
+     * @return int|null
+     */
+    public function getEndingBalance()
+    {
+        return $this->container['ending_balance'];
+    }
+
+    /**
+     * Sets ending_balance
+     *
+     * @param int|null $ending_balance ending_balance
+     *
+     * @return self
+     */
+    public function setEndingBalance($ending_balance)
+    {
+        if (is_null($ending_balance)) {
+            array_push($this->openAPINullablesSetToNull, 'ending_balance');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ending_balance', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['ending_balance'] = $ending_balance;
 
         return $this;
     }
@@ -636,8 +691,8 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'payment_method_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('payment_method_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('payment_method_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -647,6 +702,74 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['payment_method_external_id'] = $payment_method_external_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets starting_balance
+     *
+     * @return int|null
+     */
+    public function getStartingBalance()
+    {
+        return $this->container['starting_balance'];
+    }
+
+    /**
+     * Sets starting_balance
+     *
+     * @param int|null $starting_balance starting_balance
+     *
+     * @return self
+     */
+    public function setStartingBalance($starting_balance)
+    {
+        if (is_null($starting_balance)) {
+            array_push($this->openAPINullablesSetToNull, 'starting_balance');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('starting_balance', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['starting_balance'] = $starting_balance;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return \Schematic\Model\InvoiceStatus|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param \Schematic\Model\InvoiceStatus|null $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            array_push($this->openAPINullablesSetToNull, 'status');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('status', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }
@@ -674,8 +797,8 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'subscription_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('subscription_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('subscription_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -739,8 +862,8 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'url');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('url', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('url', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -817,7 +940,7 @@ class InvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

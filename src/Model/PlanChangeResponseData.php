@@ -63,17 +63,21 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'add_ons_added' => '\Schematic\Model\PlanSnapshotView[]',
         'add_ons_removed' => '\Schematic\Model\PlanSnapshotView[]',
         'api_key' => '\Schematic\Model\ApiKeyResponseData',
-        'api_key_request' => '\Schematic\Model\ApiKeyRequestListResponseData',
+        'audit_log' => '\Schematic\Model\AuditLogListResponseData',
         'base_plan' => '\Schematic\Model\PlanSnapshotView',
-        'base_plan_action' => 'PlanChangeBasePlanAction',
+        'base_plan_action' => '\Schematic\Model\PlanChangeBasePlanAction',
+        'base_plan_version' => '\Schematic\Model\PlanVersionSnapshotView',
         'company' => '\Schematic\Model\CompanyResponseData',
         'company_id' => 'string',
         'created_at' => '\DateTime',
         'environment_id' => 'string',
         'id' => 'string',
+        'integration' => '\Schematic\Model\IntegrationResponseData',
+        'is_version_upgrade' => 'bool',
         'previous_base_plan' => '\Schematic\Model\PlanSnapshotView',
+        'previous_base_plan_version' => '\Schematic\Model\PlanVersionSnapshotView',
         'request_id' => 'string',
-        'subscription_change_action' => 'PlanChangeSubscriptionAction',
+        'subscription_change_action' => '\Schematic\Model\PlanChangeSubscriptionAction',
         'traits_updated' => '\Schematic\Model\SubscriptionTraitUpdate[]',
         'updated_at' => '\DateTime',
         'user_id' => 'string',
@@ -93,15 +97,19 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'add_ons_added' => null,
         'add_ons_removed' => null,
         'api_key' => null,
-        'api_key_request' => null,
+        'audit_log' => null,
         'base_plan' => null,
         'base_plan_action' => null,
+        'base_plan_version' => null,
         'company' => null,
         'company_id' => null,
         'created_at' => 'date-time',
         'environment_id' => null,
         'id' => null,
+        'integration' => null,
+        'is_version_upgrade' => null,
         'previous_base_plan' => null,
+        'previous_base_plan_version' => null,
         'request_id' => null,
         'subscription_change_action' => null,
         'traits_updated' => null,
@@ -121,15 +129,19 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'add_ons_added' => false,
         'add_ons_removed' => false,
         'api_key' => false,
-        'api_key_request' => false,
+        'audit_log' => false,
         'base_plan' => false,
         'base_plan_action' => true,
+        'base_plan_version' => false,
         'company' => false,
         'company_id' => false,
         'created_at' => false,
         'environment_id' => false,
         'id' => false,
+        'integration' => false,
+        'is_version_upgrade' => false,
         'previous_base_plan' => false,
+        'previous_base_plan_version' => false,
         'request_id' => true,
         'subscription_change_action' => true,
         'traits_updated' => false,
@@ -229,15 +241,19 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'add_ons_added' => 'add_ons_added',
         'add_ons_removed' => 'add_ons_removed',
         'api_key' => 'api_key',
-        'api_key_request' => 'api_key_request',
+        'audit_log' => 'audit_log',
         'base_plan' => 'base_plan',
         'base_plan_action' => 'base_plan_action',
+        'base_plan_version' => 'base_plan_version',
         'company' => 'company',
         'company_id' => 'company_id',
         'created_at' => 'created_at',
         'environment_id' => 'environment_id',
         'id' => 'id',
+        'integration' => 'integration',
+        'is_version_upgrade' => 'is_version_upgrade',
         'previous_base_plan' => 'previous_base_plan',
+        'previous_base_plan_version' => 'previous_base_plan_version',
         'request_id' => 'request_id',
         'subscription_change_action' => 'subscription_change_action',
         'traits_updated' => 'traits_updated',
@@ -257,15 +273,19 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'add_ons_added' => 'setAddOnsAdded',
         'add_ons_removed' => 'setAddOnsRemoved',
         'api_key' => 'setApiKey',
-        'api_key_request' => 'setApiKeyRequest',
+        'audit_log' => 'setAuditLog',
         'base_plan' => 'setBasePlan',
         'base_plan_action' => 'setBasePlanAction',
+        'base_plan_version' => 'setBasePlanVersion',
         'company' => 'setCompany',
         'company_id' => 'setCompanyId',
         'created_at' => 'setCreatedAt',
         'environment_id' => 'setEnvironmentId',
         'id' => 'setId',
+        'integration' => 'setIntegration',
+        'is_version_upgrade' => 'setIsVersionUpgrade',
         'previous_base_plan' => 'setPreviousBasePlan',
+        'previous_base_plan_version' => 'setPreviousBasePlanVersion',
         'request_id' => 'setRequestId',
         'subscription_change_action' => 'setSubscriptionChangeAction',
         'traits_updated' => 'setTraitsUpdated',
@@ -285,15 +305,19 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'add_ons_added' => 'getAddOnsAdded',
         'add_ons_removed' => 'getAddOnsRemoved',
         'api_key' => 'getApiKey',
-        'api_key_request' => 'getApiKeyRequest',
+        'audit_log' => 'getAuditLog',
         'base_plan' => 'getBasePlan',
         'base_plan_action' => 'getBasePlanAction',
+        'base_plan_version' => 'getBasePlanVersion',
         'company' => 'getCompany',
         'company_id' => 'getCompanyId',
         'created_at' => 'getCreatedAt',
         'environment_id' => 'getEnvironmentId',
         'id' => 'getId',
+        'integration' => 'getIntegration',
+        'is_version_upgrade' => 'getIsVersionUpgrade',
         'previous_base_plan' => 'getPreviousBasePlan',
+        'previous_base_plan_version' => 'getPreviousBasePlanVersion',
         'request_id' => 'getRequestId',
         'subscription_change_action' => 'getSubscriptionChangeAction',
         'traits_updated' => 'getTraitsUpdated',
@@ -364,15 +388,19 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('add_ons_added', $data ?? [], null);
         $this->setIfExists('add_ons_removed', $data ?? [], null);
         $this->setIfExists('api_key', $data ?? [], null);
-        $this->setIfExists('api_key_request', $data ?? [], null);
+        $this->setIfExists('audit_log', $data ?? [], null);
         $this->setIfExists('base_plan', $data ?? [], null);
         $this->setIfExists('base_plan_action', $data ?? [], null);
+        $this->setIfExists('base_plan_version', $data ?? [], null);
         $this->setIfExists('company', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('integration', $data ?? [], null);
+        $this->setIfExists('is_version_upgrade', $data ?? [], null);
         $this->setIfExists('previous_base_plan', $data ?? [], null);
+        $this->setIfExists('previous_base_plan_version', $data ?? [], null);
         $this->setIfExists('request_id', $data ?? [], null);
         $this->setIfExists('subscription_change_action', $data ?? [], null);
         $this->setIfExists('traits_updated', $data ?? [], null);
@@ -417,9 +445,17 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['add_ons_added'] === null) {
             $invalidProperties[] = "'add_ons_added' can't be null";
         }
+        if ((count($this->container['add_ons_added']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'add_ons_added', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['add_ons_removed'] === null) {
             $invalidProperties[] = "'add_ons_removed' can't be null";
         }
+        if ((count($this->container['add_ons_removed']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'add_ons_removed', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['company_id'] === null) {
             $invalidProperties[] = "'company_id' can't be null";
         }
@@ -432,9 +468,16 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
+        if ($this->container['is_version_upgrade'] === null) {
+            $invalidProperties[] = "'is_version_upgrade' can't be null";
+        }
         if ($this->container['traits_updated'] === null) {
             $invalidProperties[] = "'traits_updated' can't be null";
         }
+        if ((count($this->container['traits_updated']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'traits_updated', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -529,6 +572,10 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if (is_null($add_ons_added)) {
             throw new \InvalidArgumentException('non-nullable add_ons_added cannot be null');
         }
+
+        if ((count($add_ons_added) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $add_ons_added when calling PlanChangeResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['add_ons_added'] = $add_ons_added;
 
         return $this;
@@ -555,6 +602,10 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($add_ons_removed)) {
             throw new \InvalidArgumentException('non-nullable add_ons_removed cannot be null');
+        }
+
+        if ((count($add_ons_removed) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $add_ons_removed when calling PlanChangeResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['add_ons_removed'] = $add_ons_removed;
 
@@ -589,28 +640,28 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
-     * Gets api_key_request
+     * Gets audit_log
      *
-     * @return \Schematic\Model\ApiKeyRequestListResponseData|null
+     * @return \Schematic\Model\AuditLogListResponseData|null
      */
-    public function getApiKeyRequest()
+    public function getAuditLog()
     {
-        return $this->container['api_key_request'];
+        return $this->container['audit_log'];
     }
 
     /**
-     * Sets api_key_request
+     * Sets audit_log
      *
-     * @param \Schematic\Model\ApiKeyRequestListResponseData|null $api_key_request api_key_request
+     * @param \Schematic\Model\AuditLogListResponseData|null $audit_log audit_log
      *
      * @return self
      */
-    public function setApiKeyRequest($api_key_request)
+    public function setAuditLog($audit_log)
     {
-        if (is_null($api_key_request)) {
-            throw new \InvalidArgumentException('non-nullable api_key_request cannot be null');
+        if (is_null($audit_log)) {
+            throw new \InvalidArgumentException('non-nullable audit_log cannot be null');
         }
-        $this->container['api_key_request'] = $api_key_request;
+        $this->container['audit_log'] = $audit_log;
 
         return $this;
     }
@@ -645,7 +696,7 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets base_plan_action
      *
-     * @return PlanChangeBasePlanAction|null
+     * @return \Schematic\Model\PlanChangeBasePlanAction|null
      */
     public function getBasePlanAction()
     {
@@ -655,7 +706,7 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets base_plan_action
      *
-     * @param PlanChangeBasePlanAction|null $base_plan_action base_plan_action
+     * @param \Schematic\Model\PlanChangeBasePlanAction|null $base_plan_action base_plan_action
      *
      * @return self
      */
@@ -665,13 +716,40 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'base_plan_action');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('base_plan_action', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('base_plan_action', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['base_plan_action'] = $base_plan_action;
+
+        return $this;
+    }
+
+    /**
+     * Gets base_plan_version
+     *
+     * @return \Schematic\Model\PlanVersionSnapshotView|null
+     */
+    public function getBasePlanVersion()
+    {
+        return $this->container['base_plan_version'];
+    }
+
+    /**
+     * Sets base_plan_version
+     *
+     * @param \Schematic\Model\PlanVersionSnapshotView|null $base_plan_version base_plan_version
+     *
+     * @return self
+     */
+    public function setBasePlanVersion($base_plan_version)
+    {
+        if (is_null($base_plan_version)) {
+            throw new \InvalidArgumentException('non-nullable base_plan_version cannot be null');
+        }
+        $this->container['base_plan_version'] = $base_plan_version;
 
         return $this;
     }
@@ -812,6 +890,60 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets integration
+     *
+     * @return \Schematic\Model\IntegrationResponseData|null
+     */
+    public function getIntegration()
+    {
+        return $this->container['integration'];
+    }
+
+    /**
+     * Sets integration
+     *
+     * @param \Schematic\Model\IntegrationResponseData|null $integration integration
+     *
+     * @return self
+     */
+    public function setIntegration($integration)
+    {
+        if (is_null($integration)) {
+            throw new \InvalidArgumentException('non-nullable integration cannot be null');
+        }
+        $this->container['integration'] = $integration;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_version_upgrade
+     *
+     * @return bool
+     */
+    public function getIsVersionUpgrade()
+    {
+        return $this->container['is_version_upgrade'];
+    }
+
+    /**
+     * Sets is_version_upgrade
+     *
+     * @param bool $is_version_upgrade True when this change moved the company to a different version of the same plan (e.g. a plan version migration) rather than to a different plan.
+     *
+     * @return self
+     */
+    public function setIsVersionUpgrade($is_version_upgrade)
+    {
+        if (is_null($is_version_upgrade)) {
+            throw new \InvalidArgumentException('non-nullable is_version_upgrade cannot be null');
+        }
+        $this->container['is_version_upgrade'] = $is_version_upgrade;
+
+        return $this;
+    }
+
+    /**
      * Gets previous_base_plan
      *
      * @return \Schematic\Model\PlanSnapshotView|null
@@ -839,6 +971,33 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets previous_base_plan_version
+     *
+     * @return \Schematic\Model\PlanVersionSnapshotView|null
+     */
+    public function getPreviousBasePlanVersion()
+    {
+        return $this->container['previous_base_plan_version'];
+    }
+
+    /**
+     * Sets previous_base_plan_version
+     *
+     * @param \Schematic\Model\PlanVersionSnapshotView|null $previous_base_plan_version previous_base_plan_version
+     *
+     * @return self
+     */
+    public function setPreviousBasePlanVersion($previous_base_plan_version)
+    {
+        if (is_null($previous_base_plan_version)) {
+            throw new \InvalidArgumentException('non-nullable previous_base_plan_version cannot be null');
+        }
+        $this->container['previous_base_plan_version'] = $previous_base_plan_version;
+
+        return $this;
+    }
+
+    /**
      * Gets request_id
      *
      * @return string|null
@@ -861,8 +1020,8 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'request_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('request_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('request_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -875,7 +1034,7 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets subscription_change_action
      *
-     * @return PlanChangeSubscriptionAction|null
+     * @return \Schematic\Model\PlanChangeSubscriptionAction|null
      */
     public function getSubscriptionChangeAction()
     {
@@ -885,7 +1044,7 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets subscription_change_action
      *
-     * @param PlanChangeSubscriptionAction|null $subscription_change_action subscription_change_action
+     * @param \Schematic\Model\PlanChangeSubscriptionAction|null $subscription_change_action subscription_change_action
      *
      * @return self
      */
@@ -895,8 +1054,8 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'subscription_change_action');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('subscription_change_action', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('subscription_change_action', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -927,6 +1086,10 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($traits_updated)) {
             throw new \InvalidArgumentException('non-nullable traits_updated cannot be null');
+        }
+
+        if ((count($traits_updated) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $traits_updated when calling PlanChangeResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['traits_updated'] = $traits_updated;
 
@@ -983,8 +1146,8 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'user_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1017,8 +1180,8 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'user_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('user_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1091,7 +1254,7 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

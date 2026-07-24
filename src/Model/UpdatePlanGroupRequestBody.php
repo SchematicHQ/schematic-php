@@ -63,12 +63,16 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'checkout_collect_address' => 'bool',
         'checkout_collect_email' => 'bool',
         'checkout_collect_phone' => 'bool',
+        'custom_checkout_fields' => '\Schematic\Model\CheckoutFieldInput[]',
         'custom_plan_config' => '\Schematic\Model\CustomPlanConfig',
         'custom_plan_id' => 'string',
         'enable_tax_collection' => 'bool',
         'fallback_plan_id' => 'string',
         'initial_plan_id' => 'string',
         'initial_plan_price_id' => 'string',
+        'opt_in_enabled' => 'bool',
+        'opt_in_text' => 'string',
+        'opt_in_title' => 'string',
         'ordered_add_ons' => '\Schematic\Model\OrderedPlansInGroup[]',
         'ordered_bundle_list' => '\Schematic\Model\PlanGroupBundleOrder[]',
         'ordered_plans' => '\Schematic\Model\OrderedPlansInGroup[]',
@@ -82,6 +86,7 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'show_as_monthly_prices' => 'bool',
         'show_credits' => 'bool',
         'show_feature_description' => 'bool',
+        'show_hard_limit' => 'bool',
         'show_period_toggle' => 'bool',
         'show_zero_price_as_free' => 'bool',
         'sync_customer_billing_details' => 'bool',
@@ -104,12 +109,16 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'checkout_collect_address' => null,
         'checkout_collect_email' => null,
         'checkout_collect_phone' => null,
+        'custom_checkout_fields' => null,
         'custom_plan_config' => null,
         'custom_plan_id' => null,
         'enable_tax_collection' => null,
         'fallback_plan_id' => null,
         'initial_plan_id' => null,
         'initial_plan_price_id' => null,
+        'opt_in_enabled' => null,
+        'opt_in_text' => null,
+        'opt_in_title' => null,
         'ordered_add_ons' => null,
         'ordered_bundle_list' => null,
         'ordered_plans' => null,
@@ -123,10 +132,11 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'show_as_monthly_prices' => null,
         'show_credits' => null,
         'show_feature_description' => null,
+        'show_hard_limit' => null,
         'show_period_toggle' => null,
         'show_zero_price_as_free' => null,
         'sync_customer_billing_details' => null,
-        'trial_days' => null,
+        'trial_days' => 'int64',
         'trial_expiry_plan_id' => null,
         'trial_expiry_plan_price_id' => null,
         'trial_payment_method_required' => null
@@ -143,12 +153,16 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'checkout_collect_address' => false,
         'checkout_collect_email' => false,
         'checkout_collect_phone' => false,
+        'custom_checkout_fields' => true,
         'custom_plan_config' => false,
         'custom_plan_id' => true,
         'enable_tax_collection' => false,
         'fallback_plan_id' => true,
         'initial_plan_id' => true,
         'initial_plan_price_id' => true,
+        'opt_in_enabled' => false,
+        'opt_in_text' => true,
+        'opt_in_title' => true,
         'ordered_add_ons' => false,
         'ordered_bundle_list' => false,
         'ordered_plans' => false,
@@ -162,6 +176,7 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'show_as_monthly_prices' => false,
         'show_credits' => false,
         'show_feature_description' => false,
+        'show_hard_limit' => false,
         'show_period_toggle' => false,
         'show_zero_price_as_free' => false,
         'sync_customer_billing_details' => false,
@@ -262,12 +277,16 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'checkout_collect_address' => 'checkout_collect_address',
         'checkout_collect_email' => 'checkout_collect_email',
         'checkout_collect_phone' => 'checkout_collect_phone',
+        'custom_checkout_fields' => 'custom_checkout_fields',
         'custom_plan_config' => 'custom_plan_config',
         'custom_plan_id' => 'custom_plan_id',
         'enable_tax_collection' => 'enable_tax_collection',
         'fallback_plan_id' => 'fallback_plan_id',
         'initial_plan_id' => 'initial_plan_id',
         'initial_plan_price_id' => 'initial_plan_price_id',
+        'opt_in_enabled' => 'opt_in_enabled',
+        'opt_in_text' => 'opt_in_text',
+        'opt_in_title' => 'opt_in_title',
         'ordered_add_ons' => 'ordered_add_ons',
         'ordered_bundle_list' => 'ordered_bundle_list',
         'ordered_plans' => 'ordered_plans',
@@ -281,6 +300,7 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'show_as_monthly_prices' => 'show_as_monthly_prices',
         'show_credits' => 'show_credits',
         'show_feature_description' => 'show_feature_description',
+        'show_hard_limit' => 'show_hard_limit',
         'show_period_toggle' => 'show_period_toggle',
         'show_zero_price_as_free' => 'show_zero_price_as_free',
         'sync_customer_billing_details' => 'sync_customer_billing_details',
@@ -301,12 +321,16 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'checkout_collect_address' => 'setCheckoutCollectAddress',
         'checkout_collect_email' => 'setCheckoutCollectEmail',
         'checkout_collect_phone' => 'setCheckoutCollectPhone',
+        'custom_checkout_fields' => 'setCustomCheckoutFields',
         'custom_plan_config' => 'setCustomPlanConfig',
         'custom_plan_id' => 'setCustomPlanId',
         'enable_tax_collection' => 'setEnableTaxCollection',
         'fallback_plan_id' => 'setFallbackPlanId',
         'initial_plan_id' => 'setInitialPlanId',
         'initial_plan_price_id' => 'setInitialPlanPriceId',
+        'opt_in_enabled' => 'setOptInEnabled',
+        'opt_in_text' => 'setOptInText',
+        'opt_in_title' => 'setOptInTitle',
         'ordered_add_ons' => 'setOrderedAddOns',
         'ordered_bundle_list' => 'setOrderedBundleList',
         'ordered_plans' => 'setOrderedPlans',
@@ -320,6 +344,7 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'show_as_monthly_prices' => 'setShowAsMonthlyPrices',
         'show_credits' => 'setShowCredits',
         'show_feature_description' => 'setShowFeatureDescription',
+        'show_hard_limit' => 'setShowHardLimit',
         'show_period_toggle' => 'setShowPeriodToggle',
         'show_zero_price_as_free' => 'setShowZeroPriceAsFree',
         'sync_customer_billing_details' => 'setSyncCustomerBillingDetails',
@@ -340,12 +365,16 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'checkout_collect_address' => 'getCheckoutCollectAddress',
         'checkout_collect_email' => 'getCheckoutCollectEmail',
         'checkout_collect_phone' => 'getCheckoutCollectPhone',
+        'custom_checkout_fields' => 'getCustomCheckoutFields',
         'custom_plan_config' => 'getCustomPlanConfig',
         'custom_plan_id' => 'getCustomPlanId',
         'enable_tax_collection' => 'getEnableTaxCollection',
         'fallback_plan_id' => 'getFallbackPlanId',
         'initial_plan_id' => 'getInitialPlanId',
         'initial_plan_price_id' => 'getInitialPlanPriceId',
+        'opt_in_enabled' => 'getOptInEnabled',
+        'opt_in_text' => 'getOptInText',
+        'opt_in_title' => 'getOptInTitle',
         'ordered_add_ons' => 'getOrderedAddOns',
         'ordered_bundle_list' => 'getOrderedBundleList',
         'ordered_plans' => 'getOrderedPlans',
@@ -359,6 +388,7 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'show_as_monthly_prices' => 'getShowAsMonthlyPrices',
         'show_credits' => 'getShowCredits',
         'show_feature_description' => 'getShowFeatureDescription',
+        'show_hard_limit' => 'getShowHardLimit',
         'show_period_toggle' => 'getShowPeriodToggle',
         'show_zero_price_as_free' => 'getShowZeroPriceAsFree',
         'sync_customer_billing_details' => 'getSyncCustomerBillingDetails',
@@ -430,12 +460,16 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('checkout_collect_address', $data ?? [], null);
         $this->setIfExists('checkout_collect_email', $data ?? [], null);
         $this->setIfExists('checkout_collect_phone', $data ?? [], null);
+        $this->setIfExists('custom_checkout_fields', $data ?? [], null);
         $this->setIfExists('custom_plan_config', $data ?? [], null);
         $this->setIfExists('custom_plan_id', $data ?? [], null);
         $this->setIfExists('enable_tax_collection', $data ?? [], null);
         $this->setIfExists('fallback_plan_id', $data ?? [], null);
         $this->setIfExists('initial_plan_id', $data ?? [], null);
         $this->setIfExists('initial_plan_price_id', $data ?? [], null);
+        $this->setIfExists('opt_in_enabled', $data ?? [], null);
+        $this->setIfExists('opt_in_text', $data ?? [], null);
+        $this->setIfExists('opt_in_title', $data ?? [], null);
         $this->setIfExists('ordered_add_ons', $data ?? [], null);
         $this->setIfExists('ordered_bundle_list', $data ?? [], null);
         $this->setIfExists('ordered_plans', $data ?? [], null);
@@ -449,6 +483,7 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('show_as_monthly_prices', $data ?? [], null);
         $this->setIfExists('show_credits', $data ?? [], null);
         $this->setIfExists('show_feature_description', $data ?? [], null);
+        $this->setIfExists('show_hard_limit', $data ?? [], null);
         $this->setIfExists('show_period_toggle', $data ?? [], null);
         $this->setIfExists('show_zero_price_as_free', $data ?? [], null);
         $this->setIfExists('sync_customer_billing_details', $data ?? [], null);
@@ -485,9 +520,17 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['add_on_compatibilities']) && (count($this->container['add_on_compatibilities']) > 100)) {
+            $invalidProperties[] = "invalid value for 'add_on_compatibilities', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['add_on_ids'] === null) {
             $invalidProperties[] = "'add_on_ids' can't be null";
         }
+        if ((count($this->container['add_on_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'add_on_ids', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['checkout_collect_address'] === null) {
             $invalidProperties[] = "'checkout_collect_address' can't be null";
         }
@@ -497,18 +540,45 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         if ($this->container['checkout_collect_phone'] === null) {
             $invalidProperties[] = "'checkout_collect_phone' can't be null";
         }
+        if (!is_null($this->container['custom_checkout_fields']) && (count($this->container['custom_checkout_fields']) > 100)) {
+            $invalidProperties[] = "invalid value for 'custom_checkout_fields', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['enable_tax_collection'] === null) {
             $invalidProperties[] = "'enable_tax_collection' can't be null";
         }
+        if ($this->container['opt_in_enabled'] === null) {
+            $invalidProperties[] = "'opt_in_enabled' can't be null";
+        }
+        if (!is_null($this->container['opt_in_text']) && (mb_strlen($this->container['opt_in_text']) > 1024)) {
+            $invalidProperties[] = "invalid value for 'opt_in_text', the character length must be smaller than or equal to 1024.";
+        }
+
+        if (!is_null($this->container['opt_in_title']) && (mb_strlen($this->container['opt_in_title']) > 80)) {
+            $invalidProperties[] = "invalid value for 'opt_in_title', the character length must be smaller than or equal to 80.";
+        }
+
         if ($this->container['ordered_add_ons'] === null) {
             $invalidProperties[] = "'ordered_add_ons' can't be null";
         }
+        if ((count($this->container['ordered_add_ons']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ordered_add_ons', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['ordered_bundle_list'] === null) {
             $invalidProperties[] = "'ordered_bundle_list' can't be null";
         }
+        if ((count($this->container['ordered_bundle_list']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ordered_bundle_list', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['ordered_plans'] === null) {
             $invalidProperties[] = "'ordered_plans' can't be null";
         }
+        if ((count($this->container['ordered_plans']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ordered_plans', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['prevent_downgrades_when_over_limit'] === null) {
             $invalidProperties[] = "'prevent_downgrades_when_over_limit' can't be null";
         }
@@ -534,6 +604,9 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         }
         if ($this->container['show_feature_description'] === null) {
             $invalidProperties[] = "'show_feature_description' can't be null";
+        }
+        if ($this->container['show_hard_limit'] === null) {
+            $invalidProperties[] = "'show_hard_limit' can't be null";
         }
         if ($this->container['show_period_toggle'] === null) {
             $invalidProperties[] = "'show_period_toggle' can't be null";
@@ -582,11 +655,15 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'add_on_compatibilities');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('add_on_compatibilities', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('add_on_compatibilities', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($add_on_compatibilities) && (count($add_on_compatibilities) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $add_on_compatibilities when calling UpdatePlanGroupRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['add_on_compatibilities'] = $add_on_compatibilities;
 
@@ -616,6 +693,10 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     {
         if (is_null($add_on_ids)) {
             throw new \InvalidArgumentException('non-nullable add_on_ids cannot be null');
+        }
+
+        if ((count($add_on_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $add_on_ids when calling UpdatePlanGroupRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['add_on_ids'] = $add_on_ids;
 
@@ -704,6 +785,44 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * Gets custom_checkout_fields
+     *
+     * @return \Schematic\Model\CheckoutFieldInput[]|null
+     */
+    public function getCustomCheckoutFields()
+    {
+        return $this->container['custom_checkout_fields'];
+    }
+
+    /**
+     * Sets custom_checkout_fields
+     *
+     * @param \Schematic\Model\CheckoutFieldInput[]|null $custom_checkout_fields custom_checkout_fields
+     *
+     * @return self
+     */
+    public function setCustomCheckoutFields($custom_checkout_fields)
+    {
+        if (is_null($custom_checkout_fields)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_checkout_fields');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_checkout_fields', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($custom_checkout_fields) && (count($custom_checkout_fields) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $custom_checkout_fields when calling UpdatePlanGroupRequestBody., number of items must be less than or equal to 100.');
+        }
+        $this->container['custom_checkout_fields'] = $custom_checkout_fields;
+
+        return $this;
+    }
+
+    /**
      * Gets custom_plan_config
      *
      * @return \Schematic\Model\CustomPlanConfig|null
@@ -753,8 +872,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'custom_plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('custom_plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('custom_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -814,8 +933,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'fallback_plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('fallback_plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('fallback_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -848,8 +967,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'initial_plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('initial_plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('initial_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -882,13 +1001,116 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'initial_plan_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('initial_plan_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('initial_plan_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['initial_plan_price_id'] = $initial_plan_price_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets opt_in_enabled
+     *
+     * @return bool
+     */
+    public function getOptInEnabled()
+    {
+        return $this->container['opt_in_enabled'];
+    }
+
+    /**
+     * Sets opt_in_enabled
+     *
+     * @param bool $opt_in_enabled opt_in_enabled
+     *
+     * @return self
+     */
+    public function setOptInEnabled($opt_in_enabled)
+    {
+        if (is_null($opt_in_enabled)) {
+            throw new \InvalidArgumentException('non-nullable opt_in_enabled cannot be null');
+        }
+        $this->container['opt_in_enabled'] = $opt_in_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets opt_in_text
+     *
+     * @return string|null
+     */
+    public function getOptInText()
+    {
+        return $this->container['opt_in_text'];
+    }
+
+    /**
+     * Sets opt_in_text
+     *
+     * @param string|null $opt_in_text opt_in_text
+     *
+     * @return self
+     */
+    public function setOptInText($opt_in_text)
+    {
+        if (is_null($opt_in_text)) {
+            array_push($this->openAPINullablesSetToNull, 'opt_in_text');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('opt_in_text', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($opt_in_text) && (mb_strlen($opt_in_text) > 1024)) {
+            throw new \InvalidArgumentException('invalid length for $opt_in_text when calling UpdatePlanGroupRequestBody., must be smaller than or equal to 1024.');
+        }
+
+        $this->container['opt_in_text'] = $opt_in_text;
+
+        return $this;
+    }
+
+    /**
+     * Gets opt_in_title
+     *
+     * @return string|null
+     */
+    public function getOptInTitle()
+    {
+        return $this->container['opt_in_title'];
+    }
+
+    /**
+     * Sets opt_in_title
+     *
+     * @param string|null $opt_in_title opt_in_title
+     *
+     * @return self
+     */
+    public function setOptInTitle($opt_in_title)
+    {
+        if (is_null($opt_in_title)) {
+            array_push($this->openAPINullablesSetToNull, 'opt_in_title');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('opt_in_title', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($opt_in_title) && (mb_strlen($opt_in_title) > 80)) {
+            throw new \InvalidArgumentException('invalid length for $opt_in_title when calling UpdatePlanGroupRequestBody., must be smaller than or equal to 80.');
+        }
+
+        $this->container['opt_in_title'] = $opt_in_title;
 
         return $this;
     }
@@ -914,6 +1136,10 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     {
         if (is_null($ordered_add_ons)) {
             throw new \InvalidArgumentException('non-nullable ordered_add_ons cannot be null');
+        }
+
+        if ((count($ordered_add_ons) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ordered_add_ons when calling UpdatePlanGroupRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['ordered_add_ons'] = $ordered_add_ons;
 
@@ -942,6 +1168,10 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         if (is_null($ordered_bundle_list)) {
             throw new \InvalidArgumentException('non-nullable ordered_bundle_list cannot be null');
         }
+
+        if ((count($ordered_bundle_list) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ordered_bundle_list when calling UpdatePlanGroupRequestBody., number of items must be less than or equal to 100.');
+        }
         $this->container['ordered_bundle_list'] = $ordered_bundle_list;
 
         return $this;
@@ -968,6 +1198,10 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     {
         if (is_null($ordered_plans)) {
             throw new \InvalidArgumentException('non-nullable ordered_plans cannot be null');
+        }
+
+        if ((count($ordered_plans) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ordered_plans when calling UpdatePlanGroupRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['ordered_plans'] = $ordered_plans;
 
@@ -1051,8 +1285,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'prevent_self_service_downgrade_button_text');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('prevent_self_service_downgrade_button_text', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('prevent_self_service_downgrade_button_text', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1089,8 +1323,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'prevent_self_service_downgrade_url');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('prevent_self_service_downgrade_url', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('prevent_self_service_downgrade_url', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1154,8 +1388,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'scheduled_downgrade_behavior');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('scheduled_downgrade_behavior', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('scheduled_downgrade_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1188,8 +1422,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'scheduled_downgrade_prevent_when_over_limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('scheduled_downgrade_prevent_when_over_limit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('scheduled_downgrade_prevent_when_over_limit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1276,6 +1510,33 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable show_feature_description cannot be null');
         }
         $this->container['show_feature_description'] = $show_feature_description;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_hard_limit
+     *
+     * @return bool
+     */
+    public function getShowHardLimit()
+    {
+        return $this->container['show_hard_limit'];
+    }
+
+    /**
+     * Sets show_hard_limit
+     *
+     * @param bool $show_hard_limit show_hard_limit
+     *
+     * @return self
+     */
+    public function setShowHardLimit($show_hard_limit)
+    {
+        if (is_null($show_hard_limit)) {
+            throw new \InvalidArgumentException('non-nullable show_hard_limit cannot be null');
+        }
+        $this->container['show_hard_limit'] = $show_hard_limit;
 
         return $this;
     }
@@ -1384,8 +1645,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'trial_days');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_days', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_days', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1418,8 +1679,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'trial_expiry_plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_expiry_plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_expiry_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1452,8 +1713,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'trial_expiry_plan_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_expiry_plan_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_expiry_plan_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1486,8 +1747,8 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'trial_payment_method_required');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_payment_method_required', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_payment_method_required', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1560,7 +1821,7 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

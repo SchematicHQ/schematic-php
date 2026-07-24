@@ -73,11 +73,11 @@ class PreviewSubscriptionUpcomingInvoiceLineItems implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount' => null,
+        'amount' => 'int64',
         'description' => null,
         'price_id' => null,
         'proration' => null,
-        'quantity' => null
+        'quantity' => 'int64'
     ];
 
     /**
@@ -531,7 +531,7 @@ class PreviewSubscriptionUpcomingInvoiceLineItems implements ModelInterface, Arr
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

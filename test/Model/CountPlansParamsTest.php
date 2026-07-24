@@ -90,6 +90,24 @@ class CountPlansParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "company_scoped_only"
+     */
+    public function testPropertyCompanyScopedOnly()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "exclude_company_scoped"
+     */
+    public function testPropertyExcludeCompanyScoped()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "for_fallback_plan"
      */
     public function testPropertyForFallbackPlan()
@@ -135,6 +153,15 @@ class CountPlansParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "include_draft_versions"
+     */
+    public function testPropertyIncludeDraftVersions()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "limit"
      */
     public function testPropertyLimit()
@@ -165,6 +192,24 @@ class CountPlansParamsTest extends TestCase
      * Test attribute "q"
      */
     public function testPropertyQ()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "scoped_to_company_id"
+     */
+    public function testPropertyScopedToCompanyId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "with_entitlements"
+     */
+    public function testPropertyWithEntitlements()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

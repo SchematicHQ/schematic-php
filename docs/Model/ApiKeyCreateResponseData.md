@@ -6,10 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **\DateTime** |  |
 **description** | **string** |  | [optional]
+**environment** | [**\Schematic\Model\EnvironmentResponseData**](EnvironmentResponseData.md) |  | [optional]
 **environment_id** | **string** |  | [optional]
 **id** | **string** |  |
+**integration** | [**\Schematic\Model\ApiKeyIntegrationResponseData**](ApiKeyIntegrationResponseData.md) |  | [optional]
 **last_used_at** | **\DateTime** |  | [optional]
 **name** | **string** |  |
+**readonly** | **bool** |  |
 **scopes** | [**\Schematic\Model\ApiKeyScope[]**](ApiKeyScope.md) |  |
 **secret** | **string** |  |
 **updated_at** | **\DateTime** |  |

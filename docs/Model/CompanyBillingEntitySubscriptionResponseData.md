@@ -1,0 +1,26 @@
+# # CompanyBillingEntitySubscriptionResponseData
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**cancel_at** | **\DateTime** |  | [optional]
+**cancel_at_period_end** | **bool** |  |
+**company** | [**\Schematic\Model\CompanyResponseData**](CompanyResponseData.md) |  | [optional]
+**currency** | **string** |  |
+**customer_external_id** | **string** |  |
+**discounts** | [**\Schematic\Model\BillingSubscriptionDiscountView[]**](BillingSubscriptionDiscountView.md) |  |
+**expired_at** | **\DateTime** |  | [optional]
+**interval** | **string** |  |
+**is_initial** | **bool** |  |
+**latest_invoice** | [**\Schematic\Model\InvoiceResponseData**](InvoiceResponseData.md) |  | [optional]
+**payment_method** | [**\Schematic\Model\PaymentMethodResponseData**](PaymentMethodResponseData.md) |  | [optional]
+**plan_name** | **string** |  |
+**products** | [**\Schematic\Model\BillingProductForSubscriptionResponseData[]**](BillingProductForSubscriptionResponseData.md) |  |
+**provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |
+**status** | **string** |  |
+**subscription_external_id** | **string** |  |
+**total_price** | **int** |  |
+**trial_end** | **\DateTime** |  | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

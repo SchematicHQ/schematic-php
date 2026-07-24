@@ -144,6 +144,15 @@ class CompanySubscriptionResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "is_initial"
+     */
+    public function testPropertyIsInitial()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "latest_invoice"
      */
     public function testPropertyLatestInvoice()
@@ -165,6 +174,15 @@ class CompanySubscriptionResponseDataTest extends TestCase
      * Test attribute "products"
      */
     public function testPropertyProducts()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "provider_type"
+     */
+    public function testPropertyProviderType()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

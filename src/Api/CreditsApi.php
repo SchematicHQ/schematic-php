@@ -72,6 +72,9 @@ class CreditsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'acquireCreditLease' => [
+            'application/json',
+        ],
         'countBillingCredits' => [
             'application/json',
         ],
@@ -87,7 +90,7 @@ class CreditsApi
         'countCreditBundles' => [
             'application/json',
         ],
-        'countCreditLedger' => [
+        'countCreditEventLedger' => [
             'application/json',
         ],
         'createBillingCredit' => [
@@ -105,13 +108,16 @@ class CreditsApi
         'deleteCreditBundle' => [
             'application/json',
         ],
+        'extendCreditLease' => [
+            'application/json',
+        ],
         'getCreditBundle' => [
             'application/json',
         ],
-        'getEnrichedCreditLedger' => [
+        'getSingleBillingCredit' => [
             'application/json',
         ],
-        'getSingleBillingCredit' => [
+        'getSingleBillingPlanCreditGrant' => [
             'application/json',
         ],
         'grantBillingCreditsToCompany' => [
@@ -123,13 +129,22 @@ class CreditsApi
         'listBillingPlanCreditGrants' => [
             'application/json',
         ],
+        'listCompanyCreditBalances' => [
+            'application/json',
+        ],
         'listCompanyGrants' => [
             'application/json',
         ],
         'listCreditBundles' => [
             'application/json',
         ],
+        'listCreditEventLedger' => [
+            'application/json',
+        ],
         'listGrantsForCredit' => [
+            'application/json',
+        ],
+        'releaseCreditLease' => [
             'application/json',
         ],
         'softDeleteBillingCredit' => [
@@ -193,6 +208,492 @@ class CreditsApi
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation acquireCreditLease
+     *
+     * Acquire credit lease
+     *
+     * @param  \Schematic\Model\AcquireCreditLeaseRequestBody $acquire_credit_lease_request_body acquire_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['acquireCreditLease'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\AcquireCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function acquireCreditLease($acquire_credit_lease_request_body, string $contentType = self::contentTypes['acquireCreditLease'][0])
+    {
+        list($response) = $this->acquireCreditLeaseWithHttpInfo($acquire_credit_lease_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation acquireCreditLeaseWithHttpInfo
+     *
+     * Acquire credit lease
+     *
+     * @param  \Schematic\Model\AcquireCreditLeaseRequestBody $acquire_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['acquireCreditLease'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\AcquireCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function acquireCreditLeaseWithHttpInfo($acquire_credit_lease_request_body, string $contentType = self::contentTypes['acquireCreditLease'][0])
+    {
+        $request = $this->acquireCreditLeaseRequest($acquire_credit_lease_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 201:
+                    if ('\Schematic\Model\AcquireCreditLeaseResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\AcquireCreditLeaseResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\AcquireCreditLeaseResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\AcquireCreditLeaseResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\AcquireCreditLeaseResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation acquireCreditLeaseAsync
+     *
+     * Acquire credit lease
+     *
+     * @param  \Schematic\Model\AcquireCreditLeaseRequestBody $acquire_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['acquireCreditLease'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function acquireCreditLeaseAsync($acquire_credit_lease_request_body, string $contentType = self::contentTypes['acquireCreditLease'][0])
+    {
+        return $this->acquireCreditLeaseAsyncWithHttpInfo($acquire_credit_lease_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation acquireCreditLeaseAsyncWithHttpInfo
+     *
+     * Acquire credit lease
+     *
+     * @param  \Schematic\Model\AcquireCreditLeaseRequestBody $acquire_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['acquireCreditLease'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function acquireCreditLeaseAsyncWithHttpInfo($acquire_credit_lease_request_body, string $contentType = self::contentTypes['acquireCreditLease'][0])
+    {
+        $returnType = '\Schematic\Model\AcquireCreditLeaseResponse';
+        $request = $this->acquireCreditLeaseRequest($acquire_credit_lease_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'acquireCreditLease'
+     *
+     * @param  \Schematic\Model\AcquireCreditLeaseRequestBody $acquire_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['acquireCreditLease'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function acquireCreditLeaseRequest($acquire_credit_lease_request_body, string $contentType = self::contentTypes['acquireCreditLease'][0])
+    {
+
+        // verify the required parameter 'acquire_credit_lease_request_body' is set
+        if ($acquire_credit_lease_request_body === null || (is_array($acquire_credit_lease_request_body) && count($acquire_credit_lease_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $acquire_credit_lease_request_body when calling acquireCreditLease'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/lease';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($acquire_credit_lease_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($acquire_credit_lease_request_body));
+            } else {
+                $httpBody = $acquire_credit_lease_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**
@@ -270,7 +771,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountBillingCreditsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -612,11 +1113,20 @@ class CreditsApi
     public function countBillingCreditsRequest($ids = null, $name = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingCredits'][0])
     {
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling CreditsApi.countBillingCredits, number of items must be less than or equal to 100.');
+        }
 
         if ($name !== null && strlen($name) > 255) {
             throw new \InvalidArgumentException('invalid length for "$name" when calling CreditsApi.countBillingCredits, must be smaller than or equal to 255.');
         }
-        
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countBillingCredits, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countBillingCredits, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -800,7 +1310,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountBillingCreditsGrantsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1143,7 +1653,16 @@ class CreditsApi
     {
 
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling CreditsApi.countBillingCreditsGrants, number of items must be less than or equal to 100.');
+        }
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countBillingCreditsGrants, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countBillingCreditsGrants, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -1258,9 +1777,11 @@ class CreditsApi
      * Count billing plan credit grants
      *
      * @param  string $credit_id credit_id (optional)
+     * @param  string[] $ids ids (optional)
      * @param  string $plan_id plan_id (optional)
      * @param  string[] $plan_ids plan_ids (optional)
-     * @param  string[] $ids ids (optional)
+     * @param  string $plan_version_id plan_version_id (optional)
+     * @param  string[] $plan_version_ids plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingPlanCreditGrants'] to see the possible values for this operation
@@ -1269,9 +1790,9 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountBillingPlanCreditGrantsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countBillingPlanCreditGrants($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
+    public function countBillingPlanCreditGrants($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
     {
-        list($response) = $this->countBillingPlanCreditGrantsWithHttpInfo($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset, $contentType);
+        list($response) = $this->countBillingPlanCreditGrantsWithHttpInfo($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -1281,9 +1802,11 @@ class CreditsApi
      * Count billing plan credit grants
      *
      * @param  string $credit_id (optional)
+     * @param  string[] $ids (optional)
      * @param  string $plan_id (optional)
      * @param  string[] $plan_ids (optional)
-     * @param  string[] $ids (optional)
+     * @param  string $plan_version_id (optional)
+     * @param  string[] $plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingPlanCreditGrants'] to see the possible values for this operation
@@ -1292,9 +1815,9 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountBillingPlanCreditGrantsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countBillingPlanCreditGrantsWithHttpInfo($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
+    public function countBillingPlanCreditGrantsWithHttpInfo($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
     {
-        $request = $this->countBillingPlanCreditGrantsRequest($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset, $contentType);
+        $request = $this->countBillingPlanCreditGrantsRequest($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1331,7 +1854,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountBillingPlanCreditGrantsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1585,9 +2108,11 @@ class CreditsApi
      * Count billing plan credit grants
      *
      * @param  string $credit_id (optional)
+     * @param  string[] $ids (optional)
      * @param  string $plan_id (optional)
      * @param  string[] $plan_ids (optional)
-     * @param  string[] $ids (optional)
+     * @param  string $plan_version_id (optional)
+     * @param  string[] $plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingPlanCreditGrants'] to see the possible values for this operation
@@ -1595,9 +2120,9 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countBillingPlanCreditGrantsAsync($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
+    public function countBillingPlanCreditGrantsAsync($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
     {
-        return $this->countBillingPlanCreditGrantsAsyncWithHttpInfo($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset, $contentType)
+        return $this->countBillingPlanCreditGrantsAsyncWithHttpInfo($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1611,9 +2136,11 @@ class CreditsApi
      * Count billing plan credit grants
      *
      * @param  string $credit_id (optional)
+     * @param  string[] $ids (optional)
      * @param  string $plan_id (optional)
      * @param  string[] $plan_ids (optional)
-     * @param  string[] $ids (optional)
+     * @param  string $plan_version_id (optional)
+     * @param  string[] $plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingPlanCreditGrants'] to see the possible values for this operation
@@ -1621,10 +2148,10 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countBillingPlanCreditGrantsAsyncWithHttpInfo($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
+    public function countBillingPlanCreditGrantsAsyncWithHttpInfo($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
     {
         $returnType = '\Schematic\Model\CountBillingPlanCreditGrantsResponse';
-        $request = $this->countBillingPlanCreditGrantsRequest($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset, $contentType);
+        $request = $this->countBillingPlanCreditGrantsRequest($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1666,9 +2193,11 @@ class CreditsApi
      * Create request for operation 'countBillingPlanCreditGrants'
      *
      * @param  string $credit_id (optional)
+     * @param  string[] $ids (optional)
      * @param  string $plan_id (optional)
      * @param  string[] $plan_ids (optional)
-     * @param  string[] $ids (optional)
+     * @param  string $plan_version_id (optional)
+     * @param  string[] $plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingPlanCreditGrants'] to see the possible values for this operation
@@ -1676,13 +2205,30 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countBillingPlanCreditGrantsRequest($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
+    public function countBillingPlanCreditGrantsRequest($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingPlanCreditGrants'][0])
     {
 
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling CreditsApi.countBillingPlanCreditGrants, number of items must be less than or equal to 100.');
+        }
 
 
+        if ($plan_ids !== null && count($plan_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$plan_ids" when calling CreditsApi.countBillingPlanCreditGrants, number of items must be less than or equal to 100.');
+        }
 
+
+        if ($plan_version_ids !== null && count($plan_version_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$plan_version_ids" when calling CreditsApi.countBillingPlanCreditGrants, number of items must be less than or equal to 100.');
+        }
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countBillingPlanCreditGrants, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countBillingPlanCreditGrants, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -1698,6 +2244,15 @@ class CreditsApi
             $credit_id,
             'credit_id', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $ids,
+            'ids', // param base name
+            'array', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -1722,8 +2277,17 @@ class CreditsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $ids,
-            'ids', // param base name
+            $plan_version_id,
+            'plan_version_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_ids,
+            'plan_version_ids', // param base name
             'array', // openApiType
             'form', // style
             true, // explode
@@ -1886,7 +2450,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountCompanyGrantsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2234,6 +2798,12 @@ class CreditsApi
 
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countCompanyGrants, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countCompanyGrants, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -2430,7 +3000,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountCreditBundlesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2778,10 +3348,19 @@ class CreditsApi
     public function countCreditBundlesRequest($ids = null, $credit_id = null, $status = null, $bundle_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditBundles'][0])
     {
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling CreditsApi.countCreditBundles, number of items must be less than or equal to 100.');
+        }
 
 
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countCreditBundles, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countCreditBundles, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -2909,52 +3488,52 @@ class CreditsApi
     }
 
     /**
-     * Operation countCreditLedger
+     * Operation countCreditEventLedger
      *
-     * Count credit ledger
+     * Count credit event ledger
      *
      * @param  string $company_id company_id (required)
-     * @param  CreditLedgerPeriod $period period (required)
      * @param  string $billing_credit_id billing_credit_id (optional)
+     * @param  string $end_time end_time (optional)
+     * @param  CreditEventType $event_type event_type (optional)
      * @param  string $feature_id feature_id (optional)
      * @param  string $start_time start_time (optional)
-     * @param  string $end_time end_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditLedger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditEventLedger'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Schematic\Model\CountCreditLedgerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     * @return \Schematic\Model\CountCreditEventLedgerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countCreditLedger($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditLedger'][0])
+    public function countCreditEventLedger($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditEventLedger'][0])
     {
-        list($response) = $this->countCreditLedgerWithHttpInfo($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset, $contentType);
+        list($response) = $this->countCreditEventLedgerWithHttpInfo($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset, $contentType);
         return $response;
     }
 
     /**
-     * Operation countCreditLedgerWithHttpInfo
+     * Operation countCreditEventLedgerWithHttpInfo
      *
-     * Count credit ledger
+     * Count credit event ledger
      *
      * @param  string $company_id (required)
-     * @param  CreditLedgerPeriod $period (required)
      * @param  string $billing_credit_id (optional)
+     * @param  string $end_time (optional)
+     * @param  CreditEventType $event_type (optional)
      * @param  string $feature_id (optional)
      * @param  string $start_time (optional)
-     * @param  string $end_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditLedger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditEventLedger'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\CountCreditLedgerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\CountCreditEventLedgerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countCreditLedgerWithHttpInfo($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditLedger'][0])
+    public function countCreditEventLedgerWithHttpInfo($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditEventLedger'][0])
     {
-        $request = $this->countCreditLedgerRequest($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset, $contentType);
+        $request = $this->countCreditEventLedgerRequest($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2991,13 +3570,13 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
-                    if ('\Schematic\Model\CountCreditLedgerResponse' === '\SplFileObject') {
+                    if ('\Schematic\Model\CountCreditEventLedgerResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Schematic\Model\CountCreditLedgerResponse' !== 'string') {
+                        if ('\Schematic\Model\CountCreditEventLedgerResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3015,7 +3594,7 @@ class CreditsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\CountCreditLedgerResponse', []),
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CountCreditEventLedgerResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3156,7 +3735,7 @@ class CreditsApi
                     ];
             }
 
-            $returnType = '\Schematic\Model\CountCreditLedgerResponse';
+            $returnType = '\Schematic\Model\CountCreditEventLedgerResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3189,7 +3768,7 @@ class CreditsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Schematic\Model\CountCreditLedgerResponse',
+                        '\Schematic\Model\CountCreditEventLedgerResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3240,26 +3819,26 @@ class CreditsApi
     }
 
     /**
-     * Operation countCreditLedgerAsync
+     * Operation countCreditEventLedgerAsync
      *
-     * Count credit ledger
+     * Count credit event ledger
      *
      * @param  string $company_id (required)
-     * @param  CreditLedgerPeriod $period (required)
      * @param  string $billing_credit_id (optional)
+     * @param  string $end_time (optional)
+     * @param  CreditEventType $event_type (optional)
      * @param  string $feature_id (optional)
      * @param  string $start_time (optional)
-     * @param  string $end_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditLedger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditEventLedger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCreditLedgerAsync($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditLedger'][0])
+    public function countCreditEventLedgerAsync($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditEventLedger'][0])
     {
-        return $this->countCreditLedgerAsyncWithHttpInfo($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset, $contentType)
+        return $this->countCreditEventLedgerAsyncWithHttpInfo($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3268,27 +3847,27 @@ class CreditsApi
     }
 
     /**
-     * Operation countCreditLedgerAsyncWithHttpInfo
+     * Operation countCreditEventLedgerAsyncWithHttpInfo
      *
-     * Count credit ledger
+     * Count credit event ledger
      *
      * @param  string $company_id (required)
-     * @param  CreditLedgerPeriod $period (required)
      * @param  string $billing_credit_id (optional)
+     * @param  string $end_time (optional)
+     * @param  CreditEventType $event_type (optional)
      * @param  string $feature_id (optional)
      * @param  string $start_time (optional)
-     * @param  string $end_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditLedger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditEventLedger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCreditLedgerAsyncWithHttpInfo($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditLedger'][0])
+    public function countCreditEventLedgerAsyncWithHttpInfo($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditEventLedger'][0])
     {
-        $returnType = '\Schematic\Model\CountCreditLedgerResponse';
-        $request = $this->countCreditLedgerRequest($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset, $contentType);
+        $returnType = '\Schematic\Model\CountCreditEventLedgerResponse';
+        $request = $this->countCreditEventLedgerRequest($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3327,35 +3906,28 @@ class CreditsApi
     }
 
     /**
-     * Create request for operation 'countCreditLedger'
+     * Create request for operation 'countCreditEventLedger'
      *
      * @param  string $company_id (required)
-     * @param  CreditLedgerPeriod $period (required)
      * @param  string $billing_credit_id (optional)
+     * @param  string $end_time (optional)
+     * @param  CreditEventType $event_type (optional)
      * @param  string $feature_id (optional)
      * @param  string $start_time (optional)
-     * @param  string $end_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditLedger'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditEventLedger'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countCreditLedgerRequest($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditLedger'][0])
+    public function countCreditEventLedgerRequest($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditEventLedger'][0])
     {
 
         // verify the required parameter 'company_id' is set
         if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $company_id when calling countCreditLedger'
-            );
-        }
-
-        // verify the required parameter 'period' is set
-        if ($period === null || (is_array($period) && count($period) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $period when calling countCreditLedger'
+                'Missing the required parameter $company_id when calling countCreditEventLedger'
             );
         }
 
@@ -3364,15 +3936,31 @@ class CreditsApi
 
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countCreditEventLedger, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countCreditEventLedger, must be bigger than or equal to 0.');
+        }
 
 
-        $resourcePath = '/billing/credits/ledger/count';
+
+        $resourcePath = '/v2/billing/credits/ledger/count';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $billing_credit_id,
+            'billing_credit_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $company_id,
@@ -3384,9 +3972,18 @@ class CreditsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $billing_credit_id,
-            'billing_credit_id', // param base name
+            $end_time,
+            'end_time', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $event_type,
+            'event_type', // param base name
+            'CreditEventType', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3402,26 +3999,8 @@ class CreditsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $period,
-            'period', // param base name
-            'CreditLedgerPeriod', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $start_time,
             'start_time', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $end_time,
-            'end_time', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -3576,7 +4155,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateBillingCreditResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4062,7 +4641,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateBillingPlanCreditGrantResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4548,7 +5127,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateCreditBundleResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5036,7 +5615,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteBillingPlanCreditGrantResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5536,7 +6115,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteCreditBundleResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5955,6 +6534,512 @@ class CreditsApi
     }
 
     /**
+     * Operation extendCreditLease
+     *
+     * Extend credit lease
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  \Schematic\Model\ExtendCreditLeaseRequestBody $extend_credit_lease_request_body extend_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['extendCreditLease'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ExtendCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function extendCreditLease($lease_id, $extend_credit_lease_request_body, string $contentType = self::contentTypes['extendCreditLease'][0])
+    {
+        list($response) = $this->extendCreditLeaseWithHttpInfo($lease_id, $extend_credit_lease_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation extendCreditLeaseWithHttpInfo
+     *
+     * Extend credit lease
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  \Schematic\Model\ExtendCreditLeaseRequestBody $extend_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['extendCreditLease'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ExtendCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function extendCreditLeaseWithHttpInfo($lease_id, $extend_credit_lease_request_body, string $contentType = self::contentTypes['extendCreditLease'][0])
+    {
+        $request = $this->extendCreditLeaseRequest($lease_id, $extend_credit_lease_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\ExtendCreditLeaseResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ExtendCreditLeaseResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ExtendCreditLeaseResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\ExtendCreditLeaseResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ExtendCreditLeaseResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation extendCreditLeaseAsync
+     *
+     * Extend credit lease
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  \Schematic\Model\ExtendCreditLeaseRequestBody $extend_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['extendCreditLease'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function extendCreditLeaseAsync($lease_id, $extend_credit_lease_request_body, string $contentType = self::contentTypes['extendCreditLease'][0])
+    {
+        return $this->extendCreditLeaseAsyncWithHttpInfo($lease_id, $extend_credit_lease_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation extendCreditLeaseAsyncWithHttpInfo
+     *
+     * Extend credit lease
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  \Schematic\Model\ExtendCreditLeaseRequestBody $extend_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['extendCreditLease'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function extendCreditLeaseAsyncWithHttpInfo($lease_id, $extend_credit_lease_request_body, string $contentType = self::contentTypes['extendCreditLease'][0])
+    {
+        $returnType = '\Schematic\Model\ExtendCreditLeaseResponse';
+        $request = $this->extendCreditLeaseRequest($lease_id, $extend_credit_lease_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'extendCreditLease'
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  \Schematic\Model\ExtendCreditLeaseRequestBody $extend_credit_lease_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['extendCreditLease'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function extendCreditLeaseRequest($lease_id, $extend_credit_lease_request_body, string $contentType = self::contentTypes['extendCreditLease'][0])
+    {
+
+        // verify the required parameter 'lease_id' is set
+        if ($lease_id === null || (is_array($lease_id) && count($lease_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $lease_id when calling extendCreditLease'
+            );
+        }
+
+        // verify the required parameter 'extend_credit_lease_request_body' is set
+        if ($extend_credit_lease_request_body === null || (is_array($extend_credit_lease_request_body) && count($extend_credit_lease_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $extend_credit_lease_request_body when calling extendCreditLease'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/lease/{lease_id}/extend';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($lease_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'lease_id' . '}',
+                ObjectSerializer::toPathValue($lease_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($extend_credit_lease_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($extend_credit_lease_request_body));
+            } else {
+                $httpBody = $extend_credit_lease_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getCreditBundle
      *
      * Get credit bundle
@@ -6023,7 +7108,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetCreditBundleResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -6407,605 +7492,6 @@ class CreditsApi
     }
 
     /**
-     * Operation getEnrichedCreditLedger
-     *
-     * Get enriched credit ledger
-     *
-     * @param  string $company_id company_id (required)
-     * @param  CreditLedgerPeriod $period period (required)
-     * @param  string $billing_credit_id billing_credit_id (optional)
-     * @param  string $feature_id feature_id (optional)
-     * @param  string $start_time start_time (optional)
-     * @param  string $end_time end_time (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEnrichedCreditLedger'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Schematic\Model\GetEnrichedCreditLedgerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
-     */
-    public function getEnrichedCreditLedger($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEnrichedCreditLedger'][0])
-    {
-        list($response) = $this->getEnrichedCreditLedgerWithHttpInfo($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getEnrichedCreditLedgerWithHttpInfo
-     *
-     * Get enriched credit ledger
-     *
-     * @param  string $company_id (required)
-     * @param  CreditLedgerPeriod $period (required)
-     * @param  string $billing_credit_id (optional)
-     * @param  string $feature_id (optional)
-     * @param  string $start_time (optional)
-     * @param  string $end_time (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEnrichedCreditLedger'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\GetEnrichedCreditLedgerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getEnrichedCreditLedgerWithHttpInfo($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEnrichedCreditLedger'][0])
-    {
-        $request = $this->getEnrichedCreditLedgerRequest($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Schematic\Model\GetEnrichedCreditLedgerResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\GetEnrichedCreditLedgerResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\GetEnrichedCreditLedgerResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 401:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 403:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 404:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 500:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Schematic\Model\GetEnrichedCreditLedgerResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\GetEnrichedCreditLedgerResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getEnrichedCreditLedgerAsync
-     *
-     * Get enriched credit ledger
-     *
-     * @param  string $company_id (required)
-     * @param  CreditLedgerPeriod $period (required)
-     * @param  string $billing_credit_id (optional)
-     * @param  string $feature_id (optional)
-     * @param  string $start_time (optional)
-     * @param  string $end_time (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEnrichedCreditLedger'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEnrichedCreditLedgerAsync($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEnrichedCreditLedger'][0])
-    {
-        return $this->getEnrichedCreditLedgerAsyncWithHttpInfo($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getEnrichedCreditLedgerAsyncWithHttpInfo
-     *
-     * Get enriched credit ledger
-     *
-     * @param  string $company_id (required)
-     * @param  CreditLedgerPeriod $period (required)
-     * @param  string $billing_credit_id (optional)
-     * @param  string $feature_id (optional)
-     * @param  string $start_time (optional)
-     * @param  string $end_time (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEnrichedCreditLedger'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getEnrichedCreditLedgerAsyncWithHttpInfo($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEnrichedCreditLedger'][0])
-    {
-        $returnType = '\Schematic\Model\GetEnrichedCreditLedgerResponse';
-        $request = $this->getEnrichedCreditLedgerRequest($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getEnrichedCreditLedger'
-     *
-     * @param  string $company_id (required)
-     * @param  CreditLedgerPeriod $period (required)
-     * @param  string $billing_credit_id (optional)
-     * @param  string $feature_id (optional)
-     * @param  string $start_time (optional)
-     * @param  string $end_time (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEnrichedCreditLedger'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getEnrichedCreditLedgerRequest($company_id, $period, $billing_credit_id = null, $feature_id = null, $start_time = null, $end_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['getEnrichedCreditLedger'][0])
-    {
-
-        // verify the required parameter 'company_id' is set
-        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $company_id when calling getEnrichedCreditLedger'
-            );
-        }
-
-        // verify the required parameter 'period' is set
-        if ($period === null || (is_array($period) && count($period) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $period when calling getEnrichedCreditLedger'
-            );
-        }
-
-
-
-
-
-
-
-
-        $resourcePath = '/billing/credits/ledger';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $company_id,
-            'company_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $billing_credit_id,
-            'billing_credit_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $feature_id,
-            'feature_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $period,
-            'period', // param base name
-            'CreditLedgerPeriod', // openApiType
-            'form', // style
-            true, // explode
-            true // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $start_time,
-            'start_time', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $end_time,
-            'end_time', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $limit,
-            'limit', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $offset,
-            'offset', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
-        if ($apiKey !== null) {
-            $headers['X-Schematic-Api-Key'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
      * Operation getSingleBillingCredit
      *
      * Get single billing credit
@@ -7074,7 +7560,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetSingleBillingCreditResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -7458,6 +7944,458 @@ class CreditsApi
     }
 
     /**
+     * Operation getSingleBillingPlanCreditGrant
+     *
+     * Get single billing plan credit grant
+     *
+     * @param  string $plan_grant_id plan_grant_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSingleBillingPlanCreditGrant'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\GetSingleBillingPlanCreditGrantResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function getSingleBillingPlanCreditGrant($plan_grant_id, string $contentType = self::contentTypes['getSingleBillingPlanCreditGrant'][0])
+    {
+        list($response) = $this->getSingleBillingPlanCreditGrantWithHttpInfo($plan_grant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getSingleBillingPlanCreditGrantWithHttpInfo
+     *
+     * Get single billing plan credit grant
+     *
+     * @param  string $plan_grant_id plan_grant_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSingleBillingPlanCreditGrant'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\GetSingleBillingPlanCreditGrantResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getSingleBillingPlanCreditGrantWithHttpInfo($plan_grant_id, string $contentType = self::contentTypes['getSingleBillingPlanCreditGrant'][0])
+    {
+        $request = $this->getSingleBillingPlanCreditGrantRequest($plan_grant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\GetSingleBillingPlanCreditGrantResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\GetSingleBillingPlanCreditGrantResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\GetSingleBillingPlanCreditGrantResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\GetSingleBillingPlanCreditGrantResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\GetSingleBillingPlanCreditGrantResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getSingleBillingPlanCreditGrantAsync
+     *
+     * Get single billing plan credit grant
+     *
+     * @param  string $plan_grant_id plan_grant_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSingleBillingPlanCreditGrant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getSingleBillingPlanCreditGrantAsync($plan_grant_id, string $contentType = self::contentTypes['getSingleBillingPlanCreditGrant'][0])
+    {
+        return $this->getSingleBillingPlanCreditGrantAsyncWithHttpInfo($plan_grant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getSingleBillingPlanCreditGrantAsyncWithHttpInfo
+     *
+     * Get single billing plan credit grant
+     *
+     * @param  string $plan_grant_id plan_grant_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSingleBillingPlanCreditGrant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getSingleBillingPlanCreditGrantAsyncWithHttpInfo($plan_grant_id, string $contentType = self::contentTypes['getSingleBillingPlanCreditGrant'][0])
+    {
+        $returnType = '\Schematic\Model\GetSingleBillingPlanCreditGrantResponse';
+        $request = $this->getSingleBillingPlanCreditGrantRequest($plan_grant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getSingleBillingPlanCreditGrant'
+     *
+     * @param  string $plan_grant_id plan_grant_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSingleBillingPlanCreditGrant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getSingleBillingPlanCreditGrantRequest($plan_grant_id, string $contentType = self::contentTypes['getSingleBillingPlanCreditGrant'][0])
+    {
+
+        // verify the required parameter 'plan_grant_id' is set
+        if ($plan_grant_id === null || (is_array($plan_grant_id) && count($plan_grant_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $plan_grant_id when calling getSingleBillingPlanCreditGrant'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/plan-grants/{plan_grant_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($plan_grant_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'plan_grant_id' . '}',
+                ObjectSerializer::toPathValue($plan_grant_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation grantBillingCreditsToCompany
      *
      * Grant billing credits to company
@@ -7526,7 +8464,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\GrantBillingCreditsToCompanyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8018,7 +8956,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListBillingCreditsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8360,11 +9298,20 @@ class CreditsApi
     public function listBillingCreditsRequest($ids = null, $name = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingCredits'][0])
     {
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling CreditsApi.listBillingCredits, number of items must be less than or equal to 100.');
+        }
 
         if ($name !== null && strlen($name) > 255) {
             throw new \InvalidArgumentException('invalid length for "$name" when calling CreditsApi.listBillingCredits, must be smaller than or equal to 255.');
         }
-        
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listBillingCredits, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listBillingCredits, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -8479,9 +9426,11 @@ class CreditsApi
      * List billing plan credit grants
      *
      * @param  string $credit_id credit_id (optional)
+     * @param  string[] $ids ids (optional)
      * @param  string $plan_id plan_id (optional)
      * @param  string[] $plan_ids plan_ids (optional)
-     * @param  string[] $ids ids (optional)
+     * @param  string $plan_version_id plan_version_id (optional)
+     * @param  string[] $plan_version_ids plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingPlanCreditGrants'] to see the possible values for this operation
@@ -8490,9 +9439,9 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListBillingPlanCreditGrantsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listBillingPlanCreditGrants($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
+    public function listBillingPlanCreditGrants($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
     {
-        list($response) = $this->listBillingPlanCreditGrantsWithHttpInfo($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset, $contentType);
+        list($response) = $this->listBillingPlanCreditGrantsWithHttpInfo($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -8502,9 +9451,11 @@ class CreditsApi
      * List billing plan credit grants
      *
      * @param  string $credit_id (optional)
+     * @param  string[] $ids (optional)
      * @param  string $plan_id (optional)
      * @param  string[] $plan_ids (optional)
-     * @param  string[] $ids (optional)
+     * @param  string $plan_version_id (optional)
+     * @param  string[] $plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingPlanCreditGrants'] to see the possible values for this operation
@@ -8513,9 +9464,9 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListBillingPlanCreditGrantsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listBillingPlanCreditGrantsWithHttpInfo($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
+    public function listBillingPlanCreditGrantsWithHttpInfo($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
     {
-        $request = $this->listBillingPlanCreditGrantsRequest($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset, $contentType);
+        $request = $this->listBillingPlanCreditGrantsRequest($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -8552,7 +9503,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListBillingPlanCreditGrantsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8806,9 +9757,11 @@ class CreditsApi
      * List billing plan credit grants
      *
      * @param  string $credit_id (optional)
+     * @param  string[] $ids (optional)
      * @param  string $plan_id (optional)
      * @param  string[] $plan_ids (optional)
-     * @param  string[] $ids (optional)
+     * @param  string $plan_version_id (optional)
+     * @param  string[] $plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingPlanCreditGrants'] to see the possible values for this operation
@@ -8816,9 +9769,9 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingPlanCreditGrantsAsync($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
+    public function listBillingPlanCreditGrantsAsync($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
     {
-        return $this->listBillingPlanCreditGrantsAsyncWithHttpInfo($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset, $contentType)
+        return $this->listBillingPlanCreditGrantsAsyncWithHttpInfo($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8832,9 +9785,11 @@ class CreditsApi
      * List billing plan credit grants
      *
      * @param  string $credit_id (optional)
+     * @param  string[] $ids (optional)
      * @param  string $plan_id (optional)
      * @param  string[] $plan_ids (optional)
-     * @param  string[] $ids (optional)
+     * @param  string $plan_version_id (optional)
+     * @param  string[] $plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingPlanCreditGrants'] to see the possible values for this operation
@@ -8842,10 +9797,10 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingPlanCreditGrantsAsyncWithHttpInfo($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
+    public function listBillingPlanCreditGrantsAsyncWithHttpInfo($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
     {
         $returnType = '\Schematic\Model\ListBillingPlanCreditGrantsResponse';
-        $request = $this->listBillingPlanCreditGrantsRequest($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset, $contentType);
+        $request = $this->listBillingPlanCreditGrantsRequest($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8887,9 +9842,11 @@ class CreditsApi
      * Create request for operation 'listBillingPlanCreditGrants'
      *
      * @param  string $credit_id (optional)
+     * @param  string[] $ids (optional)
      * @param  string $plan_id (optional)
      * @param  string[] $plan_ids (optional)
-     * @param  string[] $ids (optional)
+     * @param  string $plan_version_id (optional)
+     * @param  string[] $plan_version_ids (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingPlanCreditGrants'] to see the possible values for this operation
@@ -8897,13 +9854,30 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listBillingPlanCreditGrantsRequest($credit_id = null, $plan_id = null, $plan_ids = null, $ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
+    public function listBillingPlanCreditGrantsRequest($credit_id = null, $ids = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPlanCreditGrants'][0])
     {
 
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling CreditsApi.listBillingPlanCreditGrants, number of items must be less than or equal to 100.');
+        }
 
 
+        if ($plan_ids !== null && count($plan_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$plan_ids" when calling CreditsApi.listBillingPlanCreditGrants, number of items must be less than or equal to 100.');
+        }
 
+
+        if ($plan_version_ids !== null && count($plan_version_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$plan_version_ids" when calling CreditsApi.listBillingPlanCreditGrants, number of items must be less than or equal to 100.');
+        }
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listBillingPlanCreditGrants, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listBillingPlanCreditGrants, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -8919,6 +9893,15 @@ class CreditsApi
             $credit_id,
             'credit_id', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $ids,
+            'ids', // param base name
+            'array', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -8943,8 +9926,17 @@ class CreditsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $ids,
-            'ids', // param base name
+            $plan_version_id,
+            'plan_version_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_ids,
+            'plan_version_ids', // param base name
             'array', // openApiType
             'form', // style
             true, // explode
@@ -8967,6 +9959,494 @@ class CreditsApi
             'form', // style
             true, // explode
             false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listCompanyCreditBalances
+     *
+     * List company credit balances
+     *
+     * @param  string $company_id company_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyCreditBalances'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ListCompanyCreditBalancesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function listCompanyCreditBalances($company_id, string $contentType = self::contentTypes['listCompanyCreditBalances'][0])
+    {
+        list($response) = $this->listCompanyCreditBalancesWithHttpInfo($company_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listCompanyCreditBalancesWithHttpInfo
+     *
+     * List company credit balances
+     *
+     * @param  string $company_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyCreditBalances'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ListCompanyCreditBalancesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCompanyCreditBalancesWithHttpInfo($company_id, string $contentType = self::contentTypes['listCompanyCreditBalances'][0])
+    {
+        $request = $this->listCompanyCreditBalancesRequest($company_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\ListCompanyCreditBalancesResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ListCompanyCreditBalancesResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListCompanyCreditBalancesResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\ListCompanyCreditBalancesResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ListCompanyCreditBalancesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listCompanyCreditBalancesAsync
+     *
+     * List company credit balances
+     *
+     * @param  string $company_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyCreditBalances'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCompanyCreditBalancesAsync($company_id, string $contentType = self::contentTypes['listCompanyCreditBalances'][0])
+    {
+        return $this->listCompanyCreditBalancesAsyncWithHttpInfo($company_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listCompanyCreditBalancesAsyncWithHttpInfo
+     *
+     * List company credit balances
+     *
+     * @param  string $company_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyCreditBalances'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCompanyCreditBalancesAsyncWithHttpInfo($company_id, string $contentType = self::contentTypes['listCompanyCreditBalances'][0])
+    {
+        $returnType = '\Schematic\Model\ListCompanyCreditBalancesResponse';
+        $request = $this->listCompanyCreditBalancesRequest($company_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listCompanyCreditBalances'
+     *
+     * @param  string $company_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyCreditBalances'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listCompanyCreditBalancesRequest($company_id, string $contentType = self::contentTypes['listCompanyCreditBalances'][0])
+    {
+
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling listCompanyCreditBalances'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/balance';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_id,
+            'company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
         ) ?? []);
 
 
@@ -9107,7 +10587,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListCompanyGrantsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -9455,6 +10935,12 @@ class CreditsApi
 
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listCompanyGrants, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listCompanyGrants, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -9651,7 +11137,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListCreditBundlesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -9999,10 +11485,19 @@ class CreditsApi
     public function listCreditBundlesRequest($ids = null, $credit_id = null, $status = null, $bundle_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditBundles'][0])
     {
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling CreditsApi.listCreditBundles, number of items must be less than or equal to 100.');
+        }
 
 
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listCreditBundles, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listCreditBundles, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -10045,6 +11540,605 @@ class CreditsApi
             $bundle_type,
             'bundle_type', // param base name
             'BillingCreditBundleType', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listCreditEventLedger
+     *
+     * List credit event ledger
+     *
+     * @param  string $company_id company_id (required)
+     * @param  string $billing_credit_id billing_credit_id (optional)
+     * @param  string $end_time end_time (optional)
+     * @param  CreditEventType $event_type event_type (optional)
+     * @param  string $feature_id feature_id (optional)
+     * @param  string $start_time start_time (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditEventLedger'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ListCreditEventLedgerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function listCreditEventLedger($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditEventLedger'][0])
+    {
+        list($response) = $this->listCreditEventLedgerWithHttpInfo($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listCreditEventLedgerWithHttpInfo
+     *
+     * List credit event ledger
+     *
+     * @param  string $company_id (required)
+     * @param  string $billing_credit_id (optional)
+     * @param  string $end_time (optional)
+     * @param  CreditEventType $event_type (optional)
+     * @param  string $feature_id (optional)
+     * @param  string $start_time (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditEventLedger'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ListCreditEventLedgerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCreditEventLedgerWithHttpInfo($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditEventLedger'][0])
+    {
+        $request = $this->listCreditEventLedgerRequest($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\ListCreditEventLedgerResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ListCreditEventLedgerResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListCreditEventLedgerResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\ListCreditEventLedgerResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ListCreditEventLedgerResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listCreditEventLedgerAsync
+     *
+     * List credit event ledger
+     *
+     * @param  string $company_id (required)
+     * @param  string $billing_credit_id (optional)
+     * @param  string $end_time (optional)
+     * @param  CreditEventType $event_type (optional)
+     * @param  string $feature_id (optional)
+     * @param  string $start_time (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditEventLedger'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCreditEventLedgerAsync($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditEventLedger'][0])
+    {
+        return $this->listCreditEventLedgerAsyncWithHttpInfo($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listCreditEventLedgerAsyncWithHttpInfo
+     *
+     * List credit event ledger
+     *
+     * @param  string $company_id (required)
+     * @param  string $billing_credit_id (optional)
+     * @param  string $end_time (optional)
+     * @param  CreditEventType $event_type (optional)
+     * @param  string $feature_id (optional)
+     * @param  string $start_time (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditEventLedger'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCreditEventLedgerAsyncWithHttpInfo($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditEventLedger'][0])
+    {
+        $returnType = '\Schematic\Model\ListCreditEventLedgerResponse';
+        $request = $this->listCreditEventLedgerRequest($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listCreditEventLedger'
+     *
+     * @param  string $company_id (required)
+     * @param  string $billing_credit_id (optional)
+     * @param  string $end_time (optional)
+     * @param  CreditEventType $event_type (optional)
+     * @param  string $feature_id (optional)
+     * @param  string $start_time (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditEventLedger'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listCreditEventLedgerRequest($company_id, $billing_credit_id = null, $end_time = null, $event_type = null, $feature_id = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditEventLedger'][0])
+    {
+
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling listCreditEventLedger'
+            );
+        }
+
+
+
+
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listCreditEventLedger, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listCreditEventLedger, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/v2/billing/credits/ledger';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $billing_credit_id,
+            'billing_credit_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_id,
+            'company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $end_time,
+            'end_time', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $event_type,
+            'event_type', // param base name
+            'CreditEventType', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $feature_id,
+            'feature_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $start_time,
+            'start_time', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -10204,7 +12298,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListGrantsForCreditResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -10547,7 +12641,16 @@ class CreditsApi
     {
 
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling CreditsApi.listGrantsForCredit, number of items must be less than or equal to 100.');
+        }
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listGrantsForCredit, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listGrantsForCredit, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -10657,6 +12760,512 @@ class CreditsApi
     }
 
     /**
+     * Operation releaseCreditLease
+     *
+     * Release credit lease
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  object $body body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ReleaseCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function releaseCreditLease($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    {
+        list($response) = $this->releaseCreditLeaseWithHttpInfo($lease_id, $body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation releaseCreditLeaseWithHttpInfo
+     *
+     * Release credit lease
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ReleaseCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function releaseCreditLeaseWithHttpInfo($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    {
+        $request = $this->releaseCreditLeaseRequest($lease_id, $body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\ReleaseCreditLeaseResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ReleaseCreditLeaseResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ReleaseCreditLeaseResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\ReleaseCreditLeaseResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ReleaseCreditLeaseResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation releaseCreditLeaseAsync
+     *
+     * Release credit lease
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function releaseCreditLeaseAsync($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    {
+        return $this->releaseCreditLeaseAsyncWithHttpInfo($lease_id, $body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation releaseCreditLeaseAsyncWithHttpInfo
+     *
+     * Release credit lease
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function releaseCreditLeaseAsyncWithHttpInfo($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    {
+        $returnType = '\Schematic\Model\ReleaseCreditLeaseResponse';
+        $request = $this->releaseCreditLeaseRequest($lease_id, $body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'releaseCreditLease'
+     *
+     * @param  string $lease_id lease_id (required)
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function releaseCreditLeaseRequest($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    {
+
+        // verify the required parameter 'lease_id' is set
+        if ($lease_id === null || (is_array($lease_id) && count($lease_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $lease_id when calling releaseCreditLease'
+            );
+        }
+
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling releaseCreditLease'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/lease/{lease_id}/release';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($lease_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'lease_id' . '}',
+                ObjectSerializer::toPathValue($lease_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation softDeleteBillingCredit
      *
      * Soft delete billing credit
@@ -10725,7 +13334,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\SoftDeleteBillingCreditResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -11214,7 +13823,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateBillingCreditResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -11720,7 +14329,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateBillingPlanCreditGrantResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -12226,7 +14835,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateCreditBundleDetailsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -12732,7 +15341,7 @@ class CreditsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ZeroOutGrantResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

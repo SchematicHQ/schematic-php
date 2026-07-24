@@ -298,6 +298,10 @@ class UpdatePlanTraitBulkRequestBody implements ModelInterface, ArrayAccess, \Js
         if ($this->container['traits'] === null) {
             $invalidProperties[] = "'traits' can't be null";
         }
+        if ((count($this->container['traits']) > 100)) {
+            $invalidProperties[] = "invalid value for 'traits', number of items must be less than or equal to 100.";
+        }
+
         return $invalidProperties;
     }
 
@@ -389,6 +393,10 @@ class UpdatePlanTraitBulkRequestBody implements ModelInterface, ArrayAccess, \Js
         if (is_null($traits)) {
             throw new \InvalidArgumentException('non-nullable traits cannot be null');
         }
+
+        if ((count($traits) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $traits when calling UpdatePlanTraitBulkRequestBody., number of items must be less than or equal to 100.');
+        }
         $this->container['traits'] = $traits;
 
         return $this;
@@ -457,7 +465,7 @@ class UpdatePlanTraitBulkRequestBody implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

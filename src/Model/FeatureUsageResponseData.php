@@ -60,16 +60,16 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'access' => 'bool',
         'allocation' => 'int',
-        'allocation_type' => 'EntitlementValueType',
+        'allocation_type' => '\Schematic\Model\EntitlementValueType',
         'company_override' => '\Schematic\Model\CompanyOverrideResponseData',
         'credit_consumption_rate' => 'float',
         'credit_grant_counts' => 'array<string,float>',
         'credit_grant_details' => '\Schematic\Model\CreditGrantDetail[]',
-        'credit_grant_reason' => 'BillingCreditGrantReason',
+        'credit_grant_reason' => '\Schematic\Model\BillingCreditGrantReason',
         'credit_remaining' => 'float',
         'credit_total' => 'float',
         'credit_type_icon' => 'string',
-        'credit_usage_aggregation' => '\Schematic\Model\FeatureCompanyResponseDataCreditUsageAggregation',
+        'credit_usage_aggregation' => '\Schematic\Model\CreditUsageAggregation',
         'credit_used' => 'float',
         'effective_limit' => 'int',
         'effective_price' => 'float',
@@ -77,18 +77,19 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'entitlement_id' => 'string',
         'entitlement_source' => 'string',
         'entitlement_type' => '\Schematic\Model\EntitlementType',
-        'feature' => '\Schematic\Model\FeatureDetailResponseData',
+        'feature' => '\Schematic\Model\FeatureInPlanResponseData',
         'has_valid_allocation' => 'bool',
         'is_unlimited' => 'bool',
         'metric_reset_at' => '\DateTime',
-        'month_reset' => 'string',
+        'month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'monthly_usage_based_price' => '\Schematic\Model\BillingPriceView',
         'overuse' => 'int',
         'percent_used' => 'float',
-        'period' => 'string',
+        'period' => '\Schematic\Model\MetricPeriod',
         'plan' => '\Schematic\Model\PlanResponseData',
         'plan_entitlement' => '\Schematic\Model\PlanEntitlementResponseData',
         'price_behavior' => '\Schematic\Model\EntitlementPriceBehavior',
+        'quarterly_usage_based_price' => '\Schematic\Model\BillingPriceView',
         'soft_limit' => 'int',
         'usage' => 'int',
         'yearly_usage_based_price' => '\Schematic\Model\BillingPriceView'
@@ -103,20 +104,20 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPIFormats = [
         'access' => null,
-        'allocation' => null,
+        'allocation' => 'int64',
         'allocation_type' => null,
         'company_override' => null,
-        'credit_consumption_rate' => null,
-        'credit_grant_counts' => null,
+        'credit_consumption_rate' => 'double',
+        'credit_grant_counts' => 'double',
         'credit_grant_details' => null,
         'credit_grant_reason' => null,
-        'credit_remaining' => null,
-        'credit_total' => null,
+        'credit_remaining' => 'double',
+        'credit_total' => 'double',
         'credit_type_icon' => null,
         'credit_usage_aggregation' => null,
-        'credit_used' => null,
-        'effective_limit' => null,
-        'effective_price' => null,
+        'credit_used' => 'double',
+        'effective_limit' => 'int64',
+        'effective_price' => 'double',
         'entitlement_expiration_date' => 'date-time',
         'entitlement_id' => null,
         'entitlement_source' => null,
@@ -127,14 +128,15 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'metric_reset_at' => 'date-time',
         'month_reset' => null,
         'monthly_usage_based_price' => null,
-        'overuse' => null,
-        'percent_used' => null,
+        'overuse' => 'int64',
+        'percent_used' => 'double',
         'period' => null,
         'plan' => null,
         'plan_entitlement' => null,
         'price_behavior' => null,
-        'soft_limit' => null,
-        'usage' => null,
+        'quarterly_usage_based_price' => null,
+        'soft_limit' => 'int64',
+        'usage' => 'int64',
         'yearly_usage_based_price' => null
     ];
 
@@ -175,6 +177,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'plan' => false,
         'plan_entitlement' => false,
         'price_behavior' => true,
+        'quarterly_usage_based_price' => false,
         'soft_limit' => true,
         'usage' => true,
         'yearly_usage_based_price' => false
@@ -297,6 +300,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'plan' => 'plan',
         'plan_entitlement' => 'plan_entitlement',
         'price_behavior' => 'price_behavior',
+        'quarterly_usage_based_price' => 'quarterly_usage_based_price',
         'soft_limit' => 'soft_limit',
         'usage' => 'usage',
         'yearly_usage_based_price' => 'yearly_usage_based_price'
@@ -339,6 +343,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'plan' => 'setPlan',
         'plan_entitlement' => 'setPlanEntitlement',
         'price_behavior' => 'setPriceBehavior',
+        'quarterly_usage_based_price' => 'setQuarterlyUsageBasedPrice',
         'soft_limit' => 'setSoftLimit',
         'usage' => 'setUsage',
         'yearly_usage_based_price' => 'setYearlyUsageBasedPrice'
@@ -381,6 +386,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'plan' => 'getPlan',
         'plan_entitlement' => 'getPlanEntitlement',
         'price_behavior' => 'getPriceBehavior',
+        'quarterly_usage_based_price' => 'getQuarterlyUsageBasedPrice',
         'soft_limit' => 'getSoftLimit',
         'usage' => 'getUsage',
         'yearly_usage_based_price' => 'getYearlyUsageBasedPrice'
@@ -474,6 +480,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('plan', $data ?? [], null);
         $this->setIfExists('plan_entitlement', $data ?? [], null);
         $this->setIfExists('price_behavior', $data ?? [], null);
+        $this->setIfExists('quarterly_usage_based_price', $data ?? [], null);
         $this->setIfExists('soft_limit', $data ?? [], null);
         $this->setIfExists('usage', $data ?? [], null);
         $this->setIfExists('yearly_usage_based_price', $data ?? [], null);
@@ -512,6 +519,10 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['allocation_type'] === null) {
             $invalidProperties[] = "'allocation_type' can't be null";
         }
+        if (!is_null($this->container['credit_grant_details']) && (count($this->container['credit_grant_details']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credit_grant_details', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['entitlement_id'] === null) {
             $invalidProperties[] = "'entitlement_id' can't be null";
         }
@@ -583,8 +594,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'allocation');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('allocation', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('allocation', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -597,7 +608,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets allocation_type
      *
-     * @return EntitlementValueType
+     * @return \Schematic\Model\EntitlementValueType
      */
     public function getAllocationType()
     {
@@ -607,7 +618,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets allocation_type
      *
-     * @param EntitlementValueType $allocation_type allocation_type
+     * @param \Schematic\Model\EntitlementValueType $allocation_type allocation_type
      *
      * @return self
      */
@@ -671,8 +682,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'credit_consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -731,6 +742,10 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         if (is_null($credit_grant_details)) {
             throw new \InvalidArgumentException('non-nullable credit_grant_details cannot be null');
         }
+
+        if ((count($credit_grant_details) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credit_grant_details when calling FeatureUsageResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['credit_grant_details'] = $credit_grant_details;
 
         return $this;
@@ -739,7 +754,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets credit_grant_reason
      *
-     * @return BillingCreditGrantReason|null
+     * @return \Schematic\Model\BillingCreditGrantReason|null
      */
     public function getCreditGrantReason()
     {
@@ -749,7 +764,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets credit_grant_reason
      *
-     * @param BillingCreditGrantReason|null $credit_grant_reason credit_grant_reason
+     * @param \Schematic\Model\BillingCreditGrantReason|null $credit_grant_reason credit_grant_reason
      *
      * @return self
      */
@@ -759,8 +774,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'credit_grant_reason');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_grant_reason', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_grant_reason', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -793,8 +808,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'credit_remaining');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_remaining', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_remaining', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -829,8 +844,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'credit_total');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_total', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_total', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -863,8 +878,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'credit_type_icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_type_icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_type_icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -877,7 +892,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets credit_usage_aggregation
      *
-     * @return \Schematic\Model\FeatureCompanyResponseDataCreditUsageAggregation|null
+     * @return \Schematic\Model\CreditUsageAggregation|null
      */
     public function getCreditUsageAggregation()
     {
@@ -887,7 +902,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets credit_usage_aggregation
      *
-     * @param \Schematic\Model\FeatureCompanyResponseDataCreditUsageAggregation|null $credit_usage_aggregation credit_usage_aggregation
+     * @param \Schematic\Model\CreditUsageAggregation|null $credit_usage_aggregation credit_usage_aggregation
      *
      * @return self
      */
@@ -924,8 +939,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'credit_used');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_used', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_used', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -958,8 +973,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'effective_limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('effective_limit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('effective_limit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -992,8 +1007,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'effective_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('effective_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('effective_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1026,8 +1041,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'entitlement_expiration_date');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('entitlement_expiration_date', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('entitlement_expiration_date', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1087,8 +1102,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'entitlement_source');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('entitlement_source', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('entitlement_source', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1128,7 +1143,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets feature
      *
-     * @return \Schematic\Model\FeatureDetailResponseData|null
+     * @return \Schematic\Model\FeatureInPlanResponseData|null
      */
     public function getFeature()
     {
@@ -1138,7 +1153,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets feature
      *
-     * @param \Schematic\Model\FeatureDetailResponseData|null $feature feature
+     * @param \Schematic\Model\FeatureInPlanResponseData|null $feature feature
      *
      * @return self
      */
@@ -1175,8 +1190,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'has_valid_allocation');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('has_valid_allocation', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('has_valid_allocation', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1209,8 +1224,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'is_unlimited');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('is_unlimited', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('is_unlimited', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1243,8 +1258,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'metric_reset_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_reset_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_reset_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1257,7 +1272,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMonthReset()
     {
@@ -1267,7 +1282,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets month_reset
      *
-     * @param string|null $month_reset If the period is current_month, when the month resets.
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $month_reset month_reset
      *
      * @return self
      */
@@ -1277,8 +1292,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1338,8 +1353,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'overuse');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('overuse', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('overuse', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1372,8 +1387,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'percent_used');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('percent_used', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('percent_used', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1386,7 +1401,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getPeriod()
     {
@@ -1396,7 +1411,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets period
      *
-     * @param string|null $period The period over which usage is measured.
+     * @param \Schematic\Model\MetricPeriod|null $period period
      *
      * @return self
      */
@@ -1406,8 +1421,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1494,13 +1509,40 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'price_behavior');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_behavior', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['price_behavior'] = $price_behavior;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_usage_based_price
+     *
+     * @return \Schematic\Model\BillingPriceView|null
+     */
+    public function getQuarterlyUsageBasedPrice()
+    {
+        return $this->container['quarterly_usage_based_price'];
+    }
+
+    /**
+     * Sets quarterly_usage_based_price
+     *
+     * @param \Schematic\Model\BillingPriceView|null $quarterly_usage_based_price quarterly_usage_based_price
+     *
+     * @return self
+     */
+    public function setQuarterlyUsageBasedPrice($quarterly_usage_based_price)
+    {
+        if (is_null($quarterly_usage_based_price)) {
+            throw new \InvalidArgumentException('non-nullable quarterly_usage_based_price cannot be null');
+        }
+        $this->container['quarterly_usage_based_price'] = $quarterly_usage_based_price;
 
         return $this;
     }
@@ -1528,8 +1570,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'soft_limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('soft_limit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('soft_limit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1562,8 +1604,8 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'usage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('usage', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('usage', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1663,7 +1705,7 @@ class FeatureUsageResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

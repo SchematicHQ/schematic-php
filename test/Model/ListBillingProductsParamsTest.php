@@ -153,6 +153,15 @@ class ListBillingProductsParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "recurring_charges_only"
+     */
+    public function testPropertyRecurringChargesOnly()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "with_one_time_charges"
      */
     public function testPropertyWithOneTimeCharges()

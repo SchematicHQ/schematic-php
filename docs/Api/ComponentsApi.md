@@ -4,6 +4,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**bindCatalog()**](ComponentsApi.md#bindCatalog) | **PUT** /components/{component_id}/catalog | Bind catalog |
 | [**countComponents()**](ComponentsApi.md#countComponents) | **GET** /components/count | Count components |
 | [**createComponent()**](ComponentsApi.md#createComponent) | **POST** /components | Create component |
 | [**deleteComponent()**](ComponentsApi.md#deleteComponent) | **DELETE** /components/{component_id} | Delete component |
@@ -12,6 +13,59 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**previewComponentData()**](ComponentsApi.md#previewComponentData) | **GET** /components/preview-data | Preview component data |
 | [**updateComponent()**](ComponentsApi.md#updateComponent) | **PUT** /components/{component_id} | Update component |
 
+
+## `bindCatalog()`
+
+```php
+bindCatalog($component_id, $bind_catalog_request_body): \Schematic\Model\BindCatalogResponse
+```
+
+Bind catalog
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$component_id = 'component_id_example'; // string | component_id
+$bind_catalog_request_body = new \Schematic\Model\BindCatalogRequestBody(); // \Schematic\Model\BindCatalogRequestBody
+
+try {
+    $result = $schematic->ComponentsApi->bindCatalog($component_id, $bind_catalog_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->ComponentsApi->bindCatalog: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **component_id** | **string**| component_id | |
+| **bind_catalog_request_body** | [**\Schematic\Model\BindCatalogRequestBody**](../Model/BindCatalogRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\BindCatalogResponse**](../Model/BindCatalogResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `countComponents()`
 

@@ -285,6 +285,10 @@ class ListCompaniesResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['data'] === null) {
             $invalidProperties[] = "'data' can't be null";
         }
+        if ((count($this->container['data']) > 250)) {
+            $invalidProperties[] = "invalid value for 'data', number of items must be less than or equal to 250.";
+        }
+
         if ($this->container['params'] === null) {
             $invalidProperties[] = "'params' can't be null";
         }
@@ -324,6 +328,10 @@ class ListCompaniesResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         if (is_null($data)) {
             throw new \InvalidArgumentException('non-nullable data cannot be null');
+        }
+
+        if ((count($data) > 250)) {
+            throw new \InvalidArgumentException('invalid value for $data when calling ListCompaniesResponse., number of items must be less than or equal to 250.');
         }
         $this->container['data'] = $data;
 
@@ -420,7 +428,7 @@ class ListCompaniesResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

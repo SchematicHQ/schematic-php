@@ -162,9 +162,18 @@ class FlagDetailResponseDataTest extends TestCase
     }
 
     /**
-     * Test attribute "maintainer_id"
+     * Test attribute "maintainer"
      */
-    public function testPropertyMaintainerId()
+    public function testPropertyMaintainer()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "maintainer_account_member_id"
+     */
+    public function testPropertyMaintainerAccountMemberId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

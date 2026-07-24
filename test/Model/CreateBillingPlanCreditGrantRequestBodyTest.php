@@ -108,6 +108,15 @@ class CreateBillingPlanCreditGrantRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "auto_topup_availability"
+     */
+    public function testPropertyAutoTopupAvailability()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "auto_topup_enabled"
      */
     public function testPropertyAutoTopupEnabled()
@@ -144,9 +153,36 @@ class CreateBillingPlanCreditGrantRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "auto_topup_self_service"
+     */
+    public function testPropertyAutoTopupSelfService()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "auto_topup_threshold_credits"
+     */
+    public function testPropertyAutoTopupThresholdCredits()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "auto_topup_threshold_percent"
      */
     public function testPropertyAutoTopupThresholdPercent()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "can_buy_bundles"
+     */
+    public function testPropertyCanBuyBundles()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -207,6 +243,15 @@ class CreateBillingPlanCreditGrantRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "plan_version_id"
+     */
+    public function testPropertyPlanVersionId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "reset_cadence"
      */
     public function testPropertyResetCadence()
@@ -228,6 +273,15 @@ class CreateBillingPlanCreditGrantRequestBodyTest extends TestCase
      * Test attribute "reset_type"
      */
     public function testPropertyResetType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "rollover_percentage"
+     */
+    public function testPropertyRolloverPercentage()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

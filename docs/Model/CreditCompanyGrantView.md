@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **credit_description** | **string** |  |
 **credit_icon** | **string** |  | [optional]
 **credit_name** | **string** |  |
+**currency** | **string** |  | [optional]
 **exhausted_at** | **\DateTime** |  | [optional]
 **expires_at** | **\DateTime** |  | [optional]
 **expiry_type** | [**\Schematic\Model\BillingCreditExpiryType**](BillingCreditExpiryType.md) |  | [optional]
@@ -23,12 +24,15 @@ Name | Type | Description | Notes
 **plan_name** | **string** |  | [optional]
 **plural_name** | **string** |  | [optional]
 **price** | [**\Schematic\Model\BillingProductPriceResponseData**](BillingProductPriceResponseData.md) |  | [optional]
-**quantity** | **int** |  |
+**quantity** | **float** |  |
 **quantity_remaining** | **float** |  |
 **quantity_used** | **float** |  |
 **renewal_enabled** | **bool** |  |
 **renewal_period** | [**\Schematic\Model\BillingPlanCreditGrantResetCadence**](BillingPlanCreditGrantResetCadence.md) |  | [optional]
+**reserved** | **float** |  | [optional]
+**settled** | **float** |  | [optional]
 **singular_name** | **string** |  | [optional]
+**source_grant_id** | **string** |  | [optional]
 **source_label** | **string** |  |
 **transfers** | [**\Schematic\Model\CreditTransferView[]**](CreditTransferView.md) |  | [optional]
 **updated_at** | **\DateTime** |  |

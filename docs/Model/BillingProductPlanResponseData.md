@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_id** | **string** |  |
 **billing_product_id** | **string** |  |
+**billing_strategy** | [**\Schematic\Model\BillingStrategy**](BillingStrategy.md) |  |
 **charge_type** | [**\Schematic\Model\ChargeType**](ChargeType.md) |  |
-**controlled_by** | [**\Schematic\Model\PlanControlledByType**](PlanControlledByType.md) |  |
+**controlled_by** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |
 **environment_id** | **string** |  |
 **is_trialable** | **bool** |  |
 **monthly_price_id** | **string** |  | [optional]

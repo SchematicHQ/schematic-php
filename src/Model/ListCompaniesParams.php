@@ -60,17 +60,21 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPITypes = [
         'credit_type_ids' => 'string[]',
+        'has_scheduled_downgrade' => 'bool',
         'ids' => 'string[]',
         'limit' => 'int',
         'monetized_subscriptions' => 'bool',
         'offset' => 'int',
         'plan_id' => 'string',
         'plan_ids' => 'string[]',
+        'plan_version_id' => 'string',
+        'plan_version_ids' => 'string[]',
         'q' => 'string',
         'sort_order_column' => 'string',
-        'sort_order_direction' => 'SortDirection',
+        'sort_order_direction' => '\Schematic\Model\SortDirection',
         'subscription_statuses' => '\Schematic\Model\SubscriptionStatus[]',
         'subscription_types' => '\Schematic\Model\SubscriptionType[]',
+        'with_entitlement_for' => 'string',
         'with_subscription' => 'bool',
         'without_feature_override_for' => 'string',
         'without_plan' => 'bool',
@@ -86,17 +90,21 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static $openAPIFormats = [
         'credit_type_ids' => null,
+        'has_scheduled_downgrade' => null,
         'ids' => null,
-        'limit' => null,
+        'limit' => 'int64',
         'monetized_subscriptions' => null,
-        'offset' => null,
+        'offset' => 'int64',
         'plan_id' => null,
         'plan_ids' => null,
+        'plan_version_id' => null,
+        'plan_version_ids' => null,
         'q' => null,
         'sort_order_column' => null,
         'sort_order_direction' => null,
         'subscription_statuses' => null,
         'subscription_types' => null,
+        'with_entitlement_for' => null,
         'with_subscription' => null,
         'without_feature_override_for' => null,
         'without_plan' => null,
@@ -110,17 +118,21 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
       */
     protected static array $openAPINullables = [
         'credit_type_ids' => false,
+        'has_scheduled_downgrade' => false,
         'ids' => false,
         'limit' => false,
         'monetized_subscriptions' => false,
         'offset' => false,
         'plan_id' => false,
         'plan_ids' => false,
+        'plan_version_id' => false,
+        'plan_version_ids' => false,
         'q' => false,
         'sort_order_column' => false,
         'sort_order_direction' => false,
         'subscription_statuses' => false,
         'subscription_types' => false,
+        'with_entitlement_for' => false,
         'with_subscription' => false,
         'without_feature_override_for' => false,
         'without_plan' => false,
@@ -214,17 +226,21 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $attributeMap = [
         'credit_type_ids' => 'credit_type_ids',
+        'has_scheduled_downgrade' => 'has_scheduled_downgrade',
         'ids' => 'ids',
         'limit' => 'limit',
         'monetized_subscriptions' => 'monetized_subscriptions',
         'offset' => 'offset',
         'plan_id' => 'plan_id',
         'plan_ids' => 'plan_ids',
+        'plan_version_id' => 'plan_version_id',
+        'plan_version_ids' => 'plan_version_ids',
         'q' => 'q',
         'sort_order_column' => 'sort_order_column',
         'sort_order_direction' => 'sort_order_direction',
         'subscription_statuses' => 'subscription_statuses',
         'subscription_types' => 'subscription_types',
+        'with_entitlement_for' => 'with_entitlement_for',
         'with_subscription' => 'with_subscription',
         'without_feature_override_for' => 'without_feature_override_for',
         'without_plan' => 'without_plan',
@@ -238,17 +254,21 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $setters = [
         'credit_type_ids' => 'setCreditTypeIds',
+        'has_scheduled_downgrade' => 'setHasScheduledDowngrade',
         'ids' => 'setIds',
         'limit' => 'setLimit',
         'monetized_subscriptions' => 'setMonetizedSubscriptions',
         'offset' => 'setOffset',
         'plan_id' => 'setPlanId',
         'plan_ids' => 'setPlanIds',
+        'plan_version_id' => 'setPlanVersionId',
+        'plan_version_ids' => 'setPlanVersionIds',
         'q' => 'setQ',
         'sort_order_column' => 'setSortOrderColumn',
         'sort_order_direction' => 'setSortOrderDirection',
         'subscription_statuses' => 'setSubscriptionStatuses',
         'subscription_types' => 'setSubscriptionTypes',
+        'with_entitlement_for' => 'setWithEntitlementFor',
         'with_subscription' => 'setWithSubscription',
         'without_feature_override_for' => 'setWithoutFeatureOverrideFor',
         'without_plan' => 'setWithoutPlan',
@@ -262,17 +282,21 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     protected static $getters = [
         'credit_type_ids' => 'getCreditTypeIds',
+        'has_scheduled_downgrade' => 'getHasScheduledDowngrade',
         'ids' => 'getIds',
         'limit' => 'getLimit',
         'monetized_subscriptions' => 'getMonetizedSubscriptions',
         'offset' => 'getOffset',
         'plan_id' => 'getPlanId',
         'plan_ids' => 'getPlanIds',
+        'plan_version_id' => 'getPlanVersionId',
+        'plan_version_ids' => 'getPlanVersionIds',
         'q' => 'getQ',
         'sort_order_column' => 'getSortOrderColumn',
         'sort_order_direction' => 'getSortOrderDirection',
         'subscription_statuses' => 'getSubscriptionStatuses',
         'subscription_types' => 'getSubscriptionTypes',
+        'with_entitlement_for' => 'getWithEntitlementFor',
         'with_subscription' => 'getWithSubscription',
         'without_feature_override_for' => 'getWithoutFeatureOverrideFor',
         'without_plan' => 'getWithoutPlan',
@@ -337,17 +361,21 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
     public function __construct(array $data = null)
     {
         $this->setIfExists('credit_type_ids', $data ?? [], null);
+        $this->setIfExists('has_scheduled_downgrade', $data ?? [], null);
         $this->setIfExists('ids', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('monetized_subscriptions', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_ids', $data ?? [], null);
+        $this->setIfExists('plan_version_id', $data ?? [], null);
+        $this->setIfExists('plan_version_ids', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
         $this->setIfExists('sort_order_column', $data ?? [], null);
         $this->setIfExists('sort_order_direction', $data ?? [], null);
         $this->setIfExists('subscription_statuses', $data ?? [], null);
         $this->setIfExists('subscription_types', $data ?? [], null);
+        $this->setIfExists('with_entitlement_for', $data ?? [], null);
         $this->setIfExists('with_subscription', $data ?? [], null);
         $this->setIfExists('without_feature_override_for', $data ?? [], null);
         $this->setIfExists('without_plan', $data ?? [], null);
@@ -381,12 +409,44 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['credit_type_ids']) && (count($this->container['credit_type_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'credit_type_ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['ids']) && (count($this->container['ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['plan_ids']) && (count($this->container['plan_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'plan_ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['plan_version_ids']) && (count($this->container['plan_version_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'plan_version_ids', number of items must be less than or equal to 100.";
+        }
+
         if (!is_null($this->container['q']) && (mb_strlen($this->container['q']) > 512)) {
             $invalidProperties[] = "invalid value for 'q', the character length must be smaller than or equal to 512.";
         }
 
         if (!is_null($this->container['sort_order_column']) && (mb_strlen($this->container['sort_order_column']) > 255)) {
             $invalidProperties[] = "invalid value for 'sort_order_column', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['subscription_statuses']) && (count($this->container['subscription_statuses']) > 100)) {
+            $invalidProperties[] = "invalid value for 'subscription_statuses', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['subscription_types']) && (count($this->container['subscription_types']) > 100)) {
+            $invalidProperties[] = "invalid value for 'subscription_types', number of items must be less than or equal to 100.";
         }
 
         return $invalidProperties;
@@ -426,7 +486,38 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
         if (is_null($credit_type_ids)) {
             throw new \InvalidArgumentException('non-nullable credit_type_ids cannot be null');
         }
+
+        if ((count($credit_type_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $credit_type_ids when calling ListCompaniesParams., number of items must be less than or equal to 100.');
+        }
         $this->container['credit_type_ids'] = $credit_type_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_scheduled_downgrade
+     *
+     * @return bool|null
+     */
+    public function getHasScheduledDowngrade()
+    {
+        return $this->container['has_scheduled_downgrade'];
+    }
+
+    /**
+     * Sets has_scheduled_downgrade
+     *
+     * @param bool|null $has_scheduled_downgrade Filter companies that have a pending scheduled downgrade
+     *
+     * @return self
+     */
+    public function setHasScheduledDowngrade($has_scheduled_downgrade)
+    {
+        if (is_null($has_scheduled_downgrade)) {
+            throw new \InvalidArgumentException('non-nullable has_scheduled_downgrade cannot be null');
+        }
+        $this->container['has_scheduled_downgrade'] = $has_scheduled_downgrade;
 
         return $this;
     }
@@ -452,6 +543,10 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         if (is_null($ids)) {
             throw new \InvalidArgumentException('non-nullable ids cannot be null');
+        }
+
+        if ((count($ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ids when calling ListCompaniesParams., number of items must be less than or equal to 100.');
         }
         $this->container['ids'] = $ids;
 
@@ -480,6 +575,14 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListCompaniesParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListCompaniesParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -588,7 +691,69 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
         if (is_null($plan_ids)) {
             throw new \InvalidArgumentException('non-nullable plan_ids cannot be null');
         }
+
+        if ((count($plan_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $plan_ids when calling ListCompaniesParams., number of items must be less than or equal to 100.');
+        }
         $this->container['plan_ids'] = $plan_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_id
+     *
+     * @return string|null
+     */
+    public function getPlanVersionId()
+    {
+        return $this->container['plan_version_id'];
+    }
+
+    /**
+     * Sets plan_version_id
+     *
+     * @param string|null $plan_version_id Filter companies by plan version ID (starts with plvr_)
+     *
+     * @return self
+     */
+    public function setPlanVersionId($plan_version_id)
+    {
+        if (is_null($plan_version_id)) {
+            throw new \InvalidArgumentException('non-nullable plan_version_id cannot be null');
+        }
+        $this->container['plan_version_id'] = $plan_version_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_ids
+     *
+     * @return string[]|null
+     */
+    public function getPlanVersionIds()
+    {
+        return $this->container['plan_version_ids'];
+    }
+
+    /**
+     * Sets plan_version_ids
+     *
+     * @param string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set.
+     *
+     * @return self
+     */
+    public function setPlanVersionIds($plan_version_ids)
+    {
+        if (is_null($plan_version_ids)) {
+            throw new \InvalidArgumentException('non-nullable plan_version_ids cannot be null');
+        }
+
+        if ((count($plan_version_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $plan_version_ids when calling ListCompaniesParams., number of items must be less than or equal to 100.');
+        }
+        $this->container['plan_version_ids'] = $plan_version_ids;
 
         return $this;
     }
@@ -658,7 +823,7 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets sort_order_direction
      *
-     * @return SortDirection|null
+     * @return \Schematic\Model\SortDirection|null
      */
     public function getSortOrderDirection()
     {
@@ -668,7 +833,7 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets sort_order_direction
      *
-     * @param SortDirection|null $sort_order_direction sort_order_direction
+     * @param \Schematic\Model\SortDirection|null $sort_order_direction sort_order_direction
      *
      * @return self
      */
@@ -704,6 +869,10 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
         if (is_null($subscription_statuses)) {
             throw new \InvalidArgumentException('non-nullable subscription_statuses cannot be null');
         }
+
+        if ((count($subscription_statuses) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $subscription_statuses when calling ListCompaniesParams., number of items must be less than or equal to 100.');
+        }
         $this->container['subscription_statuses'] = $subscription_statuses;
 
         return $this;
@@ -731,7 +900,38 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
         if (is_null($subscription_types)) {
             throw new \InvalidArgumentException('non-nullable subscription_types cannot be null');
         }
+
+        if ((count($subscription_types) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $subscription_types when calling ListCompaniesParams., number of items must be less than or equal to 100.');
+        }
         $this->container['subscription_types'] = $subscription_types;
+
+        return $this;
+    }
+
+    /**
+     * Gets with_entitlement_for
+     *
+     * @return string|null
+     */
+    public function getWithEntitlementFor()
+    {
+        return $this->container['with_entitlement_for'];
+    }
+
+    /**
+     * Sets with_entitlement_for
+     *
+     * @param string|null $with_entitlement_for Filter companies that have an entitlement (plan entitlement or company override) for the specified feature ID
+     *
+     * @return self
+     */
+    public function setWithEntitlementFor($with_entitlement_for)
+    {
+        if (is_null($with_entitlement_for)) {
+            throw new \InvalidArgumentException('non-nullable with_entitlement_for cannot be null');
+        }
+        $this->container['with_entitlement_for'] = $with_entitlement_for;
 
         return $this;
     }
@@ -907,7 +1107,7 @@ class ListCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

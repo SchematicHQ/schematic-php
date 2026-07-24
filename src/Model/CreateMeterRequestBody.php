@@ -61,7 +61,8 @@ class CreateMeterRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         'display_name' => 'string',
         'event_name' => 'string',
         'event_payload_key' => 'string',
-        'external_id' => 'string'
+        'external_id' => 'string',
+        'provider_type' => '\Schematic\Model\BillingProviderType'
     ];
 
     /**
@@ -75,7 +76,8 @@ class CreateMeterRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         'display_name' => null,
         'event_name' => null,
         'event_payload_key' => null,
-        'external_id' => null
+        'external_id' => null,
+        'provider_type' => null
     ];
 
     /**
@@ -87,7 +89,8 @@ class CreateMeterRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         'display_name' => false,
         'event_name' => false,
         'event_payload_key' => false,
-        'external_id' => false
+        'external_id' => false,
+        'provider_type' => true
     ];
 
     /**
@@ -179,7 +182,8 @@ class CreateMeterRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         'display_name' => 'display_name',
         'event_name' => 'event_name',
         'event_payload_key' => 'event_payload_key',
-        'external_id' => 'external_id'
+        'external_id' => 'external_id',
+        'provider_type' => 'provider_type'
     ];
 
     /**
@@ -191,7 +195,8 @@ class CreateMeterRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         'display_name' => 'setDisplayName',
         'event_name' => 'setEventName',
         'event_payload_key' => 'setEventPayloadKey',
-        'external_id' => 'setExternalId'
+        'external_id' => 'setExternalId',
+        'provider_type' => 'setProviderType'
     ];
 
     /**
@@ -203,7 +208,8 @@ class CreateMeterRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         'display_name' => 'getDisplayName',
         'event_name' => 'getEventName',
         'event_payload_key' => 'getEventPayloadKey',
-        'external_id' => 'getExternalId'
+        'external_id' => 'getExternalId',
+        'provider_type' => 'getProviderType'
     ];
 
     /**
@@ -267,6 +273,7 @@ class CreateMeterRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('event_name', $data ?? [], null);
         $this->setIfExists('event_payload_key', $data ?? [], null);
         $this->setIfExists('external_id', $data ?? [], null);
+        $this->setIfExists('provider_type', $data ?? [], null);
     }
 
     /**
@@ -462,6 +469,40 @@ class CreateMeterRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
 
         return $this;
     }
+
+    /**
+     * Gets provider_type
+     *
+     * @return \Schematic\Model\BillingProviderType|null
+     */
+    public function getProviderType()
+    {
+        return $this->container['provider_type'];
+    }
+
+    /**
+     * Sets provider_type
+     *
+     * @param \Schematic\Model\BillingProviderType|null $provider_type provider_type
+     *
+     * @return self
+     */
+    public function setProviderType($provider_type)
+    {
+        if (is_null($provider_type)) {
+            array_push($this->openAPINullablesSetToNull, 'provider_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('provider_type', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['provider_type'] = $provider_type;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -526,7 +567,7 @@ class CreateMeterRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -9,12 +9,16 @@ Name | Type | Description | Notes
 **checkout_collect_address** | **bool** |  |
 **checkout_collect_email** | **bool** |  |
 **checkout_collect_phone** | **bool** |  |
+**custom_checkout_fields** | [**\Schematic\Model\CheckoutFieldInput[]**](CheckoutFieldInput.md) |  | [optional]
 **custom_plan_config** | [**\Schematic\Model\CustomPlanConfig**](CustomPlanConfig.md) |  | [optional]
 **custom_plan_id** | **string** |  | [optional]
 **enable_tax_collection** | **bool** |  |
 **fallback_plan_id** | **string** |  | [optional]
 **initial_plan_id** | **string** |  | [optional]
 **initial_plan_price_id** | **string** |  | [optional]
+**opt_in_enabled** | **bool** |  |
+**opt_in_text** | **string** |  | [optional]
+**opt_in_title** | **string** |  | [optional]
 **ordered_add_ons** | [**\Schematic\Model\OrderedPlansInGroup[]**](OrderedPlansInGroup.md) |  |
 **ordered_bundle_list** | [**\Schematic\Model\PlanGroupBundleOrder[]**](PlanGroupBundleOrder.md) |  |
 **ordered_plans** | [**\Schematic\Model\OrderedPlansInGroup[]**](OrderedPlansInGroup.md) |  |
@@ -28,6 +32,7 @@ Name | Type | Description | Notes
 **show_as_monthly_prices** | **bool** |  |
 **show_credits** | **bool** |  |
 **show_feature_description** | **bool** |  |
+**show_hard_limit** | **bool** |  |
 **show_period_toggle** | **bool** |  |
 **show_zero_price_as_free** | **bool** |  |
 **sync_customer_billing_details** | **bool** |  |

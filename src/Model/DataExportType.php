@@ -43,6 +43,8 @@ class DataExportType
     /**
      * Possible values of this enum
      */
+    public const AUDIT_LOG = 'audit-log';
+
     public const COMPANY_FEATURE_USAGE = 'company-feature-usage';
 
     /**
@@ -52,6 +54,7 @@ class DataExportType
     public static function getAllowableEnumValues()
     {
         return [
+            self::AUDIT_LOG,
             self::COMPANY_FEATURE_USAGE
         ];
     }

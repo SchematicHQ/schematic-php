@@ -71,7 +71,7 @@ class UpdatePayInAdvanceRequestBody implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPIFormats = [
         'price_id' => null,
-        'quantity' => null
+        'quantity' => 'int64'
     ];
 
     /**
@@ -288,6 +288,10 @@ class UpdatePayInAdvanceRequestBody implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['quantity'] === null) {
             $invalidProperties[] = "'quantity' can't be null";
         }
+        if (($this->container['quantity'] < 0)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -352,6 +356,11 @@ class UpdatePayInAdvanceRequestBody implements ModelInterface, ArrayAccess, \Jso
         if (is_null($quantity)) {
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
+
+        if (($quantity < 0)) {
+            throw new \InvalidArgumentException('invalid value for $quantity when calling UpdatePayInAdvanceRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['quantity'] = $quantity;
 
         return $this;
@@ -420,7 +429,7 @@ class UpdatePayInAdvanceRequestBody implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

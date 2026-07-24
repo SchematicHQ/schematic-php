@@ -59,6 +59,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'account_id' => 'string',
+        'billing_linked_resource' => '\Schematic\Model\BillingLinkedResourceResponseData',
         'created_at' => '\DateTime',
         'description' => 'string',
         'event_subtype' => 'string',
@@ -68,14 +69,14 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => 'string',
         'id' => 'string',
         'lifecycle_phase' => '\Schematic\Model\FeatureLifecyclePhase',
-        'maintainer_id' => 'string',
         'name' => 'string',
         'plans' => '\Schematic\Model\PreviewObject[]',
         'plural_name' => 'string',
         'singular_name' => 'string',
         'trait' => '\Schematic\Model\EntityTraitDefinitionResponseData',
         'trait_id' => 'string',
-        'updated_at' => '\DateTime'
+        'updated_at' => '\DateTime',
+        'usage_limit_trait_id' => 'string'
     ];
 
     /**
@@ -87,6 +88,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'account_id' => null,
+        'billing_linked_resource' => null,
         'created_at' => 'date-time',
         'description' => null,
         'event_subtype' => null,
@@ -96,14 +98,14 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => null,
         'id' => null,
         'lifecycle_phase' => null,
-        'maintainer_id' => null,
         'name' => null,
         'plans' => null,
         'plural_name' => null,
         'singular_name' => null,
         'trait' => null,
         'trait_id' => null,
-        'updated_at' => 'date-time'
+        'updated_at' => 'date-time',
+        'usage_limit_trait_id' => null
     ];
 
     /**
@@ -113,6 +115,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'account_id' => false,
+        'billing_linked_resource' => false,
         'created_at' => false,
         'description' => false,
         'event_subtype' => true,
@@ -122,14 +125,14 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => false,
         'id' => false,
         'lifecycle_phase' => true,
-        'maintainer_id' => true,
         'name' => false,
         'plans' => false,
         'plural_name' => true,
         'singular_name' => true,
         'trait' => false,
         'trait_id' => true,
-        'updated_at' => false
+        'updated_at' => false,
+        'usage_limit_trait_id' => true
     ];
 
     /**
@@ -219,6 +222,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'account_id' => 'account_id',
+        'billing_linked_resource' => 'billing_linked_resource',
         'created_at' => 'created_at',
         'description' => 'description',
         'event_subtype' => 'event_subtype',
@@ -228,14 +232,14 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => 'icon',
         'id' => 'id',
         'lifecycle_phase' => 'lifecycle_phase',
-        'maintainer_id' => 'maintainer_id',
         'name' => 'name',
         'plans' => 'plans',
         'plural_name' => 'plural_name',
         'singular_name' => 'singular_name',
         'trait' => 'trait',
         'trait_id' => 'trait_id',
-        'updated_at' => 'updated_at'
+        'updated_at' => 'updated_at',
+        'usage_limit_trait_id' => 'usage_limit_trait_id'
     ];
 
     /**
@@ -245,6 +249,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'account_id' => 'setAccountId',
+        'billing_linked_resource' => 'setBillingLinkedResource',
         'created_at' => 'setCreatedAt',
         'description' => 'setDescription',
         'event_subtype' => 'setEventSubtype',
@@ -254,14 +259,14 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => 'setIcon',
         'id' => 'setId',
         'lifecycle_phase' => 'setLifecyclePhase',
-        'maintainer_id' => 'setMaintainerId',
         'name' => 'setName',
         'plans' => 'setPlans',
         'plural_name' => 'setPluralName',
         'singular_name' => 'setSingularName',
         'trait' => 'setTrait',
         'trait_id' => 'setTraitId',
-        'updated_at' => 'setUpdatedAt'
+        'updated_at' => 'setUpdatedAt',
+        'usage_limit_trait_id' => 'setUsageLimitTraitId'
     ];
 
     /**
@@ -271,6 +276,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'account_id' => 'getAccountId',
+        'billing_linked_resource' => 'getBillingLinkedResource',
         'created_at' => 'getCreatedAt',
         'description' => 'getDescription',
         'event_subtype' => 'getEventSubtype',
@@ -280,14 +286,14 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'icon' => 'getIcon',
         'id' => 'getId',
         'lifecycle_phase' => 'getLifecyclePhase',
-        'maintainer_id' => 'getMaintainerId',
         'name' => 'getName',
         'plans' => 'getPlans',
         'plural_name' => 'getPluralName',
         'singular_name' => 'getSingularName',
         'trait' => 'getTrait',
         'trait_id' => 'getTraitId',
-        'updated_at' => 'getUpdatedAt'
+        'updated_at' => 'getUpdatedAt',
+        'usage_limit_trait_id' => 'getUsageLimitTraitId'
     ];
 
     /**
@@ -348,6 +354,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('billing_linked_resource', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('event_subtype', $data ?? [], null);
@@ -357,7 +364,6 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('lifecycle_phase', $data ?? [], null);
-        $this->setIfExists('maintainer_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('plans', $data ?? [], null);
         $this->setIfExists('plural_name', $data ?? [], null);
@@ -365,6 +371,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('trait', $data ?? [], null);
         $this->setIfExists('trait_id', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('usage_limit_trait_id', $data ?? [], null);
     }
 
     /**
@@ -409,6 +416,10 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['flags'] === null) {
             $invalidProperties[] = "'flags' can't be null";
         }
+        if ((count($this->container['flags']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'flags', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['icon'] === null) {
             $invalidProperties[] = "'icon' can't be null";
         }
@@ -421,6 +432,10 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['plans'] === null) {
             $invalidProperties[] = "'plans' can't be null";
         }
+        if ((count($this->container['plans']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'plans', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -462,6 +477,33 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable account_id cannot be null');
         }
         $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_linked_resource
+     *
+     * @return \Schematic\Model\BillingLinkedResourceResponseData|null
+     */
+    public function getBillingLinkedResource()
+    {
+        return $this->container['billing_linked_resource'];
+    }
+
+    /**
+     * Sets billing_linked_resource
+     *
+     * @param \Schematic\Model\BillingLinkedResourceResponseData|null $billing_linked_resource billing_linked_resource
+     *
+     * @return self
+     */
+    public function setBillingLinkedResource($billing_linked_resource)
+    {
+        if (is_null($billing_linked_resource)) {
+            throw new \InvalidArgumentException('non-nullable billing_linked_resource cannot be null');
+        }
+        $this->container['billing_linked_resource'] = $billing_linked_resource;
 
         return $this;
     }
@@ -543,8 +585,8 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'event_subtype');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_subtype', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('event_subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -630,6 +672,10 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($flags)) {
             throw new \InvalidArgumentException('non-nullable flags cannot be null');
         }
+
+        if ((count($flags) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $flags when calling FeatureView., number of items must be less than or equal to 1000.');
+        }
         $this->container['flags'] = $flags;
 
         return $this;
@@ -712,47 +758,13 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'lifecycle_phase');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('lifecycle_phase', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('lifecycle_phase', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['lifecycle_phase'] = $lifecycle_phase;
-
-        return $this;
-    }
-
-    /**
-     * Gets maintainer_id
-     *
-     * @return string|null
-     */
-    public function getMaintainerId()
-    {
-        return $this->container['maintainer_id'];
-    }
-
-    /**
-     * Sets maintainer_id
-     *
-     * @param string|null $maintainer_id maintainer_id
-     *
-     * @return self
-     */
-    public function setMaintainerId($maintainer_id)
-    {
-        if (is_null($maintainer_id)) {
-            array_push($this->openAPINullablesSetToNull, 'maintainer_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('maintainer_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['maintainer_id'] = $maintainer_id;
 
         return $this;
     }
@@ -806,6 +818,10 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($plans)) {
             throw new \InvalidArgumentException('non-nullable plans cannot be null');
         }
+
+        if ((count($plans) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $plans when calling FeatureView., number of items must be less than or equal to 1000.');
+        }
         $this->container['plans'] = $plans;
 
         return $this;
@@ -834,8 +850,8 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -868,8 +884,8 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -929,8 +945,8 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -963,6 +979,40 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage_limit_trait_id
+     *
+     * @return string|null
+     */
+    public function getUsageLimitTraitId()
+    {
+        return $this->container['usage_limit_trait_id'];
+    }
+
+    /**
+     * Sets usage_limit_trait_id
+     *
+     * @param string|null $usage_limit_trait_id usage_limit_trait_id
+     *
+     * @return self
+     */
+    public function setUsageLimitTraitId($usage_limit_trait_id)
+    {
+        if (is_null($usage_limit_trait_id)) {
+            array_push($this->openAPINullablesSetToNull, 'usage_limit_trait_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('usage_limit_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['usage_limit_trait_id'] = $usage_limit_trait_id;
 
         return $this;
     }
@@ -1030,7 +1080,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

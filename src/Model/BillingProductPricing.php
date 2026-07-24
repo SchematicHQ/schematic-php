@@ -80,16 +80,16 @@ class BillingProductPricing implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'billing_threshold' => null,
+        'billing_threshold' => 'int64',
         'currency' => null,
         'interval' => null,
         'meter_id' => null,
-        'package_size' => null,
-        'price' => null,
+        'package_size' => 'int64',
+        'price' => 'int64',
         'price_decimal' => null,
         'price_external_id' => null,
         'product_external_id' => null,
-        'quantity' => null,
+        'quantity' => 'int64',
         'subscription_item_external_id' => null,
         'usage_type' => null
     ];
@@ -443,8 +443,8 @@ class BillingProductPricing implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'billing_threshold');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_threshold', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_threshold', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -547,8 +547,8 @@ class BillingProductPricing implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'meter_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('meter_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('meter_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -585,8 +585,8 @@ class BillingProductPricing implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'package_size');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('package_size', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('package_size', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -646,8 +646,8 @@ class BillingProductPricing implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -769,8 +769,8 @@ class BillingProductPricing implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'subscription_item_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('subscription_item_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('subscription_item_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -874,7 +874,7 @@ class BillingProductPricing implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

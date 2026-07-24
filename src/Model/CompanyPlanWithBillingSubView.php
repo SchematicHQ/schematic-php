@@ -64,7 +64,7 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
         'description' => 'string',
         'id' => 'string',
         'image_url' => 'string',
-        'included_credit_grants' => '\Schematic\Model\PlanCreditGrantView[]',
+        'included_credit_grants' => '\Schematic\Model\CompanyPlanCreditGrantView[]',
         'name' => 'string',
         'plan_period' => 'string',
         'plan_price' => 'int',
@@ -88,7 +88,7 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
         'included_credit_grants' => null,
         'name' => null,
         'plan_period' => null,
-        'plan_price' => null,
+        'plan_price' => 'int64',
         'plan_version_id' => null
     ];
 
@@ -351,6 +351,10 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['included_credit_grants'] === null) {
             $invalidProperties[] = "'included_credit_grants' can't be null";
         }
+        if ((count($this->container['included_credit_grants']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'included_credit_grants', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
@@ -392,8 +396,8 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'added_on');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('added_on', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('added_on', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -426,8 +430,8 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'billing_product_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_product_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_product_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -460,8 +464,8 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'billing_product_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_product_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_product_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -494,8 +498,8 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('description', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -555,8 +559,8 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'image_url');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('image_url', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('image_url', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -569,7 +573,7 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets included_credit_grants
      *
-     * @return \Schematic\Model\PlanCreditGrantView[]
+     * @return \Schematic\Model\CompanyPlanCreditGrantView[]
      */
     public function getIncludedCreditGrants()
     {
@@ -579,7 +583,7 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets included_credit_grants
      *
-     * @param \Schematic\Model\PlanCreditGrantView[] $included_credit_grants included_credit_grants
+     * @param \Schematic\Model\CompanyPlanCreditGrantView[] $included_credit_grants included_credit_grants
      *
      * @return self
      */
@@ -587,6 +591,10 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
     {
         if (is_null($included_credit_grants)) {
             throw new \InvalidArgumentException('non-nullable included_credit_grants cannot be null');
+        }
+
+        if ((count($included_credit_grants) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $included_credit_grants when calling CompanyPlanWithBillingSubView., number of items must be less than or equal to 1000.');
         }
         $this->container['included_credit_grants'] = $included_credit_grants;
 
@@ -643,8 +651,8 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'plan_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plan_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -677,8 +685,8 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'plan_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plan_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -711,8 +719,8 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'plan_version_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_version_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plan_version_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -785,7 +793,7 @@ class CompanyPlanWithBillingSubView implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

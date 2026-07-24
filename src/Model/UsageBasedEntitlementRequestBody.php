@@ -61,6 +61,7 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'billing_product_id' => 'string',
         'billing_threshold' => 'int',
         'currency' => 'string',
+        'currency_prices' => '\Schematic\Model\CurrencyPriceRequestBody[]',
         'monthly_metered_price_id' => 'string',
         'monthly_price_tiers' => '\Schematic\Model\CreatePriceTierRequestBody[]',
         'monthly_unit_price' => 'int',
@@ -68,8 +69,13 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'overage_billing_product_id' => 'string',
         'price_behavior' => '\Schematic\Model\EntitlementPriceBehavior',
         'price_tiers' => '\Schematic\Model\CreatePriceTierRequestBody[]',
+        'quarterly_metered_price_id' => 'string',
+        'quarterly_price_tiers' => '\Schematic\Model\CreatePriceTierRequestBody[]',
+        'quarterly_unit_price' => 'int',
+        'quarterly_unit_price_decimal' => 'string',
         'soft_limit' => 'int',
         'tier_mode' => '\Schematic\Model\BillingTiersMode',
+        'usage_quantity' => 'int',
         'yearly_metered_price_id' => 'string',
         'yearly_price_tiers' => '\Schematic\Model\CreatePriceTierRequestBody[]',
         'yearly_unit_price' => 'int',
@@ -85,20 +91,26 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPIFormats = [
         'billing_product_id' => null,
-        'billing_threshold' => null,
+        'billing_threshold' => 'int64',
         'currency' => null,
+        'currency_prices' => null,
         'monthly_metered_price_id' => null,
         'monthly_price_tiers' => null,
-        'monthly_unit_price' => null,
+        'monthly_unit_price' => 'int64',
         'monthly_unit_price_decimal' => null,
         'overage_billing_product_id' => null,
         'price_behavior' => null,
         'price_tiers' => null,
-        'soft_limit' => null,
+        'quarterly_metered_price_id' => null,
+        'quarterly_price_tiers' => null,
+        'quarterly_unit_price' => 'int64',
+        'quarterly_unit_price_decimal' => null,
+        'soft_limit' => 'int64',
         'tier_mode' => null,
+        'usage_quantity' => 'int64',
         'yearly_metered_price_id' => null,
         'yearly_price_tiers' => null,
-        'yearly_unit_price' => null,
+        'yearly_unit_price' => 'int64',
         'yearly_unit_price_decimal' => null
     ];
 
@@ -111,6 +123,7 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'billing_product_id' => true,
         'billing_threshold' => true,
         'currency' => true,
+        'currency_prices' => true,
         'monthly_metered_price_id' => true,
         'monthly_price_tiers' => true,
         'monthly_unit_price' => true,
@@ -118,8 +131,13 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'overage_billing_product_id' => true,
         'price_behavior' => true,
         'price_tiers' => true,
+        'quarterly_metered_price_id' => true,
+        'quarterly_price_tiers' => true,
+        'quarterly_unit_price' => true,
+        'quarterly_unit_price_decimal' => true,
         'soft_limit' => true,
         'tier_mode' => true,
+        'usage_quantity' => true,
         'yearly_metered_price_id' => true,
         'yearly_price_tiers' => true,
         'yearly_unit_price' => true,
@@ -215,6 +233,7 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'billing_product_id' => 'billing_product_id',
         'billing_threshold' => 'billing_threshold',
         'currency' => 'currency',
+        'currency_prices' => 'currency_prices',
         'monthly_metered_price_id' => 'monthly_metered_price_id',
         'monthly_price_tiers' => 'monthly_price_tiers',
         'monthly_unit_price' => 'monthly_unit_price',
@@ -222,8 +241,13 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'overage_billing_product_id' => 'overage_billing_product_id',
         'price_behavior' => 'price_behavior',
         'price_tiers' => 'price_tiers',
+        'quarterly_metered_price_id' => 'quarterly_metered_price_id',
+        'quarterly_price_tiers' => 'quarterly_price_tiers',
+        'quarterly_unit_price' => 'quarterly_unit_price',
+        'quarterly_unit_price_decimal' => 'quarterly_unit_price_decimal',
         'soft_limit' => 'soft_limit',
         'tier_mode' => 'tier_mode',
+        'usage_quantity' => 'usage_quantity',
         'yearly_metered_price_id' => 'yearly_metered_price_id',
         'yearly_price_tiers' => 'yearly_price_tiers',
         'yearly_unit_price' => 'yearly_unit_price',
@@ -239,6 +263,7 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'billing_product_id' => 'setBillingProductId',
         'billing_threshold' => 'setBillingThreshold',
         'currency' => 'setCurrency',
+        'currency_prices' => 'setCurrencyPrices',
         'monthly_metered_price_id' => 'setMonthlyMeteredPriceId',
         'monthly_price_tiers' => 'setMonthlyPriceTiers',
         'monthly_unit_price' => 'setMonthlyUnitPrice',
@@ -246,8 +271,13 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'overage_billing_product_id' => 'setOverageBillingProductId',
         'price_behavior' => 'setPriceBehavior',
         'price_tiers' => 'setPriceTiers',
+        'quarterly_metered_price_id' => 'setQuarterlyMeteredPriceId',
+        'quarterly_price_tiers' => 'setQuarterlyPriceTiers',
+        'quarterly_unit_price' => 'setQuarterlyUnitPrice',
+        'quarterly_unit_price_decimal' => 'setQuarterlyUnitPriceDecimal',
         'soft_limit' => 'setSoftLimit',
         'tier_mode' => 'setTierMode',
+        'usage_quantity' => 'setUsageQuantity',
         'yearly_metered_price_id' => 'setYearlyMeteredPriceId',
         'yearly_price_tiers' => 'setYearlyPriceTiers',
         'yearly_unit_price' => 'setYearlyUnitPrice',
@@ -263,6 +293,7 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'billing_product_id' => 'getBillingProductId',
         'billing_threshold' => 'getBillingThreshold',
         'currency' => 'getCurrency',
+        'currency_prices' => 'getCurrencyPrices',
         'monthly_metered_price_id' => 'getMonthlyMeteredPriceId',
         'monthly_price_tiers' => 'getMonthlyPriceTiers',
         'monthly_unit_price' => 'getMonthlyUnitPrice',
@@ -270,8 +301,13 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         'overage_billing_product_id' => 'getOverageBillingProductId',
         'price_behavior' => 'getPriceBehavior',
         'price_tiers' => 'getPriceTiers',
+        'quarterly_metered_price_id' => 'getQuarterlyMeteredPriceId',
+        'quarterly_price_tiers' => 'getQuarterlyPriceTiers',
+        'quarterly_unit_price' => 'getQuarterlyUnitPrice',
+        'quarterly_unit_price_decimal' => 'getQuarterlyUnitPriceDecimal',
         'soft_limit' => 'getSoftLimit',
         'tier_mode' => 'getTierMode',
+        'usage_quantity' => 'getUsageQuantity',
         'yearly_metered_price_id' => 'getYearlyMeteredPriceId',
         'yearly_price_tiers' => 'getYearlyPriceTiers',
         'yearly_unit_price' => 'getYearlyUnitPrice',
@@ -338,6 +374,7 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         $this->setIfExists('billing_product_id', $data ?? [], null);
         $this->setIfExists('billing_threshold', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('monthly_metered_price_id', $data ?? [], null);
         $this->setIfExists('monthly_price_tiers', $data ?? [], null);
         $this->setIfExists('monthly_unit_price', $data ?? [], null);
@@ -345,8 +382,13 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
         $this->setIfExists('overage_billing_product_id', $data ?? [], null);
         $this->setIfExists('price_behavior', $data ?? [], null);
         $this->setIfExists('price_tiers', $data ?? [], null);
+        $this->setIfExists('quarterly_metered_price_id', $data ?? [], null);
+        $this->setIfExists('quarterly_price_tiers', $data ?? [], null);
+        $this->setIfExists('quarterly_unit_price', $data ?? [], null);
+        $this->setIfExists('quarterly_unit_price_decimal', $data ?? [], null);
         $this->setIfExists('soft_limit', $data ?? [], null);
         $this->setIfExists('tier_mode', $data ?? [], null);
+        $this->setIfExists('usage_quantity', $data ?? [], null);
         $this->setIfExists('yearly_metered_price_id', $data ?? [], null);
         $this->setIfExists('yearly_price_tiers', $data ?? [], null);
         $this->setIfExists('yearly_unit_price', $data ?? [], null);
@@ -388,6 +430,30 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             $invalidProperties[] = "invalid value for 'billing_threshold', must be bigger than or equal to 50.";
         }
 
+        if (!is_null($this->container['currency_prices']) && (count($this->container['currency_prices']) > 50)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 50.";
+        }
+
+        if (!is_null($this->container['monthly_price_tiers']) && (count($this->container['monthly_price_tiers']) > 100)) {
+            $invalidProperties[] = "invalid value for 'monthly_price_tiers', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['price_tiers']) && (count($this->container['price_tiers']) > 100)) {
+            $invalidProperties[] = "invalid value for 'price_tiers', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['quarterly_price_tiers']) && (count($this->container['quarterly_price_tiers']) > 100)) {
+            $invalidProperties[] = "invalid value for 'quarterly_price_tiers', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['usage_quantity']) && ($this->container['usage_quantity'] < 0)) {
+            $invalidProperties[] = "invalid value for 'usage_quantity', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['yearly_price_tiers']) && (count($this->container['yearly_price_tiers']) > 100)) {
+            $invalidProperties[] = "invalid value for 'yearly_price_tiers', number of items must be less than or equal to 100.";
+        }
+
         return $invalidProperties;
     }
 
@@ -426,8 +492,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'billing_product_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_product_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_product_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -460,8 +526,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'billing_threshold');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_threshold', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_threshold', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -502,13 +568,51 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'currency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\CurrencyPriceRequestBody[]|null
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\CurrencyPriceRequestBody[]|null $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            array_push($this->openAPINullablesSetToNull, 'currency_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency_prices', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($currency_prices) && (count($currency_prices) > 50)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling UsageBasedEntitlementRequestBody., number of items must be less than or equal to 50.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
 
         return $this;
     }
@@ -538,8 +642,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'monthly_metered_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_metered_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_metered_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -572,11 +676,15 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'monthly_price_tiers');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_price_tiers', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_price_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($monthly_price_tiers) && (count($monthly_price_tiers) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $monthly_price_tiers when calling UsageBasedEntitlementRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['monthly_price_tiers'] = $monthly_price_tiers;
 
@@ -606,8 +714,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'monthly_unit_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_unit_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_unit_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -640,8 +748,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'monthly_unit_price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_unit_price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_unit_price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -676,8 +784,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'overage_billing_product_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('overage_billing_product_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('overage_billing_product_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -710,8 +818,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'price_behavior');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_behavior', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -746,13 +854,159 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'price_tiers');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_tiers', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($price_tiers) && (count($price_tiers) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $price_tiers when calling UsageBasedEntitlementRequestBody., number of items must be less than or equal to 100.');
+        }
         $this->container['price_tiers'] = $price_tiers;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_metered_price_id
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getQuarterlyMeteredPriceId()
+    {
+        return $this->container['quarterly_metered_price_id'];
+    }
+
+    /**
+     * Sets quarterly_metered_price_id
+     *
+     * @param string|null $quarterly_metered_price_id quarterly_metered_price_id
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setQuarterlyMeteredPriceId($quarterly_metered_price_id)
+    {
+        if (is_null($quarterly_metered_price_id)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_metered_price_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_metered_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['quarterly_metered_price_id'] = $quarterly_metered_price_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_price_tiers
+     *
+     * @return \Schematic\Model\CreatePriceTierRequestBody[]|null
+     */
+    public function getQuarterlyPriceTiers()
+    {
+        return $this->container['quarterly_price_tiers'];
+    }
+
+    /**
+     * Sets quarterly_price_tiers
+     *
+     * @param \Schematic\Model\CreatePriceTierRequestBody[]|null $quarterly_price_tiers quarterly_price_tiers
+     *
+     * @return self
+     */
+    public function setQuarterlyPriceTiers($quarterly_price_tiers)
+    {
+        if (is_null($quarterly_price_tiers)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_price_tiers');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_price_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($quarterly_price_tiers) && (count($quarterly_price_tiers) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $quarterly_price_tiers when calling UsageBasedEntitlementRequestBody., number of items must be less than or equal to 100.');
+        }
+        $this->container['quarterly_price_tiers'] = $quarterly_price_tiers;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_unit_price
+     *
+     * @return int|null
+     */
+    public function getQuarterlyUnitPrice()
+    {
+        return $this->container['quarterly_unit_price'];
+    }
+
+    /**
+     * Sets quarterly_unit_price
+     *
+     * @param int|null $quarterly_unit_price quarterly_unit_price
+     *
+     * @return self
+     */
+    public function setQuarterlyUnitPrice($quarterly_unit_price)
+    {
+        if (is_null($quarterly_unit_price)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_unit_price');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_unit_price', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['quarterly_unit_price'] = $quarterly_unit_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_unit_price_decimal
+     *
+     * @return string|null
+     */
+    public function getQuarterlyUnitPriceDecimal()
+    {
+        return $this->container['quarterly_unit_price_decimal'];
+    }
+
+    /**
+     * Sets quarterly_unit_price_decimal
+     *
+     * @param string|null $quarterly_unit_price_decimal quarterly_unit_price_decimal
+     *
+     * @return self
+     */
+    public function setQuarterlyUnitPriceDecimal($quarterly_unit_price_decimal)
+    {
+        if (is_null($quarterly_unit_price_decimal)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_unit_price_decimal');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_unit_price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['quarterly_unit_price_decimal'] = $quarterly_unit_price_decimal;
 
         return $this;
     }
@@ -780,8 +1034,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'soft_limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('soft_limit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('soft_limit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -814,13 +1068,52 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'tier_mode');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('tier_mode', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('tier_mode', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['tier_mode'] = $tier_mode;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage_quantity
+     *
+     * @return int|null
+     */
+    public function getUsageQuantity()
+    {
+        return $this->container['usage_quantity'];
+    }
+
+    /**
+     * Sets usage_quantity
+     *
+     * @param int|null $usage_quantity The committed unit quantity for this entitlement. For custom plans this is the quantity the company is contractually committed to; for standard plans it is the quantity pre-filled when subscribing. Only applies to pay-in-advance entitlements. Note: this is not yet enforced/auto-provisioned as a true default — it is currently stored for downstream billing use.
+     *
+     * @return self
+     */
+    public function setUsageQuantity($usage_quantity)
+    {
+        if (is_null($usage_quantity)) {
+            array_push($this->openAPINullablesSetToNull, 'usage_quantity');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('usage_quantity', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($usage_quantity) && ($usage_quantity < 0)) {
+            throw new \InvalidArgumentException('invalid value for $usage_quantity when calling UsageBasedEntitlementRequestBody., must be bigger than or equal to 0.');
+        }
+
+        $this->container['usage_quantity'] = $usage_quantity;
 
         return $this;
     }
@@ -850,8 +1143,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'yearly_metered_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_metered_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_metered_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -884,11 +1177,15 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'yearly_price_tiers');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_price_tiers', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_price_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($yearly_price_tiers) && (count($yearly_price_tiers) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $yearly_price_tiers when calling UsageBasedEntitlementRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['yearly_price_tiers'] = $yearly_price_tiers;
 
@@ -918,8 +1215,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'yearly_unit_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_unit_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_unit_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -952,8 +1249,8 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'yearly_unit_price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_unit_price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_unit_price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1026,7 +1323,7 @@ class UsageBasedEntitlementRequestBody implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

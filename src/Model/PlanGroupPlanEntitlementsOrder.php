@@ -282,6 +282,10 @@ class PlanGroupPlanEntitlementsOrder implements ModelInterface, ArrayAccess, \Js
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['entitlements']) && (count($this->container['entitlements']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['plan_id'] === null) {
             $invalidProperties[] = "'plan_id' can't be null";
         }
@@ -323,11 +327,15 @@ class PlanGroupPlanEntitlementsOrder implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'entitlements');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('entitlements', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('entitlements', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($entitlements) && (count($entitlements) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $entitlements when calling PlanGroupPlanEntitlementsOrder., number of items must be less than or equal to 1000.');
         }
         $this->container['entitlements'] = $entitlements;
 
@@ -424,7 +432,7 @@ class PlanGroupPlanEntitlementsOrder implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -60,10 +60,13 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'created_at' => '\DateTime',
         'description' => 'string',
+        'environment' => '\Schematic\Model\EnvironmentResponseData',
         'environment_id' => 'string',
         'id' => 'string',
+        'integration' => '\Schematic\Model\ApiKeyIntegrationResponseData',
         'last_used_at' => '\DateTime',
         'name' => 'string',
+        'readonly' => 'bool',
         'scopes' => '\Schematic\Model\ApiKeyScope[]',
         'secret' => 'string',
         'updated_at' => '\DateTime'
@@ -79,10 +82,13 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPIFormats = [
         'created_at' => 'date-time',
         'description' => null,
+        'environment' => null,
         'environment_id' => null,
         'id' => null,
+        'integration' => null,
         'last_used_at' => 'date-time',
         'name' => null,
+        'readonly' => null,
         'scopes' => null,
         'secret' => null,
         'updated_at' => 'date-time'
@@ -96,10 +102,13 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     protected static array $openAPINullables = [
         'created_at' => false,
         'description' => true,
+        'environment' => false,
         'environment_id' => true,
         'id' => false,
+        'integration' => false,
         'last_used_at' => true,
         'name' => false,
+        'readonly' => false,
         'scopes' => false,
         'secret' => false,
         'updated_at' => false
@@ -193,10 +202,13 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $attributeMap = [
         'created_at' => 'created_at',
         'description' => 'description',
+        'environment' => 'environment',
         'environment_id' => 'environment_id',
         'id' => 'id',
+        'integration' => 'integration',
         'last_used_at' => 'last_used_at',
         'name' => 'name',
+        'readonly' => 'readonly',
         'scopes' => 'scopes',
         'secret' => 'secret',
         'updated_at' => 'updated_at'
@@ -210,10 +222,13 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $setters = [
         'created_at' => 'setCreatedAt',
         'description' => 'setDescription',
+        'environment' => 'setEnvironment',
         'environment_id' => 'setEnvironmentId',
         'id' => 'setId',
+        'integration' => 'setIntegration',
         'last_used_at' => 'setLastUsedAt',
         'name' => 'setName',
+        'readonly' => 'setReadonly',
         'scopes' => 'setScopes',
         'secret' => 'setSecret',
         'updated_at' => 'setUpdatedAt'
@@ -227,10 +242,13 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $getters = [
         'created_at' => 'getCreatedAt',
         'description' => 'getDescription',
+        'environment' => 'getEnvironment',
         'environment_id' => 'getEnvironmentId',
         'id' => 'getId',
+        'integration' => 'getIntegration',
         'last_used_at' => 'getLastUsedAt',
         'name' => 'getName',
+        'readonly' => 'getReadonly',
         'scopes' => 'getScopes',
         'secret' => 'getSecret',
         'updated_at' => 'getUpdatedAt'
@@ -295,10 +313,13 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('environment', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('integration', $data ?? [], null);
         $this->setIfExists('last_used_at', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('readonly', $data ?? [], null);
         $this->setIfExists('scopes', $data ?? [], null);
         $this->setIfExists('secret', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -339,6 +360,9 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['readonly'] === null) {
+            $invalidProperties[] = "'readonly' can't be null";
         }
         if ($this->container['scopes'] === null) {
             $invalidProperties[] = "'scopes' can't be null";
@@ -418,13 +442,40 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('description', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets environment
+     *
+     * @return \Schematic\Model\EnvironmentResponseData|null
+     */
+    public function getEnvironment()
+    {
+        return $this->container['environment'];
+    }
+
+    /**
+     * Sets environment
+     *
+     * @param \Schematic\Model\EnvironmentResponseData|null $environment environment
+     *
+     * @return self
+     */
+    public function setEnvironment($environment)
+    {
+        if (is_null($environment)) {
+            throw new \InvalidArgumentException('non-nullable environment cannot be null');
+        }
+        $this->container['environment'] = $environment;
 
         return $this;
     }
@@ -452,8 +503,8 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'environment_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('environment_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('environment_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -491,6 +542,33 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * Gets integration
+     *
+     * @return \Schematic\Model\ApiKeyIntegrationResponseData|null
+     */
+    public function getIntegration()
+    {
+        return $this->container['integration'];
+    }
+
+    /**
+     * Sets integration
+     *
+     * @param \Schematic\Model\ApiKeyIntegrationResponseData|null $integration integration
+     *
+     * @return self
+     */
+    public function setIntegration($integration)
+    {
+        if (is_null($integration)) {
+            throw new \InvalidArgumentException('non-nullable integration cannot be null');
+        }
+        $this->container['integration'] = $integration;
+
+        return $this;
+    }
+
+    /**
      * Gets last_used_at
      *
      * @return \DateTime|null
@@ -513,8 +591,8 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'last_used_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_used_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('last_used_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -547,6 +625,33 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets readonly
+     *
+     * @return bool
+     */
+    public function getReadonly()
+    {
+        return $this->container['readonly'];
+    }
+
+    /**
+     * Sets readonly
+     *
+     * @param bool $readonly readonly
+     *
+     * @return self
+     */
+    public function setReadonly($readonly)
+    {
+        if (is_null($readonly)) {
+            throw new \InvalidArgumentException('non-nullable readonly cannot be null');
+        }
+        $this->container['readonly'] = $readonly;
 
         return $this;
     }
@@ -699,7 +804,7 @@ class ApiKeyCreateResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

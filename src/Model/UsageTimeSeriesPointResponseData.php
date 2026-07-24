@@ -75,7 +75,7 @@ class UsageTimeSeriesPointResponseData implements ModelInterface, ArrayAccess, \
         'period_end' => 'date-time',
         'period_start' => 'date-time',
         'timestamp' => 'date-time',
-        'usage' => null
+        'usage' => 'int64'
     ];
 
     /**
@@ -340,8 +340,8 @@ class UsageTimeSeriesPointResponseData implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'period_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('period_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('period_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -374,8 +374,8 @@ class UsageTimeSeriesPointResponseData implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'period_start');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('period_start', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('period_start', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -502,7 +502,7 @@ class UsageTimeSeriesPointResponseData implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

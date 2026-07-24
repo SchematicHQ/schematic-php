@@ -62,6 +62,8 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'external_price_id' => 'string',
         'id' => 'string',
         'interval' => '\Schematic\Model\BillingProductPriceInterval',
+        'interval_count' => 'int',
+        'nickname' => 'string',
         'price' => 'int',
         'price_decimal' => 'string',
         'provider_type' => '\Schematic\Model\BillingProviderType',
@@ -80,7 +82,9 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'external_price_id' => null,
         'id' => null,
         'interval' => null,
-        'price' => null,
+        'interval_count' => 'int64',
+        'nickname' => null,
+        'price' => 'int64',
         'price_decimal' => null,
         'provider_type' => null,
         'scheme' => null
@@ -96,6 +100,8 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'external_price_id' => false,
         'id' => false,
         'interval' => false,
+        'interval_count' => false,
+        'nickname' => true,
         'price' => false,
         'price_decimal' => true,
         'provider_type' => false,
@@ -192,6 +198,8 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'external_price_id' => 'external_price_id',
         'id' => 'id',
         'interval' => 'interval',
+        'interval_count' => 'interval_count',
+        'nickname' => 'nickname',
         'price' => 'price',
         'price_decimal' => 'price_decimal',
         'provider_type' => 'provider_type',
@@ -208,6 +216,8 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'external_price_id' => 'setExternalPriceId',
         'id' => 'setId',
         'interval' => 'setInterval',
+        'interval_count' => 'setIntervalCount',
+        'nickname' => 'setNickname',
         'price' => 'setPrice',
         'price_decimal' => 'setPriceDecimal',
         'provider_type' => 'setProviderType',
@@ -224,6 +234,8 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'external_price_id' => 'getExternalPriceId',
         'id' => 'getId',
         'interval' => 'getInterval',
+        'interval_count' => 'getIntervalCount',
+        'nickname' => 'getNickname',
         'price' => 'getPrice',
         'price_decimal' => 'getPriceDecimal',
         'provider_type' => 'getProviderType',
@@ -291,6 +303,8 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('external_price_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
+        $this->setIfExists('interval_count', $data ?? [], null);
+        $this->setIfExists('nickname', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_decimal', $data ?? [], null);
         $this->setIfExists('provider_type', $data ?? [], null);
@@ -335,6 +349,9 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         }
         if ($this->container['interval'] === null) {
             $invalidProperties[] = "'interval' can't be null";
+        }
+        if ($this->container['interval_count'] === null) {
+            $invalidProperties[] = "'interval_count' can't be null";
         }
         if ($this->container['price'] === null) {
             $invalidProperties[] = "'price' can't be null";
@@ -469,6 +486,67 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * Gets interval_count
+     *
+     * @return int
+     */
+    public function getIntervalCount()
+    {
+        return $this->container['interval_count'];
+    }
+
+    /**
+     * Sets interval_count
+     *
+     * @param int $interval_count interval_count
+     *
+     * @return self
+     */
+    public function setIntervalCount($interval_count)
+    {
+        if (is_null($interval_count)) {
+            throw new \InvalidArgumentException('non-nullable interval_count cannot be null');
+        }
+        $this->container['interval_count'] = $interval_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets nickname
+     *
+     * @return string|null
+     */
+    public function getNickname()
+    {
+        return $this->container['nickname'];
+    }
+
+    /**
+     * Sets nickname
+     *
+     * @param string|null $nickname nickname
+     *
+     * @return self
+     */
+    public function setNickname($nickname)
+    {
+        if (is_null($nickname)) {
+            array_push($this->openAPINullablesSetToNull, 'nickname');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('nickname', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['nickname'] = $nickname;
+
+        return $this;
+    }
+
+    /**
      * Gets price
      *
      * @return int
@@ -518,8 +596,8 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -646,7 +724,7 @@ class BillingPriceResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
