@@ -66,7 +66,7 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'name' => 'string',
         'priority' => 'int',
-        'rule_type' => 'string',
+        'rule_type' => '\Schematic\Model\RuleType',
         'value' => 'bool'
     ];
 
@@ -85,7 +85,7 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
         'flag_id' => null,
         'id' => null,
         'name' => null,
-        'priority' => null,
+        'priority' => 'int64',
         'rule_type' => null,
         'value' => null
     ];
@@ -283,31 +283,6 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const RULE_TYPE__DEFAULT = 'default';
-    public const RULE_TYPE_GLOBAL_OVERRIDE = 'global_override';
-    public const RULE_TYPE_COMPANY_OVERRIDE = 'company_override';
-    public const RULE_TYPE_COMPANY_OVERRIDE_USAGE_EXCEEDED = 'company_override_usage_exceeded';
-    public const RULE_TYPE_PLAN_ENTITLEMENT = 'plan_entitlement';
-    public const RULE_TYPE_PLAN_ENTITLEMENT_USAGE_EXCEEDED = 'plan_entitlement_usage_exceeded';
-    public const RULE_TYPE_STANDARD = 'standard';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getRuleTypeAllowableValues()
-    {
-        return [
-            self::RULE_TYPE__DEFAULT,
-            self::RULE_TYPE_GLOBAL_OVERRIDE,
-            self::RULE_TYPE_COMPANY_OVERRIDE,
-            self::RULE_TYPE_COMPANY_OVERRIDE_USAGE_EXCEEDED,
-            self::RULE_TYPE_PLAN_ENTITLEMENT,
-            self::RULE_TYPE_PLAN_ENTITLEMENT_USAGE_EXCEEDED,
-            self::RULE_TYPE_STANDARD,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -369,9 +344,17 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['condition_groups'] === null) {
             $invalidProperties[] = "'condition_groups' can't be null";
         }
+        if ((count($this->container['condition_groups']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'condition_groups', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['conditions'] === null) {
             $invalidProperties[] = "'conditions' can't be null";
         }
+        if ((count($this->container['conditions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'conditions', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['environment_id'] === null) {
             $invalidProperties[] = "'environment_id' can't be null";
         }
@@ -387,15 +370,6 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['rule_type'] === null) {
             $invalidProperties[] = "'rule_type' can't be null";
         }
-        $allowedValues = $this->getRuleTypeAllowableValues();
-        if (!is_null($this->container['rule_type']) && !in_array($this->container['rule_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'rule_type', must be one of '%s'",
-                $this->container['rule_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
         }
@@ -463,6 +437,10 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($condition_groups)) {
             throw new \InvalidArgumentException('non-nullable condition_groups cannot be null');
         }
+
+        if ((count($condition_groups) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $condition_groups when calling Rule., number of items must be less than or equal to 1000.');
+        }
         $this->container['condition_groups'] = $condition_groups;
 
         return $this;
@@ -489,6 +467,10 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($conditions)) {
             throw new \InvalidArgumentException('non-nullable conditions cannot be null');
+        }
+
+        if ((count($conditions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $conditions when calling Rule., number of items must be less than or equal to 1000.');
         }
         $this->container['conditions'] = $conditions;
 
@@ -545,8 +527,8 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -640,7 +622,7 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets rule_type
      *
-     * @return string
+     * @return \Schematic\Model\RuleType
      */
     public function getRuleType()
     {
@@ -650,7 +632,7 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets rule_type
      *
-     * @param string $rule_type rule_type
+     * @param \Schematic\Model\RuleType $rule_type rule_type
      *
      * @return self
      */
@@ -658,16 +640,6 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($rule_type)) {
             throw new \InvalidArgumentException('non-nullable rule_type cannot be null');
-        }
-        $allowedValues = $this->getRuleTypeAllowableValues();
-        if (!in_array($rule_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'rule_type', must be one of '%s'",
-                    $rule_type,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['rule_type'] = $rule_type;
 
@@ -764,7 +736,7 @@ class Rule implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

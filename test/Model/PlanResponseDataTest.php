@@ -90,6 +90,24 @@ class PlanResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "company_id"
+     */
+    public function testPropertyCompanyId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "copied_from_plan_id"
+     */
+    public function testPropertyCopiedFromPlanId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()

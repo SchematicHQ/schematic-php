@@ -78,8 +78,8 @@ class CountCreditBundlesParams implements ModelInterface, ArrayAccess, \JsonSeri
         'bundle_type' => null,
         'credit_id' => null,
         'ids' => null,
-        'limit' => null,
-        'offset' => null,
+        'limit' => 'int64',
+        'offset' => 'int64',
         'status' => null
     ];
 
@@ -311,6 +311,18 @@ class CountCreditBundlesParams implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['ids']) && (count($this->container['ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -402,6 +414,10 @@ class CountCreditBundlesParams implements ModelInterface, ArrayAccess, \JsonSeri
         if (is_null($ids)) {
             throw new \InvalidArgumentException('non-nullable ids cannot be null');
         }
+
+        if ((count($ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ids when calling CountCreditBundlesParams., number of items must be less than or equal to 100.');
+        }
         $this->container['ids'] = $ids;
 
         return $this;
@@ -429,6 +445,14 @@ class CountCreditBundlesParams implements ModelInterface, ArrayAccess, \JsonSeri
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountCreditBundlesParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountCreditBundlesParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -551,7 +575,7 @@ class CountCreditBundlesParams implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

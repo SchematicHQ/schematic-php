@@ -58,7 +58,9 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'flags' => '\Schematic\Model\CheckFlagResponseData[]'
+        'credit_balances' => 'array<string,\Schematic\Model\CompanyCreditBalance>',
+        'flags' => '\Schematic\Model\CheckFlagResponseData[]',
+        'plan' => '\Schematic\Model\DatastreamCompanyPlan'
     ];
 
     /**
@@ -69,7 +71,9 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'flags' => null
+        'credit_balances' => null,
+        'flags' => null,
+        'plan' => null
     ];
 
     /**
@@ -78,7 +82,9 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'flags' => false
+        'credit_balances' => false,
+        'flags' => false,
+        'plan' => false
     ];
 
     /**
@@ -167,7 +173,9 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'flags' => 'flags'
+        'credit_balances' => 'credit_balances',
+        'flags' => 'flags',
+        'plan' => 'plan'
     ];
 
     /**
@@ -176,7 +184,9 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'flags' => 'setFlags'
+        'credit_balances' => 'setCreditBalances',
+        'flags' => 'setFlags',
+        'plan' => 'setPlan'
     ];
 
     /**
@@ -185,7 +195,9 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'flags' => 'getFlags'
+        'credit_balances' => 'getCreditBalances',
+        'flags' => 'getFlags',
+        'plan' => 'getPlan'
     ];
 
     /**
@@ -245,7 +257,9 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('credit_balances', $data ?? [], null);
         $this->setIfExists('flags', $data ?? [], null);
+        $this->setIfExists('plan', $data ?? [], null);
     }
 
     /**
@@ -278,6 +292,10 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['flags'] === null) {
             $invalidProperties[] = "'flags' can't be null";
         }
+        if ((count($this->container['flags']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'flags', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -292,6 +310,33 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets credit_balances
+     *
+     * @return array<string,\Schematic\Model\CompanyCreditBalance>|null
+     */
+    public function getCreditBalances()
+    {
+        return $this->container['credit_balances'];
+    }
+
+    /**
+     * Sets credit_balances
+     *
+     * @param array<string,\Schematic\Model\CompanyCreditBalance>|null $credit_balances Lease-aware credit balances keyed by credit ID, covering every credit type the company holds a balance in
+     *
+     * @return self
+     */
+    public function setCreditBalances($credit_balances)
+    {
+        if (is_null($credit_balances)) {
+            throw new \InvalidArgumentException('non-nullable credit_balances cannot be null');
+        }
+        $this->container['credit_balances'] = $credit_balances;
+
+        return $this;
+    }
 
     /**
      * Gets flags
@@ -315,7 +360,38 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if (is_null($flags)) {
             throw new \InvalidArgumentException('non-nullable flags cannot be null');
         }
+
+        if ((count($flags) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $flags when calling CheckFlagsResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['flags'] = $flags;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan
+     *
+     * @return \Schematic\Model\DatastreamCompanyPlan|null
+     */
+    public function getPlan()
+    {
+        return $this->container['plan'];
+    }
+
+    /**
+     * Sets plan
+     *
+     * @param \Schematic\Model\DatastreamCompanyPlan|null $plan plan
+     *
+     * @return self
+     */
+    public function setPlan($plan)
+    {
+        if (is_null($plan)) {
+            throw new \InvalidArgumentException('non-nullable plan cannot be null');
+        }
+        $this->container['plan'] = $plan;
 
         return $this;
     }
@@ -383,7 +459,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -45,6 +45,8 @@ class ChargeType
      */
     public const FREE = 'free';
 
+    public const NONE = 'none';
+
     public const ONE_TIME = 'one_time';
 
     public const RECURRING = 'recurring';
@@ -57,6 +59,7 @@ class ChargeType
     {
         return [
             self::FREE,
+            self::NONE,
             self::ONE_TIME,
             self::RECURRING
         ];

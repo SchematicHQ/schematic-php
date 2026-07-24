@@ -115,4 +115,13 @@ class CreateMeterRequestBodyTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "provider_type"
+     */
+    public function testPropertyProviderType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

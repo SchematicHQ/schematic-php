@@ -354,8 +354,8 @@ class BillingCreditLedgerResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('description', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -388,8 +388,8 @@ class BillingCreditLedgerResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -476,8 +476,8 @@ class BillingCreditLedgerResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -510,8 +510,8 @@ class BillingCreditLedgerResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -584,7 +584,7 @@ class BillingCreditLedgerResponseData implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

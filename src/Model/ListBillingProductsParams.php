@@ -67,6 +67,7 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
         'price_usage_type' => '\Schematic\Model\BillingPriceUsageType',
         'provider_type' => '\Schematic\Model\BillingProviderType',
         'q' => 'string',
+        'recurring_charges_only' => 'bool',
         'with_one_time_charges' => 'bool',
         'with_prices_only' => 'bool',
         'with_zero_price' => 'bool',
@@ -83,12 +84,13 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPIFormats = [
         'ids' => null,
         'is_active' => null,
-        'limit' => null,
+        'limit' => 'int64',
         'name' => null,
-        'offset' => null,
+        'offset' => 'int64',
         'price_usage_type' => null,
         'provider_type' => null,
         'q' => null,
+        'recurring_charges_only' => null,
         'with_one_time_charges' => null,
         'with_prices_only' => null,
         'with_zero_price' => null,
@@ -109,6 +111,7 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
         'price_usage_type' => false,
         'provider_type' => false,
         'q' => false,
+        'recurring_charges_only' => false,
         'with_one_time_charges' => false,
         'with_prices_only' => false,
         'with_zero_price' => false,
@@ -209,6 +212,7 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
         'price_usage_type' => 'price_usage_type',
         'provider_type' => 'provider_type',
         'q' => 'q',
+        'recurring_charges_only' => 'recurring_charges_only',
         'with_one_time_charges' => 'with_one_time_charges',
         'with_prices_only' => 'with_prices_only',
         'with_zero_price' => 'with_zero_price',
@@ -229,6 +233,7 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
         'price_usage_type' => 'setPriceUsageType',
         'provider_type' => 'setProviderType',
         'q' => 'setQ',
+        'recurring_charges_only' => 'setRecurringChargesOnly',
         'with_one_time_charges' => 'setWithOneTimeCharges',
         'with_prices_only' => 'setWithPricesOnly',
         'with_zero_price' => 'setWithZeroPrice',
@@ -249,6 +254,7 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
         'price_usage_type' => 'getPriceUsageType',
         'provider_type' => 'getProviderType',
         'q' => 'getQ',
+        'recurring_charges_only' => 'getRecurringChargesOnly',
         'with_one_time_charges' => 'getWithOneTimeCharges',
         'with_prices_only' => 'getWithPricesOnly',
         'with_zero_price' => 'getWithZeroPrice',
@@ -320,6 +326,7 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('price_usage_type', $data ?? [], null);
         $this->setIfExists('provider_type', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
+        $this->setIfExists('recurring_charges_only', $data ?? [], null);
         $this->setIfExists('with_one_time_charges', $data ?? [], null);
         $this->setIfExists('with_prices_only', $data ?? [], null);
         $this->setIfExists('with_zero_price', $data ?? [], null);
@@ -352,6 +359,18 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['ids']) && (count($this->container['ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
@@ -397,6 +416,10 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
     {
         if (is_null($ids)) {
             throw new \InvalidArgumentException('non-nullable ids cannot be null');
+        }
+
+        if ((count($ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ids when calling ListBillingProductsParams., number of items must be less than or equal to 100.');
         }
         $this->container['ids'] = $ids;
 
@@ -452,6 +475,14 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListBillingProductsParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListBillingProductsParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -596,6 +627,33 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
         }
 
         $this->container['q'] = $q;
+
+        return $this;
+    }
+
+    /**
+     * Gets recurring_charges_only
+     *
+     * @return bool|null
+     */
+    public function getRecurringChargesOnly()
+    {
+        return $this->container['recurring_charges_only'];
+    }
+
+    /**
+     * Sets recurring_charges_only
+     *
+     * @param bool|null $recurring_charges_only Filter to products that have at least one recurring price
+     *
+     * @return self
+     */
+    public function setRecurringChargesOnly($recurring_charges_only)
+    {
+        if (is_null($recurring_charges_only)) {
+            throw new \InvalidArgumentException('non-nullable recurring_charges_only cannot be null');
+        }
+        $this->container['recurring_charges_only'] = $recurring_charges_only;
 
         return $this;
     }
@@ -771,7 +829,7 @@ class ListBillingProductsParams implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

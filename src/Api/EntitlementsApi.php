@@ -135,6 +135,9 @@ class EntitlementsApi
         'updatePlanEntitlement' => [
             'application/json',
         ],
+        'upsertPlanEntitlementForBillingProduct' => [
+            'application/json',
+        ],
     ];
 
     /**
@@ -268,7 +271,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountCompanyOverridesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -626,12 +629,27 @@ class EntitlementsApi
     {
 
 
+        if ($company_ids !== null && count($company_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$company_ids" when calling EntitlementsApi.countCompanyOverrides, number of items must be less than or equal to 100.');
+        }
+
+
+        if ($feature_ids !== null && count($feature_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$feature_ids" when calling EntitlementsApi.countCompanyOverrides, number of items must be less than or equal to 100.');
+        }
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling EntitlementsApi.countCompanyOverrides, number of items must be less than or equal to 100.');
+        }
 
 
 
-
-
-
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countCompanyOverrides, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countCompanyOverrides, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -860,7 +878,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountFeatureCompaniesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1210,6 +1228,12 @@ class EntitlementsApi
         }
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countFeatureCompanies, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countFeatureCompanies, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -1327,6 +1351,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys company_keys (optional)
      * @param  string[] $feature_ids feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q q (optional)
      * @param  bool $without_negative_entitlements without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -1337,9 +1362,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountFeatureUsageResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countFeatureUsage($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
+    public function countFeatureUsage($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
     {
-        list($response) = $this->countFeatureUsageWithHttpInfo($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset, $contentType);
+        list($response) = $this->countFeatureUsageWithHttpInfo($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -1352,6 +1377,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys (optional)
      * @param  string[] $feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q (optional)
      * @param  bool $without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -1362,9 +1388,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountFeatureUsageResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countFeatureUsageWithHttpInfo($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
+    public function countFeatureUsageWithHttpInfo($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
     {
-        $request = $this->countFeatureUsageRequest($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset, $contentType);
+        $request = $this->countFeatureUsageRequest($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1401,7 +1427,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountFeatureUsageResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1658,6 +1684,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys (optional)
      * @param  string[] $feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q (optional)
      * @param  bool $without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -1667,9 +1694,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFeatureUsageAsync($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
+    public function countFeatureUsageAsync($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
     {
-        return $this->countFeatureUsageAsyncWithHttpInfo($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset, $contentType)
+        return $this->countFeatureUsageAsyncWithHttpInfo($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1686,6 +1713,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys (optional)
      * @param  string[] $feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q (optional)
      * @param  bool $without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -1695,10 +1723,10 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFeatureUsageAsyncWithHttpInfo($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
+    public function countFeatureUsageAsyncWithHttpInfo($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
     {
         $returnType = '\Schematic\Model\CountFeatureUsageResponse';
-        $request = $this->countFeatureUsageRequest($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset, $contentType);
+        $request = $this->countFeatureUsageRequest($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1743,6 +1771,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys (optional)
      * @param  string[] $feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q (optional)
      * @param  bool $without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -1752,15 +1781,25 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countFeatureUsageRequest($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
+    public function countFeatureUsageRequest($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatureUsage'][0])
     {
 
 
 
+        if ($feature_ids !== null && count($feature_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$feature_ids" when calling EntitlementsApi.countFeatureUsage, number of items must be less than or equal to 100.');
+        }
 
 
 
 
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countFeatureUsage, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countFeatureUsage, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -1803,6 +1842,15 @@ class EntitlementsApi
             $include_usage_aggregation,
             'include_usage_aggregation', // param base name
             'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $managed_by,
+            'managed_by', // param base name
+            'BillingProviderType', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -1980,7 +2028,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountFeatureUsersResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2330,6 +2378,12 @@ class EntitlementsApi
         }
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countFeatureUsers, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countFeatureUsers, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -2527,7 +2581,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountPlanEntitlementsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2891,14 +2945,32 @@ class EntitlementsApi
     {
 
 
+        if ($feature_ids !== null && count($feature_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$feature_ids" when calling EntitlementsApi.countPlanEntitlements, number of items must be less than or equal to 100.');
+        }
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling EntitlementsApi.countPlanEntitlements, number of items must be less than or equal to 100.');
+        }
+
+
+        if ($plan_ids !== null && count($plan_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$plan_ids" when calling EntitlementsApi.countPlanEntitlements, number of items must be less than or equal to 100.');
+        }
+
+
+        if ($plan_version_ids !== null && count($plan_version_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$plan_version_ids" when calling EntitlementsApi.countPlanEntitlements, number of items must be less than or equal to 100.');
+        }
 
 
 
-
-
-
-
-
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countPlanEntitlements, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.countPlanEntitlements, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -3139,7 +3211,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateCompanyOverrideResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3625,7 +3697,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreatePlanEntitlementResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4111,7 +4183,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteCompanyOverrideResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4598,7 +4670,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeletePlanEntitlementResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5085,7 +5157,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\DuplicatePlanEntitlementsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5571,7 +5643,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetCompanyOverrideResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -6023,7 +6095,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetFeatureUsageByCompanyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -6484,7 +6556,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetFeatureUsageTimeSeriesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -7007,7 +7079,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetPlanEntitlementResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -7475,7 +7547,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListCompanyOverridesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -7833,12 +7905,27 @@ class EntitlementsApi
     {
 
 
+        if ($company_ids !== null && count($company_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$company_ids" when calling EntitlementsApi.listCompanyOverrides, number of items must be less than or equal to 100.');
+        }
+
+
+        if ($feature_ids !== null && count($feature_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$feature_ids" when calling EntitlementsApi.listCompanyOverrides, number of items must be less than or equal to 100.');
+        }
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling EntitlementsApi.listCompanyOverrides, number of items must be less than or equal to 100.');
+        }
 
 
 
-
-
-
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listCompanyOverrides, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listCompanyOverrides, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -8067,7 +8154,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListFeatureCompaniesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8417,6 +8504,12 @@ class EntitlementsApi
         }
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listFeatureCompanies, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listFeatureCompanies, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -8534,6 +8627,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys company_keys (optional)
      * @param  string[] $feature_ids feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q q (optional)
      * @param  bool $without_negative_entitlements without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8544,9 +8638,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListFeatureUsageResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listFeatureUsage($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
+    public function listFeatureUsage($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
     {
-        list($response) = $this->listFeatureUsageWithHttpInfo($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset, $contentType);
+        list($response) = $this->listFeatureUsageWithHttpInfo($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -8559,6 +8653,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys (optional)
      * @param  string[] $feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q (optional)
      * @param  bool $without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8569,9 +8664,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListFeatureUsageResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFeatureUsageWithHttpInfo($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
+    public function listFeatureUsageWithHttpInfo($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
     {
-        $request = $this->listFeatureUsageRequest($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset, $contentType);
+        $request = $this->listFeatureUsageRequest($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -8608,7 +8703,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListFeatureUsageResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8865,6 +8960,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys (optional)
      * @param  string[] $feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q (optional)
      * @param  bool $without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8874,9 +8970,9 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFeatureUsageAsync($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
+    public function listFeatureUsageAsync($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
     {
-        return $this->listFeatureUsageAsyncWithHttpInfo($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset, $contentType)
+        return $this->listFeatureUsageAsyncWithHttpInfo($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8893,6 +8989,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys (optional)
      * @param  string[] $feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q (optional)
      * @param  bool $without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8902,10 +8999,10 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFeatureUsageAsyncWithHttpInfo($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
+    public function listFeatureUsageAsyncWithHttpInfo($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
     {
         $returnType = '\Schematic\Model\ListFeatureUsageResponse';
-        $request = $this->listFeatureUsageRequest($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $q, $without_negative_entitlements, $limit, $offset, $contentType);
+        $request = $this->listFeatureUsageRequest($company_id, $company_keys, $feature_ids, $include_usage_aggregation, $managed_by, $q, $without_negative_entitlements, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8950,6 +9047,7 @@ class EntitlementsApi
      * @param  array<string,string> $company_keys (optional)
      * @param  string[] $feature_ids (optional)
      * @param  bool $include_usage_aggregation Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
      * @param  string $q (optional)
      * @param  bool $without_negative_entitlements (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -8959,15 +9057,25 @@ class EntitlementsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFeatureUsageRequest($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
+    public function listFeatureUsageRequest($company_id = null, $company_keys = null, $feature_ids = null, $include_usage_aggregation = null, $managed_by = null, $q = null, $without_negative_entitlements = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatureUsage'][0])
     {
 
 
 
+        if ($feature_ids !== null && count($feature_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$feature_ids" when calling EntitlementsApi.listFeatureUsage, number of items must be less than or equal to 100.');
+        }
 
 
 
 
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listFeatureUsage, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listFeatureUsage, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -9010,6 +9118,15 @@ class EntitlementsApi
             $include_usage_aggregation,
             'include_usage_aggregation', // param base name
             'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $managed_by,
+            'managed_by', // param base name
+            'BillingProviderType', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -9187,7 +9304,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListFeatureUsersResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -9537,6 +9654,12 @@ class EntitlementsApi
         }
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listFeatureUsers, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listFeatureUsers, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -9734,7 +9857,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListPlanEntitlementsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -10098,14 +10221,32 @@ class EntitlementsApi
     {
 
 
+        if ($feature_ids !== null && count($feature_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$feature_ids" when calling EntitlementsApi.listPlanEntitlements, number of items must be less than or equal to 100.');
+        }
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling EntitlementsApi.listPlanEntitlements, number of items must be less than or equal to 100.');
+        }
+
+
+        if ($plan_ids !== null && count($plan_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$plan_ids" when calling EntitlementsApi.listPlanEntitlements, number of items must be less than or equal to 100.');
+        }
+
+
+        if ($plan_version_ids !== null && count($plan_version_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$plan_version_ids" when calling EntitlementsApi.listPlanEntitlements, number of items must be less than or equal to 100.');
+        }
 
 
 
-
-
-
-
-
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listPlanEntitlements, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling EntitlementsApi.listPlanEntitlements, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -10348,7 +10489,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateCompanyOverrideResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -10854,7 +10995,7 @@ class EntitlementsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdatePlanEntitlementResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -11283,6 +11424,492 @@ class EntitlementsApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation upsertPlanEntitlementForBillingProduct
+     *
+     * Upsert plan entitlement for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanEntitlementRequestBody $create_billing_linked_plan_entitlement_request_body create_billing_linked_plan_entitlement_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanEntitlementForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\UpsertPlanEntitlementForBillingProductResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function upsertPlanEntitlementForBillingProduct($create_billing_linked_plan_entitlement_request_body, string $contentType = self::contentTypes['upsertPlanEntitlementForBillingProduct'][0])
+    {
+        list($response) = $this->upsertPlanEntitlementForBillingProductWithHttpInfo($create_billing_linked_plan_entitlement_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation upsertPlanEntitlementForBillingProductWithHttpInfo
+     *
+     * Upsert plan entitlement for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanEntitlementRequestBody $create_billing_linked_plan_entitlement_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanEntitlementForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\UpsertPlanEntitlementForBillingProductResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function upsertPlanEntitlementForBillingProductWithHttpInfo($create_billing_linked_plan_entitlement_request_body, string $contentType = self::contentTypes['upsertPlanEntitlementForBillingProduct'][0])
+    {
+        $request = $this->upsertPlanEntitlementForBillingProductRequest($create_billing_linked_plan_entitlement_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 201:
+                    if ('\Schematic\Model\UpsertPlanEntitlementForBillingProductResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\UpsertPlanEntitlementForBillingProductResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\UpsertPlanEntitlementForBillingProductResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\UpsertPlanEntitlementForBillingProductResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\UpsertPlanEntitlementForBillingProductResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation upsertPlanEntitlementForBillingProductAsync
+     *
+     * Upsert plan entitlement for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanEntitlementRequestBody $create_billing_linked_plan_entitlement_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanEntitlementForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function upsertPlanEntitlementForBillingProductAsync($create_billing_linked_plan_entitlement_request_body, string $contentType = self::contentTypes['upsertPlanEntitlementForBillingProduct'][0])
+    {
+        return $this->upsertPlanEntitlementForBillingProductAsyncWithHttpInfo($create_billing_linked_plan_entitlement_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation upsertPlanEntitlementForBillingProductAsyncWithHttpInfo
+     *
+     * Upsert plan entitlement for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanEntitlementRequestBody $create_billing_linked_plan_entitlement_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanEntitlementForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function upsertPlanEntitlementForBillingProductAsyncWithHttpInfo($create_billing_linked_plan_entitlement_request_body, string $contentType = self::contentTypes['upsertPlanEntitlementForBillingProduct'][0])
+    {
+        $returnType = '\Schematic\Model\UpsertPlanEntitlementForBillingProductResponse';
+        $request = $this->upsertPlanEntitlementForBillingProductRequest($create_billing_linked_plan_entitlement_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'upsertPlanEntitlementForBillingProduct'
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanEntitlementRequestBody $create_billing_linked_plan_entitlement_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanEntitlementForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function upsertPlanEntitlementForBillingProductRequest($create_billing_linked_plan_entitlement_request_body, string $contentType = self::contentTypes['upsertPlanEntitlementForBillingProduct'][0])
+    {
+
+        // verify the required parameter 'create_billing_linked_plan_entitlement_request_body' is set
+        if ($create_billing_linked_plan_entitlement_request_body === null || (is_array($create_billing_linked_plan_entitlement_request_body) && count($create_billing_linked_plan_entitlement_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_billing_linked_plan_entitlement_request_body when calling upsertPlanEntitlementForBillingProduct'
+            );
+        }
+
+
+        $resourcePath = '/plan-entitlements/billing-linked';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($create_billing_linked_plan_entitlement_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_billing_linked_plan_entitlement_request_body));
+            } else {
+                $httpBody = $create_billing_linked_plan_entitlement_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

@@ -85,7 +85,7 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         'account_id' => null,
         'base_plan_id' => null,
         'billing_product_ids' => null,
-        'credit_balances' => null,
+        'credit_balances' => 'double',
         'entitlements' => null,
         'environment_id' => null,
         'id' => null,
@@ -372,9 +372,17 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['billing_product_ids'] === null) {
             $invalidProperties[] = "'billing_product_ids' can't be null";
         }
+        if ((count($this->container['billing_product_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'billing_product_ids', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['credit_balances'] === null) {
             $invalidProperties[] = "'credit_balances' can't be null";
         }
+        if (!is_null($this->container['entitlements']) && (count($this->container['entitlements']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['environment_id'] === null) {
             $invalidProperties[] = "'environment_id' can't be null";
         }
@@ -387,18 +395,38 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['metrics'] === null) {
             $invalidProperties[] = "'metrics' can't be null";
         }
+        if ((count($this->container['metrics']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'metrics', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['plan_ids'] === null) {
             $invalidProperties[] = "'plan_ids' can't be null";
         }
+        if ((count($this->container['plan_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'plan_ids', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['plan_version_ids'] === null) {
             $invalidProperties[] = "'plan_version_ids' can't be null";
         }
+        if ((count($this->container['plan_version_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'plan_version_ids', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['rules'] === null) {
             $invalidProperties[] = "'rules' can't be null";
         }
+        if ((count($this->container['rules']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'rules', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['traits'] === null) {
             $invalidProperties[] = "'traits' can't be null";
         }
+        if ((count($this->container['traits']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'traits', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -464,8 +492,8 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'base_plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('base_plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('base_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -496,6 +524,10 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         if (is_null($billing_product_ids)) {
             throw new \InvalidArgumentException('non-nullable billing_product_ids cannot be null');
+        }
+
+        if ((count($billing_product_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $billing_product_ids when calling RulesengineCompany., number of items must be less than or equal to 1000.');
         }
         $this->container['billing_product_ids'] = $billing_product_ids;
 
@@ -550,6 +582,10 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         if (is_null($entitlements)) {
             throw new \InvalidArgumentException('non-nullable entitlements cannot be null');
+        }
+
+        if ((count($entitlements) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $entitlements when calling RulesengineCompany., number of items must be less than or equal to 1000.');
         }
         $this->container['entitlements'] = $entitlements;
 
@@ -659,6 +695,10 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         if (is_null($metrics)) {
             throw new \InvalidArgumentException('non-nullable metrics cannot be null');
         }
+
+        if ((count($metrics) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $metrics when calling RulesengineCompany., number of items must be less than or equal to 1000.');
+        }
         $this->container['metrics'] = $metrics;
 
         return $this;
@@ -685,6 +725,10 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         if (is_null($plan_ids)) {
             throw new \InvalidArgumentException('non-nullable plan_ids cannot be null');
+        }
+
+        if ((count($plan_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $plan_ids when calling RulesengineCompany., number of items must be less than or equal to 1000.');
         }
         $this->container['plan_ids'] = $plan_ids;
 
@@ -713,6 +757,10 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         if (is_null($plan_version_ids)) {
             throw new \InvalidArgumentException('non-nullable plan_version_ids cannot be null');
         }
+
+        if ((count($plan_version_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $plan_version_ids when calling RulesengineCompany., number of items must be less than or equal to 1000.');
+        }
         $this->container['plan_version_ids'] = $plan_version_ids;
 
         return $this;
@@ -739,6 +787,10 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         if (is_null($rules)) {
             throw new \InvalidArgumentException('non-nullable rules cannot be null');
+        }
+
+        if ((count($rules) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $rules when calling RulesengineCompany., number of items must be less than or equal to 1000.');
         }
         $this->container['rules'] = $rules;
 
@@ -793,6 +845,10 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         if (is_null($traits)) {
             throw new \InvalidArgumentException('non-nullable traits cannot be null');
+        }
+
+        if ((count($traits) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $traits when calling RulesengineCompany., number of items must be less than or equal to 1000.');
         }
         $this->container['traits'] = $traits;
 
@@ -862,7 +918,7 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

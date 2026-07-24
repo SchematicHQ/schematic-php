@@ -8,6 +8,6 @@ Name | Type | Description | Notes
 **credit_grants** | [**\Schematic\Model\PlanBundleCreditGrantRequestBody[]**](PlanBundleCreditGrantRequestBody.md) |  | [optional]
 **entitlements** | [**\Schematic\Model\PlanBundleEntitlementRequestBody[]**](PlanBundleEntitlementRequestBody.md) |  |
 **plan** | [**\Schematic\Model\UpdatePlanRequestBody**](UpdatePlanRequestBody.md) |  | [optional]
-**traits** | [**\Schematic\Model\UpdatePlanTraitTraitRequestBody[]**](UpdatePlanTraitTraitRequestBody.md) |  | [optional]
+**plan_version_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

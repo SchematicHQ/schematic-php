@@ -61,6 +61,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'burn_strategy' => '\Schematic\Model\BillingCreditBurnStrategy',
         'cost_editable' => 'bool',
         'created_at' => '\DateTime',
+        'currency_prices' => '\Schematic\Model\CreditCurrencyPriceResponseData[]',
         'default_expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'default_expiry_unit_count' => 'int',
         'default_rollover_policy' => '\Schematic\Model\BillingCreditRolloverPolicy',
@@ -86,8 +87,9 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'burn_strategy' => null,
         'cost_editable' => null,
         'created_at' => 'date-time',
+        'currency_prices' => null,
         'default_expiry_unit' => null,
-        'default_expiry_unit_count' => null,
+        'default_expiry_unit_count' => 'int64',
         'default_rollover_policy' => null,
         'description' => null,
         'icon' => null,
@@ -109,6 +111,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'burn_strategy' => false,
         'cost_editable' => false,
         'created_at' => false,
+        'currency_prices' => false,
         'default_expiry_unit' => false,
         'default_expiry_unit_count' => true,
         'default_rollover_policy' => false,
@@ -212,6 +215,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'burn_strategy' => 'burn_strategy',
         'cost_editable' => 'cost_editable',
         'created_at' => 'created_at',
+        'currency_prices' => 'currency_prices',
         'default_expiry_unit' => 'default_expiry_unit',
         'default_expiry_unit_count' => 'default_expiry_unit_count',
         'default_rollover_policy' => 'default_rollover_policy',
@@ -235,6 +239,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'burn_strategy' => 'setBurnStrategy',
         'cost_editable' => 'setCostEditable',
         'created_at' => 'setCreatedAt',
+        'currency_prices' => 'setCurrencyPrices',
         'default_expiry_unit' => 'setDefaultExpiryUnit',
         'default_expiry_unit_count' => 'setDefaultExpiryUnitCount',
         'default_rollover_policy' => 'setDefaultRolloverPolicy',
@@ -258,6 +263,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'burn_strategy' => 'getBurnStrategy',
         'cost_editable' => 'getCostEditable',
         'created_at' => 'getCreatedAt',
+        'currency_prices' => 'getCurrencyPrices',
         'default_expiry_unit' => 'getDefaultExpiryUnit',
         'default_expiry_unit_count' => 'getDefaultExpiryUnitCount',
         'default_rollover_policy' => 'getDefaultRolloverPolicy',
@@ -332,6 +338,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('burn_strategy', $data ?? [], null);
         $this->setIfExists('cost_editable', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('default_expiry_unit', $data ?? [], null);
         $this->setIfExists('default_expiry_unit_count', $data ?? [], null);
         $this->setIfExists('default_rollover_policy', $data ?? [], null);
@@ -382,6 +389,13 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
+        if ($this->container['currency_prices'] === null) {
+            $invalidProperties[] = "'currency_prices' can't be null";
+        }
+        if ((count($this->container['currency_prices']) > 256)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 256.";
+        }
+
         if ($this->container['default_expiry_unit'] === null) {
             $invalidProperties[] = "'default_expiry_unit' can't be null";
         }
@@ -497,6 +511,37 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\CreditCurrencyPriceResponseData[]
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\CreditCurrencyPriceResponseData[] $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            throw new \InvalidArgumentException('non-nullable currency_prices cannot be null');
+        }
+
+        if ((count($currency_prices) > 256)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling BillingCreditResponseData., number of items must be less than or equal to 256.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
+
+        return $this;
+    }
+
+    /**
      * Gets default_expiry_unit
      *
      * @return \Schematic\Model\BillingCreditExpiryUnit
@@ -546,8 +591,8 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'default_expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -634,8 +679,8 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -722,8 +767,8 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -810,8 +855,8 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -911,7 +956,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

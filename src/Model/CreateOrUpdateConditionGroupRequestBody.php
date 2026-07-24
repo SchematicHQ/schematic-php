@@ -365,8 +365,8 @@ class CreateOrUpdateConditionGroupRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -399,8 +399,8 @@ class CreateOrUpdateConditionGroupRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -473,7 +473,7 @@ class CreateOrUpdateConditionGroupRequestBody implements ModelInterface, ArrayAc
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

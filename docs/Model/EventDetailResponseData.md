@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **api_key** | **string** |  | [optional]
+**api_key_view** | [**\Schematic\Model\ApiKeyResponseData**](ApiKeyResponseData.md) |  | [optional]
 **body** | **object** |  |
 **body_preview** | **string** |  |
 **captured_at** | **\DateTime** |  |
@@ -16,6 +17,8 @@ Name | Type | Description | Notes
 **feature_ids** | **string[]** |  |
 **features** | [**\Schematic\Model\PreviewObject[]**](PreviewObject.md) |  |
 **id** | **string** |  |
+**idempotency_key** | **string** |  | [optional]
+**lease_id** | **string** |  | [optional]
 **loaded_at** | **\DateTime** |  | [optional]
 **processed_at** | **\DateTime** |  | [optional]
 **quantity** | **int** |  |

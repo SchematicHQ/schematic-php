@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_id** | **string** |  |
+**billing_linked_resource** | [**\Schematic\Model\BillingLinkedResourceResponseData**](BillingLinkedResourceResponseData.md) |  | [optional]
 **created_at** | **\DateTime** |  |
 **description** | **string** |  |
 **event_subtype** | **string** |  | [optional]
@@ -14,7 +15,6 @@ Name | Type | Description | Notes
 **icon** | **string** |  |
 **id** | **string** |  |
 **lifecycle_phase** | [**\Schematic\Model\FeatureLifecyclePhase**](FeatureLifecyclePhase.md) |  | [optional]
-**maintainer_id** | **string** |  | [optional]
 **name** | **string** |  |
 **plans** | [**\Schematic\Model\PreviewObject[]**](PreviewObject.md) |  |
 **plural_name** | **string** |  | [optional]
@@ -22,5 +22,6 @@ Name | Type | Description | Notes
 **trait** | [**\Schematic\Model\EntityTraitDefinitionResponseData**](EntityTraitDefinitionResponseData.md) |  | [optional]
 **trait_id** | **string** |  | [optional]
 **updated_at** | **\DateTime** |  |
+**usage_limit_trait_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

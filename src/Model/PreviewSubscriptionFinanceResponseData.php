@@ -59,9 +59,11 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
       */
     protected static $openAPITypes = [
         'amount_off' => 'int',
+        'discounts' => '\Schematic\Model\PreviewSubscriptionDiscountResponseData[]',
         'due_now' => 'int',
         'new_charges' => 'int',
         'percent_off' => 'float',
+        'period_end' => '\DateTime',
         'period_start' => '\DateTime',
         'promo_code_applied' => 'bool',
         'proration' => 'int',
@@ -81,17 +83,19 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount_off' => null,
-        'due_now' => null,
-        'new_charges' => null,
-        'percent_off' => null,
+        'amount_off' => 'int64',
+        'discounts' => null,
+        'due_now' => 'int64',
+        'new_charges' => 'int64',
+        'percent_off' => 'double',
+        'period_end' => 'date-time',
         'period_start' => 'date-time',
         'promo_code_applied' => null,
-        'proration' => null,
-        'tax_amount' => null,
+        'proration' => 'int64',
+        'tax_amount' => 'int64',
         'tax_display_name' => null,
         'tax_require_billing_details' => null,
-        'total_per_billing_period' => null,
+        'total_per_billing_period' => 'int64',
         'trial_end' => 'date-time',
         'upcoming_invoice_line_items' => null
     ];
@@ -103,9 +107,11 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
       */
     protected static array $openAPINullables = [
         'amount_off' => false,
+        'discounts' => false,
         'due_now' => false,
         'new_charges' => false,
         'percent_off' => false,
+        'period_end' => false,
         'period_start' => false,
         'promo_code_applied' => false,
         'proration' => false,
@@ -204,9 +210,11 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
      */
     protected static $attributeMap = [
         'amount_off' => 'amount_off',
+        'discounts' => 'discounts',
         'due_now' => 'due_now',
         'new_charges' => 'new_charges',
         'percent_off' => 'percent_off',
+        'period_end' => 'period_end',
         'period_start' => 'period_start',
         'promo_code_applied' => 'promo_code_applied',
         'proration' => 'proration',
@@ -225,9 +233,11 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
      */
     protected static $setters = [
         'amount_off' => 'setAmountOff',
+        'discounts' => 'setDiscounts',
         'due_now' => 'setDueNow',
         'new_charges' => 'setNewCharges',
         'percent_off' => 'setPercentOff',
+        'period_end' => 'setPeriodEnd',
         'period_start' => 'setPeriodStart',
         'promo_code_applied' => 'setPromoCodeApplied',
         'proration' => 'setProration',
@@ -246,9 +256,11 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
      */
     protected static $getters = [
         'amount_off' => 'getAmountOff',
+        'discounts' => 'getDiscounts',
         'due_now' => 'getDueNow',
         'new_charges' => 'getNewCharges',
         'percent_off' => 'getPercentOff',
+        'period_end' => 'getPeriodEnd',
         'period_start' => 'getPeriodStart',
         'promo_code_applied' => 'getPromoCodeApplied',
         'proration' => 'getProration',
@@ -318,9 +330,11 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
     public function __construct(array $data = null)
     {
         $this->setIfExists('amount_off', $data ?? [], null);
+        $this->setIfExists('discounts', $data ?? [], null);
         $this->setIfExists('due_now', $data ?? [], null);
         $this->setIfExists('new_charges', $data ?? [], null);
         $this->setIfExists('percent_off', $data ?? [], null);
+        $this->setIfExists('period_end', $data ?? [], null);
         $this->setIfExists('period_start', $data ?? [], null);
         $this->setIfExists('promo_code_applied', $data ?? [], null);
         $this->setIfExists('proration', $data ?? [], null);
@@ -362,6 +376,13 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         if ($this->container['amount_off'] === null) {
             $invalidProperties[] = "'amount_off' can't be null";
         }
+        if ($this->container['discounts'] === null) {
+            $invalidProperties[] = "'discounts' can't be null";
+        }
+        if ((count($this->container['discounts']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'discounts', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['due_now'] === null) {
             $invalidProperties[] = "'due_now' can't be null";
         }
@@ -370,6 +391,9 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         }
         if ($this->container['percent_off'] === null) {
             $invalidProperties[] = "'percent_off' can't be null";
+        }
+        if ($this->container['period_end'] === null) {
+            $invalidProperties[] = "'period_end' can't be null";
         }
         if ($this->container['period_start'] === null) {
             $invalidProperties[] = "'period_start' can't be null";
@@ -389,6 +413,10 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         if ($this->container['upcoming_invoice_line_items'] === null) {
             $invalidProperties[] = "'upcoming_invoice_line_items' can't be null";
         }
+        if ((count($this->container['upcoming_invoice_line_items']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'upcoming_invoice_line_items', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -427,6 +455,37 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable amount_off cannot be null');
         }
         $this->container['amount_off'] = $amount_off;
+
+        return $this;
+    }
+
+    /**
+     * Gets discounts
+     *
+     * @return \Schematic\Model\PreviewSubscriptionDiscountResponseData[]
+     */
+    public function getDiscounts()
+    {
+        return $this->container['discounts'];
+    }
+
+    /**
+     * Sets discounts
+     *
+     * @param \Schematic\Model\PreviewSubscriptionDiscountResponseData[] $discounts discounts
+     *
+     * @return self
+     */
+    public function setDiscounts($discounts)
+    {
+        if (is_null($discounts)) {
+            throw new \InvalidArgumentException('non-nullable discounts cannot be null');
+        }
+
+        if ((count($discounts) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $discounts when calling PreviewSubscriptionFinanceResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['discounts'] = $discounts;
 
         return $this;
     }
@@ -508,6 +567,33 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable percent_off cannot be null');
         }
         $this->container['percent_off'] = $percent_off;
+
+        return $this;
+    }
+
+    /**
+     * Gets period_end
+     *
+     * @return \DateTime
+     */
+    public function getPeriodEnd()
+    {
+        return $this->container['period_end'];
+    }
+
+    /**
+     * Sets period_end
+     *
+     * @param \DateTime $period_end period_end
+     *
+     * @return self
+     */
+    public function setPeriodEnd($period_end)
+    {
+        if (is_null($period_end)) {
+            throw new \InvalidArgumentException('non-nullable period_end cannot be null');
+        }
+        $this->container['period_end'] = $period_end;
 
         return $this;
     }
@@ -616,8 +702,8 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
             array_push($this->openAPINullablesSetToNull, 'tax_amount');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('tax_amount', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('tax_amount', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -650,8 +736,8 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
             array_push($this->openAPINullablesSetToNull, 'tax_display_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('tax_display_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('tax_display_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -738,8 +824,8 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
             array_push($this->openAPINullablesSetToNull, 'trial_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -770,6 +856,10 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
     {
         if (is_null($upcoming_invoice_line_items)) {
             throw new \InvalidArgumentException('non-nullable upcoming_invoice_line_items cannot be null');
+        }
+
+        if ((count($upcoming_invoice_line_items) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $upcoming_invoice_line_items when calling PreviewSubscriptionFinanceResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['upcoming_invoice_line_items'] = $upcoming_invoice_line_items;
 
@@ -839,7 +929,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

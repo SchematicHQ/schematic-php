@@ -61,7 +61,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'account_id' => 'string',
         'comparison_trait_id' => 'string',
         'condition_group_id' => 'string',
-        'condition_type' => 'string',
+        'condition_type' => '\Schematic\Model\ConditionType',
         'consumption_rate' => 'float',
         'created_at' => '\DateTime',
         'credit_id' => 'string',
@@ -69,11 +69,10 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'event_subtype' => 'string',
         'flag_id' => 'string',
         'id' => 'string',
-        'metric_period' => 'string',
-        'metric_period_month_reset' => 'string',
+        'metric_period' => '\Schematic\Model\MetricPeriod',
+        'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'metric_value' => 'int',
-        'operator' => 'string',
-        'plan_version_id' => 'string',
+        'operator' => '\Schematic\Model\ComparableOperator',
         'resource_unspecified_ids' => 'string[]',
         'rule_id' => 'string',
         'trait_entity_type' => '\Schematic\Model\EntityType',
@@ -97,7 +96,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'comparison_trait_id' => null,
         'condition_group_id' => null,
         'condition_type' => null,
-        'consumption_rate' => null,
+        'consumption_rate' => 'double',
         'created_at' => 'date-time',
         'credit_id' => null,
         'environment_id' => null,
@@ -106,9 +105,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'id' => null,
         'metric_period' => null,
         'metric_period_month_reset' => null,
-        'metric_value' => null,
+        'metric_value' => 'int64',
         'operator' => null,
-        'plan_version_id' => null,
         'resource_unspecified_ids' => null,
         'rule_id' => null,
         'trait_entity_type' => null,
@@ -116,7 +114,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'trait_value' => null,
         'trait_value_bool' => null,
         'trait_value_date' => 'date-time',
-        'trait_value_int' => null,
+        'trait_value_int' => 'int64',
         'updated_at' => 'date-time'
     ];
 
@@ -141,7 +139,6 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'metric_period_month_reset' => true,
         'metric_value' => true,
         'operator' => false,
-        'plan_version_id' => true,
         'resource_unspecified_ids' => false,
         'rule_id' => false,
         'trait_entity_type' => true,
@@ -254,7 +251,6 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'metric_period_month_reset' => 'metric_period_month_reset',
         'metric_value' => 'metric_value',
         'operator' => 'operator',
-        'plan_version_id' => 'plan_version_id',
         'resource_unspecified_ids' => 'resource_unspecified_ids',
         'rule_id' => 'rule_id',
         'trait_entity_type' => 'trait_entity_type',
@@ -287,7 +283,6 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'metric_period_month_reset' => 'setMetricPeriodMonthReset',
         'metric_value' => 'setMetricValue',
         'operator' => 'setOperator',
-        'plan_version_id' => 'setPlanVersionId',
         'resource_unspecified_ids' => 'setResourceUnspecifiedIds',
         'rule_id' => 'setRuleId',
         'trait_entity_type' => 'setTraitEntityType',
@@ -320,7 +315,6 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'metric_period_month_reset' => 'getMetricPeriodMonthReset',
         'metric_value' => 'getMetricValue',
         'operator' => 'getOperator',
-        'plan_version_id' => 'getPlanVersionId',
         'resource_unspecified_ids' => 'getResourceUnspecifiedIds',
         'rule_id' => 'getRuleId',
         'trait_entity_type' => 'getTraitEntityType',
@@ -404,7 +398,6 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('metric_period_month_reset', $data ?? [], null);
         $this->setIfExists('metric_value', $data ?? [], null);
         $this->setIfExists('operator', $data ?? [], null);
-        $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('resource_unspecified_ids', $data ?? [], null);
         $this->setIfExists('rule_id', $data ?? [], null);
         $this->setIfExists('trait_entity_type', $data ?? [], null);
@@ -464,6 +457,10 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['resource_unspecified_ids'] === null) {
             $invalidProperties[] = "'resource_unspecified_ids' can't be null";
         }
+        if ((count($this->container['resource_unspecified_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'resource_unspecified_ids', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['rule_id'] === null) {
             $invalidProperties[] = "'rule_id' can't be null";
         }
@@ -544,8 +541,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'comparison_trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('comparison_trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('comparison_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -578,8 +575,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'condition_group_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('condition_group_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('condition_group_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -592,7 +589,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets condition_type
      *
-     * @return string
+     * @return \Schematic\Model\ConditionType
      */
     public function getConditionType()
     {
@@ -602,7 +599,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets condition_type
      *
-     * @param string $condition_type condition_type
+     * @param \Schematic\Model\ConditionType $condition_type condition_type
      *
      * @return self
      */
@@ -639,8 +636,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -700,8 +697,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'credit_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -761,8 +758,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'event_subtype');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_subtype', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('event_subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -795,8 +792,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -836,7 +833,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -846,7 +843,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period metric_period
+     * @param \Schematic\Model\MetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -856,8 +853,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -870,7 +867,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets metric_period_month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMetricPeriodMonthReset()
     {
@@ -880,7 +877,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets metric_period_month_reset
      *
-     * @param string|null $metric_period_month_reset metric_period_month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $metric_period_month_reset metric_period_month_reset
      *
      * @return self
      */
@@ -890,8 +887,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'metric_period_month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period_month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period_month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -924,8 +921,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'metric_value');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_value', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_value', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -938,7 +935,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets operator
      *
-     * @return string
+     * @return \Schematic\Model\ComparableOperator
      */
     public function getOperator()
     {
@@ -948,7 +945,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets operator
      *
-     * @param string $operator operator
+     * @param \Schematic\Model\ComparableOperator $operator operator
      *
      * @return self
      */
@@ -958,40 +955,6 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable operator cannot be null');
         }
         $this->container['operator'] = $operator;
-
-        return $this;
-    }
-
-    /**
-     * Gets plan_version_id
-     *
-     * @return string|null
-     */
-    public function getPlanVersionId()
-    {
-        return $this->container['plan_version_id'];
-    }
-
-    /**
-     * Sets plan_version_id
-     *
-     * @param string|null $plan_version_id plan_version_id
-     *
-     * @return self
-     */
-    public function setPlanVersionId($plan_version_id)
-    {
-        if (is_null($plan_version_id)) {
-            array_push($this->openAPINullablesSetToNull, 'plan_version_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_version_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['plan_version_id'] = $plan_version_id;
 
         return $this;
     }
@@ -1017,6 +980,10 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         if (is_null($resource_unspecified_ids)) {
             throw new \InvalidArgumentException('non-nullable resource_unspecified_ids cannot be null');
+        }
+
+        if ((count($resource_unspecified_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $resource_unspecified_ids when calling ConditionResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['resource_unspecified_ids'] = $resource_unspecified_ids;
 
@@ -1073,8 +1040,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'trait_entity_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_entity_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_entity_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1107,8 +1074,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1195,8 +1162,8 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'trait_value_date');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_value_date', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_value_date', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1323,7 +1290,7 @@ class ConditionResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **event_subtype** | **string** |  | [optional]
 **event_types** | [**\Schematic\Model\EventType[]**](EventType.md) |  | [optional]
 **flag_id** | **string** |  | [optional]
+**idempotency_key** | **string** |  | [optional]
 **limit** | **int** | Page limit (default 100) | [optional]
 **offset** | **int** | Page offset (default 0) | [optional]
 **user_id** | **string** |  | [optional]

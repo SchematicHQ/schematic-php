@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **id** | **string** |  | [optional]
 **name** | **string** |  |
 **priority** | **int** |  |
-**rule_type** | **string** |  | [optional]
+**rule_type** | [**\Schematic\Model\RuleType**](RuleType.md) |  | [optional]
 **value** | **bool** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

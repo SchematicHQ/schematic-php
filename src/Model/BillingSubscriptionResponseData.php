@@ -89,7 +89,7 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPIFormats = [
         'application_id' => null,
-        'cancel_at' => null,
+        'cancel_at' => 'int64',
         'cancel_at_period_end' => null,
         'company_id' => null,
         'created_at' => 'date-time',
@@ -100,13 +100,13 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
         'id' => null,
         'interval' => null,
         'metadata' => null,
-        'period_end' => null,
-        'period_start' => null,
+        'period_end' => 'int64',
+        'period_start' => 'int64',
         'provider_type' => null,
         'status' => null,
         'subscription_external_id' => null,
-        'total_price' => null,
-        'trial_end' => null,
+        'total_price' => 'int64',
+        'trial_end' => 'int64',
         'trial_end_setting' => null
     ];
 
@@ -482,8 +482,8 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'application_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('application_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('application_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -516,8 +516,8 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'cancel_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cancel_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('cancel_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -577,8 +577,8 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -692,8 +692,8 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'default_payment_method_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_payment_method_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_payment_method_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -726,8 +726,8 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'expired_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expired_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expired_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1003,8 +1003,8 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'trial_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1037,8 +1037,8 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'trial_end_setting');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end_setting', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end_setting', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1111,7 +1111,7 @@ class BillingSubscriptionResponseData implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

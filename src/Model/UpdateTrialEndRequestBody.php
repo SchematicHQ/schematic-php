@@ -313,8 +313,8 @@ class UpdateTrialEndRequestBody implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'trial_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -387,7 +387,7 @@ class UpdateTrialEndRequestBody implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

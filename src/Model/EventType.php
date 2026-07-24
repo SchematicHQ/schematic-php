@@ -47,6 +47,8 @@ class EventType
 
     public const IDENTIFY = 'identify';
 
+    public const INFERENCE = 'inference';
+
     public const TRACK = 'track';
 
     /**
@@ -58,6 +60,7 @@ class EventType
         return [
             self::FLAG_CHECK,
             self::IDENTIFY,
+            self::INFERENCE,
             self::TRACK
         ];
     }

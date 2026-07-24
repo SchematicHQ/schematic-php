@@ -93,7 +93,7 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'application_id' => null,
-        'cancel_at' => null,
+        'cancel_at' => 'int64',
         'cancel_at_period_end' => null,
         'company_id' => null,
         'created_at' => 'date-time',
@@ -107,14 +107,14 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
         'latest_invoice' => null,
         'metadata' => null,
         'payment_method' => null,
-        'period_end' => null,
-        'period_start' => null,
+        'period_end' => 'int64',
+        'period_start' => 'int64',
         'products' => null,
         'provider_type' => null,
         'status' => null,
         'subscription_external_id' => null,
-        'total_price' => null,
-        'trial_end' => null,
+        'total_price' => 'int64',
+        'trial_end' => 'int64',
         'trial_end_setting' => null
     ];
 
@@ -451,6 +451,10 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['discounts'] === null) {
             $invalidProperties[] = "'discounts' can't be null";
         }
+        if ((count($this->container['discounts']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'discounts', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
@@ -466,6 +470,10 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['products'] === null) {
             $invalidProperties[] = "'products' can't be null";
         }
+        if ((count($this->container['products']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'products', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['provider_type'] === null) {
             $invalidProperties[] = "'provider_type' can't be null";
         }
@@ -516,8 +524,8 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'application_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('application_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('application_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -550,8 +558,8 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'cancel_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cancel_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('cancel_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -611,8 +619,8 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -726,8 +734,8 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'default_payment_method_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_payment_method_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_payment_method_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -759,6 +767,10 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($discounts)) {
             throw new \InvalidArgumentException('non-nullable discounts cannot be null');
         }
+
+        if ((count($discounts) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $discounts when calling BillingSubscriptionView., number of items must be less than or equal to 1000.');
+        }
         $this->container['discounts'] = $discounts;
 
         return $this;
@@ -787,8 +799,8 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'expired_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expired_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expired_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1009,6 +1021,10 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($products)) {
             throw new \InvalidArgumentException('non-nullable products cannot be null');
         }
+
+        if ((count($products) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $products when calling BillingSubscriptionView., number of items must be less than or equal to 1000.');
+        }
         $this->container['products'] = $products;
 
         return $this;
@@ -1145,8 +1161,8 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'trial_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1179,8 +1195,8 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'trial_end_setting');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end_setting', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end_setting', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1253,7 +1269,7 @@ class BillingSubscriptionView implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

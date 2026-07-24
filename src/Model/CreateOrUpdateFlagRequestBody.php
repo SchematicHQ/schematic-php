@@ -64,7 +64,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => '\Schematic\Model\FlagType',
         'id' => 'string',
         'key' => 'string',
-        'maintainer_id' => 'string',
+        'maintainer_account_member_id' => 'string',
         'name' => 'string'
     ];
 
@@ -82,7 +82,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => null,
         'id' => null,
         'key' => null,
-        'maintainer_id' => null,
+        'maintainer_account_member_id' => null,
         'name' => null
     ];
 
@@ -98,7 +98,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => false,
         'id' => true,
         'key' => false,
-        'maintainer_id' => true,
+        'maintainer_account_member_id' => true,
         'name' => false
     ];
 
@@ -194,7 +194,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => 'flag_type',
         'id' => 'id',
         'key' => 'key',
-        'maintainer_id' => 'maintainer_id',
+        'maintainer_account_member_id' => 'maintainer_account_member_id',
         'name' => 'name'
     ];
 
@@ -210,7 +210,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => 'setFlagType',
         'id' => 'setId',
         'key' => 'setKey',
-        'maintainer_id' => 'setMaintainerId',
+        'maintainer_account_member_id' => 'setMaintainerAccountMemberId',
         'name' => 'setName'
     ];
 
@@ -226,7 +226,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         'flag_type' => 'getFlagType',
         'id' => 'getId',
         'key' => 'getKey',
-        'maintainer_id' => 'getMaintainerId',
+        'maintainer_account_member_id' => 'getMaintainerAccountMemberId',
         'name' => 'getName'
     ];
 
@@ -293,7 +293,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('flag_type', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('key', $data ?? [], null);
-        $this->setIfExists('maintainer_id', $data ?? [], null);
+        $this->setIfExists('maintainer_account_member_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
     }
 
@@ -447,8 +447,8 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'feature_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -508,8 +508,8 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -551,35 +551,35 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
-     * Gets maintainer_id
+     * Gets maintainer_account_member_id
      *
      * @return string|null
      */
-    public function getMaintainerId()
+    public function getMaintainerAccountMemberId()
     {
-        return $this->container['maintainer_id'];
+        return $this->container['maintainer_account_member_id'];
     }
 
     /**
-     * Sets maintainer_id
+     * Sets maintainer_account_member_id
      *
-     * @param string|null $maintainer_id maintainer_id
+     * @param string|null $maintainer_account_member_id maintainer_account_member_id
      *
      * @return self
      */
-    public function setMaintainerId($maintainer_id)
+    public function setMaintainerAccountMemberId($maintainer_account_member_id)
     {
-        if (is_null($maintainer_id)) {
-            array_push($this->openAPINullablesSetToNull, 'maintainer_id');
+        if (is_null($maintainer_account_member_id)) {
+            array_push($this->openAPINullablesSetToNull, 'maintainer_account_member_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('maintainer_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('maintainer_account_member_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['maintainer_id'] = $maintainer_id;
+        $this->container['maintainer_account_member_id'] = $maintainer_account_member_id;
 
         return $this;
     }
@@ -678,7 +678,7 @@ class CreateOrUpdateFlagRequestBody implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

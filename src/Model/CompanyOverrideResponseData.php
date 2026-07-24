@@ -67,8 +67,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         'feature' => '\Schematic\Model\FeatureResponseData',
         'feature_id' => 'string',
         'id' => 'string',
-        'metric_period' => 'string',
-        'metric_period_month_reset' => 'string',
+        'metric_period' => '\Schematic\Model\MetricPeriod',
+        'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'notes' => '\Schematic\Model\CompanyOverrideNoteResponseData[]',
         'rule_id' => 'string',
         'rule_id_usage_exceeded' => 'string',
@@ -90,7 +90,7 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'company' => null,
         'company_id' => null,
-        'consumption_rate' => null,
+        'consumption_rate' => 'double',
         'created_at' => 'date-time',
         'environment_id' => null,
         'expiration_date' => 'date-time',
@@ -104,7 +104,7 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         'rule_id_usage_exceeded' => null,
         'updated_at' => 'date-time',
         'value_bool' => null,
-        'value_numeric' => null,
+        'value_numeric' => 'int64',
         'value_trait' => null,
         'value_trait_id' => null,
         'value_type' => null
@@ -426,6 +426,10 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         if ($this->container['notes'] === null) {
             $invalidProperties[] = "'notes' can't be null";
         }
+        if ((count($this->container['notes']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'notes', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -524,8 +528,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -612,8 +616,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'expiration_date');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiration_date', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiration_date', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -707,7 +711,7 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -717,7 +721,7 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period metric_period
+     * @param \Schematic\Model\MetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -727,8 +731,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -741,7 +745,7 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets metric_period_month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMetricPeriodMonthReset()
     {
@@ -751,7 +755,7 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets metric_period_month_reset
      *
-     * @param string|null $metric_period_month_reset metric_period_month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $metric_period_month_reset metric_period_month_reset
      *
      * @return self
      */
@@ -761,8 +765,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'metric_period_month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period_month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period_month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -794,6 +798,10 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         if (is_null($notes)) {
             throw new \InvalidArgumentException('non-nullable notes cannot be null');
         }
+
+        if ((count($notes) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $notes when calling CompanyOverrideResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['notes'] = $notes;
 
         return $this;
@@ -822,8 +830,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'rule_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -856,8 +864,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'rule_id_usage_exceeded');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_id_usage_exceeded', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_id_usage_exceeded', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -917,8 +925,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'value_bool');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_bool', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_bool', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -951,8 +959,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'value_numeric');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_numeric', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_numeric', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1012,8 +1020,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             array_push($this->openAPINullablesSetToNull, 'value_trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1113,7 +1121,7 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

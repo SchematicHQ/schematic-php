@@ -75,12 +75,12 @@ class WebFeatureUsageWebhookOutput implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'allocation' => null,
+        'allocation' => 'int64',
         'credit_usage' => null,
         'entitlement' => null,
         'feature' => null,
         'metric_reset_at' => 'date-time',
-        'usage' => null,
+        'usage' => 'int64',
         'company' => null
     ];
 
@@ -358,8 +358,8 @@ class WebFeatureUsageWebhookOutput implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'allocation');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('allocation', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('allocation', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -473,8 +473,8 @@ class WebFeatureUsageWebhookOutput implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'metric_reset_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_reset_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_reset_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -507,8 +507,8 @@ class WebFeatureUsageWebhookOutput implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'usage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('usage', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('usage', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -608,7 +608,7 @@ class WebFeatureUsageWebhookOutput implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

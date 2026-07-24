@@ -108,9 +108,45 @@ class PreviewSubscriptionChangeResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "is_scheduled_downgrade"
+     */
+    public function testPropertyIsScheduledDowngrade()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "new_charges"
      */
     public function testPropertyNewCharges()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "opt_in_required"
+     */
+    public function testPropertyOptInRequired()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "opt_in_text"
+     */
+    public function testPropertyOptInText()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "opt_in_title"
+     */
+    public function testPropertyOptInTitle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -156,6 +192,15 @@ class PreviewSubscriptionChangeResponseDataTest extends TestCase
      * Test attribute "proration"
      */
     public function testPropertyProration()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "scheduled_change_time"
+     */
+    public function testPropertyScheduledChangeTime()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -62,23 +62,32 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'billing_threshold' => 'int',
         'credit_consumption_rate' => 'float',
         'currency' => 'string',
+        'currency_prices' => '\Schematic\Model\CurrencyPriceRequestBody[]',
         'feature_id' => 'string',
-        'metric_period' => 'string',
-        'metric_period_month_reset' => 'string',
+        'metric_period' => '\Schematic\Model\MetricPeriod',
+        'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'monthly_metered_price_id' => 'string',
         'monthly_price_tiers' => '\Schematic\Model\CreatePriceTierRequestBody[]',
         'monthly_unit_price' => 'int',
         'monthly_unit_price_decimal' => 'string',
         'overage_billing_product_id' => 'string',
+        'plan_id' => 'string',
+        'plan_version_id' => 'string',
         'price_behavior' => '\Schematic\Model\EntitlementPriceBehavior',
         'price_tiers' => '\Schematic\Model\CreatePriceTierRequestBody[]',
+        'quarterly_metered_price_id' => 'string',
+        'quarterly_price_tiers' => '\Schematic\Model\CreatePriceTierRequestBody[]',
+        'quarterly_unit_price' => 'int',
+        'quarterly_unit_price_decimal' => 'string',
         'soft_limit' => 'int',
         'tier_mode' => '\Schematic\Model\BillingTiersMode',
+        'usage_quantity' => 'int',
         'value_bool' => 'bool',
         'value_credit_id' => 'string',
         'value_numeric' => 'int',
         'value_trait_id' => 'string',
         'value_type' => '\Schematic\Model\EntitlementValueType',
+        'warning_tiers' => '\Schematic\Model\WarningTierRequestBody[]',
         'yearly_metered_price_id' => 'string',
         'yearly_price_tiers' => '\Schematic\Model\CreatePriceTierRequestBody[]',
         'yearly_unit_price' => 'int',
@@ -94,29 +103,38 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
       */
     protected static $openAPIFormats = [
         'billing_product_id' => null,
-        'billing_threshold' => null,
-        'credit_consumption_rate' => null,
+        'billing_threshold' => 'int64',
+        'credit_consumption_rate' => 'double',
         'currency' => null,
+        'currency_prices' => null,
         'feature_id' => null,
         'metric_period' => null,
         'metric_period_month_reset' => null,
         'monthly_metered_price_id' => null,
         'monthly_price_tiers' => null,
-        'monthly_unit_price' => null,
+        'monthly_unit_price' => 'int64',
         'monthly_unit_price_decimal' => null,
         'overage_billing_product_id' => null,
+        'plan_id' => null,
+        'plan_version_id' => null,
         'price_behavior' => null,
         'price_tiers' => null,
-        'soft_limit' => null,
+        'quarterly_metered_price_id' => null,
+        'quarterly_price_tiers' => null,
+        'quarterly_unit_price' => 'int64',
+        'quarterly_unit_price_decimal' => null,
+        'soft_limit' => 'int64',
         'tier_mode' => null,
+        'usage_quantity' => 'int64',
         'value_bool' => null,
         'value_credit_id' => null,
-        'value_numeric' => null,
+        'value_numeric' => 'int64',
         'value_trait_id' => null,
         'value_type' => null,
+        'warning_tiers' => null,
         'yearly_metered_price_id' => null,
         'yearly_price_tiers' => null,
-        'yearly_unit_price' => null,
+        'yearly_unit_price' => 'int64',
         'yearly_unit_price_decimal' => null
     ];
 
@@ -130,6 +148,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'billing_threshold' => true,
         'credit_consumption_rate' => true,
         'currency' => true,
+        'currency_prices' => true,
         'feature_id' => false,
         'metric_period' => true,
         'metric_period_month_reset' => true,
@@ -138,15 +157,23 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_unit_price' => true,
         'monthly_unit_price_decimal' => true,
         'overage_billing_product_id' => true,
+        'plan_id' => false,
+        'plan_version_id' => true,
         'price_behavior' => true,
         'price_tiers' => true,
+        'quarterly_metered_price_id' => true,
+        'quarterly_price_tiers' => true,
+        'quarterly_unit_price' => true,
+        'quarterly_unit_price_decimal' => true,
         'soft_limit' => true,
         'tier_mode' => true,
+        'usage_quantity' => true,
         'value_bool' => true,
         'value_credit_id' => true,
         'value_numeric' => true,
         'value_trait_id' => true,
         'value_type' => false,
+        'warning_tiers' => true,
         'yearly_metered_price_id' => true,
         'yearly_price_tiers' => true,
         'yearly_unit_price' => true,
@@ -243,6 +270,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'billing_threshold' => 'billing_threshold',
         'credit_consumption_rate' => 'credit_consumption_rate',
         'currency' => 'currency',
+        'currency_prices' => 'currency_prices',
         'feature_id' => 'feature_id',
         'metric_period' => 'metric_period',
         'metric_period_month_reset' => 'metric_period_month_reset',
@@ -251,15 +279,23 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_unit_price' => 'monthly_unit_price',
         'monthly_unit_price_decimal' => 'monthly_unit_price_decimal',
         'overage_billing_product_id' => 'overage_billing_product_id',
+        'plan_id' => 'plan_id',
+        'plan_version_id' => 'plan_version_id',
         'price_behavior' => 'price_behavior',
         'price_tiers' => 'price_tiers',
+        'quarterly_metered_price_id' => 'quarterly_metered_price_id',
+        'quarterly_price_tiers' => 'quarterly_price_tiers',
+        'quarterly_unit_price' => 'quarterly_unit_price',
+        'quarterly_unit_price_decimal' => 'quarterly_unit_price_decimal',
         'soft_limit' => 'soft_limit',
         'tier_mode' => 'tier_mode',
+        'usage_quantity' => 'usage_quantity',
         'value_bool' => 'value_bool',
         'value_credit_id' => 'value_credit_id',
         'value_numeric' => 'value_numeric',
         'value_trait_id' => 'value_trait_id',
         'value_type' => 'value_type',
+        'warning_tiers' => 'warning_tiers',
         'yearly_metered_price_id' => 'yearly_metered_price_id',
         'yearly_price_tiers' => 'yearly_price_tiers',
         'yearly_unit_price' => 'yearly_unit_price',
@@ -276,6 +312,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'billing_threshold' => 'setBillingThreshold',
         'credit_consumption_rate' => 'setCreditConsumptionRate',
         'currency' => 'setCurrency',
+        'currency_prices' => 'setCurrencyPrices',
         'feature_id' => 'setFeatureId',
         'metric_period' => 'setMetricPeriod',
         'metric_period_month_reset' => 'setMetricPeriodMonthReset',
@@ -284,15 +321,23 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_unit_price' => 'setMonthlyUnitPrice',
         'monthly_unit_price_decimal' => 'setMonthlyUnitPriceDecimal',
         'overage_billing_product_id' => 'setOverageBillingProductId',
+        'plan_id' => 'setPlanId',
+        'plan_version_id' => 'setPlanVersionId',
         'price_behavior' => 'setPriceBehavior',
         'price_tiers' => 'setPriceTiers',
+        'quarterly_metered_price_id' => 'setQuarterlyMeteredPriceId',
+        'quarterly_price_tiers' => 'setQuarterlyPriceTiers',
+        'quarterly_unit_price' => 'setQuarterlyUnitPrice',
+        'quarterly_unit_price_decimal' => 'setQuarterlyUnitPriceDecimal',
         'soft_limit' => 'setSoftLimit',
         'tier_mode' => 'setTierMode',
+        'usage_quantity' => 'setUsageQuantity',
         'value_bool' => 'setValueBool',
         'value_credit_id' => 'setValueCreditId',
         'value_numeric' => 'setValueNumeric',
         'value_trait_id' => 'setValueTraitId',
         'value_type' => 'setValueType',
+        'warning_tiers' => 'setWarningTiers',
         'yearly_metered_price_id' => 'setYearlyMeteredPriceId',
         'yearly_price_tiers' => 'setYearlyPriceTiers',
         'yearly_unit_price' => 'setYearlyUnitPrice',
@@ -309,6 +354,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'billing_threshold' => 'getBillingThreshold',
         'credit_consumption_rate' => 'getCreditConsumptionRate',
         'currency' => 'getCurrency',
+        'currency_prices' => 'getCurrencyPrices',
         'feature_id' => 'getFeatureId',
         'metric_period' => 'getMetricPeriod',
         'metric_period_month_reset' => 'getMetricPeriodMonthReset',
@@ -317,15 +363,23 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_unit_price' => 'getMonthlyUnitPrice',
         'monthly_unit_price_decimal' => 'getMonthlyUnitPriceDecimal',
         'overage_billing_product_id' => 'getOverageBillingProductId',
+        'plan_id' => 'getPlanId',
+        'plan_version_id' => 'getPlanVersionId',
         'price_behavior' => 'getPriceBehavior',
         'price_tiers' => 'getPriceTiers',
+        'quarterly_metered_price_id' => 'getQuarterlyMeteredPriceId',
+        'quarterly_price_tiers' => 'getQuarterlyPriceTiers',
+        'quarterly_unit_price' => 'getQuarterlyUnitPrice',
+        'quarterly_unit_price_decimal' => 'getQuarterlyUnitPriceDecimal',
         'soft_limit' => 'getSoftLimit',
         'tier_mode' => 'getTierMode',
+        'usage_quantity' => 'getUsageQuantity',
         'value_bool' => 'getValueBool',
         'value_credit_id' => 'getValueCreditId',
         'value_numeric' => 'getValueNumeric',
         'value_trait_id' => 'getValueTraitId',
         'value_type' => 'getValueType',
+        'warning_tiers' => 'getWarningTiers',
         'yearly_metered_price_id' => 'getYearlyMeteredPriceId',
         'yearly_price_tiers' => 'getYearlyPriceTiers',
         'yearly_unit_price' => 'getYearlyUnitPrice',
@@ -373,40 +427,6 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         return self::$openAPIModelName;
     }
 
-    public const METRIC_PERIOD_ALL_TIME = 'all_time';
-    public const METRIC_PERIOD_CURRENT_MONTH = 'current_month';
-    public const METRIC_PERIOD_CURRENT_WEEK = 'current_week';
-    public const METRIC_PERIOD_CURRENT_DAY = 'current_day';
-    public const METRIC_PERIOD_MONTH_RESET_FIRST_OF_MONTH = 'first_of_month';
-    public const METRIC_PERIOD_MONTH_RESET_BILLING_CYCLE = 'billing_cycle';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMetricPeriodAllowableValues()
-    {
-        return [
-            self::METRIC_PERIOD_ALL_TIME,
-            self::METRIC_PERIOD_CURRENT_MONTH,
-            self::METRIC_PERIOD_CURRENT_WEEK,
-            self::METRIC_PERIOD_CURRENT_DAY,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMetricPeriodMonthResetAllowableValues()
-    {
-        return [
-            self::METRIC_PERIOD_MONTH_RESET_FIRST_OF_MONTH,
-            self::METRIC_PERIOD_MONTH_RESET_BILLING_CYCLE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -427,6 +447,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         $this->setIfExists('billing_threshold', $data ?? [], null);
         $this->setIfExists('credit_consumption_rate', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('feature_id', $data ?? [], null);
         $this->setIfExists('metric_period', $data ?? [], null);
         $this->setIfExists('metric_period_month_reset', $data ?? [], null);
@@ -435,15 +456,23 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         $this->setIfExists('monthly_unit_price', $data ?? [], null);
         $this->setIfExists('monthly_unit_price_decimal', $data ?? [], null);
         $this->setIfExists('overage_billing_product_id', $data ?? [], null);
+        $this->setIfExists('plan_id', $data ?? [], null);
+        $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('price_behavior', $data ?? [], null);
         $this->setIfExists('price_tiers', $data ?? [], null);
+        $this->setIfExists('quarterly_metered_price_id', $data ?? [], null);
+        $this->setIfExists('quarterly_price_tiers', $data ?? [], null);
+        $this->setIfExists('quarterly_unit_price', $data ?? [], null);
+        $this->setIfExists('quarterly_unit_price_decimal', $data ?? [], null);
         $this->setIfExists('soft_limit', $data ?? [], null);
         $this->setIfExists('tier_mode', $data ?? [], null);
+        $this->setIfExists('usage_quantity', $data ?? [], null);
         $this->setIfExists('value_bool', $data ?? [], null);
         $this->setIfExists('value_credit_id', $data ?? [], null);
         $this->setIfExists('value_numeric', $data ?? [], null);
         $this->setIfExists('value_trait_id', $data ?? [], null);
         $this->setIfExists('value_type', $data ?? [], null);
+        $this->setIfExists('warning_tiers', $data ?? [], null);
         $this->setIfExists('yearly_metered_price_id', $data ?? [], null);
         $this->setIfExists('yearly_price_tiers', $data ?? [], null);
         $this->setIfExists('yearly_unit_price', $data ?? [], null);
@@ -485,30 +514,43 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             $invalidProperties[] = "invalid value for 'billing_threshold', must be bigger than or equal to 50.";
         }
 
+        if (!is_null($this->container['currency_prices']) && (count($this->container['currency_prices']) > 50)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 50.";
+        }
+
         if ($this->container['feature_id'] === null) {
             $invalidProperties[] = "'feature_id' can't be null";
         }
-        $allowedValues = $this->getMetricPeriodAllowableValues();
-        if (!is_null($this->container['metric_period']) && !in_array($this->container['metric_period'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'metric_period', must be one of '%s'",
-                $this->container['metric_period'],
-                implode("', '", $allowedValues)
-            );
+        if (!is_null($this->container['monthly_price_tiers']) && (count($this->container['monthly_price_tiers']) > 100)) {
+            $invalidProperties[] = "invalid value for 'monthly_price_tiers', number of items must be less than or equal to 100.";
         }
 
-        $allowedValues = $this->getMetricPeriodMonthResetAllowableValues();
-        if (!is_null($this->container['metric_period_month_reset']) && !in_array($this->container['metric_period_month_reset'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'metric_period_month_reset', must be one of '%s'",
-                $this->container['metric_period_month_reset'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['plan_id'] === null) {
+            $invalidProperties[] = "'plan_id' can't be null";
+        }
+        if (!is_null($this->container['price_tiers']) && (count($this->container['price_tiers']) > 100)) {
+            $invalidProperties[] = "invalid value for 'price_tiers', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['quarterly_price_tiers']) && (count($this->container['quarterly_price_tiers']) > 100)) {
+            $invalidProperties[] = "invalid value for 'quarterly_price_tiers', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['usage_quantity']) && ($this->container['usage_quantity'] < 0)) {
+            $invalidProperties[] = "invalid value for 'usage_quantity', must be bigger than or equal to 0.";
         }
 
         if ($this->container['value_type'] === null) {
             $invalidProperties[] = "'value_type' can't be null";
         }
+        if (!is_null($this->container['warning_tiers']) && (count($this->container['warning_tiers']) > 1)) {
+            $invalidProperties[] = "invalid value for 'warning_tiers', number of items must be less than or equal to 1.";
+        }
+
+        if (!is_null($this->container['yearly_price_tiers']) && (count($this->container['yearly_price_tiers']) > 100)) {
+            $invalidProperties[] = "invalid value for 'yearly_price_tiers', number of items must be less than or equal to 100.";
+        }
+
         return $invalidProperties;
     }
 
@@ -547,8 +589,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'billing_product_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_product_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_product_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -581,8 +623,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'billing_threshold');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_threshold', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_threshold', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -623,8 +665,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'credit_consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -657,13 +699,51 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'currency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\CurrencyPriceRequestBody[]|null
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\CurrencyPriceRequestBody[]|null $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            array_push($this->openAPINullablesSetToNull, 'currency_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency_prices', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($currency_prices) && (count($currency_prices) > 50)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling CreateEntitlementInBundleRequestBody., number of items must be less than or equal to 50.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
 
         return $this;
     }
@@ -698,7 +778,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -708,7 +788,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period metric_period
+     * @param \Schematic\Model\MetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -718,21 +798,11 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getMetricPeriodAllowableValues();
-        if (!is_null($metric_period) && !in_array($metric_period, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'metric_period', must be one of '%s'",
-                    $metric_period,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['metric_period'] = $metric_period;
 
@@ -742,7 +812,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
     /**
      * Gets metric_period_month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMetricPeriodMonthReset()
     {
@@ -752,7 +822,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
     /**
      * Sets metric_period_month_reset
      *
-     * @param string|null $metric_period_month_reset metric_period_month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $metric_period_month_reset metric_period_month_reset
      *
      * @return self
      */
@@ -762,21 +832,11 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'metric_period_month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period_month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period_month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getMetricPeriodMonthResetAllowableValues();
-        if (!is_null($metric_period_month_reset) && !in_array($metric_period_month_reset, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'metric_period_month_reset', must be one of '%s'",
-                    $metric_period_month_reset,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['metric_period_month_reset'] = $metric_period_month_reset;
 
@@ -808,8 +868,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'monthly_metered_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_metered_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_metered_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -842,11 +902,15 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'monthly_price_tiers');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_price_tiers', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_price_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($monthly_price_tiers) && (count($monthly_price_tiers) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $monthly_price_tiers when calling CreateEntitlementInBundleRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['monthly_price_tiers'] = $monthly_price_tiers;
 
@@ -876,8 +940,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'monthly_unit_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_unit_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_unit_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -910,8 +974,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'monthly_unit_price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_unit_price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_unit_price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -946,13 +1010,74 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'overage_billing_product_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('overage_billing_product_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('overage_billing_product_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['overage_billing_product_id'] = $overage_billing_product_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_id
+     *
+     * @return string
+     */
+    public function getPlanId()
+    {
+        return $this->container['plan_id'];
+    }
+
+    /**
+     * Sets plan_id
+     *
+     * @param string $plan_id plan_id
+     *
+     * @return self
+     */
+    public function setPlanId($plan_id)
+    {
+        if (is_null($plan_id)) {
+            throw new \InvalidArgumentException('non-nullable plan_id cannot be null');
+        }
+        $this->container['plan_id'] = $plan_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_id
+     *
+     * @return string|null
+     */
+    public function getPlanVersionId()
+    {
+        return $this->container['plan_version_id'];
+    }
+
+    /**
+     * Sets plan_version_id
+     *
+     * @param string|null $plan_version_id plan_version_id
+     *
+     * @return self
+     */
+    public function setPlanVersionId($plan_version_id)
+    {
+        if (is_null($plan_version_id)) {
+            array_push($this->openAPINullablesSetToNull, 'plan_version_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('plan_version_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['plan_version_id'] = $plan_version_id;
 
         return $this;
     }
@@ -980,8 +1105,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'price_behavior');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_behavior', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1016,13 +1141,159 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'price_tiers');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_tiers', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($price_tiers) && (count($price_tiers) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $price_tiers when calling CreateEntitlementInBundleRequestBody., number of items must be less than or equal to 100.');
+        }
         $this->container['price_tiers'] = $price_tiers;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_metered_price_id
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getQuarterlyMeteredPriceId()
+    {
+        return $this->container['quarterly_metered_price_id'];
+    }
+
+    /**
+     * Sets quarterly_metered_price_id
+     *
+     * @param string|null $quarterly_metered_price_id quarterly_metered_price_id
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setQuarterlyMeteredPriceId($quarterly_metered_price_id)
+    {
+        if (is_null($quarterly_metered_price_id)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_metered_price_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_metered_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['quarterly_metered_price_id'] = $quarterly_metered_price_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_price_tiers
+     *
+     * @return \Schematic\Model\CreatePriceTierRequestBody[]|null
+     */
+    public function getQuarterlyPriceTiers()
+    {
+        return $this->container['quarterly_price_tiers'];
+    }
+
+    /**
+     * Sets quarterly_price_tiers
+     *
+     * @param \Schematic\Model\CreatePriceTierRequestBody[]|null $quarterly_price_tiers quarterly_price_tiers
+     *
+     * @return self
+     */
+    public function setQuarterlyPriceTiers($quarterly_price_tiers)
+    {
+        if (is_null($quarterly_price_tiers)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_price_tiers');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_price_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($quarterly_price_tiers) && (count($quarterly_price_tiers) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $quarterly_price_tiers when calling CreateEntitlementInBundleRequestBody., number of items must be less than or equal to 100.');
+        }
+        $this->container['quarterly_price_tiers'] = $quarterly_price_tiers;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_unit_price
+     *
+     * @return int|null
+     */
+    public function getQuarterlyUnitPrice()
+    {
+        return $this->container['quarterly_unit_price'];
+    }
+
+    /**
+     * Sets quarterly_unit_price
+     *
+     * @param int|null $quarterly_unit_price quarterly_unit_price
+     *
+     * @return self
+     */
+    public function setQuarterlyUnitPrice($quarterly_unit_price)
+    {
+        if (is_null($quarterly_unit_price)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_unit_price');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_unit_price', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['quarterly_unit_price'] = $quarterly_unit_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_unit_price_decimal
+     *
+     * @return string|null
+     */
+    public function getQuarterlyUnitPriceDecimal()
+    {
+        return $this->container['quarterly_unit_price_decimal'];
+    }
+
+    /**
+     * Sets quarterly_unit_price_decimal
+     *
+     * @param string|null $quarterly_unit_price_decimal quarterly_unit_price_decimal
+     *
+     * @return self
+     */
+    public function setQuarterlyUnitPriceDecimal($quarterly_unit_price_decimal)
+    {
+        if (is_null($quarterly_unit_price_decimal)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_unit_price_decimal');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_unit_price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['quarterly_unit_price_decimal'] = $quarterly_unit_price_decimal;
 
         return $this;
     }
@@ -1050,8 +1321,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'soft_limit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('soft_limit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('soft_limit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1084,13 +1355,52 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'tier_mode');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('tier_mode', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('tier_mode', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['tier_mode'] = $tier_mode;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage_quantity
+     *
+     * @return int|null
+     */
+    public function getUsageQuantity()
+    {
+        return $this->container['usage_quantity'];
+    }
+
+    /**
+     * Sets usage_quantity
+     *
+     * @param int|null $usage_quantity The committed unit quantity for this entitlement. For custom plans this is the quantity the company is contractually committed to; for standard plans it is the quantity pre-filled when subscribing. Only applies to pay-in-advance entitlements. Note: this is not yet enforced/auto-provisioned as a true default — it is currently stored for downstream billing use.
+     *
+     * @return self
+     */
+    public function setUsageQuantity($usage_quantity)
+    {
+        if (is_null($usage_quantity)) {
+            array_push($this->openAPINullablesSetToNull, 'usage_quantity');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('usage_quantity', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($usage_quantity) && ($usage_quantity < 0)) {
+            throw new \InvalidArgumentException('invalid value for $usage_quantity when calling CreateEntitlementInBundleRequestBody., must be bigger than or equal to 0.');
+        }
+
+        $this->container['usage_quantity'] = $usage_quantity;
 
         return $this;
     }
@@ -1118,8 +1428,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'value_bool');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_bool', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_bool', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1152,8 +1462,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'value_credit_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_credit_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_credit_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1186,8 +1496,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'value_numeric');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_numeric', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_numeric', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1220,8 +1530,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'value_trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1259,6 +1569,44 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
     }
 
     /**
+     * Gets warning_tiers
+     *
+     * @return \Schematic\Model\WarningTierRequestBody[]|null
+     */
+    public function getWarningTiers()
+    {
+        return $this->container['warning_tiers'];
+    }
+
+    /**
+     * Sets warning_tiers
+     *
+     * @param \Schematic\Model\WarningTierRequestBody[]|null $warning_tiers warning_tiers
+     *
+     * @return self
+     */
+    public function setWarningTiers($warning_tiers)
+    {
+        if (is_null($warning_tiers)) {
+            array_push($this->openAPINullablesSetToNull, 'warning_tiers');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('warning_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($warning_tiers) && (count($warning_tiers) > 1)) {
+            throw new \InvalidArgumentException('invalid value for $warning_tiers when calling CreateEntitlementInBundleRequestBody., number of items must be less than or equal to 1.');
+        }
+        $this->container['warning_tiers'] = $warning_tiers;
+
+        return $this;
+    }
+
+    /**
      * Gets yearly_metered_price_id
      *
      * @return string|null
@@ -1283,8 +1631,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'yearly_metered_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_metered_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_metered_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1317,11 +1665,15 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'yearly_price_tiers');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_price_tiers', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_price_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($yearly_price_tiers) && (count($yearly_price_tiers) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $yearly_price_tiers when calling CreateEntitlementInBundleRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['yearly_price_tiers'] = $yearly_price_tiers;
 
@@ -1351,8 +1703,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'yearly_unit_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_unit_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_unit_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1385,8 +1737,8 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'yearly_unit_price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_unit_price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_unit_price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1459,7 +1811,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

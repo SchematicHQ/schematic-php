@@ -90,6 +90,15 @@ class FeatureViewTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_linked_resource"
+     */
+    public function testPropertyBillingLinkedResource()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()
@@ -171,15 +180,6 @@ class FeatureViewTest extends TestCase
     }
 
     /**
-     * Test attribute "maintainer_id"
-     */
-    public function testPropertyMaintainerId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "name"
      */
     public function testPropertyName()
@@ -237,6 +237,15 @@ class FeatureViewTest extends TestCase
      * Test attribute "updated_at"
      */
     public function testPropertyUpdatedAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "usage_limit_trait_id"
+     */
+    public function testPropertyUsageLimitTraitId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

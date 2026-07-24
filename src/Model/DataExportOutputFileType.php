@@ -45,6 +45,8 @@ class DataExportOutputFileType
      */
     public const CSV = 'csv';
 
+    public const CSV_GZ = 'csv.gz';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -52,7 +54,8 @@ class DataExportOutputFileType
     public static function getAllowableEnumValues()
     {
         return [
-            self::CSV
+            self::CSV,
+            self::CSV_GZ
         ];
     }
 }

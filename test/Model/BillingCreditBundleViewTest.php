@@ -81,15 +81,6 @@ class BillingCreditBundleViewTest extends TestCase
     }
 
     /**
-     * Test attribute "billing_invoice_id"
-     */
-    public function testPropertyBillingInvoiceId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "bundle_type"
      */
     public function testPropertyBundleType()
@@ -138,6 +129,15 @@ class BillingCreditBundleViewTest extends TestCase
      * Test attribute "credit_name"
      */
     public function testPropertyCreditName()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "currency_prices"
+     */
+    public function testPropertyCurrencyPrices()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -133,4 +133,22 @@ class CountBillingPlanCreditGrantsParamsTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "plan_version_id"
+     */
+    public function testPropertyPlanVersionId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "plan_version_ids"
+     */
+    public function testPropertyPlanVersionIds()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

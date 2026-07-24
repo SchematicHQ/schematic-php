@@ -61,10 +61,13 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'add_on_selections' => '\Schematic\Model\PlanSelection[]',
         'base_plan_id' => 'string',
         'base_plan_price_id' => 'string',
+        'base_plan_version_id' => 'string',
+        'billing_entity_id' => 'string',
         'cancel_immediately' => 'bool',
         'company_id' => 'string',
         'coupon_external_id' => 'string',
         'credit_bundles' => '\Schematic\Model\UpdateCreditBundleRequestBody[]',
+        'custom_field_values' => '\Schematic\Model\CheckoutFieldValue[]',
         'pay_in_advance_entitlements' => '\Schematic\Model\UpdatePayInAdvanceRequestBody[]',
         'payment_method_external_id' => 'string',
         'promo_code' => 'string',
@@ -83,10 +86,13 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'add_on_selections' => null,
         'base_plan_id' => null,
         'base_plan_price_id' => null,
+        'base_plan_version_id' => null,
+        'billing_entity_id' => null,
         'cancel_immediately' => null,
         'company_id' => null,
         'coupon_external_id' => null,
         'credit_bundles' => null,
+        'custom_field_values' => null,
         'pay_in_advance_entitlements' => null,
         'payment_method_external_id' => null,
         'promo_code' => null,
@@ -103,10 +109,13 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'add_on_selections' => false,
         'base_plan_id' => true,
         'base_plan_price_id' => true,
+        'base_plan_version_id' => true,
+        'billing_entity_id' => true,
         'cancel_immediately' => true,
         'company_id' => false,
         'coupon_external_id' => true,
         'credit_bundles' => false,
+        'custom_field_values' => false,
         'pay_in_advance_entitlements' => false,
         'payment_method_external_id' => true,
         'promo_code' => true,
@@ -203,10 +212,13 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'add_on_selections' => 'add_on_selections',
         'base_plan_id' => 'base_plan_id',
         'base_plan_price_id' => 'base_plan_price_id',
+        'base_plan_version_id' => 'base_plan_version_id',
+        'billing_entity_id' => 'billing_entity_id',
         'cancel_immediately' => 'cancel_immediately',
         'company_id' => 'company_id',
         'coupon_external_id' => 'coupon_external_id',
         'credit_bundles' => 'credit_bundles',
+        'custom_field_values' => 'custom_field_values',
         'pay_in_advance_entitlements' => 'pay_in_advance_entitlements',
         'payment_method_external_id' => 'payment_method_external_id',
         'promo_code' => 'promo_code',
@@ -223,10 +235,13 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'add_on_selections' => 'setAddOnSelections',
         'base_plan_id' => 'setBasePlanId',
         'base_plan_price_id' => 'setBasePlanPriceId',
+        'base_plan_version_id' => 'setBasePlanVersionId',
+        'billing_entity_id' => 'setBillingEntityId',
         'cancel_immediately' => 'setCancelImmediately',
         'company_id' => 'setCompanyId',
         'coupon_external_id' => 'setCouponExternalId',
         'credit_bundles' => 'setCreditBundles',
+        'custom_field_values' => 'setCustomFieldValues',
         'pay_in_advance_entitlements' => 'setPayInAdvanceEntitlements',
         'payment_method_external_id' => 'setPaymentMethodExternalId',
         'promo_code' => 'setPromoCode',
@@ -243,10 +258,13 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'add_on_selections' => 'getAddOnSelections',
         'base_plan_id' => 'getBasePlanId',
         'base_plan_price_id' => 'getBasePlanPriceId',
+        'base_plan_version_id' => 'getBasePlanVersionId',
+        'billing_entity_id' => 'getBillingEntityId',
         'cancel_immediately' => 'getCancelImmediately',
         'company_id' => 'getCompanyId',
         'coupon_external_id' => 'getCouponExternalId',
         'credit_bundles' => 'getCreditBundles',
+        'custom_field_values' => 'getCustomFieldValues',
         'pay_in_advance_entitlements' => 'getPayInAdvanceEntitlements',
         'payment_method_external_id' => 'getPaymentMethodExternalId',
         'promo_code' => 'getPromoCode',
@@ -314,10 +332,13 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('add_on_selections', $data ?? [], null);
         $this->setIfExists('base_plan_id', $data ?? [], null);
         $this->setIfExists('base_plan_price_id', $data ?? [], null);
+        $this->setIfExists('base_plan_version_id', $data ?? [], null);
+        $this->setIfExists('billing_entity_id', $data ?? [], null);
         $this->setIfExists('cancel_immediately', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('coupon_external_id', $data ?? [], null);
         $this->setIfExists('credit_bundles', $data ?? [], null);
+        $this->setIfExists('custom_field_values', $data ?? [], null);
         $this->setIfExists('pay_in_advance_entitlements', $data ?? [], null);
         $this->setIfExists('payment_method_external_id', $data ?? [], null);
         $this->setIfExists('promo_code', $data ?? [], null);
@@ -367,6 +388,13 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
         if ((count($this->container['credit_bundles']) > 100)) {
             $invalidProperties[] = "invalid value for 'credit_bundles', number of items must be less than or equal to 100.";
+        }
+
+        if ($this->container['custom_field_values'] === null) {
+            $invalidProperties[] = "'custom_field_values' can't be null";
+        }
+        if ((count($this->container['custom_field_values']) > 100)) {
+            $invalidProperties[] = "invalid value for 'custom_field_values', number of items must be less than or equal to 100.";
         }
 
         if ($this->container['pay_in_advance_entitlements'] === null) {
@@ -449,8 +477,8 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'base_plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('base_plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('base_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -483,13 +511,81 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'base_plan_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('base_plan_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('base_plan_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['base_plan_price_id'] = $base_plan_price_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets base_plan_version_id
+     *
+     * @return string|null
+     */
+    public function getBasePlanVersionId()
+    {
+        return $this->container['base_plan_version_id'];
+    }
+
+    /**
+     * Sets base_plan_version_id
+     *
+     * @param string|null $base_plan_version_id base_plan_version_id
+     *
+     * @return self
+     */
+    public function setBasePlanVersionId($base_plan_version_id)
+    {
+        if (is_null($base_plan_version_id)) {
+            array_push($this->openAPINullablesSetToNull, 'base_plan_version_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('base_plan_version_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['base_plan_version_id'] = $base_plan_version_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_entity_id
+     *
+     * @return string|null
+     */
+    public function getBillingEntityId()
+    {
+        return $this->container['billing_entity_id'];
+    }
+
+    /**
+     * Sets billing_entity_id
+     *
+     * @param string|null $billing_entity_id The company that pays for this subscription. Must already have a Stripe customer. Only honored when starting a new subscription.
+     *
+     * @return self
+     */
+    public function setBillingEntityId($billing_entity_id)
+    {
+        if (is_null($billing_entity_id)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_entity_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_entity_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_entity_id'] = $billing_entity_id;
 
         return $this;
     }
@@ -517,8 +613,8 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'cancel_immediately');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cancel_immediately', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('cancel_immediately', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -578,8 +674,8 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'coupon_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('coupon_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('coupon_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -616,6 +712,37 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('invalid value for $credit_bundles when calling ManagePlanRequest., number of items must be less than or equal to 100.');
         }
         $this->container['credit_bundles'] = $credit_bundles;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_field_values
+     *
+     * @return \Schematic\Model\CheckoutFieldValue[]
+     */
+    public function getCustomFieldValues()
+    {
+        return $this->container['custom_field_values'];
+    }
+
+    /**
+     * Sets custom_field_values
+     *
+     * @param \Schematic\Model\CheckoutFieldValue[] $custom_field_values custom_field_values
+     *
+     * @return self
+     */
+    public function setCustomFieldValues($custom_field_values)
+    {
+        if (is_null($custom_field_values)) {
+            throw new \InvalidArgumentException('non-nullable custom_field_values cannot be null');
+        }
+
+        if ((count($custom_field_values) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $custom_field_values when calling ManagePlanRequest., number of items must be less than or equal to 100.');
+        }
+        $this->container['custom_field_values'] = $custom_field_values;
 
         return $this;
     }
@@ -674,8 +801,8 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'payment_method_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('payment_method_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('payment_method_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -712,8 +839,8 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'promo_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('promo_code', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('promo_code', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -746,8 +873,8 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'prorate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('prorate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('prorate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -780,8 +907,8 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'trial_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -854,7 +981,7 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

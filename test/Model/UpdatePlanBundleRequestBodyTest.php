@@ -117,9 +117,9 @@ class UpdatePlanBundleRequestBodyTest extends TestCase
     }
 
     /**
-     * Test attribute "traits"
+     * Test attribute "plan_version_id"
      */
-    public function testPropertyTraits()
+    public function testPropertyPlanVersionId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

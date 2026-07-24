@@ -171,6 +171,15 @@ class ComponentPreviewResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "custom_checkout_fields"
+     */
+    public function testPropertyCustomCheckoutFields()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "default_plan"
      */
     public function testPropertyDefaultPlan()
@@ -237,6 +246,15 @@ class ComponentPreviewResponseDataTest extends TestCase
      * Test attribute "prevent_self_service_downgrade_url"
      */
     public function testPropertyPreventSelfServiceDowngradeUrl()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "scheduled_downgrade"
+     */
+    public function testPropertyScheduledDowngrade()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -99,6 +99,15 @@ class EventBodyTrackTest extends TestCase
     }
 
     /**
+     * Test attribute "lease_id"
+     */
+    public function testPropertyLeaseId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "quantity"
      */
     public function testPropertyQuantity()

@@ -108,6 +108,15 @@ class CreateCompanyCreditGrantTest extends TestCase
     }
 
     /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "expires_at"
      */
     public function testPropertyExpiresAt()

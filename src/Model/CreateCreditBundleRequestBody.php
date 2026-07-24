@@ -62,6 +62,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'bundle_type' => '\Schematic\Model\BillingCreditBundleType',
         'credit_id' => 'string',
         'currency' => 'string',
+        'currency_prices' => '\Schematic\Model\CreditBundleCurrencyPriceRequestBody[]',
         'expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'expiry_unit_count' => 'int',
@@ -83,12 +84,13 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'bundle_type' => null,
         'credit_id' => null,
         'currency' => null,
+        'currency_prices' => null,
         'expiry_type' => null,
         'expiry_unit' => null,
-        'expiry_unit_count' => null,
-        'price_per_unit' => null,
+        'expiry_unit_count' => 'int64',
+        'price_per_unit' => 'int64',
         'price_per_unit_decimal' => null,
-        'quantity' => null,
+        'quantity' => 'int64',
         'status' => null
     ];
 
@@ -102,6 +104,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'bundle_type' => true,
         'credit_id' => false,
         'currency' => false,
+        'currency_prices' => true,
         'expiry_type' => true,
         'expiry_unit' => true,
         'expiry_unit_count' => true,
@@ -201,6 +204,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'bundle_type' => 'bundle_type',
         'credit_id' => 'credit_id',
         'currency' => 'currency',
+        'currency_prices' => 'currency_prices',
         'expiry_type' => 'expiry_type',
         'expiry_unit' => 'expiry_unit',
         'expiry_unit_count' => 'expiry_unit_count',
@@ -220,6 +224,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'bundle_type' => 'setBundleType',
         'credit_id' => 'setCreditId',
         'currency' => 'setCurrency',
+        'currency_prices' => 'setCurrencyPrices',
         'expiry_type' => 'setExpiryType',
         'expiry_unit' => 'setExpiryUnit',
         'expiry_unit_count' => 'setExpiryUnitCount',
@@ -239,6 +244,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'bundle_type' => 'getBundleType',
         'credit_id' => 'getCreditId',
         'currency' => 'getCurrency',
+        'currency_prices' => 'getCurrencyPrices',
         'expiry_type' => 'getExpiryType',
         'expiry_unit' => 'getExpiryUnit',
         'expiry_unit_count' => 'getExpiryUnitCount',
@@ -309,6 +315,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('bundle_type', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('expiry_type', $data ?? [], null);
         $this->setIfExists('expiry_unit', $data ?? [], null);
         $this->setIfExists('expiry_unit_count', $data ?? [], null);
@@ -358,6 +365,10 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
+        if (!is_null($this->container['currency_prices']) && (count($this->container['currency_prices']) > 50)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 50.";
+        }
+
         if (!is_null($this->container['expiry_unit_count']) && ($this->container['expiry_unit_count'] < 1)) {
             $invalidProperties[] = "invalid value for 'expiry_unit_count', must be bigger than or equal to 1.";
         }
@@ -442,8 +453,8 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'bundle_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('bundle_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('bundle_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -508,6 +519,44 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\CreditBundleCurrencyPriceRequestBody[]|null
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\CreditBundleCurrencyPriceRequestBody[]|null $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            array_push($this->openAPINullablesSetToNull, 'currency_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency_prices', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($currency_prices) && (count($currency_prices) > 50)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling CreateCreditBundleRequestBody., number of items must be less than or equal to 50.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
+
+        return $this;
+    }
+
+    /**
      * Gets expiry_type
      *
      * @return \Schematic\Model\BillingCreditExpiryType|null
@@ -530,8 +579,8 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'expiry_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -564,8 +613,8 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -598,8 +647,8 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -669,8 +718,8 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'price_per_unit_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_per_unit_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_per_unit_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -703,8 +752,8 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'quantity');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('quantity', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('quantity', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -742,8 +791,8 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'status');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('status', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('status', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -816,7 +865,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

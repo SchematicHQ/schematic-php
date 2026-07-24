@@ -63,8 +63,10 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
         'currency' => 'string',
         'id' => 'string',
         'interval' => '\Schematic\Model\BillingProductPriceInterval',
+        'interval_count' => 'int',
         'is_active' => 'bool',
         'meter_id' => 'string',
+        'nickname' => 'string',
         'package_size' => 'int',
         'price' => 'int',
         'price_decimal' => 'string',
@@ -89,10 +91,12 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
         'currency' => null,
         'id' => null,
         'interval' => null,
+        'interval_count' => 'int64',
         'is_active' => null,
         'meter_id' => null,
-        'package_size' => null,
-        'price' => null,
+        'nickname' => null,
+        'package_size' => 'int64',
+        'price' => 'int64',
         'price_decimal' => null,
         'price_external_id' => null,
         'product_external_id' => null,
@@ -113,8 +117,10 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
         'currency' => false,
         'id' => false,
         'interval' => false,
+        'interval_count' => false,
         'is_active' => false,
         'meter_id' => true,
+        'nickname' => true,
         'package_size' => false,
         'price' => false,
         'price_decimal' => true,
@@ -217,8 +223,10 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
         'currency' => 'currency',
         'id' => 'id',
         'interval' => 'interval',
+        'interval_count' => 'interval_count',
         'is_active' => 'is_active',
         'meter_id' => 'meter_id',
+        'nickname' => 'nickname',
         'package_size' => 'package_size',
         'price' => 'price',
         'price_decimal' => 'price_decimal',
@@ -241,8 +249,10 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
         'currency' => 'setCurrency',
         'id' => 'setId',
         'interval' => 'setInterval',
+        'interval_count' => 'setIntervalCount',
         'is_active' => 'setIsActive',
         'meter_id' => 'setMeterId',
+        'nickname' => 'setNickname',
         'package_size' => 'setPackageSize',
         'price' => 'setPrice',
         'price_decimal' => 'setPriceDecimal',
@@ -265,8 +275,10 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
         'currency' => 'getCurrency',
         'id' => 'getId',
         'interval' => 'getInterval',
+        'interval_count' => 'getIntervalCount',
         'is_active' => 'getIsActive',
         'meter_id' => 'getMeterId',
+        'nickname' => 'getNickname',
         'package_size' => 'getPackageSize',
         'price' => 'getPrice',
         'price_decimal' => 'getPriceDecimal',
@@ -340,8 +352,10 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
+        $this->setIfExists('interval_count', $data ?? [], null);
         $this->setIfExists('is_active', $data ?? [], null);
         $this->setIfExists('meter_id', $data ?? [], null);
+        $this->setIfExists('nickname', $data ?? [], null);
         $this->setIfExists('package_size', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_decimal', $data ?? [], null);
@@ -394,6 +408,9 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
         }
         if ($this->container['interval'] === null) {
             $invalidProperties[] = "'interval' can't be null";
+        }
+        if ($this->container['interval_count'] === null) {
+            $invalidProperties[] = "'interval_count' can't be null";
         }
         if ($this->container['is_active'] === null) {
             $invalidProperties[] = "'is_active' can't be null";
@@ -570,6 +587,33 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
     }
 
     /**
+     * Gets interval_count
+     *
+     * @return int
+     */
+    public function getIntervalCount()
+    {
+        return $this->container['interval_count'];
+    }
+
+    /**
+     * Sets interval_count
+     *
+     * @param int $interval_count interval_count
+     *
+     * @return self
+     */
+    public function setIntervalCount($interval_count)
+    {
+        if (is_null($interval_count)) {
+            throw new \InvalidArgumentException('non-nullable interval_count cannot be null');
+        }
+        $this->container['interval_count'] = $interval_count;
+
+        return $this;
+    }
+
+    /**
      * Gets is_active
      *
      * @return bool
@@ -619,13 +663,47 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'meter_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('meter_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('meter_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['meter_id'] = $meter_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets nickname
+     *
+     * @return string|null
+     */
+    public function getNickname()
+    {
+        return $this->container['nickname'];
+    }
+
+    /**
+     * Sets nickname
+     *
+     * @param string|null $nickname nickname
+     *
+     * @return self
+     */
+    public function setNickname($nickname)
+    {
+        if (is_null($nickname)) {
+            array_push($this->openAPINullablesSetToNull, 'nickname');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('nickname', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['nickname'] = $nickname;
 
         return $this;
     }
@@ -707,8 +785,8 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -822,8 +900,8 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'tiers_mode');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('tiers_mode', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('tiers_mode', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -950,7 +1028,7 @@ class BillingProductPriceResponseData implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

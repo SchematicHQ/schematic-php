@@ -61,7 +61,7 @@ class PlanVersionResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'created_at' => '\DateTime',
         'description' => 'string',
         'environment_id' => 'string',
-        'icon' => 'string',
+        'icon' => '\Schematic\Model\PlanIcon',
         'id' => 'string',
         'name' => 'string',
         'original_plan_id' => 'string',
@@ -89,7 +89,7 @@ class PlanVersionResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'plan_type' => null,
         'status' => null,
         'updated_at' => 'date-time',
-        'version' => null
+        'version' => 'int64'
     ];
 
     /**
@@ -474,7 +474,7 @@ class PlanVersionResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets icon
      *
-     * @return string
+     * @return \Schematic\Model\PlanIcon
      */
     public function getIcon()
     {
@@ -484,7 +484,7 @@ class PlanVersionResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets icon
      *
-     * @param string $icon icon
+     * @param \Schematic\Model\PlanIcon $icon icon
      *
      * @return self
      */
@@ -575,8 +575,8 @@ class PlanVersionResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'original_plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('original_plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('original_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -757,7 +757,7 @@ class PlanVersionResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

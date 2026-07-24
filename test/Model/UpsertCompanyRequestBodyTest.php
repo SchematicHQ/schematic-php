@@ -81,6 +81,24 @@ class UpsertCompanyRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "base_plan_id"
+     */
+    public function testPropertyBasePlanId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "base_plan_price_id"
+     */
+    public function testPropertyBasePlanPriceId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "id"
      */
     public function testPropertyId()
@@ -111,6 +129,15 @@ class UpsertCompanyRequestBodyTest extends TestCase
      * Test attribute "name"
      */
     public function testPropertyName()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "prevent_key_remap"
+     */
+    public function testPropertyPreventKeyRemap()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

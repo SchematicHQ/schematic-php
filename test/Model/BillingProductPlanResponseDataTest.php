@@ -99,6 +99,15 @@ class BillingProductPlanResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_strategy"
+     */
+    public function testPropertyBillingStrategy()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "charge_type"
      */
     public function testPropertyChargeType()

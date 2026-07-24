@@ -66,6 +66,7 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
         'external_id' => 'string',
         'id' => 'string',
         'interval' => 'string',
+        'interval_count' => 'int',
         'meter_id' => 'string',
         'name' => 'string',
         'package_size' => 'int',
@@ -91,23 +92,24 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
       */
     protected static $openAPIFormats = [
         'billing_scheme' => null,
-        'billing_threshold' => null,
+        'billing_threshold' => 'int64',
         'created_at' => 'date-time',
         'currency' => null,
         'environment_id' => null,
         'external_id' => null,
         'id' => null,
         'interval' => null,
+        'interval_count' => 'int64',
         'meter_id' => null,
         'name' => null,
-        'package_size' => null,
-        'price' => null,
+        'package_size' => 'int64',
+        'price' => 'int64',
         'price_decimal' => null,
         'price_external_id' => null,
         'price_id' => null,
         'price_tier' => null,
         'provider_type' => null,
-        'quantity' => null,
+        'quantity' => 'double',
         'subscription_id' => null,
         'subscription_item_external_id' => null,
         'updated_at' => 'date-time',
@@ -128,6 +130,7 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
         'external_id' => false,
         'id' => false,
         'interval' => false,
+        'interval_count' => true,
         'meter_id' => true,
         'name' => false,
         'package_size' => false,
@@ -238,6 +241,7 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
         'external_id' => 'external_id',
         'id' => 'id',
         'interval' => 'interval',
+        'interval_count' => 'interval_count',
         'meter_id' => 'meter_id',
         'name' => 'name',
         'package_size' => 'package_size',
@@ -268,6 +272,7 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
         'external_id' => 'setExternalId',
         'id' => 'setId',
         'interval' => 'setInterval',
+        'interval_count' => 'setIntervalCount',
         'meter_id' => 'setMeterId',
         'name' => 'setName',
         'package_size' => 'setPackageSize',
@@ -298,6 +303,7 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
         'external_id' => 'getExternalId',
         'id' => 'getId',
         'interval' => 'getInterval',
+        'interval_count' => 'getIntervalCount',
         'meter_id' => 'getMeterId',
         'name' => 'getName',
         'package_size' => 'getPackageSize',
@@ -379,6 +385,7 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
         $this->setIfExists('external_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
+        $this->setIfExists('interval_count', $data ?? [], null);
         $this->setIfExists('meter_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('package_size', $data ?? [], null);
@@ -545,8 +552,8 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
             array_push($this->openAPINullablesSetToNull, 'billing_threshold');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_threshold', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_threshold', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -719,6 +726,40 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
     }
 
     /**
+     * Gets interval_count
+     *
+     * @return int|null
+     */
+    public function getIntervalCount()
+    {
+        return $this->container['interval_count'];
+    }
+
+    /**
+     * Sets interval_count
+     *
+     * @param int|null $interval_count interval_count
+     *
+     * @return self
+     */
+    public function setIntervalCount($interval_count)
+    {
+        if (is_null($interval_count)) {
+            array_push($this->openAPINullablesSetToNull, 'interval_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('interval_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['interval_count'] = $interval_count;
+
+        return $this;
+    }
+
+    /**
      * Gets meter_id
      *
      * @return string|null
@@ -741,8 +782,8 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
             array_push($this->openAPINullablesSetToNull, 'meter_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('meter_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('meter_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -856,8 +897,8 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
             array_push($this->openAPINullablesSetToNull, 'price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1056,8 +1097,8 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
             array_push($this->openAPINullablesSetToNull, 'subscription_item_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('subscription_item_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('subscription_item_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1184,7 +1225,7 @@ class BillingProductForSubscriptionResponseData implements ModelInterface, Array
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

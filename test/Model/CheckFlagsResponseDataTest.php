@@ -81,9 +81,27 @@ class CheckFlagsResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "credit_balances"
+     */
+    public function testPropertyCreditBalances()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "flags"
      */
     public function testPropertyFlags()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "plan"
+     */
+    public function testPropertyPlan()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

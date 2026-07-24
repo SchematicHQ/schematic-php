@@ -73,6 +73,18 @@ class ComponentsApiTest extends TestCase
     }
 
     /**
+     * Test case for bindCatalog
+     *
+     * Bind catalog.
+     *
+     */
+    public function testBindCatalog()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for countComponents
      *
      * Count components.

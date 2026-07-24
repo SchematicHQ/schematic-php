@@ -76,7 +76,7 @@ class CreateBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
         'external_id' => null,
         'is_active' => null,
         'name' => null,
-        'price' => null,
+        'price' => 'double',
         'provider_type' => null
     ];
 
@@ -88,7 +88,7 @@ class CreateBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
     protected static array $openAPINullables = [
         'external_id' => false,
         'is_active' => true,
-        'name' => false,
+        'name' => true,
         'price' => false,
         'provider_type' => true
     ];
@@ -310,10 +310,7 @@ class CreateBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             $invalidProperties[] = "invalid value for 'external_id', the character length must be smaller than or equal to 255.";
         }
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ((mb_strlen($this->container['name']) > 255)) {
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
         }
 
@@ -389,8 +386,8 @@ class CreateBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'is_active');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('is_active', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('is_active', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -403,7 +400,7 @@ class CreateBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -413,16 +410,23 @@ class CreateBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string|null $name name
      *
      * @return self
      */
     public function setName($name)
     {
         if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('name', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        if ((mb_strlen($name) > 255)) {
+        if (!is_null($name) && (mb_strlen($name) > 255)) {
             throw new \InvalidArgumentException('invalid length for $name when calling CreateBillingProductRequestBody., must be smaller than or equal to 255.');
         }
 
@@ -481,8 +485,8 @@ class CreateBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'provider_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('provider_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('provider_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -555,7 +559,7 @@ class CreateBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

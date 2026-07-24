@@ -323,4 +323,16 @@ class EntitlementsApiTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for upsertPlanEntitlementForBillingProduct
+     *
+     * Upsert plan entitlement for billing product.
+     *
+     */
+    public function testUpsertPlanEntitlementForBillingProduct()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

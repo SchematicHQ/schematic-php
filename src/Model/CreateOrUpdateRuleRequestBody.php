@@ -63,7 +63,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'id' => 'string',
         'name' => 'string',
         'priority' => 'int',
-        'rule_type' => 'string',
+        'rule_type' => '\Schematic\Model\RuleType',
         'value' => 'bool'
     ];
 
@@ -79,7 +79,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         'conditions' => null,
         'id' => null,
         'name' => null,
-        'priority' => null,
+        'priority' => 'int64',
         'rule_type' => null,
         'value' => null
     ];
@@ -265,27 +265,6 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
-    public const RULE_TYPE_GLOBAL_OVERRIDE = 'global_override';
-    public const RULE_TYPE_COMPANY_OVERRIDE = 'company_override';
-    public const RULE_TYPE_PLAN_ENTITLEMENT = 'plan_entitlement';
-    public const RULE_TYPE_STANDARD = 'standard';
-    public const RULE_TYPE__DEFAULT = 'default';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getRuleTypeAllowableValues()
-    {
-        return [
-            self::RULE_TYPE_GLOBAL_OVERRIDE,
-            self::RULE_TYPE_COMPANY_OVERRIDE,
-            self::RULE_TYPE_PLAN_ENTITLEMENT,
-            self::RULE_TYPE_STANDARD,
-            self::RULE_TYPE__DEFAULT,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -362,15 +341,6 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['priority'] === null) {
             $invalidProperties[] = "'priority' can't be null";
         }
-        $allowedValues = $this->getRuleTypeAllowableValues();
-        if (!is_null($this->container['rule_type']) && !in_array($this->container['rule_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'rule_type', must be one of '%s'",
-                $this->container['rule_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
         }
@@ -474,8 +444,8 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -546,7 +516,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets rule_type
      *
-     * @return string|null
+     * @return \Schematic\Model\RuleType|null
      */
     public function getRuleType()
     {
@@ -556,7 +526,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets rule_type
      *
-     * @param string|null $rule_type rule_type
+     * @param \Schematic\Model\RuleType|null $rule_type rule_type
      *
      * @return self
      */
@@ -566,21 +536,11 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'rule_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getRuleTypeAllowableValues();
-        if (!is_null($rule_type) && !in_array($rule_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'rule_type', must be one of '%s'",
-                    $rule_type,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['rule_type'] = $rule_type;
 
@@ -677,7 +637,7 @@ class CreateOrUpdateRuleRequestBody implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -60,7 +60,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'account_id' => 'string',
         'account_name' => 'string',
-        'actor_type' => 'string',
+        'actor_type' => '\Schematic\Model\ActorType',
         'api_key_id' => 'string',
         'environment_id' => 'string',
         'environments' => '\Schematic\Model\EnvironmentResponseData[]',
@@ -97,8 +97,8 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'account_id' => false,
         'account_name' => false,
         'actor_type' => false,
-        'api_key_id' => false,
-        'environment_id' => false,
+        'api_key_id' => true,
+        'environment_id' => true,
         'environments' => false,
         'stripe_user_id' => false,
         'user_id' => false,
@@ -343,6 +343,10 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['environments'] === null) {
             $invalidProperties[] = "'environments' can't be null";
         }
+        if ((count($this->container['environments']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'environments', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -415,7 +419,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets actor_type
      *
-     * @return string
+     * @return \Schematic\Model\ActorType
      */
     public function getActorType()
     {
@@ -425,7 +429,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets actor_type
      *
-     * @param string $actor_type actor_type
+     * @param \Schematic\Model\ActorType $actor_type actor_type
      *
      * @return self
      */
@@ -459,7 +463,14 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setApiKeyId($api_key_id)
     {
         if (is_null($api_key_id)) {
-            throw new \InvalidArgumentException('non-nullable api_key_id cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'api_key_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('api_key_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['api_key_id'] = $api_key_id;
 
@@ -486,7 +497,14 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setEnvironmentId($environment_id)
     {
         if (is_null($environment_id)) {
-            throw new \InvalidArgumentException('non-nullable environment_id cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'environment_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('environment_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['environment_id'] = $environment_id;
 
@@ -514,6 +532,10 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         if (is_null($environments)) {
             throw new \InvalidArgumentException('non-nullable environments cannot be null');
+        }
+
+        if ((count($environments) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $environments when calling WhoAmIResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['environments'] = $environments;
 
@@ -664,7 +686,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

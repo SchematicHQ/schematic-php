@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **external_price_id** | **string** |  |
 **id** | **string** |  |
 **interval** | [**\Schematic\Model\BillingProductPriceInterval**](BillingProductPriceInterval.md) |  |
+**interval_count** | **int** |  |
+**nickname** | **string** |  | [optional]
 **price** | **int** |  |
 **price_decimal** | **string** |  | [optional]
 **provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |

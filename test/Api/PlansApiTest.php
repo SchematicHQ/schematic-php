@@ -73,12 +73,36 @@ class PlansApiTest extends TestCase
     }
 
     /**
+     * Test case for countBillingProductMatchCompanies
+     *
+     * Count billing product match companies.
+     *
+     */
+    public function testCountBillingProductMatchCompanies()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for countPlans
      *
      * Count plans.
      *
      */
     public function testCountPlans()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for createCustomPlan
+     *
+     * Create custom plan.
+     *
+     */
+    public function testCreateCustomPlan()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -109,12 +133,48 @@ class PlansApiTest extends TestCase
     }
 
     /**
+     * Test case for deletePlanVersion
+     *
+     * Delete plan version.
+     *
+     */
+    public function testDeletePlanVersion()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getPlan
      *
      * Get plan.
      *
      */
     public function testGetPlan()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for listBillingProductMatchCompanies
+     *
+     * List billing product match companies.
+     *
+     */
+    public function testListBillingProductMatchCompanies()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for listCustomPlanBillings
+     *
+     * List custom plan billings.
+     *
+     */
+    public function testListCustomPlanBillings()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -139,6 +199,42 @@ class PlansApiTest extends TestCase
      *
      */
     public function testListPlans()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for markCustomPlanBillingPaid
+     *
+     * Mark custom plan billing paid.
+     *
+     */
+    public function testMarkCustomPlanBillingPaid()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for publishPlanVersion
+     *
+     * Publish plan version.
+     *
+     */
+    public function testPublishPlanVersion()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for retryCustomPlanBilling
+     *
+     * Retry custom plan billing.
+     *
+     */
+    public function testRetryCustomPlanBilling()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -175,6 +271,18 @@ class PlansApiTest extends TestCase
      *
      */
     public function testUpsertBillingProductPlan()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for upsertPlanForBillingProduct
+     *
+     * Upsert plan for billing product.
+     *
+     */
+    public function testUpsertPlanForBillingProduct()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -68,7 +68,6 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'key' => 'string',
         'last_checked_at' => '\DateTime',
-        'maintainer_id' => 'string',
         'name' => 'string',
         'rules' => '\Schematic\Model\RuleView[]',
         'updated_at' => '\DateTime'
@@ -92,7 +91,6 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => null,
         'key' => null,
         'last_checked_at' => 'date-time',
-        'maintainer_id' => null,
         'name' => null,
         'rules' => null,
         'updated_at' => 'date-time'
@@ -114,7 +112,6 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => false,
         'key' => false,
         'last_checked_at' => true,
-        'maintainer_id' => true,
         'name' => false,
         'rules' => false,
         'updated_at' => false
@@ -216,7 +213,6 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'id',
         'key' => 'key',
         'last_checked_at' => 'last_checked_at',
-        'maintainer_id' => 'maintainer_id',
         'name' => 'name',
         'rules' => 'rules',
         'updated_at' => 'updated_at'
@@ -238,7 +234,6 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'setId',
         'key' => 'setKey',
         'last_checked_at' => 'setLastCheckedAt',
-        'maintainer_id' => 'setMaintainerId',
         'name' => 'setName',
         'rules' => 'setRules',
         'updated_at' => 'setUpdatedAt'
@@ -260,7 +255,6 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'key' => 'getKey',
         'last_checked_at' => 'getLastCheckedAt',
-        'maintainer_id' => 'getMaintainerId',
         'name' => 'getName',
         'rules' => 'getRules',
         'updated_at' => 'getUpdatedAt'
@@ -333,7 +327,6 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('key', $data ?? [], null);
         $this->setIfExists('last_checked_at', $data ?? [], null);
-        $this->setIfExists('maintainer_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -393,6 +386,10 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['rules'] === null) {
             $invalidProperties[] = "'rules' can't be null";
         }
+        if ((count($this->container['rules']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'rules', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -569,8 +566,8 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'feature_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -684,47 +681,13 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'last_checked_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_checked_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('last_checked_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['last_checked_at'] = $last_checked_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets maintainer_id
-     *
-     * @return string|null
-     */
-    public function getMaintainerId()
-    {
-        return $this->container['maintainer_id'];
-    }
-
-    /**
-     * Sets maintainer_id
-     *
-     * @param string|null $maintainer_id maintainer_id
-     *
-     * @return self
-     */
-    public function setMaintainerId($maintainer_id)
-    {
-        if (is_null($maintainer_id)) {
-            array_push($this->openAPINullablesSetToNull, 'maintainer_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('maintainer_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['maintainer_id'] = $maintainer_id;
 
         return $this;
     }
@@ -777,6 +740,10 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($rules)) {
             throw new \InvalidArgumentException('non-nullable rules cannot be null');
+        }
+
+        if ((count($rules) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $rules when calling FlagView., number of items must be less than or equal to 1000.');
         }
         $this->container['rules'] = $rules;
 
@@ -873,7 +840,7 @@ class FlagView implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -63,6 +63,7 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'event_subtype' => 'string',
         'event_types' => '\Schematic\Model\EventType[]',
         'flag_id' => 'string',
+        'idempotency_key' => 'string',
         'limit' => 'int',
         'offset' => 'int',
         'user_id' => 'string'
@@ -80,8 +81,9 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'event_subtype' => null,
         'event_types' => null,
         'flag_id' => null,
-        'limit' => null,
-        'offset' => null,
+        'idempotency_key' => null,
+        'limit' => 'int64',
+        'offset' => 'int64',
         'user_id' => null
     ];
 
@@ -95,6 +97,7 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'event_subtype' => false,
         'event_types' => false,
         'flag_id' => false,
+        'idempotency_key' => false,
         'limit' => false,
         'offset' => false,
         'user_id' => false
@@ -190,6 +193,7 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'event_subtype' => 'event_subtype',
         'event_types' => 'event_types',
         'flag_id' => 'flag_id',
+        'idempotency_key' => 'idempotency_key',
         'limit' => 'limit',
         'offset' => 'offset',
         'user_id' => 'user_id'
@@ -205,6 +209,7 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'event_subtype' => 'setEventSubtype',
         'event_types' => 'setEventTypes',
         'flag_id' => 'setFlagId',
+        'idempotency_key' => 'setIdempotencyKey',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
         'user_id' => 'setUserId'
@@ -220,6 +225,7 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'event_subtype' => 'getEventSubtype',
         'event_types' => 'getEventTypes',
         'flag_id' => 'getFlagId',
+        'idempotency_key' => 'getIdempotencyKey',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
         'user_id' => 'getUserId'
@@ -286,6 +292,7 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('event_subtype', $data ?? [], null);
         $this->setIfExists('event_types', $data ?? [], null);
         $this->setIfExists('flag_id', $data ?? [], null);
+        $this->setIfExists('idempotency_key', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('user_id', $data ?? [], null);
@@ -320,6 +327,22 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['event_subtype']) && (mb_strlen($this->container['event_subtype']) > 255)) {
             $invalidProperties[] = "invalid value for 'event_subtype', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['event_types']) && (count($this->container['event_types']) > 100)) {
+            $invalidProperties[] = "invalid value for 'event_types', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['idempotency_key']) && (mb_strlen($this->container['idempotency_key']) > 255)) {
+            $invalidProperties[] = "invalid value for 'idempotency_key', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -417,6 +440,10 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($event_types)) {
             throw new \InvalidArgumentException('non-nullable event_types cannot be null');
         }
+
+        if ((count($event_types) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $event_types when calling ListEventsParams., number of items must be less than or equal to 100.');
+        }
         $this->container['event_types'] = $event_types;
 
         return $this;
@@ -450,6 +477,37 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets idempotency_key
+     *
+     * @return string|null
+     */
+    public function getIdempotencyKey()
+    {
+        return $this->container['idempotency_key'];
+    }
+
+    /**
+     * Sets idempotency_key
+     *
+     * @param string|null $idempotency_key idempotency_key
+     *
+     * @return self
+     */
+    public function setIdempotencyKey($idempotency_key)
+    {
+        if (is_null($idempotency_key)) {
+            throw new \InvalidArgumentException('non-nullable idempotency_key cannot be null');
+        }
+        if ((mb_strlen($idempotency_key) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $idempotency_key when calling ListEventsParams., must be smaller than or equal to 255.');
+        }
+
+        $this->container['idempotency_key'] = $idempotency_key;
+
+        return $this;
+    }
+
+    /**
      * Gets limit
      *
      * @return int|null
@@ -471,6 +529,14 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListEventsParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListEventsParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -593,7 +659,7 @@ class ListEventsParams implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

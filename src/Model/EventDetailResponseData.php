@@ -59,6 +59,7 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPITypes = [
         'api_key' => 'string',
+        'api_key_view' => '\Schematic\Model\ApiKeyResponseData',
         'body' => 'object',
         'body_preview' => 'string',
         'captured_at' => '\DateTime',
@@ -70,6 +71,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => 'string[]',
         'features' => '\Schematic\Model\PreviewObject[]',
         'id' => 'string',
+        'idempotency_key' => 'string',
+        'lease_id' => 'string',
         'loaded_at' => '\DateTime',
         'processed_at' => '\DateTime',
         'quantity' => 'int',
@@ -91,6 +94,7 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'api_key' => null,
+        'api_key_view' => null,
         'body' => null,
         'body_preview' => null,
         'captured_at' => 'date-time',
@@ -102,9 +106,11 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => null,
         'features' => null,
         'id' => null,
+        'idempotency_key' => null,
+        'lease_id' => null,
         'loaded_at' => 'date-time',
         'processed_at' => 'date-time',
-        'quantity' => null,
+        'quantity' => 'int64',
         'sent_at' => 'date-time',
         'status' => null,
         'subtype' => null,
@@ -121,6 +127,7 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'api_key' => true,
+        'api_key_view' => false,
         'body' => false,
         'body_preview' => false,
         'captured_at' => false,
@@ -132,6 +139,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => false,
         'features' => false,
         'id' => false,
+        'idempotency_key' => true,
+        'lease_id' => true,
         'loaded_at' => true,
         'processed_at' => true,
         'quantity' => false,
@@ -231,6 +240,7 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $attributeMap = [
         'api_key' => 'api_key',
+        'api_key_view' => 'api_key_view',
         'body' => 'body',
         'body_preview' => 'body_preview',
         'captured_at' => 'captured_at',
@@ -242,6 +252,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => 'feature_ids',
         'features' => 'features',
         'id' => 'id',
+        'idempotency_key' => 'idempotency_key',
+        'lease_id' => 'lease_id',
         'loaded_at' => 'loaded_at',
         'processed_at' => 'processed_at',
         'quantity' => 'quantity',
@@ -261,6 +273,7 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $setters = [
         'api_key' => 'setApiKey',
+        'api_key_view' => 'setApiKeyView',
         'body' => 'setBody',
         'body_preview' => 'setBodyPreview',
         'captured_at' => 'setCapturedAt',
@@ -272,6 +285,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => 'setFeatureIds',
         'features' => 'setFeatures',
         'id' => 'setId',
+        'idempotency_key' => 'setIdempotencyKey',
+        'lease_id' => 'setLeaseId',
         'loaded_at' => 'setLoadedAt',
         'processed_at' => 'setProcessedAt',
         'quantity' => 'setQuantity',
@@ -291,6 +306,7 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $getters = [
         'api_key' => 'getApiKey',
+        'api_key_view' => 'getApiKeyView',
         'body' => 'getBody',
         'body_preview' => 'getBodyPreview',
         'captured_at' => 'getCapturedAt',
@@ -302,6 +318,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => 'getFeatureIds',
         'features' => 'getFeatures',
         'id' => 'getId',
+        'idempotency_key' => 'getIdempotencyKey',
+        'lease_id' => 'getLeaseId',
         'loaded_at' => 'getLoadedAt',
         'processed_at' => 'getProcessedAt',
         'quantity' => 'getQuantity',
@@ -372,6 +390,7 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     public function __construct(array $data = null)
     {
         $this->setIfExists('api_key', $data ?? [], null);
+        $this->setIfExists('api_key_view', $data ?? [], null);
         $this->setIfExists('body', $data ?? [], null);
         $this->setIfExists('body_preview', $data ?? [], null);
         $this->setIfExists('captured_at', $data ?? [], null);
@@ -383,6 +402,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('feature_ids', $data ?? [], null);
         $this->setIfExists('features', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('idempotency_key', $data ?? [], null);
+        $this->setIfExists('lease_id', $data ?? [], null);
         $this->setIfExists('loaded_at', $data ?? [], null);
         $this->setIfExists('processed_at', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
@@ -434,9 +455,17 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['feature_ids'] === null) {
             $invalidProperties[] = "'feature_ids' can't be null";
         }
+        if ((count($this->container['feature_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'feature_ids', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['features'] === null) {
             $invalidProperties[] = "'features' can't be null";
         }
+        if ((count($this->container['features']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'features', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
@@ -487,13 +516,40 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'api_key');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('api_key', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('api_key', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['api_key'] = $api_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets api_key_view
+     *
+     * @return \Schematic\Model\ApiKeyResponseData|null
+     */
+    public function getApiKeyView()
+    {
+        return $this->container['api_key_view'];
+    }
+
+    /**
+     * Sets api_key_view
+     *
+     * @param \Schematic\Model\ApiKeyResponseData|null $api_key_view api_key_view
+     *
+     * @return self
+     */
+    public function setApiKeyView($api_key_view)
+    {
+        if (is_null($api_key_view)) {
+            throw new \InvalidArgumentException('non-nullable api_key_view cannot be null');
+        }
+        $this->container['api_key_view'] = $api_key_view;
 
         return $this;
     }
@@ -629,8 +685,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -665,8 +721,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'enriched_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('enriched_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('enriched_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -699,8 +755,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'environment_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('environment_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('environment_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -733,8 +789,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'error_message');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error_message', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('error_message', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -766,6 +822,10 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($feature_ids)) {
             throw new \InvalidArgumentException('non-nullable feature_ids cannot be null');
         }
+
+        if ((count($feature_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $feature_ids when calling EventDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['feature_ids'] = $feature_ids;
 
         return $this;
@@ -792,6 +852,10 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     {
         if (is_null($features)) {
             throw new \InvalidArgumentException('non-nullable features cannot be null');
+        }
+
+        if ((count($features) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $features when calling EventDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['features'] = $features;
 
@@ -826,6 +890,74 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets idempotency_key
+     *
+     * @return string|null
+     */
+    public function getIdempotencyKey()
+    {
+        return $this->container['idempotency_key'];
+    }
+
+    /**
+     * Sets idempotency_key
+     *
+     * @param string|null $idempotency_key idempotency_key
+     *
+     * @return self
+     */
+    public function setIdempotencyKey($idempotency_key)
+    {
+        if (is_null($idempotency_key)) {
+            array_push($this->openAPINullablesSetToNull, 'idempotency_key');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('idempotency_key', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['idempotency_key'] = $idempotency_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets lease_id
+     *
+     * @return string|null
+     */
+    public function getLeaseId()
+    {
+        return $this->container['lease_id'];
+    }
+
+    /**
+     * Sets lease_id
+     *
+     * @param string|null $lease_id lease_id
+     *
+     * @return self
+     */
+    public function setLeaseId($lease_id)
+    {
+        if (is_null($lease_id)) {
+            array_push($this->openAPINullablesSetToNull, 'lease_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('lease_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['lease_id'] = $lease_id;
+
+        return $this;
+    }
+
+    /**
      * Gets loaded_at
      *
      * @return \DateTime|null
@@ -848,8 +980,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'loaded_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('loaded_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('loaded_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -884,8 +1016,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'processed_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('processed_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('processed_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -945,8 +1077,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'sent_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('sent_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('sent_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1006,8 +1138,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'subtype');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('subtype', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1069,8 +1201,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'updated_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('updated_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('updated_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1130,8 +1262,8 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'user_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1204,7 +1336,7 @@ class EventDetailResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

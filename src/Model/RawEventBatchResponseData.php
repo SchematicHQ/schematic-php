@@ -278,6 +278,10 @@ class RawEventBatchResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['events'] === null) {
             $invalidProperties[] = "'events' can't be null";
         }
+        if ((count($this->container['events']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'events', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -314,6 +318,10 @@ class RawEventBatchResponseData implements ModelInterface, ArrayAccess, \JsonSer
     {
         if (is_null($events)) {
             throw new \InvalidArgumentException('non-nullable events cannot be null');
+        }
+
+        if ((count($events) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $events when calling RawEventBatchResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['events'] = $events;
 
@@ -383,7 +391,7 @@ class RawEventBatchResponseData implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

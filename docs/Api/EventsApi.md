@@ -273,7 +273,7 @@ This endpoint does not need any parameter.
 ## `listEvents()`
 
 ```php
-listEvents($company_id, $event_subtype, $event_types, $flag_id, $user_id, $limit, $offset): \Schematic\Model\ListEventsResponse
+listEvents($company_id, $event_subtype, $event_types, $flag_id, $idempotency_key, $user_id, $limit, $offset): \Schematic\Model\ListEventsResponse
 ```
 
 List events
@@ -292,12 +292,13 @@ $company_id = 'company_id_example'; // string
 $event_subtype = 'event_subtype_example'; // string
 $event_types = array(new \Schematic\Model\\Schematic\Model\EventType()); // \Schematic\Model\EventType[]
 $flag_id = 'flag_id_example'; // string
+$idempotency_key = 'idempotency_key_example'; // string
 $user_id = 'user_id_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->EventsApi->listEvents($company_id, $event_subtype, $event_types, $flag_id, $user_id, $limit, $offset);
+    $result = $schematic->EventsApi->listEvents($company_id, $event_subtype, $event_types, $flag_id, $idempotency_key, $user_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->EventsApi->listEvents: ', $e->getMessage(), PHP_EOL;
@@ -312,6 +313,7 @@ try {
 | **event_subtype** | **string**|  | [optional] |
 | **event_types** | [**\Schematic\Model\EventType[]**](../Model/\Schematic\Model\EventType.md)|  | [optional] |
 | **flag_id** | **string**|  | [optional] |
+| **idempotency_key** | **string**|  | [optional] |
 | **user_id** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |

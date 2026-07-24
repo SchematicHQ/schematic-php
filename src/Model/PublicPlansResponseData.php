@@ -334,12 +334,24 @@ class PublicPlansResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['active_add_ons'] === null) {
             $invalidProperties[] = "'active_add_ons' can't be null";
         }
+        if ((count($this->container['active_add_ons']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'active_add_ons', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['active_plans'] === null) {
             $invalidProperties[] = "'active_plans' can't be null";
         }
+        if ((count($this->container['active_plans']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'active_plans', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['add_on_compatibilities'] === null) {
             $invalidProperties[] = "'add_on_compatibilities' can't be null";
         }
+        if ((count($this->container['add_on_compatibilities']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'add_on_compatibilities', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['display_settings'] === null) {
             $invalidProperties[] = "'display_settings' can't be null";
         }
@@ -392,6 +404,10 @@ class PublicPlansResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($active_add_ons)) {
             throw new \InvalidArgumentException('non-nullable active_add_ons cannot be null');
         }
+
+        if ((count($active_add_ons) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $active_add_ons when calling PublicPlansResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['active_add_ons'] = $active_add_ons;
 
         return $this;
@@ -419,6 +435,10 @@ class PublicPlansResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($active_plans)) {
             throw new \InvalidArgumentException('non-nullable active_plans cannot be null');
         }
+
+        if ((count($active_plans) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $active_plans when calling PublicPlansResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['active_plans'] = $active_plans;
 
         return $this;
@@ -445,6 +465,10 @@ class PublicPlansResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     {
         if (is_null($add_on_compatibilities)) {
             throw new \InvalidArgumentException('non-nullable add_on_compatibilities cannot be null');
+        }
+
+        if ((count($add_on_compatibilities) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $add_on_compatibilities when calling PublicPlansResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['add_on_compatibilities'] = $add_on_compatibilities;
 
@@ -684,7 +708,7 @@ class PublicPlansResponseData implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

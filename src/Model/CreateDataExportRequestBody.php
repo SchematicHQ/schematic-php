@@ -59,7 +59,7 @@ class CreateDataExportRequestBody implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static $openAPITypes = [
         'export_type' => '\Schematic\Model\DataExportType',
-        'metadata' => 'string',
+        'metadata' => '\Schematic\Model\DataExportMetadata',
         'output_file_type' => '\Schematic\Model\DataExportOutputFileType'
     ];
 
@@ -292,13 +292,6 @@ class CreateDataExportRequestBody implements ModelInterface, ArrayAccess, \JsonS
         if ($this->container['export_type'] === null) {
             $invalidProperties[] = "'export_type' can't be null";
         }
-        if ($this->container['metadata'] === null) {
-            $invalidProperties[] = "'metadata' can't be null";
-        }
-        if ((mb_strlen($this->container['metadata']) > 10240)) {
-            $invalidProperties[] = "invalid value for 'metadata', the character length must be smaller than or equal to 10240.";
-        }
-
         if ($this->container['output_file_type'] === null) {
             $invalidProperties[] = "'output_file_type' can't be null";
         }
@@ -347,7 +340,7 @@ class CreateDataExportRequestBody implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets metadata
      *
-     * @return string
+     * @return \Schematic\Model\DataExportMetadata|null
      */
     public function getMetadata()
     {
@@ -357,7 +350,7 @@ class CreateDataExportRequestBody implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets metadata
      *
-     * @param string $metadata metadata
+     * @param \Schematic\Model\DataExportMetadata|null $metadata metadata
      *
      * @return self
      */
@@ -366,10 +359,6 @@ class CreateDataExportRequestBody implements ModelInterface, ArrayAccess, \JsonS
         if (is_null($metadata)) {
             throw new \InvalidArgumentException('non-nullable metadata cannot be null');
         }
-        if ((mb_strlen($metadata) > 10240)) {
-            throw new \InvalidArgumentException('invalid length for $metadata when calling CreateDataExportRequestBody., must be smaller than or equal to 10240.');
-        }
-
         $this->container['metadata'] = $metadata;
 
         return $this;
@@ -465,7 +454,7 @@ class CreateDataExportRequestBody implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

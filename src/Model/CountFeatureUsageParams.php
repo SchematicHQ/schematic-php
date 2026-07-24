@@ -64,6 +64,7 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => 'string[]',
         'include_usage_aggregation' => 'bool',
         'limit' => 'int',
+        'managed_by' => '\Schematic\Model\BillingProviderType',
         'offset' => 'int',
         'q' => 'string',
         'without_negative_entitlements' => 'bool'
@@ -81,8 +82,9 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
         'company_keys' => null,
         'feature_ids' => null,
         'include_usage_aggregation' => null,
-        'limit' => null,
-        'offset' => null,
+        'limit' => 'int64',
+        'managed_by' => null,
+        'offset' => 'int64',
         'q' => null,
         'without_negative_entitlements' => null
     ];
@@ -98,6 +100,7 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => false,
         'include_usage_aggregation' => false,
         'limit' => false,
+        'managed_by' => false,
         'offset' => false,
         'q' => false,
         'without_negative_entitlements' => false
@@ -194,6 +197,7 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => 'feature_ids',
         'include_usage_aggregation' => 'include_usage_aggregation',
         'limit' => 'limit',
+        'managed_by' => 'managed_by',
         'offset' => 'offset',
         'q' => 'q',
         'without_negative_entitlements' => 'without_negative_entitlements'
@@ -210,6 +214,7 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => 'setFeatureIds',
         'include_usage_aggregation' => 'setIncludeUsageAggregation',
         'limit' => 'setLimit',
+        'managed_by' => 'setManagedBy',
         'offset' => 'setOffset',
         'q' => 'setQ',
         'without_negative_entitlements' => 'setWithoutNegativeEntitlements'
@@ -226,6 +231,7 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
         'feature_ids' => 'getFeatureIds',
         'include_usage_aggregation' => 'getIncludeUsageAggregation',
         'limit' => 'getLimit',
+        'managed_by' => 'getManagedBy',
         'offset' => 'getOffset',
         'q' => 'getQ',
         'without_negative_entitlements' => 'getWithoutNegativeEntitlements'
@@ -293,6 +299,7 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('feature_ids', $data ?? [], null);
         $this->setIfExists('include_usage_aggregation', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('managed_by', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
         $this->setIfExists('without_negative_entitlements', $data ?? [], null);
@@ -324,6 +331,18 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['feature_ids']) && (count($this->container['feature_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'feature_ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
 
         return $invalidProperties;
     }
@@ -416,6 +435,10 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($feature_ids)) {
             throw new \InvalidArgumentException('non-nullable feature_ids cannot be null');
         }
+
+        if ((count($feature_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $feature_ids when calling CountFeatureUsageParams., number of items must be less than or equal to 100.');
+        }
         $this->container['feature_ids'] = $feature_ids;
 
         return $this;
@@ -470,7 +493,42 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountFeatureUsageParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountFeatureUsageParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets managed_by
+     *
+     * @return \Schematic\Model\BillingProviderType|null
+     */
+    public function getManagedBy()
+    {
+        return $this->container['managed_by'];
+    }
+
+    /**
+     * Sets managed_by
+     *
+     * @param \Schematic\Model\BillingProviderType|null $managed_by managed_by
+     *
+     * @return self
+     */
+    public function setManagedBy($managed_by)
+    {
+        if (is_null($managed_by)) {
+            throw new \InvalidArgumentException('non-nullable managed_by cannot be null');
+        }
+        $this->container['managed_by'] = $managed_by;
 
         return $this;
     }
@@ -619,7 +677,7 @@ class CountFeatureUsageParams implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

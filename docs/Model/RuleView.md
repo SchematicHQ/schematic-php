@@ -12,9 +12,8 @@ Name | Type | Description | Notes
 **flag_id** | **string** |  | [optional]
 **id** | **string** |  |
 **name** | **string** |  |
-**plan_version_id** | **string** |  | [optional]
 **priority** | **int** |  |
-**rule_type** | **string** |  |
+**rule_type** | [**\Schematic\Model\RuleType**](RuleType.md) |  |
 **updated_at** | **\DateTime** |  |
 **value** | **bool** |  |
 

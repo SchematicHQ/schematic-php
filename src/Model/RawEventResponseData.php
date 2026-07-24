@@ -377,8 +377,8 @@ class RawEventResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'event_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('event_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -411,8 +411,8 @@ class RawEventResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'remote_addr');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('remote_addr', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('remote_addr', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -539,7 +539,7 @@ class RawEventResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

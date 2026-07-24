@@ -10,5 +10,7 @@ Name | Type | Description | Notes
 **offset** | **int** | Page offset (default 0) | [optional]
 **plan_id** | **string** |  | [optional]
 **plan_ids** | **string[]** |  | [optional]
+**plan_version_id** | **string** |  | [optional]
+**plan_version_ids** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

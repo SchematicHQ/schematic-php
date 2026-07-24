@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** |  |
 **description** | **string** |  |
 **environment_id** | **string** |  |
-**icon** | **string** |  |
+**icon** | [**\Schematic\Model\PlanIcon**](PlanIcon.md) |  |
 **id** | **string** |  |
 **name** | **string** |  |
 **original_plan_id** | **string** |  | [optional]

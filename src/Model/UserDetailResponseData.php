@@ -341,12 +341,20 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['company_memberships'] === null) {
             $invalidProperties[] = "'company_memberships' can't be null";
         }
+        if ((count($this->container['company_memberships']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'company_memberships', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
         if ($this->container['entity_traits'] === null) {
             $invalidProperties[] = "'entity_traits' can't be null";
         }
+        if ((count($this->container['entity_traits']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'entity_traits', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['environment_id'] === null) {
             $invalidProperties[] = "'environment_id' can't be null";
         }
@@ -356,6 +364,10 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['keys'] === null) {
             $invalidProperties[] = "'keys' can't be null";
         }
+        if ((count($this->container['keys']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'keys', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
@@ -398,6 +410,10 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($company_memberships)) {
             throw new \InvalidArgumentException('non-nullable company_memberships cannot be null');
+        }
+
+        if ((count($company_memberships) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $company_memberships when calling UserDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['company_memberships'] = $company_memberships;
 
@@ -452,6 +468,10 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($entity_traits)) {
             throw new \InvalidArgumentException('non-nullable entity_traits cannot be null');
+        }
+
+        if ((count($entity_traits) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $entity_traits when calling UserDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['entity_traits'] = $entity_traits;
 
@@ -534,6 +554,10 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if (is_null($keys)) {
             throw new \InvalidArgumentException('non-nullable keys cannot be null');
         }
+
+        if ((count($keys) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $keys when calling UserDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['keys'] = $keys;
 
         return $this;
@@ -562,8 +586,8 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'last_seen_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_seen_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('last_seen_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -717,7 +741,7 @@ class UserDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

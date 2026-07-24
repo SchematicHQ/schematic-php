@@ -74,9 +74,9 @@ class ListBillingCreditsParams implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPIFormats = [
         'ids' => null,
-        'limit' => null,
+        'limit' => 'int64',
         'name' => null,
-        'offset' => null
+        'offset' => 'int64'
     ];
 
     /**
@@ -297,6 +297,18 @@ class ListBillingCreditsParams implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['ids']) && (count($this->container['ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
+
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
         }
@@ -338,6 +350,10 @@ class ListBillingCreditsParams implements ModelInterface, ArrayAccess, \JsonSeri
         if (is_null($ids)) {
             throw new \InvalidArgumentException('non-nullable ids cannot be null');
         }
+
+        if ((count($ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ids when calling ListBillingCreditsParams., number of items must be less than or equal to 100.');
+        }
         $this->container['ids'] = $ids;
 
         return $this;
@@ -365,6 +381,14 @@ class ListBillingCreditsParams implements ModelInterface, ArrayAccess, \JsonSeri
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListBillingCreditsParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListBillingCreditsParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -491,7 +515,7 @@ class ListBillingCreditsParams implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

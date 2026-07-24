@@ -60,15 +60,20 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'company_id' => 'string',
+        'company_scoped_only' => 'bool',
+        'exclude_company_scoped' => 'bool',
         'for_fallback_plan' => 'bool',
         'for_initial_plan' => 'bool',
         'for_trial_expiry_plan' => 'bool',
         'has_product_id' => 'bool',
         'ids' => 'string[]',
+        'include_draft_versions' => 'bool',
         'limit' => 'int',
         'offset' => 'int',
-        'plan_type' => 'PlanType',
+        'plan_type' => '\Schematic\Model\PlanType',
         'q' => 'string',
+        'scoped_to_company_id' => 'string',
+        'with_entitlements' => 'bool',
         'without_entitlement_for' => 'string',
         'without_paid_product_id' => 'bool'
     ];
@@ -82,15 +87,20 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'company_id' => null,
+        'company_scoped_only' => null,
+        'exclude_company_scoped' => null,
         'for_fallback_plan' => null,
         'for_initial_plan' => null,
         'for_trial_expiry_plan' => null,
         'has_product_id' => null,
         'ids' => null,
-        'limit' => null,
-        'offset' => null,
+        'include_draft_versions' => null,
+        'limit' => 'int64',
+        'offset' => 'int64',
         'plan_type' => null,
         'q' => null,
+        'scoped_to_company_id' => null,
+        'with_entitlements' => null,
         'without_entitlement_for' => null,
         'without_paid_product_id' => null
     ];
@@ -102,15 +112,20 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'company_id' => false,
+        'company_scoped_only' => false,
+        'exclude_company_scoped' => false,
         'for_fallback_plan' => false,
         'for_initial_plan' => false,
         'for_trial_expiry_plan' => false,
         'has_product_id' => false,
         'ids' => false,
+        'include_draft_versions' => false,
         'limit' => false,
         'offset' => false,
         'plan_type' => false,
         'q' => false,
+        'scoped_to_company_id' => false,
+        'with_entitlements' => false,
         'without_entitlement_for' => false,
         'without_paid_product_id' => false
     ];
@@ -202,15 +217,20 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'company_id' => 'company_id',
+        'company_scoped_only' => 'company_scoped_only',
+        'exclude_company_scoped' => 'exclude_company_scoped',
         'for_fallback_plan' => 'for_fallback_plan',
         'for_initial_plan' => 'for_initial_plan',
         'for_trial_expiry_plan' => 'for_trial_expiry_plan',
         'has_product_id' => 'has_product_id',
         'ids' => 'ids',
+        'include_draft_versions' => 'include_draft_versions',
         'limit' => 'limit',
         'offset' => 'offset',
         'plan_type' => 'plan_type',
         'q' => 'q',
+        'scoped_to_company_id' => 'scoped_to_company_id',
+        'with_entitlements' => 'with_entitlements',
         'without_entitlement_for' => 'without_entitlement_for',
         'without_paid_product_id' => 'without_paid_product_id'
     ];
@@ -222,15 +242,20 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'company_id' => 'setCompanyId',
+        'company_scoped_only' => 'setCompanyScopedOnly',
+        'exclude_company_scoped' => 'setExcludeCompanyScoped',
         'for_fallback_plan' => 'setForFallbackPlan',
         'for_initial_plan' => 'setForInitialPlan',
         'for_trial_expiry_plan' => 'setForTrialExpiryPlan',
         'has_product_id' => 'setHasProductId',
         'ids' => 'setIds',
+        'include_draft_versions' => 'setIncludeDraftVersions',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
         'plan_type' => 'setPlanType',
         'q' => 'setQ',
+        'scoped_to_company_id' => 'setScopedToCompanyId',
+        'with_entitlements' => 'setWithEntitlements',
         'without_entitlement_for' => 'setWithoutEntitlementFor',
         'without_paid_product_id' => 'setWithoutPaidProductId'
     ];
@@ -242,15 +267,20 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'company_id' => 'getCompanyId',
+        'company_scoped_only' => 'getCompanyScopedOnly',
+        'exclude_company_scoped' => 'getExcludeCompanyScoped',
         'for_fallback_plan' => 'getForFallbackPlan',
         'for_initial_plan' => 'getForInitialPlan',
         'for_trial_expiry_plan' => 'getForTrialExpiryPlan',
         'has_product_id' => 'getHasProductId',
         'ids' => 'getIds',
+        'include_draft_versions' => 'getIncludeDraftVersions',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
         'plan_type' => 'getPlanType',
         'q' => 'getQ',
+        'scoped_to_company_id' => 'getScopedToCompanyId',
+        'with_entitlements' => 'getWithEntitlements',
         'without_entitlement_for' => 'getWithoutEntitlementFor',
         'without_paid_product_id' => 'getWithoutPaidProductId'
     ];
@@ -313,15 +343,20 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('company_id', $data ?? [], null);
+        $this->setIfExists('company_scoped_only', $data ?? [], null);
+        $this->setIfExists('exclude_company_scoped', $data ?? [], null);
         $this->setIfExists('for_fallback_plan', $data ?? [], null);
         $this->setIfExists('for_initial_plan', $data ?? [], null);
         $this->setIfExists('for_trial_expiry_plan', $data ?? [], null);
         $this->setIfExists('has_product_id', $data ?? [], null);
         $this->setIfExists('ids', $data ?? [], null);
+        $this->setIfExists('include_draft_versions', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('plan_type', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
+        $this->setIfExists('scoped_to_company_id', $data ?? [], null);
+        $this->setIfExists('with_entitlements', $data ?? [], null);
         $this->setIfExists('without_entitlement_for', $data ?? [], null);
         $this->setIfExists('without_paid_product_id', $data ?? [], null);
     }
@@ -352,6 +387,18 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['ids']) && (count($this->container['ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
 
         return $invalidProperties;
     }
@@ -391,6 +438,60 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable company_id cannot be null');
         }
         $this->container['company_id'] = $company_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets company_scoped_only
+     *
+     * @return bool|null
+     */
+    public function getCompanyScopedOnly()
+    {
+        return $this->container['company_scoped_only'];
+    }
+
+    /**
+     * Sets company_scoped_only
+     *
+     * @param bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company)
+     *
+     * @return self
+     */
+    public function setCompanyScopedOnly($company_scoped_only)
+    {
+        if (is_null($company_scoped_only)) {
+            throw new \InvalidArgumentException('non-nullable company_scoped_only cannot be null');
+        }
+        $this->container['company_scoped_only'] = $company_scoped_only;
+
+        return $this;
+    }
+
+    /**
+     * Gets exclude_company_scoped
+     *
+     * @return bool|null
+     */
+    public function getExcludeCompanyScoped()
+    {
+        return $this->container['exclude_company_scoped'];
+    }
+
+    /**
+     * Sets exclude_company_scoped
+     *
+     * @param bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company)
+     *
+     * @return self
+     */
+    public function setExcludeCompanyScoped($exclude_company_scoped)
+    {
+        if (is_null($exclude_company_scoped)) {
+            throw new \InvalidArgumentException('non-nullable exclude_company_scoped cannot be null');
+        }
+        $this->container['exclude_company_scoped'] = $exclude_company_scoped;
 
         return $this;
     }
@@ -525,7 +626,38 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($ids)) {
             throw new \InvalidArgumentException('non-nullable ids cannot be null');
         }
+
+        if ((count($ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ids when calling CountPlansParams., number of items must be less than or equal to 100.');
+        }
         $this->container['ids'] = $ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets include_draft_versions
+     *
+     * @return bool|null
+     */
+    public function getIncludeDraftVersions()
+    {
+        return $this->container['include_draft_versions'];
+    }
+
+    /**
+     * Sets include_draft_versions
+     *
+     * @param bool|null $include_draft_versions Include billing settings from draft versions for plans which have draft version
+     *
+     * @return self
+     */
+    public function setIncludeDraftVersions($include_draft_versions)
+    {
+        if (is_null($include_draft_versions)) {
+            throw new \InvalidArgumentException('non-nullable include_draft_versions cannot be null');
+        }
+        $this->container['include_draft_versions'] = $include_draft_versions;
 
         return $this;
     }
@@ -552,6 +684,14 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountPlansParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountPlansParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -587,7 +727,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets plan_type
      *
-     * @return PlanType|null
+     * @return \Schematic\Model\PlanType|null
      */
     public function getPlanType()
     {
@@ -597,7 +737,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets plan_type
      *
-     * @param PlanType|null $plan_type plan_type
+     * @param \Schematic\Model\PlanType|null $plan_type plan_type
      *
      * @return self
      */
@@ -634,6 +774,60 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable q cannot be null');
         }
         $this->container['q'] = $q;
+
+        return $this;
+    }
+
+    /**
+     * Gets scoped_to_company_id
+     *
+     * @return string|null
+     */
+    public function getScopedToCompanyId()
+    {
+        return $this->container['scoped_to_company_id'];
+    }
+
+    /**
+     * Sets scoped_to_company_id
+     *
+     * @param string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans)
+     *
+     * @return self
+     */
+    public function setScopedToCompanyId($scoped_to_company_id)
+    {
+        if (is_null($scoped_to_company_id)) {
+            throw new \InvalidArgumentException('non-nullable scoped_to_company_id cannot be null');
+        }
+        $this->container['scoped_to_company_id'] = $scoped_to_company_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets with_entitlements
+     *
+     * @return bool|null
+     */
+    public function getWithEntitlements()
+    {
+        return $this->container['with_entitlements'];
+    }
+
+    /**
+     * Sets with_entitlements
+     *
+     * @param bool|null $with_entitlements Include each plan's entitlements in the response
+     *
+     * @return self
+     */
+    public function setWithEntitlements($with_entitlements)
+    {
+        if (is_null($with_entitlements)) {
+            throw new \InvalidArgumentException('non-nullable with_entitlements cannot be null');
+        }
+        $this->container['with_entitlements'] = $with_entitlements;
 
         return $this;
     }
@@ -755,7 +949,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

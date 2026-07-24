@@ -60,7 +60,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPITypes = [
         'description' => 'string',
         'environment_id' => 'string',
-        'name' => 'string'
+        'name' => 'string',
+        'readonly' => 'bool'
     ];
 
     /**
@@ -73,7 +74,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPIFormats = [
         'description' => null,
         'environment_id' => null,
-        'name' => null
+        'name' => null,
+        'readonly' => null
     ];
 
     /**
@@ -84,7 +86,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     protected static array $openAPINullables = [
         'description' => true,
         'environment_id' => true,
-        'name' => false
+        'name' => false,
+        'readonly' => true
     ];
 
     /**
@@ -175,7 +178,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $attributeMap = [
         'description' => 'description',
         'environment_id' => 'environment_id',
-        'name' => 'name'
+        'name' => 'name',
+        'readonly' => 'readonly'
     ];
 
     /**
@@ -186,7 +190,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $setters = [
         'description' => 'setDescription',
         'environment_id' => 'setEnvironmentId',
-        'name' => 'setName'
+        'name' => 'setName',
+        'readonly' => 'setReadonly'
     ];
 
     /**
@@ -197,7 +202,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $getters = [
         'description' => 'getDescription',
         'environment_id' => 'getEnvironmentId',
-        'name' => 'getName'
+        'name' => 'getName',
+        'readonly' => 'getReadonly'
     ];
 
     /**
@@ -260,6 +266,7 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('readonly', $data ?? [], null);
     }
 
     /**
@@ -342,8 +349,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('description', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -380,8 +387,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'environment_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('environment_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('environment_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -421,6 +428,40 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
         }
 
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets readonly
+     *
+     * @return bool|null
+     */
+    public function getReadonly()
+    {
+        return $this->container['readonly'];
+    }
+
+    /**
+     * Sets readonly
+     *
+     * @param bool|null $readonly readonly
+     *
+     * @return self
+     */
+    public function setReadonly($readonly)
+    {
+        if (is_null($readonly)) {
+            array_push($this->openAPINullablesSetToNull, 'readonly');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('readonly', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['readonly'] = $readonly;
 
         return $this;
     }
@@ -488,7 +529,7 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

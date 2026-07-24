@@ -65,6 +65,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
         'credit_icon' => 'string',
         'credit_id' => 'string',
         'credit_name' => 'string',
+        'currency_prices' => '\Schematic\Model\CreditBundleCurrencyPriceResponseData[]',
         'expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'expiry_unit_count' => 'int',
@@ -95,15 +96,16 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
         'credit_icon' => null,
         'credit_id' => null,
         'credit_name' => null,
+        'currency_prices' => null,
         'expiry_type' => null,
         'expiry_unit' => null,
-        'expiry_unit_count' => null,
+        'expiry_unit_count' => 'int64',
         'has_grants' => null,
         'id' => null,
         'name' => null,
         'plural_name' => null,
         'price' => null,
-        'quantity' => null,
+        'quantity' => 'int64',
         'singular_name' => null,
         'status' => null,
         'unit_price' => null,
@@ -123,6 +125,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
         'credit_icon' => true,
         'credit_id' => false,
         'credit_name' => false,
+        'currency_prices' => false,
         'expiry_type' => false,
         'expiry_unit' => false,
         'expiry_unit_count' => true,
@@ -231,6 +234,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
         'credit_icon' => 'credit_icon',
         'credit_id' => 'credit_id',
         'credit_name' => 'credit_name',
+        'currency_prices' => 'currency_prices',
         'expiry_type' => 'expiry_type',
         'expiry_unit' => 'expiry_unit',
         'expiry_unit_count' => 'expiry_unit_count',
@@ -259,6 +263,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
         'credit_icon' => 'setCreditIcon',
         'credit_id' => 'setCreditId',
         'credit_name' => 'setCreditName',
+        'currency_prices' => 'setCurrencyPrices',
         'expiry_type' => 'setExpiryType',
         'expiry_unit' => 'setExpiryUnit',
         'expiry_unit_count' => 'setExpiryUnitCount',
@@ -287,6 +292,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
         'credit_icon' => 'getCreditIcon',
         'credit_id' => 'getCreditId',
         'credit_name' => 'getCreditName',
+        'currency_prices' => 'getCurrencyPrices',
         'expiry_type' => 'getExpiryType',
         'expiry_unit' => 'getExpiryUnit',
         'expiry_unit_count' => 'getExpiryUnitCount',
@@ -366,6 +372,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('credit_icon', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('credit_name', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('expiry_type', $data ?? [], null);
         $this->setIfExists('expiry_unit', $data ?? [], null);
         $this->setIfExists('expiry_unit_count', $data ?? [], null);
@@ -420,6 +427,13 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
         if ($this->container['credit_name'] === null) {
             $invalidProperties[] = "'credit_name' can't be null";
         }
+        if ($this->container['currency_prices'] === null) {
+            $invalidProperties[] = "'currency_prices' can't be null";
+        }
+        if ((count($this->container['currency_prices']) > 256)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 256.";
+        }
+
         if ($this->container['expiry_type'] === null) {
             $invalidProperties[] = "'expiry_type' can't be null";
         }
@@ -479,8 +493,8 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'billing_invoice_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_invoice_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_invoice_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -594,8 +608,8 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'credit_icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -655,6 +669,37 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
             throw new \InvalidArgumentException('non-nullable credit_name cannot be null');
         }
         $this->container['credit_name'] = $credit_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\CreditBundleCurrencyPriceResponseData[]
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\CreditBundleCurrencyPriceResponseData[] $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            throw new \InvalidArgumentException('non-nullable currency_prices cannot be null');
+        }
+
+        if ((count($currency_prices) > 256)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling BillingCreditBundleResponseData., number of items must be less than or equal to 256.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
 
         return $this;
     }
@@ -736,8 +781,8 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -851,8 +896,8 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -912,8 +957,8 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'quantity');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('quantity', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('quantity', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -946,8 +991,8 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1101,7 +1146,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

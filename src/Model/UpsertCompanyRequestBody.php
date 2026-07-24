@@ -58,10 +58,13 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
+        'base_plan_id' => 'string',
+        'base_plan_price_id' => 'string',
         'id' => 'string',
         'keys' => 'array<string,string>',
         'last_seen_at' => '\DateTime',
         'name' => 'string',
+        'prevent_key_remap' => 'bool',
         'traits' => 'object',
         'update_only' => 'bool'
     ];
@@ -74,10 +77,13 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'base_plan_id' => null,
+        'base_plan_price_id' => null,
         'id' => null,
         'keys' => null,
         'last_seen_at' => 'date-time',
         'name' => null,
+        'prevent_key_remap' => null,
         'traits' => null,
         'update_only' => null
     ];
@@ -88,10 +94,13 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'base_plan_id' => true,
+        'base_plan_price_id' => true,
         'id' => true,
         'keys' => false,
         'last_seen_at' => true,
         'name' => true,
+        'prevent_key_remap' => true,
         'traits' => false,
         'update_only' => true
     ];
@@ -182,10 +191,13 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
+        'base_plan_id' => 'base_plan_id',
+        'base_plan_price_id' => 'base_plan_price_id',
         'id' => 'id',
         'keys' => 'keys',
         'last_seen_at' => 'last_seen_at',
         'name' => 'name',
+        'prevent_key_remap' => 'prevent_key_remap',
         'traits' => 'traits',
         'update_only' => 'update_only'
     ];
@@ -196,10 +208,13 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
+        'base_plan_id' => 'setBasePlanId',
+        'base_plan_price_id' => 'setBasePlanPriceId',
         'id' => 'setId',
         'keys' => 'setKeys',
         'last_seen_at' => 'setLastSeenAt',
         'name' => 'setName',
+        'prevent_key_remap' => 'setPreventKeyRemap',
         'traits' => 'setTraits',
         'update_only' => 'setUpdateOnly'
     ];
@@ -210,10 +225,13 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
+        'base_plan_id' => 'getBasePlanId',
+        'base_plan_price_id' => 'getBasePlanPriceId',
         'id' => 'getId',
         'keys' => 'getKeys',
         'last_seen_at' => 'getLastSeenAt',
         'name' => 'getName',
+        'prevent_key_remap' => 'getPreventKeyRemap',
         'traits' => 'getTraits',
         'update_only' => 'getUpdateOnly'
     ];
@@ -275,10 +293,13 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('base_plan_id', $data ?? [], null);
+        $this->setIfExists('base_plan_price_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('keys', $data ?? [], null);
         $this->setIfExists('last_seen_at', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('prevent_key_remap', $data ?? [], null);
         $this->setIfExists('traits', $data ?? [], null);
         $this->setIfExists('update_only', $data ?? [], null);
     }
@@ -333,6 +354,74 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
+     * Gets base_plan_id
+     *
+     * @return string|null
+     */
+    public function getBasePlanId()
+    {
+        return $this->container['base_plan_id'];
+    }
+
+    /**
+     * Sets base_plan_id
+     *
+     * @param string|null $base_plan_id Assign this base plan when creating the company (starts with plan_). Takes precedence over the environment's initial plan and must be provisionable without a payment method.
+     *
+     * @return self
+     */
+    public function setBasePlanId($base_plan_id)
+    {
+        if (is_null($base_plan_id)) {
+            array_push($this->openAPINullablesSetToNull, 'base_plan_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('base_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['base_plan_id'] = $base_plan_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets base_plan_price_id
+     *
+     * @return string|null
+     */
+    public function getBasePlanPriceId()
+    {
+        return $this->container['base_plan_price_id'];
+    }
+
+    /**
+     * Sets base_plan_price_id
+     *
+     * @param string|null $base_plan_price_id The Schematic price to provision for base_plan_id (starts with bilpp_). Required and must be $0 for a billing-linked plan; omit for a plan that is not billing-linked.
+     *
+     * @return self
+     */
+    public function setBasePlanPriceId($base_plan_price_id)
+    {
+        if (is_null($base_plan_price_id)) {
+            array_push($this->openAPINullablesSetToNull, 'base_plan_price_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('base_plan_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['base_plan_price_id'] = $base_plan_price_id;
+
+        return $this;
+    }
+
+    /**
      * Gets id
      *
      * @return string|null
@@ -355,8 +444,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -416,8 +505,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'last_seen_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_seen_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('last_seen_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -450,8 +539,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -461,6 +550,40 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         }
 
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets prevent_key_remap
+     *
+     * @return bool|null
+     */
+    public function getPreventKeyRemap()
+    {
+        return $this->container['prevent_key_remap'];
+    }
+
+    /**
+     * Sets prevent_key_remap
+     *
+     * @param bool|null $prevent_key_remap prevent_key_remap
+     *
+     * @return self
+     */
+    public function setPreventKeyRemap($prevent_key_remap)
+    {
+        if (is_null($prevent_key_remap)) {
+            array_push($this->openAPINullablesSetToNull, 'prevent_key_remap');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('prevent_key_remap', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['prevent_key_remap'] = $prevent_key_remap;
 
         return $this;
     }
@@ -515,8 +638,8 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'update_only');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('update_only', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('update_only', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -589,7 +712,7 @@ class UpsertCompanyRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

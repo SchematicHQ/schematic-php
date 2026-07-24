@@ -59,8 +59,8 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
       */
     protected static $openAPITypes = [
         'credit_consumption_rate' => 'float',
-        'metric_period' => 'string',
-        'metric_period_month_reset' => 'string',
+        'metric_period' => '\Schematic\Model\MetricPeriod',
+        'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'value_bool' => 'bool',
         'value_credit_id' => 'string',
         'value_numeric' => 'int',
@@ -76,12 +76,12 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'credit_consumption_rate' => null,
+        'credit_consumption_rate' => 'double',
         'metric_period' => null,
         'metric_period_month_reset' => null,
         'value_bool' => null,
         'value_credit_id' => null,
-        'value_numeric' => null,
+        'value_numeric' => 'int64',
         'value_trait_id' => null,
         'value_type' => null
     ];
@@ -271,40 +271,6 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
-    public const METRIC_PERIOD_ALL_TIME = 'all_time';
-    public const METRIC_PERIOD_CURRENT_MONTH = 'current_month';
-    public const METRIC_PERIOD_CURRENT_WEEK = 'current_week';
-    public const METRIC_PERIOD_CURRENT_DAY = 'current_day';
-    public const METRIC_PERIOD_MONTH_RESET_FIRST_OF_MONTH = 'first_of_month';
-    public const METRIC_PERIOD_MONTH_RESET_BILLING_CYCLE = 'billing_cycle';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMetricPeriodAllowableValues()
-    {
-        return [
-            self::METRIC_PERIOD_ALL_TIME,
-            self::METRIC_PERIOD_CURRENT_MONTH,
-            self::METRIC_PERIOD_CURRENT_WEEK,
-            self::METRIC_PERIOD_CURRENT_DAY,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMetricPeriodMonthResetAllowableValues()
-    {
-        return [
-            self::METRIC_PERIOD_MONTH_RESET_FIRST_OF_MONTH,
-            self::METRIC_PERIOD_MONTH_RESET_BILLING_CYCLE,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -358,24 +324,6 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getMetricPeriodAllowableValues();
-        if (!is_null($this->container['metric_period']) && !in_array($this->container['metric_period'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'metric_period', must be one of '%s'",
-                $this->container['metric_period'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getMetricPeriodMonthResetAllowableValues();
-        if (!is_null($this->container['metric_period_month_reset']) && !in_array($this->container['metric_period_month_reset'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'metric_period_month_reset', must be one of '%s'",
-                $this->container['metric_period_month_reset'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['value_type'] === null) {
             $invalidProperties[] = "'value_type' can't be null";
         }
@@ -417,8 +365,8 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'credit_consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -431,7 +379,7 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -441,7 +389,7 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period metric_period
+     * @param \Schematic\Model\MetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -451,21 +399,11 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getMetricPeriodAllowableValues();
-        if (!is_null($metric_period) && !in_array($metric_period, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'metric_period', must be one of '%s'",
-                    $metric_period,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['metric_period'] = $metric_period;
 
@@ -475,7 +413,7 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets metric_period_month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMetricPeriodMonthReset()
     {
@@ -485,7 +423,7 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets metric_period_month_reset
      *
-     * @param string|null $metric_period_month_reset metric_period_month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $metric_period_month_reset metric_period_month_reset
      *
      * @return self
      */
@@ -495,21 +433,11 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'metric_period_month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period_month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period_month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getMetricPeriodMonthResetAllowableValues();
-        if (!is_null($metric_period_month_reset) && !in_array($metric_period_month_reset, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'metric_period_month_reset', must be one of '%s'",
-                    $metric_period_month_reset,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['metric_period_month_reset'] = $metric_period_month_reset;
 
@@ -539,8 +467,8 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'value_bool');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_bool', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_bool', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -573,8 +501,8 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'value_credit_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_credit_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_credit_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -607,8 +535,8 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'value_numeric');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_numeric', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_numeric', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -641,8 +569,8 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'value_trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -742,7 +670,7 @@ class UpdateEntitlementReqCommon implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

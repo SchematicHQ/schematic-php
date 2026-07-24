@@ -61,8 +61,7 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'billing_product' => '\Schematic\Model\UpsertBillingProductRequestBody',
         'credit_grants' => '\Schematic\Model\PlanBundleCreditGrantRequestBody[]',
         'entitlements' => '\Schematic\Model\PlanBundleEntitlementRequestBody[]',
-        'plan' => '\Schematic\Model\CreatePlanRequestBody',
-        'traits' => '\Schematic\Model\UpdatePlanTraitTraitRequestBody[]'
+        'plan' => '\Schematic\Model\CreatePlanRequestBody'
     ];
 
     /**
@@ -76,8 +75,7 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'billing_product' => null,
         'credit_grants' => null,
         'entitlements' => null,
-        'plan' => null,
-        'traits' => null
+        'plan' => null
     ];
 
     /**
@@ -89,8 +87,7 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'billing_product' => false,
         'credit_grants' => false,
         'entitlements' => false,
-        'plan' => false,
-        'traits' => false
+        'plan' => false
     ];
 
     /**
@@ -182,8 +179,7 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'billing_product' => 'billing_product',
         'credit_grants' => 'credit_grants',
         'entitlements' => 'entitlements',
-        'plan' => 'plan',
-        'traits' => 'traits'
+        'plan' => 'plan'
     ];
 
     /**
@@ -195,8 +191,7 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'billing_product' => 'setBillingProduct',
         'credit_grants' => 'setCreditGrants',
         'entitlements' => 'setEntitlements',
-        'plan' => 'setPlan',
-        'traits' => 'setTraits'
+        'plan' => 'setPlan'
     ];
 
     /**
@@ -208,8 +203,7 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'billing_product' => 'getBillingProduct',
         'credit_grants' => 'getCreditGrants',
         'entitlements' => 'getEntitlements',
-        'plan' => 'getPlan',
-        'traits' => 'getTraits'
+        'plan' => 'getPlan'
     ];
 
     /**
@@ -273,7 +267,6 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('credit_grants', $data ?? [], null);
         $this->setIfExists('entitlements', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
-        $this->setIfExists('traits', $data ?? [], null);
     }
 
     /**
@@ -312,10 +305,6 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         }
         if ((count($this->container['entitlements']) > 100)) {
             $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 100.";
-        }
-
-        if (!is_null($this->container['traits']) && (count($this->container['traits']) > 100)) {
-            $invalidProperties[] = "invalid value for 'traits', number of items must be less than or equal to 100.";
         }
 
         return $invalidProperties;
@@ -448,37 +437,6 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
 
         return $this;
     }
-
-    /**
-     * Gets traits
-     *
-     * @return \Schematic\Model\UpdatePlanTraitTraitRequestBody[]|null
-     */
-    public function getTraits()
-    {
-        return $this->container['traits'];
-    }
-
-    /**
-     * Sets traits
-     *
-     * @param \Schematic\Model\UpdatePlanTraitTraitRequestBody[]|null $traits traits
-     *
-     * @return self
-     */
-    public function setTraits($traits)
-    {
-        if (is_null($traits)) {
-            throw new \InvalidArgumentException('non-nullable traits cannot be null');
-        }
-
-        if ((count($traits) > 100)) {
-            throw new \InvalidArgumentException('invalid value for $traits when calling CreatePlanBundleRequestBody., number of items must be less than or equal to 100.');
-        }
-        $this->container['traits'] = $traits;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -543,7 +501,7 @@ class CreatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

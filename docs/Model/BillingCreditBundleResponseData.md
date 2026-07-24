@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **credit_icon** | **string** |  | [optional]
 **credit_id** | **string** |  |
 **credit_name** | **string** |  |
+**currency_prices** | [**\Schematic\Model\CreditBundleCurrencyPriceResponseData[]**](CreditBundleCurrencyPriceResponseData.md) |  |
 **expiry_type** | [**\Schematic\Model\BillingCreditExpiryType**](BillingCreditExpiryType.md) |  |
 **expiry_unit** | [**\Schematic\Model\BillingCreditExpiryUnit**](BillingCreditExpiryUnit.md) |  |
 **expiry_unit_count** | **int** |  | [optional]

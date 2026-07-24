@@ -117,6 +117,15 @@ class CreatePlanEntitlementRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "currency_prices"
+     */
+    public function testPropertyCurrencyPrices()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "feature_id"
      */
     public function testPropertyFeatureId()
@@ -198,6 +207,15 @@ class CreatePlanEntitlementRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "plan_version_id"
+     */
+    public function testPropertyPlanVersionId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "price_behavior"
      */
     public function testPropertyPriceBehavior()
@@ -216,6 +234,42 @@ class CreatePlanEntitlementRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "quarterly_metered_price_id"
+     */
+    public function testPropertyQuarterlyMeteredPriceId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "quarterly_price_tiers"
+     */
+    public function testPropertyQuarterlyPriceTiers()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "quarterly_unit_price"
+     */
+    public function testPropertyQuarterlyUnitPrice()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "quarterly_unit_price_decimal"
+     */
+    public function testPropertyQuarterlyUnitPriceDecimal()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "soft_limit"
      */
     public function testPropertySoftLimit()
@@ -228,6 +282,15 @@ class CreatePlanEntitlementRequestBodyTest extends TestCase
      * Test attribute "tier_mode"
      */
     public function testPropertyTierMode()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "usage_quantity"
+     */
+    public function testPropertyUsageQuantity()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -273,6 +336,15 @@ class CreatePlanEntitlementRequestBodyTest extends TestCase
      * Test attribute "value_type"
      */
     public function testPropertyValueType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "warning_tiers"
+     */
+    public function testPropertyWarningTiers()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

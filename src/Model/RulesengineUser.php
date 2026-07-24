@@ -325,9 +325,17 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['rules'] === null) {
             $invalidProperties[] = "'rules' can't be null";
         }
+        if ((count($this->container['rules']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'rules', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['traits'] === null) {
             $invalidProperties[] = "'traits' can't be null";
         }
+        if ((count($this->container['traits']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'traits', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -473,6 +481,10 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($rules)) {
             throw new \InvalidArgumentException('non-nullable rules cannot be null');
         }
+
+        if ((count($rules) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $rules when calling RulesengineUser., number of items must be less than or equal to 1000.');
+        }
         $this->container['rules'] = $rules;
 
         return $this;
@@ -499,6 +511,10 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($traits)) {
             throw new \InvalidArgumentException('non-nullable traits cannot be null');
+        }
+
+        if ((count($traits) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $traits when calling RulesengineUser., number of items must be less than or equal to 1000.');
         }
         $this->container['traits'] = $traits;
 
@@ -568,7 +584,7 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

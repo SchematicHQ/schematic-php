@@ -64,13 +64,13 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
         'feature_allocation' => 'int',
         'feature_usage' => 'int',
         'feature_usage_event' => 'string',
-        'feature_usage_period' => 'string',
+        'feature_usage_period' => '\Schematic\Model\RulesengineMetricPeriod',
         'feature_usage_reset_at' => '\DateTime',
         'flag_id' => 'string',
         'flag_key' => 'string',
         'reason' => 'string',
         'rule_id' => 'string',
-        'rule_type' => 'string',
+        'rule_type' => '\Schematic\Model\RulesengineRuleType',
         'user_id' => 'string',
         'value' => 'bool'
     ];
@@ -86,8 +86,8 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
         'company_id' => null,
         'entitlement' => null,
         'err' => null,
-        'feature_allocation' => null,
-        'feature_usage' => null,
+        'feature_allocation' => 'int64',
+        'feature_usage' => 'int64',
         'feature_usage_event' => null,
         'feature_usage_period' => null,
         'feature_usage_reset_at' => 'date-time',
@@ -313,50 +313,6 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
-    public const FEATURE_USAGE_PERIOD_ALL_TIME = 'all_time';
-    public const FEATURE_USAGE_PERIOD_CURRENT_DAY = 'current_day';
-    public const FEATURE_USAGE_PERIOD_CURRENT_MONTH = 'current_month';
-    public const FEATURE_USAGE_PERIOD_CURRENT_WEEK = 'current_week';
-    public const RULE_TYPE__DEFAULT = 'default';
-    public const RULE_TYPE_GLOBAL_OVERRIDE = 'global_override';
-    public const RULE_TYPE_COMPANY_OVERRIDE = 'company_override';
-    public const RULE_TYPE_COMPANY_OVERRIDE_USAGE_EXCEEDED = 'company_override_usage_exceeded';
-    public const RULE_TYPE_PLAN_ENTITLEMENT = 'plan_entitlement';
-    public const RULE_TYPE_PLAN_ENTITLEMENT_USAGE_EXCEEDED = 'plan_entitlement_usage_exceeded';
-    public const RULE_TYPE_STANDARD = 'standard';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFeatureUsagePeriodAllowableValues()
-    {
-        return [
-            self::FEATURE_USAGE_PERIOD_ALL_TIME,
-            self::FEATURE_USAGE_PERIOD_CURRENT_DAY,
-            self::FEATURE_USAGE_PERIOD_CURRENT_MONTH,
-            self::FEATURE_USAGE_PERIOD_CURRENT_WEEK,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getRuleTypeAllowableValues()
-    {
-        return [
-            self::RULE_TYPE__DEFAULT,
-            self::RULE_TYPE_GLOBAL_OVERRIDE,
-            self::RULE_TYPE_COMPANY_OVERRIDE,
-            self::RULE_TYPE_COMPANY_OVERRIDE_USAGE_EXCEEDED,
-            self::RULE_TYPE_PLAN_ENTITLEMENT,
-            self::RULE_TYPE_PLAN_ENTITLEMENT_USAGE_EXCEEDED,
-            self::RULE_TYPE_STANDARD,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -417,30 +373,12 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getFeatureUsagePeriodAllowableValues();
-        if (!is_null($this->container['feature_usage_period']) && !in_array($this->container['feature_usage_period'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'feature_usage_period', must be one of '%s'",
-                $this->container['feature_usage_period'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['flag_key'] === null) {
             $invalidProperties[] = "'flag_key' can't be null";
         }
         if ($this->container['reason'] === null) {
             $invalidProperties[] = "'reason' can't be null";
         }
-        $allowedValues = $this->getRuleTypeAllowableValues();
-        if (!is_null($this->container['rule_type']) && !in_array($this->container['rule_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'rule_type', must be one of '%s'",
-                $this->container['rule_type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
         }
@@ -482,8 +420,8 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -570,8 +508,8 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'feature_allocation');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_allocation', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_allocation', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -604,8 +542,8 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'feature_usage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_usage', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_usage', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -638,8 +576,8 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'feature_usage_event');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_usage_event', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_usage_event', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -652,7 +590,7 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets feature_usage_period
      *
-     * @return string|null
+     * @return \Schematic\Model\RulesengineMetricPeriod|null
      */
     public function getFeatureUsagePeriod()
     {
@@ -662,7 +600,7 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets feature_usage_period
      *
-     * @param string|null $feature_usage_period feature_usage_period
+     * @param \Schematic\Model\RulesengineMetricPeriod|null $feature_usage_period feature_usage_period
      *
      * @return self
      */
@@ -672,21 +610,11 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'feature_usage_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_usage_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_usage_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getFeatureUsagePeriodAllowableValues();
-        if (!is_null($feature_usage_period) && !in_array($feature_usage_period, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'feature_usage_period', must be one of '%s'",
-                    $feature_usage_period,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['feature_usage_period'] = $feature_usage_period;
 
@@ -716,8 +644,8 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'feature_usage_reset_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_usage_reset_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_usage_reset_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -750,8 +678,8 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -838,8 +766,8 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'rule_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -852,7 +780,7 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets rule_type
      *
-     * @return string|null
+     * @return \Schematic\Model\RulesengineRuleType|null
      */
     public function getRuleType()
     {
@@ -862,7 +790,7 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets rule_type
      *
-     * @param string|null $rule_type rule_type
+     * @param \Schematic\Model\RulesengineRuleType|null $rule_type rule_type
      *
      * @return self
      */
@@ -872,21 +800,11 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'rule_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getRuleTypeAllowableValues();
-        if (!is_null($rule_type) && !in_array($rule_type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'rule_type', must be one of '%s'",
-                    $rule_type,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['rule_type'] = $rule_type;
 
@@ -916,8 +834,8 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'user_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1017,7 +935,7 @@ class RulesengineCheckFlagResult implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

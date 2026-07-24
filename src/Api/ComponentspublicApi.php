@@ -190,7 +190,7 @@ class ComponentspublicApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetPublicPlansResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

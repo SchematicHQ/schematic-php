@@ -63,7 +63,9 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
         'feature_type' => '\Schematic\Model\FeatureType[]',
         'ids' => 'string[]',
         'limit' => 'int',
+        'managed_by' => '\Schematic\Model\BillingProviderType',
         'offset' => 'int',
+        'plan_version_id' => 'string',
         'q' => 'string',
         'without_company_override_for' => 'string',
         'without_plan_entitlement_for' => 'string'
@@ -80,8 +82,10 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
         'boolean_require_event' => null,
         'feature_type' => null,
         'ids' => null,
-        'limit' => null,
-        'offset' => null,
+        'limit' => 'int64',
+        'managed_by' => null,
+        'offset' => 'int64',
+        'plan_version_id' => null,
         'q' => null,
         'without_company_override_for' => null,
         'without_plan_entitlement_for' => null
@@ -97,7 +101,9 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
         'feature_type' => false,
         'ids' => false,
         'limit' => false,
+        'managed_by' => false,
         'offset' => false,
+        'plan_version_id' => false,
         'q' => false,
         'without_company_override_for' => false,
         'without_plan_entitlement_for' => false
@@ -193,7 +199,9 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
         'feature_type' => 'feature_type',
         'ids' => 'ids',
         'limit' => 'limit',
+        'managed_by' => 'managed_by',
         'offset' => 'offset',
+        'plan_version_id' => 'plan_version_id',
         'q' => 'q',
         'without_company_override_for' => 'without_company_override_for',
         'without_plan_entitlement_for' => 'without_plan_entitlement_for'
@@ -209,7 +217,9 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
         'feature_type' => 'setFeatureType',
         'ids' => 'setIds',
         'limit' => 'setLimit',
+        'managed_by' => 'setManagedBy',
         'offset' => 'setOffset',
+        'plan_version_id' => 'setPlanVersionId',
         'q' => 'setQ',
         'without_company_override_for' => 'setWithoutCompanyOverrideFor',
         'without_plan_entitlement_for' => 'setWithoutPlanEntitlementFor'
@@ -225,7 +235,9 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
         'feature_type' => 'getFeatureType',
         'ids' => 'getIds',
         'limit' => 'getLimit',
+        'managed_by' => 'getManagedBy',
         'offset' => 'getOffset',
+        'plan_version_id' => 'getPlanVersionId',
         'q' => 'getQ',
         'without_company_override_for' => 'getWithoutCompanyOverrideFor',
         'without_plan_entitlement_for' => 'getWithoutPlanEntitlementFor'
@@ -292,7 +304,9 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('feature_type', $data ?? [], null);
         $this->setIfExists('ids', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('managed_by', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
+        $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
         $this->setIfExists('without_company_override_for', $data ?? [], null);
         $this->setIfExists('without_plan_entitlement_for', $data ?? [], null);
@@ -324,6 +338,22 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['feature_type']) && (count($this->container['feature_type']) > 100)) {
+            $invalidProperties[] = "invalid value for 'feature_type', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['ids']) && (count($this->container['ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
 
         if (!is_null($this->container['q']) && (mb_strlen($this->container['q']) > 512)) {
             $invalidProperties[] = "invalid value for 'q', the character length must be smaller than or equal to 512.";
@@ -393,6 +423,10 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
         if (is_null($feature_type)) {
             throw new \InvalidArgumentException('non-nullable feature_type cannot be null');
         }
+
+        if ((count($feature_type) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $feature_type when calling ListFeaturesParams., number of items must be less than or equal to 100.');
+        }
         $this->container['feature_type'] = $feature_type;
 
         return $this;
@@ -419,6 +453,10 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         if (is_null($ids)) {
             throw new \InvalidArgumentException('non-nullable ids cannot be null');
+        }
+
+        if ((count($ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ids when calling ListFeaturesParams., number of items must be less than or equal to 100.');
         }
         $this->container['ids'] = $ids;
 
@@ -447,7 +485,42 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListFeaturesParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListFeaturesParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets managed_by
+     *
+     * @return \Schematic\Model\BillingProviderType|null
+     */
+    public function getManagedBy()
+    {
+        return $this->container['managed_by'];
+    }
+
+    /**
+     * Sets managed_by
+     *
+     * @param \Schematic\Model\BillingProviderType|null $managed_by managed_by
+     *
+     * @return self
+     */
+    public function setManagedBy($managed_by)
+    {
+        if (is_null($managed_by)) {
+            throw new \InvalidArgumentException('non-nullable managed_by cannot be null');
+        }
+        $this->container['managed_by'] = $managed_by;
 
         return $this;
     }
@@ -475,6 +548,33 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_id
+     *
+     * @return string|null
+     */
+    public function getPlanVersionId()
+    {
+        return $this->container['plan_version_id'];
+    }
+
+    /**
+     * Sets plan_version_id
+     *
+     * @param string|null $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used
+     *
+     * @return self
+     */
+    public function setPlanVersionId($plan_version_id)
+    {
+        if (is_null($plan_version_id)) {
+            throw new \InvalidArgumentException('non-nullable plan_version_id cannot be null');
+        }
+        $this->container['plan_version_id'] = $plan_version_id;
 
         return $this;
     }
@@ -627,7 +727,7 @@ class ListFeaturesParams implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

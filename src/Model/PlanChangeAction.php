@@ -59,6 +59,8 @@ class PlanChangeAction
 
     public const PLAN_TRAIT_CHANGE = 'plan_trait_change';
 
+    public const PLAN_VERSION_MIGRATION = 'plan_version_migration';
+
     public const QUICKSTART = 'quickstart';
 
     public const SUBSCRIPTION_CHANGE = 'subscription_change';
@@ -78,6 +80,7 @@ class PlanChangeAction
             self::PLAN_BILLING_PRODUCT_CHANGED,
             self::PLAN_DELETED,
             self::PLAN_TRAIT_CHANGE,
+            self::PLAN_VERSION_MIGRATION,
             self::QUICKSTART,
             self::SUBSCRIPTION_CHANGE
         ];

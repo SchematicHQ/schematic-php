@@ -106,4 +106,31 @@ class CheckoutSettingsResponseDataTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "opt_in_enabled"
+     */
+    public function testPropertyOptInEnabled()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "opt_in_text"
+     */
+    public function testPropertyOptInText()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "opt_in_title"
+     */
+    public function testPropertyOptInTitle()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

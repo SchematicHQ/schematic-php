@@ -378,8 +378,8 @@ class CreateWebhookRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'credit_trigger_configs');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_trigger_configs', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_trigger_configs', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -416,8 +416,8 @@ class CreateWebhookRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'entitlement_trigger_configs');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('entitlement_trigger_configs', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('entitlement_trigger_configs', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -593,7 +593,7 @@ class CreateWebhookRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

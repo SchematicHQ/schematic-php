@@ -6,16 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_id** | **string** |  |
 **comparison_trait_definition** | [**\Schematic\Model\RulesengineTraitDefinition**](RulesengineTraitDefinition.md) |  | [optional]
-**condition_type** | **string** |  |
+**condition_type** | [**\Schematic\Model\RulesengineConditionType**](RulesengineConditionType.md) |  |
 **consumption_rate** | **float** |  | [optional]
 **credit_id** | **string** |  | [optional]
 **environment_id** | **string** |  |
 **event_subtype** | **string** |  | [optional]
 **id** | **string** |  |
-**metric_period** | **string** |  | [optional]
-**metric_period_month_reset** | **string** |  | [optional]
+**metric_period** | [**\Schematic\Model\RulesengineMetricPeriod**](RulesengineMetricPeriod.md) |  | [optional]
+**metric_period_month_reset** | [**\Schematic\Model\RulesengineMetricPeriodMonthReset**](RulesengineMetricPeriodMonthReset.md) |  | [optional]
 **metric_value** | **int** |  | [optional]
-**operator** | **string** |  |
+**operator** | [**\Schematic\Model\ComparableOperator**](ComparableOperator.md) |  |
 **resource_ids** | **string[]** |  |
 **trait_definition** | [**\Schematic\Model\RulesengineTraitDefinition**](RulesengineTraitDefinition.md) |  | [optional]
 **trait_value** | **string** |  |

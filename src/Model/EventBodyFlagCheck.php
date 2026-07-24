@@ -385,8 +385,8 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -419,8 +419,8 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'error');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('error', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -453,8 +453,8 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -541,8 +541,8 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'req_company');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('req_company', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('req_company', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -575,8 +575,8 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'req_user');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('req_user', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('req_user', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -609,8 +609,8 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'rule_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -643,8 +643,8 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
             array_push($this->openAPINullablesSetToNull, 'user_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -744,7 +744,7 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

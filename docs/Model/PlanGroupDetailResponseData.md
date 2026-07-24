@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **add_ons** | [**\Schematic\Model\PlanGroupPlanDetailResponseData[]**](PlanGroupPlanDetailResponseData.md) |  |
 **checkout_settings** | [**\Schematic\Model\CheckoutSettingsResponseData**](CheckoutSettingsResponseData.md) |  |
 **component_settings** | [**\Schematic\Model\ComponentSettingsResponseData**](ComponentSettingsResponseData.md) |  |
+**custom_checkout_fields** | [**\Schematic\Model\CheckoutFieldResponseData[]**](CheckoutFieldResponseData.md) |  |
 **custom_plan_config** | [**\Schematic\Model\CustomPlanViewConfigResponseData**](CustomPlanViewConfigResponseData.md) |  | [optional]
 **custom_plan_id** | **string** |  | [optional]
 **default_plan** | [**\Schematic\Model\PlanGroupPlanDetailResponseData**](PlanGroupPlanDetailResponseData.md) |  | [optional]

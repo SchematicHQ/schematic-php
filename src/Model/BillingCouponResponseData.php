@@ -86,20 +86,20 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPIFormats = [
         'account_id' => null,
-        'amount_off' => null,
+        'amount_off' => 'int64',
         'currency' => null,
         'duration' => null,
-        'duration_in_months' => null,
+        'duration_in_months' => 'int64',
         'environment_id' => null,
         'external_id' => null,
         'id' => null,
         'is_active' => null,
-        'max_redemptions' => null,
+        'max_redemptions' => 'int64',
         'metadata' => null,
         'name' => null,
-        'percent_off' => null,
+        'percent_off' => 'double',
         'provider_type' => null,
-        'times_redeemed' => null,
+        'times_redeemed' => 'int64',
         'valid_from' => 'date-time',
         'valid_until' => 'date-time'
     ];
@@ -479,8 +479,8 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'amount_off');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('amount_off', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('amount_off', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -513,8 +513,8 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'currency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -547,8 +547,8 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'duration');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('duration', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('duration', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -581,8 +581,8 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'duration_in_months');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('duration_in_months', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('duration_in_months', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -723,8 +723,8 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'max_redemptions');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('max_redemptions', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('max_redemptions', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -811,8 +811,8 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'percent_off');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('percent_off', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('percent_off', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -899,8 +899,8 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'valid_from');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('valid_from', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('valid_from', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -933,8 +933,8 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'valid_until');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('valid_until', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('valid_until', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1007,7 +1007,7 @@ class BillingCouponResponseData implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

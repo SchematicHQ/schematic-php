@@ -78,7 +78,19 @@ class BillingApi
         'countCustomers' => [
             'application/json',
         ],
+        'deleteBillingCoupon' => [
+            'application/json',
+        ],
+        'deleteBillingCustomer' => [
+            'application/json',
+        ],
+        'deleteBillingInvoice' => [
+            'application/json',
+        ],
         'deleteBillingProduct' => [
+            'application/json',
+        ],
+        'deletePaymentMethodByExternalID' => [
             'application/json',
         ],
         'deleteProductPrice' => [
@@ -191,6 +203,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type price_usage_type (optional)
      * @param  BillingProviderType $provider_type provider_type (optional)
      * @param  string $q q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -203,9 +216,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountBillingProductsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countBillingProducts($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
+    public function countBillingProducts($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
     {
-        list($response) = $this->countBillingProductsWithHttpInfo($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
+        list($response) = $this->countBillingProductsWithHttpInfo($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $recurring_charges_only, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -220,6 +233,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type (optional)
      * @param  BillingProviderType $provider_type (optional)
      * @param  string $q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -232,9 +246,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountBillingProductsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countBillingProductsWithHttpInfo($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
+    public function countBillingProductsWithHttpInfo($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
     {
-        $request = $this->countBillingProductsRequest($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
+        $request = $this->countBillingProductsRequest($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $recurring_charges_only, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -271,7 +285,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountBillingProductsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -530,6 +544,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type (optional)
      * @param  BillingProviderType $provider_type (optional)
      * @param  string $q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -541,9 +556,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countBillingProductsAsync($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
+    public function countBillingProductsAsync($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
     {
-        return $this->countBillingProductsAsyncWithHttpInfo($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType)
+        return $this->countBillingProductsAsyncWithHttpInfo($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $recurring_charges_only, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -562,6 +577,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type (optional)
      * @param  BillingProviderType $provider_type (optional)
      * @param  string $q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -573,10 +589,10 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countBillingProductsAsyncWithHttpInfo($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
+    public function countBillingProductsAsyncWithHttpInfo($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
     {
         $returnType = '\Schematic\Model\CountBillingProductsResponse';
-        $request = $this->countBillingProductsRequest($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
+        $request = $this->countBillingProductsRequest($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $recurring_charges_only, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -623,6 +639,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type (optional)
      * @param  BillingProviderType $provider_type (optional)
      * @param  string $q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -634,25 +651,35 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countBillingProductsRequest($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
+    public function countBillingProductsRequest($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProducts'][0])
     {
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling BillingApi.countBillingProducts, number of items must be less than or equal to 100.');
+        }
 
 
         if ($name !== null && strlen($name) > 255) {
             throw new \InvalidArgumentException('invalid length for "$name" when calling BillingApi.countBillingProducts, must be smaller than or equal to 255.');
         }
-        
+
 
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling BillingApi.countBillingProducts, must be smaller than or equal to 512.');
         }
-        
 
 
 
 
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.countBillingProducts, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.countBillingProducts, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -713,6 +740,15 @@ class BillingApi
             $q,
             'q', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $recurring_charges_only,
+            'recurring_charges_only', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -912,7 +948,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountCustomersResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1260,16 +1296,25 @@ class BillingApi
     public function countCustomersRequest($company_ids = null, $name = null, $provider_type = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCustomers'][0])
     {
 
+        if ($company_ids !== null && count($company_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$company_ids" when calling BillingApi.countCustomers, number of items must be less than or equal to 100.');
+        }
 
         if ($name !== null && strlen($name) > 255) {
             throw new \InvalidArgumentException('invalid length for "$name" when calling BillingApi.countCustomers, must be smaller than or equal to 255.');
         }
-        
+
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling BillingApi.countCustomers, must be smaller than or equal to 512.');
         }
-        
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.countCustomers, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.countCustomers, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -1397,6 +1442,1467 @@ class BillingApi
     }
 
     /**
+     * Operation deleteBillingCoupon
+     *
+     * Delete billing coupon
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCoupon'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\DeleteBillingCouponResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function deleteBillingCoupon($billing_id, string $contentType = self::contentTypes['deleteBillingCoupon'][0])
+    {
+        list($response) = $this->deleteBillingCouponWithHttpInfo($billing_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteBillingCouponWithHttpInfo
+     *
+     * Delete billing coupon
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCoupon'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\DeleteBillingCouponResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteBillingCouponWithHttpInfo($billing_id, string $contentType = self::contentTypes['deleteBillingCoupon'][0])
+    {
+        $request = $this->deleteBillingCouponRequest($billing_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\DeleteBillingCouponResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\DeleteBillingCouponResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\DeleteBillingCouponResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\DeleteBillingCouponResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeleteBillingCouponResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteBillingCouponAsync
+     *
+     * Delete billing coupon
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCoupon'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBillingCouponAsync($billing_id, string $contentType = self::contentTypes['deleteBillingCoupon'][0])
+    {
+        return $this->deleteBillingCouponAsyncWithHttpInfo($billing_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteBillingCouponAsyncWithHttpInfo
+     *
+     * Delete billing coupon
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCoupon'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBillingCouponAsyncWithHttpInfo($billing_id, string $contentType = self::contentTypes['deleteBillingCoupon'][0])
+    {
+        $returnType = '\Schematic\Model\DeleteBillingCouponResponse';
+        $request = $this->deleteBillingCouponRequest($billing_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteBillingCoupon'
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCoupon'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteBillingCouponRequest($billing_id, string $contentType = self::contentTypes['deleteBillingCoupon'][0])
+    {
+
+        // verify the required parameter 'billing_id' is set
+        if ($billing_id === null || (is_array($billing_id) && count($billing_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $billing_id when calling deleteBillingCoupon'
+            );
+        }
+
+
+        $resourcePath = '/billing/coupons/{billing_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($billing_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'billing_id' . '}',
+                ObjectSerializer::toPathValue($billing_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteBillingCustomer
+     *
+     * Delete billing customer
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCustomer'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\DeleteBillingCustomerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function deleteBillingCustomer($billing_id, string $contentType = self::contentTypes['deleteBillingCustomer'][0])
+    {
+        list($response) = $this->deleteBillingCustomerWithHttpInfo($billing_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteBillingCustomerWithHttpInfo
+     *
+     * Delete billing customer
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCustomer'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\DeleteBillingCustomerResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteBillingCustomerWithHttpInfo($billing_id, string $contentType = self::contentTypes['deleteBillingCustomer'][0])
+    {
+        $request = $this->deleteBillingCustomerRequest($billing_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\DeleteBillingCustomerResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\DeleteBillingCustomerResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\DeleteBillingCustomerResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\DeleteBillingCustomerResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeleteBillingCustomerResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteBillingCustomerAsync
+     *
+     * Delete billing customer
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCustomer'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBillingCustomerAsync($billing_id, string $contentType = self::contentTypes['deleteBillingCustomer'][0])
+    {
+        return $this->deleteBillingCustomerAsyncWithHttpInfo($billing_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteBillingCustomerAsyncWithHttpInfo
+     *
+     * Delete billing customer
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCustomer'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBillingCustomerAsyncWithHttpInfo($billing_id, string $contentType = self::contentTypes['deleteBillingCustomer'][0])
+    {
+        $returnType = '\Schematic\Model\DeleteBillingCustomerResponse';
+        $request = $this->deleteBillingCustomerRequest($billing_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteBillingCustomer'
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingCustomer'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteBillingCustomerRequest($billing_id, string $contentType = self::contentTypes['deleteBillingCustomer'][0])
+    {
+
+        // verify the required parameter 'billing_id' is set
+        if ($billing_id === null || (is_array($billing_id) && count($billing_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $billing_id when calling deleteBillingCustomer'
+            );
+        }
+
+
+        $resourcePath = '/billing/customer/{billing_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($billing_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'billing_id' . '}',
+                ObjectSerializer::toPathValue($billing_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteBillingInvoice
+     *
+     * Delete billing invoice
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingInvoice'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\DeleteBillingInvoiceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function deleteBillingInvoice($billing_id, string $contentType = self::contentTypes['deleteBillingInvoice'][0])
+    {
+        list($response) = $this->deleteBillingInvoiceWithHttpInfo($billing_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteBillingInvoiceWithHttpInfo
+     *
+     * Delete billing invoice
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingInvoice'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\DeleteBillingInvoiceResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteBillingInvoiceWithHttpInfo($billing_id, string $contentType = self::contentTypes['deleteBillingInvoice'][0])
+    {
+        $request = $this->deleteBillingInvoiceRequest($billing_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\DeleteBillingInvoiceResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\DeleteBillingInvoiceResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\DeleteBillingInvoiceResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\DeleteBillingInvoiceResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeleteBillingInvoiceResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteBillingInvoiceAsync
+     *
+     * Delete billing invoice
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingInvoice'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBillingInvoiceAsync($billing_id, string $contentType = self::contentTypes['deleteBillingInvoice'][0])
+    {
+        return $this->deleteBillingInvoiceAsyncWithHttpInfo($billing_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteBillingInvoiceAsyncWithHttpInfo
+     *
+     * Delete billing invoice
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingInvoice'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBillingInvoiceAsyncWithHttpInfo($billing_id, string $contentType = self::contentTypes['deleteBillingInvoice'][0])
+    {
+        $returnType = '\Schematic\Model\DeleteBillingInvoiceResponse';
+        $request = $this->deleteBillingInvoiceRequest($billing_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteBillingInvoice'
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBillingInvoice'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteBillingInvoiceRequest($billing_id, string $contentType = self::contentTypes['deleteBillingInvoice'][0])
+    {
+
+        // verify the required parameter 'billing_id' is set
+        if ($billing_id === null || (is_array($billing_id) && count($billing_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $billing_id when calling deleteBillingInvoice'
+            );
+        }
+
+
+        $resourcePath = '/billing/invoices/{billing_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($billing_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'billing_id' . '}',
+                ObjectSerializer::toPathValue($billing_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteBillingProduct
      *
      * Delete billing product
@@ -1465,7 +2971,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteBillingProductResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1884,6 +3390,493 @@ class BillingApi
     }
 
     /**
+     * Operation deletePaymentMethodByExternalID
+     *
+     * Delete payment method by external ID
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentMethodByExternalID'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\DeletePaymentMethodByExternalIDResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function deletePaymentMethodByExternalID($billing_id, string $contentType = self::contentTypes['deletePaymentMethodByExternalID'][0])
+    {
+        list($response) = $this->deletePaymentMethodByExternalIDWithHttpInfo($billing_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deletePaymentMethodByExternalIDWithHttpInfo
+     *
+     * Delete payment method by external ID
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentMethodByExternalID'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\DeletePaymentMethodByExternalIDResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deletePaymentMethodByExternalIDWithHttpInfo($billing_id, string $contentType = self::contentTypes['deletePaymentMethodByExternalID'][0])
+    {
+        $request = $this->deletePaymentMethodByExternalIDRequest($billing_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\DeletePaymentMethodByExternalIDResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\DeletePaymentMethodByExternalIDResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\DeletePaymentMethodByExternalIDResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\DeletePaymentMethodByExternalIDResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeletePaymentMethodByExternalIDResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deletePaymentMethodByExternalIDAsync
+     *
+     * Delete payment method by external ID
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentMethodByExternalID'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePaymentMethodByExternalIDAsync($billing_id, string $contentType = self::contentTypes['deletePaymentMethodByExternalID'][0])
+    {
+        return $this->deletePaymentMethodByExternalIDAsyncWithHttpInfo($billing_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deletePaymentMethodByExternalIDAsyncWithHttpInfo
+     *
+     * Delete payment method by external ID
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentMethodByExternalID'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePaymentMethodByExternalIDAsyncWithHttpInfo($billing_id, string $contentType = self::contentTypes['deletePaymentMethodByExternalID'][0])
+    {
+        $returnType = '\Schematic\Model\DeletePaymentMethodByExternalIDResponse';
+        $request = $this->deletePaymentMethodByExternalIDRequest($billing_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deletePaymentMethodByExternalID'
+     *
+     * @param  string $billing_id billing_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentMethodByExternalID'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deletePaymentMethodByExternalIDRequest($billing_id, string $contentType = self::contentTypes['deletePaymentMethodByExternalID'][0])
+    {
+
+        // verify the required parameter 'billing_id' is set
+        if ($billing_id === null || (is_array($billing_id) && count($billing_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $billing_id when calling deletePaymentMethodByExternalID'
+            );
+        }
+
+
+        $resourcePath = '/billing/payment-methods/{billing_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($billing_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'billing_id' . '}',
+                ObjectSerializer::toPathValue($billing_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteProductPrice
      *
      * Delete product price
@@ -1952,7 +3945,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteProductPriceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2375,11 +4368,13 @@ class BillingApi
      *
      * List billing prices
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids ids (optional)
      * @param  string $interval interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price price (optional)
      * @param  string $product_id product_id (optional)
      * @param  string[] $product_ids product_ids (optional)
@@ -2396,9 +4391,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListBillingPricesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listBillingPrices($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPrices($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
-        list($response) = $this->listBillingPricesWithHttpInfo($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        list($response) = $this->listBillingPricesWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2407,11 +4402,13 @@ class BillingApi
      *
      * List billing prices
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids (optional)
      * @param  string $interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price (optional)
      * @param  string $product_id (optional)
      * @param  string[] $product_ids (optional)
@@ -2428,9 +4425,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListBillingPricesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listBillingPricesWithHttpInfo($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPricesWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
-        $request = $this->listBillingPricesRequest($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        $request = $this->listBillingPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2467,7 +4464,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListBillingPricesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2720,11 +4717,13 @@ class BillingApi
      *
      * List billing prices
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids (optional)
      * @param  string $interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price (optional)
      * @param  string $product_id (optional)
      * @param  string[] $product_ids (optional)
@@ -2740,9 +4739,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingPricesAsync($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPricesAsync($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
-        return $this->listBillingPricesAsyncWithHttpInfo($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType)
+        return $this->listBillingPricesAsyncWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2755,11 +4754,13 @@ class BillingApi
      *
      * List billing prices
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids (optional)
      * @param  string $interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price (optional)
      * @param  string $product_id (optional)
      * @param  string[] $product_ids (optional)
@@ -2775,10 +4776,10 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingPricesAsyncWithHttpInfo($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPricesAsyncWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
         $returnType = '\Schematic\Model\ListBillingPricesResponse';
-        $request = $this->listBillingPricesRequest($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        $request = $this->listBillingPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2819,11 +4820,13 @@ class BillingApi
     /**
      * Create request for operation 'listBillingPrices'
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids (optional)
      * @param  string $interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price (optional)
      * @param  string $product_id (optional)
      * @param  string[] $product_ids (optional)
@@ -2839,25 +4842,42 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listBillingPricesRequest($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPricesRequest($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
 
+        if ($currency !== null && strlen($currency) > 3) {
+            throw new \InvalidArgumentException('invalid length for "$currency" when calling BillingApi.listBillingPrices, must be smaller than or equal to 3.');
+        }
 
 
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling BillingApi.listBillingPrices, number of items must be less than or equal to 100.');
+        }
 
         if ($interval !== null && strlen($interval) > 255) {
             throw new \InvalidArgumentException('invalid length for "$interval" when calling BillingApi.listBillingPrices, must be smaller than or equal to 255.');
         }
-        
+
+
+
+
+
+        if ($product_ids !== null && count($product_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$product_ids" when calling BillingApi.listBillingPrices, number of items must be less than or equal to 100.');
+        }
 
 
 
 
 
 
-
-
-
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listBillingPrices, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listBillingPrices, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -2868,6 +4888,15 @@ class BillingApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $currency,
+            'currency', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $for_initial_plan,
@@ -2909,6 +4938,15 @@ class BillingApi
             $is_active,
             'is_active', // param base name
             'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_id,
+            'plan_version_id', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3070,11 +5108,13 @@ class BillingApi
      *
      * List billing product prices
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids ids (optional)
      * @param  string $interval interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price price (optional)
      * @param  string $product_id product_id (optional)
      * @param  string[] $product_ids product_ids (optional)
@@ -3091,9 +5131,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListBillingProductPricesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listBillingProductPrices($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPrices($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
-        list($response) = $this->listBillingProductPricesWithHttpInfo($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        list($response) = $this->listBillingProductPricesWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3102,11 +5142,13 @@ class BillingApi
      *
      * List billing product prices
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids (optional)
      * @param  string $interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price (optional)
      * @param  string $product_id (optional)
      * @param  string[] $product_ids (optional)
@@ -3123,9 +5165,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListBillingProductPricesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listBillingProductPricesWithHttpInfo($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPricesWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
-        $request = $this->listBillingProductPricesRequest($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        $request = $this->listBillingProductPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3162,7 +5204,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListBillingProductPricesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3415,11 +5457,13 @@ class BillingApi
      *
      * List billing product prices
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids (optional)
      * @param  string $interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price (optional)
      * @param  string $product_id (optional)
      * @param  string[] $product_ids (optional)
@@ -3435,9 +5479,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingProductPricesAsync($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPricesAsync($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
-        return $this->listBillingProductPricesAsyncWithHttpInfo($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType)
+        return $this->listBillingProductPricesAsyncWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3450,11 +5494,13 @@ class BillingApi
      *
      * List billing product prices
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids (optional)
      * @param  string $interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price (optional)
      * @param  string $product_id (optional)
      * @param  string[] $product_ids (optional)
@@ -3470,10 +5516,10 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingProductPricesAsyncWithHttpInfo($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPricesAsyncWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
         $returnType = '\Schematic\Model\ListBillingProductPricesResponse';
-        $request = $this->listBillingProductPricesRequest($for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        $request = $this->listBillingProductPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3514,11 +5560,13 @@ class BillingApi
     /**
      * Create request for operation 'listBillingProductPrices'
      *
+     * @param  string $currency Filter for prices in a specific currency (e.g. usd, eur) (optional)
      * @param  bool $for_initial_plan Filter for prices valid for initial plans (free prices only) (optional)
      * @param  bool $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[] $ids (optional)
      * @param  string $interval (optional)
      * @param  bool $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
+     * @param  string $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int $price (optional)
      * @param  string $product_id (optional)
      * @param  string[] $product_ids (optional)
@@ -3534,25 +5582,42 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listBillingProductPricesRequest($for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPricesRequest($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
 
+        if ($currency !== null && strlen($currency) > 3) {
+            throw new \InvalidArgumentException('invalid length for "$currency" when calling BillingApi.listBillingProductPrices, must be smaller than or equal to 3.');
+        }
 
 
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling BillingApi.listBillingProductPrices, number of items must be less than or equal to 100.');
+        }
 
         if ($interval !== null && strlen($interval) > 255) {
             throw new \InvalidArgumentException('invalid length for "$interval" when calling BillingApi.listBillingProductPrices, must be smaller than or equal to 255.');
         }
-        
+
+
+
+
+
+        if ($product_ids !== null && count($product_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$product_ids" when calling BillingApi.listBillingProductPrices, number of items must be less than or equal to 100.');
+        }
 
 
 
 
 
 
-
-
-
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listBillingProductPrices, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listBillingProductPrices, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -3563,6 +5628,15 @@ class BillingApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $currency,
+            'currency', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $for_initial_plan,
@@ -3604,6 +5678,15 @@ class BillingApi
             $is_active,
             'is_active', // param base name
             'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_id,
+            'plan_version_id', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3771,6 +5854,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type price_usage_type (optional)
      * @param  BillingProviderType $provider_type provider_type (optional)
      * @param  string $q q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -3783,9 +5867,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListBillingProductsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listBillingProducts($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
+    public function listBillingProducts($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
     {
-        list($response) = $this->listBillingProductsWithHttpInfo($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
+        list($response) = $this->listBillingProductsWithHttpInfo($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $recurring_charges_only, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3800,6 +5884,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type (optional)
      * @param  BillingProviderType $provider_type (optional)
      * @param  string $q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -3812,9 +5897,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListBillingProductsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listBillingProductsWithHttpInfo($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
+    public function listBillingProductsWithHttpInfo($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
     {
-        $request = $this->listBillingProductsRequest($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
+        $request = $this->listBillingProductsRequest($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $recurring_charges_only, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3851,7 +5936,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListBillingProductsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4110,6 +6195,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type (optional)
      * @param  BillingProviderType $provider_type (optional)
      * @param  string $q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -4121,9 +6207,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingProductsAsync($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
+    public function listBillingProductsAsync($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
     {
-        return $this->listBillingProductsAsyncWithHttpInfo($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType)
+        return $this->listBillingProductsAsyncWithHttpInfo($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $recurring_charges_only, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4142,6 +6228,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type (optional)
      * @param  BillingProviderType $provider_type (optional)
      * @param  string $q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -4153,10 +6240,10 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingProductsAsyncWithHttpInfo($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
+    public function listBillingProductsAsyncWithHttpInfo($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
     {
         $returnType = '\Schematic\Model\ListBillingProductsResponse';
-        $request = $this->listBillingProductsRequest($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
+        $request = $this->listBillingProductsRequest($ids, $is_active, $name, $price_usage_type, $provider_type, $q, $recurring_charges_only, $with_one_time_charges, $with_prices_only, $with_zero_price, $without_linked_to_plan, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4203,6 +6290,7 @@ class BillingApi
      * @param  BillingPriceUsageType $price_usage_type (optional)
      * @param  BillingProviderType $provider_type (optional)
      * @param  string $q (optional)
+     * @param  bool $recurring_charges_only Filter to products that have at least one recurring price (optional)
      * @param  bool $with_one_time_charges Filter products that are one time charges (optional)
      * @param  bool $with_prices_only Filter products that have prices (optional)
      * @param  bool $with_zero_price Filter products that have zero price for free subscription type (optional)
@@ -4214,25 +6302,35 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listBillingProductsRequest($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
+    public function listBillingProductsRequest($ids = null, $is_active = null, $name = null, $price_usage_type = null, $provider_type = null, $q = null, $recurring_charges_only = null, $with_one_time_charges = null, $with_prices_only = null, $with_zero_price = null, $without_linked_to_plan = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProducts'][0])
     {
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling BillingApi.listBillingProducts, number of items must be less than or equal to 100.');
+        }
 
 
         if ($name !== null && strlen($name) > 255) {
             throw new \InvalidArgumentException('invalid length for "$name" when calling BillingApi.listBillingProducts, must be smaller than or equal to 255.');
         }
-        
+
 
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling BillingApi.listBillingProducts, must be smaller than or equal to 512.');
         }
-        
 
 
 
 
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listBillingProducts, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listBillingProducts, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -4293,6 +6391,15 @@ class BillingApi
             $q,
             'q', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $recurring_charges_only,
+            'recurring_charges_only', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -4488,7 +6595,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListCouponsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4832,6 +6939,12 @@ class BillingApi
 
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listCoupons, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listCoupons, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -5019,7 +7132,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListCustomersWithSubscriptionsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5367,16 +7480,25 @@ class BillingApi
     public function listCustomersWithSubscriptionsRequest($company_ids = null, $name = null, $provider_type = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomersWithSubscriptions'][0])
     {
 
+        if ($company_ids !== null && count($company_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$company_ids" when calling BillingApi.listCustomersWithSubscriptions, number of items must be less than or equal to 100.');
+        }
 
         if ($name !== null && strlen($name) > 255) {
             throw new \InvalidArgumentException('invalid length for "$name" when calling BillingApi.listCustomersWithSubscriptions, must be smaller than or equal to 255.');
         }
-        
+
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling BillingApi.listCustomersWithSubscriptions, must be smaller than or equal to 512.');
         }
-        
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listCustomersWithSubscriptions, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listCustomersWithSubscriptions, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -5580,7 +7702,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListInvoicesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5934,7 +8056,7 @@ class BillingApi
         if (strlen($customer_external_id) > 255) {
             throw new \InvalidArgumentException('invalid length for "$customer_external_id" when calling BillingApi.listInvoices, must be smaller than or equal to 255.');
         }
-        
+
         // verify the required parameter 'subscription_external_id' is set
         if ($subscription_external_id === null || (is_array($subscription_external_id) && count($subscription_external_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -5944,8 +8066,14 @@ class BillingApi
         if (strlen($subscription_external_id) > 255) {
             throw new \InvalidArgumentException('invalid length for "$subscription_external_id" when calling BillingApi.listInvoices, must be smaller than or equal to 255.');
         }
-        
 
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listInvoices, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listInvoices, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -6136,7 +8264,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListMetersResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -6478,7 +8606,13 @@ class BillingApi
         if ($display_name !== null && strlen($display_name) > 255) {
             throw new \InvalidArgumentException('invalid length for "$display_name" when calling BillingApi.listMeters, must be smaller than or equal to 255.');
         }
-        
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listMeters, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listMeters, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -6653,7 +8787,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListPaymentMethodsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -7004,8 +9138,14 @@ class BillingApi
         if (strlen($customer_external_id) > 255) {
             throw new \InvalidArgumentException('invalid length for "$customer_external_id" when calling BillingApi.listPaymentMethods, must be smaller than or equal to 255.');
         }
-        
 
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listPaymentMethods, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listPaymentMethods, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -7183,7 +9323,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\UpsertBillingCouponResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -7669,7 +9809,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\UpsertBillingCustomerResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8155,7 +10295,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\UpsertBillingMeterResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8641,7 +10781,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\UpsertBillingPriceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -9127,7 +11267,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\UpsertBillingProductResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -9613,7 +11753,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\UpsertBillingSubscriptionResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -10099,7 +12239,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\UpsertInvoiceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -10585,7 +12725,7 @@ class BillingApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\UpsertPaymentMethodResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

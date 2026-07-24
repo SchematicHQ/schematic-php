@@ -61,8 +61,7 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => '\Schematic\Model\BillingProductPlanResponseData',
         'credit_grants' => '\Schematic\Model\BillingPlanCreditGrantResponseData[]',
         'entitlements' => '\Schematic\Model\PlanEntitlementResponseData[]',
-        'plan' => '\Schematic\Model\PlanResponseData',
-        'traits' => '\Schematic\Model\PlanTraitResponseData[]'
+        'plan' => '\Schematic\Model\PlanResponseData'
     ];
 
     /**
@@ -76,8 +75,7 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => null,
         'credit_grants' => null,
         'entitlements' => null,
-        'plan' => null,
-        'traits' => null
+        'plan' => null
     ];
 
     /**
@@ -89,8 +87,7 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => false,
         'credit_grants' => false,
         'entitlements' => false,
-        'plan' => false,
-        'traits' => false
+        'plan' => false
     ];
 
     /**
@@ -182,8 +179,7 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => 'billing_product',
         'credit_grants' => 'credit_grants',
         'entitlements' => 'entitlements',
-        'plan' => 'plan',
-        'traits' => 'traits'
+        'plan' => 'plan'
     ];
 
     /**
@@ -195,8 +191,7 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => 'setBillingProduct',
         'credit_grants' => 'setCreditGrants',
         'entitlements' => 'setEntitlements',
-        'plan' => 'setPlan',
-        'traits' => 'setTraits'
+        'plan' => 'setPlan'
     ];
 
     /**
@@ -208,8 +203,7 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => 'getBillingProduct',
         'credit_grants' => 'getCreditGrants',
         'entitlements' => 'getEntitlements',
-        'plan' => 'getPlan',
-        'traits' => 'getTraits'
+        'plan' => 'getPlan'
     ];
 
     /**
@@ -273,7 +267,6 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('credit_grants', $data ?? [], null);
         $this->setIfExists('entitlements', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
-        $this->setIfExists('traits', $data ?? [], null);
     }
 
     /**
@@ -302,6 +295,14 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['credit_grants']) && (count($this->container['credit_grants']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credit_grants', number of items must be less than or equal to 1000.";
+        }
+
+        if (!is_null($this->container['entitlements']) && (count($this->container['entitlements']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 1000.";
+        }
 
         return $invalidProperties;
     }
@@ -367,6 +368,10 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if (is_null($credit_grants)) {
             throw new \InvalidArgumentException('non-nullable credit_grants cannot be null');
         }
+
+        if ((count($credit_grants) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credit_grants when calling PlanBundleResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['credit_grants'] = $credit_grants;
 
         return $this;
@@ -393,6 +398,10 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($entitlements)) {
             throw new \InvalidArgumentException('non-nullable entitlements cannot be null');
+        }
+
+        if ((count($entitlements) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $entitlements when calling PlanBundleResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['entitlements'] = $entitlements;
 
@@ -422,33 +431,6 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
         }
         $this->container['plan'] = $plan;
-
-        return $this;
-    }
-
-    /**
-     * Gets traits
-     *
-     * @return \Schematic\Model\PlanTraitResponseData[]|null
-     */
-    public function getTraits()
-    {
-        return $this->container['traits'];
-    }
-
-    /**
-     * Sets traits
-     *
-     * @param \Schematic\Model\PlanTraitResponseData[]|null $traits traits
-     *
-     * @return self
-     */
-    public function setTraits($traits)
-    {
-        if (is_null($traits)) {
-            throw new \InvalidArgumentException('non-nullable traits cannot be null');
-        }
-        $this->container['traits'] = $traits;
 
         return $this;
     }
@@ -516,7 +498,7 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

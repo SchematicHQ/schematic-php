@@ -216,15 +216,6 @@ class ConditionResponseDataTest extends TestCase
     }
 
     /**
-     * Test attribute "plan_version_id"
-     */
-    public function testPropertyPlanVersionId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "resource_unspecified_ids"
      */
     public function testPropertyResourceUnspecifiedIds()

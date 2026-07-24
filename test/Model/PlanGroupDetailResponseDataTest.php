@@ -108,6 +108,15 @@ class PlanGroupDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "custom_checkout_fields"
+     */
+    public function testPropertyCustomCheckoutFields()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "custom_plan_config"
      */
     public function testPropertyCustomPlanConfig()

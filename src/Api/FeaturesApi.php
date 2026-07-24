@@ -120,6 +120,9 @@ class FeaturesApi
         'updateFlagRules' => [
             'application/json',
         ],
+        'upsertFeatureForBillingProduct' => [
+            'application/json',
+        ],
     ];
 
     /**
@@ -239,7 +242,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CheckFlagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -743,7 +746,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CheckFlagsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1229,7 +1232,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CheckFlagsBulkResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1651,12 +1654,14 @@ class FeaturesApi
      *
      * Count features
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFeatures'] to see the possible values for this operation
@@ -1665,9 +1670,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountFeaturesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countFeatures($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
+    public function countFeatures($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
     {
-        list($response) = $this->countFeaturesWithHttpInfo($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset, $contentType);
+        list($response) = $this->countFeaturesWithHttpInfo($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -1676,12 +1681,14 @@ class FeaturesApi
      *
      * Count features
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFeatures'] to see the possible values for this operation
@@ -1690,9 +1697,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountFeaturesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countFeaturesWithHttpInfo($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
+    public function countFeaturesWithHttpInfo($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
     {
-        $request = $this->countFeaturesRequest($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset, $contentType);
+        $request = $this->countFeaturesRequest($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1729,7 +1736,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountFeaturesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1982,12 +1989,14 @@ class FeaturesApi
      *
      * Count features
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFeatures'] to see the possible values for this operation
@@ -1995,9 +2004,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFeaturesAsync($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
+    public function countFeaturesAsync($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
     {
-        return $this->countFeaturesAsyncWithHttpInfo($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset, $contentType)
+        return $this->countFeaturesAsyncWithHttpInfo($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2010,12 +2019,14 @@ class FeaturesApi
      *
      * Count features
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFeatures'] to see the possible values for this operation
@@ -2023,10 +2034,10 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countFeaturesAsyncWithHttpInfo($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
+    public function countFeaturesAsyncWithHttpInfo($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
     {
         $returnType = '\Schematic\Model\CountFeaturesResponse';
-        $request = $this->countFeaturesRequest($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset, $contentType);
+        $request = $this->countFeaturesRequest($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2067,12 +2078,14 @@ class FeaturesApi
     /**
      * Create request for operation 'countFeatures'
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countFeatures'] to see the possible values for this operation
@@ -2080,18 +2093,32 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countFeaturesRequest($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
+    public function countFeaturesRequest($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countFeatures'][0])
     {
+
+
+        if ($feature_type !== null && count($feature_type) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$feature_type" when calling FeaturesApi.countFeatures, number of items must be less than or equal to 100.');
+        }
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling FeaturesApi.countFeatures, number of items must be less than or equal to 100.');
+        }
+
 
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling FeaturesApi.countFeatures, must be smaller than or equal to 512.');
         }
-        
 
 
 
-
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling FeaturesApi.countFeatures, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling FeaturesApi.countFeatures, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -2104,9 +2131,45 @@ class FeaturesApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $boolean_require_event,
+            'boolean_require_event', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $feature_type,
+            'feature_type', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $ids,
             'ids', // param base name
             'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $managed_by,
+            'managed_by', // param base name
+            'BillingProviderType', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_id,
+            'plan_version_id', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -2134,24 +2197,6 @@ class FeaturesApi
             $without_plan_entitlement_for,
             'without_plan_entitlement_for', // param base name
             'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $feature_type,
-            'feature_type', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $boolean_require_event,
-            'boolean_require_event', // param base name
-            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -2313,7 +2358,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountFlagsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2659,11 +2704,20 @@ class FeaturesApi
     {
 
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling FeaturesApi.countFlags, number of items must be less than or equal to 100.');
+        }
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling FeaturesApi.countFlags, must be smaller than or equal to 512.');
         }
-        
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling FeaturesApi.countFlags, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling FeaturesApi.countFlags, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -2850,7 +2904,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateFeatureResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3336,7 +3390,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateFlagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3822,7 +3876,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteFeatureResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4309,7 +4363,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteFlagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4796,7 +4850,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetFeatureResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5248,7 +5302,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetFlagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5636,12 +5690,14 @@ class FeaturesApi
      *
      * List features
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -5650,9 +5706,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListFeaturesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listFeatures($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeatures($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-        list($response) = $this->listFeaturesWithHttpInfo($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset, $contentType);
+        list($response) = $this->listFeaturesWithHttpInfo($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -5661,12 +5717,14 @@ class FeaturesApi
      *
      * List features
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -5675,9 +5733,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListFeaturesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listFeaturesWithHttpInfo($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesWithHttpInfo($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-        $request = $this->listFeaturesRequest($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset, $contentType);
+        $request = $this->listFeaturesRequest($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5714,7 +5772,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListFeaturesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5967,12 +6025,14 @@ class FeaturesApi
      *
      * List features
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -5980,9 +6040,9 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFeaturesAsync($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesAsync($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
-        return $this->listFeaturesAsyncWithHttpInfo($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset, $contentType)
+        return $this->listFeaturesAsyncWithHttpInfo($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5995,12 +6055,14 @@ class FeaturesApi
      *
      * List features
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -6008,10 +6070,10 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listFeaturesAsyncWithHttpInfo($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesAsyncWithHttpInfo($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
         $returnType = '\Schematic\Model\ListFeaturesResponse';
-        $request = $this->listFeaturesRequest($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset, $contentType);
+        $request = $this->listFeaturesRequest($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6052,12 +6114,14 @@ class FeaturesApi
     /**
      * Create request for operation 'listFeatures'
      *
+     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
+     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
      * @param  string[] $ids (optional)
+     * @param  \Schematic\Model\BillingProviderType $managed_by Filter for features managed by a billing provider, or by Schematic (no billing provider) (optional)
+     * @param  string $plan_version_id Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used (optional)
      * @param  string $q Search by feature name or ID (optional)
      * @param  string $without_company_override_for Filter out features that already have a company override for the specified company ID (optional)
      * @param  string $without_plan_entitlement_for Filter out features that already have a plan entitlement for the specified plan ID (optional)
-     * @param  \Schematic\Model\FeatureType[] $feature_type Filter by one or more feature types (boolean, event, trait) (optional)
-     * @param  bool $boolean_require_event Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listFeatures'] to see the possible values for this operation
@@ -6065,18 +6129,32 @@ class FeaturesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listFeaturesRequest($ids = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $feature_type = null, $boolean_require_event = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
+    public function listFeaturesRequest($boolean_require_event = null, $feature_type = null, $ids = null, $managed_by = null, $plan_version_id = null, $q = null, $without_company_override_for = null, $without_plan_entitlement_for = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listFeatures'][0])
     {
+
+
+        if ($feature_type !== null && count($feature_type) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$feature_type" when calling FeaturesApi.listFeatures, number of items must be less than or equal to 100.');
+        }
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling FeaturesApi.listFeatures, number of items must be less than or equal to 100.');
+        }
+
 
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling FeaturesApi.listFeatures, must be smaller than or equal to 512.');
         }
-        
 
 
 
-
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling FeaturesApi.listFeatures, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling FeaturesApi.listFeatures, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -6089,9 +6167,45 @@ class FeaturesApi
 
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $boolean_require_event,
+            'boolean_require_event', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $feature_type,
+            'feature_type', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $ids,
             'ids', // param base name
             'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $managed_by,
+            'managed_by', // param base name
+            'BillingProviderType', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_id,
+            'plan_version_id', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -6119,24 +6233,6 @@ class FeaturesApi
             $without_plan_entitlement_for,
             'without_plan_entitlement_for', // param base name
             'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $feature_type,
-            'feature_type', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $boolean_require_event,
-            'boolean_require_event', // param base name
-            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -6298,7 +6394,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListFlagsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -6644,11 +6740,20 @@ class FeaturesApi
     {
 
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling FeaturesApi.listFlags, number of items must be less than or equal to 100.');
+        }
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling FeaturesApi.listFlags, must be smaller than or equal to 512.');
         }
-        
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling FeaturesApi.listFlags, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling FeaturesApi.listFlags, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -6837,7 +6942,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateFeatureResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -7343,7 +7448,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateFlagResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -7849,7 +7954,7 @@ class FeaturesApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateFlagRulesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8278,6 +8383,492 @@ class FeaturesApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation upsertFeatureForBillingProduct
+     *
+     * Upsert feature for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedFeatureRequestBody $create_billing_linked_feature_request_body create_billing_linked_feature_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertFeatureForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\UpsertFeatureForBillingProductResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function upsertFeatureForBillingProduct($create_billing_linked_feature_request_body, string $contentType = self::contentTypes['upsertFeatureForBillingProduct'][0])
+    {
+        list($response) = $this->upsertFeatureForBillingProductWithHttpInfo($create_billing_linked_feature_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation upsertFeatureForBillingProductWithHttpInfo
+     *
+     * Upsert feature for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedFeatureRequestBody $create_billing_linked_feature_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertFeatureForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\UpsertFeatureForBillingProductResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function upsertFeatureForBillingProductWithHttpInfo($create_billing_linked_feature_request_body, string $contentType = self::contentTypes['upsertFeatureForBillingProduct'][0])
+    {
+        $request = $this->upsertFeatureForBillingProductRequest($create_billing_linked_feature_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 201:
+                    if ('\Schematic\Model\UpsertFeatureForBillingProductResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\UpsertFeatureForBillingProductResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\UpsertFeatureForBillingProductResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\UpsertFeatureForBillingProductResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\UpsertFeatureForBillingProductResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation upsertFeatureForBillingProductAsync
+     *
+     * Upsert feature for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedFeatureRequestBody $create_billing_linked_feature_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertFeatureForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function upsertFeatureForBillingProductAsync($create_billing_linked_feature_request_body, string $contentType = self::contentTypes['upsertFeatureForBillingProduct'][0])
+    {
+        return $this->upsertFeatureForBillingProductAsyncWithHttpInfo($create_billing_linked_feature_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation upsertFeatureForBillingProductAsyncWithHttpInfo
+     *
+     * Upsert feature for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedFeatureRequestBody $create_billing_linked_feature_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertFeatureForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function upsertFeatureForBillingProductAsyncWithHttpInfo($create_billing_linked_feature_request_body, string $contentType = self::contentTypes['upsertFeatureForBillingProduct'][0])
+    {
+        $returnType = '\Schematic\Model\UpsertFeatureForBillingProductResponse';
+        $request = $this->upsertFeatureForBillingProductRequest($create_billing_linked_feature_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'upsertFeatureForBillingProduct'
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedFeatureRequestBody $create_billing_linked_feature_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertFeatureForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function upsertFeatureForBillingProductRequest($create_billing_linked_feature_request_body, string $contentType = self::contentTypes['upsertFeatureForBillingProduct'][0])
+    {
+
+        // verify the required parameter 'create_billing_linked_feature_request_body' is set
+        if ($create_billing_linked_feature_request_body === null || (is_array($create_billing_linked_feature_request_body) && count($create_billing_linked_feature_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_billing_linked_feature_request_body when calling upsertFeatureForBillingProduct'
+            );
+        }
+
+
+        $resourcePath = '/features/billing-linked';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($create_billing_linked_feature_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_billing_linked_feature_request_body));
+            } else {
+                $httpBody = $create_billing_linked_feature_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

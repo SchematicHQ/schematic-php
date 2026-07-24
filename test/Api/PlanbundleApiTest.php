@@ -73,6 +73,18 @@ class PlanbundleApiTest extends TestCase
     }
 
     /**
+     * Test case for createCustomPlanBundle
+     *
+     * Create custom plan bundle.
+     *
+     */
+    public function testCreateCustomPlanBundle()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createPlanBundle
      *
      * Create plan bundle.

@@ -109,6 +109,18 @@ class CheckoutApiTest extends TestCase
     }
 
     /**
+     * Test case for getCompanyBillingDetails
+     *
+     * Get company billing details.
+     *
+     */
+    public function testGetCompanyBillingDetails()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for managePlan
      *
      * Manage plan.
@@ -139,6 +151,18 @@ class CheckoutApiTest extends TestCase
      *
      */
     public function testPreviewManagePlan()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateCompanyBillingDetails
+     *
+     * Update company billing details.
+     *
+     */
+    public function testUpdateCompanyBillingDetails()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

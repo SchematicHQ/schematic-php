@@ -59,13 +59,17 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPITypes = [
         'billing_product_id' => 'string',
+        'billing_strategy' => '\Schematic\Model\BillingStrategy',
         'charge_type' => '\Schematic\Model\ChargeType',
         'currency' => 'string',
+        'currency_prices' => '\Schematic\Model\PlanCurrencyPriceRequestBody[]',
         'is_trialable' => 'bool',
         'monthly_price' => 'int',
         'monthly_price_id' => 'string',
         'one_time_price' => 'int',
         'one_time_price_id' => 'string',
+        'quarterly_price' => 'int',
+        'quarterly_price_id' => 'string',
         'trial_days' => 'int',
         'yearly_price' => 'int',
         'yearly_price_id' => 'string'
@@ -80,15 +84,19 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
       */
     protected static $openAPIFormats = [
         'billing_product_id' => null,
+        'billing_strategy' => null,
         'charge_type' => null,
         'currency' => null,
+        'currency_prices' => null,
         'is_trialable' => null,
-        'monthly_price' => null,
+        'monthly_price' => 'int64',
         'monthly_price_id' => null,
-        'one_time_price' => null,
+        'one_time_price' => 'int64',
         'one_time_price_id' => null,
-        'trial_days' => null,
-        'yearly_price' => null,
+        'quarterly_price' => 'int64',
+        'quarterly_price_id' => null,
+        'trial_days' => 'int64',
+        'yearly_price' => 'int64',
         'yearly_price_id' => null
     ];
 
@@ -99,13 +107,17 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
       */
     protected static array $openAPINullables = [
         'billing_product_id' => true,
+        'billing_strategy' => true,
         'charge_type' => false,
         'currency' => true,
+        'currency_prices' => true,
         'is_trialable' => false,
         'monthly_price' => true,
         'monthly_price_id' => true,
         'one_time_price' => true,
         'one_time_price_id' => true,
+        'quarterly_price' => true,
+        'quarterly_price_id' => true,
         'trial_days' => true,
         'yearly_price' => true,
         'yearly_price_id' => true
@@ -198,13 +210,17 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
      */
     protected static $attributeMap = [
         'billing_product_id' => 'billing_product_id',
+        'billing_strategy' => 'billing_strategy',
         'charge_type' => 'charge_type',
         'currency' => 'currency',
+        'currency_prices' => 'currency_prices',
         'is_trialable' => 'is_trialable',
         'monthly_price' => 'monthly_price',
         'monthly_price_id' => 'monthly_price_id',
         'one_time_price' => 'one_time_price',
         'one_time_price_id' => 'one_time_price_id',
+        'quarterly_price' => 'quarterly_price',
+        'quarterly_price_id' => 'quarterly_price_id',
         'trial_days' => 'trial_days',
         'yearly_price' => 'yearly_price',
         'yearly_price_id' => 'yearly_price_id'
@@ -217,13 +233,17 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
      */
     protected static $setters = [
         'billing_product_id' => 'setBillingProductId',
+        'billing_strategy' => 'setBillingStrategy',
         'charge_type' => 'setChargeType',
         'currency' => 'setCurrency',
+        'currency_prices' => 'setCurrencyPrices',
         'is_trialable' => 'setIsTrialable',
         'monthly_price' => 'setMonthlyPrice',
         'monthly_price_id' => 'setMonthlyPriceId',
         'one_time_price' => 'setOneTimePrice',
         'one_time_price_id' => 'setOneTimePriceId',
+        'quarterly_price' => 'setQuarterlyPrice',
+        'quarterly_price_id' => 'setQuarterlyPriceId',
         'trial_days' => 'setTrialDays',
         'yearly_price' => 'setYearlyPrice',
         'yearly_price_id' => 'setYearlyPriceId'
@@ -236,13 +256,17 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
      */
     protected static $getters = [
         'billing_product_id' => 'getBillingProductId',
+        'billing_strategy' => 'getBillingStrategy',
         'charge_type' => 'getChargeType',
         'currency' => 'getCurrency',
+        'currency_prices' => 'getCurrencyPrices',
         'is_trialable' => 'getIsTrialable',
         'monthly_price' => 'getMonthlyPrice',
         'monthly_price_id' => 'getMonthlyPriceId',
         'one_time_price' => 'getOneTimePrice',
         'one_time_price_id' => 'getOneTimePriceId',
+        'quarterly_price' => 'getQuarterlyPrice',
+        'quarterly_price_id' => 'getQuarterlyPriceId',
         'trial_days' => 'getTrialDays',
         'yearly_price' => 'getYearlyPrice',
         'yearly_price_id' => 'getYearlyPriceId'
@@ -306,13 +330,17 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
     public function __construct(array $data = null)
     {
         $this->setIfExists('billing_product_id', $data ?? [], null);
+        $this->setIfExists('billing_strategy', $data ?? [], null);
         $this->setIfExists('charge_type', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('is_trialable', $data ?? [], null);
         $this->setIfExists('monthly_price', $data ?? [], null);
         $this->setIfExists('monthly_price_id', $data ?? [], null);
         $this->setIfExists('one_time_price', $data ?? [], null);
         $this->setIfExists('one_time_price_id', $data ?? [], null);
+        $this->setIfExists('quarterly_price', $data ?? [], null);
+        $this->setIfExists('quarterly_price_id', $data ?? [], null);
         $this->setIfExists('trial_days', $data ?? [], null);
         $this->setIfExists('yearly_price', $data ?? [], null);
         $this->setIfExists('yearly_price_id', $data ?? [], null);
@@ -348,6 +376,10 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
         if ($this->container['charge_type'] === null) {
             $invalidProperties[] = "'charge_type' can't be null";
         }
+        if (!is_null($this->container['currency_prices']) && (count($this->container['currency_prices']) > 50)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 50.";
+        }
+
         if ($this->container['is_trialable'] === null) {
             $invalidProperties[] = "'is_trialable' can't be null";
         }
@@ -389,13 +421,47 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'billing_product_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_product_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_product_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['billing_product_id'] = $billing_product_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_strategy
+     *
+     * @return \Schematic\Model\BillingStrategy|null
+     */
+    public function getBillingStrategy()
+    {
+        return $this->container['billing_strategy'];
+    }
+
+    /**
+     * Sets billing_strategy
+     *
+     * @param \Schematic\Model\BillingStrategy|null $billing_strategy billing_strategy
+     *
+     * @return self
+     */
+    public function setBillingStrategy($billing_strategy)
+    {
+        if (is_null($billing_strategy)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_strategy');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_strategy', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_strategy'] = $billing_strategy;
 
         return $this;
     }
@@ -450,13 +516,51 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'currency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\PlanCurrencyPriceRequestBody[]|null
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\PlanCurrencyPriceRequestBody[]|null $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            array_push($this->openAPINullablesSetToNull, 'currency_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency_prices', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($currency_prices) && (count($currency_prices) > 50)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling UpsertBillingProductRequestBody., number of items must be less than or equal to 50.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
 
         return $this;
     }
@@ -511,8 +615,8 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'monthly_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -545,8 +649,8 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'monthly_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -579,8 +683,8 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'one_time_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('one_time_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('one_time_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -613,13 +717,81 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'one_time_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('one_time_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('one_time_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['one_time_price_id'] = $one_time_price_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_price
+     *
+     * @return int|null
+     */
+    public function getQuarterlyPrice()
+    {
+        return $this->container['quarterly_price'];
+    }
+
+    /**
+     * Sets quarterly_price
+     *
+     * @param int|null $quarterly_price quarterly_price
+     *
+     * @return self
+     */
+    public function setQuarterlyPrice($quarterly_price)
+    {
+        if (is_null($quarterly_price)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_price');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_price', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['quarterly_price'] = $quarterly_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_price_id
+     *
+     * @return string|null
+     */
+    public function getQuarterlyPriceId()
+    {
+        return $this->container['quarterly_price_id'];
+    }
+
+    /**
+     * Sets quarterly_price_id
+     *
+     * @param string|null $quarterly_price_id quarterly_price_id
+     *
+     * @return self
+     */
+    public function setQuarterlyPriceId($quarterly_price_id)
+    {
+        if (is_null($quarterly_price_id)) {
+            array_push($this->openAPINullablesSetToNull, 'quarterly_price_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('quarterly_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['quarterly_price_id'] = $quarterly_price_id;
 
         return $this;
     }
@@ -647,8 +819,8 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'trial_days');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_days', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_days', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -681,8 +853,8 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'yearly_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -715,8 +887,8 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'yearly_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -789,7 +961,7 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

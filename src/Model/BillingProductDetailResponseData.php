@@ -90,13 +90,13 @@ class BillingProductDetailResponseData implements ModelInterface, ArrayAccess, \
         'external_id' => null,
         'is_active' => null,
         'name' => null,
-        'price' => null,
+        'price' => 'double',
         'price_decimal' => null,
         'prices' => null,
         'product_id' => null,
         'provider_type' => null,
-        'quantity' => null,
-        'subscription_count' => null,
+        'quantity' => 'double',
+        'subscription_count' => 'int64',
         'updated_at' => 'date-time'
     ];
 
@@ -397,6 +397,10 @@ class BillingProductDetailResponseData implements ModelInterface, ArrayAccess, \
         if ($this->container['prices'] === null) {
             $invalidProperties[] = "'prices' can't be null";
         }
+        if ((count($this->container['prices']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'prices', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['product_id'] === null) {
             $invalidProperties[] = "'product_id' can't be null";
         }
@@ -506,8 +510,8 @@ class BillingProductDetailResponseData implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'currency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -675,8 +679,8 @@ class BillingProductDetailResponseData implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -707,6 +711,10 @@ class BillingProductDetailResponseData implements ModelInterface, ArrayAccess, \
     {
         if (is_null($prices)) {
             throw new \InvalidArgumentException('non-nullable prices cannot be null');
+        }
+
+        if ((count($prices) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $prices when calling BillingProductDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['prices'] = $prices;
 
@@ -911,7 +919,7 @@ class BillingProductDetailResponseData implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -85,12 +85,36 @@ class DataexportsApiTest extends TestCase
     }
 
     /**
+     * Test case for getDataExport
+     *
+     * Get data export.
+     *
+     */
+    public function testGetDataExport()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getDataExportArtifact
      *
      * Get data export artifact.
      *
      */
     public function testGetDataExportArtifact()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for listDataExports
+     *
+     * List data exports.
+     *
+     */
+    public function testListDataExports()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -13,7 +13,8 @@ Name | Type | Description | Notes
 **id** | **string** |  |
 **key** | **string** |  |
 **last_checked_at** | **\DateTime** |  | [optional]
-**maintainer_id** | **string** |  | [optional]
+**maintainer** | [**\Schematic\Model\AccountMemberResponseData**](AccountMemberResponseData.md) |  | [optional]
+**maintainer_account_member_id** | **string** |  | [optional]
 **name** | **string** |  |
 **rules** | [**\Schematic\Model\RuleDetailResponseData[]**](RuleDetailResponseData.md) |  |
 **updated_at** | **\DateTime** |  |

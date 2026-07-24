@@ -90,6 +90,24 @@ class ChangeSubscriptionInternalRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "auto_topup_overrides"
+     */
+    public function testPropertyAutoTopupOverrides()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_entity_id"
+     */
+    public function testPropertyBillingEntityId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "company_id"
      */
     public function testPropertyCompanyId()
@@ -117,6 +135,15 @@ class ChangeSubscriptionInternalRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "custom_field_values"
+     */
+    public function testPropertyCustomFieldValues()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "new_plan_id"
      */
     public function testPropertyNewPlanId()
@@ -129,6 +156,15 @@ class ChangeSubscriptionInternalRequestBodyTest extends TestCase
      * Test attribute "new_price_id"
      */
     public function testPropertyNewPriceId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "opt_in_accepted"
+     */
+    public function testPropertyOptInAccepted()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -162,6 +162,15 @@ class InvoiceResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "ending_balance"
+     */
+    public function testPropertyEndingBalance()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "environment_id"
      */
     public function testPropertyEnvironmentId()
@@ -201,6 +210,24 @@ class InvoiceResponseDataTest extends TestCase
      * Test attribute "provider_type"
      */
     public function testPropertyProviderType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "starting_balance"
+     */
+    public function testPropertyStartingBalance()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "status"
+     */
+    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

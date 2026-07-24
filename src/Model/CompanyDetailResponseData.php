@@ -63,6 +63,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'billing_subscription' => '\Schematic\Model\BillingSubscriptionView',
         'billing_subscriptions' => '\Schematic\Model\BillingSubscriptionView[]',
         'created_at' => '\DateTime',
+        'custom_plan_billings' => '\Schematic\Model\CustomPlanBillingResponseData[]',
         'default_payment_method' => '\Schematic\Model\PaymentMethodResponseData',
         'entitlements' => '\Schematic\Model\FeatureEntitlement[]',
         'entity_traits' => '\Schematic\Model\EntityTraitDetailResponseData[]',
@@ -77,6 +78,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'plan' => '\Schematic\Model\CompanyPlanWithBillingSubView',
         'plans' => '\Schematic\Model\GenericPreviewObject[]',
         'rules' => '\Schematic\Model\Rule[]',
+        'scheduled_downgrade' => '\Schematic\Model\ScheduledDowngradeResponseData',
         'traits' => 'object',
         'updated_at' => '\DateTime',
         'user_count' => 'int'
@@ -91,10 +93,11 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPIFormats = [
         'add_ons' => null,
-        'billing_credit_balances' => null,
+        'billing_credit_balances' => 'double',
         'billing_subscription' => null,
         'billing_subscriptions' => null,
         'created_at' => 'date-time',
+        'custom_plan_billings' => null,
         'default_payment_method' => null,
         'entitlements' => null,
         'entity_traits' => null,
@@ -109,9 +112,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'plan' => null,
         'plans' => null,
         'rules' => null,
+        'scheduled_downgrade' => null,
         'traits' => null,
         'updated_at' => 'date-time',
-        'user_count' => null
+        'user_count' => 'int64'
     ];
 
     /**
@@ -125,6 +129,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'billing_subscription' => false,
         'billing_subscriptions' => false,
         'created_at' => false,
+        'custom_plan_billings' => false,
         'default_payment_method' => false,
         'entitlements' => false,
         'entity_traits' => false,
@@ -139,6 +144,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'plan' => false,
         'plans' => false,
         'rules' => false,
+        'scheduled_downgrade' => false,
         'traits' => false,
         'updated_at' => false,
         'user_count' => false
@@ -235,6 +241,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'billing_subscription' => 'billing_subscription',
         'billing_subscriptions' => 'billing_subscriptions',
         'created_at' => 'created_at',
+        'custom_plan_billings' => 'custom_plan_billings',
         'default_payment_method' => 'default_payment_method',
         'entitlements' => 'entitlements',
         'entity_traits' => 'entity_traits',
@@ -249,6 +256,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'plan' => 'plan',
         'plans' => 'plans',
         'rules' => 'rules',
+        'scheduled_downgrade' => 'scheduled_downgrade',
         'traits' => 'traits',
         'updated_at' => 'updated_at',
         'user_count' => 'user_count'
@@ -265,6 +273,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'billing_subscription' => 'setBillingSubscription',
         'billing_subscriptions' => 'setBillingSubscriptions',
         'created_at' => 'setCreatedAt',
+        'custom_plan_billings' => 'setCustomPlanBillings',
         'default_payment_method' => 'setDefaultPaymentMethod',
         'entitlements' => 'setEntitlements',
         'entity_traits' => 'setEntityTraits',
@@ -279,6 +288,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'plan' => 'setPlan',
         'plans' => 'setPlans',
         'rules' => 'setRules',
+        'scheduled_downgrade' => 'setScheduledDowngrade',
         'traits' => 'setTraits',
         'updated_at' => 'setUpdatedAt',
         'user_count' => 'setUserCount'
@@ -295,6 +305,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'billing_subscription' => 'getBillingSubscription',
         'billing_subscriptions' => 'getBillingSubscriptions',
         'created_at' => 'getCreatedAt',
+        'custom_plan_billings' => 'getCustomPlanBillings',
         'default_payment_method' => 'getDefaultPaymentMethod',
         'entitlements' => 'getEntitlements',
         'entity_traits' => 'getEntityTraits',
@@ -309,6 +320,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'plan' => 'getPlan',
         'plans' => 'getPlans',
         'rules' => 'getRules',
+        'scheduled_downgrade' => 'getScheduledDowngrade',
         'traits' => 'getTraits',
         'updated_at' => 'getUpdatedAt',
         'user_count' => 'getUserCount'
@@ -376,6 +388,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('billing_subscription', $data ?? [], null);
         $this->setIfExists('billing_subscriptions', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('custom_plan_billings', $data ?? [], null);
         $this->setIfExists('default_payment_method', $data ?? [], null);
         $this->setIfExists('entitlements', $data ?? [], null);
         $this->setIfExists('entity_traits', $data ?? [], null);
@@ -390,6 +403,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('plan', $data ?? [], null);
         $this->setIfExists('plans', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
+        $this->setIfExists('scheduled_downgrade', $data ?? [], null);
         $this->setIfExists('traits', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('user_count', $data ?? [], null);
@@ -425,18 +439,41 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['add_ons'] === null) {
             $invalidProperties[] = "'add_ons' can't be null";
         }
+        if ((count($this->container['add_ons']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'add_ons', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['billing_subscriptions'] === null) {
             $invalidProperties[] = "'billing_subscriptions' can't be null";
         }
+        if ((count($this->container['billing_subscriptions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'billing_subscriptions', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
+        if ($this->container['custom_plan_billings'] === null) {
+            $invalidProperties[] = "'custom_plan_billings' can't be null";
+        }
+        if ((count($this->container['custom_plan_billings']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'custom_plan_billings', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['entitlements'] === null) {
             $invalidProperties[] = "'entitlements' can't be null";
         }
+        if ((count($this->container['entitlements']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['entity_traits'] === null) {
             $invalidProperties[] = "'entity_traits' can't be null";
         }
+        if ((count($this->container['entity_traits']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'entity_traits', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['environment_id'] === null) {
             $invalidProperties[] = "'environment_id' can't be null";
         }
@@ -446,21 +483,41 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['keys'] === null) {
             $invalidProperties[] = "'keys' can't be null";
         }
+        if ((count($this->container['keys']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'keys', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['metrics'] === null) {
             $invalidProperties[] = "'metrics' can't be null";
         }
+        if ((count($this->container['metrics']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'metrics', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
         if ($this->container['payment_methods'] === null) {
             $invalidProperties[] = "'payment_methods' can't be null";
         }
+        if ((count($this->container['payment_methods']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'payment_methods', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['plans'] === null) {
             $invalidProperties[] = "'plans' can't be null";
         }
+        if ((count($this->container['plans']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'plans', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['rules'] === null) {
             $invalidProperties[] = "'rules' can't be null";
         }
+        if ((count($this->container['rules']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'rules', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -504,6 +561,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($add_ons)) {
             throw new \InvalidArgumentException('non-nullable add_ons cannot be null');
         }
+
+        if ((count($add_ons) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $add_ons when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['add_ons'] = $add_ons;
 
         return $this;
@@ -532,8 +593,8 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'billing_credit_balances');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_credit_balances', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_credit_balances', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -592,6 +653,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($billing_subscriptions)) {
             throw new \InvalidArgumentException('non-nullable billing_subscriptions cannot be null');
         }
+
+        if ((count($billing_subscriptions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $billing_subscriptions when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['billing_subscriptions'] = $billing_subscriptions;
 
         return $this;
@@ -620,6 +685,37 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_plan_billings
+     *
+     * @return \Schematic\Model\CustomPlanBillingResponseData[]
+     */
+    public function getCustomPlanBillings()
+    {
+        return $this->container['custom_plan_billings'];
+    }
+
+    /**
+     * Sets custom_plan_billings
+     *
+     * @param \Schematic\Model\CustomPlanBillingResponseData[] $custom_plan_billings custom_plan_billings
+     *
+     * @return self
+     */
+    public function setCustomPlanBillings($custom_plan_billings)
+    {
+        if (is_null($custom_plan_billings)) {
+            throw new \InvalidArgumentException('non-nullable custom_plan_billings cannot be null');
+        }
+
+        if ((count($custom_plan_billings) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $custom_plan_billings when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['custom_plan_billings'] = $custom_plan_billings;
 
         return $this;
     }
@@ -673,6 +769,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($entitlements)) {
             throw new \InvalidArgumentException('non-nullable entitlements cannot be null');
         }
+
+        if ((count($entitlements) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $entitlements when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['entitlements'] = $entitlements;
 
         return $this;
@@ -699,6 +799,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     {
         if (is_null($entity_traits)) {
             throw new \InvalidArgumentException('non-nullable entity_traits cannot be null');
+        }
+
+        if ((count($entity_traits) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $entity_traits when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['entity_traits'] = $entity_traits;
 
@@ -781,6 +885,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($keys)) {
             throw new \InvalidArgumentException('non-nullable keys cannot be null');
         }
+
+        if ((count($keys) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $keys when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['keys'] = $keys;
 
         return $this;
@@ -809,8 +917,8 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'last_seen_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_seen_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('last_seen_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -843,8 +951,8 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'logo_url');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('logo_url', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('logo_url', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -875,6 +983,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     {
         if (is_null($metrics)) {
             throw new \InvalidArgumentException('non-nullable metrics cannot be null');
+        }
+
+        if ((count($metrics) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $metrics when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['metrics'] = $metrics;
 
@@ -930,6 +1042,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($payment_methods)) {
             throw new \InvalidArgumentException('non-nullable payment_methods cannot be null');
         }
+
+        if ((count($payment_methods) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $payment_methods when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['payment_methods'] = $payment_methods;
 
         return $this;
@@ -984,6 +1100,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($plans)) {
             throw new \InvalidArgumentException('non-nullable plans cannot be null');
         }
+
+        if ((count($plans) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $plans when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['plans'] = $plans;
 
         return $this;
@@ -1011,7 +1131,38 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($rules)) {
             throw new \InvalidArgumentException('non-nullable rules cannot be null');
         }
+
+        if ((count($rules) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $rules when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['rules'] = $rules;
+
+        return $this;
+    }
+
+    /**
+     * Gets scheduled_downgrade
+     *
+     * @return \Schematic\Model\ScheduledDowngradeResponseData|null
+     */
+    public function getScheduledDowngrade()
+    {
+        return $this->container['scheduled_downgrade'];
+    }
+
+    /**
+     * Sets scheduled_downgrade
+     *
+     * @param \Schematic\Model\ScheduledDowngradeResponseData|null $scheduled_downgrade scheduled_downgrade
+     *
+     * @return self
+     */
+    public function setScheduledDowngrade($scheduled_downgrade)
+    {
+        if (is_null($scheduled_downgrade)) {
+            throw new \InvalidArgumentException('non-nullable scheduled_downgrade cannot be null');
+        }
+        $this->container['scheduled_downgrade'] = $scheduled_downgrade;
 
         return $this;
     }
@@ -1160,7 +1311,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

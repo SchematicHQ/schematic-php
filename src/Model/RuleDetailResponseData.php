@@ -66,7 +66,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'id' => 'string',
         'name' => 'string',
         'priority' => 'int',
-        'rule_type' => 'string',
+        'rule_type' => '\Schematic\Model\RuleType',
         'updated_at' => '\DateTime',
         'value' => 'bool'
     ];
@@ -86,7 +86,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'flag_id' => null,
         'id' => null,
         'name' => null,
-        'priority' => null,
+        'priority' => 'int64',
         'rule_type' => null,
         'updated_at' => 'date-time',
         'value' => null
@@ -348,9 +348,17 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['condition_groups'] === null) {
             $invalidProperties[] = "'condition_groups' can't be null";
         }
+        if ((count($this->container['condition_groups']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'condition_groups', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['conditions'] === null) {
             $invalidProperties[] = "'conditions' can't be null";
         }
+        if ((count($this->container['conditions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'conditions', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -412,6 +420,10 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if (is_null($condition_groups)) {
             throw new \InvalidArgumentException('non-nullable condition_groups cannot be null');
         }
+
+        if ((count($condition_groups) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $condition_groups when calling RuleDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['condition_groups'] = $condition_groups;
 
         return $this;
@@ -438,6 +450,10 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($conditions)) {
             throw new \InvalidArgumentException('non-nullable conditions cannot be null');
+        }
+
+        if ((count($conditions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $conditions when calling RuleDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['conditions'] = $conditions;
 
@@ -521,8 +537,8 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -616,7 +632,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets rule_type
      *
-     * @return string
+     * @return \Schematic\Model\RuleType
      */
     public function getRuleType()
     {
@@ -626,7 +642,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets rule_type
      *
-     * @param string $rule_type rule_type
+     * @param \Schematic\Model\RuleType $rule_type rule_type
      *
      * @return self
      */
@@ -757,7 +773,7 @@ class RuleDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

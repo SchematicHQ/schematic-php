@@ -59,6 +59,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
       */
     protected static $openAPITypes = [
         'bundle_name' => 'string',
+        'currency_prices' => '\Schematic\Model\CreditBundleCurrencyPriceRequestBody[]',
         'expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'expiry_unit_count' => 'int',
@@ -77,12 +78,13 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
       */
     protected static $openAPIFormats = [
         'bundle_name' => null,
+        'currency_prices' => null,
         'expiry_type' => null,
         'expiry_unit' => null,
-        'expiry_unit_count' => null,
-        'price_per_unit' => null,
+        'expiry_unit_count' => 'int64',
+        'price_per_unit' => 'int64',
         'price_per_unit_decimal' => null,
-        'quantity' => null,
+        'quantity' => 'int64',
         'status' => null
     ];
 
@@ -93,6 +95,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
       */
     protected static array $openAPINullables = [
         'bundle_name' => false,
+        'currency_prices' => true,
         'expiry_type' => true,
         'expiry_unit' => true,
         'expiry_unit_count' => true,
@@ -189,6 +192,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
      */
     protected static $attributeMap = [
         'bundle_name' => 'bundle_name',
+        'currency_prices' => 'currency_prices',
         'expiry_type' => 'expiry_type',
         'expiry_unit' => 'expiry_unit',
         'expiry_unit_count' => 'expiry_unit_count',
@@ -205,6 +209,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
      */
     protected static $setters = [
         'bundle_name' => 'setBundleName',
+        'currency_prices' => 'setCurrencyPrices',
         'expiry_type' => 'setExpiryType',
         'expiry_unit' => 'setExpiryUnit',
         'expiry_unit_count' => 'setExpiryUnitCount',
@@ -221,6 +226,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
      */
     protected static $getters = [
         'bundle_name' => 'getBundleName',
+        'currency_prices' => 'getCurrencyPrices',
         'expiry_type' => 'getExpiryType',
         'expiry_unit' => 'getExpiryUnit',
         'expiry_unit_count' => 'getExpiryUnitCount',
@@ -288,6 +294,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
     public function __construct(array $data = null)
     {
         $this->setIfExists('bundle_name', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('expiry_type', $data ?? [], null);
         $this->setIfExists('expiry_unit', $data ?? [], null);
         $this->setIfExists('expiry_unit_count', $data ?? [], null);
@@ -329,6 +336,10 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
         }
         if ((mb_strlen($this->container['bundle_name']) > 256)) {
             $invalidProperties[] = "invalid value for 'bundle_name', the character length must be smaller than or equal to 256.";
+        }
+
+        if (!is_null($this->container['currency_prices']) && (count($this->container['currency_prices']) > 50)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 50.";
         }
 
         if (!is_null($this->container['expiry_unit_count']) && ($this->container['expiry_unit_count'] < 1)) {
@@ -393,6 +404,44 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
     }
 
     /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\CreditBundleCurrencyPriceRequestBody[]|null
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\CreditBundleCurrencyPriceRequestBody[]|null $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            array_push($this->openAPINullablesSetToNull, 'currency_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency_prices', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($currency_prices) && (count($currency_prices) > 50)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling UpdateCreditBundleDetailsRequestBody., number of items must be less than or equal to 50.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
+
+        return $this;
+    }
+
+    /**
      * Gets expiry_type
      *
      * @return \Schematic\Model\BillingCreditExpiryType|null
@@ -415,8 +464,8 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'expiry_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -449,8 +498,8 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -483,8 +532,8 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -554,8 +603,8 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'price_per_unit_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_per_unit_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_per_unit_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -588,8 +637,8 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'quantity');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('quantity', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('quantity', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -627,8 +676,8 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'status');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('status', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('status', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -701,7 +750,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

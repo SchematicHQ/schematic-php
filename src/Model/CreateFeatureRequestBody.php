@@ -64,7 +64,7 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => '\Schematic\Model\CreateOrUpdateFlagRequestBody',
         'icon' => 'string',
         'lifecycle_phase' => '\Schematic\Model\FeatureLifecyclePhase',
-        'maintainer_id' => 'string',
+        'maintainer_account_member_id' => 'string',
         'name' => 'string',
         'plural_name' => 'string',
         'singular_name' => 'string',
@@ -85,7 +85,7 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => null,
         'icon' => null,
         'lifecycle_phase' => null,
-        'maintainer_id' => null,
+        'maintainer_account_member_id' => null,
         'name' => null,
         'plural_name' => null,
         'singular_name' => null,
@@ -104,7 +104,7 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => false,
         'icon' => true,
         'lifecycle_phase' => true,
-        'maintainer_id' => true,
+        'maintainer_account_member_id' => true,
         'name' => false,
         'plural_name' => true,
         'singular_name' => true,
@@ -203,7 +203,7 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => 'flag',
         'icon' => 'icon',
         'lifecycle_phase' => 'lifecycle_phase',
-        'maintainer_id' => 'maintainer_id',
+        'maintainer_account_member_id' => 'maintainer_account_member_id',
         'name' => 'name',
         'plural_name' => 'plural_name',
         'singular_name' => 'singular_name',
@@ -222,7 +222,7 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => 'setFlag',
         'icon' => 'setIcon',
         'lifecycle_phase' => 'setLifecyclePhase',
-        'maintainer_id' => 'setMaintainerId',
+        'maintainer_account_member_id' => 'setMaintainerAccountMemberId',
         'name' => 'setName',
         'plural_name' => 'setPluralName',
         'singular_name' => 'setSingularName',
@@ -241,7 +241,7 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'flag' => 'getFlag',
         'icon' => 'getIcon',
         'lifecycle_phase' => 'getLifecyclePhase',
-        'maintainer_id' => 'getMaintainerId',
+        'maintainer_account_member_id' => 'getMaintainerAccountMemberId',
         'name' => 'getName',
         'plural_name' => 'getPluralName',
         'singular_name' => 'getSingularName',
@@ -311,7 +311,7 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('flag', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('lifecycle_phase', $data ?? [], null);
-        $this->setIfExists('maintainer_id', $data ?? [], null);
+        $this->setIfExists('maintainer_account_member_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('plural_name', $data ?? [], null);
         $this->setIfExists('singular_name', $data ?? [], null);
@@ -431,8 +431,8 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'event_subtype');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_subtype', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('event_subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -519,8 +519,8 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -553,8 +553,8 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'lifecycle_phase');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('lifecycle_phase', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('lifecycle_phase', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -565,35 +565,35 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
-     * Gets maintainer_id
+     * Gets maintainer_account_member_id
      *
      * @return string|null
      */
-    public function getMaintainerId()
+    public function getMaintainerAccountMemberId()
     {
-        return $this->container['maintainer_id'];
+        return $this->container['maintainer_account_member_id'];
     }
 
     /**
-     * Sets maintainer_id
+     * Sets maintainer_account_member_id
      *
-     * @param string|null $maintainer_id maintainer_id
+     * @param string|null $maintainer_account_member_id maintainer_account_member_id
      *
      * @return self
      */
-    public function setMaintainerId($maintainer_id)
+    public function setMaintainerAccountMemberId($maintainer_account_member_id)
     {
-        if (is_null($maintainer_id)) {
-            array_push($this->openAPINullablesSetToNull, 'maintainer_id');
+        if (is_null($maintainer_account_member_id)) {
+            array_push($this->openAPINullablesSetToNull, 'maintainer_account_member_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('maintainer_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('maintainer_account_member_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['maintainer_id'] = $maintainer_id;
+        $this->container['maintainer_account_member_id'] = $maintainer_account_member_id;
 
         return $this;
     }
@@ -652,8 +652,8 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -686,8 +686,8 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -720,8 +720,8 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -794,7 +794,7 @@ class CreateFeatureRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

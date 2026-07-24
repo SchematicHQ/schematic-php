@@ -90,6 +90,15 @@ class FeatureEntitlementTest extends TestCase
     }
 
     /**
+     * Test attribute "consumption_rate"
+     */
+    public function testPropertyConsumptionRate()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "credit_id"
      */
     public function testPropertyCreditId()
@@ -102,6 +111,24 @@ class FeatureEntitlementTest extends TestCase
      * Test attribute "credit_remaining"
      */
     public function testPropertyCreditRemaining()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "credit_reserved"
+     */
+    public function testPropertyCreditReserved()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "credit_settled"
+     */
+    public function testPropertyCreditSettled()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -129,6 +156,15 @@ class FeatureEntitlementTest extends TestCase
      * Test attribute "event_name"
      */
     public function testPropertyEventName()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "event_subtype"
+     */
+    public function testPropertyEventSubtype()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -201,6 +237,15 @@ class FeatureEntitlementTest extends TestCase
      * Test attribute "value_type"
      */
     public function testPropertyValueType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "warning_tiers"
+     */
+    public function testPropertyWarningTiers()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -43,6 +43,10 @@ class BillingProviderType
     /**
      * Possible values of this enum
      */
+    public const METRONOME = 'metronome';
+
+    public const ORB = 'orb';
+
     public const SCHEMATIC = 'schematic';
 
     public const STRIPE = 'stripe';
@@ -54,6 +58,8 @@ class BillingProviderType
     public static function getAllowableEnumValues()
     {
         return [
+            self::METRONOME,
+            self::ORB,
             self::SCHEMATIC,
             self::STRIPE
         ];

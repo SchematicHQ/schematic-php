@@ -74,7 +74,7 @@ class CreditTransferView implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount' => null,
+        'amount' => 'double',
         'created_at' => 'date-time',
         'direction' => null,
         'id' => null,
@@ -568,7 +568,7 @@ class CreditTransferView implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

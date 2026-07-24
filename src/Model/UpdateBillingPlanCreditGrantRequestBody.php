@@ -61,18 +61,23 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'apply_to_existing' => 'bool',
         'auto_topup_amount' => 'int',
         'auto_topup_amount_type' => '\Schematic\Model\CreditAutoTopupAmountType',
+        'auto_topup_availability' => '\Schematic\Model\BillingCreditAutoTopupAvailability',
         'auto_topup_enabled' => 'bool',
         'auto_topup_expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'auto_topup_expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'auto_topup_expiry_unit_count' => 'int',
+        'auto_topup_self_service' => 'bool',
+        'auto_topup_threshold_credits' => 'int',
         'auto_topup_threshold_percent' => 'int',
+        'can_buy_bundles' => 'bool',
         'credit_amount' => 'int',
         'expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'expiry_unit_count' => 'int',
         'reset_cadence' => '\Schematic\Model\BillingPlanCreditGrantResetCadence',
         'reset_start' => '\Schematic\Model\BillingPlanCreditGrantResetStart',
-        'reset_type' => '\Schematic\Model\BillingPlanCreditGrantResetType'
+        'reset_type' => '\Schematic\Model\BillingPlanCreditGrantResetType',
+        'rollover_percentage' => 'int'
     ];
 
     /**
@@ -84,20 +89,25 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
       */
     protected static $openAPIFormats = [
         'apply_to_existing' => null,
-        'auto_topup_amount' => null,
+        'auto_topup_amount' => 'int64',
         'auto_topup_amount_type' => null,
+        'auto_topup_availability' => null,
         'auto_topup_enabled' => null,
         'auto_topup_expiry_type' => null,
         'auto_topup_expiry_unit' => null,
-        'auto_topup_expiry_unit_count' => null,
-        'auto_topup_threshold_percent' => null,
-        'credit_amount' => null,
+        'auto_topup_expiry_unit_count' => 'int64',
+        'auto_topup_self_service' => null,
+        'auto_topup_threshold_credits' => 'int64',
+        'auto_topup_threshold_percent' => 'int64',
+        'can_buy_bundles' => null,
+        'credit_amount' => 'int64',
         'expiry_type' => null,
         'expiry_unit' => null,
-        'expiry_unit_count' => null,
+        'expiry_unit_count' => 'int64',
         'reset_cadence' => null,
         'reset_start' => null,
-        'reset_type' => null
+        'reset_type' => null,
+        'rollover_percentage' => 'int64'
     ];
 
     /**
@@ -109,18 +119,23 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'apply_to_existing' => true,
         'auto_topup_amount' => true,
         'auto_topup_amount_type' => true,
+        'auto_topup_availability' => true,
         'auto_topup_enabled' => true,
         'auto_topup_expiry_type' => true,
         'auto_topup_expiry_unit' => true,
         'auto_topup_expiry_unit_count' => true,
+        'auto_topup_self_service' => true,
+        'auto_topup_threshold_credits' => true,
         'auto_topup_threshold_percent' => true,
+        'can_buy_bundles' => true,
         'credit_amount' => true,
         'expiry_type' => true,
         'expiry_unit' => true,
         'expiry_unit_count' => true,
         'reset_cadence' => false,
         'reset_start' => false,
-        'reset_type' => true
+        'reset_type' => true,
+        'rollover_percentage' => true
     ];
 
     /**
@@ -212,18 +227,23 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'apply_to_existing' => 'apply_to_existing',
         'auto_topup_amount' => 'auto_topup_amount',
         'auto_topup_amount_type' => 'auto_topup_amount_type',
+        'auto_topup_availability' => 'auto_topup_availability',
         'auto_topup_enabled' => 'auto_topup_enabled',
         'auto_topup_expiry_type' => 'auto_topup_expiry_type',
         'auto_topup_expiry_unit' => 'auto_topup_expiry_unit',
         'auto_topup_expiry_unit_count' => 'auto_topup_expiry_unit_count',
+        'auto_topup_self_service' => 'auto_topup_self_service',
+        'auto_topup_threshold_credits' => 'auto_topup_threshold_credits',
         'auto_topup_threshold_percent' => 'auto_topup_threshold_percent',
+        'can_buy_bundles' => 'can_buy_bundles',
         'credit_amount' => 'credit_amount',
         'expiry_type' => 'expiry_type',
         'expiry_unit' => 'expiry_unit',
         'expiry_unit_count' => 'expiry_unit_count',
         'reset_cadence' => 'reset_cadence',
         'reset_start' => 'reset_start',
-        'reset_type' => 'reset_type'
+        'reset_type' => 'reset_type',
+        'rollover_percentage' => 'rollover_percentage'
     ];
 
     /**
@@ -235,18 +255,23 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'apply_to_existing' => 'setApplyToExisting',
         'auto_topup_amount' => 'setAutoTopupAmount',
         'auto_topup_amount_type' => 'setAutoTopupAmountType',
+        'auto_topup_availability' => 'setAutoTopupAvailability',
         'auto_topup_enabled' => 'setAutoTopupEnabled',
         'auto_topup_expiry_type' => 'setAutoTopupExpiryType',
         'auto_topup_expiry_unit' => 'setAutoTopupExpiryUnit',
         'auto_topup_expiry_unit_count' => 'setAutoTopupExpiryUnitCount',
+        'auto_topup_self_service' => 'setAutoTopupSelfService',
+        'auto_topup_threshold_credits' => 'setAutoTopupThresholdCredits',
         'auto_topup_threshold_percent' => 'setAutoTopupThresholdPercent',
+        'can_buy_bundles' => 'setCanBuyBundles',
         'credit_amount' => 'setCreditAmount',
         'expiry_type' => 'setExpiryType',
         'expiry_unit' => 'setExpiryUnit',
         'expiry_unit_count' => 'setExpiryUnitCount',
         'reset_cadence' => 'setResetCadence',
         'reset_start' => 'setResetStart',
-        'reset_type' => 'setResetType'
+        'reset_type' => 'setResetType',
+        'rollover_percentage' => 'setRolloverPercentage'
     ];
 
     /**
@@ -258,18 +283,23 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'apply_to_existing' => 'getApplyToExisting',
         'auto_topup_amount' => 'getAutoTopupAmount',
         'auto_topup_amount_type' => 'getAutoTopupAmountType',
+        'auto_topup_availability' => 'getAutoTopupAvailability',
         'auto_topup_enabled' => 'getAutoTopupEnabled',
         'auto_topup_expiry_type' => 'getAutoTopupExpiryType',
         'auto_topup_expiry_unit' => 'getAutoTopupExpiryUnit',
         'auto_topup_expiry_unit_count' => 'getAutoTopupExpiryUnitCount',
+        'auto_topup_self_service' => 'getAutoTopupSelfService',
+        'auto_topup_threshold_credits' => 'getAutoTopupThresholdCredits',
         'auto_topup_threshold_percent' => 'getAutoTopupThresholdPercent',
+        'can_buy_bundles' => 'getCanBuyBundles',
         'credit_amount' => 'getCreditAmount',
         'expiry_type' => 'getExpiryType',
         'expiry_unit' => 'getExpiryUnit',
         'expiry_unit_count' => 'getExpiryUnitCount',
         'reset_cadence' => 'getResetCadence',
         'reset_start' => 'getResetStart',
-        'reset_type' => 'getResetType'
+        'reset_type' => 'getResetType',
+        'rollover_percentage' => 'getRolloverPercentage'
     ];
 
     /**
@@ -332,11 +362,15 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         $this->setIfExists('apply_to_existing', $data ?? [], null);
         $this->setIfExists('auto_topup_amount', $data ?? [], null);
         $this->setIfExists('auto_topup_amount_type', $data ?? [], null);
+        $this->setIfExists('auto_topup_availability', $data ?? [], null);
         $this->setIfExists('auto_topup_enabled', $data ?? [], null);
         $this->setIfExists('auto_topup_expiry_type', $data ?? [], null);
         $this->setIfExists('auto_topup_expiry_unit', $data ?? [], null);
         $this->setIfExists('auto_topup_expiry_unit_count', $data ?? [], null);
+        $this->setIfExists('auto_topup_self_service', $data ?? [], null);
+        $this->setIfExists('auto_topup_threshold_credits', $data ?? [], null);
         $this->setIfExists('auto_topup_threshold_percent', $data ?? [], null);
+        $this->setIfExists('can_buy_bundles', $data ?? [], null);
         $this->setIfExists('credit_amount', $data ?? [], null);
         $this->setIfExists('expiry_type', $data ?? [], null);
         $this->setIfExists('expiry_unit', $data ?? [], null);
@@ -344,6 +378,7 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         $this->setIfExists('reset_cadence', $data ?? [], null);
         $this->setIfExists('reset_start', $data ?? [], null);
         $this->setIfExists('reset_type', $data ?? [], null);
+        $this->setIfExists('rollover_percentage', $data ?? [], null);
     }
 
     /**
@@ -381,6 +416,10 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             $invalidProperties[] = "invalid value for 'auto_topup_expiry_unit_count', must be bigger than or equal to 1.";
         }
 
+        if (!is_null($this->container['auto_topup_threshold_credits']) && ($this->container['auto_topup_threshold_credits'] < 0)) {
+            $invalidProperties[] = "invalid value for 'auto_topup_threshold_credits', must be bigger than or equal to 0.";
+        }
+
         if (!is_null($this->container['auto_topup_threshold_percent']) && ($this->container['auto_topup_threshold_percent'] > 100)) {
             $invalidProperties[] = "invalid value for 'auto_topup_threshold_percent', must be smaller than or equal to 100.";
         }
@@ -407,6 +446,14 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         if ($this->container['reset_start'] === null) {
             $invalidProperties[] = "'reset_start' can't be null";
         }
+        if (!is_null($this->container['rollover_percentage']) && ($this->container['rollover_percentage'] > 100)) {
+            $invalidProperties[] = "invalid value for 'rollover_percentage', must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['rollover_percentage']) && ($this->container['rollover_percentage'] < 0)) {
+            $invalidProperties[] = "invalid value for 'rollover_percentage', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -445,8 +492,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'apply_to_existing');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('apply_to_existing', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('apply_to_existing', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -479,8 +526,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'auto_topup_amount');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_amount', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_amount', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -518,13 +565,47 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'auto_topup_amount_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_amount_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_amount_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['auto_topup_amount_type'] = $auto_topup_amount_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_topup_availability
+     *
+     * @return \Schematic\Model\BillingCreditAutoTopupAvailability|null
+     */
+    public function getAutoTopupAvailability()
+    {
+        return $this->container['auto_topup_availability'];
+    }
+
+    /**
+     * Sets auto_topup_availability
+     *
+     * @param \Schematic\Model\BillingCreditAutoTopupAvailability|null $auto_topup_availability auto_topup_availability
+     *
+     * @return self
+     */
+    public function setAutoTopupAvailability($auto_topup_availability)
+    {
+        if (is_null($auto_topup_availability)) {
+            array_push($this->openAPINullablesSetToNull, 'auto_topup_availability');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('auto_topup_availability', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['auto_topup_availability'] = $auto_topup_availability;
 
         return $this;
     }
@@ -552,8 +633,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'auto_topup_enabled');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_enabled', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_enabled', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -586,8 +667,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'auto_topup_expiry_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_expiry_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_expiry_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -620,8 +701,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'auto_topup_expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -654,8 +735,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'auto_topup_expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -666,6 +747,79 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         }
 
         $this->container['auto_topup_expiry_unit_count'] = $auto_topup_expiry_unit_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_topup_self_service
+     *
+     * @return bool|null
+     */
+    public function getAutoTopupSelfService()
+    {
+        return $this->container['auto_topup_self_service'];
+    }
+
+    /**
+     * Sets auto_topup_self_service
+     *
+     * @param bool|null $auto_topup_self_service auto_topup_self_service
+     *
+     * @return self
+     */
+    public function setAutoTopupSelfService($auto_topup_self_service)
+    {
+        if (is_null($auto_topup_self_service)) {
+            array_push($this->openAPINullablesSetToNull, 'auto_topup_self_service');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('auto_topup_self_service', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['auto_topup_self_service'] = $auto_topup_self_service;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_topup_threshold_credits
+     *
+     * @return int|null
+     */
+    public function getAutoTopupThresholdCredits()
+    {
+        return $this->container['auto_topup_threshold_credits'];
+    }
+
+    /**
+     * Sets auto_topup_threshold_credits
+     *
+     * @param int|null $auto_topup_threshold_credits auto_topup_threshold_credits
+     *
+     * @return self
+     */
+    public function setAutoTopupThresholdCredits($auto_topup_threshold_credits)
+    {
+        if (is_null($auto_topup_threshold_credits)) {
+            array_push($this->openAPINullablesSetToNull, 'auto_topup_threshold_credits');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('auto_topup_threshold_credits', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($auto_topup_threshold_credits) && ($auto_topup_threshold_credits < 0)) {
+            throw new \InvalidArgumentException('invalid value for $auto_topup_threshold_credits when calling UpdateBillingPlanCreditGrantRequestBody., must be bigger than or equal to 0.');
+        }
+
+        $this->container['auto_topup_threshold_credits'] = $auto_topup_threshold_credits;
 
         return $this;
     }
@@ -693,8 +847,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'auto_topup_threshold_percent');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_threshold_percent', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_threshold_percent', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -708,6 +862,40 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         }
 
         $this->container['auto_topup_threshold_percent'] = $auto_topup_threshold_percent;
+
+        return $this;
+    }
+
+    /**
+     * Gets can_buy_bundles
+     *
+     * @return bool|null
+     */
+    public function getCanBuyBundles()
+    {
+        return $this->container['can_buy_bundles'];
+    }
+
+    /**
+     * Sets can_buy_bundles
+     *
+     * @param bool|null $can_buy_bundles can_buy_bundles
+     *
+     * @return self
+     */
+    public function setCanBuyBundles($can_buy_bundles)
+    {
+        if (is_null($can_buy_bundles)) {
+            array_push($this->openAPINullablesSetToNull, 'can_buy_bundles');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('can_buy_bundles', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['can_buy_bundles'] = $can_buy_bundles;
 
         return $this;
     }
@@ -735,8 +923,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'credit_amount');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_amount', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_amount', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -777,8 +965,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'expiry_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -811,8 +999,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -845,8 +1033,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -938,13 +1126,55 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'reset_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('reset_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('reset_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['reset_type'] = $reset_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets rollover_percentage
+     *
+     * @return int|null
+     */
+    public function getRolloverPercentage()
+    {
+        return $this->container['rollover_percentage'];
+    }
+
+    /**
+     * Sets rollover_percentage
+     *
+     * @param int|null $rollover_percentage Percentage of unused credits that carry over when this grant resets. Only applies when reset_type is plan_period. Rolled-over credits expire at the next reset and are not rolled again.
+     *
+     * @return self
+     */
+    public function setRolloverPercentage($rollover_percentage)
+    {
+        if (is_null($rollover_percentage)) {
+            array_push($this->openAPINullablesSetToNull, 'rollover_percentage');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rollover_percentage', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($rollover_percentage) && ($rollover_percentage > 100)) {
+            throw new \InvalidArgumentException('invalid value for $rollover_percentage when calling UpdateBillingPlanCreditGrantRequestBody., must be smaller than or equal to 100.');
+        }
+        if (!is_null($rollover_percentage) && ($rollover_percentage < 0)) {
+            throw new \InvalidArgumentException('invalid value for $rollover_percentage when calling UpdateBillingPlanCreditGrantRequestBody., must be bigger than or equal to 0.');
+        }
+
+        $this->container['rollover_percentage'] = $rollover_percentage;
 
         return $this;
     }
@@ -1012,7 +1242,7 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

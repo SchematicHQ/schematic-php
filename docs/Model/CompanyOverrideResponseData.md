@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **feature** | [**\Schematic\Model\FeatureResponseData**](FeatureResponseData.md) |  | [optional]
 **feature_id** | **string** |  |
 **id** | **string** |  |
-**metric_period** | **string** |  | [optional]
-**metric_period_month_reset** | **string** |  | [optional]
+**metric_period** | [**\Schematic\Model\MetricPeriod**](MetricPeriod.md) |  | [optional]
+**metric_period_month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) |  | [optional]
 **notes** | [**\Schematic\Model\CompanyOverrideNoteResponseData[]**](CompanyOverrideNoteResponseData.md) |  |
 **rule_id** | **string** |  | [optional]
 **rule_id_usage_exceeded** | **string** |  | [optional]

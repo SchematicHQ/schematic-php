@@ -58,13 +58,13 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'billing_invoice_id' => 'string',
         'bundle_type' => '\Schematic\Model\BillingCreditBundleType',
         'created_at' => '\DateTime',
         'credit_description' => 'string',
         'credit_icon' => 'string',
         'credit_id' => 'string',
         'credit_name' => 'string',
+        'currency_prices' => '\Schematic\Model\CreditBundleCurrencyPrice[]',
         'expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'expiry_unit_count' => 'int',
@@ -88,22 +88,22 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'billing_invoice_id' => null,
         'bundle_type' => null,
         'created_at' => 'date-time',
         'credit_description' => null,
         'credit_icon' => null,
         'credit_id' => null,
         'credit_name' => null,
+        'currency_prices' => null,
         'expiry_type' => null,
         'expiry_unit' => null,
-        'expiry_unit_count' => null,
+        'expiry_unit_count' => 'int64',
         'has_grants' => null,
         'id' => null,
         'name' => null,
         'plural_name' => null,
         'price' => null,
-        'quantity' => null,
+        'quantity' => 'int64',
         'singular_name' => null,
         'status' => null,
         'unit_price' => null,
@@ -116,13 +116,13 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'billing_invoice_id' => true,
         'bundle_type' => false,
         'created_at' => false,
         'credit_description' => false,
         'credit_icon' => true,
         'credit_id' => false,
         'credit_name' => false,
+        'currency_prices' => false,
         'expiry_type' => false,
         'expiry_unit' => false,
         'expiry_unit_count' => true,
@@ -224,13 +224,13 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'billing_invoice_id' => 'billing_invoice_id',
         'bundle_type' => 'bundle_type',
         'created_at' => 'created_at',
         'credit_description' => 'credit_description',
         'credit_icon' => 'credit_icon',
         'credit_id' => 'credit_id',
         'credit_name' => 'credit_name',
+        'currency_prices' => 'currency_prices',
         'expiry_type' => 'expiry_type',
         'expiry_unit' => 'expiry_unit',
         'expiry_unit_count' => 'expiry_unit_count',
@@ -252,13 +252,13 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'billing_invoice_id' => 'setBillingInvoiceId',
         'bundle_type' => 'setBundleType',
         'created_at' => 'setCreatedAt',
         'credit_description' => 'setCreditDescription',
         'credit_icon' => 'setCreditIcon',
         'credit_id' => 'setCreditId',
         'credit_name' => 'setCreditName',
+        'currency_prices' => 'setCurrencyPrices',
         'expiry_type' => 'setExpiryType',
         'expiry_unit' => 'setExpiryUnit',
         'expiry_unit_count' => 'setExpiryUnitCount',
@@ -280,13 +280,13 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'billing_invoice_id' => 'getBillingInvoiceId',
         'bundle_type' => 'getBundleType',
         'created_at' => 'getCreatedAt',
         'credit_description' => 'getCreditDescription',
         'credit_icon' => 'getCreditIcon',
         'credit_id' => 'getCreditId',
         'credit_name' => 'getCreditName',
+        'currency_prices' => 'getCurrencyPrices',
         'expiry_type' => 'getExpiryType',
         'expiry_unit' => 'getExpiryUnit',
         'expiry_unit_count' => 'getExpiryUnitCount',
@@ -359,13 +359,13 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('billing_invoice_id', $data ?? [], null);
         $this->setIfExists('bundle_type', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('credit_description', $data ?? [], null);
         $this->setIfExists('credit_icon', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('credit_name', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('expiry_type', $data ?? [], null);
         $this->setIfExists('expiry_unit', $data ?? [], null);
         $this->setIfExists('expiry_unit_count', $data ?? [], null);
@@ -420,6 +420,13 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['credit_name'] === null) {
             $invalidProperties[] = "'credit_name' can't be null";
         }
+        if ($this->container['currency_prices'] === null) {
+            $invalidProperties[] = "'currency_prices' can't be null";
+        }
+        if ((count($this->container['currency_prices']) > 256)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 256.";
+        }
+
         if ($this->container['expiry_type'] === null) {
             $invalidProperties[] = "'expiry_type' can't be null";
         }
@@ -455,40 +462,6 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets billing_invoice_id
-     *
-     * @return string|null
-     */
-    public function getBillingInvoiceId()
-    {
-        return $this->container['billing_invoice_id'];
-    }
-
-    /**
-     * Sets billing_invoice_id
-     *
-     * @param string|null $billing_invoice_id billing_invoice_id
-     *
-     * @return self
-     */
-    public function setBillingInvoiceId($billing_invoice_id)
-    {
-        if (is_null($billing_invoice_id)) {
-            array_push($this->openAPINullablesSetToNull, 'billing_invoice_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_invoice_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['billing_invoice_id'] = $billing_invoice_id;
-
-        return $this;
-    }
 
     /**
      * Gets bundle_type
@@ -594,8 +567,8 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'credit_icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -655,6 +628,37 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable credit_name cannot be null');
         }
         $this->container['credit_name'] = $credit_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\CreditBundleCurrencyPrice[]
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\CreditBundleCurrencyPrice[] $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            throw new \InvalidArgumentException('non-nullable currency_prices cannot be null');
+        }
+
+        if ((count($currency_prices) > 256)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling BillingCreditBundleView., number of items must be less than or equal to 256.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
 
         return $this;
     }
@@ -736,8 +740,8 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -851,8 +855,8 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -912,8 +916,8 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'quantity');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('quantity', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('quantity', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -946,8 +950,8 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1101,7 +1105,7 @@ class BillingCreditBundleView implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

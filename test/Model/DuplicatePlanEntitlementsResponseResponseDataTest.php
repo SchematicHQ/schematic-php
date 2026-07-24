@@ -90,6 +90,15 @@ class DuplicatePlanEntitlementsResponseResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "issues"
+     */
+    public function testPropertyIssues()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "skipped"
      */
     public function testPropertySkipped()

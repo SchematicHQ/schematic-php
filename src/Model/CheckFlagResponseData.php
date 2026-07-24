@@ -59,17 +59,18 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'company_id' => 'string',
+        'entitlement' => '\Schematic\Model\FeatureEntitlement',
         'error' => 'string',
         'feature_allocation' => 'int',
         'feature_usage' => 'int',
         'feature_usage_event' => 'string',
-        'feature_usage_period' => 'string',
+        'feature_usage_period' => '\Schematic\Model\MetricPeriod',
         'feature_usage_reset_at' => '\DateTime',
         'flag' => 'string',
         'flag_id' => 'string',
         'reason' => 'string',
         'rule_id' => 'string',
-        'rule_type' => 'string',
+        'rule_type' => '\Schematic\Model\RuleType',
         'user_id' => 'string',
         'value' => 'bool'
     ];
@@ -83,9 +84,10 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPIFormats = [
         'company_id' => null,
+        'entitlement' => null,
         'error' => null,
-        'feature_allocation' => null,
-        'feature_usage' => null,
+        'feature_allocation' => 'int64',
+        'feature_usage' => 'int64',
         'feature_usage_event' => null,
         'feature_usage_period' => null,
         'feature_usage_reset_at' => 'date-time',
@@ -105,6 +107,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'company_id' => true,
+        'entitlement' => false,
         'error' => true,
         'feature_allocation' => true,
         'feature_usage' => true,
@@ -207,6 +210,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $attributeMap = [
         'company_id' => 'company_id',
+        'entitlement' => 'entitlement',
         'error' => 'error',
         'feature_allocation' => 'feature_allocation',
         'feature_usage' => 'feature_usage',
@@ -229,6 +233,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $setters = [
         'company_id' => 'setCompanyId',
+        'entitlement' => 'setEntitlement',
         'error' => 'setError',
         'feature_allocation' => 'setFeatureAllocation',
         'feature_usage' => 'setFeatureUsage',
@@ -251,6 +256,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $getters = [
         'company_id' => 'getCompanyId',
+        'entitlement' => 'getEntitlement',
         'error' => 'getError',
         'feature_allocation' => 'getFeatureAllocation',
         'feature_usage' => 'getFeatureUsage',
@@ -324,6 +330,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     public function __construct(array $data = null)
     {
         $this->setIfExists('company_id', $data ?? [], null);
+        $this->setIfExists('entitlement', $data ?? [], null);
         $this->setIfExists('error', $data ?? [], null);
         $this->setIfExists('feature_allocation', $data ?? [], null);
         $this->setIfExists('feature_usage', $data ?? [], null);
@@ -413,13 +420,40 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['company_id'] = $company_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets entitlement
+     *
+     * @return \Schematic\Model\FeatureEntitlement|null
+     */
+    public function getEntitlement()
+    {
+        return $this->container['entitlement'];
+    }
+
+    /**
+     * Sets entitlement
+     *
+     * @param \Schematic\Model\FeatureEntitlement|null $entitlement entitlement
+     *
+     * @return self
+     */
+    public function setEntitlement($entitlement)
+    {
+        if (is_null($entitlement)) {
+            throw new \InvalidArgumentException('non-nullable entitlement cannot be null');
+        }
+        $this->container['entitlement'] = $entitlement;
 
         return $this;
     }
@@ -447,8 +481,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'error');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('error', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -462,6 +496,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets feature_allocation
      *
      * @return int|null
+     * @deprecated
      */
     public function getFeatureAllocation()
     {
@@ -471,9 +506,10 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets feature_allocation
      *
-     * @param int|null $feature_allocation If a numeric feature entitlement rule was matched, its allocation
+     * @param int|null $feature_allocation Deprecated: Use Entitlement.Allocation instead.
      *
      * @return self
+     * @deprecated
      */
     public function setFeatureAllocation($feature_allocation)
     {
@@ -481,8 +517,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'feature_allocation');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_allocation', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_allocation', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -496,6 +532,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets feature_usage
      *
      * @return int|null
+     * @deprecated
      */
     public function getFeatureUsage()
     {
@@ -505,9 +542,10 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets feature_usage
      *
-     * @param int|null $feature_usage If a numeric feature entitlement rule was matched, the company's usage
+     * @param int|null $feature_usage Deprecated: Use Entitlement.Usage instead.
      *
      * @return self
+     * @deprecated
      */
     public function setFeatureUsage($feature_usage)
     {
@@ -515,8 +553,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'feature_usage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_usage', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_usage', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -530,6 +568,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets feature_usage_event
      *
      * @return string|null
+     * @deprecated
      */
     public function getFeatureUsageEvent()
     {
@@ -539,9 +578,10 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets feature_usage_event
      *
-     * @param string|null $feature_usage_event If an event-based numeric feature entitlement rule was matched, the event used to track its usage
+     * @param string|null $feature_usage_event Deprecated: Use Entitlement.EventName instead.
      *
      * @return self
+     * @deprecated
      */
     public function setFeatureUsageEvent($feature_usage_event)
     {
@@ -549,8 +589,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'feature_usage_event');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_usage_event', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_usage_event', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -563,7 +603,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets feature_usage_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
+     * @deprecated
      */
     public function getFeatureUsagePeriod()
     {
@@ -573,9 +614,10 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets feature_usage_period
      *
-     * @param string|null $feature_usage_period For event-based feature entitlement rules, the period over which usage is tracked (current_month, current_day, current_week, all_time)
+     * @param \Schematic\Model\MetricPeriod|null $feature_usage_period feature_usage_period
      *
      * @return self
+     * @deprecated
      */
     public function setFeatureUsagePeriod($feature_usage_period)
     {
@@ -583,8 +625,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'feature_usage_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_usage_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_usage_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -598,6 +640,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets feature_usage_reset_at
      *
      * @return \DateTime|null
+     * @deprecated
      */
     public function getFeatureUsageResetAt()
     {
@@ -607,9 +650,10 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets feature_usage_reset_at
      *
-     * @param \DateTime|null $feature_usage_reset_at For event-based feature entitlement rules, when the usage period will reset
+     * @param \DateTime|null $feature_usage_reset_at Deprecated: Use Entitlement.MetricResetAt instead.
      *
      * @return self
+     * @deprecated
      */
     public function setFeatureUsageResetAt($feature_usage_reset_at)
     {
@@ -617,8 +661,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'feature_usage_reset_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_usage_reset_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_usage_reset_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -678,8 +722,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -739,8 +783,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'rule_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -753,7 +797,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets rule_type
      *
-     * @return string|null
+     * @return \Schematic\Model\RuleType|null
      */
     public function getRuleType()
     {
@@ -763,7 +807,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets rule_type
      *
-     * @param string|null $rule_type If a rule was found, its type
+     * @param \Schematic\Model\RuleType|null $rule_type rule_type
      *
      * @return self
      */
@@ -773,8 +817,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'rule_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -807,8 +851,8 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'user_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -908,7 +952,7 @@ class CheckFlagResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **component** | [**\Schematic\Model\ComponentResponseData**](ComponentResponseData.md) |  | [optional]
 **credit_bundles** | [**\Schematic\Model\BillingCreditBundleView[]**](BillingCreditBundleView.md) |  |
 **credit_grants** | [**\Schematic\Model\CreditCompanyGrantView[]**](CreditCompanyGrantView.md) |  |
+**custom_checkout_fields** | [**\Schematic\Model\CheckoutFieldWithValue[]**](CheckoutFieldWithValue.md) |  |
 **default_plan** | [**\Schematic\Model\PlanDetailResponseData**](PlanDetailResponseData.md) |  | [optional]
 **display_settings** | [**\Schematic\Model\ComponentDisplaySettings**](ComponentDisplaySettings.md) |  |
 **feature_usage** | [**\Schematic\Model\FeatureUsageDetailResponseData**](FeatureUsageDetailResponseData.md) |  | [optional]
@@ -22,6 +23,7 @@ Name | Type | Description | Notes
 **prevent_self_service_downgrade** | **bool** |  |
 **prevent_self_service_downgrade_button_text** | **string** |  | [optional]
 **prevent_self_service_downgrade_url** | **string** |  | [optional]
+**scheduled_downgrade** | [**\Schematic\Model\ScheduledDowngradeResponseData**](ScheduledDowngradeResponseData.md) |  | [optional]
 **show_as_monthly_prices** | **bool** |  |
 **show_credits** | **bool** |  |
 **show_period_toggle** | **bool** |  |

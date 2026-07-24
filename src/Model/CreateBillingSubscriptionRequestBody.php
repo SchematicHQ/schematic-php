@@ -61,6 +61,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'application_id' => 'string',
         'cancel_at' => 'int',
         'cancel_at_period_end' => 'bool',
+        'company_id' => 'string',
         'currency' => 'string',
         'customer_external_id' => 'string',
         'default_payment_method_external_id' => 'string',
@@ -72,6 +73,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_end' => 'int',
         'period_start' => 'int',
         'product_external_ids' => '\Schematic\Model\BillingProductPricing[]',
+        'provider_type' => '\Schematic\Model\BillingProviderType',
         'status' => 'string',
         'subscription_external_id' => 'string',
         'total_price' => 'int',
@@ -88,8 +90,9 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
       */
     protected static $openAPIFormats = [
         'application_id' => null,
-        'cancel_at' => null,
+        'cancel_at' => 'int64',
         'cancel_at_period_end' => null,
+        'company_id' => null,
         'currency' => null,
         'customer_external_id' => null,
         'default_payment_method_external_id' => null,
@@ -98,13 +101,14 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'expired_at' => 'date-time',
         'interval' => null,
         'metadata' => null,
-        'period_end' => null,
-        'period_start' => null,
+        'period_end' => 'int64',
+        'period_start' => 'int64',
         'product_external_ids' => null,
+        'provider_type' => null,
         'status' => null,
         'subscription_external_id' => null,
-        'total_price' => null,
-        'trial_end' => null,
+        'total_price' => 'int64',
+        'trial_end' => 'int64',
         'trial_end_setting' => null
     ];
 
@@ -117,6 +121,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'application_id' => true,
         'cancel_at' => true,
         'cancel_at_period_end' => false,
+        'company_id' => true,
         'currency' => false,
         'customer_external_id' => false,
         'default_payment_method_external_id' => true,
@@ -128,6 +133,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_end' => true,
         'period_start' => true,
         'product_external_ids' => false,
+        'provider_type' => true,
         'status' => true,
         'subscription_external_id' => false,
         'total_price' => false,
@@ -224,6 +230,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'application_id' => 'application_id',
         'cancel_at' => 'cancel_at',
         'cancel_at_period_end' => 'cancel_at_period_end',
+        'company_id' => 'company_id',
         'currency' => 'currency',
         'customer_external_id' => 'customer_external_id',
         'default_payment_method_external_id' => 'default_payment_method_external_id',
@@ -235,6 +242,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_end' => 'period_end',
         'period_start' => 'period_start',
         'product_external_ids' => 'product_external_ids',
+        'provider_type' => 'provider_type',
         'status' => 'status',
         'subscription_external_id' => 'subscription_external_id',
         'total_price' => 'total_price',
@@ -251,6 +259,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'application_id' => 'setApplicationId',
         'cancel_at' => 'setCancelAt',
         'cancel_at_period_end' => 'setCancelAtPeriodEnd',
+        'company_id' => 'setCompanyId',
         'currency' => 'setCurrency',
         'customer_external_id' => 'setCustomerExternalId',
         'default_payment_method_external_id' => 'setDefaultPaymentMethodExternalId',
@@ -262,6 +271,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_end' => 'setPeriodEnd',
         'period_start' => 'setPeriodStart',
         'product_external_ids' => 'setProductExternalIds',
+        'provider_type' => 'setProviderType',
         'status' => 'setStatus',
         'subscription_external_id' => 'setSubscriptionExternalId',
         'total_price' => 'setTotalPrice',
@@ -278,6 +288,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'application_id' => 'getApplicationId',
         'cancel_at' => 'getCancelAt',
         'cancel_at_period_end' => 'getCancelAtPeriodEnd',
+        'company_id' => 'getCompanyId',
         'currency' => 'getCurrency',
         'customer_external_id' => 'getCustomerExternalId',
         'default_payment_method_external_id' => 'getDefaultPaymentMethodExternalId',
@@ -289,6 +300,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_end' => 'getPeriodEnd',
         'period_start' => 'getPeriodStart',
         'product_external_ids' => 'getProductExternalIds',
+        'provider_type' => 'getProviderType',
         'status' => 'getStatus',
         'subscription_external_id' => 'getSubscriptionExternalId',
         'total_price' => 'getTotalPrice',
@@ -356,6 +368,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         $this->setIfExists('application_id', $data ?? [], null);
         $this->setIfExists('cancel_at', $data ?? [], null);
         $this->setIfExists('cancel_at_period_end', $data ?? [], null);
+        $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('customer_external_id', $data ?? [], null);
         $this->setIfExists('default_payment_method_external_id', $data ?? [], null);
@@ -367,6 +380,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         $this->setIfExists('period_end', $data ?? [], null);
         $this->setIfExists('period_start', $data ?? [], null);
         $this->setIfExists('product_external_ids', $data ?? [], null);
+        $this->setIfExists('provider_type', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('subscription_external_id', $data ?? [], null);
         $this->setIfExists('total_price', $data ?? [], null);
@@ -499,8 +513,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'application_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('application_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('application_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -537,8 +551,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'cancel_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cancel_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('cancel_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -571,6 +585,40 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             throw new \InvalidArgumentException('non-nullable cancel_at_period_end cannot be null');
         }
         $this->container['cancel_at_period_end'] = $cancel_at_period_end;
+
+        return $this;
+    }
+
+    /**
+     * Gets company_id
+     *
+     * @return string|null
+     */
+    public function getCompanyId()
+    {
+        return $this->container['company_id'];
+    }
+
+    /**
+     * Sets company_id
+     *
+     * @param string|null $company_id company_id
+     *
+     * @return self
+     */
+    public function setCompanyId($company_id)
+    {
+        if (is_null($company_id)) {
+            array_push($this->openAPINullablesSetToNull, 'company_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['company_id'] = $company_id;
 
         return $this;
     }
@@ -660,8 +708,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'default_payment_method_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_payment_method_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_payment_method_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -698,8 +746,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'default_payment_method_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_payment_method_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_payment_method_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -790,8 +838,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'interval');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('interval', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('interval', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -828,8 +876,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'metadata');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metadata', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metadata', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -862,8 +910,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'period_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('period_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('period_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -896,8 +944,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'period_start');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('period_start', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('period_start', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -939,6 +987,40 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
     }
 
     /**
+     * Gets provider_type
+     *
+     * @return \Schematic\Model\BillingProviderType|null
+     */
+    public function getProviderType()
+    {
+        return $this->container['provider_type'];
+    }
+
+    /**
+     * Sets provider_type
+     *
+     * @param \Schematic\Model\BillingProviderType|null $provider_type provider_type
+     *
+     * @return self
+     */
+    public function setProviderType($provider_type)
+    {
+        if (is_null($provider_type)) {
+            array_push($this->openAPINullablesSetToNull, 'provider_type');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('provider_type', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['provider_type'] = $provider_type;
+
+        return $this;
+    }
+
+    /**
      * Gets status
      *
      * @return string|null
@@ -961,8 +1043,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'status');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('status', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('status', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1057,8 +1139,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'trial_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1091,8 +1173,8 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             array_push($this->openAPINullablesSetToNull, 'trial_end_setting');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end_setting', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end_setting', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1165,7 +1247,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

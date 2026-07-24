@@ -117,9 +117,27 @@ class ListFeaturesParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "managed_by"
+     */
+    public function testPropertyManagedBy()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "offset"
      */
     public function testPropertyOffset()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "plan_version_id"
+     */
+    public function testPropertyPlanVersionId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

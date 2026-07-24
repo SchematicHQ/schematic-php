@@ -90,6 +90,15 @@ class CheckoutDataRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "selected_plan_id"
      */
     public function testPropertySelectedPlanId()

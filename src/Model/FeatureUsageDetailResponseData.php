@@ -278,6 +278,10 @@ class FeatureUsageDetailResponseData implements ModelInterface, ArrayAccess, \Js
         if ($this->container['features'] === null) {
             $invalidProperties[] = "'features' can't be null";
         }
+        if ((count($this->container['features']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'features', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -314,6 +318,10 @@ class FeatureUsageDetailResponseData implements ModelInterface, ArrayAccess, \Js
     {
         if (is_null($features)) {
             throw new \InvalidArgumentException('non-nullable features cannot be null');
+        }
+
+        if ((count($features) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $features when calling FeatureUsageDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['features'] = $features;
 
@@ -383,7 +391,7 @@ class FeatureUsageDetailResponseData implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

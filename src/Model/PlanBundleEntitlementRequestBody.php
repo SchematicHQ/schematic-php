@@ -357,8 +357,8 @@ class PlanBundleEntitlementRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'entitlement_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('entitlement_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('entitlement_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -458,7 +458,7 @@ class PlanBundleEntitlementRequestBody implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

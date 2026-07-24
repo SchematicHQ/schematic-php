@@ -108,6 +108,24 @@ class ManagePlanRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "base_plan_version_id"
+     */
+    public function testPropertyBasePlanVersionId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_entity_id"
+     */
+    public function testPropertyBillingEntityId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "cancel_immediately"
      */
     public function testPropertyCancelImmediately()
@@ -138,6 +156,15 @@ class ManagePlanRequestTest extends TestCase
      * Test attribute "credit_bundles"
      */
     public function testPropertyCreditBundles()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_field_values"
+     */
+    public function testPropertyCustomFieldValues()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

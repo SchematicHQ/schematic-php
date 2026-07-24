@@ -59,11 +59,15 @@ class WebhookRequestType
 
     public const COMPANY_PLAN_CHANGED = 'company.plan_changed';
 
+    public const COMPANY_SCHEDULED_DOWNGRADE = 'company.scheduled_downgrade';
+
     public const COMPANY_UPDATED = 'company.updated';
 
     public const CREDIT_LIMIT_REACHED = 'credit.limit.reached';
 
     public const CREDIT_LIMIT_WARNING = 'credit.limit.warning';
+
+    public const CREDIT_PURCHASE_SUCCESS = 'credit.purchase.success';
 
     public const ENTITLEMENT_LIMIT_REACHED = 'entitlement.limit.reached';
 
@@ -103,6 +107,8 @@ class WebhookRequestType
 
     public const PLAN_UPDATED = 'plan.updated';
 
+    public const PLAN_VERSION_DELETED = 'plan_version.deleted';
+
     public const RULE_DELETED = 'rule.deleted';
 
     public const TEST_SEND = 'test.send';
@@ -116,6 +122,8 @@ class WebhookRequestType
     public const AUTO_TOPUP_HARD_FAILURE = 'auto.topup.hard.failure';
 
     public const AUTO_TOPUP_RETRY_EXCEEDED = 'auto.topup.retry.exceeded';
+
+    public const AUTO_TOPUP_SUCCESS = 'auto.topup.success';
 
     /**
      * Gets allowable values of the enum
@@ -132,9 +140,11 @@ class WebhookRequestType
             self::COMPANY_OVERRIDE_EXPIRED,
             self::COMPANY_OVERRIDE_UPDATED,
             self::COMPANY_PLAN_CHANGED,
+            self::COMPANY_SCHEDULED_DOWNGRADE,
             self::COMPANY_UPDATED,
             self::CREDIT_LIMIT_REACHED,
             self::CREDIT_LIMIT_WARNING,
+            self::CREDIT_PURCHASE_SUCCESS,
             self::ENTITLEMENT_LIMIT_REACHED,
             self::ENTITLEMENT_LIMIT_WARNING,
             self::ENTITLEMENT_SOFT_LIMIT_REACHED,
@@ -154,13 +164,15 @@ class WebhookRequestType
             self::PLAN_ENTITLEMENT_DELETED,
             self::PLAN_ENTITLEMENT_UPDATED,
             self::PLAN_UPDATED,
+            self::PLAN_VERSION_DELETED,
             self::RULE_DELETED,
             self::TEST_SEND,
             self::USER_CREATED,
             self::USER_DELETED,
             self::USER_UPDATED,
             self::AUTO_TOPUP_HARD_FAILURE,
-            self::AUTO_TOPUP_RETRY_EXCEEDED
+            self::AUTO_TOPUP_RETRY_EXCEEDED,
+            self::AUTO_TOPUP_SUCCESS
         ];
     }
 }

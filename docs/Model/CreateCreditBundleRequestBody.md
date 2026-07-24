@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **bundle_type** | [**\Schematic\Model\BillingCreditBundleType**](BillingCreditBundleType.md) |  | [optional]
 **credit_id** | **string** |  |
 **currency** | **string** |  |
+**currency_prices** | [**\Schematic\Model\CreditBundleCurrencyPriceRequestBody[]**](CreditBundleCurrencyPriceRequestBody.md) |  | [optional]
 **expiry_type** | [**\Schematic\Model\BillingCreditExpiryType**](BillingCreditExpiryType.md) |  | [optional]
 **expiry_unit** | [**\Schematic\Model\BillingCreditExpiryUnit**](BillingCreditExpiryUnit.md) |  | [optional]
 **expiry_unit_count** | **int** |  | [optional]

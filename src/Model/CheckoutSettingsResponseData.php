@@ -60,7 +60,10 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
     protected static $openAPITypes = [
         'collect_address' => 'bool',
         'collect_email' => 'bool',
-        'collect_phone' => 'bool'
+        'collect_phone' => 'bool',
+        'opt_in_enabled' => 'bool',
+        'opt_in_text' => 'string',
+        'opt_in_title' => 'string'
     ];
 
     /**
@@ -73,7 +76,10 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'collect_address' => null,
         'collect_email' => null,
-        'collect_phone' => null
+        'collect_phone' => null,
+        'opt_in_enabled' => null,
+        'opt_in_text' => null,
+        'opt_in_title' => null
     ];
 
     /**
@@ -84,7 +90,10 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
     protected static array $openAPINullables = [
         'collect_address' => false,
         'collect_email' => false,
-        'collect_phone' => false
+        'collect_phone' => false,
+        'opt_in_enabled' => false,
+        'opt_in_text' => true,
+        'opt_in_title' => true
     ];
 
     /**
@@ -175,7 +184,10 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
     protected static $attributeMap = [
         'collect_address' => 'collect_address',
         'collect_email' => 'collect_email',
-        'collect_phone' => 'collect_phone'
+        'collect_phone' => 'collect_phone',
+        'opt_in_enabled' => 'opt_in_enabled',
+        'opt_in_text' => 'opt_in_text',
+        'opt_in_title' => 'opt_in_title'
     ];
 
     /**
@@ -186,7 +198,10 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
     protected static $setters = [
         'collect_address' => 'setCollectAddress',
         'collect_email' => 'setCollectEmail',
-        'collect_phone' => 'setCollectPhone'
+        'collect_phone' => 'setCollectPhone',
+        'opt_in_enabled' => 'setOptInEnabled',
+        'opt_in_text' => 'setOptInText',
+        'opt_in_title' => 'setOptInTitle'
     ];
 
     /**
@@ -197,7 +212,10 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'collect_address' => 'getCollectAddress',
         'collect_email' => 'getCollectEmail',
-        'collect_phone' => 'getCollectPhone'
+        'collect_phone' => 'getCollectPhone',
+        'opt_in_enabled' => 'getOptInEnabled',
+        'opt_in_text' => 'getOptInText',
+        'opt_in_title' => 'getOptInTitle'
     ];
 
     /**
@@ -260,6 +278,9 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('collect_address', $data ?? [], null);
         $this->setIfExists('collect_email', $data ?? [], null);
         $this->setIfExists('collect_phone', $data ?? [], null);
+        $this->setIfExists('opt_in_enabled', $data ?? [], null);
+        $this->setIfExists('opt_in_text', $data ?? [], null);
+        $this->setIfExists('opt_in_title', $data ?? [], null);
     }
 
     /**
@@ -297,6 +318,9 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
         }
         if ($this->container['collect_phone'] === null) {
             $invalidProperties[] = "'collect_phone' can't be null";
+        }
+        if ($this->container['opt_in_enabled'] === null) {
+            $invalidProperties[] = "'opt_in_enabled' can't be null";
         }
         return $invalidProperties;
     }
@@ -393,6 +417,101 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
 
         return $this;
     }
+
+    /**
+     * Gets opt_in_enabled
+     *
+     * @return bool
+     */
+    public function getOptInEnabled()
+    {
+        return $this->container['opt_in_enabled'];
+    }
+
+    /**
+     * Sets opt_in_enabled
+     *
+     * @param bool $opt_in_enabled opt_in_enabled
+     *
+     * @return self
+     */
+    public function setOptInEnabled($opt_in_enabled)
+    {
+        if (is_null($opt_in_enabled)) {
+            throw new \InvalidArgumentException('non-nullable opt_in_enabled cannot be null');
+        }
+        $this->container['opt_in_enabled'] = $opt_in_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets opt_in_text
+     *
+     * @return string|null
+     */
+    public function getOptInText()
+    {
+        return $this->container['opt_in_text'];
+    }
+
+    /**
+     * Sets opt_in_text
+     *
+     * @param string|null $opt_in_text opt_in_text
+     *
+     * @return self
+     */
+    public function setOptInText($opt_in_text)
+    {
+        if (is_null($opt_in_text)) {
+            array_push($this->openAPINullablesSetToNull, 'opt_in_text');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('opt_in_text', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['opt_in_text'] = $opt_in_text;
+
+        return $this;
+    }
+
+    /**
+     * Gets opt_in_title
+     *
+     * @return string|null
+     */
+    public function getOptInTitle()
+    {
+        return $this->container['opt_in_title'];
+    }
+
+    /**
+     * Sets opt_in_title
+     *
+     * @param string|null $opt_in_title opt_in_title
+     *
+     * @return self
+     */
+    public function setOptInTitle($opt_in_title)
+    {
+        if (is_null($opt_in_title)) {
+            array_push($this->openAPINullablesSetToNull, 'opt_in_title');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('opt_in_title', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['opt_in_title'] = $opt_in_title;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -457,7 +576,7 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

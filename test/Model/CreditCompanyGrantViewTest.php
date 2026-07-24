@@ -153,6 +153,15 @@ class CreditCompanyGrantViewTest extends TestCase
     }
 
     /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "exhausted_at"
      */
     public function testPropertyExhaustedAt()
@@ -297,9 +306,36 @@ class CreditCompanyGrantViewTest extends TestCase
     }
 
     /**
+     * Test attribute "reserved"
+     */
+    public function testPropertyReserved()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "settled"
+     */
+    public function testPropertySettled()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "singular_name"
      */
     public function testPropertySingularName()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "source_grant_id"
+     */
+    public function testPropertySourceGrantId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
