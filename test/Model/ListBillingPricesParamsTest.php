@@ -81,6 +81,15 @@ class ListBillingPricesParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "for_initial_plan"
      */
     public function testPropertyForInitialPlan()
@@ -138,6 +147,15 @@ class ListBillingPricesParamsTest extends TestCase
      * Test attribute "offset"
      */
     public function testPropertyOffset()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "plan_version_id"
+     */
+    public function testPropertyPlanVersionId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

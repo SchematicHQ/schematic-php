@@ -81,6 +81,15 @@ class FeatureDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_linked_resource"
+     */
+    public function testPropertyBillingLinkedResource()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()
@@ -162,9 +171,18 @@ class FeatureDetailResponseDataTest extends TestCase
     }
 
     /**
-     * Test attribute "maintainer_id"
+     * Test attribute "maintainer"
      */
-    public function testPropertyMaintainerId()
+    public function testPropertyMaintainer()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "maintainer_account_member_id"
+     */
+    public function testPropertyMaintainerAccountMemberId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

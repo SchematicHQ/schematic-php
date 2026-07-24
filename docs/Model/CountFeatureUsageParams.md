@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **feature_ids** | **string[]** |  | [optional]
 **include_usage_aggregation** | **bool** | Include time-bucketed usage aggregation (today, this week, this month, billing period) for credit-based entitlements. Defaults to false for performance. | [optional]
 **limit** | **int** | Page limit (default 100) | [optional]
+**managed_by** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  | [optional]
 **offset** | **int** | Page offset (default 0) | [optional]
 **q** | **string** |  | [optional]
 **without_negative_entitlements** | **bool** |  | [optional]

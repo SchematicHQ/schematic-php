@@ -81,6 +81,15 @@ class CreateEventRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "backfill"
+     */
+    public function testPropertyBackfill()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "body"
      */
     public function testPropertyBody()
@@ -99,9 +108,27 @@ class CreateEventRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "idempotency_key"
+     */
+    public function testPropertyIdempotencyKey()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "sent_at"
      */
     public function testPropertySentAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "trusted_client_clock"
+     */
+    public function testPropertyTrustedClientClock()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

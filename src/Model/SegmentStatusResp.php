@@ -387,8 +387,8 @@ class SegmentStatusResp implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'last_event_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_event_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('last_event_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -461,7 +461,7 @@ class SegmentStatusResp implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

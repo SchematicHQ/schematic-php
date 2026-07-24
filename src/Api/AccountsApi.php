@@ -72,10 +72,10 @@ class AccountsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'countApiKeys' => [
+        'countAccountMembers' => [
             'application/json',
         ],
-        'countApiRequests' => [
+        'countApiKeys' => [
             'application/json',
         ],
         'countAuditLogs' => [
@@ -93,10 +93,10 @@ class AccountsApi
         'deleteEnvironment' => [
             'application/json',
         ],
-        'getApiKey' => [
+        'getAccountMember' => [
             'application/json',
         ],
-        'getApiRequest' => [
+        'getApiKey' => [
             'application/json',
         ],
         'getAuditLog' => [
@@ -108,10 +108,10 @@ class AccountsApi
         'getWhoAmI' => [
             'application/json',
         ],
-        'listApiKeys' => [
+        'listAccountMembers' => [
             'application/json',
         ],
-        'listApiRequests' => [
+        'listApiKeys' => [
             'application/json',
         ],
         'listAuditLogs' => [
@@ -175,6 +175,560 @@ class AccountsApi
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * Operation countAccountMembers
+     *
+     * Count account members
+     *
+     * @param  string[] $ids ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CountAccountMembersResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function countAccountMembers($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAccountMembers'][0])
+    {
+        list($response) = $this->countAccountMembersWithHttpInfo($ids, $q, $role, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation countAccountMembersWithHttpInfo
+     *
+     * Count account members
+     *
+     * @param  string[] $ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CountAccountMembersResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function countAccountMembersWithHttpInfo($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAccountMembers'][0])
+    {
+        $request = $this->countAccountMembersRequest($ids, $q, $role, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\CountAccountMembersResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\CountAccountMembersResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CountAccountMembersResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\CountAccountMembersResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CountAccountMembersResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation countAccountMembersAsync
+     *
+     * Count account members
+     *
+     * @param  string[] $ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countAccountMembersAsync($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAccountMembers'][0])
+    {
+        return $this->countAccountMembersAsyncWithHttpInfo($ids, $q, $role, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation countAccountMembersAsyncWithHttpInfo
+     *
+     * Count account members
+     *
+     * @param  string[] $ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countAccountMembersAsyncWithHttpInfo($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAccountMembers'][0])
+    {
+        $returnType = '\Schematic\Model\CountAccountMembersResponse';
+        $request = $this->countAccountMembersRequest($ids, $q, $role, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'countAccountMembers'
+     *
+     * @param  string[] $ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function countAccountMembersRequest($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAccountMembers'][0])
+    {
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling AccountsApi.countAccountMembers, number of items must be less than or equal to 100.');
+        }
+
+        if ($q !== null && strlen($q) > 512) {
+            throw new \InvalidArgumentException('invalid length for "$q" when calling AccountsApi.countAccountMembers, must be smaller than or equal to 512.');
+        }
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.countAccountMembers, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.countAccountMembers, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/account-members/count';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $ids,
+            'ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $q,
+            'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $role,
+            'role', // param base name
+            'AccountMemberRole', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
     }
 
     /**
@@ -252,7 +806,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountApiKeysResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -602,6 +1156,12 @@ class AccountsApi
         }
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.countApiKeys, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.countApiKeys, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -711,555 +1271,15 @@ class AccountsApi
     }
 
     /**
-     * Operation countApiRequests
-     *
-     * Count api requests
-     *
-     * @param  string $q q (optional)
-     * @param  string $request_type request_type (optional)
-     * @param  string $environment_id environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Schematic\Model\CountApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
-     */
-    public function countApiRequests($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
-    {
-        list($response) = $this->countApiRequestsWithHttpInfo($q, $request_type, $environment_id, $limit, $offset, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation countApiRequestsWithHttpInfo
-     *
-     * Count api requests
-     *
-     * @param  string $q (optional)
-     * @param  string $request_type (optional)
-     * @param  string $environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\CountApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function countApiRequestsWithHttpInfo($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
-    {
-        $request = $this->countApiRequestsRequest($q, $request_type, $environment_id, $limit, $offset, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Schematic\Model\CountApiRequestsResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\CountApiRequestsResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\CountApiRequestsResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 401:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 403:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 404:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 500:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Schematic\Model\CountApiRequestsResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\CountApiRequestsResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation countApiRequestsAsync
-     *
-     * Count api requests
-     *
-     * @param  string $q (optional)
-     * @param  string $request_type (optional)
-     * @param  string $environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function countApiRequestsAsync($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
-    {
-        return $this->countApiRequestsAsyncWithHttpInfo($q, $request_type, $environment_id, $limit, $offset, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation countApiRequestsAsyncWithHttpInfo
-     *
-     * Count api requests
-     *
-     * @param  string $q (optional)
-     * @param  string $request_type (optional)
-     * @param  string $environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function countApiRequestsAsyncWithHttpInfo($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
-    {
-        $returnType = '\Schematic\Model\CountApiRequestsResponse';
-        $request = $this->countApiRequestsRequest($q, $request_type, $environment_id, $limit, $offset, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'countApiRequests'
-     *
-     * @param  string $q (optional)
-     * @param  string $request_type (optional)
-     * @param  string $environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countApiRequests'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function countApiRequestsRequest($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countApiRequests'][0])
-    {
-
-
-
-
-
-
-
-        $resourcePath = '/api-requests/count';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $q,
-            'q', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $request_type,
-            'request_type', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $environment_id,
-            'environment_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $limit,
-            'limit', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $offset,
-            'offset', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
-        if ($apiKey !== null) {
-            $headers['X-Schematic-Api-Key'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
      * Operation countAuditLogs
      *
      * Count audit logs
      *
      * @param  ActorType $actor_type actor_type (optional)
+     * @param  \DateTime $end_time end_time (optional)
      * @param  string $environment_id environment_id (optional)
      * @param  string $q q (optional)
+     * @param  \DateTime $start_time start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAuditLogs'] to see the possible values for this operation
@@ -1268,9 +1288,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountAuditLogsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countAuditLogs($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
+    public function countAuditLogs($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
     {
-        list($response) = $this->countAuditLogsWithHttpInfo($actor_type, $environment_id, $q, $limit, $offset, $contentType);
+        list($response) = $this->countAuditLogsWithHttpInfo($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -1280,8 +1300,10 @@ class AccountsApi
      * Count audit logs
      *
      * @param  ActorType $actor_type (optional)
+     * @param  \DateTime $end_time (optional)
      * @param  string $environment_id (optional)
      * @param  string $q (optional)
+     * @param  \DateTime $start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAuditLogs'] to see the possible values for this operation
@@ -1290,9 +1312,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountAuditLogsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countAuditLogsWithHttpInfo($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
+    public function countAuditLogsWithHttpInfo($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
     {
-        $request = $this->countAuditLogsRequest($actor_type, $environment_id, $q, $limit, $offset, $contentType);
+        $request = $this->countAuditLogsRequest($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1329,7 +1351,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountAuditLogsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1583,8 +1605,10 @@ class AccountsApi
      * Count audit logs
      *
      * @param  ActorType $actor_type (optional)
+     * @param  \DateTime $end_time (optional)
      * @param  string $environment_id (optional)
      * @param  string $q (optional)
+     * @param  \DateTime $start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAuditLogs'] to see the possible values for this operation
@@ -1592,9 +1616,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countAuditLogsAsync($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
+    public function countAuditLogsAsync($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
     {
-        return $this->countAuditLogsAsyncWithHttpInfo($actor_type, $environment_id, $q, $limit, $offset, $contentType)
+        return $this->countAuditLogsAsyncWithHttpInfo($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1608,8 +1632,10 @@ class AccountsApi
      * Count audit logs
      *
      * @param  ActorType $actor_type (optional)
+     * @param  \DateTime $end_time (optional)
      * @param  string $environment_id (optional)
      * @param  string $q (optional)
+     * @param  \DateTime $start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAuditLogs'] to see the possible values for this operation
@@ -1617,10 +1643,10 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countAuditLogsAsyncWithHttpInfo($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
+    public function countAuditLogsAsyncWithHttpInfo($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
     {
         $returnType = '\Schematic\Model\CountAuditLogsResponse';
-        $request = $this->countAuditLogsRequest($actor_type, $environment_id, $q, $limit, $offset, $contentType);
+        $request = $this->countAuditLogsRequest($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1662,8 +1688,10 @@ class AccountsApi
      * Create request for operation 'countAuditLogs'
      *
      * @param  ActorType $actor_type (optional)
+     * @param  \DateTime $end_time (optional)
      * @param  string $environment_id (optional)
      * @param  string $q (optional)
+     * @param  \DateTime $start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countAuditLogs'] to see the possible values for this operation
@@ -1671,15 +1699,23 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countAuditLogsRequest($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
+    public function countAuditLogsRequest($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countAuditLogs'][0])
     {
+
 
 
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling AccountsApi.countAuditLogs, must be smaller than or equal to 512.');
         }
-        
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.countAuditLogs, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.countAuditLogs, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -1701,6 +1737,15 @@ class AccountsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $end_time,
+            'end_time', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $environment_id,
             'environment_id', // param base name
             'string', // openApiType
@@ -1712,6 +1757,15 @@ class AccountsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $q,
             'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $start_time,
+            'start_time', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -1866,7 +1920,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateApiKeyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2352,7 +2406,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreateEnvironmentResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2838,7 +2892,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteApiKeyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3325,7 +3379,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeleteEnvironmentResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3744,6 +3798,458 @@ class AccountsApi
     }
 
     /**
+     * Operation getAccountMember
+     *
+     * Get account member
+     *
+     * @param  string $account_member_id account_member_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountMember'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\GetAccountMemberResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function getAccountMember($account_member_id, string $contentType = self::contentTypes['getAccountMember'][0])
+    {
+        list($response) = $this->getAccountMemberWithHttpInfo($account_member_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAccountMemberWithHttpInfo
+     *
+     * Get account member
+     *
+     * @param  string $account_member_id account_member_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountMember'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\GetAccountMemberResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAccountMemberWithHttpInfo($account_member_id, string $contentType = self::contentTypes['getAccountMember'][0])
+    {
+        $request = $this->getAccountMemberRequest($account_member_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\GetAccountMemberResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\GetAccountMemberResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\GetAccountMemberResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\GetAccountMemberResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\GetAccountMemberResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAccountMemberAsync
+     *
+     * Get account member
+     *
+     * @param  string $account_member_id account_member_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountMember'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAccountMemberAsync($account_member_id, string $contentType = self::contentTypes['getAccountMember'][0])
+    {
+        return $this->getAccountMemberAsyncWithHttpInfo($account_member_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAccountMemberAsyncWithHttpInfo
+     *
+     * Get account member
+     *
+     * @param  string $account_member_id account_member_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountMember'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAccountMemberAsyncWithHttpInfo($account_member_id, string $contentType = self::contentTypes['getAccountMember'][0])
+    {
+        $returnType = '\Schematic\Model\GetAccountMemberResponse';
+        $request = $this->getAccountMemberRequest($account_member_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAccountMember'
+     *
+     * @param  string $account_member_id account_member_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountMember'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAccountMemberRequest($account_member_id, string $contentType = self::contentTypes['getAccountMember'][0])
+    {
+
+        // verify the required parameter 'account_member_id' is set
+        if ($account_member_id === null || (is_array($account_member_id) && count($account_member_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $account_member_id when calling getAccountMember'
+            );
+        }
+
+
+        $resourcePath = '/account-members/{account_member_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($account_member_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'account_member_id' . '}',
+                ObjectSerializer::toPathValue($account_member_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getApiKey
      *
      * Get api key
@@ -3812,7 +4318,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetApiKeyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4196,458 +4702,6 @@ class AccountsApi
     }
 
     /**
-     * Operation getApiRequest
-     *
-     * Get api request
-     *
-     * @param  string $api_request_id api_request_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Schematic\Model\GetApiRequestResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
-     */
-    public function getApiRequest($api_request_id, string $contentType = self::contentTypes['getApiRequest'][0])
-    {
-        list($response) = $this->getApiRequestWithHttpInfo($api_request_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getApiRequestWithHttpInfo
-     *
-     * Get api request
-     *
-     * @param  string $api_request_id api_request_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\GetApiRequestResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getApiRequestWithHttpInfo($api_request_id, string $contentType = self::contentTypes['getApiRequest'][0])
-    {
-        $request = $this->getApiRequestRequest($api_request_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Schematic\Model\GetApiRequestResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\GetApiRequestResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\GetApiRequestResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 401:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 403:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 404:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 500:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Schematic\Model\GetApiRequestResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\GetApiRequestResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getApiRequestAsync
-     *
-     * Get api request
-     *
-     * @param  string $api_request_id api_request_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getApiRequestAsync($api_request_id, string $contentType = self::contentTypes['getApiRequest'][0])
-    {
-        return $this->getApiRequestAsyncWithHttpInfo($api_request_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getApiRequestAsyncWithHttpInfo
-     *
-     * Get api request
-     *
-     * @param  string $api_request_id api_request_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getApiRequestAsyncWithHttpInfo($api_request_id, string $contentType = self::contentTypes['getApiRequest'][0])
-    {
-        $returnType = '\Schematic\Model\GetApiRequestResponse';
-        $request = $this->getApiRequestRequest($api_request_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getApiRequest'
-     *
-     * @param  string $api_request_id api_request_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getApiRequest'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getApiRequestRequest($api_request_id, string $contentType = self::contentTypes['getApiRequest'][0])
-    {
-
-        // verify the required parameter 'api_request_id' is set
-        if ($api_request_id === null || (is_array($api_request_id) && count($api_request_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_request_id when calling getApiRequest'
-            );
-        }
-
-
-        $resourcePath = '/api-requests/{api_request_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($api_request_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'api_request_id' . '}',
-                ObjectSerializer::toPathValue($api_request_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
-        if ($apiKey !== null) {
-            $headers['X-Schematic-Api-Key'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
      * Operation getAuditLog
      *
      * Get audit log
@@ -4716,7 +4770,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetAuditLogResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5168,7 +5222,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetEnvironmentResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5554,7 +5608,7 @@ class AccountsApi
     /**
      * Operation getWhoAmI
      *
-     * Get who am i
+     * Get who am I
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWhoAmI'] to see the possible values for this operation
      *
@@ -5571,7 +5625,7 @@ class AccountsApi
     /**
      * Operation getWhoAmIWithHttpInfo
      *
-     * Get who am i
+     * Get who am I
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWhoAmI'] to see the possible values for this operation
      *
@@ -5618,7 +5672,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetWhoAmIResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -5834,7 +5888,7 @@ class AccountsApi
     /**
      * Operation getWhoAmIAsync
      *
-     * Get who am i
+     * Get who am I
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWhoAmI'] to see the possible values for this operation
      *
@@ -5854,7 +5908,7 @@ class AccountsApi
     /**
      * Operation getWhoAmIAsyncWithHttpInfo
      *
-     * Get who am i
+     * Get who am I
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWhoAmI'] to see the possible values for this operation
      *
@@ -5921,6 +5975,560 @@ class AccountsApi
         $httpBody = '';
         $multipart = false;
 
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listAccountMembers
+     *
+     * List account members
+     *
+     * @param  string[] $ids ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ListAccountMembersResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function listAccountMembers($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAccountMembers'][0])
+    {
+        list($response) = $this->listAccountMembersWithHttpInfo($ids, $q, $role, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listAccountMembersWithHttpInfo
+     *
+     * List account members
+     *
+     * @param  string[] $ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ListAccountMembersResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listAccountMembersWithHttpInfo($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAccountMembers'][0])
+    {
+        $request = $this->listAccountMembersRequest($ids, $q, $role, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\ListAccountMembersResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ListAccountMembersResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListAccountMembersResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\ListAccountMembersResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ListAccountMembersResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listAccountMembersAsync
+     *
+     * List account members
+     *
+     * @param  string[] $ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listAccountMembersAsync($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAccountMembers'][0])
+    {
+        return $this->listAccountMembersAsyncWithHttpInfo($ids, $q, $role, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listAccountMembersAsyncWithHttpInfo
+     *
+     * List account members
+     *
+     * @param  string[] $ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listAccountMembersAsyncWithHttpInfo($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAccountMembers'][0])
+    {
+        $returnType = '\Schematic\Model\ListAccountMembersResponse';
+        $request = $this->listAccountMembersRequest($ids, $q, $role, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listAccountMembers'
+     *
+     * @param  string[] $ids (optional)
+     * @param  string $q Search filter (optional)
+     * @param  \Schematic\Model\AccountMemberRole $role Filter by member role (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAccountMembers'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listAccountMembersRequest($ids = null, $q = null, $role = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAccountMembers'][0])
+    {
+
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling AccountsApi.listAccountMembers, number of items must be less than or equal to 100.');
+        }
+
+        if ($q !== null && strlen($q) > 512) {
+            throw new \InvalidArgumentException('invalid length for "$q" when calling AccountsApi.listAccountMembers, must be smaller than or equal to 512.');
+        }
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.listAccountMembers, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.listAccountMembers, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/account-members';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $ids,
+            'ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $q,
+            'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $role,
+            'role', // param base name
+            'AccountMemberRole', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -6058,7 +6666,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListApiKeysResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -6408,6 +7016,12 @@ class AccountsApi
         }
 
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.listApiKeys, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.listApiKeys, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -6517,555 +7131,15 @@ class AccountsApi
     }
 
     /**
-     * Operation listApiRequests
-     *
-     * List api requests
-     *
-     * @param  string $q q (optional)
-     * @param  string $request_type request_type (optional)
-     * @param  string $environment_id environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Schematic\Model\ListApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
-     */
-    public function listApiRequests($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
-    {
-        list($response) = $this->listApiRequestsWithHttpInfo($q, $request_type, $environment_id, $limit, $offset, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation listApiRequestsWithHttpInfo
-     *
-     * List api requests
-     *
-     * @param  string $q (optional)
-     * @param  string $request_type (optional)
-     * @param  string $environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
-     *
-     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\ListApiRequestsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function listApiRequestsWithHttpInfo($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
-    {
-        $request = $this->listApiRequestsRequest($q, $request_type, $environment_id, $limit, $offset, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Schematic\Model\ListApiRequestsResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ListApiRequestsResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListApiRequestsResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 401:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 403:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 404:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 500:
-                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Schematic\Model\ApiError' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Schematic\Model\ListApiRequestsResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ListApiRequestsResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Schematic\Model\ApiError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation listApiRequestsAsync
-     *
-     * List api requests
-     *
-     * @param  string $q (optional)
-     * @param  string $request_type (optional)
-     * @param  string $environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function listApiRequestsAsync($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
-    {
-        return $this->listApiRequestsAsyncWithHttpInfo($q, $request_type, $environment_id, $limit, $offset, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation listApiRequestsAsyncWithHttpInfo
-     *
-     * List api requests
-     *
-     * @param  string $q (optional)
-     * @param  string $request_type (optional)
-     * @param  string $environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function listApiRequestsAsyncWithHttpInfo($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
-    {
-        $returnType = '\Schematic\Model\ListApiRequestsResponse';
-        $request = $this->listApiRequestsRequest($q, $request_type, $environment_id, $limit, $offset, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'listApiRequests'
-     *
-     * @param  string $q (optional)
-     * @param  string $request_type (optional)
-     * @param  string $environment_id (optional)
-     * @param  int $limit Page limit (default 100) (optional)
-     * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listApiRequests'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function listApiRequestsRequest($q = null, $request_type = null, $environment_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listApiRequests'][0])
-    {
-
-
-
-
-
-
-
-        $resourcePath = '/api-requests';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $q,
-            'q', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $request_type,
-            'request_type', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $environment_id,
-            'environment_id', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $limit,
-            'limit', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $offset,
-            'offset', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
-        if ($apiKey !== null) {
-            $headers['X-Schematic-Api-Key'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
      * Operation listAuditLogs
      *
      * List audit logs
      *
      * @param  ActorType $actor_type actor_type (optional)
+     * @param  \DateTime $end_time end_time (optional)
      * @param  string $environment_id environment_id (optional)
      * @param  string $q q (optional)
+     * @param  \DateTime $start_time start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAuditLogs'] to see the possible values for this operation
@@ -7074,9 +7148,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListAuditLogsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listAuditLogs($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
+    public function listAuditLogs($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
     {
-        list($response) = $this->listAuditLogsWithHttpInfo($actor_type, $environment_id, $q, $limit, $offset, $contentType);
+        list($response) = $this->listAuditLogsWithHttpInfo($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -7086,8 +7160,10 @@ class AccountsApi
      * List audit logs
      *
      * @param  ActorType $actor_type (optional)
+     * @param  \DateTime $end_time (optional)
      * @param  string $environment_id (optional)
      * @param  string $q (optional)
+     * @param  \DateTime $start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAuditLogs'] to see the possible values for this operation
@@ -7096,9 +7172,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListAuditLogsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listAuditLogsWithHttpInfo($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
+    public function listAuditLogsWithHttpInfo($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
     {
-        $request = $this->listAuditLogsRequest($actor_type, $environment_id, $q, $limit, $offset, $contentType);
+        $request = $this->listAuditLogsRequest($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7135,7 +7211,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListAuditLogsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -7389,8 +7465,10 @@ class AccountsApi
      * List audit logs
      *
      * @param  ActorType $actor_type (optional)
+     * @param  \DateTime $end_time (optional)
      * @param  string $environment_id (optional)
      * @param  string $q (optional)
+     * @param  \DateTime $start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAuditLogs'] to see the possible values for this operation
@@ -7398,9 +7476,9 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAuditLogsAsync($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
+    public function listAuditLogsAsync($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
     {
-        return $this->listAuditLogsAsyncWithHttpInfo($actor_type, $environment_id, $q, $limit, $offset, $contentType)
+        return $this->listAuditLogsAsyncWithHttpInfo($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7414,8 +7492,10 @@ class AccountsApi
      * List audit logs
      *
      * @param  ActorType $actor_type (optional)
+     * @param  \DateTime $end_time (optional)
      * @param  string $environment_id (optional)
      * @param  string $q (optional)
+     * @param  \DateTime $start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAuditLogs'] to see the possible values for this operation
@@ -7423,10 +7503,10 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listAuditLogsAsyncWithHttpInfo($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
+    public function listAuditLogsAsyncWithHttpInfo($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
     {
         $returnType = '\Schematic\Model\ListAuditLogsResponse';
-        $request = $this->listAuditLogsRequest($actor_type, $environment_id, $q, $limit, $offset, $contentType);
+        $request = $this->listAuditLogsRequest($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7468,8 +7548,10 @@ class AccountsApi
      * Create request for operation 'listAuditLogs'
      *
      * @param  ActorType $actor_type (optional)
+     * @param  \DateTime $end_time (optional)
      * @param  string $environment_id (optional)
      * @param  string $q (optional)
+     * @param  \DateTime $start_time (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listAuditLogs'] to see the possible values for this operation
@@ -7477,15 +7559,23 @@ class AccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listAuditLogsRequest($actor_type = null, $environment_id = null, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
+    public function listAuditLogsRequest($actor_type = null, $end_time = null, $environment_id = null, $q = null, $start_time = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listAuditLogs'][0])
     {
+
 
 
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling AccountsApi.listAuditLogs, must be smaller than or equal to 512.');
         }
-        
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.listAuditLogs, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.listAuditLogs, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -7507,6 +7597,15 @@ class AccountsApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $end_time,
+            'end_time', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $environment_id,
             'environment_id', // param base name
             'string', // openApiType
@@ -7518,6 +7617,15 @@ class AccountsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $q,
             'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $start_time,
+            'start_time', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -7676,7 +7784,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListEnvironmentsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8015,7 +8123,16 @@ class AccountsApi
     public function listEnvironmentsRequest($ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listEnvironments'][0])
     {
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling AccountsApi.listEnvironments, number of items must be less than or equal to 100.');
+        }
 
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.listEnvironments, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling AccountsApi.listEnvironments, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -8182,7 +8299,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\QuickstartResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -8653,7 +8770,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateApiKeyResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -9159,7 +9276,7 @@ class AccountsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateEnvironmentResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

@@ -61,16 +61,16 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         'comparison_trait' => '\Schematic\Model\EntityTraitDefinitionResponseData',
         'comparison_trait_id' => 'string',
         'condition_group_id' => 'string',
-        'condition_type' => 'string',
+        'condition_type' => '\Schematic\Model\ConditionType',
         'created_at' => '\DateTime',
         'environment_id' => 'string',
         'event_subtype' => 'string',
         'flag_id' => 'string',
         'id' => 'string',
-        'metric_period' => 'string',
-        'metric_period_month_reset' => 'string',
+        'metric_period' => '\Schematic\Model\MetricPeriod',
+        'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'metric_value' => 'int',
-        'operator' => 'string',
+        'operator' => '\Schematic\Model\ComparableOperator',
         'resource_ids' => 'string[]',
         'resources' => '\Schematic\Model\PreviewObjectResponseData[]',
         'rule_id' => 'string',
@@ -100,7 +100,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         'id' => null,
         'metric_period' => null,
         'metric_period_month_reset' => null,
-        'metric_value' => null,
+        'metric_value' => 'int64',
         'operator' => null,
         'resource_ids' => null,
         'resources' => null,
@@ -433,9 +433,17 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         if ($this->container['resource_ids'] === null) {
             $invalidProperties[] = "'resource_ids' can't be null";
         }
+        if ((count($this->container['resource_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'resource_ids', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['resources'] === null) {
             $invalidProperties[] = "'resources' can't be null";
         }
+        if ((count($this->container['resources']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'resources', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['rule_id'] === null) {
             $invalidProperties[] = "'rule_id' can't be null";
         }
@@ -510,8 +518,8 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'comparison_trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('comparison_trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('comparison_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -544,8 +552,8 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'condition_group_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('condition_group_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('condition_group_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -558,7 +566,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Gets condition_type
      *
-     * @return string
+     * @return \Schematic\Model\ConditionType
      */
     public function getConditionType()
     {
@@ -568,7 +576,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Sets condition_type
      *
-     * @param string $condition_type condition_type
+     * @param \Schematic\Model\ConditionType $condition_type condition_type
      *
      * @return self
      */
@@ -659,8 +667,8 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'event_subtype');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('event_subtype', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('event_subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -693,8 +701,8 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -734,7 +742,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -744,7 +752,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period metric_period
+     * @param \Schematic\Model\MetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -754,8 +762,8 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -768,7 +776,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Gets metric_period_month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMetricPeriodMonthReset()
     {
@@ -778,7 +786,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Sets metric_period_month_reset
      *
-     * @param string|null $metric_period_month_reset metric_period_month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $metric_period_month_reset metric_period_month_reset
      *
      * @return self
      */
@@ -788,8 +796,8 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'metric_period_month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period_month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period_month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -822,8 +830,8 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'metric_value');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_value', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_value', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -836,7 +844,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Gets operator
      *
-     * @return string
+     * @return \Schematic\Model\ComparableOperator
      */
     public function getOperator()
     {
@@ -846,7 +854,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Sets operator
      *
-     * @param string $operator operator
+     * @param \Schematic\Model\ComparableOperator $operator operator
      *
      * @return self
      */
@@ -882,6 +890,10 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         if (is_null($resource_ids)) {
             throw new \InvalidArgumentException('non-nullable resource_ids cannot be null');
         }
+
+        if ((count($resource_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $resource_ids when calling RuleConditionDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['resource_ids'] = $resource_ids;
 
         return $this;
@@ -908,6 +920,10 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     {
         if (is_null($resources)) {
             throw new \InvalidArgumentException('non-nullable resources cannot be null');
+        }
+
+        if ((count($resources) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $resources when calling RuleConditionDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['resources'] = $resources;
 
@@ -991,8 +1007,8 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'trait_entity_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_entity_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_entity_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1025,8 +1041,8 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'trait_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trait_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1153,7 +1169,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

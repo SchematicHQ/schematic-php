@@ -99,6 +99,15 @@ class ApiKeyCreateResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "environment"
+     */
+    public function testPropertyEnvironment()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "environment_id"
      */
     public function testPropertyEnvironmentId()
@@ -117,6 +126,15 @@ class ApiKeyCreateResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "integration"
+     */
+    public function testPropertyIntegration()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "last_used_at"
      */
     public function testPropertyLastUsedAt()
@@ -129,6 +147,15 @@ class ApiKeyCreateResponseDataTest extends TestCase
      * Test attribute "name"
      */
     public function testPropertyName()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "readonly"
+     */
+    public function testPropertyReadonly()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

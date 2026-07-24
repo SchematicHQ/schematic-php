@@ -8,8 +8,10 @@ Name | Type | Description | Notes
 **currency** | **string** |  |
 **external_account_id** | **string** |  |
 **interval** | **string** |  |
+**interval_count** | **int** |  | [optional]
 **is_active** | **bool** |  |
 **meter_id** | **string** |  | [optional]
+**nickname** | **string** |  | [optional]
 **package_size** | **int** |  | [optional]
 **price** | **int** |  |
 **price_decimal** | **string** |  | [optional]

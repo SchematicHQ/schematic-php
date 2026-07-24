@@ -192,7 +192,7 @@ class AccesstokensApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\IssueTemporaryAccessTokenResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

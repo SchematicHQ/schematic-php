@@ -59,11 +59,15 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
       */
     protected static $openAPITypes = [
         'add_on_ids' => '\Schematic\Model\UpdateAddOnRequestBody[]',
+        'auto_topup_overrides' => '\Schematic\Model\UpdateAutoTopupOverrideRequestBody[]',
+        'billing_entity_id' => 'string',
         'company_id' => 'string',
         'coupon_external_id' => 'string',
         'credit_bundles' => '\Schematic\Model\UpdateCreditBundleRequestBody[]',
+        'custom_field_values' => '\Schematic\Model\CheckoutFieldValue[]',
         'new_plan_id' => 'string',
         'new_price_id' => 'string',
+        'opt_in_accepted' => 'bool',
         'pay_in_advance' => '\Schematic\Model\UpdatePayInAdvanceRequestBody[]',
         'payment_method_id' => 'string',
         'promo_code' => 'string',
@@ -79,11 +83,15 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
       */
     protected static $openAPIFormats = [
         'add_on_ids' => null,
+        'auto_topup_overrides' => null,
+        'billing_entity_id' => null,
         'company_id' => null,
         'coupon_external_id' => null,
         'credit_bundles' => null,
+        'custom_field_values' => null,
         'new_plan_id' => null,
         'new_price_id' => null,
+        'opt_in_accepted' => null,
         'pay_in_advance' => null,
         'payment_method_id' => null,
         'promo_code' => null,
@@ -97,11 +105,15 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
       */
     protected static array $openAPINullables = [
         'add_on_ids' => false,
+        'auto_topup_overrides' => false,
+        'billing_entity_id' => true,
         'company_id' => false,
         'coupon_external_id' => true,
         'credit_bundles' => false,
+        'custom_field_values' => false,
         'new_plan_id' => false,
         'new_price_id' => false,
+        'opt_in_accepted' => true,
         'pay_in_advance' => false,
         'payment_method_id' => true,
         'promo_code' => true,
@@ -195,11 +207,15 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
      */
     protected static $attributeMap = [
         'add_on_ids' => 'add_on_ids',
+        'auto_topup_overrides' => 'auto_topup_overrides',
+        'billing_entity_id' => 'billing_entity_id',
         'company_id' => 'company_id',
         'coupon_external_id' => 'coupon_external_id',
         'credit_bundles' => 'credit_bundles',
+        'custom_field_values' => 'custom_field_values',
         'new_plan_id' => 'new_plan_id',
         'new_price_id' => 'new_price_id',
+        'opt_in_accepted' => 'opt_in_accepted',
         'pay_in_advance' => 'pay_in_advance',
         'payment_method_id' => 'payment_method_id',
         'promo_code' => 'promo_code',
@@ -213,11 +229,15 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
      */
     protected static $setters = [
         'add_on_ids' => 'setAddOnIds',
+        'auto_topup_overrides' => 'setAutoTopupOverrides',
+        'billing_entity_id' => 'setBillingEntityId',
         'company_id' => 'setCompanyId',
         'coupon_external_id' => 'setCouponExternalId',
         'credit_bundles' => 'setCreditBundles',
+        'custom_field_values' => 'setCustomFieldValues',
         'new_plan_id' => 'setNewPlanId',
         'new_price_id' => 'setNewPriceId',
+        'opt_in_accepted' => 'setOptInAccepted',
         'pay_in_advance' => 'setPayInAdvance',
         'payment_method_id' => 'setPaymentMethodId',
         'promo_code' => 'setPromoCode',
@@ -231,11 +251,15 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
      */
     protected static $getters = [
         'add_on_ids' => 'getAddOnIds',
+        'auto_topup_overrides' => 'getAutoTopupOverrides',
+        'billing_entity_id' => 'getBillingEntityId',
         'company_id' => 'getCompanyId',
         'coupon_external_id' => 'getCouponExternalId',
         'credit_bundles' => 'getCreditBundles',
+        'custom_field_values' => 'getCustomFieldValues',
         'new_plan_id' => 'getNewPlanId',
         'new_price_id' => 'getNewPriceId',
+        'opt_in_accepted' => 'getOptInAccepted',
         'pay_in_advance' => 'getPayInAdvance',
         'payment_method_id' => 'getPaymentMethodId',
         'promo_code' => 'getPromoCode',
@@ -300,11 +324,15 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
     public function __construct(array $data = null)
     {
         $this->setIfExists('add_on_ids', $data ?? [], null);
+        $this->setIfExists('auto_topup_overrides', $data ?? [], null);
+        $this->setIfExists('billing_entity_id', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('coupon_external_id', $data ?? [], null);
         $this->setIfExists('credit_bundles', $data ?? [], null);
+        $this->setIfExists('custom_field_values', $data ?? [], null);
         $this->setIfExists('new_plan_id', $data ?? [], null);
         $this->setIfExists('new_price_id', $data ?? [], null);
+        $this->setIfExists('opt_in_accepted', $data ?? [], null);
         $this->setIfExists('pay_in_advance', $data ?? [], null);
         $this->setIfExists('payment_method_id', $data ?? [], null);
         $this->setIfExists('promo_code', $data ?? [], null);
@@ -345,6 +373,13 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
             $invalidProperties[] = "invalid value for 'add_on_ids', number of items must be less than or equal to 100.";
         }
 
+        if ($this->container['auto_topup_overrides'] === null) {
+            $invalidProperties[] = "'auto_topup_overrides' can't be null";
+        }
+        if ((count($this->container['auto_topup_overrides']) > 100)) {
+            $invalidProperties[] = "invalid value for 'auto_topup_overrides', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['company_id'] === null) {
             $invalidProperties[] = "'company_id' can't be null";
         }
@@ -357,6 +392,13 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
         }
         if ((count($this->container['credit_bundles']) > 100)) {
             $invalidProperties[] = "invalid value for 'credit_bundles', number of items must be less than or equal to 100.";
+        }
+
+        if ($this->container['custom_field_values'] === null) {
+            $invalidProperties[] = "'custom_field_values' can't be null";
+        }
+        if ((count($this->container['custom_field_values']) > 100)) {
+            $invalidProperties[] = "invalid value for 'custom_field_values', number of items must be less than or equal to 100.";
         }
 
         if ($this->container['new_plan_id'] === null) {
@@ -430,6 +472,71 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
     }
 
     /**
+     * Gets auto_topup_overrides
+     *
+     * @return \Schematic\Model\UpdateAutoTopupOverrideRequestBody[]
+     */
+    public function getAutoTopupOverrides()
+    {
+        return $this->container['auto_topup_overrides'];
+    }
+
+    /**
+     * Sets auto_topup_overrides
+     *
+     * @param \Schematic\Model\UpdateAutoTopupOverrideRequestBody[] $auto_topup_overrides auto_topup_overrides
+     *
+     * @return self
+     */
+    public function setAutoTopupOverrides($auto_topup_overrides)
+    {
+        if (is_null($auto_topup_overrides)) {
+            throw new \InvalidArgumentException('non-nullable auto_topup_overrides cannot be null');
+        }
+
+        if ((count($auto_topup_overrides) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $auto_topup_overrides when calling ChangeSubscriptionInternalRequestBody., number of items must be less than or equal to 100.');
+        }
+        $this->container['auto_topup_overrides'] = $auto_topup_overrides;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_entity_id
+     *
+     * @return string|null
+     */
+    public function getBillingEntityId()
+    {
+        return $this->container['billing_entity_id'];
+    }
+
+    /**
+     * Sets billing_entity_id
+     *
+     * @param string|null $billing_entity_id billing_entity_id
+     *
+     * @return self
+     */
+    public function setBillingEntityId($billing_entity_id)
+    {
+        if (is_null($billing_entity_id)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_entity_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_entity_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_entity_id'] = $billing_entity_id;
+
+        return $this;
+    }
+
+    /**
      * Gets company_id
      *
      * @return string
@@ -479,8 +586,8 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
             array_push($this->openAPINullablesSetToNull, 'coupon_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('coupon_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('coupon_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -521,6 +628,37 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
             throw new \InvalidArgumentException('invalid value for $credit_bundles when calling ChangeSubscriptionInternalRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['credit_bundles'] = $credit_bundles;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_field_values
+     *
+     * @return \Schematic\Model\CheckoutFieldValue[]
+     */
+    public function getCustomFieldValues()
+    {
+        return $this->container['custom_field_values'];
+    }
+
+    /**
+     * Sets custom_field_values
+     *
+     * @param \Schematic\Model\CheckoutFieldValue[] $custom_field_values custom_field_values
+     *
+     * @return self
+     */
+    public function setCustomFieldValues($custom_field_values)
+    {
+        if (is_null($custom_field_values)) {
+            throw new \InvalidArgumentException('non-nullable custom_field_values cannot be null');
+        }
+
+        if ((count($custom_field_values) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $custom_field_values when calling ChangeSubscriptionInternalRequestBody., number of items must be less than or equal to 100.');
+        }
+        $this->container['custom_field_values'] = $custom_field_values;
 
         return $this;
     }
@@ -580,6 +718,40 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
     }
 
     /**
+     * Gets opt_in_accepted
+     *
+     * @return bool|null
+     */
+    public function getOptInAccepted()
+    {
+        return $this->container['opt_in_accepted'];
+    }
+
+    /**
+     * Sets opt_in_accepted
+     *
+     * @param bool|null $opt_in_accepted opt_in_accepted
+     *
+     * @return self
+     */
+    public function setOptInAccepted($opt_in_accepted)
+    {
+        if (is_null($opt_in_accepted)) {
+            array_push($this->openAPINullablesSetToNull, 'opt_in_accepted');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('opt_in_accepted', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['opt_in_accepted'] = $opt_in_accepted;
+
+        return $this;
+    }
+
+    /**
      * Gets pay_in_advance
      *
      * @return \Schematic\Model\UpdatePayInAdvanceRequestBody[]
@@ -633,8 +805,8 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
             array_push($this->openAPINullablesSetToNull, 'payment_method_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('payment_method_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('payment_method_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -671,8 +843,8 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
             array_push($this->openAPINullablesSetToNull, 'promo_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('promo_code', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('promo_code', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -776,7 +948,7 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

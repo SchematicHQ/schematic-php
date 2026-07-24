@@ -153,6 +153,24 @@ class UsageBasedEntitlementResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "quarterly_usage_based_price"
+     */
+    public function testPropertyQuarterlyUsageBasedPrice()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "usage_quantity"
+     */
+    public function testPropertyUsageQuantity()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "value_bool"
      */
     public function testPropertyValueBool()

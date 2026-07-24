@@ -5,9 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actor_type** | [**\Schematic\Model\ActorType**](ActorType.md) |  | [optional]
+**end_time** | **\DateTime** |  | [optional]
 **environment_id** | **string** |  | [optional]
 **limit** | **int** | Page limit (default 100) | [optional]
 **offset** | **int** | Page offset (default 0) | [optional]
 **q** | **string** |  | [optional]
+**start_time** | **\DateTime** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

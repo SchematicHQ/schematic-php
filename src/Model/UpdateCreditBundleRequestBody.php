@@ -71,7 +71,7 @@ class UpdateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPIFormats = [
         'bundle_id' => null,
-        'quantity' => null
+        'quantity' => 'int64'
     ];
 
     /**
@@ -429,7 +429,7 @@ class UpdateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

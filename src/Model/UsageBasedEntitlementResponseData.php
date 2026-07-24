@@ -62,10 +62,12 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
         'consumption_rate' => 'float',
         'feature_id' => 'string',
         'metered_price' => '\Schematic\Model\BillingPriceView',
-        'metric_period' => 'string',
-        'metric_period_month_reset' => 'string',
+        'metric_period' => '\Schematic\Model\MetricPeriod',
+        'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'monthly_usage_based_price' => '\Schematic\Model\BillingPriceView',
         'price_behavior' => '\Schematic\Model\EntitlementPriceBehavior',
+        'quarterly_usage_based_price' => '\Schematic\Model\BillingPriceView',
+        'usage_quantity' => 'int',
         'value_bool' => 'bool',
         'value_numeric' => 'int',
         'value_type' => '\Schematic\Model\EntitlementValueType',
@@ -80,16 +82,18 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'billing_threshold' => null,
-        'consumption_rate' => null,
+        'billing_threshold' => 'int64',
+        'consumption_rate' => 'double',
         'feature_id' => null,
         'metered_price' => null,
         'metric_period' => null,
         'metric_period_month_reset' => null,
         'monthly_usage_based_price' => null,
         'price_behavior' => null,
+        'quarterly_usage_based_price' => null,
+        'usage_quantity' => 'int64',
         'value_bool' => null,
-        'value_numeric' => null,
+        'value_numeric' => 'int64',
         'value_type' => null,
         'yearly_usage_based_price' => null
     ];
@@ -108,6 +112,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
         'metric_period_month_reset' => true,
         'monthly_usage_based_price' => false,
         'price_behavior' => true,
+        'quarterly_usage_based_price' => false,
+        'usage_quantity' => true,
         'value_bool' => true,
         'value_numeric' => true,
         'value_type' => false,
@@ -208,6 +214,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
         'metric_period_month_reset' => 'metric_period_month_reset',
         'monthly_usage_based_price' => 'monthly_usage_based_price',
         'price_behavior' => 'price_behavior',
+        'quarterly_usage_based_price' => 'quarterly_usage_based_price',
+        'usage_quantity' => 'usage_quantity',
         'value_bool' => 'value_bool',
         'value_numeric' => 'value_numeric',
         'value_type' => 'value_type',
@@ -228,6 +236,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
         'metric_period_month_reset' => 'setMetricPeriodMonthReset',
         'monthly_usage_based_price' => 'setMonthlyUsageBasedPrice',
         'price_behavior' => 'setPriceBehavior',
+        'quarterly_usage_based_price' => 'setQuarterlyUsageBasedPrice',
+        'usage_quantity' => 'setUsageQuantity',
         'value_bool' => 'setValueBool',
         'value_numeric' => 'setValueNumeric',
         'value_type' => 'setValueType',
@@ -248,6 +258,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
         'metric_period_month_reset' => 'getMetricPeriodMonthReset',
         'monthly_usage_based_price' => 'getMonthlyUsageBasedPrice',
         'price_behavior' => 'getPriceBehavior',
+        'quarterly_usage_based_price' => 'getQuarterlyUsageBasedPrice',
+        'usage_quantity' => 'getUsageQuantity',
         'value_bool' => 'getValueBool',
         'value_numeric' => 'getValueNumeric',
         'value_type' => 'getValueType',
@@ -319,6 +331,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
         $this->setIfExists('metric_period_month_reset', $data ?? [], null);
         $this->setIfExists('monthly_usage_based_price', $data ?? [], null);
         $this->setIfExists('price_behavior', $data ?? [], null);
+        $this->setIfExists('quarterly_usage_based_price', $data ?? [], null);
+        $this->setIfExists('usage_quantity', $data ?? [], null);
         $this->setIfExists('value_bool', $data ?? [], null);
         $this->setIfExists('value_numeric', $data ?? [], null);
         $this->setIfExists('value_type', $data ?? [], null);
@@ -396,8 +410,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
             array_push($this->openAPINullablesSetToNull, 'billing_threshold');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_threshold', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_threshold', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -430,8 +444,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
             array_push($this->openAPINullablesSetToNull, 'consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -498,7 +512,7 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
     /**
      * Gets metric_period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getMetricPeriod()
     {
@@ -508,7 +522,7 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
     /**
      * Sets metric_period
      *
-     * @param string|null $metric_period metric_period
+     * @param \Schematic\Model\MetricPeriod|null $metric_period metric_period
      *
      * @return self
      */
@@ -518,8 +532,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
             array_push($this->openAPINullablesSetToNull, 'metric_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -532,7 +546,7 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
     /**
      * Gets metric_period_month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMetricPeriodMonthReset()
     {
@@ -542,7 +556,7 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
     /**
      * Sets metric_period_month_reset
      *
-     * @param string|null $metric_period_month_reset metric_period_month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $metric_period_month_reset metric_period_month_reset
      *
      * @return self
      */
@@ -552,8 +566,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
             array_push($this->openAPINullablesSetToNull, 'metric_period_month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_period_month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_period_month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -613,13 +627,74 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
             array_push($this->openAPINullablesSetToNull, 'price_behavior');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_behavior', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['price_behavior'] = $price_behavior;
+
+        return $this;
+    }
+
+    /**
+     * Gets quarterly_usage_based_price
+     *
+     * @return \Schematic\Model\BillingPriceView|null
+     */
+    public function getQuarterlyUsageBasedPrice()
+    {
+        return $this->container['quarterly_usage_based_price'];
+    }
+
+    /**
+     * Sets quarterly_usage_based_price
+     *
+     * @param \Schematic\Model\BillingPriceView|null $quarterly_usage_based_price quarterly_usage_based_price
+     *
+     * @return self
+     */
+    public function setQuarterlyUsageBasedPrice($quarterly_usage_based_price)
+    {
+        if (is_null($quarterly_usage_based_price)) {
+            throw new \InvalidArgumentException('non-nullable quarterly_usage_based_price cannot be null');
+        }
+        $this->container['quarterly_usage_based_price'] = $quarterly_usage_based_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage_quantity
+     *
+     * @return int|null
+     */
+    public function getUsageQuantity()
+    {
+        return $this->container['usage_quantity'];
+    }
+
+    /**
+     * Sets usage_quantity
+     *
+     * @param int|null $usage_quantity The committed unit quantity for this entitlement. For custom plans this is the quantity the company is contractually committed to; for standard plans it is the quantity pre-filled when subscribing. Only applies to pay-in-advance entitlements. Note: this is not yet enforced/auto-provisioned as a true default — it is currently stored for downstream billing use.
+     *
+     * @return self
+     */
+    public function setUsageQuantity($usage_quantity)
+    {
+        if (is_null($usage_quantity)) {
+            array_push($this->openAPINullablesSetToNull, 'usage_quantity');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('usage_quantity', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['usage_quantity'] = $usage_quantity;
 
         return $this;
     }
@@ -647,8 +722,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
             array_push($this->openAPINullablesSetToNull, 'value_bool');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_bool', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_bool', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -681,8 +756,8 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
             array_push($this->openAPINullablesSetToNull, 'value_numeric');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('value_numeric', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('value_numeric', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -809,7 +884,7 @@ class UsageBasedEntitlementResponseData implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

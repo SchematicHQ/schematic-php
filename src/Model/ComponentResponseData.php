@@ -59,6 +59,7 @@ class ComponentResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static $openAPITypes = [
         'ast' => 'array<string,float>',
+        'catalog_id' => 'string',
         'created_at' => '\DateTime',
         'id' => 'string',
         'name' => 'string',
@@ -75,7 +76,8 @@ class ComponentResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'ast' => null,
+        'ast' => 'double',
+        'catalog_id' => null,
         'created_at' => 'date-time',
         'id' => null,
         'name' => null,
@@ -91,6 +93,7 @@ class ComponentResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'ast' => false,
+        'catalog_id' => true,
         'created_at' => false,
         'id' => false,
         'name' => false,
@@ -186,6 +189,7 @@ class ComponentResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $attributeMap = [
         'ast' => 'ast',
+        'catalog_id' => 'catalog_id',
         'created_at' => 'created_at',
         'id' => 'id',
         'name' => 'name',
@@ -201,6 +205,7 @@ class ComponentResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $setters = [
         'ast' => 'setAst',
+        'catalog_id' => 'setCatalogId',
         'created_at' => 'setCreatedAt',
         'id' => 'setId',
         'name' => 'setName',
@@ -216,6 +221,7 @@ class ComponentResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     protected static $getters = [
         'ast' => 'getAst',
+        'catalog_id' => 'getCatalogId',
         'created_at' => 'getCreatedAt',
         'id' => 'getId',
         'name' => 'getName',
@@ -282,6 +288,7 @@ class ComponentResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     public function __construct(array $data = null)
     {
         $this->setIfExists('ast', $data ?? [], null);
+        $this->setIfExists('catalog_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -373,6 +380,40 @@ class ComponentResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable ast cannot be null');
         }
         $this->container['ast'] = $ast;
+
+        return $this;
+    }
+
+    /**
+     * Gets catalog_id
+     *
+     * @return string|null
+     */
+    public function getCatalogId()
+    {
+        return $this->container['catalog_id'];
+    }
+
+    /**
+     * Sets catalog_id
+     *
+     * @param string|null $catalog_id catalog_id
+     *
+     * @return self
+     */
+    public function setCatalogId($catalog_id)
+    {
+        if (is_null($catalog_id)) {
+            array_push($this->openAPINullablesSetToNull, 'catalog_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('catalog_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['catalog_id'] = $catalog_id;
 
         return $this;
     }
@@ -602,7 +643,7 @@ class ComponentResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

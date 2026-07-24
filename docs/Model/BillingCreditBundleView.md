@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_invoice_id** | **string** |  | [optional]
 **bundle_type** | [**\Schematic\Model\BillingCreditBundleType**](BillingCreditBundleType.md) |  |
 **created_at** | **\DateTime** |  |
 **credit_description** | **string** |  | [optional]
 **credit_icon** | **string** |  | [optional]
 **credit_id** | **string** |  |
 **credit_name** | **string** |  |
+**currency_prices** | [**\Schematic\Model\CreditBundleCurrencyPrice[]**](CreditBundleCurrencyPrice.md) |  |
 **expiry_type** | [**\Schematic\Model\BillingCreditExpiryType**](BillingCreditExpiryType.md) |  |
 **expiry_unit** | [**\Schematic\Model\BillingCreditExpiryUnit**](BillingCreditExpiryUnit.md) |  |
 **expiry_unit_count** | **int** |  | [optional]

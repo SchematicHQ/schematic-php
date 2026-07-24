@@ -59,9 +59,11 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'audience_type' => 'string',
+        'company_id' => 'string',
+        'copied_from_plan_id' => 'string',
         'created_at' => '\DateTime',
         'description' => 'string',
-        'icon' => 'string',
+        'icon' => '\Schematic\Model\PlanIcon',
         'id' => 'string',
         'name' => 'string',
         'plan_type' => '\Schematic\Model\PlanType',
@@ -77,6 +79,8 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'audience_type' => null,
+        'company_id' => null,
+        'copied_from_plan_id' => null,
         'created_at' => 'date-time',
         'description' => null,
         'icon' => null,
@@ -93,6 +97,8 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'audience_type' => true,
+        'company_id' => true,
+        'copied_from_plan_id' => true,
         'created_at' => false,
         'description' => false,
         'icon' => false,
@@ -189,6 +195,8 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'audience_type' => 'audience_type',
+        'company_id' => 'company_id',
+        'copied_from_plan_id' => 'copied_from_plan_id',
         'created_at' => 'created_at',
         'description' => 'description',
         'icon' => 'icon',
@@ -205,6 +213,8 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'audience_type' => 'setAudienceType',
+        'company_id' => 'setCompanyId',
+        'copied_from_plan_id' => 'setCopiedFromPlanId',
         'created_at' => 'setCreatedAt',
         'description' => 'setDescription',
         'icon' => 'setIcon',
@@ -221,6 +231,8 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'audience_type' => 'getAudienceType',
+        'company_id' => 'getCompanyId',
+        'copied_from_plan_id' => 'getCopiedFromPlanId',
         'created_at' => 'getCreatedAt',
         'description' => 'getDescription',
         'icon' => 'getIcon',
@@ -288,6 +300,8 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('audience_type', $data ?? [], null);
+        $this->setIfExists('company_id', $data ?? [], null);
+        $this->setIfExists('copied_from_plan_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
@@ -385,13 +399,81 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'audience_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('audience_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('audience_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['audience_type'] = $audience_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets company_id
+     *
+     * @return string|null
+     */
+    public function getCompanyId()
+    {
+        return $this->container['company_id'];
+    }
+
+    /**
+     * Sets company_id
+     *
+     * @param string|null $company_id company_id
+     *
+     * @return self
+     */
+    public function setCompanyId($company_id)
+    {
+        if (is_null($company_id)) {
+            array_push($this->openAPINullablesSetToNull, 'company_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['company_id'] = $company_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets copied_from_plan_id
+     *
+     * @return string|null
+     */
+    public function getCopiedFromPlanId()
+    {
+        return $this->container['copied_from_plan_id'];
+    }
+
+    /**
+     * Sets copied_from_plan_id
+     *
+     * @param string|null $copied_from_plan_id copied_from_plan_id
+     *
+     * @return self
+     */
+    public function setCopiedFromPlanId($copied_from_plan_id)
+    {
+        if (is_null($copied_from_plan_id)) {
+            array_push($this->openAPINullablesSetToNull, 'copied_from_plan_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('copied_from_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['copied_from_plan_id'] = $copied_from_plan_id;
 
         return $this;
     }
@@ -453,7 +535,7 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets icon
      *
-     * @return string
+     * @return \Schematic\Model\PlanIcon
      */
     public function getIcon()
     {
@@ -463,7 +545,7 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets icon
      *
-     * @param string $icon icon
+     * @param \Schematic\Model\PlanIcon $icon icon
      *
      * @return self
      */
@@ -648,7 +730,7 @@ class PlanResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

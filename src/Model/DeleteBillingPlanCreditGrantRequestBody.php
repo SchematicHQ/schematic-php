@@ -313,8 +313,8 @@ class DeleteBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             array_push($this->openAPINullablesSetToNull, 'apply_to_existing');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('apply_to_existing', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('apply_to_existing', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -387,7 +387,7 @@ class DeleteBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

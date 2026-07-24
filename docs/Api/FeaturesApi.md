@@ -20,6 +20,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**updateFeature()**](FeaturesApi.md#updateFeature) | **PUT** /features/{feature_id} | Update feature |
 | [**updateFlag()**](FeaturesApi.md#updateFlag) | **PUT** /flags/{flag_id} | Update flag |
 | [**updateFlagRules()**](FeaturesApi.md#updateFlagRules) | **PUT** /flags/{flag_id}/rules | Update flag rules |
+| [**upsertFeatureForBillingProduct()**](FeaturesApi.md#upsertFeatureForBillingProduct) | **POST** /features/billing-linked | Upsert feature for billing product |
 
 
 ## `checkFlag()`
@@ -180,7 +181,7 @@ try {
 ## `countFeatures()`
 
 ```php
-countFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset): \Schematic\Model\CountFeaturesResponse
+countFeatures($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset): \Schematic\Model\CountFeaturesResponse
 ```
 
 Count features
@@ -195,17 +196,19 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
+$boolean_require_event = True; // bool | Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter.
+$feature_type = array(new \Schematic\Model\\Schematic\Model\FeatureType()); // \Schematic\Model\FeatureType[] | Filter by one or more feature types (boolean, event, trait)
 $ids = array('ids_example'); // string[]
+$managed_by = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
+$plan_version_id = 'plan_version_id_example'; // string | Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used
 $q = 'q_example'; // string | Search by feature name or ID
 $without_company_override_for = 'without_company_override_for_example'; // string | Filter out features that already have a company override for the specified company ID
 $without_plan_entitlement_for = 'without_plan_entitlement_for_example'; // string | Filter out features that already have a plan entitlement for the specified plan ID
-$feature_type = array(new \Schematic\Model\\Schematic\Model\FeatureType()); // \Schematic\Model\FeatureType[] | Filter by one or more feature types (boolean, event, trait)
-$boolean_require_event = True; // bool | Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter.
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->FeaturesApi->countFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset);
+    $result = $schematic->FeaturesApi->countFeatures($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->FeaturesApi->countFeatures: ', $e->getMessage(), PHP_EOL;
@@ -216,12 +219,14 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **boolean_require_event** | **bool**| Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. | [optional] |
+| **feature_type** | [**\Schematic\Model\FeatureType[]**](../Model/\Schematic\Model\FeatureType.md)| Filter by one or more feature types (boolean, event, trait) | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **managed_by** | [**\Schematic\Model\BillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
+| **plan_version_id** | **string**| Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used | [optional] |
 | **q** | **string**| Search by feature name or ID | [optional] |
 | **without_company_override_for** | **string**| Filter out features that already have a company override for the specified company ID | [optional] |
 | **without_plan_entitlement_for** | **string**| Filter out features that already have a plan entitlement for the specified plan ID | [optional] |
-| **feature_type** | [**\Schematic\Model\FeatureType[]**](../Model/\Schematic\Model\FeatureType.md)| Filter by one or more feature types (boolean, event, trait) | [optional] |
-| **boolean_require_event** | **bool**| Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -610,7 +615,7 @@ try {
 ## `listFeatures()`
 
 ```php
-listFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset): \Schematic\Model\ListFeaturesResponse
+listFeatures($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset): \Schematic\Model\ListFeaturesResponse
 ```
 
 List features
@@ -625,17 +630,19 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
+$boolean_require_event = True; // bool | Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter.
+$feature_type = array(new \Schematic\Model\\Schematic\Model\FeatureType()); // \Schematic\Model\FeatureType[] | Filter by one or more feature types (boolean, event, trait)
 $ids = array('ids_example'); // string[]
+$managed_by = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType | Filter for features managed by a billing provider, or by Schematic (no billing provider)
+$plan_version_id = 'plan_version_id_example'; // string | Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used
 $q = 'q_example'; // string | Search by feature name or ID
 $without_company_override_for = 'without_company_override_for_example'; // string | Filter out features that already have a company override for the specified company ID
 $without_plan_entitlement_for = 'without_plan_entitlement_for_example'; // string | Filter out features that already have a plan entitlement for the specified plan ID
-$feature_type = array(new \Schematic\Model\\Schematic\Model\FeatureType()); // \Schematic\Model\FeatureType[] | Filter by one or more feature types (boolean, event, trait)
-$boolean_require_event = True; // bool | Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter.
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->FeaturesApi->listFeatures($ids, $q, $without_company_override_for, $without_plan_entitlement_for, $feature_type, $boolean_require_event, $limit, $offset);
+    $result = $schematic->FeaturesApi->listFeatures($boolean_require_event, $feature_type, $ids, $managed_by, $plan_version_id, $q, $without_company_override_for, $without_plan_entitlement_for, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->FeaturesApi->listFeatures: ', $e->getMessage(), PHP_EOL;
@@ -646,12 +653,14 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **boolean_require_event** | **bool**| Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. | [optional] |
+| **feature_type** | [**\Schematic\Model\FeatureType[]**](../Model/\Schematic\Model\FeatureType.md)| Filter by one or more feature types (boolean, event, trait) | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **managed_by** | [**\Schematic\Model\BillingProviderType**](../Model/.md)| Filter for features managed by a billing provider, or by Schematic (no billing provider) | [optional] |
+| **plan_version_id** | **string**| Filter by plan version ID when used with without_plan_entitlement_for; if not provided, the latest published version is used | [optional] |
 | **q** | **string**| Search by feature name or ID | [optional] |
 | **without_company_override_for** | **string**| Filter out features that already have a company override for the specified company ID | [optional] |
 | **without_plan_entitlement_for** | **string**| Filter out features that already have a plan entitlement for the specified plan ID | [optional] |
-| **feature_type** | [**\Schematic\Model\FeatureType[]**](../Model/\Schematic\Model\FeatureType.md)| Filter by one or more feature types (boolean, event, trait) | [optional] |
-| **boolean_require_event** | **bool**| Only return boolean features if there is an associated event. Automatically includes boolean in the feature types filter. | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -876,6 +885,57 @@ try {
 ### Return type
 
 [**\Schematic\Model\UpdateFlagRulesResponse**](../Model/UpdateFlagRulesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `upsertFeatureForBillingProduct()`
+
+```php
+upsertFeatureForBillingProduct($create_billing_linked_feature_request_body): \Schematic\Model\UpsertFeatureForBillingProductResponse
+```
+
+Upsert feature for billing product
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$create_billing_linked_feature_request_body = new \Schematic\Model\CreateBillingLinkedFeatureRequestBody(); // \Schematic\Model\CreateBillingLinkedFeatureRequestBody
+
+try {
+    $result = $schematic->FeaturesApi->upsertFeatureForBillingProduct($create_billing_linked_feature_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->FeaturesApi->upsertFeatureForBillingProduct: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_billing_linked_feature_request_body** | [**\Schematic\Model\CreateBillingLinkedFeatureRequestBody**](../Model/CreateBillingLinkedFeatureRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpsertFeatureForBillingProductResponse**](../Model/UpsertFeatureForBillingProductResponse.md)
 
 ### Authorization
 

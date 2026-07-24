@@ -5,9 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **audience_type** | **string** |  | [optional]
+**company_id** | **string** |  | [optional]
+**copied_from_plan_id** | **string** |  | [optional]
 **created_at** | **\DateTime** |  |
 **description** | **string** |  |
-**icon** | **string** |  |
+**icon** | [**\Schematic\Model\PlanIcon**](PlanIcon.md) |  |
 **id** | **string** |  |
 **name** | **string** |  |
 **plan_type** | [**\Schematic\Model\PlanType**](PlanType.md) |  |

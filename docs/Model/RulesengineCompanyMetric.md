@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** |  |
 **environment_id** | **string** |  |
 **event_subtype** | **string** |  |
-**month_reset** | **string** |  |
-**period** | **string** |  |
+**month_reset** | [**\Schematic\Model\RulesengineMetricPeriodMonthReset**](RulesengineMetricPeriodMonthReset.md) |  |
+**period** | [**\Schematic\Model\RulesengineMetricPeriod**](RulesengineMetricPeriod.md) |  |
 **valid_until** | **\DateTime** |  | [optional]
 **value** | **int** |  |
 

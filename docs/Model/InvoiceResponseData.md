@@ -13,11 +13,14 @@ Name | Type | Description | Notes
 **currency** | **string** |  |
 **customer_external_id** | **string** |  |
 **due_date** | **\DateTime** |  | [optional]
+**ending_balance** | **int** |  |
 **environment_id** | **string** |  |
 **external_id** | **string** |  | [optional]
 **id** | **string** |  |
 **payment_method_external_id** | **string** |  | [optional]
 **provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |
+**starting_balance** | **int** |  |
+**status** | [**\Schematic\Model\InvoiceStatus**](InvoiceStatus.md) |  | [optional]
 **subscription_external_id** | **string** |  | [optional]
 **subtotal** | **int** |  |
 **updated_at** | **\DateTime** |  |

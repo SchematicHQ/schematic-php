@@ -59,6 +59,7 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
       */
     protected static $openAPITypes = [
         'data' => '\Schematic\Model\PlanEntitlementResponseData[]',
+        'issues' => '\Schematic\Model\PlanIssueResponseData[]',
         'skipped' => '\Schematic\Model\SkippedEntitlementResponseData[]'
     ];
 
@@ -71,6 +72,7 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
       */
     protected static $openAPIFormats = [
         'data' => null,
+        'issues' => null,
         'skipped' => null
     ];
 
@@ -81,6 +83,7 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
       */
     protected static array $openAPINullables = [
         'data' => false,
+        'issues' => false,
         'skipped' => false
     ];
 
@@ -171,6 +174,7 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
      */
     protected static $attributeMap = [
         'data' => 'data',
+        'issues' => 'issues',
         'skipped' => 'skipped'
     ];
 
@@ -181,6 +185,7 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
      */
     protected static $setters = [
         'data' => 'setData',
+        'issues' => 'setIssues',
         'skipped' => 'setSkipped'
     ];
 
@@ -191,6 +196,7 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
      */
     protected static $getters = [
         'data' => 'getData',
+        'issues' => 'getIssues',
         'skipped' => 'getSkipped'
     ];
 
@@ -252,6 +258,7 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
     public function __construct(array $data = null)
     {
         $this->setIfExists('data', $data ?? [], null);
+        $this->setIfExists('issues', $data ?? [], null);
         $this->setIfExists('skipped', $data ?? [], null);
     }
 
@@ -285,9 +292,24 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
         if ($this->container['data'] === null) {
             $invalidProperties[] = "'data' can't be null";
         }
+        if ((count($this->container['data']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'data', number of items must be less than or equal to 1000.";
+        }
+
+        if ($this->container['issues'] === null) {
+            $invalidProperties[] = "'issues' can't be null";
+        }
+        if ((count($this->container['issues']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'issues', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['skipped'] === null) {
             $invalidProperties[] = "'skipped' can't be null";
         }
+        if ((count($this->container['skipped']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'skipped', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -325,7 +347,42 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
         if (is_null($data)) {
             throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
+
+        if ((count($data) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $data when calling DuplicatePlanEntitlementsResponseResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['data'] = $data;
+
+        return $this;
+    }
+
+    /**
+     * Gets issues
+     *
+     * @return \Schematic\Model\PlanIssueResponseData[]
+     */
+    public function getIssues()
+    {
+        return $this->container['issues'];
+    }
+
+    /**
+     * Sets issues
+     *
+     * @param \Schematic\Model\PlanIssueResponseData[] $issues issues
+     *
+     * @return self
+     */
+    public function setIssues($issues)
+    {
+        if (is_null($issues)) {
+            throw new \InvalidArgumentException('non-nullable issues cannot be null');
+        }
+
+        if ((count($issues) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $issues when calling DuplicatePlanEntitlementsResponseResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['issues'] = $issues;
 
         return $this;
     }
@@ -351,6 +408,10 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
     {
         if (is_null($skipped)) {
             throw new \InvalidArgumentException('non-nullable skipped cannot be null');
+        }
+
+        if ((count($skipped) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $skipped when calling DuplicatePlanEntitlementsResponseResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['skipped'] = $skipped;
 
@@ -420,7 +481,7 @@ class DuplicatePlanEntitlementsResponseResponseData implements ModelInterface, A
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

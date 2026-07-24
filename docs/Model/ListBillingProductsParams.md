@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **price_usage_type** | [**\Schematic\Model\BillingPriceUsageType**](BillingPriceUsageType.md) |  | [optional]
 **provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  | [optional]
 **q** | **string** |  | [optional]
+**recurring_charges_only** | **bool** | Filter to products that have at least one recurring price | [optional]
 **with_one_time_charges** | **bool** | Filter products that are one time charges | [optional]
 **with_prices_only** | **bool** | Filter products that have prices | [optional]
 **with_zero_price** | **bool** | Filter products that have zero price for free subscription type | [optional]

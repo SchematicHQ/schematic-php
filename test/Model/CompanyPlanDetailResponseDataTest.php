@@ -81,6 +81,15 @@ class CompanyPlanDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "active_version"
+     */
+    public function testPropertyActiveVersion()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "audience_type"
      */
     public function testPropertyAudienceType()
@@ -90,9 +99,45 @@ class CompanyPlanDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "available_periods"
+     */
+    public function testPropertyAvailablePeriods()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_linked_resource"
+     */
+    public function testPropertyBillingLinkedResource()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "billing_product"
      */
     public function testPropertyBillingProduct()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_strategy"
+     */
+    public function testPropertyBillingStrategy()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "catalogs"
+     */
+    public function testPropertyCatalogs()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -126,6 +171,33 @@ class CompanyPlanDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "company_id"
+     */
+    public function testPropertyCompanyId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "company_logo_url"
+     */
+    public function testPropertyCompanyLogoUrl()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "company_name"
+     */
+    public function testPropertyCompanyName()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "compatible_plan_ids"
      */
     public function testPropertyCompatiblePlanIds()
@@ -144,9 +216,36 @@ class CompanyPlanDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "copied_from_plan_id"
+     */
+    public function testPropertyCopiedFromPlanId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "credits"
+     */
+    public function testPropertyCredits()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "currency_prices"
+     */
+    public function testPropertyCurrencyPrices()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -183,6 +282,15 @@ class CompanyPlanDetailResponseDataTest extends TestCase
      * Test attribute "description"
      */
     public function testPropertyDescription()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "draft_version"
+     */
+    public function testPropertyDraftVersion()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -309,6 +417,15 @@ class CompanyPlanDetailResponseDataTest extends TestCase
      * Test attribute "plan_type"
      */
     public function testPropertyPlanType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "quarterly_price"
+     */
+    public function testPropertyQuarterlyPrice()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

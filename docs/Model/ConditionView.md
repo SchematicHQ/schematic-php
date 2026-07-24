@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **comparison_trait** | [**\Schematic\Model\EntityTraitDefinitionResponseData**](EntityTraitDefinitionResponseData.md) |  | [optional]
 **comparison_trait_id** | **string** |  | [optional]
 **condition_group_id** | **string** |  | [optional]
-**condition_type** | **string** |  |
+**condition_type** | [**\Schematic\Model\ConditionType**](ConditionType.md) |  |
 **consumption_rate** | **float** |  | [optional]
 **created_at** | **\DateTime** |  |
 **credit_id** | **string** |  | [optional]
@@ -18,11 +18,10 @@ Name | Type | Description | Notes
 **event_subtype** | **string** |  | [optional]
 **flag_id** | **string** |  | [optional]
 **id** | **string** |  |
-**metric_period** | **string** |  | [optional]
-**metric_period_month_reset** | **string** |  | [optional]
+**metric_period** | [**\Schematic\Model\MetricPeriod**](MetricPeriod.md) |  | [optional]
+**metric_period_month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) |  | [optional]
 **metric_value** | **int** |  | [optional]
-**operator** | **string** |  |
-**plan_version_id** | **string** |  | [optional]
+**operator** | [**\Schematic\Model\ComparableOperator**](ComparableOperator.md) |  |
 **plan_versions** | [**\Schematic\Model\GenericPreviewObject[]**](GenericPreviewObject.md) |  |
 **plans** | [**\Schematic\Model\GenericPreviewObject[]**](GenericPreviewObject.md) |  |
 **resource_unspecified_ids** | **string[]** |  |

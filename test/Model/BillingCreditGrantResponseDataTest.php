@@ -135,6 +135,15 @@ class BillingCreditGrantResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "expires_at"
      */
     public function testPropertyExpiresAt()
@@ -228,6 +237,33 @@ class BillingCreditGrantResponseDataTest extends TestCase
      * Test attribute "renewal_period"
      */
     public function testPropertyRenewalPeriod()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "reserved"
+     */
+    public function testPropertyReserved()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "settled"
+     */
+    public function testPropertySettled()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "source_grant_id"
+     */
+    public function testPropertySourceGrantId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

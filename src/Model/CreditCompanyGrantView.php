@@ -66,6 +66,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'credit_description' => 'string',
         'credit_icon' => 'string',
         'credit_name' => 'string',
+        'currency' => 'string',
         'exhausted_at' => '\DateTime',
         'expires_at' => '\DateTime',
         'expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
@@ -77,12 +78,15 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_name' => 'string',
         'plural_name' => 'string',
         'price' => '\Schematic\Model\BillingProductPriceResponseData',
-        'quantity' => 'int',
+        'quantity' => 'float',
         'quantity_remaining' => 'float',
         'quantity_used' => 'float',
         'renewal_enabled' => 'bool',
         'renewal_period' => '\Schematic\Model\BillingPlanCreditGrantResetCadence',
+        'reserved' => 'float',
+        'settled' => 'float',
         'singular_name' => 'string',
+        'source_grant_id' => 'string',
         'source_label' => 'string',
         'transfers' => '\Schematic\Model\CreditTransferView[]',
         'updated_at' => '\DateTime',
@@ -107,23 +111,27 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'credit_description' => null,
         'credit_icon' => null,
         'credit_name' => null,
+        'currency' => null,
         'exhausted_at' => 'date-time',
         'expires_at' => 'date-time',
         'expiry_type' => null,
         'expiry_unit' => null,
-        'expiry_unit_count' => null,
+        'expiry_unit_count' => 'int64',
         'grant_reason' => null,
         'id' => null,
         'plan_id' => null,
         'plan_name' => null,
         'plural_name' => null,
         'price' => null,
-        'quantity' => null,
-        'quantity_remaining' => null,
-        'quantity_used' => null,
+        'quantity' => 'double',
+        'quantity_remaining' => 'double',
+        'quantity_used' => 'double',
         'renewal_enabled' => null,
         'renewal_period' => null,
+        'reserved' => 'double',
+        'settled' => 'double',
         'singular_name' => null,
+        'source_grant_id' => null,
         'source_label' => null,
         'transfers' => null,
         'updated_at' => 'date-time',
@@ -146,6 +154,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'credit_description' => false,
         'credit_icon' => true,
         'credit_name' => false,
+        'currency' => true,
         'exhausted_at' => true,
         'expires_at' => true,
         'expiry_type' => true,
@@ -162,7 +171,10 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'quantity_used' => false,
         'renewal_enabled' => false,
         'renewal_period' => true,
+        'reserved' => true,
+        'settled' => true,
         'singular_name' => true,
+        'source_grant_id' => true,
         'source_label' => false,
         'transfers' => false,
         'updated_at' => false,
@@ -265,6 +277,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'credit_description' => 'credit_description',
         'credit_icon' => 'credit_icon',
         'credit_name' => 'credit_name',
+        'currency' => 'currency',
         'exhausted_at' => 'exhausted_at',
         'expires_at' => 'expires_at',
         'expiry_type' => 'expiry_type',
@@ -281,7 +294,10 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'quantity_used' => 'quantity_used',
         'renewal_enabled' => 'renewal_enabled',
         'renewal_period' => 'renewal_period',
+        'reserved' => 'reserved',
+        'settled' => 'settled',
         'singular_name' => 'singular_name',
+        'source_grant_id' => 'source_grant_id',
         'source_label' => 'source_label',
         'transfers' => 'transfers',
         'updated_at' => 'updated_at',
@@ -304,6 +320,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'credit_description' => 'setCreditDescription',
         'credit_icon' => 'setCreditIcon',
         'credit_name' => 'setCreditName',
+        'currency' => 'setCurrency',
         'exhausted_at' => 'setExhaustedAt',
         'expires_at' => 'setExpiresAt',
         'expiry_type' => 'setExpiryType',
@@ -320,7 +337,10 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'quantity_used' => 'setQuantityUsed',
         'renewal_enabled' => 'setRenewalEnabled',
         'renewal_period' => 'setRenewalPeriod',
+        'reserved' => 'setReserved',
+        'settled' => 'setSettled',
         'singular_name' => 'setSingularName',
+        'source_grant_id' => 'setSourceGrantId',
         'source_label' => 'setSourceLabel',
         'transfers' => 'setTransfers',
         'updated_at' => 'setUpdatedAt',
@@ -343,6 +363,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'credit_description' => 'getCreditDescription',
         'credit_icon' => 'getCreditIcon',
         'credit_name' => 'getCreditName',
+        'currency' => 'getCurrency',
         'exhausted_at' => 'getExhaustedAt',
         'expires_at' => 'getExpiresAt',
         'expiry_type' => 'getExpiryType',
@@ -359,7 +380,10 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'quantity_used' => 'getQuantityUsed',
         'renewal_enabled' => 'getRenewalEnabled',
         'renewal_period' => 'getRenewalPeriod',
+        'reserved' => 'getReserved',
+        'settled' => 'getSettled',
         'singular_name' => 'getSingularName',
+        'source_grant_id' => 'getSourceGrantId',
         'source_label' => 'getSourceLabel',
         'transfers' => 'getTransfers',
         'updated_at' => 'getUpdatedAt',
@@ -433,6 +457,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('credit_description', $data ?? [], null);
         $this->setIfExists('credit_icon', $data ?? [], null);
         $this->setIfExists('credit_name', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('exhausted_at', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
         $this->setIfExists('expiry_type', $data ?? [], null);
@@ -449,7 +474,10 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('quantity_used', $data ?? [], null);
         $this->setIfExists('renewal_enabled', $data ?? [], null);
         $this->setIfExists('renewal_period', $data ?? [], null);
+        $this->setIfExists('reserved', $data ?? [], null);
+        $this->setIfExists('settled', $data ?? [], null);
         $this->setIfExists('singular_name', $data ?? [], null);
+        $this->setIfExists('source_grant_id', $data ?? [], null);
         $this->setIfExists('source_label', $data ?? [], null);
         $this->setIfExists('transfers', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -524,6 +552,10 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['source_label'] === null) {
             $invalidProperties[] = "'source_label' can't be null";
         }
+        if (!is_null($this->container['transfers']) && (count($this->container['transfers']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'transfers', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -565,8 +597,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'billing_credit_bundle_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_credit_bundle_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_credit_bundle_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -734,8 +766,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'credit_icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -773,6 +805,40 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency currency
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
      * Gets exhausted_at
      *
      * @return \DateTime|null
@@ -795,8 +861,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'exhausted_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('exhausted_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('exhausted_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -829,8 +895,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'expires_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expires_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expires_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -863,8 +929,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'expiry_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -897,8 +963,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -931,8 +997,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1019,8 +1085,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1053,8 +1119,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'plan_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plan_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1087,8 +1153,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1128,7 +1194,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets quantity
      *
-     * @return int
+     * @return float
      */
     public function getQuantity()
     {
@@ -1138,7 +1204,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets quantity
      *
-     * @param int $quantity quantity
+     * @param float $quantity quantity
      *
      * @return self
      */
@@ -1256,13 +1322,81 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'renewal_period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('renewal_period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('renewal_period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['renewal_period'] = $renewal_period;
+
+        return $this;
+    }
+
+    /**
+     * Gets reserved
+     *
+     * @return float|null
+     */
+    public function getReserved()
+    {
+        return $this->container['reserved'];
+    }
+
+    /**
+     * Sets reserved
+     *
+     * @param float|null $reserved reserved
+     *
+     * @return self
+     */
+    public function setReserved($reserved)
+    {
+        if (is_null($reserved)) {
+            array_push($this->openAPINullablesSetToNull, 'reserved');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('reserved', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['reserved'] = $reserved;
+
+        return $this;
+    }
+
+    /**
+     * Gets settled
+     *
+     * @return float|null
+     */
+    public function getSettled()
+    {
+        return $this->container['settled'];
+    }
+
+    /**
+     * Sets settled
+     *
+     * @param float|null $settled settled
+     *
+     * @return self
+     */
+    public function setSettled($settled)
+    {
+        if (is_null($settled)) {
+            array_push($this->openAPINullablesSetToNull, 'settled');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('settled', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['settled'] = $settled;
 
         return $this;
     }
@@ -1290,13 +1424,47 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['singular_name'] = $singular_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets source_grant_id
+     *
+     * @return string|null
+     */
+    public function getSourceGrantId()
+    {
+        return $this->container['source_grant_id'];
+    }
+
+    /**
+     * Sets source_grant_id
+     *
+     * @param string|null $source_grant_id source_grant_id
+     *
+     * @return self
+     */
+    public function setSourceGrantId($source_grant_id)
+    {
+        if (is_null($source_grant_id)) {
+            array_push($this->openAPINullablesSetToNull, 'source_grant_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('source_grant_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['source_grant_id'] = $source_grant_id;
 
         return $this;
     }
@@ -1349,6 +1517,10 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($transfers)) {
             throw new \InvalidArgumentException('non-nullable transfers cannot be null');
+        }
+
+        if ((count($transfers) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $transfers when calling CreditCompanyGrantView., number of items must be less than or equal to 1000.');
         }
         $this->container['transfers'] = $transfers;
 
@@ -1405,8 +1577,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'valid_from');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('valid_from', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('valid_from', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1439,8 +1611,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'zeroed_out_date');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('zeroed_out_date', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('zeroed_out_date', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1473,8 +1645,8 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'zeroed_out_reason');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('zeroed_out_reason', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('zeroed_out_reason', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1547,7 +1719,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

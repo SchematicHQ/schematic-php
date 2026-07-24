@@ -63,7 +63,6 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
         'environment_id' => 'string',
         'flag_id' => 'string',
         'id' => 'string',
-        'plan_version_id' => 'string',
         'rule_id' => 'string',
         'updated_at' => '\DateTime'
     ];
@@ -81,7 +80,6 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
         'environment_id' => null,
         'flag_id' => null,
         'id' => null,
-        'plan_version_id' => null,
         'rule_id' => null,
         'updated_at' => 'date-time'
     ];
@@ -97,7 +95,6 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
         'environment_id' => false,
         'flag_id' => true,
         'id' => false,
-        'plan_version_id' => true,
         'rule_id' => false,
         'updated_at' => false
     ];
@@ -193,7 +190,6 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
         'environment_id' => 'environment_id',
         'flag_id' => 'flag_id',
         'id' => 'id',
-        'plan_version_id' => 'plan_version_id',
         'rule_id' => 'rule_id',
         'updated_at' => 'updated_at'
     ];
@@ -209,7 +205,6 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
         'environment_id' => 'setEnvironmentId',
         'flag_id' => 'setFlagId',
         'id' => 'setId',
-        'plan_version_id' => 'setPlanVersionId',
         'rule_id' => 'setRuleId',
         'updated_at' => 'setUpdatedAt'
     ];
@@ -225,7 +220,6 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
         'environment_id' => 'getEnvironmentId',
         'flag_id' => 'getFlagId',
         'id' => 'getId',
-        'plan_version_id' => 'getPlanVersionId',
         'rule_id' => 'getRuleId',
         'updated_at' => 'getUpdatedAt'
     ];
@@ -292,7 +286,6 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('flag_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('rule_id', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
     }
@@ -461,8 +454,8 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -495,40 +488,6 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets plan_version_id
-     *
-     * @return string|null
-     */
-    public function getPlanVersionId()
-    {
-        return $this->container['plan_version_id'];
-    }
-
-    /**
-     * Sets plan_version_id
-     *
-     * @param string|null $plan_version_id plan_version_id
-     *
-     * @return self
-     */
-    public function setPlanVersionId($plan_version_id)
-    {
-        if (is_null($plan_version_id)) {
-            array_push($this->openAPINullablesSetToNull, 'plan_version_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_version_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['plan_version_id'] = $plan_version_id;
 
         return $this;
     }
@@ -650,7 +609,7 @@ class ConditionGroupResponseData implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

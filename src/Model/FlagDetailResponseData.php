@@ -67,7 +67,8 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'id' => 'string',
         'key' => 'string',
         'last_checked_at' => '\DateTime',
-        'maintainer_id' => 'string',
+        'maintainer' => '\Schematic\Model\AccountMemberResponseData',
+        'maintainer_account_member_id' => 'string',
         'name' => 'string',
         'rules' => '\Schematic\Model\RuleDetailResponseData[]',
         'updated_at' => '\DateTime'
@@ -90,7 +91,8 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'id' => null,
         'key' => null,
         'last_checked_at' => 'date-time',
-        'maintainer_id' => null,
+        'maintainer' => null,
+        'maintainer_account_member_id' => null,
         'name' => null,
         'rules' => null,
         'updated_at' => 'date-time'
@@ -111,7 +113,8 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'id' => false,
         'key' => false,
         'last_checked_at' => true,
-        'maintainer_id' => true,
+        'maintainer' => false,
+        'maintainer_account_member_id' => true,
         'name' => false,
         'rules' => false,
         'updated_at' => false
@@ -212,7 +215,8 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'id' => 'id',
         'key' => 'key',
         'last_checked_at' => 'last_checked_at',
-        'maintainer_id' => 'maintainer_id',
+        'maintainer' => 'maintainer',
+        'maintainer_account_member_id' => 'maintainer_account_member_id',
         'name' => 'name',
         'rules' => 'rules',
         'updated_at' => 'updated_at'
@@ -233,7 +237,8 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'id' => 'setId',
         'key' => 'setKey',
         'last_checked_at' => 'setLastCheckedAt',
-        'maintainer_id' => 'setMaintainerId',
+        'maintainer' => 'setMaintainer',
+        'maintainer_account_member_id' => 'setMaintainerAccountMemberId',
         'name' => 'setName',
         'rules' => 'setRules',
         'updated_at' => 'setUpdatedAt'
@@ -254,7 +259,8 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'id' => 'getId',
         'key' => 'getKey',
         'last_checked_at' => 'getLastCheckedAt',
-        'maintainer_id' => 'getMaintainerId',
+        'maintainer' => 'getMaintainer',
+        'maintainer_account_member_id' => 'getMaintainerAccountMemberId',
         'name' => 'getName',
         'rules' => 'getRules',
         'updated_at' => 'getUpdatedAt'
@@ -326,7 +332,8 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('key', $data ?? [], null);
         $this->setIfExists('last_checked_at', $data ?? [], null);
-        $this->setIfExists('maintainer_id', $data ?? [], null);
+        $this->setIfExists('maintainer', $data ?? [], null);
+        $this->setIfExists('maintainer_account_member_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -383,6 +390,10 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['rules'] === null) {
             $invalidProperties[] = "'rules' can't be null";
         }
+        if ((count($this->container['rules']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'rules', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -532,8 +543,8 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'feature_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('feature_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('feature_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -647,8 +658,8 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'last_checked_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_checked_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('last_checked_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -659,35 +670,62 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
-     * Gets maintainer_id
+     * Gets maintainer
      *
-     * @return string|null
+     * @return \Schematic\Model\AccountMemberResponseData|null
      */
-    public function getMaintainerId()
+    public function getMaintainer()
     {
-        return $this->container['maintainer_id'];
+        return $this->container['maintainer'];
     }
 
     /**
-     * Sets maintainer_id
+     * Sets maintainer
      *
-     * @param string|null $maintainer_id maintainer_id
+     * @param \Schematic\Model\AccountMemberResponseData|null $maintainer maintainer
      *
      * @return self
      */
-    public function setMaintainerId($maintainer_id)
+    public function setMaintainer($maintainer)
     {
-        if (is_null($maintainer_id)) {
-            array_push($this->openAPINullablesSetToNull, 'maintainer_id');
+        if (is_null($maintainer)) {
+            throw new \InvalidArgumentException('non-nullable maintainer cannot be null');
+        }
+        $this->container['maintainer'] = $maintainer;
+
+        return $this;
+    }
+
+    /**
+     * Gets maintainer_account_member_id
+     *
+     * @return string|null
+     */
+    public function getMaintainerAccountMemberId()
+    {
+        return $this->container['maintainer_account_member_id'];
+    }
+
+    /**
+     * Sets maintainer_account_member_id
+     *
+     * @param string|null $maintainer_account_member_id maintainer_account_member_id
+     *
+     * @return self
+     */
+    public function setMaintainerAccountMemberId($maintainer_account_member_id)
+    {
+        if (is_null($maintainer_account_member_id)) {
+            array_push($this->openAPINullablesSetToNull, 'maintainer_account_member_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('maintainer_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('maintainer_account_member_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['maintainer_id'] = $maintainer_id;
+        $this->container['maintainer_account_member_id'] = $maintainer_account_member_id;
 
         return $this;
     }
@@ -740,6 +778,10 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($rules)) {
             throw new \InvalidArgumentException('non-nullable rules cannot be null');
+        }
+
+        if ((count($rules) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $rules when calling FlagDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['rules'] = $rules;
 
@@ -836,7 +878,7 @@ class FlagDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

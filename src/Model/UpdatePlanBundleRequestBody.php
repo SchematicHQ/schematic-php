@@ -62,7 +62,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'credit_grants' => '\Schematic\Model\PlanBundleCreditGrantRequestBody[]',
         'entitlements' => '\Schematic\Model\PlanBundleEntitlementRequestBody[]',
         'plan' => '\Schematic\Model\UpdatePlanRequestBody',
-        'traits' => '\Schematic\Model\UpdatePlanTraitTraitRequestBody[]'
+        'plan_version_id' => 'string'
     ];
 
     /**
@@ -77,7 +77,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'credit_grants' => null,
         'entitlements' => null,
         'plan' => null,
-        'traits' => null
+        'plan_version_id' => null
     ];
 
     /**
@@ -90,7 +90,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'credit_grants' => false,
         'entitlements' => false,
         'plan' => false,
-        'traits' => false
+        'plan_version_id' => true
     ];
 
     /**
@@ -183,7 +183,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'credit_grants' => 'credit_grants',
         'entitlements' => 'entitlements',
         'plan' => 'plan',
-        'traits' => 'traits'
+        'plan_version_id' => 'plan_version_id'
     ];
 
     /**
@@ -196,7 +196,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'credit_grants' => 'setCreditGrants',
         'entitlements' => 'setEntitlements',
         'plan' => 'setPlan',
-        'traits' => 'setTraits'
+        'plan_version_id' => 'setPlanVersionId'
     ];
 
     /**
@@ -209,7 +209,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'credit_grants' => 'getCreditGrants',
         'entitlements' => 'getEntitlements',
         'plan' => 'getPlan',
-        'traits' => 'getTraits'
+        'plan_version_id' => 'getPlanVersionId'
     ];
 
     /**
@@ -273,7 +273,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('credit_grants', $data ?? [], null);
         $this->setIfExists('entitlements', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
-        $this->setIfExists('traits', $data ?? [], null);
+        $this->setIfExists('plan_version_id', $data ?? [], null);
     }
 
     /**
@@ -312,10 +312,6 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
         }
         if ((count($this->container['entitlements']) > 100)) {
             $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 100.";
-        }
-
-        if (!is_null($this->container['traits']) && (count($this->container['traits']) > 100)) {
-            $invalidProperties[] = "invalid value for 'traits', number of items must be less than or equal to 100.";
         }
 
         return $invalidProperties;
@@ -450,32 +446,35 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
-     * Gets traits
+     * Gets plan_version_id
      *
-     * @return \Schematic\Model\UpdatePlanTraitTraitRequestBody[]|null
+     * @return string|null
      */
-    public function getTraits()
+    public function getPlanVersionId()
     {
-        return $this->container['traits'];
+        return $this->container['plan_version_id'];
     }
 
     /**
-     * Sets traits
+     * Sets plan_version_id
      *
-     * @param \Schematic\Model\UpdatePlanTraitTraitRequestBody[]|null $traits traits
+     * @param string|null $plan_version_id plan_version_id
      *
      * @return self
      */
-    public function setTraits($traits)
+    public function setPlanVersionId($plan_version_id)
     {
-        if (is_null($traits)) {
-            throw new \InvalidArgumentException('non-nullable traits cannot be null');
+        if (is_null($plan_version_id)) {
+            array_push($this->openAPINullablesSetToNull, 'plan_version_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('plan_version_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-
-        if ((count($traits) > 100)) {
-            throw new \InvalidArgumentException('invalid value for $traits when calling UpdatePlanBundleRequestBody., number of items must be less than or equal to 100.');
-        }
-        $this->container['traits'] = $traits;
+        $this->container['plan_version_id'] = $plan_version_id;
 
         return $this;
     }
@@ -543,7 +542,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

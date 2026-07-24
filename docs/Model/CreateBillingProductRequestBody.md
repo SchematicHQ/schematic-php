@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **external_id** | **string** |  |
 **is_active** | **bool** |  | [optional]
-**name** | **string** |  |
+**name** | **string** |  | [optional]
 **price** | **float** |  |
 **provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  | [optional]
 

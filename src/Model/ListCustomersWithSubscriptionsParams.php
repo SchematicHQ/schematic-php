@@ -76,9 +76,9 @@ class ListCustomersWithSubscriptionsParams implements ModelInterface, ArrayAcces
       */
     protected static $openAPIFormats = [
         'company_ids' => null,
-        'limit' => null,
+        'limit' => 'int64',
         'name' => null,
-        'offset' => null,
+        'offset' => 'int64',
         'provider_type' => null,
         'q' => null
     ];
@@ -311,6 +311,18 @@ class ListCustomersWithSubscriptionsParams implements ModelInterface, ArrayAcces
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['company_ids']) && (count($this->container['company_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'company_ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
+
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
         }
@@ -356,6 +368,10 @@ class ListCustomersWithSubscriptionsParams implements ModelInterface, ArrayAcces
         if (is_null($company_ids)) {
             throw new \InvalidArgumentException('non-nullable company_ids cannot be null');
         }
+
+        if ((count($company_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $company_ids when calling ListCustomersWithSubscriptionsParams., number of items must be less than or equal to 100.');
+        }
         $this->container['company_ids'] = $company_ids;
 
         return $this;
@@ -383,6 +399,14 @@ class ListCustomersWithSubscriptionsParams implements ModelInterface, ArrayAcces
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListCustomersWithSubscriptionsParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListCustomersWithSubscriptionsParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -567,7 +591,7 @@ class ListCustomersWithSubscriptionsParams implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

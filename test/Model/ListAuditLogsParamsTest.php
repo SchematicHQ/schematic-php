@@ -90,6 +90,15 @@ class ListAuditLogsParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "end_time"
+     */
+    public function testPropertyEndTime()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "environment_id"
      */
     public function testPropertyEnvironmentId()
@@ -120,6 +129,15 @@ class ListAuditLogsParamsTest extends TestCase
      * Test attribute "q"
      */
     public function testPropertyQ()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "start_time"
+     */
+    public function testPropertyStartTime()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

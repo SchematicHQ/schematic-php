@@ -59,6 +59,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
       * @var string[]
       */
     protected static $openAPITypes = [
+        'currency' => 'string',
         'for_initial_plan' => 'bool',
         'for_trial_expiry_plan' => 'bool',
         'ids' => 'string[]',
@@ -66,6 +67,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'is_active' => 'bool',
         'limit' => 'int',
         'offset' => 'int',
+        'plan_version_id' => 'string',
         'price' => 'int',
         'product_id' => 'string',
         'product_ids' => 'string[]',
@@ -84,14 +86,16 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'currency' => null,
         'for_initial_plan' => null,
         'for_trial_expiry_plan' => null,
         'ids' => null,
         'interval' => null,
         'is_active' => null,
-        'limit' => null,
-        'offset' => null,
-        'price' => null,
+        'limit' => 'int64',
+        'offset' => 'int64',
+        'plan_version_id' => null,
+        'price' => 'int64',
         'product_id' => null,
         'product_ids' => null,
         'provider_type' => null,
@@ -107,6 +111,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'currency' => false,
         'for_initial_plan' => false,
         'for_trial_expiry_plan' => false,
         'ids' => false,
@@ -114,6 +119,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'is_active' => false,
         'limit' => false,
         'offset' => false,
+        'plan_version_id' => false,
         'price' => false,
         'product_id' => false,
         'product_ids' => false,
@@ -210,6 +216,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $attributeMap = [
+        'currency' => 'currency',
         'for_initial_plan' => 'for_initial_plan',
         'for_trial_expiry_plan' => 'for_trial_expiry_plan',
         'ids' => 'ids',
@@ -217,6 +224,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'is_active' => 'is_active',
         'limit' => 'limit',
         'offset' => 'offset',
+        'plan_version_id' => 'plan_version_id',
         'price' => 'price',
         'product_id' => 'product_id',
         'product_ids' => 'product_ids',
@@ -233,6 +241,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $setters = [
+        'currency' => 'setCurrency',
         'for_initial_plan' => 'setForInitialPlan',
         'for_trial_expiry_plan' => 'setForTrialExpiryPlan',
         'ids' => 'setIds',
@@ -240,6 +249,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'is_active' => 'setIsActive',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
+        'plan_version_id' => 'setPlanVersionId',
         'price' => 'setPrice',
         'product_id' => 'setProductId',
         'product_ids' => 'setProductIds',
@@ -256,6 +266,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $getters = [
+        'currency' => 'getCurrency',
         'for_initial_plan' => 'getForInitialPlan',
         'for_trial_expiry_plan' => 'getForTrialExpiryPlan',
         'ids' => 'getIds',
@@ -263,6 +274,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'is_active' => 'getIsActive',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
+        'plan_version_id' => 'getPlanVersionId',
         'price' => 'getPrice',
         'product_id' => 'getProductId',
         'product_ids' => 'getProductIds',
@@ -330,6 +342,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('for_initial_plan', $data ?? [], null);
         $this->setIfExists('for_trial_expiry_plan', $data ?? [], null);
         $this->setIfExists('ids', $data ?? [], null);
@@ -337,6 +350,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('is_active', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
+        $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('product_id', $data ?? [], null);
         $this->setIfExists('product_ids', $data ?? [], null);
@@ -374,8 +388,28 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['currency']) && (mb_strlen($this->container['currency']) > 3)) {
+            $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
+        }
+
+        if (!is_null($this->container['ids']) && (count($this->container['ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'ids', number of items must be less than or equal to 100.";
+        }
+
         if (!is_null($this->container['interval']) && (mb_strlen($this->container['interval']) > 255)) {
             $invalidProperties[] = "invalid value for 'interval', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['product_ids']) && (count($this->container['product_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'product_ids', number of items must be less than or equal to 100.";
         }
 
         return $invalidProperties;
@@ -392,6 +426,37 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency Filter for prices in a specific currency (e.g. usd, eur)
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        }
+        if ((mb_strlen($currency) > 3)) {
+            throw new \InvalidArgumentException('invalid length for $currency when calling ListBillingProductPricesParams., must be smaller than or equal to 3.');
+        }
+
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
 
     /**
      * Gets for_initial_plan
@@ -468,6 +533,10 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
     {
         if (is_null($ids)) {
             throw new \InvalidArgumentException('non-nullable ids cannot be null');
+        }
+
+        if ((count($ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $ids when calling ListBillingProductPricesParams., number of items must be less than or equal to 100.');
         }
         $this->container['ids'] = $ids;
 
@@ -554,6 +623,14 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListBillingProductPricesParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListBillingProductPricesParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -582,6 +659,33 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_id
+     *
+     * @return string|null
+     */
+    public function getPlanVersionId()
+    {
+        return $this->container['plan_version_id'];
+    }
+
+    /**
+     * Sets plan_version_id
+     *
+     * @param string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version)
+     *
+     * @return self
+     */
+    public function setPlanVersionId($plan_version_id)
+    {
+        if (is_null($plan_version_id)) {
+            throw new \InvalidArgumentException('non-nullable plan_version_id cannot be null');
+        }
+        $this->container['plan_version_id'] = $plan_version_id;
 
         return $this;
     }
@@ -661,6 +765,10 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
     {
         if (is_null($product_ids)) {
             throw new \InvalidArgumentException('non-nullable product_ids cannot be null');
+        }
+
+        if ((count($product_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $product_ids when calling ListBillingProductPricesParams., number of items must be less than or equal to 100.');
         }
         $this->container['product_ids'] = $product_ids;
 
@@ -865,7 +973,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

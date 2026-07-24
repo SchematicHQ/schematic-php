@@ -329,6 +329,10 @@ class EntityTraitDefinitionResponseData implements ModelInterface, ArrayAccess, 
         if ($this->container['hierarchy'] === null) {
             $invalidProperties[] = "'hierarchy' can't be null";
         }
+        if ((count($this->container['hierarchy']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'hierarchy', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
@@ -455,6 +459,10 @@ class EntityTraitDefinitionResponseData implements ModelInterface, ArrayAccess, 
     {
         if (is_null($hierarchy)) {
             throw new \InvalidArgumentException('non-nullable hierarchy cannot be null');
+        }
+
+        if ((count($hierarchy) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $hierarchy when calling EntityTraitDefinitionResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['hierarchy'] = $hierarchy;
 
@@ -605,7 +613,7 @@ class EntityTraitDefinitionResponseData implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

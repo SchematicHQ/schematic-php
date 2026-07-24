@@ -88,11 +88,11 @@ class BillingProductResponseData implements ModelInterface, ArrayAccess, \JsonSe
         'external_id' => null,
         'is_active' => null,
         'name' => null,
-        'price' => null,
+        'price' => 'double',
         'price_decimal' => null,
         'product_id' => null,
         'provider_type' => null,
-        'quantity' => null,
+        'quantity' => 'double',
         'updated_at' => 'date-time'
     ];
 
@@ -486,8 +486,8 @@ class BillingProductResponseData implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'currency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -655,8 +655,8 @@ class BillingProductResponseData implements ModelInterface, ArrayAccess, \JsonSe
             array_push($this->openAPINullablesSetToNull, 'price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -837,7 +837,7 @@ class BillingProductResponseData implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

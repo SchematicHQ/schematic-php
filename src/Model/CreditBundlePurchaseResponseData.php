@@ -72,8 +72,8 @@ class CreditBundlePurchaseResponseData implements ModelInterface, ArrayAccess, \
       */
     protected static $openAPIFormats = [
         'bundle' => null,
-        'quantity' => null,
-        'total' => null
+        'quantity' => 'int64',
+        'total' => 'int64'
     ];
 
     /**
@@ -454,7 +454,7 @@ class CreditBundlePurchaseResponseData implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

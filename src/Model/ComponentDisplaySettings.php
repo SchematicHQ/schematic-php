@@ -61,6 +61,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
         'show_as_monthly_prices' => 'bool',
         'show_credits' => 'bool',
         'show_feature_description' => 'bool',
+        'show_hard_limit' => 'bool',
         'show_period_toggle' => 'bool',
         'show_zero_price_as_free' => 'bool'
     ];
@@ -76,6 +77,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
         'show_as_monthly_prices' => null,
         'show_credits' => null,
         'show_feature_description' => null,
+        'show_hard_limit' => null,
         'show_period_toggle' => null,
         'show_zero_price_as_free' => null
     ];
@@ -89,6 +91,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
         'show_as_monthly_prices' => false,
         'show_credits' => false,
         'show_feature_description' => false,
+        'show_hard_limit' => false,
         'show_period_toggle' => false,
         'show_zero_price_as_free' => false
     ];
@@ -182,6 +185,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
         'show_as_monthly_prices' => 'show_as_monthly_prices',
         'show_credits' => 'show_credits',
         'show_feature_description' => 'show_feature_description',
+        'show_hard_limit' => 'show_hard_limit',
         'show_period_toggle' => 'show_period_toggle',
         'show_zero_price_as_free' => 'show_zero_price_as_free'
     ];
@@ -195,6 +199,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
         'show_as_monthly_prices' => 'setShowAsMonthlyPrices',
         'show_credits' => 'setShowCredits',
         'show_feature_description' => 'setShowFeatureDescription',
+        'show_hard_limit' => 'setShowHardLimit',
         'show_period_toggle' => 'setShowPeriodToggle',
         'show_zero_price_as_free' => 'setShowZeroPriceAsFree'
     ];
@@ -208,6 +213,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
         'show_as_monthly_prices' => 'getShowAsMonthlyPrices',
         'show_credits' => 'getShowCredits',
         'show_feature_description' => 'getShowFeatureDescription',
+        'show_hard_limit' => 'getShowHardLimit',
         'show_period_toggle' => 'getShowPeriodToggle',
         'show_zero_price_as_free' => 'getShowZeroPriceAsFree'
     ];
@@ -272,6 +278,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('show_as_monthly_prices', $data ?? [], null);
         $this->setIfExists('show_credits', $data ?? [], null);
         $this->setIfExists('show_feature_description', $data ?? [], null);
+        $this->setIfExists('show_hard_limit', $data ?? [], null);
         $this->setIfExists('show_period_toggle', $data ?? [], null);
         $this->setIfExists('show_zero_price_as_free', $data ?? [], null);
     }
@@ -311,6 +318,9 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
         }
         if ($this->container['show_feature_description'] === null) {
             $invalidProperties[] = "'show_feature_description' can't be null";
+        }
+        if ($this->container['show_hard_limit'] === null) {
+            $invalidProperties[] = "'show_hard_limit' can't be null";
         }
         if ($this->container['show_period_toggle'] === null) {
             $invalidProperties[] = "'show_period_toggle' can't be null";
@@ -410,6 +420,33 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable show_feature_description cannot be null');
         }
         $this->container['show_feature_description'] = $show_feature_description;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_hard_limit
+     *
+     * @return bool
+     */
+    public function getShowHardLimit()
+    {
+        return $this->container['show_hard_limit'];
+    }
+
+    /**
+     * Sets show_hard_limit
+     *
+     * @param bool $show_hard_limit show_hard_limit
+     *
+     * @return self
+     */
+    public function setShowHardLimit($show_hard_limit)
+    {
+        if (is_null($show_hard_limit)) {
+            throw new \InvalidArgumentException('non-nullable show_hard_limit cannot be null');
+        }
+        $this->container['show_hard_limit'] = $show_hard_limit;
 
         return $this;
     }
@@ -531,7 +568,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

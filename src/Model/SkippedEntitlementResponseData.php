@@ -302,6 +302,10 @@ class SkippedEntitlementResponseData implements ModelInterface, ArrayAccess, \Js
         if ($this->container['errors'] === null) {
             $invalidProperties[] = "'errors' can't be null";
         }
+        if ((count($this->container['errors']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'errors', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['feature_id'] === null) {
             $invalidProperties[] = "'feature_id' can't be null";
         }
@@ -371,6 +375,10 @@ class SkippedEntitlementResponseData implements ModelInterface, ArrayAccess, \Js
     {
         if (is_null($errors)) {
             throw new \InvalidArgumentException('non-nullable errors cannot be null');
+        }
+
+        if ((count($errors) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $errors when calling SkippedEntitlementResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['errors'] = $errors;
 
@@ -494,7 +502,7 @@ class SkippedEntitlementResponseData implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

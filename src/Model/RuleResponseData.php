@@ -64,7 +64,7 @@ class RuleResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'name' => 'string',
         'priority' => 'int',
-        'rule_type' => 'string',
+        'rule_type' => '\Schematic\Model\RuleType',
         'updated_at' => '\DateTime',
         'value' => 'bool'
     ];
@@ -82,7 +82,7 @@ class RuleResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
         'flag_id' => null,
         'id' => null,
         'name' => null,
-        'priority' => null,
+        'priority' => 'int64',
         'rule_type' => null,
         'updated_at' => 'date-time',
         'value' => null
@@ -447,8 +447,8 @@ class RuleResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -542,7 +542,7 @@ class RuleResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets rule_type
      *
-     * @return string
+     * @return \Schematic\Model\RuleType
      */
     public function getRuleType()
     {
@@ -552,7 +552,7 @@ class RuleResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets rule_type
      *
-     * @param string $rule_type rule_type
+     * @param \Schematic\Model\RuleType $rule_type rule_type
      *
      * @return self
      */
@@ -683,7 +683,7 @@ class RuleResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

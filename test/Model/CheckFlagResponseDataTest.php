@@ -90,6 +90,15 @@ class CheckFlagResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "entitlement"
+     */
+    public function testPropertyEntitlement()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "error"
      */
     public function testPropertyError()

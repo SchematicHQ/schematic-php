@@ -135,9 +135,9 @@ class UpdateFeatureRequestBodyTest extends TestCase
     }
 
     /**
-     * Test attribute "maintainer_id"
+     * Test attribute "maintainer_account_member_id"
      */
-    public function testPropertyMaintainerId()
+    public function testPropertyMaintainerAccountMemberId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

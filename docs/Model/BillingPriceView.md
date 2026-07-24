@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 **currency** | **string** |  |
 **id** | **string** |  |
 **interval** | [**\Schematic\Model\BillingProductPriceInterval**](BillingProductPriceInterval.md) |  |
+**interval_count** | **int** |  |
 **is_active** | **bool** |  |
 **meter_event_name** | **string** |  | [optional]
 **meter_event_payload_key** | **string** |  | [optional]
 **meter_id** | **string** |  | [optional]
+**nickname** | **string** |  | [optional]
 **package_size** | **int** |  |
 **price** | **int** |  |
 **price_decimal** | **string** |  | [optional]

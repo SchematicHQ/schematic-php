@@ -82,7 +82,7 @@ class WebhookEventDetailResponseData implements ModelInterface, ArrayAccess, \Js
         'id' => null,
         'payload' => null,
         'request_type' => null,
-        'response_code' => null,
+        'response_code' => 'int64',
         'sent_at' => 'date-time',
         'status' => null,
         'updated_at' => 'date-time',
@@ -448,8 +448,8 @@ class WebhookEventDetailResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'payload');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('payload', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('payload', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -509,8 +509,8 @@ class WebhookEventDetailResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'response_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('response_code', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('response_code', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -543,8 +543,8 @@ class WebhookEventDetailResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'sent_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('sent_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('sent_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -725,7 +725,7 @@ class WebhookEventDetailResponseData implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

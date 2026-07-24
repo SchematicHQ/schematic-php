@@ -4,9 +4,61 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**createCustomPlanBundle()**](PlanbundleApi.md#createCustomPlanBundle) | **POST** /custom-plan-bundles | Create custom plan bundle |
 | [**createPlanBundle()**](PlanbundleApi.md#createPlanBundle) | **POST** /plan-bundles | Create plan bundle |
 | [**updatePlanBundle()**](PlanbundleApi.md#updatePlanBundle) | **PUT** /plan-bundles/{plan_bundle_id} | Update plan bundle |
 
+
+## `createCustomPlanBundle()`
+
+```php
+createCustomPlanBundle($create_custom_plan_bundle_request_body): \Schematic\Model\CreateCustomPlanBundleResponse
+```
+
+Create custom plan bundle
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$create_custom_plan_bundle_request_body = new \Schematic\Model\CreateCustomPlanBundleRequestBody(); // \Schematic\Model\CreateCustomPlanBundleRequestBody
+
+try {
+    $result = $schematic->PlanbundleApi->createCustomPlanBundle($create_custom_plan_bundle_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->PlanbundleApi->createCustomPlanBundle: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_custom_plan_bundle_request_body** | [**\Schematic\Model\CreateCustomPlanBundleRequestBody**](../Model/CreateCustomPlanBundleRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\CreateCustomPlanBundleResponse**](../Model/CreateCustomPlanBundleResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createPlanBundle()`
 

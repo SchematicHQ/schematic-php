@@ -99,6 +99,15 @@ class CreateBillingCreditRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "currency_prices"
+     */
+    public function testPropertyCurrencyPrices()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "default_expiry_unit"
      */
     public function testPropertyDefaultExpiryUnit()

@@ -62,8 +62,10 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
         'currency' => 'string',
         'external_account_id' => 'string',
         'interval' => 'string',
+        'interval_count' => 'int',
         'is_active' => 'bool',
         'meter_id' => 'string',
+        'nickname' => 'string',
         'package_size' => 'int',
         'price' => 'int',
         'price_decimal' => 'string',
@@ -87,10 +89,12 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
         'currency' => null,
         'external_account_id' => null,
         'interval' => null,
+        'interval_count' => 'int64',
         'is_active' => null,
         'meter_id' => null,
-        'package_size' => null,
-        'price' => null,
+        'nickname' => null,
+        'package_size' => 'int64',
+        'price' => 'int64',
         'price_decimal' => null,
         'price_external_id' => null,
         'price_tiers' => null,
@@ -110,8 +114,10 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
         'currency' => false,
         'external_account_id' => false,
         'interval' => false,
+        'interval_count' => true,
         'is_active' => false,
         'meter_id' => true,
+        'nickname' => true,
         'package_size' => true,
         'price' => false,
         'price_decimal' => true,
@@ -213,8 +219,10 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
         'currency' => 'currency',
         'external_account_id' => 'external_account_id',
         'interval' => 'interval',
+        'interval_count' => 'interval_count',
         'is_active' => 'is_active',
         'meter_id' => 'meter_id',
+        'nickname' => 'nickname',
         'package_size' => 'package_size',
         'price' => 'price',
         'price_decimal' => 'price_decimal',
@@ -236,8 +244,10 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
         'currency' => 'setCurrency',
         'external_account_id' => 'setExternalAccountId',
         'interval' => 'setInterval',
+        'interval_count' => 'setIntervalCount',
         'is_active' => 'setIsActive',
         'meter_id' => 'setMeterId',
+        'nickname' => 'setNickname',
         'package_size' => 'setPackageSize',
         'price' => 'setPrice',
         'price_decimal' => 'setPriceDecimal',
@@ -259,8 +269,10 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
         'currency' => 'getCurrency',
         'external_account_id' => 'getExternalAccountId',
         'interval' => 'getInterval',
+        'interval_count' => 'getIntervalCount',
         'is_active' => 'getIsActive',
         'meter_id' => 'getMeterId',
+        'nickname' => 'getNickname',
         'package_size' => 'getPackageSize',
         'price' => 'getPrice',
         'price_decimal' => 'getPriceDecimal',
@@ -333,8 +345,10 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('external_account_id', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
+        $this->setIfExists('interval_count', $data ?? [], null);
         $this->setIfExists('is_active', $data ?? [], null);
         $this->setIfExists('meter_id', $data ?? [], null);
+        $this->setIfExists('nickname', $data ?? [], null);
         $this->setIfExists('package_size', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_decimal', $data ?? [], null);
@@ -402,6 +416,10 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
         }
         if (!is_null($this->container['meter_id']) && (mb_strlen($this->container['meter_id']) > 255)) {
             $invalidProperties[] = "invalid value for 'meter_id', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['nickname']) && (mb_strlen($this->container['nickname']) > 512)) {
+            $invalidProperties[] = "invalid value for 'nickname', the character length must be smaller than or equal to 512.";
         }
 
         if ($this->container['price'] === null) {
@@ -567,6 +585,40 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
+     * Gets interval_count
+     *
+     * @return int|null
+     */
+    public function getIntervalCount()
+    {
+        return $this->container['interval_count'];
+    }
+
+    /**
+     * Sets interval_count
+     *
+     * @param int|null $interval_count interval_count
+     *
+     * @return self
+     */
+    public function setIntervalCount($interval_count)
+    {
+        if (is_null($interval_count)) {
+            array_push($this->openAPINullablesSetToNull, 'interval_count');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('interval_count', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['interval_count'] = $interval_count;
+
+        return $this;
+    }
+
+    /**
      * Gets is_active
      *
      * @return bool
@@ -616,8 +668,8 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'meter_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('meter_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('meter_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -627,6 +679,44 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
         }
 
         $this->container['meter_id'] = $meter_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets nickname
+     *
+     * @return string|null
+     */
+    public function getNickname()
+    {
+        return $this->container['nickname'];
+    }
+
+    /**
+     * Sets nickname
+     *
+     * @param string|null $nickname nickname
+     *
+     * @return self
+     */
+    public function setNickname($nickname)
+    {
+        if (is_null($nickname)) {
+            array_push($this->openAPINullablesSetToNull, 'nickname');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('nickname', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($nickname) && (mb_strlen($nickname) > 512)) {
+            throw new \InvalidArgumentException('invalid length for $nickname when calling CreateBillingPriceRequestBody., must be smaller than or equal to 512.');
+        }
+
+        $this->container['nickname'] = $nickname;
 
         return $this;
     }
@@ -654,8 +744,8 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'package_size');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('package_size', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('package_size', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -715,8 +805,8 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -842,8 +932,8 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'provider_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('provider_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('provider_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -876,8 +966,8 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'tiers_mode');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('tiers_mode', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('tiers_mode', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -977,7 +1067,7 @@ class CreateBillingPriceRequestBody implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

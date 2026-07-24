@@ -77,14 +77,14 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'credit_consumption_rate' => null,
-        'credit_grant_counts' => null,
+        'credit_consumption_rate' => 'double',
+        'credit_grant_counts' => 'double',
         'credit_grant_details' => null,
-        'credit_remaining' => null,
-        'credit_total' => null,
+        'credit_remaining' => 'double',
+        'credit_total' => 'double',
         'credit_type_icon' => null,
         'credit_type_name' => null,
-        'credit_used' => null,
+        'credit_used' => 'double',
         'usage_aggregation' => null
     ];
 
@@ -331,6 +331,10 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['credit_grant_details']) && (count($this->container['credit_grant_details']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credit_grant_details', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -369,8 +373,8 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'credit_consumption_rate');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_consumption_rate', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_consumption_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -429,6 +433,10 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($credit_grant_details)) {
             throw new \InvalidArgumentException('non-nullable credit_grant_details cannot be null');
         }
+
+        if ((count($credit_grant_details) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credit_grant_details when calling CreditUsage., number of items must be less than or equal to 1000.');
+        }
         $this->container['credit_grant_details'] = $credit_grant_details;
 
         return $this;
@@ -457,8 +465,8 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'credit_remaining');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_remaining', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_remaining', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -491,8 +499,8 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'credit_total');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_total', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_total', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -525,8 +533,8 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'credit_type_icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_type_icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_type_icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -559,8 +567,8 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'credit_type_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_type_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_type_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -593,8 +601,8 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'credit_used');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_used', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_used', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -694,7 +702,7 @@ class CreditUsage implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

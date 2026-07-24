@@ -11,9 +11,11 @@ Name | Type | Description | Notes
 **discounts** | [**\Schematic\Model\BillingSubscriptionDiscountView[]**](BillingSubscriptionDiscountView.md) |  |
 **expired_at** | **\DateTime** |  | [optional]
 **interval** | **string** |  |
+**is_initial** | **bool** |  |
 **latest_invoice** | [**\Schematic\Model\InvoiceResponseData**](InvoiceResponseData.md) |  | [optional]
 **payment_method** | [**\Schematic\Model\PaymentMethodResponseData**](PaymentMethodResponseData.md) |  | [optional]
 **products** | [**\Schematic\Model\BillingProductForSubscriptionResponseData[]**](BillingProductForSubscriptionResponseData.md) |  |
+**provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |
 **status** | **string** |  |
 **subscription_external_id** | **string** |  |
 **total_price** | **int** |  |

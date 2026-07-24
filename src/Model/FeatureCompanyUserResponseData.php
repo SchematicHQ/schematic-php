@@ -60,14 +60,14 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
     protected static $openAPITypes = [
         'access' => 'bool',
         'allocation' => 'int',
-        'allocation_type' => 'EntitlementValueType',
+        'allocation_type' => '\Schematic\Model\EntitlementValueType',
         'company' => '\Schematic\Model\CompanyDetailResponseData',
         'entitlement_id' => 'string',
         'entitlement_type' => '\Schematic\Model\EntitlementType',
         'feature' => '\Schematic\Model\FeatureDetailResponseData',
         'metric_reset_at' => '\DateTime',
-        'month_reset' => 'string',
-        'period' => 'string',
+        'month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
+        'period' => '\Schematic\Model\MetricPeriod',
         'plan' => '\Schematic\Model\PlanResponseData',
         'usage' => 'int',
         'user' => '\Schematic\Model\UserResponseData'
@@ -82,7 +82,7 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPIFormats = [
         'access' => null,
-        'allocation' => null,
+        'allocation' => 'int64',
         'allocation_type' => null,
         'company' => null,
         'entitlement_id' => null,
@@ -92,7 +92,7 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
         'month_reset' => null,
         'period' => null,
         'plan' => null,
-        'usage' => null,
+        'usage' => 'int64',
         'user' => null
     ];
 
@@ -436,8 +436,8 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'allocation');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('allocation', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('allocation', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -450,7 +450,7 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets allocation_type
      *
-     * @return EntitlementValueType
+     * @return \Schematic\Model\EntitlementValueType
      */
     public function getAllocationType()
     {
@@ -460,7 +460,7 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets allocation_type
      *
-     * @param EntitlementValueType $allocation_type allocation_type
+     * @param \Schematic\Model\EntitlementValueType $allocation_type allocation_type
      *
      * @return self
      */
@@ -605,8 +605,8 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'metric_reset_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('metric_reset_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('metric_reset_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -619,7 +619,7 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets month_reset
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriodMonthReset|null
      */
     public function getMonthReset()
     {
@@ -629,7 +629,7 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets month_reset
      *
-     * @param string|null $month_reset If the period is current_month, when the month resets.
+     * @param \Schematic\Model\MetricPeriodMonthReset|null $month_reset month_reset
      *
      * @return self
      */
@@ -639,8 +639,8 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'month_reset');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('month_reset', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('month_reset', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -653,7 +653,7 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets period
      *
-     * @return string|null
+     * @return \Schematic\Model\MetricPeriod|null
      */
     public function getPeriod()
     {
@@ -663,7 +663,7 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets period
      *
-     * @param string|null $period The period over which usage is measured.
+     * @param \Schematic\Model\MetricPeriod|null $period period
      *
      * @return self
      */
@@ -673,8 +673,8 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'period');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('period', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('period', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -734,8 +734,8 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'usage');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('usage', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('usage', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -835,7 +835,7 @@ class FeatureCompanyUserResponseData implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

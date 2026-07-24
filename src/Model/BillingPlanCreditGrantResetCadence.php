@@ -45,7 +45,11 @@ class BillingPlanCreditGrantResetCadence
      */
     public const DAILY = 'daily';
 
+    public const EVERY_6_MONTHS = 'every_6_months';
+
     public const MONTHLY = 'monthly';
+
+    public const QUARTERLY = 'quarterly';
 
     public const WEEKLY = 'weekly';
 
@@ -59,7 +63,9 @@ class BillingPlanCreditGrantResetCadence
     {
         return [
             self::DAILY,
+            self::EVERY_6_MONTHS,
             self::MONTHLY,
+            self::QUARTERLY,
             self::WEEKLY,
             self::YEARLY
         ];

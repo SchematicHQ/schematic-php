@@ -63,7 +63,7 @@ class DataExportResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'environment_id' => 'string',
         'export_type' => '\Schematic\Model\DataExportType',
         'id' => 'string',
-        'metadata' => 'string',
+        'metadata' => '\Schematic\Model\DataExportMetadata',
         'output_file_type' => '\Schematic\Model\DataExportOutputFileType',
         'status' => '\Schematic\Model\DataExportStatus',
         'updated_at' => '\DateTime'
@@ -346,9 +346,6 @@ class DataExportResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['metadata'] === null) {
-            $invalidProperties[] = "'metadata' can't be null";
-        }
         if ($this->container['output_file_type'] === null) {
             $invalidProperties[] = "'output_file_type' can't be null";
         }
@@ -511,7 +508,7 @@ class DataExportResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets metadata
      *
-     * @return string
+     * @return \Schematic\Model\DataExportMetadata|null
      */
     public function getMetadata()
     {
@@ -521,7 +518,7 @@ class DataExportResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets metadata
      *
-     * @param string $metadata metadata
+     * @param \Schematic\Model\DataExportMetadata|null $metadata metadata
      *
      * @return self
      */
@@ -679,7 +676,7 @@ class DataExportResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

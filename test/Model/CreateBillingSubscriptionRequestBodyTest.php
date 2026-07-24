@@ -108,6 +108,15 @@ class CreateBillingSubscriptionRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "company_id"
+     */
+    public function testPropertyCompanyId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "currency"
      */
     public function testPropertyCurrency()
@@ -201,6 +210,15 @@ class CreateBillingSubscriptionRequestBodyTest extends TestCase
      * Test attribute "product_external_ids"
      */
     public function testPropertyProductExternalIds()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "provider_type"
+     */
+    public function testPropertyProviderType()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

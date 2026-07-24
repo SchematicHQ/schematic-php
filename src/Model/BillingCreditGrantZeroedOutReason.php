@@ -43,13 +43,19 @@ class BillingCreditGrantZeroedOutReason
     /**
      * Possible values of this enum
      */
+    public const CUSTOMER_ARCHIVED = 'customer_archived';
+
     public const EXPIRED = 'expired';
+
+    public const INTEGRATION_UNINSTALLED = 'integration_uninstalled';
 
     public const MANUAL = 'manual';
 
     public const PLAN_CHANGE = 'plan_change';
 
     public const PLAN_PERIOD_RESET = 'plan_period_reset';
+
+    public const RECONCILED = 'reconciled';
 
     /**
      * Gets allowable values of the enum
@@ -58,10 +64,13 @@ class BillingCreditGrantZeroedOutReason
     public static function getAllowableEnumValues()
     {
         return [
+            self::CUSTOMER_ARCHIVED,
             self::EXPIRED,
+            self::INTEGRATION_UNINSTALLED,
             self::MANUAL,
             self::PLAN_CHANGE,
-            self::PLAN_PERIOD_RESET
+            self::PLAN_PERIOD_RESET,
+            self::RECONCILED
         ];
     }
 }

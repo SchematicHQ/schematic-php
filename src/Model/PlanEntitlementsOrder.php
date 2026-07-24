@@ -350,8 +350,8 @@ class PlanEntitlementsOrder implements ModelInterface, ArrayAccess, \JsonSeriali
             array_push($this->openAPINullablesSetToNull, 'visible');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('visible', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('visible', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -424,7 +424,7 @@ class PlanEntitlementsOrder implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

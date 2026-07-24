@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **burn_strategy** | [**\Schematic\Model\BillingCreditBurnStrategy**](BillingCreditBurnStrategy.md) |  |
 **cost_editable** | **bool** |  |
 **created_at** | **\DateTime** |  |
+**currency_prices** | [**\Schematic\Model\CreditCurrencyPriceResponseData[]**](CreditCurrencyPriceResponseData.md) |  |
 **default_expiry_unit** | [**\Schematic\Model\BillingCreditExpiryUnit**](BillingCreditExpiryUnit.md) |  |
 **default_expiry_unit_count** | **int** |  | [optional]
 **default_rollover_policy** | [**\Schematic\Model\BillingCreditRolloverPolicy**](BillingCreditRolloverPolicy.md) |  |

@@ -61,12 +61,17 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
         'amount_off' => 'int',
         'due_now' => 'int',
         'finance' => '\Schematic\Model\PreviewSubscriptionFinanceResponseData',
+        'is_scheduled_downgrade' => 'bool',
         'new_charges' => 'int',
+        'opt_in_required' => 'bool',
+        'opt_in_text' => 'string',
+        'opt_in_title' => 'string',
         'payment_method_required' => 'bool',
         'percent_off' => 'float',
         'period_start' => '\DateTime',
         'promo_code_applied' => 'bool',
         'proration' => 'int',
+        'scheduled_change_time' => '\DateTime',
         'trial_end' => '\DateTime',
         'usage_violations' => '\Schematic\Model\FeatureUsageResponseData[]'
     ];
@@ -79,15 +84,20 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount_off' => null,
-        'due_now' => null,
+        'amount_off' => 'int64',
+        'due_now' => 'int64',
         'finance' => null,
-        'new_charges' => null,
+        'is_scheduled_downgrade' => null,
+        'new_charges' => 'int64',
+        'opt_in_required' => null,
+        'opt_in_text' => null,
+        'opt_in_title' => null,
         'payment_method_required' => null,
-        'percent_off' => null,
+        'percent_off' => 'double',
         'period_start' => 'date-time',
         'promo_code_applied' => null,
-        'proration' => null,
+        'proration' => 'int64',
+        'scheduled_change_time' => 'date-time',
         'trial_end' => 'date-time',
         'usage_violations' => null
     ];
@@ -101,12 +111,17 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
         'amount_off' => false,
         'due_now' => false,
         'finance' => false,
+        'is_scheduled_downgrade' => false,
         'new_charges' => false,
+        'opt_in_required' => false,
+        'opt_in_text' => true,
+        'opt_in_title' => true,
         'payment_method_required' => false,
         'percent_off' => false,
         'period_start' => false,
         'promo_code_applied' => false,
         'proration' => false,
+        'scheduled_change_time' => true,
         'trial_end' => true,
         'usage_violations' => false
     ];
@@ -200,12 +215,17 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
         'amount_off' => 'amount_off',
         'due_now' => 'due_now',
         'finance' => 'finance',
+        'is_scheduled_downgrade' => 'is_scheduled_downgrade',
         'new_charges' => 'new_charges',
+        'opt_in_required' => 'opt_in_required',
+        'opt_in_text' => 'opt_in_text',
+        'opt_in_title' => 'opt_in_title',
         'payment_method_required' => 'payment_method_required',
         'percent_off' => 'percent_off',
         'period_start' => 'period_start',
         'promo_code_applied' => 'promo_code_applied',
         'proration' => 'proration',
+        'scheduled_change_time' => 'scheduled_change_time',
         'trial_end' => 'trial_end',
         'usage_violations' => 'usage_violations'
     ];
@@ -219,12 +239,17 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
         'amount_off' => 'setAmountOff',
         'due_now' => 'setDueNow',
         'finance' => 'setFinance',
+        'is_scheduled_downgrade' => 'setIsScheduledDowngrade',
         'new_charges' => 'setNewCharges',
+        'opt_in_required' => 'setOptInRequired',
+        'opt_in_text' => 'setOptInText',
+        'opt_in_title' => 'setOptInTitle',
         'payment_method_required' => 'setPaymentMethodRequired',
         'percent_off' => 'setPercentOff',
         'period_start' => 'setPeriodStart',
         'promo_code_applied' => 'setPromoCodeApplied',
         'proration' => 'setProration',
+        'scheduled_change_time' => 'setScheduledChangeTime',
         'trial_end' => 'setTrialEnd',
         'usage_violations' => 'setUsageViolations'
     ];
@@ -238,12 +263,17 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
         'amount_off' => 'getAmountOff',
         'due_now' => 'getDueNow',
         'finance' => 'getFinance',
+        'is_scheduled_downgrade' => 'getIsScheduledDowngrade',
         'new_charges' => 'getNewCharges',
+        'opt_in_required' => 'getOptInRequired',
+        'opt_in_text' => 'getOptInText',
+        'opt_in_title' => 'getOptInTitle',
         'payment_method_required' => 'getPaymentMethodRequired',
         'percent_off' => 'getPercentOff',
         'period_start' => 'getPeriodStart',
         'promo_code_applied' => 'getPromoCodeApplied',
         'proration' => 'getProration',
+        'scheduled_change_time' => 'getScheduledChangeTime',
         'trial_end' => 'getTrialEnd',
         'usage_violations' => 'getUsageViolations'
     ];
@@ -308,12 +338,17 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
         $this->setIfExists('amount_off', $data ?? [], null);
         $this->setIfExists('due_now', $data ?? [], null);
         $this->setIfExists('finance', $data ?? [], null);
+        $this->setIfExists('is_scheduled_downgrade', $data ?? [], null);
         $this->setIfExists('new_charges', $data ?? [], null);
+        $this->setIfExists('opt_in_required', $data ?? [], null);
+        $this->setIfExists('opt_in_text', $data ?? [], null);
+        $this->setIfExists('opt_in_title', $data ?? [], null);
         $this->setIfExists('payment_method_required', $data ?? [], null);
         $this->setIfExists('percent_off', $data ?? [], null);
         $this->setIfExists('period_start', $data ?? [], null);
         $this->setIfExists('promo_code_applied', $data ?? [], null);
         $this->setIfExists('proration', $data ?? [], null);
+        $this->setIfExists('scheduled_change_time', $data ?? [], null);
         $this->setIfExists('trial_end', $data ?? [], null);
         $this->setIfExists('usage_violations', $data ?? [], null);
     }
@@ -351,8 +386,14 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
         if ($this->container['due_now'] === null) {
             $invalidProperties[] = "'due_now' can't be null";
         }
+        if ($this->container['is_scheduled_downgrade'] === null) {
+            $invalidProperties[] = "'is_scheduled_downgrade' can't be null";
+        }
         if ($this->container['new_charges'] === null) {
             $invalidProperties[] = "'new_charges' can't be null";
+        }
+        if ($this->container['opt_in_required'] === null) {
+            $invalidProperties[] = "'opt_in_required' can't be null";
         }
         if ($this->container['payment_method_required'] === null) {
             $invalidProperties[] = "'payment_method_required' can't be null";
@@ -372,6 +413,10 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
         if ($this->container['usage_violations'] === null) {
             $invalidProperties[] = "'usage_violations' can't be null";
         }
+        if ((count($this->container['usage_violations']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'usage_violations', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -473,6 +518,33 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
     }
 
     /**
+     * Gets is_scheduled_downgrade
+     *
+     * @return bool
+     */
+    public function getIsScheduledDowngrade()
+    {
+        return $this->container['is_scheduled_downgrade'];
+    }
+
+    /**
+     * Sets is_scheduled_downgrade
+     *
+     * @param bool $is_scheduled_downgrade is_scheduled_downgrade
+     *
+     * @return self
+     */
+    public function setIsScheduledDowngrade($is_scheduled_downgrade)
+    {
+        if (is_null($is_scheduled_downgrade)) {
+            throw new \InvalidArgumentException('non-nullable is_scheduled_downgrade cannot be null');
+        }
+        $this->container['is_scheduled_downgrade'] = $is_scheduled_downgrade;
+
+        return $this;
+    }
+
+    /**
      * Gets new_charges
      *
      * @return int
@@ -497,6 +569,101 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
             throw new \InvalidArgumentException('non-nullable new_charges cannot be null');
         }
         $this->container['new_charges'] = $new_charges;
+
+        return $this;
+    }
+
+    /**
+     * Gets opt_in_required
+     *
+     * @return bool
+     */
+    public function getOptInRequired()
+    {
+        return $this->container['opt_in_required'];
+    }
+
+    /**
+     * Sets opt_in_required
+     *
+     * @param bool $opt_in_required opt_in_required
+     *
+     * @return self
+     */
+    public function setOptInRequired($opt_in_required)
+    {
+        if (is_null($opt_in_required)) {
+            throw new \InvalidArgumentException('non-nullable opt_in_required cannot be null');
+        }
+        $this->container['opt_in_required'] = $opt_in_required;
+
+        return $this;
+    }
+
+    /**
+     * Gets opt_in_text
+     *
+     * @return string|null
+     */
+    public function getOptInText()
+    {
+        return $this->container['opt_in_text'];
+    }
+
+    /**
+     * Sets opt_in_text
+     *
+     * @param string|null $opt_in_text opt_in_text
+     *
+     * @return self
+     */
+    public function setOptInText($opt_in_text)
+    {
+        if (is_null($opt_in_text)) {
+            array_push($this->openAPINullablesSetToNull, 'opt_in_text');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('opt_in_text', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['opt_in_text'] = $opt_in_text;
+
+        return $this;
+    }
+
+    /**
+     * Gets opt_in_title
+     *
+     * @return string|null
+     */
+    public function getOptInTitle()
+    {
+        return $this->container['opt_in_title'];
+    }
+
+    /**
+     * Sets opt_in_title
+     *
+     * @param string|null $opt_in_title opt_in_title
+     *
+     * @return self
+     */
+    public function setOptInTitle($opt_in_title)
+    {
+        if (is_null($opt_in_title)) {
+            array_push($this->openAPINullablesSetToNull, 'opt_in_title');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('opt_in_title', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['opt_in_title'] = $opt_in_title;
 
         return $this;
     }
@@ -645,6 +812,40 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
     }
 
     /**
+     * Gets scheduled_change_time
+     *
+     * @return \DateTime|null
+     */
+    public function getScheduledChangeTime()
+    {
+        return $this->container['scheduled_change_time'];
+    }
+
+    /**
+     * Sets scheduled_change_time
+     *
+     * @param \DateTime|null $scheduled_change_time scheduled_change_time
+     *
+     * @return self
+     */
+    public function setScheduledChangeTime($scheduled_change_time)
+    {
+        if (is_null($scheduled_change_time)) {
+            array_push($this->openAPINullablesSetToNull, 'scheduled_change_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('scheduled_change_time', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['scheduled_change_time'] = $scheduled_change_time;
+
+        return $this;
+    }
+
+    /**
      * Gets trial_end
      *
      * @return \DateTime|null
@@ -669,8 +870,8 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
             array_push($this->openAPINullablesSetToNull, 'trial_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -701,6 +902,10 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
     {
         if (is_null($usage_violations)) {
             throw new \InvalidArgumentException('non-nullable usage_violations cannot be null');
+        }
+
+        if ((count($usage_violations) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $usage_violations when calling PreviewSubscriptionChangeResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['usage_violations'] = $usage_violations;
 
@@ -770,7 +975,7 @@ class PreviewSubscriptionChangeResponseData implements ModelInterface, ArrayAcce
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

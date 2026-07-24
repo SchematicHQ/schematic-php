@@ -313,6 +313,10 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['api_keys'] === null) {
             $invalidProperties[] = "'api_keys' can't be null";
         }
+        if ((count($this->container['api_keys']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'api_keys', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -364,6 +368,10 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
     {
         if (is_null($api_keys)) {
             throw new \InvalidArgumentException('non-nullable api_keys cannot be null');
+        }
+
+        if ((count($api_keys) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $api_keys when calling EnvironmentDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['api_keys'] = $api_keys;
 
@@ -568,7 +576,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

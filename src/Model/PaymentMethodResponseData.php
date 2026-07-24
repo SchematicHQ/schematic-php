@@ -92,8 +92,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'billing_email' => null,
         'billing_name' => null,
         'card_brand' => null,
-        'card_exp_month' => null,
-        'card_exp_year' => null,
+        'card_exp_month' => 'int64',
+        'card_exp_year' => 'int64',
         'card_last4' => null,
         'company_id' => null,
         'created_at' => 'date-time',
@@ -456,8 +456,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'account_last4');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('account_last4', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('account_last4', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -490,8 +490,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'account_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('account_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('account_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -524,8 +524,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'bank_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('bank_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('bank_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -558,8 +558,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'billing_email');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_email', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_email', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -592,8 +592,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'billing_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('billing_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('billing_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -626,8 +626,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'card_brand');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('card_brand', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('card_brand', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -660,8 +660,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'card_exp_month');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('card_exp_month', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('card_exp_month', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -694,8 +694,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'card_exp_year');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('card_exp_year', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('card_exp_year', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -728,8 +728,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'card_last4');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('card_last4', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('card_last4', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -762,8 +762,8 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1052,7 +1052,7 @@ class PaymentMethodResponseData implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

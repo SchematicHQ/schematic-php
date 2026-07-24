@@ -65,8 +65,8 @@ class CompanyEventPeriodMetricsResponseData implements ModelInterface, ArrayAcce
         'created_at' => '\DateTime',
         'environment_id' => 'string',
         'event_subtype' => 'string',
-        'month_reset' => 'string',
-        'period' => 'string',
+        'month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
+        'period' => '\Schematic\Model\MetricPeriod',
         'valid_until' => '\DateTime',
         'value' => 'int'
     ];
@@ -89,7 +89,7 @@ class CompanyEventPeriodMetricsResponseData implements ModelInterface, ArrayAcce
         'month_reset' => null,
         'period' => null,
         'valid_until' => 'date-time',
-        'value' => null
+        'value' => 'int64'
     ];
 
     /**
@@ -582,7 +582,7 @@ class CompanyEventPeriodMetricsResponseData implements ModelInterface, ArrayAcce
     /**
      * Gets month_reset
      *
-     * @return string
+     * @return \Schematic\Model\MetricPeriodMonthReset
      */
     public function getMonthReset()
     {
@@ -592,7 +592,7 @@ class CompanyEventPeriodMetricsResponseData implements ModelInterface, ArrayAcce
     /**
      * Sets month_reset
      *
-     * @param string $month_reset month_reset
+     * @param \Schematic\Model\MetricPeriodMonthReset $month_reset month_reset
      *
      * @return self
      */
@@ -609,7 +609,7 @@ class CompanyEventPeriodMetricsResponseData implements ModelInterface, ArrayAcce
     /**
      * Gets period
      *
-     * @return string
+     * @return \Schematic\Model\MetricPeriod
      */
     public function getPeriod()
     {
@@ -619,7 +619,7 @@ class CompanyEventPeriodMetricsResponseData implements ModelInterface, ArrayAcce
     /**
      * Sets period
      *
-     * @param string $period period
+     * @param \Schematic\Model\MetricPeriod $period period
      *
      * @return self
      */
@@ -656,8 +656,8 @@ class CompanyEventPeriodMetricsResponseData implements ModelInterface, ArrayAcce
             array_push($this->openAPINullablesSetToNull, 'valid_until');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('valid_until', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('valid_until', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -757,7 +757,7 @@ class CompanyEventPeriodMetricsResponseData implements ModelInterface, ArrayAcce
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

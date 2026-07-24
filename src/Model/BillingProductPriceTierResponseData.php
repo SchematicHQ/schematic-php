@@ -72,10 +72,10 @@ class BillingProductPriceTierResponseData implements ModelInterface, ArrayAccess
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'flat_amount' => null,
-        'per_unit_price' => null,
+        'flat_amount' => 'int64',
+        'per_unit_price' => 'int64',
         'per_unit_price_decimal' => null,
-        'up_to' => null
+        'up_to' => 'int64'
     ];
 
     /**
@@ -334,8 +334,8 @@ class BillingProductPriceTierResponseData implements ModelInterface, ArrayAccess
             array_push($this->openAPINullablesSetToNull, 'flat_amount');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flat_amount', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flat_amount', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -368,8 +368,8 @@ class BillingProductPriceTierResponseData implements ModelInterface, ArrayAccess
             array_push($this->openAPINullablesSetToNull, 'per_unit_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('per_unit_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('per_unit_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -402,8 +402,8 @@ class BillingProductPriceTierResponseData implements ModelInterface, ArrayAccess
             array_push($this->openAPINullablesSetToNull, 'per_unit_price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('per_unit_price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('per_unit_price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -436,8 +436,8 @@ class BillingProductPriceTierResponseData implements ModelInterface, ArrayAccess
             array_push($this->openAPINullablesSetToNull, 'up_to');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('up_to', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('up_to', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -510,7 +510,7 @@ class BillingProductPriceTierResponseData implements ModelInterface, ArrayAccess
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

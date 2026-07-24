@@ -59,6 +59,7 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPITypes = [
         'company_id' => 'string',
+        'currency' => 'string',
         'selected_plan_id' => 'string'
     ];
 
@@ -71,6 +72,7 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'company_id' => null,
+        'currency' => null,
         'selected_plan_id' => null
     ];
 
@@ -81,6 +83,7 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'company_id' => false,
+        'currency' => true,
         'selected_plan_id' => true
     ];
 
@@ -171,6 +174,7 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $attributeMap = [
         'company_id' => 'company_id',
+        'currency' => 'currency',
         'selected_plan_id' => 'selected_plan_id'
     ];
 
@@ -181,6 +185,7 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $setters = [
         'company_id' => 'setCompanyId',
+        'currency' => 'setCurrency',
         'selected_plan_id' => 'setSelectedPlanId'
     ];
 
@@ -191,6 +196,7 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $getters = [
         'company_id' => 'getCompanyId',
+        'currency' => 'getCurrency',
         'selected_plan_id' => 'getSelectedPlanId'
     ];
 
@@ -252,6 +258,7 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     public function __construct(array $data = null)
     {
         $this->setIfExists('company_id', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('selected_plan_id', $data ?? [], null);
     }
 
@@ -285,6 +292,10 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['company_id'] === null) {
             $invalidProperties[] = "'company_id' can't be null";
         }
+        if (!is_null($this->container['currency']) && (mb_strlen($this->container['currency']) > 3)) {
+            $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
+        }
+
         return $invalidProperties;
     }
 
@@ -328,6 +339,44 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency currency
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($currency) && (mb_strlen($currency) > 3)) {
+            throw new \InvalidArgumentException('invalid length for $currency when calling CheckoutDataRequestBody., must be smaller than or equal to 3.');
+        }
+
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
      * Gets selected_plan_id
      *
      * @return string|null
@@ -350,8 +399,8 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
             array_push($this->openAPINullablesSetToNull, 'selected_plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('selected_plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('selected_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -424,7 +473,7 @@ class CheckoutDataRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

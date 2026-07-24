@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **description** | **string** |  | [optional]
 **id** | **string** |  |
 **image_url** | **string** |  | [optional]
-**included_credit_grants** | [**\Schematic\Model\PlanCreditGrantView[]**](PlanCreditGrantView.md) |  |
+**included_credit_grants** | [**\Schematic\Model\CompanyPlanCreditGrantView[]**](CompanyPlanCreditGrantView.md) |  |
 **name** | **string** |  |
 **plan_period** | **string** |  | [optional]
 **plan_price** | **int** |  | [optional]

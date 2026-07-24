@@ -76,7 +76,7 @@ class CreditGrantExpiryRequestBody implements ModelInterface, ArrayAccess, \Json
     protected static $openAPIFormats = [
         'expiry_type' => null,
         'expiry_unit' => null,
-        'expiry_unit_count' => null,
+        'expiry_unit_count' => 'int64',
         'reset_cadence' => null,
         'reset_start' => null,
         'reset_type' => null
@@ -358,8 +358,8 @@ class CreditGrantExpiryRequestBody implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'expiry_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -392,8 +392,8 @@ class CreditGrantExpiryRequestBody implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -426,8 +426,8 @@ class CreditGrantExpiryRequestBody implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -519,8 +519,8 @@ class CreditGrantExpiryRequestBody implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'reset_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('reset_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('reset_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -593,7 +593,7 @@ class CreditGrantExpiryRequestBody implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

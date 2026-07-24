@@ -126,6 +126,15 @@ class CompanyDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "custom_plan_billings"
+     */
+    public function testPropertyCustomPlanBillings()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "default_payment_method"
      */
     public function testPropertyDefaultPaymentMethod()
@@ -246,6 +255,15 @@ class CompanyDetailResponseDataTest extends TestCase
      * Test attribute "rules"
      */
     public function testPropertyRules()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "scheduled_downgrade"
+     */
+    public function testPropertyScheduledDowngrade()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

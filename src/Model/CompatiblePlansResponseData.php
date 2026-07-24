@@ -285,6 +285,10 @@ class CompatiblePlansResponseData implements ModelInterface, ArrayAccess, \JsonS
         if ($this->container['compatible_plan_ids'] === null) {
             $invalidProperties[] = "'compatible_plan_ids' can't be null";
         }
+        if ((count($this->container['compatible_plan_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'compatible_plan_ids', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['source_plan_id'] === null) {
             $invalidProperties[] = "'source_plan_id' can't be null";
         }
@@ -324,6 +328,10 @@ class CompatiblePlansResponseData implements ModelInterface, ArrayAccess, \JsonS
     {
         if (is_null($compatible_plan_ids)) {
             throw new \InvalidArgumentException('non-nullable compatible_plan_ids cannot be null');
+        }
+
+        if ((count($compatible_plan_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $compatible_plan_ids when calling CompatiblePlansResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['compatible_plan_ids'] = $compatible_plan_ids;
 
@@ -420,7 +428,7 @@ class CompatiblePlansResponseData implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **id** | **string** |  |
 **key** | **string** |  |
 **last_checked_at** | **\DateTime** |  | [optional]
-**maintainer_id** | **string** |  | [optional]
 **name** | **string** |  |
 **rules** | [**\Schematic\Model\RuleView[]**](RuleView.md) |  |
 **updated_at** | **\DateTime** |  |

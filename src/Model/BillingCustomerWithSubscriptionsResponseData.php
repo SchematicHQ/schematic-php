@@ -349,6 +349,10 @@ class BillingCustomerWithSubscriptionsResponseData implements ModelInterface, Ar
         if ($this->container['subscriptions'] === null) {
             $invalidProperties[] = "'subscriptions' can't be null";
         }
+        if ((count($this->container['subscriptions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'subscriptions', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
         }
@@ -390,8 +394,8 @@ class BillingCustomerWithSubscriptionsResponseData implements ModelInterface, Ar
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -424,8 +428,8 @@ class BillingCustomerWithSubscriptionsResponseData implements ModelInterface, Ar
             array_push($this->openAPINullablesSetToNull, 'deleted_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('deleted_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('deleted_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -592,6 +596,10 @@ class BillingCustomerWithSubscriptionsResponseData implements ModelInterface, Ar
         if (is_null($subscriptions)) {
             throw new \InvalidArgumentException('non-nullable subscriptions cannot be null');
         }
+
+        if ((count($subscriptions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $subscriptions when calling BillingCustomerWithSubscriptionsResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['subscriptions'] = $subscriptions;
 
         return $this;
@@ -687,7 +695,7 @@ class BillingCustomerWithSubscriptionsResponseData implements ModelInterface, Ar
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

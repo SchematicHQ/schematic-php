@@ -60,6 +60,7 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
     protected static $openAPITypes = [
         'burn_strategy' => '\Schematic\Model\BillingCreditBurnStrategy',
         'currency' => 'string',
+        'currency_prices' => '\Schematic\Model\CreditCurrencyPriceRequestBody[]',
         'default_expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'default_expiry_unit_count' => 'int',
         'default_rollover_policy' => '\Schematic\Model\BillingCreditRolloverPolicy',
@@ -82,13 +83,14 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
     protected static $openAPIFormats = [
         'burn_strategy' => null,
         'currency' => null,
+        'currency_prices' => null,
         'default_expiry_unit' => null,
-        'default_expiry_unit_count' => null,
+        'default_expiry_unit_count' => 'int64',
         'default_rollover_policy' => null,
         'description' => null,
         'icon' => null,
         'name' => null,
-        'per_unit_price' => null,
+        'per_unit_price' => 'int64',
         'per_unit_price_decimal' => null,
         'plural_name' => null,
         'singular_name' => null
@@ -102,6 +104,7 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
     protected static array $openAPINullables = [
         'burn_strategy' => true,
         'currency' => false,
+        'currency_prices' => true,
         'default_expiry_unit' => true,
         'default_expiry_unit_count' => true,
         'default_rollover_policy' => true,
@@ -202,6 +205,7 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
     protected static $attributeMap = [
         'burn_strategy' => 'burn_strategy',
         'currency' => 'currency',
+        'currency_prices' => 'currency_prices',
         'default_expiry_unit' => 'default_expiry_unit',
         'default_expiry_unit_count' => 'default_expiry_unit_count',
         'default_rollover_policy' => 'default_rollover_policy',
@@ -222,6 +226,7 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
     protected static $setters = [
         'burn_strategy' => 'setBurnStrategy',
         'currency' => 'setCurrency',
+        'currency_prices' => 'setCurrencyPrices',
         'default_expiry_unit' => 'setDefaultExpiryUnit',
         'default_expiry_unit_count' => 'setDefaultExpiryUnitCount',
         'default_rollover_policy' => 'setDefaultRolloverPolicy',
@@ -242,6 +247,7 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
     protected static $getters = [
         'burn_strategy' => 'getBurnStrategy',
         'currency' => 'getCurrency',
+        'currency_prices' => 'getCurrencyPrices',
         'default_expiry_unit' => 'getDefaultExpiryUnit',
         'default_expiry_unit_count' => 'getDefaultExpiryUnitCount',
         'default_rollover_policy' => 'getDefaultRolloverPolicy',
@@ -313,6 +319,7 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
     {
         $this->setIfExists('burn_strategy', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('default_expiry_unit', $data ?? [], null);
         $this->setIfExists('default_expiry_unit_count', $data ?? [], null);
         $this->setIfExists('default_rollover_policy', $data ?? [], null);
@@ -355,6 +362,10 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
+        if (!is_null($this->container['currency_prices']) && (count($this->container['currency_prices']) > 50)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 50.";
+        }
+
         if (!is_null($this->container['default_expiry_unit_count']) && ($this->container['default_expiry_unit_count'] < 1)) {
             $invalidProperties[] = "invalid value for 'default_expiry_unit_count', must be bigger than or equal to 1.";
         }
@@ -423,8 +434,8 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'burn_strategy');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('burn_strategy', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('burn_strategy', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -462,6 +473,44 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\CreditCurrencyPriceRequestBody[]|null
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\CreditCurrencyPriceRequestBody[]|null $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            array_push($this->openAPINullablesSetToNull, 'currency_prices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency_prices', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($currency_prices) && (count($currency_prices) > 50)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling CreateBillingCreditRequestBody., number of items must be less than or equal to 50.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
+
+        return $this;
+    }
+
+    /**
      * Gets default_expiry_unit
      *
      * @return \Schematic\Model\BillingCreditExpiryUnit|null
@@ -484,8 +533,8 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'default_expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -518,8 +567,8 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'default_expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -557,8 +606,8 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'default_rollover_policy');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_rollover_policy', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_rollover_policy', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -622,8 +671,8 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -691,8 +740,8 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'per_unit_price');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('per_unit_price', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('per_unit_price', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -725,8 +774,8 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'per_unit_price_decimal');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('per_unit_price_decimal', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('per_unit_price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -759,8 +808,8 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -797,8 +846,8 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -875,7 +924,7 @@ class CreateBillingCreditRequestBody implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

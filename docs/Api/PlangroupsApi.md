@@ -63,7 +63,7 @@ try {
 ## `getPlanGroup()`
 
 ```php
-getPlanGroup(): \Schematic\Model\GetPlanGroupResponse
+getPlanGroup($include_company_counts): \Schematic\Model\GetPlanGroupResponse
 ```
 
 Get plan group
@@ -78,9 +78,10 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
+$include_company_counts = True; // bool
 
 try {
-    $result = $schematic->PlangroupsApi->getPlanGroup();
+    $result = $schematic->PlangroupsApi->getPlanGroup($include_company_counts);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlangroupsApi->getPlanGroup: ', $e->getMessage(), PHP_EOL;
@@ -89,7 +90,9 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **include_company_counts** | **bool**|  | [optional] |
 
 ### Return type
 

@@ -75,7 +75,7 @@ class CreditGrantDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
         'credit_type_icon' => null,
         'expires_at' => 'date-time',
         'grant_reason' => null,
-        'quantity' => null
+        'quantity' => 'double'
     ];
 
     /**
@@ -340,8 +340,8 @@ class CreditGrantDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'credit_type_icon');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_type_icon', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_type_icon', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -374,8 +374,8 @@ class CreditGrantDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
             array_push($this->openAPINullablesSetToNull, 'expires_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expires_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expires_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -502,7 +502,7 @@ class CreditGrantDetail implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

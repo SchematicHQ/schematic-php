@@ -285,6 +285,10 @@ class UpdateCompanyPlansRequestBody implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['add_on_ids'] === null) {
             $invalidProperties[] = "'add_on_ids' can't be null";
         }
+        if ((count($this->container['add_on_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'add_on_ids', number of items must be less than or equal to 100.";
+        }
+
         return $invalidProperties;
     }
 
@@ -322,6 +326,10 @@ class UpdateCompanyPlansRequestBody implements ModelInterface, ArrayAccess, \Jso
         if (is_null($add_on_ids)) {
             throw new \InvalidArgumentException('non-nullable add_on_ids cannot be null');
         }
+
+        if ((count($add_on_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $add_on_ids when calling UpdateCompanyPlansRequestBody., number of items must be less than or equal to 100.');
+        }
         $this->container['add_on_ids'] = $add_on_ids;
 
         return $this;
@@ -350,8 +358,8 @@ class UpdateCompanyPlansRequestBody implements ModelInterface, ArrayAccess, \Jso
             array_push($this->openAPINullablesSetToNull, 'base_plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('base_plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('base_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -424,7 +432,7 @@ class UpdateCompanyPlansRequestBody implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

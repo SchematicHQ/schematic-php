@@ -71,7 +71,7 @@ class CreateComponentRequestBody implements ModelInterface, ArrayAccess, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'ast' => null,
+        'ast' => 'double',
         'entity_type' => null,
         'name' => null
     ];
@@ -469,7 +469,7 @@ class CreateComponentRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

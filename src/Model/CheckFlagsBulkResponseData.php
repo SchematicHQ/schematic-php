@@ -278,6 +278,10 @@ class CheckFlagsBulkResponseData implements ModelInterface, ArrayAccess, \JsonSe
         if ($this->container['data'] === null) {
             $invalidProperties[] = "'data' can't be null";
         }
+        if ((count($this->container['data']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'data', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -314,6 +318,10 @@ class CheckFlagsBulkResponseData implements ModelInterface, ArrayAccess, \JsonSe
     {
         if (is_null($data)) {
             throw new \InvalidArgumentException('non-nullable data cannot be null');
+        }
+
+        if ((count($data) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $data when calling CheckFlagsBulkResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['data'] = $data;
 
@@ -383,7 +391,7 @@ class CheckFlagsBulkResponseData implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

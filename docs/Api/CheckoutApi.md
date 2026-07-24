@@ -7,9 +7,11 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**cancelSubscription()**](CheckoutApi.md#cancelSubscription) | **POST** /manage-plan/subscription/cancel | Cancel subscription |
 | [**checkoutInternal()**](CheckoutApi.md#checkoutInternal) | **POST** /checkout-internal | Checkout internal |
 | [**getCheckoutData()**](CheckoutApi.md#getCheckoutData) | **POST** /checkout-internal/data | Get checkout data |
+| [**getCompanyBillingDetails()**](CheckoutApi.md#getCompanyBillingDetails) | **GET** /companies/{company_id}/billing-details | Get company billing details |
 | [**managePlan()**](CheckoutApi.md#managePlan) | **POST** /manage-plan | Manage plan |
 | [**previewCheckoutInternal()**](CheckoutApi.md#previewCheckoutInternal) | **POST** /checkout-internal/preview | Preview checkout internal |
 | [**previewManagePlan()**](CheckoutApi.md#previewManagePlan) | **POST** /manage-plan/preview | Preview manage plan |
+| [**updateCompanyBillingDetails()**](CheckoutApi.md#updateCompanyBillingDetails) | **PUT** /companies/{company_id}/billing-details | Update company billing details |
 | [**updateCustomerSubscriptionTrialEnd()**](CheckoutApi.md#updateCustomerSubscriptionTrialEnd) | **PUT** /subscription/{subscription_id}/edit-trial-end | Update customer subscription trial end |
 
 
@@ -166,6 +168,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getCompanyBillingDetails()`
+
+```php
+getCompanyBillingDetails($company_id): \Schematic\Model\GetCompanyBillingDetailsResponse
+```
+
+Get company billing details
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string | company_id
+
+try {
+    $result = $schematic->CheckoutApi->getCompanyBillingDetails($company_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CheckoutApi->getCompanyBillingDetails: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**| company_id | |
+
+### Return type
+
+[**\Schematic\Model\GetCompanyBillingDetailsResponse**](../Model/GetCompanyBillingDetailsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `managePlan()`
 
 ```php
@@ -305,6 +358,59 @@ try {
 ### Return type
 
 [**\Schematic\Model\PreviewManagePlanResponse**](../Model/PreviewManagePlanResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateCompanyBillingDetails()`
+
+```php
+updateCompanyBillingDetails($company_id, $update_company_billing_details_request_body): \Schematic\Model\UpdateCompanyBillingDetailsResponse
+```
+
+Update company billing details
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string | company_id
+$update_company_billing_details_request_body = new \Schematic\Model\UpdateCompanyBillingDetailsRequestBody(); // \Schematic\Model\UpdateCompanyBillingDetailsRequestBody
+
+try {
+    $result = $schematic->CheckoutApi->updateCompanyBillingDetails($company_id, $update_company_billing_details_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CheckoutApi->updateCompanyBillingDetails: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**| company_id | |
+| **update_company_billing_details_request_body** | [**\Schematic\Model\UpdateCompanyBillingDetailsRequestBody**](../Model/UpdateCompanyBillingDetailsRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpdateCompanyBillingDetailsResponse**](../Model/UpdateCompanyBillingDetailsResponse.md)
 
 ### Authorization
 

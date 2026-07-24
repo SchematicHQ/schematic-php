@@ -11,7 +11,10 @@ Name | Type | Description | Notes
 **currency** | **string** |  |
 **customer_external_id** | **string** |  |
 **due_date** | **\DateTime** |  | [optional]
+**ending_balance** | **int** |  | [optional]
 **payment_method_external_id** | **string** |  | [optional]
+**starting_balance** | **int** |  | [optional]
+**status** | [**\Schematic\Model\InvoiceStatus**](InvoiceStatus.md) |  | [optional]
 **subscription_external_id** | **string** |  | [optional]
 **subtotal** | **int** |  |
 **url** | **string** |  | [optional]

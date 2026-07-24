@@ -85,18 +85,6 @@ class CompaniesApiTest extends TestCase
     }
 
     /**
-     * Test case for countCompaniesForAdvancedFilter
-     *
-     * Count companies for advanced filter.
-     *
-     */
-    public function testCountCompaniesForAdvancedFilter()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for countEntityKeyDefinitions
      *
      * Count entity key definitions.
@@ -157,18 +145,6 @@ class CompaniesApiTest extends TestCase
     }
 
     /**
-     * Test case for createPlanTrait
-     *
-     * Create plan trait.
-     *
-     */
-    public function testCreatePlanTrait()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for createUser
      *
      * Create user.
@@ -217,18 +193,6 @@ class CompaniesApiTest extends TestCase
     }
 
     /**
-     * Test case for deletePlanTrait
-     *
-     * Delete plan trait.
-     *
-     */
-    public function testDeletePlanTrait()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for deleteUser
      *
      * Delete user.
@@ -265,12 +229,36 @@ class CompaniesApiTest extends TestCase
     }
 
     /**
+     * Test case for getBillingEntityChildSubscriptions
+     *
+     * Get billing entity child subscriptions.
+     *
+     */
+    public function testGetBillingEntityChildSubscriptions()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getCompany
      *
      * Get company.
      *
      */
     public function testGetCompany()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCompanyBillingEntity
+     *
+     * Get company billing entity.
+     *
+     */
+    public function testGetCompanyBillingEntity()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -367,18 +355,6 @@ class CompaniesApiTest extends TestCase
      *
      */
     public function testListCompanies()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for listCompaniesForAdvancedFilter
-     *
-     * List companies for advanced filter.
-     *
-     */
-    public function testListCompaniesForAdvancedFilter()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -487,18 +463,6 @@ class CompaniesApiTest extends TestCase
      *
      */
     public function testUpdateEntityTraitDefinition()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for updatePlanTrait
-     *
-     * Update plan trait.
-     *
-     */
-    public function testUpdatePlanTrait()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

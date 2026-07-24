@@ -106,4 +106,13 @@ class CreateApiKeyRequestBodyTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "readonly"
+     */
+    public function testPropertyReadonly()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

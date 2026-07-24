@@ -4,32 +4,88 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**acquireCreditLease()**](CreditsApi.md#acquireCreditLease) | **POST** /billing/credits/lease | Acquire credit lease |
 | [**countBillingCredits()**](CreditsApi.md#countBillingCredits) | **GET** /billing/credits/count | Count billing credits |
 | [**countBillingCreditsGrants()**](CreditsApi.md#countBillingCreditsGrants) | **GET** /billing/credits/grants/count | Count billing credits grants |
 | [**countBillingPlanCreditGrants()**](CreditsApi.md#countBillingPlanCreditGrants) | **GET** /billing/credits/plan-grants/count | Count billing plan credit grants |
 | [**countCompanyGrants()**](CreditsApi.md#countCompanyGrants) | **GET** /billing/credits/grants/company/count | Count company grants |
 | [**countCreditBundles()**](CreditsApi.md#countCreditBundles) | **GET** /billing/credits/bundles/count | Count credit bundles |
-| [**countCreditLedger()**](CreditsApi.md#countCreditLedger) | **GET** /billing/credits/ledger/count | Count credit ledger |
+| [**countCreditEventLedger()**](CreditsApi.md#countCreditEventLedger) | **GET** /v2/billing/credits/ledger/count | Count credit event ledger |
 | [**createBillingCredit()**](CreditsApi.md#createBillingCredit) | **POST** /billing/credits | Create billing credit |
 | [**createBillingPlanCreditGrant()**](CreditsApi.md#createBillingPlanCreditGrant) | **POST** /billing/credits/plan-grants | Create billing plan credit grant |
 | [**createCreditBundle()**](CreditsApi.md#createCreditBundle) | **POST** /billing/credits/bundles | Create credit bundle |
 | [**deleteBillingPlanCreditGrant()**](CreditsApi.md#deleteBillingPlanCreditGrant) | **DELETE** /billing/credits/plan-grants/{plan_grant_id} | Delete billing plan credit grant |
 | [**deleteCreditBundle()**](CreditsApi.md#deleteCreditBundle) | **DELETE** /billing/credits/bundles/{bundle_id} | Delete credit bundle |
+| [**extendCreditLease()**](CreditsApi.md#extendCreditLease) | **PUT** /billing/credits/lease/{lease_id}/extend | Extend credit lease |
 | [**getCreditBundle()**](CreditsApi.md#getCreditBundle) | **GET** /billing/credits/bundles/{bundle_id} | Get credit bundle |
-| [**getEnrichedCreditLedger()**](CreditsApi.md#getEnrichedCreditLedger) | **GET** /billing/credits/ledger | Get enriched credit ledger |
 | [**getSingleBillingCredit()**](CreditsApi.md#getSingleBillingCredit) | **GET** /billing/credits/{credit_id} | Get single billing credit |
+| [**getSingleBillingPlanCreditGrant()**](CreditsApi.md#getSingleBillingPlanCreditGrant) | **GET** /billing/credits/plan-grants/{plan_grant_id} | Get single billing plan credit grant |
 | [**grantBillingCreditsToCompany()**](CreditsApi.md#grantBillingCreditsToCompany) | **POST** /billing/credits/grants/company | Grant billing credits to company |
 | [**listBillingCredits()**](CreditsApi.md#listBillingCredits) | **GET** /billing/credits | List billing credits |
 | [**listBillingPlanCreditGrants()**](CreditsApi.md#listBillingPlanCreditGrants) | **GET** /billing/credits/plan-grants | List billing plan credit grants |
+| [**listCompanyCreditBalances()**](CreditsApi.md#listCompanyCreditBalances) | **GET** /billing/credits/balance | List company credit balances |
 | [**listCompanyGrants()**](CreditsApi.md#listCompanyGrants) | **GET** /billing/credits/grants/company/list | List company grants |
 | [**listCreditBundles()**](CreditsApi.md#listCreditBundles) | **GET** /billing/credits/bundles | List credit bundles |
+| [**listCreditEventLedger()**](CreditsApi.md#listCreditEventLedger) | **GET** /v2/billing/credits/ledger | List credit event ledger |
 | [**listGrantsForCredit()**](CreditsApi.md#listGrantsForCredit) | **GET** /billing/credits/grants/list | List grants for credit |
+| [**releaseCreditLease()**](CreditsApi.md#releaseCreditLease) | **PUT** /billing/credits/lease/{lease_id}/release | Release credit lease |
 | [**softDeleteBillingCredit()**](CreditsApi.md#softDeleteBillingCredit) | **DELETE** /billing/credits/{credit_id} | Soft delete billing credit |
 | [**updateBillingCredit()**](CreditsApi.md#updateBillingCredit) | **PUT** /billing/credits/{credit_id} | Update billing credit |
 | [**updateBillingPlanCreditGrant()**](CreditsApi.md#updateBillingPlanCreditGrant) | **PUT** /billing/credits/plan-grants/{plan_grant_id} | Update billing plan credit grant |
 | [**updateCreditBundleDetails()**](CreditsApi.md#updateCreditBundleDetails) | **PUT** /billing/credits/bundles/{bundle_id} | Update credit bundle details |
 | [**zeroOutGrant()**](CreditsApi.md#zeroOutGrant) | **PUT** /billing/credits/grants/{grant_id}/zero-out | Zero out grant |
 
+
+## `acquireCreditLease()`
+
+```php
+acquireCreditLease($acquire_credit_lease_request_body): \Schematic\Model\AcquireCreditLeaseResponse
+```
+
+Acquire credit lease
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$acquire_credit_lease_request_body = new \Schematic\Model\AcquireCreditLeaseRequestBody(); // \Schematic\Model\AcquireCreditLeaseRequestBody
+
+try {
+    $result = $schematic->CreditsApi->acquireCreditLease($acquire_credit_lease_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->acquireCreditLease: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **acquire_credit_lease_request_body** | [**\Schematic\Model\AcquireCreditLeaseRequestBody**](../Model/AcquireCreditLeaseRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\AcquireCreditLeaseResponse**](../Model/AcquireCreditLeaseResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `countBillingCredits()`
 
@@ -148,7 +204,7 @@ try {
 ## `countBillingPlanCreditGrants()`
 
 ```php
-countBillingPlanCreditGrants($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset): \Schematic\Model\CountBillingPlanCreditGrantsResponse
+countBillingPlanCreditGrants($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset): \Schematic\Model\CountBillingPlanCreditGrantsResponse
 ```
 
 Count billing plan credit grants
@@ -164,14 +220,16 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $credit_id = 'credit_id_example'; // string
+$ids = array('ids_example'); // string[]
 $plan_id = 'plan_id_example'; // string
 $plan_ids = array('plan_ids_example'); // string[]
-$ids = array('ids_example'); // string[]
+$plan_version_id = 'plan_version_id_example'; // string
+$plan_version_ids = array('plan_version_ids_example'); // string[]
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CreditsApi->countBillingPlanCreditGrants($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset);
+    $result = $schematic->CreditsApi->countBillingPlanCreditGrants($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CreditsApi->countBillingPlanCreditGrants: ', $e->getMessage(), PHP_EOL;
@@ -183,9 +241,11 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **credit_id** | **string**|  | [optional] |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **plan_id** | **string**|  | [optional] |
 | **plan_ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **plan_version_id** | **string**|  | [optional] |
+| **plan_version_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -326,13 +386,13 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `countCreditLedger()`
+## `countCreditEventLedger()`
 
 ```php
-countCreditLedger($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset): \Schematic\Model\CountCreditLedgerResponse
+countCreditEventLedger($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset): \Schematic\Model\CountCreditEventLedgerResponse
 ```
 
-Count credit ledger
+Count credit event ledger
 
 ### Example
 
@@ -345,19 +405,19 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string
-$period = new \Schematic\Model\CreditLedgerPeriod(); // CreditLedgerPeriod
 $billing_credit_id = 'billing_credit_id_example'; // string
+$end_time = 'end_time_example'; // string
+$event_type = new \Schematic\Model\CreditEventType(); // CreditEventType
 $feature_id = 'feature_id_example'; // string
 $start_time = 'start_time_example'; // string
-$end_time = 'end_time_example'; // string
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CreditsApi->countCreditLedger($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset);
+    $result = $schematic->CreditsApi->countCreditEventLedger($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling Schematic->CreditsApi->countCreditLedger: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling Schematic->CreditsApi->countCreditEventLedger: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -366,17 +426,17 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **company_id** | **string**|  | |
-| **period** | [**CreditLedgerPeriod**](../Model/.md)|  | |
 | **billing_credit_id** | **string**|  | [optional] |
+| **end_time** | **string**|  | [optional] |
+| **event_type** | [**CreditEventType**](../Model/.md)|  | [optional] |
 | **feature_id** | **string**|  | [optional] |
 | **start_time** | **string**|  | [optional] |
-| **end_time** | **string**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
-[**\Schematic\Model\CountCreditLedgerResponse**](../Model/CountCreditLedgerResponse.md)
+[**\Schematic\Model\CountCreditEventLedgerResponse**](../Model/CountCreditEventLedgerResponse.md)
 
 ### Authorization
 
@@ -648,6 +708,59 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `extendCreditLease()`
+
+```php
+extendCreditLease($lease_id, $extend_credit_lease_request_body): \Schematic\Model\ExtendCreditLeaseResponse
+```
+
+Extend credit lease
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$lease_id = 'lease_id_example'; // string | lease_id
+$extend_credit_lease_request_body = new \Schematic\Model\ExtendCreditLeaseRequestBody(); // \Schematic\Model\ExtendCreditLeaseRequestBody
+
+try {
+    $result = $schematic->CreditsApi->extendCreditLease($lease_id, $extend_credit_lease_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->extendCreditLease: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **lease_id** | **string**| lease_id | |
+| **extend_credit_lease_request_body** | [**\Schematic\Model\ExtendCreditLeaseRequestBody**](../Model/ExtendCreditLeaseRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\ExtendCreditLeaseResponse**](../Model/ExtendCreditLeaseResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getCreditBundle()`
 
 ```php
@@ -699,71 +812,6 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getEnrichedCreditLedger()`
-
-```php
-getEnrichedCreditLedger($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset): \Schematic\Model\GetEnrichedCreditLedgerResponse
-```
-
-Get enriched credit ledger
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$company_id = 'company_id_example'; // string
-$period = new \Schematic\Model\CreditLedgerPeriod(); // CreditLedgerPeriod
-$billing_credit_id = 'billing_credit_id_example'; // string
-$feature_id = 'feature_id_example'; // string
-$start_time = 'start_time_example'; // string
-$end_time = 'end_time_example'; // string
-$limit = 100; // int | Page limit (default 100)
-$offset = 0; // int | Page offset (default 0)
-
-try {
-    $result = $schematic->CreditsApi->getEnrichedCreditLedger($company_id, $period, $billing_credit_id, $feature_id, $start_time, $end_time, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->CreditsApi->getEnrichedCreditLedger: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **company_id** | **string**|  | |
-| **period** | [**CreditLedgerPeriod**](../Model/.md)|  | |
-| **billing_credit_id** | **string**|  | [optional] |
-| **feature_id** | **string**|  | [optional] |
-| **start_time** | **string**|  | [optional] |
-| **end_time** | **string**|  | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\GetEnrichedCreditLedgerResponse**](../Model/GetEnrichedCreditLedgerResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `getSingleBillingCredit()`
 
 ```php
@@ -801,6 +849,57 @@ try {
 ### Return type
 
 [**\Schematic\Model\GetSingleBillingCreditResponse**](../Model/GetSingleBillingCreditResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getSingleBillingPlanCreditGrant()`
+
+```php
+getSingleBillingPlanCreditGrant($plan_grant_id): \Schematic\Model\GetSingleBillingPlanCreditGrantResponse
+```
+
+Get single billing plan credit grant
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$plan_grant_id = 'plan_grant_id_example'; // string | plan_grant_id
+
+try {
+    $result = $schematic->CreditsApi->getSingleBillingPlanCreditGrant($plan_grant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->getSingleBillingPlanCreditGrant: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_grant_id** | **string**| plan_grant_id | |
+
+### Return type
+
+[**\Schematic\Model\GetSingleBillingPlanCreditGrantResponse**](../Model/GetSingleBillingPlanCreditGrantResponse.md)
 
 ### Authorization
 
@@ -926,7 +1025,7 @@ try {
 ## `listBillingPlanCreditGrants()`
 
 ```php
-listBillingPlanCreditGrants($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset): \Schematic\Model\ListBillingPlanCreditGrantsResponse
+listBillingPlanCreditGrants($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset): \Schematic\Model\ListBillingPlanCreditGrantsResponse
 ```
 
 List billing plan credit grants
@@ -942,14 +1041,16 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $credit_id = 'credit_id_example'; // string
+$ids = array('ids_example'); // string[]
 $plan_id = 'plan_id_example'; // string
 $plan_ids = array('plan_ids_example'); // string[]
-$ids = array('ids_example'); // string[]
+$plan_version_id = 'plan_version_id_example'; // string
+$plan_version_ids = array('plan_version_ids_example'); // string[]
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CreditsApi->listBillingPlanCreditGrants($credit_id, $plan_id, $plan_ids, $ids, $limit, $offset);
+    $result = $schematic->CreditsApi->listBillingPlanCreditGrants($credit_id, $ids, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CreditsApi->listBillingPlanCreditGrants: ', $e->getMessage(), PHP_EOL;
@@ -961,15 +1062,68 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **credit_id** | **string**|  | [optional] |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **plan_id** | **string**|  | [optional] |
 | **plan_ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **plan_version_id** | **string**|  | [optional] |
+| **plan_version_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
 ### Return type
 
 [**\Schematic\Model\ListBillingPlanCreditGrantsResponse**](../Model/ListBillingPlanCreditGrantsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listCompanyCreditBalances()`
+
+```php
+listCompanyCreditBalances($company_id): \Schematic\Model\ListCompanyCreditBalancesResponse
+```
+
+List company credit balances
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string
+
+try {
+    $result = $schematic->CreditsApi->listCompanyCreditBalances($company_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->listCompanyCreditBalances: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**|  | |
+
+### Return type
+
+[**\Schematic\Model\ListCompanyCreditBalancesResponse**](../Model/ListCompanyCreditBalancesResponse.md)
 
 ### Authorization
 
@@ -1104,6 +1258,71 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listCreditEventLedger()`
+
+```php
+listCreditEventLedger($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset): \Schematic\Model\ListCreditEventLedgerResponse
+```
+
+List credit event ledger
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string
+$billing_credit_id = 'billing_credit_id_example'; // string
+$end_time = 'end_time_example'; // string
+$event_type = new \Schematic\Model\CreditEventType(); // CreditEventType
+$feature_id = 'feature_id_example'; // string
+$start_time = 'start_time_example'; // string
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CreditsApi->listCreditEventLedger($company_id, $billing_credit_id, $end_time, $event_type, $feature_id, $start_time, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->listCreditEventLedger: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**|  | |
+| **billing_credit_id** | **string**|  | [optional] |
+| **end_time** | **string**|  | [optional] |
+| **event_type** | [**CreditEventType**](../Model/.md)|  | [optional] |
+| **feature_id** | **string**|  | [optional] |
+| **start_time** | **string**|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListCreditEventLedgerResponse**](../Model/ListCreditEventLedgerResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listGrantsForCredit()`
 
 ```php
@@ -1155,6 +1374,59 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `releaseCreditLease()`
+
+```php
+releaseCreditLease($lease_id, $body): \Schematic\Model\ReleaseCreditLeaseResponse
+```
+
+Release credit lease
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$lease_id = 'lease_id_example'; // string | lease_id
+$body = array('key' => new \stdClass); // object
+
+try {
+    $result = $schematic->CreditsApi->releaseCreditLease($lease_id, $body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->releaseCreditLease: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **lease_id** | **string**| lease_id | |
+| **body** | **object**|  | |
+
+### Return type
+
+[**\Schematic\Model\ReleaseCreditLeaseResponse**](../Model/ReleaseCreditLeaseResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

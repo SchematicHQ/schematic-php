@@ -60,8 +60,9 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     protected static $openAPITypes = [
         'account_id' => 'string',
         'billing_product_id' => 'string',
+        'billing_strategy' => '\Schematic\Model\BillingStrategy',
         'charge_type' => '\Schematic\Model\ChargeType',
-        'controlled_by' => '\Schematic\Model\PlanControlledByType',
+        'controlled_by' => '\Schematic\Model\BillingProviderType',
         'environment_id' => 'string',
         'is_trialable' => 'bool',
         'monthly_price_id' => 'string',
@@ -81,6 +82,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     protected static $openAPIFormats = [
         'account_id' => null,
         'billing_product_id' => null,
+        'billing_strategy' => null,
         'charge_type' => null,
         'controlled_by' => null,
         'environment_id' => null,
@@ -88,7 +90,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
         'monthly_price_id' => null,
         'one_time_price_id' => null,
         'plan_id' => null,
-        'trial_days' => null,
+        'trial_days' => 'int64',
         'yearly_price_id' => null
     ];
 
@@ -100,6 +102,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     protected static array $openAPINullables = [
         'account_id' => false,
         'billing_product_id' => false,
+        'billing_strategy' => false,
         'charge_type' => false,
         'controlled_by' => false,
         'environment_id' => false,
@@ -199,6 +202,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     protected static $attributeMap = [
         'account_id' => 'account_id',
         'billing_product_id' => 'billing_product_id',
+        'billing_strategy' => 'billing_strategy',
         'charge_type' => 'charge_type',
         'controlled_by' => 'controlled_by',
         'environment_id' => 'environment_id',
@@ -218,6 +222,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     protected static $setters = [
         'account_id' => 'setAccountId',
         'billing_product_id' => 'setBillingProductId',
+        'billing_strategy' => 'setBillingStrategy',
         'charge_type' => 'setChargeType',
         'controlled_by' => 'setControlledBy',
         'environment_id' => 'setEnvironmentId',
@@ -237,6 +242,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     protected static $getters = [
         'account_id' => 'getAccountId',
         'billing_product_id' => 'getBillingProductId',
+        'billing_strategy' => 'getBillingStrategy',
         'charge_type' => 'getChargeType',
         'controlled_by' => 'getControlledBy',
         'environment_id' => 'getEnvironmentId',
@@ -307,6 +313,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     {
         $this->setIfExists('account_id', $data ?? [], null);
         $this->setIfExists('billing_product_id', $data ?? [], null);
+        $this->setIfExists('billing_strategy', $data ?? [], null);
         $this->setIfExists('charge_type', $data ?? [], null);
         $this->setIfExists('controlled_by', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
@@ -350,6 +357,9 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
         }
         if ($this->container['billing_product_id'] === null) {
             $invalidProperties[] = "'billing_product_id' can't be null";
+        }
+        if ($this->container['billing_strategy'] === null) {
+            $invalidProperties[] = "'billing_strategy' can't be null";
         }
         if ($this->container['charge_type'] === null) {
             $invalidProperties[] = "'charge_type' can't be null";
@@ -436,6 +446,33 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
+     * Gets billing_strategy
+     *
+     * @return \Schematic\Model\BillingStrategy
+     */
+    public function getBillingStrategy()
+    {
+        return $this->container['billing_strategy'];
+    }
+
+    /**
+     * Sets billing_strategy
+     *
+     * @param \Schematic\Model\BillingStrategy $billing_strategy billing_strategy
+     *
+     * @return self
+     */
+    public function setBillingStrategy($billing_strategy)
+    {
+        if (is_null($billing_strategy)) {
+            throw new \InvalidArgumentException('non-nullable billing_strategy cannot be null');
+        }
+        $this->container['billing_strategy'] = $billing_strategy;
+
+        return $this;
+    }
+
+    /**
      * Gets charge_type
      *
      * @return \Schematic\Model\ChargeType
@@ -465,7 +502,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Gets controlled_by
      *
-     * @return \Schematic\Model\PlanControlledByType
+     * @return \Schematic\Model\BillingProviderType
      */
     public function getControlledBy()
     {
@@ -475,7 +512,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets controlled_by
      *
-     * @param \Schematic\Model\PlanControlledByType $controlled_by controlled_by
+     * @param \Schematic\Model\BillingProviderType $controlled_by controlled_by
      *
      * @return self
      */
@@ -566,8 +603,8 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'monthly_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('monthly_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('monthly_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -600,8 +637,8 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'one_time_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('one_time_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('one_time_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -661,8 +698,8 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'trial_days');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_days', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_days', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -695,8 +732,8 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
             array_push($this->openAPINullablesSetToNull, 'yearly_price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('yearly_price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('yearly_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -769,7 +806,7 @@ class BillingProductPlanResponseData implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

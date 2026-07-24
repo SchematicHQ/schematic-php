@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **billing_subscription** | [**\Schematic\Model\BillingSubscriptionView**](BillingSubscriptionView.md) |  | [optional]
 **billing_subscriptions** | [**\Schematic\Model\BillingSubscriptionView[]**](BillingSubscriptionView.md) |  |
 **created_at** | **\DateTime** |  |
+**custom_plan_billings** | [**\Schematic\Model\CustomPlanBillingResponseData[]**](CustomPlanBillingResponseData.md) |  |
 **default_payment_method** | [**\Schematic\Model\PaymentMethodResponseData**](PaymentMethodResponseData.md) |  | [optional]
 **entitlements** | [**\Schematic\Model\FeatureEntitlement[]**](FeatureEntitlement.md) |  |
 **entity_traits** | [**\Schematic\Model\EntityTraitDetailResponseData[]**](EntityTraitDetailResponseData.md) |  |
@@ -23,6 +24,7 @@ Name | Type | Description | Notes
 **plan** | [**\Schematic\Model\CompanyPlanWithBillingSubView**](CompanyPlanWithBillingSubView.md) |  | [optional]
 **plans** | [**\Schematic\Model\GenericPreviewObject[]**](GenericPreviewObject.md) |  |
 **rules** | [**\Schematic\Model\Rule[]**](Rule.md) |  |
+**scheduled_downgrade** | [**\Schematic\Model\ScheduledDowngradeResponseData**](ScheduledDowngradeResponseData.md) |  | [optional]
 **traits** | **object** | A map of trait names to trait values | [optional]
 **updated_at** | **\DateTime** |  |
 **user_count** | **int** |  |

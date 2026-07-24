@@ -74,8 +74,8 @@ class GetEventSummariesParams implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'event_subtypes' => null,
-        'limit' => null,
-        'offset' => null,
+        'limit' => 'int64',
+        'offset' => 'int64',
         'q' => null
     ];
 
@@ -297,8 +297,16 @@ class GetEventSummariesParams implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['event_subtypes']) && (count($this->container['event_subtypes']) > 255)) {
-            $invalidProperties[] = "invalid value for 'event_subtypes', number of items must be less than or equal to 255.";
+        if (!is_null($this->container['event_subtypes']) && (count($this->container['event_subtypes']) > 100)) {
+            $invalidProperties[] = "invalid value for 'event_subtypes', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
         }
 
         if (!is_null($this->container['q']) && (mb_strlen($this->container['q']) > 512)) {
@@ -343,8 +351,8 @@ class GetEventSummariesParams implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable event_subtypes cannot be null');
         }
 
-        if ((count($event_subtypes) > 255)) {
-            throw new \InvalidArgumentException('invalid value for $event_subtypes when calling GetEventSummariesParams., number of items must be less than or equal to 255.');
+        if ((count($event_subtypes) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $event_subtypes when calling GetEventSummariesParams., number of items must be less than or equal to 100.');
         }
         $this->container['event_subtypes'] = $event_subtypes;
 
@@ -373,6 +381,14 @@ class GetEventSummariesParams implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling GetEventSummariesParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling GetEventSummariesParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -499,7 +515,7 @@ class GetEventSummariesParams implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

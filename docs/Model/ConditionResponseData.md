@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **account_id** | **string** |  |
 **comparison_trait_id** | **string** |  | [optional]
 **condition_group_id** | **string** |  | [optional]
-**condition_type** | **string** |  |
+**condition_type** | [**\Schematic\Model\ConditionType**](ConditionType.md) |  |
 **consumption_rate** | **float** |  | [optional]
 **created_at** | **\DateTime** |  |
 **credit_id** | **string** |  | [optional]
@@ -15,11 +15,10 @@ Name | Type | Description | Notes
 **event_subtype** | **string** |  | [optional]
 **flag_id** | **string** |  | [optional]
 **id** | **string** |  |
-**metric_period** | **string** |  | [optional]
-**metric_period_month_reset** | **string** |  | [optional]
+**metric_period** | [**\Schematic\Model\MetricPeriod**](MetricPeriod.md) |  | [optional]
+**metric_period_month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) |  | [optional]
 **metric_value** | **int** |  | [optional]
-**operator** | **string** |  |
-**plan_version_id** | **string** |  | [optional]
+**operator** | [**\Schematic\Model\ComparableOperator**](ComparableOperator.md) |  |
 **resource_unspecified_ids** | **string[]** |  |
 **rule_id** | **string** |  |
 **trait_entity_type** | [**\Schematic\Model\EntityType**](EntityType.md) |  | [optional]

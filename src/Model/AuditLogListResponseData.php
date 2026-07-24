@@ -59,8 +59,10 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPITypes = [
         'actor_type' => '\Schematic\Model\ActorType',
+        'api_key' => '\Schematic\Model\ApiKeyResponseData',
         'api_key_id' => 'string',
         'ended_at' => '\DateTime',
+        'environment' => '\Schematic\Model\EnvironmentResponseData',
         'environment_id' => 'string',
         'id' => 'string',
         'method' => 'string',
@@ -84,16 +86,18 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPIFormats = [
         'actor_type' => null,
+        'api_key' => null,
         'api_key_id' => null,
         'ended_at' => 'date-time',
+        'environment' => null,
         'environment_id' => null,
         'id' => null,
         'method' => null,
-        'resource_id' => null,
+        'resource_id' => 'int64',
         'resource_id_string' => null,
         'resource_name' => null,
         'resource_type' => null,
-        'resp_code' => null,
+        'resp_code' => 'int64',
         'secondary_resource' => null,
         'started_at' => 'date-time',
         'url' => null,
@@ -107,8 +111,10 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static array $openAPINullables = [
         'actor_type' => false,
+        'api_key' => false,
         'api_key_id' => true,
         'ended_at' => true,
+        'environment' => false,
         'environment_id' => true,
         'id' => false,
         'method' => false,
@@ -210,8 +216,10 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $attributeMap = [
         'actor_type' => 'actor_type',
+        'api_key' => 'api_key',
         'api_key_id' => 'api_key_id',
         'ended_at' => 'ended_at',
+        'environment' => 'environment',
         'environment_id' => 'environment_id',
         'id' => 'id',
         'method' => 'method',
@@ -233,8 +241,10 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $setters = [
         'actor_type' => 'setActorType',
+        'api_key' => 'setApiKey',
         'api_key_id' => 'setApiKeyId',
         'ended_at' => 'setEndedAt',
+        'environment' => 'setEnvironment',
         'environment_id' => 'setEnvironmentId',
         'id' => 'setId',
         'method' => 'setMethod',
@@ -256,8 +266,10 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $getters = [
         'actor_type' => 'getActorType',
+        'api_key' => 'getApiKey',
         'api_key_id' => 'getApiKeyId',
         'ended_at' => 'getEndedAt',
+        'environment' => 'getEnvironment',
         'environment_id' => 'getEnvironmentId',
         'id' => 'getId',
         'method' => 'getMethod',
@@ -330,8 +342,10 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     public function __construct(array $data = null)
     {
         $this->setIfExists('actor_type', $data ?? [], null);
+        $this->setIfExists('api_key', $data ?? [], null);
         $this->setIfExists('api_key_id', $data ?? [], null);
         $this->setIfExists('ended_at', $data ?? [], null);
+        $this->setIfExists('environment', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('method', $data ?? [], null);
@@ -483,6 +497,33 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * Gets api_key
+     *
+     * @return \Schematic\Model\ApiKeyResponseData|null
+     */
+    public function getApiKey()
+    {
+        return $this->container['api_key'];
+    }
+
+    /**
+     * Sets api_key
+     *
+     * @param \Schematic\Model\ApiKeyResponseData|null $api_key api_key
+     *
+     * @return self
+     */
+    public function setApiKey($api_key)
+    {
+        if (is_null($api_key)) {
+            throw new \InvalidArgumentException('non-nullable api_key cannot be null');
+        }
+        $this->container['api_key'] = $api_key;
+
+        return $this;
+    }
+
+    /**
      * Gets api_key_id
      *
      * @return string|null
@@ -505,8 +546,8 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'api_key_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('api_key_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('api_key_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -539,13 +580,40 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'ended_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('ended_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('ended_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['ended_at'] = $ended_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets environment
+     *
+     * @return \Schematic\Model\EnvironmentResponseData|null
+     */
+    public function getEnvironment()
+    {
+        return $this->container['environment'];
+    }
+
+    /**
+     * Sets environment
+     *
+     * @param \Schematic\Model\EnvironmentResponseData|null $environment environment
+     *
+     * @return self
+     */
+    public function setEnvironment($environment)
+    {
+        if (is_null($environment)) {
+            throw new \InvalidArgumentException('non-nullable environment cannot be null');
+        }
+        $this->container['environment'] = $environment;
 
         return $this;
     }
@@ -573,8 +641,8 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'environment_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('environment_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('environment_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -675,8 +743,8 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'resource_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resource_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('resource_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -709,8 +777,8 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'resource_id_string');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resource_id_string', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('resource_id_string', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -747,8 +815,8 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'resource_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resource_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('resource_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -785,8 +853,8 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'resource_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resource_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('resource_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -823,8 +891,8 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'resp_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resp_code', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('resp_code', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -865,8 +933,8 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'secondary_resource');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('secondary_resource', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('secondary_resource', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -964,8 +1032,8 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'user_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('user_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1042,7 +1110,7 @@ class AuditLogListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

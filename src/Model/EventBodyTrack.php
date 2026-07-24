@@ -60,6 +60,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'company' => 'array<string,string>',
         'event' => 'string',
+        'lease_id' => 'string',
         'quantity' => 'int',
         'traits' => 'object',
         'user' => 'array<string,string>'
@@ -75,7 +76,8 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'company' => null,
         'event' => null,
-        'quantity' => null,
+        'lease_id' => null,
+        'quantity' => 'int64',
         'traits' => null,
         'user' => null
     ];
@@ -88,6 +90,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'company' => false,
         'event' => false,
+        'lease_id' => false,
         'quantity' => false,
         'traits' => false,
         'user' => false
@@ -181,6 +184,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'company' => 'company',
         'event' => 'event',
+        'lease_id' => 'lease_id',
         'quantity' => 'quantity',
         'traits' => 'traits',
         'user' => 'user'
@@ -194,6 +198,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'company' => 'setCompany',
         'event' => 'setEvent',
+        'lease_id' => 'setLeaseId',
         'quantity' => 'setQuantity',
         'traits' => 'setTraits',
         'user' => 'setUser'
@@ -207,6 +212,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'company' => 'getCompany',
         'event' => 'getEvent',
+        'lease_id' => 'getLeaseId',
         'quantity' => 'getQuantity',
         'traits' => 'getTraits',
         'user' => 'getUser'
@@ -271,6 +277,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('company', $data ?? [], null);
         $this->setIfExists('event', $data ?? [], null);
+        $this->setIfExists('lease_id', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
         $this->setIfExists('traits', $data ?? [], null);
         $this->setIfExists('user', $data ?? [], null);
@@ -371,6 +378,33 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable event cannot be null');
         }
         $this->container['event'] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Gets lease_id
+     *
+     * @return string|null
+     */
+    public function getLeaseId()
+    {
+        return $this->container['lease_id'];
+    }
+
+    /**
+     * Sets lease_id
+     *
+     * @param string|null $lease_id Credit lease ID this track event is redeeming against
+     *
+     * @return self
+     */
+    public function setLeaseId($lease_id)
+    {
+        if (is_null($lease_id)) {
+            throw new \InvalidArgumentException('non-nullable lease_id cannot be null');
+        }
+        $this->container['lease_id'] = $lease_id;
 
         return $this;
     }
@@ -519,7 +553,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

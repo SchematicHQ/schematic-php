@@ -60,12 +60,17 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     protected static $openAPITypes = [
         'auto_topup_amount' => 'int',
         'auto_topup_amount_type' => 'string',
+        'auto_topup_availability' => '\Schematic\Model\BillingCreditAutoTopupAvailability',
         'auto_topup_enabled' => 'bool',
         'auto_topup_expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'auto_topup_expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'auto_topup_expiry_unit_count' => 'int',
+        'auto_topup_self_service' => 'bool',
+        'auto_topup_threshold_credits' => 'int',
         'auto_topup_threshold_percent' => 'int',
+        'can_buy_bundles' => 'bool',
         'created_at' => '\DateTime',
+        'credit' => '\Schematic\Model\BillingCreditResponseData',
         'credit_amount' => 'int',
         'credit_id' => 'string',
         'credit_name' => 'string',
@@ -78,9 +83,11 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
         'plan' => '\Schematic\Model\PreviewObjectResponseData',
         'plan_id' => 'string',
         'plan_name' => 'string',
+        'plan_version_id' => 'string',
         'reset_cadence' => '\Schematic\Model\BillingPlanCreditGrantResetCadence',
         'reset_start' => '\Schematic\Model\BillingPlanCreditGrantResetStart',
         'reset_type' => '\Schematic\Model\BillingPlanCreditGrantResetType',
+        'rollover_percentage' => 'int',
         'updated_at' => '\DateTime'
     ];
 
@@ -92,29 +99,36 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'auto_topup_amount' => null,
+        'auto_topup_amount' => 'int64',
         'auto_topup_amount_type' => null,
+        'auto_topup_availability' => null,
         'auto_topup_enabled' => null,
         'auto_topup_expiry_type' => null,
         'auto_topup_expiry_unit' => null,
-        'auto_topup_expiry_unit_count' => null,
-        'auto_topup_threshold_percent' => null,
+        'auto_topup_expiry_unit_count' => 'int64',
+        'auto_topup_self_service' => null,
+        'auto_topup_threshold_credits' => 'int64',
+        'auto_topup_threshold_percent' => 'int64',
+        'can_buy_bundles' => null,
         'created_at' => 'date-time',
-        'credit_amount' => null,
+        'credit' => null,
+        'credit_amount' => 'int64',
         'credit_id' => null,
         'credit_name' => null,
         'credit_plural_name' => null,
         'credit_singular_name' => null,
         'expiry_type' => null,
         'expiry_unit' => null,
-        'expiry_unit_count' => null,
+        'expiry_unit_count' => 'int64',
         'id' => null,
         'plan' => null,
         'plan_id' => null,
         'plan_name' => null,
+        'plan_version_id' => null,
         'reset_cadence' => null,
         'reset_start' => null,
         'reset_type' => null,
+        'rollover_percentage' => 'int64',
         'updated_at' => 'date-time'
     ];
 
@@ -126,12 +140,17 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     protected static array $openAPINullables = [
         'auto_topup_amount' => true,
         'auto_topup_amount_type' => true,
+        'auto_topup_availability' => false,
         'auto_topup_enabled' => false,
         'auto_topup_expiry_type' => true,
         'auto_topup_expiry_unit' => true,
         'auto_topup_expiry_unit_count' => true,
+        'auto_topup_self_service' => false,
+        'auto_topup_threshold_credits' => true,
         'auto_topup_threshold_percent' => true,
+        'can_buy_bundles' => false,
         'created_at' => false,
+        'credit' => false,
         'credit_amount' => false,
         'credit_id' => false,
         'credit_name' => false,
@@ -144,9 +163,11 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
         'plan' => false,
         'plan_id' => false,
         'plan_name' => false,
-        'reset_cadence' => false,
-        'reset_start' => false,
+        'plan_version_id' => true,
+        'reset_cadence' => true,
+        'reset_start' => true,
         'reset_type' => true,
+        'rollover_percentage' => false,
         'updated_at' => false
     ];
 
@@ -238,12 +259,17 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     protected static $attributeMap = [
         'auto_topup_amount' => 'auto_topup_amount',
         'auto_topup_amount_type' => 'auto_topup_amount_type',
+        'auto_topup_availability' => 'auto_topup_availability',
         'auto_topup_enabled' => 'auto_topup_enabled',
         'auto_topup_expiry_type' => 'auto_topup_expiry_type',
         'auto_topup_expiry_unit' => 'auto_topup_expiry_unit',
         'auto_topup_expiry_unit_count' => 'auto_topup_expiry_unit_count',
+        'auto_topup_self_service' => 'auto_topup_self_service',
+        'auto_topup_threshold_credits' => 'auto_topup_threshold_credits',
         'auto_topup_threshold_percent' => 'auto_topup_threshold_percent',
+        'can_buy_bundles' => 'can_buy_bundles',
         'created_at' => 'created_at',
+        'credit' => 'credit',
         'credit_amount' => 'credit_amount',
         'credit_id' => 'credit_id',
         'credit_name' => 'credit_name',
@@ -256,9 +282,11 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
         'plan' => 'plan',
         'plan_id' => 'plan_id',
         'plan_name' => 'plan_name',
+        'plan_version_id' => 'plan_version_id',
         'reset_cadence' => 'reset_cadence',
         'reset_start' => 'reset_start',
         'reset_type' => 'reset_type',
+        'rollover_percentage' => 'rollover_percentage',
         'updated_at' => 'updated_at'
     ];
 
@@ -270,12 +298,17 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     protected static $setters = [
         'auto_topup_amount' => 'setAutoTopupAmount',
         'auto_topup_amount_type' => 'setAutoTopupAmountType',
+        'auto_topup_availability' => 'setAutoTopupAvailability',
         'auto_topup_enabled' => 'setAutoTopupEnabled',
         'auto_topup_expiry_type' => 'setAutoTopupExpiryType',
         'auto_topup_expiry_unit' => 'setAutoTopupExpiryUnit',
         'auto_topup_expiry_unit_count' => 'setAutoTopupExpiryUnitCount',
+        'auto_topup_self_service' => 'setAutoTopupSelfService',
+        'auto_topup_threshold_credits' => 'setAutoTopupThresholdCredits',
         'auto_topup_threshold_percent' => 'setAutoTopupThresholdPercent',
+        'can_buy_bundles' => 'setCanBuyBundles',
         'created_at' => 'setCreatedAt',
+        'credit' => 'setCredit',
         'credit_amount' => 'setCreditAmount',
         'credit_id' => 'setCreditId',
         'credit_name' => 'setCreditName',
@@ -288,9 +321,11 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
         'plan' => 'setPlan',
         'plan_id' => 'setPlanId',
         'plan_name' => 'setPlanName',
+        'plan_version_id' => 'setPlanVersionId',
         'reset_cadence' => 'setResetCadence',
         'reset_start' => 'setResetStart',
         'reset_type' => 'setResetType',
+        'rollover_percentage' => 'setRolloverPercentage',
         'updated_at' => 'setUpdatedAt'
     ];
 
@@ -302,12 +337,17 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     protected static $getters = [
         'auto_topup_amount' => 'getAutoTopupAmount',
         'auto_topup_amount_type' => 'getAutoTopupAmountType',
+        'auto_topup_availability' => 'getAutoTopupAvailability',
         'auto_topup_enabled' => 'getAutoTopupEnabled',
         'auto_topup_expiry_type' => 'getAutoTopupExpiryType',
         'auto_topup_expiry_unit' => 'getAutoTopupExpiryUnit',
         'auto_topup_expiry_unit_count' => 'getAutoTopupExpiryUnitCount',
+        'auto_topup_self_service' => 'getAutoTopupSelfService',
+        'auto_topup_threshold_credits' => 'getAutoTopupThresholdCredits',
         'auto_topup_threshold_percent' => 'getAutoTopupThresholdPercent',
+        'can_buy_bundles' => 'getCanBuyBundles',
         'created_at' => 'getCreatedAt',
+        'credit' => 'getCredit',
         'credit_amount' => 'getCreditAmount',
         'credit_id' => 'getCreditId',
         'credit_name' => 'getCreditName',
@@ -320,9 +360,11 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
         'plan' => 'getPlan',
         'plan_id' => 'getPlanId',
         'plan_name' => 'getPlanName',
+        'plan_version_id' => 'getPlanVersionId',
         'reset_cadence' => 'getResetCadence',
         'reset_start' => 'getResetStart',
         'reset_type' => 'getResetType',
+        'rollover_percentage' => 'getRolloverPercentage',
         'updated_at' => 'getUpdatedAt'
     ];
 
@@ -385,12 +427,17 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     {
         $this->setIfExists('auto_topup_amount', $data ?? [], null);
         $this->setIfExists('auto_topup_amount_type', $data ?? [], null);
+        $this->setIfExists('auto_topup_availability', $data ?? [], null);
         $this->setIfExists('auto_topup_enabled', $data ?? [], null);
         $this->setIfExists('auto_topup_expiry_type', $data ?? [], null);
         $this->setIfExists('auto_topup_expiry_unit', $data ?? [], null);
         $this->setIfExists('auto_topup_expiry_unit_count', $data ?? [], null);
+        $this->setIfExists('auto_topup_self_service', $data ?? [], null);
+        $this->setIfExists('auto_topup_threshold_credits', $data ?? [], null);
         $this->setIfExists('auto_topup_threshold_percent', $data ?? [], null);
+        $this->setIfExists('can_buy_bundles', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('credit', $data ?? [], null);
         $this->setIfExists('credit_amount', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('credit_name', $data ?? [], null);
@@ -403,9 +450,11 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
         $this->setIfExists('plan', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_name', $data ?? [], null);
+        $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('reset_cadence', $data ?? [], null);
         $this->setIfExists('reset_start', $data ?? [], null);
         $this->setIfExists('reset_type', $data ?? [], null);
+        $this->setIfExists('rollover_percentage', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
     }
 
@@ -436,8 +485,17 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     {
         $invalidProperties = [];
 
+        if ($this->container['auto_topup_availability'] === null) {
+            $invalidProperties[] = "'auto_topup_availability' can't be null";
+        }
         if ($this->container['auto_topup_enabled'] === null) {
             $invalidProperties[] = "'auto_topup_enabled' can't be null";
+        }
+        if ($this->container['auto_topup_self_service'] === null) {
+            $invalidProperties[] = "'auto_topup_self_service' can't be null";
+        }
+        if ($this->container['can_buy_bundles'] === null) {
+            $invalidProperties[] = "'can_buy_bundles' can't be null";
         }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
@@ -460,11 +518,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
         if ($this->container['plan_name'] === null) {
             $invalidProperties[] = "'plan_name' can't be null";
         }
-        if ($this->container['reset_cadence'] === null) {
-            $invalidProperties[] = "'reset_cadence' can't be null";
-        }
-        if ($this->container['reset_start'] === null) {
-            $invalidProperties[] = "'reset_start' can't be null";
+        if ($this->container['rollover_percentage'] === null) {
+            $invalidProperties[] = "'rollover_percentage' can't be null";
         }
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
@@ -507,8 +562,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'auto_topup_amount');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_amount', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_amount', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -541,8 +596,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'auto_topup_amount_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_amount_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_amount_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -553,9 +608,37 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     }
 
     /**
+     * Gets auto_topup_availability
+     *
+     * @return \Schematic\Model\BillingCreditAutoTopupAvailability
+     */
+    public function getAutoTopupAvailability()
+    {
+        return $this->container['auto_topup_availability'];
+    }
+
+    /**
+     * Sets auto_topup_availability
+     *
+     * @param \Schematic\Model\BillingCreditAutoTopupAvailability $auto_topup_availability auto_topup_availability
+     *
+     * @return self
+     */
+    public function setAutoTopupAvailability($auto_topup_availability)
+    {
+        if (is_null($auto_topup_availability)) {
+            throw new \InvalidArgumentException('non-nullable auto_topup_availability cannot be null');
+        }
+        $this->container['auto_topup_availability'] = $auto_topup_availability;
+
+        return $this;
+    }
+
+    /**
      * Gets auto_topup_enabled
      *
      * @return bool
+     * @deprecated
      */
     public function getAutoTopupEnabled()
     {
@@ -565,9 +648,10 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     /**
      * Sets auto_topup_enabled
      *
-     * @param bool $auto_topup_enabled auto_topup_enabled
+     * @param bool $auto_topup_enabled Derived from auto_topup_availability; use that instead.
      *
      * @return self
+     * @deprecated
      */
     public function setAutoTopupEnabled($auto_topup_enabled)
     {
@@ -602,8 +686,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'auto_topup_expiry_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_expiry_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_expiry_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -636,8 +720,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'auto_topup_expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -670,13 +754,76 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'auto_topup_expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['auto_topup_expiry_unit_count'] = $auto_topup_expiry_unit_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_topup_self_service
+     *
+     * @return bool
+     * @deprecated
+     */
+    public function getAutoTopupSelfService()
+    {
+        return $this->container['auto_topup_self_service'];
+    }
+
+    /**
+     * Sets auto_topup_self_service
+     *
+     * @param bool $auto_topup_self_service Derived from auto_topup_availability; use that instead.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setAutoTopupSelfService($auto_topup_self_service)
+    {
+        if (is_null($auto_topup_self_service)) {
+            throw new \InvalidArgumentException('non-nullable auto_topup_self_service cannot be null');
+        }
+        $this->container['auto_topup_self_service'] = $auto_topup_self_service;
+
+        return $this;
+    }
+
+    /**
+     * Gets auto_topup_threshold_credits
+     *
+     * @return int|null
+     */
+    public function getAutoTopupThresholdCredits()
+    {
+        return $this->container['auto_topup_threshold_credits'];
+    }
+
+    /**
+     * Sets auto_topup_threshold_credits
+     *
+     * @param int|null $auto_topup_threshold_credits auto_topup_threshold_credits
+     *
+     * @return self
+     */
+    public function setAutoTopupThresholdCredits($auto_topup_threshold_credits)
+    {
+        if (is_null($auto_topup_threshold_credits)) {
+            array_push($this->openAPINullablesSetToNull, 'auto_topup_threshold_credits');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('auto_topup_threshold_credits', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['auto_topup_threshold_credits'] = $auto_topup_threshold_credits;
 
         return $this;
     }
@@ -704,13 +851,40 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'auto_topup_threshold_percent');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('auto_topup_threshold_percent', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('auto_topup_threshold_percent', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['auto_topup_threshold_percent'] = $auto_topup_threshold_percent;
+
+        return $this;
+    }
+
+    /**
+     * Gets can_buy_bundles
+     *
+     * @return bool
+     */
+    public function getCanBuyBundles()
+    {
+        return $this->container['can_buy_bundles'];
+    }
+
+    /**
+     * Sets can_buy_bundles
+     *
+     * @param bool $can_buy_bundles Whether buyers can purchase one-time credit bundles on this grant, independent of auto top-up availability.
+     *
+     * @return self
+     */
+    public function setCanBuyBundles($can_buy_bundles)
+    {
+        if (is_null($can_buy_bundles)) {
+            throw new \InvalidArgumentException('non-nullable can_buy_bundles cannot be null');
+        }
+        $this->container['can_buy_bundles'] = $can_buy_bundles;
 
         return $this;
     }
@@ -738,6 +912,33 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets credit
+     *
+     * @return \Schematic\Model\BillingCreditResponseData|null
+     */
+    public function getCredit()
+    {
+        return $this->container['credit'];
+    }
+
+    /**
+     * Sets credit
+     *
+     * @param \Schematic\Model\BillingCreditResponseData|null $credit credit
+     *
+     * @return self
+     */
+    public function setCredit($credit)
+    {
+        if (is_null($credit)) {
+            throw new \InvalidArgumentException('non-nullable credit cannot be null');
+        }
+        $this->container['credit'] = $credit;
 
         return $this;
     }
@@ -800,6 +1001,7 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
      * Gets credit_name
      *
      * @return string
+     * @deprecated
      */
     public function getCreditName()
     {
@@ -809,9 +1011,10 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     /**
      * Sets credit_name
      *
-     * @param string $credit_name credit_name
+     * @param string $credit_name Use credit.name from the nested credit object instead
      *
      * @return self
+     * @deprecated
      */
     public function setCreditName($credit_name)
     {
@@ -827,6 +1030,7 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
      * Gets credit_plural_name
      *
      * @return string|null
+     * @deprecated
      */
     public function getCreditPluralName()
     {
@@ -836,9 +1040,10 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     /**
      * Sets credit_plural_name
      *
-     * @param string|null $credit_plural_name credit_plural_name
+     * @param string|null $credit_plural_name Use plural_name from the nested credit object instead
      *
      * @return self
+     * @deprecated
      */
     public function setCreditPluralName($credit_plural_name)
     {
@@ -846,8 +1051,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'credit_plural_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_plural_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_plural_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -861,6 +1066,7 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
      * Gets credit_singular_name
      *
      * @return string|null
+     * @deprecated
      */
     public function getCreditSingularName()
     {
@@ -870,9 +1076,10 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     /**
      * Sets credit_singular_name
      *
-     * @param string|null $credit_singular_name credit_singular_name
+     * @param string|null $credit_singular_name Use singular_name from the nested credit object instead
      *
      * @return self
+     * @deprecated
      */
     public function setCreditSingularName($credit_singular_name)
     {
@@ -880,8 +1087,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'credit_singular_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('credit_singular_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('credit_singular_name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -914,8 +1121,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'expiry_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -948,8 +1155,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'expiry_unit');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -982,8 +1189,8 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'expiry_unit_count');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expiry_unit_count', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expiry_unit_count', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1104,9 +1311,43 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     }
 
     /**
+     * Gets plan_version_id
+     *
+     * @return string|null
+     */
+    public function getPlanVersionId()
+    {
+        return $this->container['plan_version_id'];
+    }
+
+    /**
+     * Sets plan_version_id
+     *
+     * @param string|null $plan_version_id plan_version_id
+     *
+     * @return self
+     */
+    public function setPlanVersionId($plan_version_id)
+    {
+        if (is_null($plan_version_id)) {
+            array_push($this->openAPINullablesSetToNull, 'plan_version_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('plan_version_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['plan_version_id'] = $plan_version_id;
+
+        return $this;
+    }
+
+    /**
      * Gets reset_cadence
      *
-     * @return \Schematic\Model\BillingPlanCreditGrantResetCadence
+     * @return \Schematic\Model\BillingPlanCreditGrantResetCadence|null
      */
     public function getResetCadence()
     {
@@ -1116,14 +1357,21 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     /**
      * Sets reset_cadence
      *
-     * @param \Schematic\Model\BillingPlanCreditGrantResetCadence $reset_cadence reset_cadence
+     * @param \Schematic\Model\BillingPlanCreditGrantResetCadence|null $reset_cadence reset_cadence
      *
      * @return self
      */
     public function setResetCadence($reset_cadence)
     {
         if (is_null($reset_cadence)) {
-            throw new \InvalidArgumentException('non-nullable reset_cadence cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'reset_cadence');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('reset_cadence', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['reset_cadence'] = $reset_cadence;
 
@@ -1133,7 +1381,7 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     /**
      * Gets reset_start
      *
-     * @return \Schematic\Model\BillingPlanCreditGrantResetStart
+     * @return \Schematic\Model\BillingPlanCreditGrantResetStart|null
      */
     public function getResetStart()
     {
@@ -1143,14 +1391,21 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     /**
      * Sets reset_start
      *
-     * @param \Schematic\Model\BillingPlanCreditGrantResetStart $reset_start reset_start
+     * @param \Schematic\Model\BillingPlanCreditGrantResetStart|null $reset_start reset_start
      *
      * @return self
      */
     public function setResetStart($reset_start)
     {
         if (is_null($reset_start)) {
-            throw new \InvalidArgumentException('non-nullable reset_start cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'reset_start');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('reset_start', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['reset_start'] = $reset_start;
 
@@ -1180,13 +1435,40 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'reset_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('reset_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('reset_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['reset_type'] = $reset_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets rollover_percentage
+     *
+     * @return int
+     */
+    public function getRolloverPercentage()
+    {
+        return $this->container['rollover_percentage'];
+    }
+
+    /**
+     * Sets rollover_percentage
+     *
+     * @param int $rollover_percentage Percentage of unused credits that carry over when this grant resets. Only meaningful when reset_type is plan_period.
+     *
+     * @return self
+     */
+    public function setRolloverPercentage($rollover_percentage)
+    {
+        if (is_null($rollover_percentage)) {
+            throw new \InvalidArgumentException('non-nullable rollover_percentage cannot be null');
+        }
+        $this->container['rollover_percentage'] = $rollover_percentage;
 
         return $this;
     }
@@ -1281,7 +1563,7 @@ class BillingPlanCreditGrantResponseData implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

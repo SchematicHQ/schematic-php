@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ast** | **array<string,float>** |  | [optional]
+**catalog_id** | **string** |  | [optional]
 **created_at** | **\DateTime** |  |
 **id** | **string** |  |
 **name** | **string** |  |

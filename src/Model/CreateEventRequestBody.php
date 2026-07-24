@@ -58,9 +58,12 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
+        'backfill' => 'bool',
         'body' => '\Schematic\Model\EventBody',
-        'event_type' => 'EventType',
-        'sent_at' => '\DateTime'
+        'event_type' => '\Schematic\Model\EventType',
+        'idempotency_key' => 'string',
+        'sent_at' => '\DateTime',
+        'trusted_client_clock' => 'bool'
     ];
 
     /**
@@ -71,9 +74,12 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'backfill' => null,
         'body' => null,
         'event_type' => null,
-        'sent_at' => 'date-time'
+        'idempotency_key' => null,
+        'sent_at' => 'date-time',
+        'trusted_client_clock' => null
     ];
 
     /**
@@ -82,9 +88,12 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'backfill' => true,
         'body' => false,
         'event_type' => false,
-        'sent_at' => true
+        'idempotency_key' => true,
+        'sent_at' => true,
+        'trusted_client_clock' => true
     ];
 
     /**
@@ -173,9 +182,12 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'backfill' => 'backfill',
         'body' => 'body',
         'event_type' => 'event_type',
-        'sent_at' => 'sent_at'
+        'idempotency_key' => 'idempotency_key',
+        'sent_at' => 'sent_at',
+        'trusted_client_clock' => 'trusted_client_clock'
     ];
 
     /**
@@ -184,9 +196,12 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'backfill' => 'setBackfill',
         'body' => 'setBody',
         'event_type' => 'setEventType',
-        'sent_at' => 'setSentAt'
+        'idempotency_key' => 'setIdempotencyKey',
+        'sent_at' => 'setSentAt',
+        'trusted_client_clock' => 'setTrustedClientClock'
     ];
 
     /**
@@ -195,9 +210,12 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'backfill' => 'getBackfill',
         'body' => 'getBody',
         'event_type' => 'getEventType',
-        'sent_at' => 'getSentAt'
+        'idempotency_key' => 'getIdempotencyKey',
+        'sent_at' => 'getSentAt',
+        'trusted_client_clock' => 'getTrustedClientClock'
     ];
 
     /**
@@ -257,9 +275,12 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('backfill', $data ?? [], null);
         $this->setIfExists('body', $data ?? [], null);
         $this->setIfExists('event_type', $data ?? [], null);
+        $this->setIfExists('idempotency_key', $data ?? [], null);
         $this->setIfExists('sent_at', $data ?? [], null);
+        $this->setIfExists('trusted_client_clock', $data ?? [], null);
     }
 
     /**
@@ -292,6 +313,10 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['event_type'] === null) {
             $invalidProperties[] = "'event_type' can't be null";
         }
+        if (!is_null($this->container['idempotency_key']) && (mb_strlen($this->container['idempotency_key']) > 255)) {
+            $invalidProperties[] = "invalid value for 'idempotency_key', the character length must be smaller than or equal to 255.";
+        }
+
         return $invalidProperties;
     }
 
@@ -306,6 +331,40 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets backfill
+     *
+     * @return bool|null
+     */
+    public function getBackfill()
+    {
+        return $this->container['backfill'];
+    }
+
+    /**
+     * Sets backfill
+     *
+     * @param bool|null $backfill Requires a secret API key, and trusted_client_clock. Import historical data without affecting billing.
+     *
+     * @return self
+     */
+    public function setBackfill($backfill)
+    {
+        if (is_null($backfill)) {
+            array_push($this->openAPINullablesSetToNull, 'backfill');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('backfill', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['backfill'] = $backfill;
+
+        return $this;
+    }
 
     /**
      * Gets body
@@ -337,7 +396,7 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets event_type
      *
-     * @return EventType
+     * @return \Schematic\Model\EventType
      */
     public function getEventType()
     {
@@ -347,7 +406,7 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets event_type
      *
-     * @param EventType $event_type event_type
+     * @param \Schematic\Model\EventType $event_type event_type
      *
      * @return self
      */
@@ -357,6 +416,44 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable event_type cannot be null');
         }
         $this->container['event_type'] = $event_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets idempotency_key
+     *
+     * @return string|null
+     */
+    public function getIdempotencyKey()
+    {
+        return $this->container['idempotency_key'];
+    }
+
+    /**
+     * Sets idempotency_key
+     *
+     * @param string|null $idempotency_key Optional client-supplied key. Duplicate events with the same key (scoped to the environment) are dropped for 24h.
+     *
+     * @return self
+     */
+    public function setIdempotencyKey($idempotency_key)
+    {
+        if (is_null($idempotency_key)) {
+            array_push($this->openAPINullablesSetToNull, 'idempotency_key');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('idempotency_key', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($idempotency_key) && (mb_strlen($idempotency_key) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $idempotency_key when calling CreateEventRequestBody., must be smaller than or equal to 255.');
+        }
+
+        $this->container['idempotency_key'] = $idempotency_key;
 
         return $this;
     }
@@ -384,13 +481,47 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'sent_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('sent_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('sent_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['sent_at'] = $sent_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets trusted_client_clock
+     *
+     * @return bool|null
+     */
+    public function getTrustedClientClock()
+    {
+        return $this->container['trusted_client_clock'];
+    }
+
+    /**
+     * Sets trusted_client_clock
+     *
+     * @param bool|null $trusted_client_clock Requires a secret API key and sent_at. Use sent_at as the effective timestamp.
+     *
+     * @return self
+     */
+    public function setTrustedClientClock($trusted_client_clock)
+    {
+        if (is_null($trusted_client_clock)) {
+            array_push($this->openAPINullablesSetToNull, 'trusted_client_clock');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('trusted_client_clock', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['trusted_client_clock'] = $trusted_client_clock;
 
         return $this;
     }
@@ -458,7 +589,7 @@ class CreateEventRequestBody implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

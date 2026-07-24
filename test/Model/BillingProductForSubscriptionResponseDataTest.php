@@ -153,6 +153,15 @@ class BillingProductForSubscriptionResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "interval_count"
+     */
+    public function testPropertyIntervalCount()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "meter_id"
      */
     public function testPropertyMeterId()

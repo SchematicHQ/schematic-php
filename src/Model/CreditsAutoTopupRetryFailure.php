@@ -74,7 +74,7 @@ class CreditsAutoTopupRetryFailure implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'company' => null,
-        'consecutive_failures' => null,
+        'consecutive_failures' => 'int64',
         'credit' => null,
         'last_error_message' => null,
         'stripe_error_code' => null
@@ -425,8 +425,8 @@ class CreditsAutoTopupRetryFailure implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'last_error_message');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_error_message', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('last_error_message', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -459,8 +459,8 @@ class CreditsAutoTopupRetryFailure implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'stripe_error_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('stripe_error_code', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('stripe_error_code', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -533,7 +533,7 @@ class CreditsAutoTopupRetryFailure implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

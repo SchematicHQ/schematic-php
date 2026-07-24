@@ -278,6 +278,10 @@ class ConditionGroup implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['conditions'] === null) {
             $invalidProperties[] = "'conditions' can't be null";
         }
+        if ((count($this->container['conditions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'conditions', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -314,6 +318,10 @@ class ConditionGroup implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($conditions)) {
             throw new \InvalidArgumentException('non-nullable conditions cannot be null');
+        }
+
+        if ((count($conditions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $conditions when calling ConditionGroup., number of items must be less than or equal to 1000.');
         }
         $this->container['conditions'] = $conditions;
 
@@ -383,7 +391,7 @@ class ConditionGroup implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

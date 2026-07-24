@@ -90,6 +90,15 @@ class ComponentResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "catalog_id"
+     */
+    public function testPropertyCatalogId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()

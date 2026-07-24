@@ -171,6 +171,24 @@ class EventResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "idempotency_key"
+     */
+    public function testPropertyIdempotencyKey()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "lease_id"
+     */
+    public function testPropertyLeaseId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "loaded_at"
      */
     public function testPropertyLoadedAt()

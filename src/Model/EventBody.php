@@ -58,8 +58,9 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'company' => '\Schematic\Model\EventBodyIdentifyCompany',
+        'company' => 'array<string,string>',
         'event' => 'string',
+        'lease_id' => 'string',
         'quantity' => 'int',
         'traits' => 'object',
         'user' => 'array<string,string>',
@@ -74,7 +75,18 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_id' => 'string',
         'value' => 'bool',
         'keys' => 'array<string,string>',
-        'name' => 'string'
+        'name' => 'string',
+        'cached_input_tokens' => 'int',
+        'cost' => 'string',
+        'currency' => 'string',
+        'input_tokens' => 'int',
+        'operation' => 'string',
+        'output_tokens' => 'int',
+        'provider' => 'string',
+        'reasoning_tokens' => 'int',
+        'request_model' => 'string',
+        'requests' => 'int',
+        'response_model' => 'string'
     ];
 
     /**
@@ -87,7 +99,8 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'company' => null,
         'event' => null,
-        'quantity' => null,
+        'lease_id' => null,
+        'quantity' => 'int64',
         'traits' => null,
         'user' => null,
         'company_id' => null,
@@ -101,7 +114,18 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_id' => null,
         'value' => null,
         'keys' => null,
-        'name' => null
+        'name' => null,
+        'cached_input_tokens' => 'int64',
+        'cost' => null,
+        'currency' => null,
+        'input_tokens' => 'int64',
+        'operation' => null,
+        'output_tokens' => 'int64',
+        'provider' => null,
+        'reasoning_tokens' => 'int64',
+        'request_model' => null,
+        'requests' => 'int64',
+        'response_model' => null
     ];
 
     /**
@@ -112,6 +136,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'company' => false,
         'event' => false,
+        'lease_id' => false,
         'quantity' => false,
         'traits' => false,
         'user' => false,
@@ -126,7 +151,18 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_id' => true,
         'value' => false,
         'keys' => false,
-        'name' => false
+        'name' => false,
+        'cached_input_tokens' => false,
+        'cost' => false,
+        'currency' => false,
+        'input_tokens' => false,
+        'operation' => false,
+        'output_tokens' => false,
+        'provider' => false,
+        'reasoning_tokens' => false,
+        'request_model' => false,
+        'requests' => false,
+        'response_model' => false
     ];
 
     /**
@@ -217,6 +253,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'company' => 'company',
         'event' => 'event',
+        'lease_id' => 'lease_id',
         'quantity' => 'quantity',
         'traits' => 'traits',
         'user' => 'user',
@@ -231,7 +268,18 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_id' => 'user_id',
         'value' => 'value',
         'keys' => 'keys',
-        'name' => 'name'
+        'name' => 'name',
+        'cached_input_tokens' => 'cached_input_tokens',
+        'cost' => 'cost',
+        'currency' => 'currency',
+        'input_tokens' => 'input_tokens',
+        'operation' => 'operation',
+        'output_tokens' => 'output_tokens',
+        'provider' => 'provider',
+        'reasoning_tokens' => 'reasoning_tokens',
+        'request_model' => 'request_model',
+        'requests' => 'requests',
+        'response_model' => 'response_model'
     ];
 
     /**
@@ -242,6 +290,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'company' => 'setCompany',
         'event' => 'setEvent',
+        'lease_id' => 'setLeaseId',
         'quantity' => 'setQuantity',
         'traits' => 'setTraits',
         'user' => 'setUser',
@@ -256,7 +305,18 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_id' => 'setUserId',
         'value' => 'setValue',
         'keys' => 'setKeys',
-        'name' => 'setName'
+        'name' => 'setName',
+        'cached_input_tokens' => 'setCachedInputTokens',
+        'cost' => 'setCost',
+        'currency' => 'setCurrency',
+        'input_tokens' => 'setInputTokens',
+        'operation' => 'setOperation',
+        'output_tokens' => 'setOutputTokens',
+        'provider' => 'setProvider',
+        'reasoning_tokens' => 'setReasoningTokens',
+        'request_model' => 'setRequestModel',
+        'requests' => 'setRequests',
+        'response_model' => 'setResponseModel'
     ];
 
     /**
@@ -267,6 +327,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'company' => 'getCompany',
         'event' => 'getEvent',
+        'lease_id' => 'getLeaseId',
         'quantity' => 'getQuantity',
         'traits' => 'getTraits',
         'user' => 'getUser',
@@ -281,7 +342,18 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'user_id' => 'getUserId',
         'value' => 'getValue',
         'keys' => 'getKeys',
-        'name' => 'getName'
+        'name' => 'getName',
+        'cached_input_tokens' => 'getCachedInputTokens',
+        'cost' => 'getCost',
+        'currency' => 'getCurrency',
+        'input_tokens' => 'getInputTokens',
+        'operation' => 'getOperation',
+        'output_tokens' => 'getOutputTokens',
+        'provider' => 'getProvider',
+        'reasoning_tokens' => 'getReasoningTokens',
+        'request_model' => 'getRequestModel',
+        'requests' => 'getRequests',
+        'response_model' => 'getResponseModel'
     ];
 
     /**
@@ -343,6 +415,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('company', $data ?? [], null);
         $this->setIfExists('event', $data ?? [], null);
+        $this->setIfExists('lease_id', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
         $this->setIfExists('traits', $data ?? [], null);
         $this->setIfExists('user', $data ?? [], null);
@@ -358,6 +431,17 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('value', $data ?? [], null);
         $this->setIfExists('keys', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('cached_input_tokens', $data ?? [], null);
+        $this->setIfExists('cost', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('input_tokens', $data ?? [], null);
+        $this->setIfExists('operation', $data ?? [], null);
+        $this->setIfExists('output_tokens', $data ?? [], null);
+        $this->setIfExists('provider', $data ?? [], null);
+        $this->setIfExists('reasoning_tokens', $data ?? [], null);
+        $this->setIfExists('request_model', $data ?? [], null);
+        $this->setIfExists('requests', $data ?? [], null);
+        $this->setIfExists('response_model', $data ?? [], null);
     }
 
     /**
@@ -387,6 +471,9 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['company'] === null) {
+            $invalidProperties[] = "'company' can't be null";
+        }
         if ($this->container['event'] === null) {
             $invalidProperties[] = "'event' can't be null";
         }
@@ -401,6 +488,18 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['keys'] === null) {
             $invalidProperties[] = "'keys' can't be null";
+        }
+        if ($this->container['input_tokens'] === null) {
+            $invalidProperties[] = "'input_tokens' can't be null";
+        }
+        if ($this->container['output_tokens'] === null) {
+            $invalidProperties[] = "'output_tokens' can't be null";
+        }
+        if ($this->container['provider'] === null) {
+            $invalidProperties[] = "'provider' can't be null";
+        }
+        if ($this->container['response_model'] === null) {
+            $invalidProperties[] = "'response_model' can't be null";
         }
         return $invalidProperties;
     }
@@ -420,7 +519,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets company
      *
-     * @return \Schematic\Model\EventBodyIdentifyCompany|null
+     * @return array<string,string>
      */
     public function getCompany()
     {
@@ -430,7 +529,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets company
      *
-     * @param \Schematic\Model\EventBodyIdentifyCompany|null $company company
+     * @param array<string,string> $company Key-value pairs to identify the company associated with the inference event
      *
      * @return self
      */
@@ -457,7 +556,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets event
      *
-     * @param string $event The name of the type of track event
+     * @param string $event Optional track event name to fan out for usage-based billing
      *
      * @return self
      */
@@ -467,6 +566,33 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable event cannot be null');
         }
         $this->container['event'] = $event;
+
+        return $this;
+    }
+
+    /**
+     * Gets lease_id
+     *
+     * @return string|null
+     */
+    public function getLeaseId()
+    {
+        return $this->container['lease_id'];
+    }
+
+    /**
+     * Sets lease_id
+     *
+     * @param string|null $lease_id Credit lease ID this track event is redeeming against
+     *
+     * @return self
+     */
+    public function setLeaseId($lease_id)
+    {
+        if (is_null($lease_id)) {
+            throw new \InvalidArgumentException('non-nullable lease_id cannot be null');
+        }
+        $this->container['lease_id'] = $lease_id;
 
         return $this;
     }
@@ -538,7 +664,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets user
      *
-     * @param array<string,string>|null $user Key-value pairs to identify user associated with track event
+     * @param array<string,string>|null $user Key-value pairs to identify the user associated with the inference event
      *
      * @return self
      */
@@ -575,8 +701,8 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -609,8 +735,8 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'error');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('error', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('error', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -643,8 +769,8 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -731,8 +857,8 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'req_company');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('req_company', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('req_company', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -765,8 +891,8 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'req_user');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('req_user', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('req_user', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -799,8 +925,8 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'rule_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('rule_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('rule_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -833,8 +959,8 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'user_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -924,6 +1050,303 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
 
         return $this;
     }
+
+    /**
+     * Gets cached_input_tokens
+     *
+     * @return int|null
+     */
+    public function getCachedInputTokens()
+    {
+        return $this->container['cached_input_tokens'];
+    }
+
+    /**
+     * Sets cached_input_tokens
+     *
+     * @param int|null $cached_input_tokens Number of input tokens served from cache
+     *
+     * @return self
+     */
+    public function setCachedInputTokens($cached_input_tokens)
+    {
+        if (is_null($cached_input_tokens)) {
+            throw new \InvalidArgumentException('non-nullable cached_input_tokens cannot be null');
+        }
+        $this->container['cached_input_tokens'] = $cached_input_tokens;
+
+        return $this;
+    }
+
+    /**
+     * Gets cost
+     *
+     * @return string|null
+     */
+    public function getCost()
+    {
+        return $this->container['cost'];
+    }
+
+    /**
+     * Sets cost
+     *
+     * @param string|null $cost Provided cost of the inference request as a decimal string; derived from model pricing when omitted
+     *
+     * @return self
+     */
+    public function setCost($cost)
+    {
+        if (is_null($cost)) {
+            throw new \InvalidArgumentException('non-nullable cost cannot be null');
+        }
+        $this->container['cost'] = $cost;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency ISO 4217 currency code for the provided cost; defaults to 'usd'
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        }
+        $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets input_tokens
+     *
+     * @return int
+     */
+    public function getInputTokens()
+    {
+        return $this->container['input_tokens'];
+    }
+
+    /**
+     * Sets input_tokens
+     *
+     * @param int $input_tokens Number of input tokens for the inference request
+     *
+     * @return self
+     */
+    public function setInputTokens($input_tokens)
+    {
+        if (is_null($input_tokens)) {
+            throw new \InvalidArgumentException('non-nullable input_tokens cannot be null');
+        }
+        $this->container['input_tokens'] = $input_tokens;
+
+        return $this;
+    }
+
+    /**
+     * Gets operation
+     *
+     * @return string|null
+     */
+    public function getOperation()
+    {
+        return $this->container['operation'];
+    }
+
+    /**
+     * Sets operation
+     *
+     * @param string|null $operation The inference operation; defaults to 'chat'
+     *
+     * @return self
+     */
+    public function setOperation($operation)
+    {
+        if (is_null($operation)) {
+            throw new \InvalidArgumentException('non-nullable operation cannot be null');
+        }
+        $this->container['operation'] = $operation;
+
+        return $this;
+    }
+
+    /**
+     * Gets output_tokens
+     *
+     * @return int
+     */
+    public function getOutputTokens()
+    {
+        return $this->container['output_tokens'];
+    }
+
+    /**
+     * Sets output_tokens
+     *
+     * @param int $output_tokens Number of output tokens for the inference request
+     *
+     * @return self
+     */
+    public function setOutputTokens($output_tokens)
+    {
+        if (is_null($output_tokens)) {
+            throw new \InvalidArgumentException('non-nullable output_tokens cannot be null');
+        }
+        $this->container['output_tokens'] = $output_tokens;
+
+        return $this;
+    }
+
+    /**
+     * Gets provider
+     *
+     * @return string
+     */
+    public function getProvider()
+    {
+        return $this->container['provider'];
+    }
+
+    /**
+     * Sets provider
+     *
+     * @param string $provider The inference provider (e.g. 'anthropic', 'openai')
+     *
+     * @return self
+     */
+    public function setProvider($provider)
+    {
+        if (is_null($provider)) {
+            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        }
+        $this->container['provider'] = $provider;
+
+        return $this;
+    }
+
+    /**
+     * Gets reasoning_tokens
+     *
+     * @return int|null
+     */
+    public function getReasoningTokens()
+    {
+        return $this->container['reasoning_tokens'];
+    }
+
+    /**
+     * Sets reasoning_tokens
+     *
+     * @param int|null $reasoning_tokens Number of reasoning tokens for the inference request
+     *
+     * @return self
+     */
+    public function setReasoningTokens($reasoning_tokens)
+    {
+        if (is_null($reasoning_tokens)) {
+            throw new \InvalidArgumentException('non-nullable reasoning_tokens cannot be null');
+        }
+        $this->container['reasoning_tokens'] = $reasoning_tokens;
+
+        return $this;
+    }
+
+    /**
+     * Gets request_model
+     *
+     * @return string|null
+     */
+    public function getRequestModel()
+    {
+        return $this->container['request_model'];
+    }
+
+    /**
+     * Sets request_model
+     *
+     * @param string|null $request_model The model requested for the inference request
+     *
+     * @return self
+     */
+    public function setRequestModel($request_model)
+    {
+        if (is_null($request_model)) {
+            throw new \InvalidArgumentException('non-nullable request_model cannot be null');
+        }
+        $this->container['request_model'] = $request_model;
+
+        return $this;
+    }
+
+    /**
+     * Gets requests
+     *
+     * @return int|null
+     */
+    public function getRequests()
+    {
+        return $this->container['requests'];
+    }
+
+    /**
+     * Sets requests
+     *
+     * @param int|null $requests Number of requests represented by this event; defaults to 1
+     *
+     * @return self
+     */
+    public function setRequests($requests)
+    {
+        if (is_null($requests)) {
+            throw new \InvalidArgumentException('non-nullable requests cannot be null');
+        }
+        $this->container['requests'] = $requests;
+
+        return $this;
+    }
+
+    /**
+     * Gets response_model
+     *
+     * @return string
+     */
+    public function getResponseModel()
+    {
+        return $this->container['response_model'];
+    }
+
+    /**
+     * Sets response_model
+     *
+     * @param string $response_model The model that served the inference response
+     *
+     * @return self
+     */
+    public function setResponseModel($response_model)
+    {
+        if (is_null($response_model)) {
+            throw new \InvalidArgumentException('non-nullable response_model cannot be null');
+        }
+        $this->container['response_model'] = $response_model;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -988,7 +1411,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

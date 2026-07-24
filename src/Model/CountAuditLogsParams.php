@@ -60,10 +60,12 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'actor_type' => '\Schematic\Model\ActorType',
+        'end_time' => '\DateTime',
         'environment_id' => 'string',
         'limit' => 'int',
         'offset' => 'int',
-        'q' => 'string'
+        'q' => 'string',
+        'start_time' => '\DateTime'
     ];
 
     /**
@@ -75,10 +77,12 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'actor_type' => null,
+        'end_time' => 'date-time',
         'environment_id' => null,
-        'limit' => null,
-        'offset' => null,
-        'q' => null
+        'limit' => 'int64',
+        'offset' => 'int64',
+        'q' => null,
+        'start_time' => 'date-time'
     ];
 
     /**
@@ -88,10 +92,12 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static array $openAPINullables = [
         'actor_type' => false,
+        'end_time' => false,
         'environment_id' => false,
         'limit' => false,
         'offset' => false,
-        'q' => false
+        'q' => false,
+        'start_time' => false
     ];
 
     /**
@@ -181,10 +187,12 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'actor_type' => 'actor_type',
+        'end_time' => 'end_time',
         'environment_id' => 'environment_id',
         'limit' => 'limit',
         'offset' => 'offset',
-        'q' => 'q'
+        'q' => 'q',
+        'start_time' => 'start_time'
     ];
 
     /**
@@ -194,10 +202,12 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'actor_type' => 'setActorType',
+        'end_time' => 'setEndTime',
         'environment_id' => 'setEnvironmentId',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
-        'q' => 'setQ'
+        'q' => 'setQ',
+        'start_time' => 'setStartTime'
     ];
 
     /**
@@ -207,10 +217,12 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'actor_type' => 'getActorType',
+        'end_time' => 'getEndTime',
         'environment_id' => 'getEnvironmentId',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
-        'q' => 'getQ'
+        'q' => 'getQ',
+        'start_time' => 'getStartTime'
     ];
 
     /**
@@ -271,10 +283,12 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(array $data = null)
     {
         $this->setIfExists('actor_type', $data ?? [], null);
+        $this->setIfExists('end_time', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
+        $this->setIfExists('start_time', $data ?? [], null);
     }
 
     /**
@@ -303,6 +317,14 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
 
         if (!is_null($this->container['q']) && (mb_strlen($this->container['q']) > 512)) {
             $invalidProperties[] = "invalid value for 'q', the character length must be smaller than or equal to 512.";
@@ -346,6 +368,33 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable actor_type cannot be null');
         }
         $this->container['actor_type'] = $actor_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets end_time
+     *
+     * @return \DateTime|null
+     */
+    public function getEndTime()
+    {
+        return $this->container['end_time'];
+    }
+
+    /**
+     * Sets end_time
+     *
+     * @param \DateTime|null $end_time end_time
+     *
+     * @return self
+     */
+    public function setEndTime($end_time)
+    {
+        if (is_null($end_time)) {
+            throw new \InvalidArgumentException('non-nullable end_time cannot be null');
+        }
+        $this->container['end_time'] = $end_time;
 
         return $this;
     }
@@ -399,6 +448,14 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountAuditLogsParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling CountAuditLogsParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -458,6 +515,33 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
         }
 
         $this->container['q'] = $q;
+
+        return $this;
+    }
+
+    /**
+     * Gets start_time
+     *
+     * @return \DateTime|null
+     */
+    public function getStartTime()
+    {
+        return $this->container['start_time'];
+    }
+
+    /**
+     * Sets start_time
+     *
+     * @param \DateTime|null $start_time start_time
+     *
+     * @return self
+     */
+    public function setStartTime($start_time)
+    {
+        if (is_null($start_time)) {
+            throw new \InvalidArgumentException('non-nullable start_time cannot be null');
+        }
+        $this->container['start_time'] = $start_time;
 
         return $this;
     }
@@ -525,7 +609,7 @@ class CountAuditLogsParams implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -90,6 +90,15 @@ class AuditLogListResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "api_key"
+     */
+    public function testPropertyApiKey()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "api_key_id"
      */
     public function testPropertyApiKeyId()
@@ -102,6 +111,15 @@ class AuditLogListResponseDataTest extends TestCase
      * Test attribute "ended_at"
      */
     public function testPropertyEndedAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "environment"
+     */
+    public function testPropertyEnvironment()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

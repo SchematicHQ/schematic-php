@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **application_id** | **string** |  | [optional]
 **cancel_at** | **int** |  | [optional]
 **cancel_at_period_end** | **bool** |  |
+**company_id** | **string** |  | [optional]
 **currency** | **string** |  |
 **customer_external_id** | **string** |  |
 **default_payment_method_external_id** | **string** |  | [optional]
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **period_end** | **int** |  | [optional]
 **period_start** | **int** |  | [optional]
 **product_external_ids** | [**\Schematic\Model\BillingProductPricing[]**](BillingProductPricing.md) |  |
+**provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  | [optional]
 **status** | **string** |  | [optional]
 **subscription_external_id** | **string** |  |
 **total_price** | **int** |  |

@@ -73,6 +73,18 @@ class CreditsApiTest extends TestCase
     }
 
     /**
+     * Test case for acquireCreditLease
+     *
+     * Acquire credit lease.
+     *
+     */
+    public function testAcquireCreditLease()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for countBillingCredits
      *
      * Count billing credits.
@@ -133,12 +145,12 @@ class CreditsApiTest extends TestCase
     }
 
     /**
-     * Test case for countCreditLedger
+     * Test case for countCreditEventLedger
      *
-     * Count credit ledger.
+     * Count credit event ledger.
      *
      */
-    public function testCountCreditLedger()
+    public function testCountCreditEventLedger()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -205,6 +217,18 @@ class CreditsApiTest extends TestCase
     }
 
     /**
+     * Test case for extendCreditLease
+     *
+     * Extend credit lease.
+     *
+     */
+    public function testExtendCreditLease()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getCreditBundle
      *
      * Get credit bundle.
@@ -217,24 +241,24 @@ class CreditsApiTest extends TestCase
     }
 
     /**
-     * Test case for getEnrichedCreditLedger
-     *
-     * Get enriched credit ledger.
-     *
-     */
-    public function testGetEnrichedCreditLedger()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for getSingleBillingCredit
      *
      * Get single billing credit.
      *
      */
     public function testGetSingleBillingCredit()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getSingleBillingPlanCreditGrant
+     *
+     * Get single billing plan credit grant.
+     *
+     */
+    public function testGetSingleBillingPlanCreditGrant()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -277,6 +301,18 @@ class CreditsApiTest extends TestCase
     }
 
     /**
+     * Test case for listCompanyCreditBalances
+     *
+     * List company credit balances.
+     *
+     */
+    public function testListCompanyCreditBalances()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for listCompanyGrants
      *
      * List company grants.
@@ -301,12 +337,36 @@ class CreditsApiTest extends TestCase
     }
 
     /**
+     * Test case for listCreditEventLedger
+     *
+     * List credit event ledger.
+     *
+     */
+    public function testListCreditEventLedger()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for listGrantsForCredit
      *
      * List grants for credit.
      *
      */
     public function testListGrantsForCredit()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for releaseCreditLease
+     *
+     * Release credit lease.
+     *
+     */
+    public function testReleaseCreditLease()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

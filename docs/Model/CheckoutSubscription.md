@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **expired_at** | **\DateTime** |  | [optional]
 **id** | **string** |  |
 **interval** | **string** |  |
+**invoice_id** | **string** |  | [optional]
+**invoice_url** | **string** |  | [optional]
 **metadata** | **object** |  | [optional]
 **period_end** | **int** |  |
 **period_start** | **int** |  |

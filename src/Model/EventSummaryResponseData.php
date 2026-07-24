@@ -74,12 +74,12 @@ class EventSummaryResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'company_count' => null,
+        'company_count' => 'int64',
         'environment_id' => null,
-        'event_count' => null,
+        'event_count' => 'int64',
         'event_subtype' => null,
         'last_seen_at' => 'date-time',
-        'user_count' => null
+        'user_count' => 'int64'
     ];
 
     /**
@@ -471,8 +471,8 @@ class EventSummaryResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             array_push($this->openAPINullablesSetToNull, 'last_seen_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('last_seen_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('last_seen_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -572,7 +572,7 @@ class EventSummaryResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -72,7 +72,13 @@ class PlansApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'countBillingProductMatchCompanies' => [
+            'application/json',
+        ],
         'countPlans' => [
+            'application/json',
+        ],
+        'createCustomPlan' => [
             'application/json',
         ],
         'createPlan' => [
@@ -81,13 +87,31 @@ class PlansApi
         'deletePlan' => [
             'application/json',
         ],
+        'deletePlanVersion' => [
+            'application/json',
+        ],
         'getPlan' => [
+            'application/json',
+        ],
+        'listBillingProductMatchCompanies' => [
+            'application/json',
+        ],
+        'listCustomPlanBillings' => [
             'application/json',
         ],
         'listPlanIssues' => [
             'application/json',
         ],
         'listPlans' => [
+            'application/json',
+        ],
+        'markCustomPlanBillingPaid' => [
+            'application/json',
+        ],
+        'publishPlanVersion' => [
+            'application/json',
+        ],
+        'retryCustomPlanBilling' => [
             'application/json',
         ],
         'updateCompanyPlans' => [
@@ -97,6 +121,9 @@ class PlansApi
             'application/json',
         ],
         'upsertBillingProductPlan' => [
+            'application/json',
+        ],
+        'upsertPlanForBillingProduct' => [
             'application/json',
         ],
     ];
@@ -148,60 +175,44 @@ class PlansApi
     }
 
     /**
-     * Operation countPlans
+     * Operation countBillingProductMatchCompanies
      *
-     * Count plans
+     * Count billing product match companies
      *
-     * @param  string $company_id company_id (optional)
-     * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
-     * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
-     * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
-     * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
-     * @param  string[] $ids ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
-     * @param  string $q q (optional)
-     * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
-     * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countPlans'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingProductMatchCompanies'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Schematic\Model\CountPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     * @return \Schematic\Model\CountBillingProductMatchCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countPlans($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countBillingProductMatchCompanies($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProductMatchCompanies'][0])
     {
-        list($response) = $this->countPlansWithHttpInfo($company_id, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $plan_type, $q, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        list($response) = $this->countBillingProductMatchCompaniesWithHttpInfo($plan_id, $q, $limit, $offset, $contentType);
         return $response;
     }
 
     /**
-     * Operation countPlansWithHttpInfo
+     * Operation countBillingProductMatchCompaniesWithHttpInfo
      *
-     * Count plans
+     * Count billing product match companies
      *
-     * @param  string $company_id (optional)
-     * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
-     * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
-     * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
-     * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
-     * @param  string[] $ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
-     * @param  string $q (optional)
-     * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
-     * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
      * @param  int $limit Page limit (default 100) (optional)
      * @param  int $offset Page offset (default 0) (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countPlans'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingProductMatchCompanies'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\CountPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\CountBillingProductMatchCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countPlansWithHttpInfo($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countBillingProductMatchCompaniesWithHttpInfo($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProductMatchCompanies'][0])
     {
-        $request = $this->countPlansRequest($company_id, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $plan_type, $q, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        $request = $this->countBillingProductMatchCompaniesRequest($plan_id, $q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -238,7 +249,575 @@ class PlansApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\CountBillingProductMatchCompaniesResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\CountBillingProductMatchCompaniesResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CountBillingProductMatchCompaniesResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\CountBillingProductMatchCompaniesResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CountBillingProductMatchCompaniesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation countBillingProductMatchCompaniesAsync
+     *
+     * Count billing product match companies
+     *
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingProductMatchCompanies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countBillingProductMatchCompaniesAsync($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProductMatchCompanies'][0])
+    {
+        return $this->countBillingProductMatchCompaniesAsyncWithHttpInfo($plan_id, $q, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation countBillingProductMatchCompaniesAsyncWithHttpInfo
+     *
+     * Count billing product match companies
+     *
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingProductMatchCompanies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countBillingProductMatchCompaniesAsyncWithHttpInfo($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProductMatchCompanies'][0])
+    {
+        $returnType = '\Schematic\Model\CountBillingProductMatchCompaniesResponse';
+        $request = $this->countBillingProductMatchCompaniesRequest($plan_id, $q, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'countBillingProductMatchCompanies'
+     *
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countBillingProductMatchCompanies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function countBillingProductMatchCompaniesRequest($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countBillingProductMatchCompanies'][0])
+    {
+
+        // verify the required parameter 'plan_id' is set
+        if ($plan_id === null || (is_array($plan_id) && count($plan_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $plan_id when calling countBillingProductMatchCompanies'
+            );
+        }
+
+        if ($q !== null && strlen($q) > 512) {
+            throw new \InvalidArgumentException('invalid length for "$q" when calling PlansApi.countBillingProductMatchCompanies, must be smaller than or equal to 512.');
+        }
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.countBillingProductMatchCompanies, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.countBillingProductMatchCompanies, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/plans/billing-product-match-companies/count';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_id,
+            'plan_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $q,
+            'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation countPlans
+     *
+     * Count plans
+     *
+     * @param  string $company_id company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
+     * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
+     * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
+     * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
+     * @param  string[] $ids ids (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
+     * @param  string $q q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
+     * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countPlans'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CountPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function countPlans($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    {
+        list($response) = $this->countPlansWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation countPlansWithHttpInfo
+     *
+     * Count plans
+     *
+     * @param  string $company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
+     * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
+     * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
+     * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
+     * @param  string[] $ids (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
+     * @param  string $q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
+     * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countPlans'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CountPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function countPlansWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    {
+        $request = $this->countPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\CountPlansResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -492,13 +1071,18 @@ class PlansApi
      * Count plans
      *
      * @param  string $company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
      * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
      * @param  string[] $ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
      * @param  string $q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
      * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -508,9 +1092,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countPlansAsync($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countPlansAsync($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
     {
-        return $this->countPlansAsyncWithHttpInfo($company_id, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $plan_type, $q, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType)
+        return $this->countPlansAsyncWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -524,13 +1108,18 @@ class PlansApi
      * Count plans
      *
      * @param  string $company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
      * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
      * @param  string[] $ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
      * @param  string $q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
      * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -540,10 +1129,10 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countPlansAsyncWithHttpInfo($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countPlansAsyncWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
     {
         $returnType = '\Schematic\Model\CountPlansResponse';
-        $request = $this->countPlansRequest($company_id, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $plan_type, $q, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        $request = $this->countPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -585,13 +1174,18 @@ class PlansApi
      * Create request for operation 'countPlans'
      *
      * @param  string $company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
      * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
      * @param  string[] $ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
      * @param  string $q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
      * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -601,7 +1195,7 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countPlansRequest($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countPlansRequest($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
     {
 
 
@@ -611,9 +1205,23 @@ class PlansApi
 
 
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling PlansApi.countPlans, number of items must be less than or equal to 100.');
+        }
 
 
 
+
+
+
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.countPlans, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.countPlans, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -629,6 +1237,24 @@ class PlansApi
             $company_id,
             'company_id', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_scoped_only,
+            'company_scoped_only', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $exclude_company_scoped,
+            'exclude_company_scoped', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -680,6 +1306,15 @@ class PlansApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $include_draft_versions,
+            'include_draft_versions', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $plan_type,
             'plan_type', // param base name
             'PlanType', // openApiType
@@ -692,6 +1327,24 @@ class PlansApi
             $q,
             'q', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $scoped_to_company_id,
+            'scoped_to_company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $with_entitlements,
+            'with_entitlements', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -795,6 +1448,492 @@ class PlansApi
     }
 
     /**
+     * Operation createCustomPlan
+     *
+     * Create custom plan
+     *
+     * @param  \Schematic\Model\CreateCustomPlanRequestBody $create_custom_plan_request_body create_custom_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCustomPlan'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CreateCustomPlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function createCustomPlan($create_custom_plan_request_body, string $contentType = self::contentTypes['createCustomPlan'][0])
+    {
+        list($response) = $this->createCustomPlanWithHttpInfo($create_custom_plan_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createCustomPlanWithHttpInfo
+     *
+     * Create custom plan
+     *
+     * @param  \Schematic\Model\CreateCustomPlanRequestBody $create_custom_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCustomPlan'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CreateCustomPlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createCustomPlanWithHttpInfo($create_custom_plan_request_body, string $contentType = self::contentTypes['createCustomPlan'][0])
+    {
+        $request = $this->createCustomPlanRequest($create_custom_plan_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 201:
+                    if ('\Schematic\Model\CreateCustomPlanResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\CreateCustomPlanResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\CreateCustomPlanResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\CreateCustomPlanResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CreateCustomPlanResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createCustomPlanAsync
+     *
+     * Create custom plan
+     *
+     * @param  \Schematic\Model\CreateCustomPlanRequestBody $create_custom_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCustomPlan'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCustomPlanAsync($create_custom_plan_request_body, string $contentType = self::contentTypes['createCustomPlan'][0])
+    {
+        return $this->createCustomPlanAsyncWithHttpInfo($create_custom_plan_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createCustomPlanAsyncWithHttpInfo
+     *
+     * Create custom plan
+     *
+     * @param  \Schematic\Model\CreateCustomPlanRequestBody $create_custom_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCustomPlan'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCustomPlanAsyncWithHttpInfo($create_custom_plan_request_body, string $contentType = self::contentTypes['createCustomPlan'][0])
+    {
+        $returnType = '\Schematic\Model\CreateCustomPlanResponse';
+        $request = $this->createCustomPlanRequest($create_custom_plan_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createCustomPlan'
+     *
+     * @param  \Schematic\Model\CreateCustomPlanRequestBody $create_custom_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCustomPlan'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createCustomPlanRequest($create_custom_plan_request_body, string $contentType = self::contentTypes['createCustomPlan'][0])
+    {
+
+        // verify the required parameter 'create_custom_plan_request_body' is set
+        if ($create_custom_plan_request_body === null || (is_array($create_custom_plan_request_body) && count($create_custom_plan_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_custom_plan_request_body when calling createCustomPlan'
+            );
+        }
+
+
+        $resourcePath = '/custom-plans';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($create_custom_plan_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_custom_plan_request_body));
+            } else {
+                $httpBody = $create_custom_plan_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation createPlan
      *
      * Create plan
@@ -863,7 +2002,7 @@ class PlansApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreatePlanResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1349,7 +2488,7 @@ class PlansApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\DeletePlanResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1768,38 +2907,40 @@ class PlansApi
     }
 
     /**
-     * Operation getPlan
+     * Operation deletePlanVersion
      *
-     * Get plan
+     * Delete plan version
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
+     * @param  bool $promote_archived_version promote_archived_version (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Schematic\Model\GetPlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     * @return \Schematic\Model\DeletePlanVersionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getPlan($plan_id, string $contentType = self::contentTypes['getPlan'][0])
+    public function deletePlanVersion($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
     {
-        list($response) = $this->getPlanWithHttpInfo($plan_id, $contentType);
+        list($response) = $this->deletePlanVersionWithHttpInfo($plan_id, $promote_archived_version, $contentType);
         return $response;
     }
 
     /**
-     * Operation getPlanWithHttpInfo
+     * Operation deletePlanVersionWithHttpInfo
      *
-     * Get plan
+     * Delete plan version
      *
      * @param  string $plan_id plan_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
+     * @param  bool $promote_archived_version (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\GetPlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\DeletePlanVersionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPlanWithHttpInfo($plan_id, string $contentType = self::contentTypes['getPlan'][0])
+    public function deletePlanVersionWithHttpInfo($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
     {
-        $request = $this->getPlanRequest($plan_id, $contentType);
+        $request = $this->deletePlanVersionRequest($plan_id, $promote_archived_version, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1836,7 +2977,509 @@ class PlansApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\DeletePlanVersionResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\DeletePlanVersionResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\DeletePlanVersionResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\DeletePlanVersionResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeletePlanVersionResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deletePlanVersionAsync
+     *
+     * Delete plan version
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  bool $promote_archived_version (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePlanVersionAsync($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
+    {
+        return $this->deletePlanVersionAsyncWithHttpInfo($plan_id, $promote_archived_version, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deletePlanVersionAsyncWithHttpInfo
+     *
+     * Delete plan version
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  bool $promote_archived_version (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePlanVersionAsyncWithHttpInfo($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
+    {
+        $returnType = '\Schematic\Model\DeletePlanVersionResponse';
+        $request = $this->deletePlanVersionRequest($plan_id, $promote_archived_version, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deletePlanVersion'
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  bool $promote_archived_version (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deletePlanVersionRequest($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
+    {
+
+        // verify the required parameter 'plan_id' is set
+        if ($plan_id === null || (is_array($plan_id) && count($plan_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $plan_id when calling deletePlanVersion'
+            );
+        }
+
+
+
+        $resourcePath = '/plans/version/{plan_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $promote_archived_version,
+            'promote_archived_version', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($plan_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'plan_id' . '}',
+                ObjectSerializer::toPathValue($plan_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPlan
+     *
+     * Get plan
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id Fetch billing settings for a specific plan version (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\GetPlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function getPlan($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['getPlan'][0])
+    {
+        list($response) = $this->getPlanWithHttpInfo($plan_id, $plan_version_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPlanWithHttpInfo
+     *
+     * Get plan
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id Fetch billing settings for a specific plan version (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\GetPlanResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPlanWithHttpInfo($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['getPlan'][0])
+    {
+        $request = $this->getPlanRequest($plan_id, $plan_version_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetPlanResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2055,14 +3698,15 @@ class PlansApi
      * Get plan
      *
      * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id Fetch billing settings for a specific plan version (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPlanAsync($plan_id, string $contentType = self::contentTypes['getPlan'][0])
+    public function getPlanAsync($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['getPlan'][0])
     {
-        return $this->getPlanAsyncWithHttpInfo($plan_id, $contentType)
+        return $this->getPlanAsyncWithHttpInfo($plan_id, $plan_version_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2076,15 +3720,16 @@ class PlansApi
      * Get plan
      *
      * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id Fetch billing settings for a specific plan version (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPlanAsyncWithHttpInfo($plan_id, string $contentType = self::contentTypes['getPlan'][0])
+    public function getPlanAsyncWithHttpInfo($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['getPlan'][0])
     {
         $returnType = '\Schematic\Model\GetPlanResponse';
-        $request = $this->getPlanRequest($plan_id, $contentType);
+        $request = $this->getPlanRequest($plan_id, $plan_version_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2126,12 +3771,13 @@ class PlansApi
      * Create request for operation 'getPlan'
      *
      * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id Fetch billing settings for a specific plan version (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlan'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPlanRequest($plan_id, string $contentType = self::contentTypes['getPlan'][0])
+    public function getPlanRequest($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['getPlan'][0])
     {
 
         // verify the required parameter 'plan_id' is set
@@ -2142,6 +3788,7 @@ class PlansApi
         }
 
 
+
         $resourcePath = '/plans/{plan_id}';
         $formParams = [];
         $queryParams = [];
@@ -2149,6 +3796,15 @@ class PlansApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_id,
+            'plan_version_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
         // path params
@@ -2220,38 +3876,44 @@ class PlansApi
     }
 
     /**
-     * Operation listPlanIssues
+     * Operation listBillingProductMatchCompanies
      *
-     * List plan issues
+     * List billing product match companies
      *
-     * @param  string $plan_id plan_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanIssues'] to see the possible values for this operation
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingProductMatchCompanies'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Schematic\Model\ListPlanIssuesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     * @return \Schematic\Model\ListBillingProductMatchCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listPlanIssues($plan_id, string $contentType = self::contentTypes['listPlanIssues'][0])
+    public function listBillingProductMatchCompanies($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductMatchCompanies'][0])
     {
-        list($response) = $this->listPlanIssuesWithHttpInfo($plan_id, $contentType);
+        list($response) = $this->listBillingProductMatchCompaniesWithHttpInfo($plan_id, $q, $limit, $offset, $contentType);
         return $response;
     }
 
     /**
-     * Operation listPlanIssuesWithHttpInfo
+     * Operation listBillingProductMatchCompaniesWithHttpInfo
      *
-     * List plan issues
+     * List billing product match companies
      *
-     * @param  string $plan_id (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanIssues'] to see the possible values for this operation
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingProductMatchCompanies'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\ListPlanIssuesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\ListBillingProductMatchCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listPlanIssuesWithHttpInfo($plan_id, string $contentType = self::contentTypes['listPlanIssues'][0])
+    public function listBillingProductMatchCompaniesWithHttpInfo($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductMatchCompanies'][0])
     {
-        $request = $this->listPlanIssuesRequest($plan_id, $contentType);
+        $request = $this->listBillingProductMatchCompaniesRequest($plan_id, $q, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2288,7 +3950,1111 @@ class PlansApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\ListBillingProductMatchCompaniesResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ListBillingProductMatchCompaniesResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListBillingProductMatchCompaniesResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\ListBillingProductMatchCompaniesResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ListBillingProductMatchCompaniesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listBillingProductMatchCompaniesAsync
+     *
+     * List billing product match companies
+     *
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingProductMatchCompanies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listBillingProductMatchCompaniesAsync($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductMatchCompanies'][0])
+    {
+        return $this->listBillingProductMatchCompaniesAsyncWithHttpInfo($plan_id, $q, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listBillingProductMatchCompaniesAsyncWithHttpInfo
+     *
+     * List billing product match companies
+     *
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingProductMatchCompanies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listBillingProductMatchCompaniesAsyncWithHttpInfo($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductMatchCompanies'][0])
+    {
+        $returnType = '\Schematic\Model\ListBillingProductMatchCompaniesResponse';
+        $request = $this->listBillingProductMatchCompaniesRequest($plan_id, $q, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listBillingProductMatchCompanies'
+     *
+     * @param  string $plan_id The plan ID to find billing product match companies for (required)
+     * @param  string $q Search for companies by name, keys or string traits (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listBillingProductMatchCompanies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listBillingProductMatchCompaniesRequest($plan_id, $q = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductMatchCompanies'][0])
+    {
+
+        // verify the required parameter 'plan_id' is set
+        if ($plan_id === null || (is_array($plan_id) && count($plan_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $plan_id when calling listBillingProductMatchCompanies'
+            );
+        }
+
+        if ($q !== null && strlen($q) > 512) {
+            throw new \InvalidArgumentException('invalid length for "$q" when calling PlansApi.listBillingProductMatchCompanies, must be smaller than or equal to 512.');
+        }
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.listBillingProductMatchCompanies, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.listBillingProductMatchCompanies, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/plans/billing-product-match-companies';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_id,
+            'plan_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $q,
+            'q', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listCustomPlanBillings
+     *
+     * List custom plan billings
+     *
+     * @param  string $company_id Filter by company ID (optional)
+     * @param  string $plan_id Filter by plan ID (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus $status Filter by billing status (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus[] $statuses Filter by multiple billing statuses (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCustomPlanBillings'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ListCustomPlanBillingsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function listCustomPlanBillings($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    {
+        list($response) = $this->listCustomPlanBillingsWithHttpInfo($company_id, $plan_id, $status, $statuses, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listCustomPlanBillingsWithHttpInfo
+     *
+     * List custom plan billings
+     *
+     * @param  string $company_id Filter by company ID (optional)
+     * @param  string $plan_id Filter by plan ID (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus $status Filter by billing status (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus[] $statuses Filter by multiple billing statuses (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCustomPlanBillings'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ListCustomPlanBillingsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCustomPlanBillingsWithHttpInfo($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    {
+        $request = $this->listCustomPlanBillingsRequest($company_id, $plan_id, $status, $statuses, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\ListCustomPlanBillingsResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ListCustomPlanBillingsResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ListCustomPlanBillingsResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\ListCustomPlanBillingsResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ListCustomPlanBillingsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listCustomPlanBillingsAsync
+     *
+     * List custom plan billings
+     *
+     * @param  string $company_id Filter by company ID (optional)
+     * @param  string $plan_id Filter by plan ID (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus $status Filter by billing status (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus[] $statuses Filter by multiple billing statuses (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCustomPlanBillings'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCustomPlanBillingsAsync($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    {
+        return $this->listCustomPlanBillingsAsyncWithHttpInfo($company_id, $plan_id, $status, $statuses, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listCustomPlanBillingsAsyncWithHttpInfo
+     *
+     * List custom plan billings
+     *
+     * @param  string $company_id Filter by company ID (optional)
+     * @param  string $plan_id Filter by plan ID (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus $status Filter by billing status (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus[] $statuses Filter by multiple billing statuses (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCustomPlanBillings'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCustomPlanBillingsAsyncWithHttpInfo($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    {
+        $returnType = '\Schematic\Model\ListCustomPlanBillingsResponse';
+        $request = $this->listCustomPlanBillingsRequest($company_id, $plan_id, $status, $statuses, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listCustomPlanBillings'
+     *
+     * @param  string $company_id Filter by company ID (optional)
+     * @param  string $plan_id Filter by plan ID (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus $status Filter by billing status (optional)
+     * @param  \Schematic\Model\CustomPlanBillingStatus[] $statuses Filter by multiple billing statuses (optional)
+     * @param  int $limit Page limit (default 100) (optional)
+     * @param  int $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCustomPlanBillings'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listCustomPlanBillingsRequest($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    {
+
+
+
+
+        if ($statuses !== null && count($statuses) > 10) {
+            throw new \InvalidArgumentException('invalid value for "$statuses" when calling PlansApi.listCustomPlanBillings, number of items must be less than or equal to 10.');
+        }
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.listCustomPlanBillings, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.listCustomPlanBillings, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/custom-plan-billings';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_id,
+            'company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_id,
+            'plan_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $status,
+            'status', // param base name
+            'CustomPlanBillingStatus', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $statuses,
+            'statuses', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation listPlanIssues
+     *
+     * List plan issues
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanIssues'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ListPlanIssuesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function listPlanIssues($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['listPlanIssues'][0])
+    {
+        list($response) = $this->listPlanIssuesWithHttpInfo($plan_id, $plan_version_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listPlanIssuesWithHttpInfo
+     *
+     * List plan issues
+     *
+     * @param  string $plan_id (required)
+     * @param  string $plan_version_id (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanIssues'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ListPlanIssuesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listPlanIssuesWithHttpInfo($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['listPlanIssues'][0])
+    {
+        $request = $this->listPlanIssuesRequest($plan_id, $plan_version_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListPlanIssuesResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2542,14 +5308,15 @@ class PlansApi
      * List plan issues
      *
      * @param  string $plan_id (required)
+     * @param  string $plan_version_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanIssues'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlanIssuesAsync($plan_id, string $contentType = self::contentTypes['listPlanIssues'][0])
+    public function listPlanIssuesAsync($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['listPlanIssues'][0])
     {
-        return $this->listPlanIssuesAsyncWithHttpInfo($plan_id, $contentType)
+        return $this->listPlanIssuesAsyncWithHttpInfo($plan_id, $plan_version_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2563,15 +5330,16 @@ class PlansApi
      * List plan issues
      *
      * @param  string $plan_id (required)
+     * @param  string $plan_version_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanIssues'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlanIssuesAsyncWithHttpInfo($plan_id, string $contentType = self::contentTypes['listPlanIssues'][0])
+    public function listPlanIssuesAsyncWithHttpInfo($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['listPlanIssues'][0])
     {
         $returnType = '\Schematic\Model\ListPlanIssuesResponse';
-        $request = $this->listPlanIssuesRequest($plan_id, $contentType);
+        $request = $this->listPlanIssuesRequest($plan_id, $plan_version_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2613,12 +5381,13 @@ class PlansApi
      * Create request for operation 'listPlanIssues'
      *
      * @param  string $plan_id (required)
+     * @param  string $plan_version_id (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanIssues'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listPlanIssuesRequest($plan_id, string $contentType = self::contentTypes['listPlanIssues'][0])
+    public function listPlanIssuesRequest($plan_id, $plan_version_id = null, string $contentType = self::contentTypes['listPlanIssues'][0])
     {
 
         // verify the required parameter 'plan_id' is set
@@ -2627,6 +5396,7 @@ class PlansApi
                 'Missing the required parameter $plan_id when calling listPlanIssues'
             );
         }
+
 
 
         $resourcePath = '/plans/issues';
@@ -2644,6 +5414,15 @@ class PlansApi
             'form', // style
             true, // explode
             true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_id,
+            'plan_version_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
         ) ?? []);
 
 
@@ -2713,13 +5492,18 @@ class PlansApi
      * List plans
      *
      * @param  string $company_id company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
      * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
      * @param  string[] $ids ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
      * @param  string $q q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
      * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -2730,9 +5514,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listPlans($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlans($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-        list($response) = $this->listPlansWithHttpInfo($company_id, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $plan_type, $q, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        list($response) = $this->listPlansWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2742,13 +5526,18 @@ class PlansApi
      * List plans
      *
      * @param  string $company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
      * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
      * @param  string[] $ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
      * @param  string $q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
      * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -2759,9 +5548,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listPlansWithHttpInfo($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-        $request = $this->listPlansRequest($company_id, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $plan_type, $q, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        $request = $this->listPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2798,7 +5587,7 @@ class PlansApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\ListPlansResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3052,13 +5841,18 @@ class PlansApi
      * List plans
      *
      * @param  string $company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
      * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
      * @param  string[] $ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
      * @param  string $q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
      * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3068,9 +5862,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlansAsync($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansAsync($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-        return $this->listPlansAsyncWithHttpInfo($company_id, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $plan_type, $q, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType)
+        return $this->listPlansAsyncWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3084,13 +5878,18 @@ class PlansApi
      * List plans
      *
      * @param  string $company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
      * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
      * @param  string[] $ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
      * @param  string $q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
      * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3100,10 +5899,10 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlansAsyncWithHttpInfo($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansAsyncWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
         $returnType = '\Schematic\Model\ListPlansResponse';
-        $request = $this->listPlansRequest($company_id, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $plan_type, $q, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        $request = $this->listPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3145,13 +5944,18 @@ class PlansApi
      * Create request for operation 'listPlans'
      *
      * @param  string $company_id (optional)
+     * @param  bool $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
      * @param  bool $has_product_id Filter out plans that do not have a billing product ID (optional)
      * @param  string[] $ids (optional)
-     * @param  PlanType $plan_type Filter by plan type (optional)
+     * @param  bool $include_draft_versions Include billing settings from draft versions for plans which have draft version (optional)
+     * @param  \Schematic\Model\PlanType $plan_type Filter by plan type (optional)
      * @param  string $q (optional)
+     * @param  string $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
+     * @param  bool $with_entitlements Include each plan&#39;s entitlements in the response (optional)
      * @param  string $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int $limit Page limit (default 100) (optional)
@@ -3161,7 +5965,7 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listPlansRequest($company_id = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $plan_type = null, $q = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansRequest($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
 
 
@@ -3171,9 +5975,23 @@ class PlansApi
 
 
 
+        if ($ids !== null && count($ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$ids" when calling PlansApi.listPlans, number of items must be less than or equal to 100.');
+        }
 
 
 
+
+
+
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.listPlans, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling PlansApi.listPlans, must be bigger than or equal to 0.');
+        }
 
 
 
@@ -3189,6 +6007,24 @@ class PlansApi
             $company_id,
             'company_id', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_scoped_only,
+            'company_scoped_only', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $exclude_company_scoped,
+            'exclude_company_scoped', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3240,6 +6076,15 @@ class PlansApi
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $include_draft_versions,
+            'include_draft_versions', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $plan_type,
             'plan_type', // param base name
             'PlanType', // openApiType
@@ -3252,6 +6097,24 @@ class PlansApi
             $q,
             'q', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $scoped_to_company_id,
+            'scoped_to_company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $with_entitlements,
+            'with_entitlements', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3355,6 +6218,1524 @@ class PlansApi
     }
 
     /**
+     * Operation markCustomPlanBillingPaid
+     *
+     * Mark custom plan billing paid
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  object $body body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['markCustomPlanBillingPaid'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\MarkCustomPlanBillingPaidResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function markCustomPlanBillingPaid($custom_plan_billing_id, $body, string $contentType = self::contentTypes['markCustomPlanBillingPaid'][0])
+    {
+        list($response) = $this->markCustomPlanBillingPaidWithHttpInfo($custom_plan_billing_id, $body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation markCustomPlanBillingPaidWithHttpInfo
+     *
+     * Mark custom plan billing paid
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['markCustomPlanBillingPaid'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\MarkCustomPlanBillingPaidResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markCustomPlanBillingPaidWithHttpInfo($custom_plan_billing_id, $body, string $contentType = self::contentTypes['markCustomPlanBillingPaid'][0])
+    {
+        $request = $this->markCustomPlanBillingPaidRequest($custom_plan_billing_id, $body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\MarkCustomPlanBillingPaidResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\MarkCustomPlanBillingPaidResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\MarkCustomPlanBillingPaidResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\MarkCustomPlanBillingPaidResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\MarkCustomPlanBillingPaidResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markCustomPlanBillingPaidAsync
+     *
+     * Mark custom plan billing paid
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['markCustomPlanBillingPaid'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markCustomPlanBillingPaidAsync($custom_plan_billing_id, $body, string $contentType = self::contentTypes['markCustomPlanBillingPaid'][0])
+    {
+        return $this->markCustomPlanBillingPaidAsyncWithHttpInfo($custom_plan_billing_id, $body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markCustomPlanBillingPaidAsyncWithHttpInfo
+     *
+     * Mark custom plan billing paid
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['markCustomPlanBillingPaid'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markCustomPlanBillingPaidAsyncWithHttpInfo($custom_plan_billing_id, $body, string $contentType = self::contentTypes['markCustomPlanBillingPaid'][0])
+    {
+        $returnType = '\Schematic\Model\MarkCustomPlanBillingPaidResponse';
+        $request = $this->markCustomPlanBillingPaidRequest($custom_plan_billing_id, $body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markCustomPlanBillingPaid'
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  object $body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['markCustomPlanBillingPaid'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function markCustomPlanBillingPaidRequest($custom_plan_billing_id, $body, string $contentType = self::contentTypes['markCustomPlanBillingPaid'][0])
+    {
+
+        // verify the required parameter 'custom_plan_billing_id' is set
+        if ($custom_plan_billing_id === null || (is_array($custom_plan_billing_id) && count($custom_plan_billing_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $custom_plan_billing_id when calling markCustomPlanBillingPaid'
+            );
+        }
+
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling markCustomPlanBillingPaid'
+            );
+        }
+
+
+        $resourcePath = '/custom-plan-billings/{custom_plan_billing_id}/mark-paid';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($custom_plan_billing_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'custom_plan_billing_id' . '}',
+                ObjectSerializer::toPathValue($custom_plan_billing_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation publishPlanVersion
+     *
+     * Publish plan version
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body publish_plan_version_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\PublishPlanVersionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function publishPlanVersion($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    {
+        list($response) = $this->publishPlanVersionWithHttpInfo($plan_id, $publish_plan_version_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation publishPlanVersionWithHttpInfo
+     *
+     * Publish plan version
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\PublishPlanVersionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function publishPlanVersionWithHttpInfo($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    {
+        $request = $this->publishPlanVersionRequest($plan_id, $publish_plan_version_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\PublishPlanVersionResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\PublishPlanVersionResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\PublishPlanVersionResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\PublishPlanVersionResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\PublishPlanVersionResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation publishPlanVersionAsync
+     *
+     * Publish plan version
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function publishPlanVersionAsync($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    {
+        return $this->publishPlanVersionAsyncWithHttpInfo($plan_id, $publish_plan_version_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation publishPlanVersionAsyncWithHttpInfo
+     *
+     * Publish plan version
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function publishPlanVersionAsyncWithHttpInfo($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    {
+        $returnType = '\Schematic\Model\PublishPlanVersionResponse';
+        $request = $this->publishPlanVersionRequest($plan_id, $publish_plan_version_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'publishPlanVersion'
+     *
+     * @param  string $plan_id plan_id (required)
+     * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function publishPlanVersionRequest($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    {
+
+        // verify the required parameter 'plan_id' is set
+        if ($plan_id === null || (is_array($plan_id) && count($plan_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $plan_id when calling publishPlanVersion'
+            );
+        }
+
+        // verify the required parameter 'publish_plan_version_request_body' is set
+        if ($publish_plan_version_request_body === null || (is_array($publish_plan_version_request_body) && count($publish_plan_version_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $publish_plan_version_request_body when calling publishPlanVersion'
+            );
+        }
+
+
+        $resourcePath = '/plans/version/{plan_id}/publish';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($plan_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'plan_id' . '}',
+                ObjectSerializer::toPathValue($plan_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($publish_plan_version_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($publish_plan_version_request_body));
+            } else {
+                $httpBody = $publish_plan_version_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation retryCustomPlanBilling
+     *
+     * Retry custom plan billing
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  \Schematic\Model\RetryCustomPlanBillingRequestBody $retry_custom_plan_billing_request_body retry_custom_plan_billing_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryCustomPlanBilling'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\RetryCustomPlanBillingResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function retryCustomPlanBilling($custom_plan_billing_id, $retry_custom_plan_billing_request_body, string $contentType = self::contentTypes['retryCustomPlanBilling'][0])
+    {
+        list($response) = $this->retryCustomPlanBillingWithHttpInfo($custom_plan_billing_id, $retry_custom_plan_billing_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation retryCustomPlanBillingWithHttpInfo
+     *
+     * Retry custom plan billing
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  \Schematic\Model\RetryCustomPlanBillingRequestBody $retry_custom_plan_billing_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryCustomPlanBilling'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\RetryCustomPlanBillingResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function retryCustomPlanBillingWithHttpInfo($custom_plan_billing_id, $retry_custom_plan_billing_request_body, string $contentType = self::contentTypes['retryCustomPlanBilling'][0])
+    {
+        $request = $this->retryCustomPlanBillingRequest($custom_plan_billing_id, $retry_custom_plan_billing_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 200:
+                    if ('\Schematic\Model\RetryCustomPlanBillingResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\RetryCustomPlanBillingResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\RetryCustomPlanBillingResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\RetryCustomPlanBillingResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\RetryCustomPlanBillingResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation retryCustomPlanBillingAsync
+     *
+     * Retry custom plan billing
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  \Schematic\Model\RetryCustomPlanBillingRequestBody $retry_custom_plan_billing_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryCustomPlanBilling'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function retryCustomPlanBillingAsync($custom_plan_billing_id, $retry_custom_plan_billing_request_body, string $contentType = self::contentTypes['retryCustomPlanBilling'][0])
+    {
+        return $this->retryCustomPlanBillingAsyncWithHttpInfo($custom_plan_billing_id, $retry_custom_plan_billing_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation retryCustomPlanBillingAsyncWithHttpInfo
+     *
+     * Retry custom plan billing
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  \Schematic\Model\RetryCustomPlanBillingRequestBody $retry_custom_plan_billing_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryCustomPlanBilling'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function retryCustomPlanBillingAsyncWithHttpInfo($custom_plan_billing_id, $retry_custom_plan_billing_request_body, string $contentType = self::contentTypes['retryCustomPlanBilling'][0])
+    {
+        $returnType = '\Schematic\Model\RetryCustomPlanBillingResponse';
+        $request = $this->retryCustomPlanBillingRequest($custom_plan_billing_id, $retry_custom_plan_billing_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'retryCustomPlanBilling'
+     *
+     * @param  string $custom_plan_billing_id custom_plan_billing_id (required)
+     * @param  \Schematic\Model\RetryCustomPlanBillingRequestBody $retry_custom_plan_billing_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['retryCustomPlanBilling'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function retryCustomPlanBillingRequest($custom_plan_billing_id, $retry_custom_plan_billing_request_body, string $contentType = self::contentTypes['retryCustomPlanBilling'][0])
+    {
+
+        // verify the required parameter 'custom_plan_billing_id' is set
+        if ($custom_plan_billing_id === null || (is_array($custom_plan_billing_id) && count($custom_plan_billing_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $custom_plan_billing_id when calling retryCustomPlanBilling'
+            );
+        }
+
+        // verify the required parameter 'retry_custom_plan_billing_request_body' is set
+        if ($retry_custom_plan_billing_request_body === null || (is_array($retry_custom_plan_billing_request_body) && count($retry_custom_plan_billing_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $retry_custom_plan_billing_request_body when calling retryCustomPlanBilling'
+            );
+        }
+
+
+        $resourcePath = '/custom-plan-billings/{custom_plan_billing_id}/retry';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($custom_plan_billing_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'custom_plan_billing_id' . '}',
+                ObjectSerializer::toPathValue($custom_plan_billing_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($retry_custom_plan_billing_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($retry_custom_plan_billing_request_body));
+            } else {
+                $httpBody = $retry_custom_plan_billing_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation updateCompanyPlans
      *
      * Update company plans
@@ -3425,7 +7806,7 @@ class PlansApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdateCompanyPlansResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3931,7 +8312,7 @@ class PlansApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdatePlanResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4437,7 +8818,7 @@ class PlansApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpsertBillingProductPlanResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -4866,6 +9247,492 @@ class PlansApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation upsertPlanForBillingProduct
+     *
+     * Upsert plan for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanRequestBody $create_billing_linked_plan_request_body create_billing_linked_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\UpsertPlanForBillingProductResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function upsertPlanForBillingProduct($create_billing_linked_plan_request_body, string $contentType = self::contentTypes['upsertPlanForBillingProduct'][0])
+    {
+        list($response) = $this->upsertPlanForBillingProductWithHttpInfo($create_billing_linked_plan_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation upsertPlanForBillingProductWithHttpInfo
+     *
+     * Upsert plan for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanRequestBody $create_billing_linked_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\UpsertPlanForBillingProductResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function upsertPlanForBillingProductWithHttpInfo($create_billing_linked_plan_request_body, string $contentType = self::contentTypes['upsertPlanForBillingProduct'][0])
+    {
+        $request = $this->upsertPlanForBillingProductRequest($create_billing_linked_plan_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch ($statusCode) {
+                case 201:
+                    if ('\Schematic\Model\UpsertPlanForBillingProductResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\UpsertPlanForBillingProductResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\UpsertPlanForBillingProductResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Schematic\Model\ApiError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Schematic\Model\ApiError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Schematic\Model\ApiError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Schematic\Model\UpsertPlanForBillingProductResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\UpsertPlanForBillingProductResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation upsertPlanForBillingProductAsync
+     *
+     * Upsert plan for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanRequestBody $create_billing_linked_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function upsertPlanForBillingProductAsync($create_billing_linked_plan_request_body, string $contentType = self::contentTypes['upsertPlanForBillingProduct'][0])
+    {
+        return $this->upsertPlanForBillingProductAsyncWithHttpInfo($create_billing_linked_plan_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation upsertPlanForBillingProductAsyncWithHttpInfo
+     *
+     * Upsert plan for billing product
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanRequestBody $create_billing_linked_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function upsertPlanForBillingProductAsyncWithHttpInfo($create_billing_linked_plan_request_body, string $contentType = self::contentTypes['upsertPlanForBillingProduct'][0])
+    {
+        $returnType = '\Schematic\Model\UpsertPlanForBillingProductResponse';
+        $request = $this->upsertPlanForBillingProductRequest($create_billing_linked_plan_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'upsertPlanForBillingProduct'
+     *
+     * @param  \Schematic\Model\CreateBillingLinkedPlanRequestBody $create_billing_linked_plan_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['upsertPlanForBillingProduct'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function upsertPlanForBillingProductRequest($create_billing_linked_plan_request_body, string $contentType = self::contentTypes['upsertPlanForBillingProduct'][0])
+    {
+
+        // verify the required parameter 'create_billing_linked_plan_request_body' is set
+        if ($create_billing_linked_plan_request_body === null || (is_array($create_billing_linked_plan_request_body) && count($create_billing_linked_plan_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_billing_linked_plan_request_body when calling upsertPlanForBillingProduct'
+            );
+        }
+
+
+        $resourcePath = '/plans/billing-linked';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($create_billing_linked_plan_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_billing_linked_plan_request_body));
+            } else {
+                $httpBody = $create_billing_linked_plan_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

@@ -66,9 +66,8 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flag_id' => 'string',
         'id' => 'string',
         'name' => 'string',
-        'plan_version_id' => 'string',
         'priority' => 'int',
-        'rule_type' => 'string',
+        'rule_type' => '\Schematic\Model\RuleType',
         'updated_at' => '\DateTime',
         'value' => 'bool'
     ];
@@ -89,8 +88,7 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flag_id' => null,
         'id' => null,
         'name' => null,
-        'plan_version_id' => null,
-        'priority' => null,
+        'priority' => 'int64',
         'rule_type' => null,
         'updated_at' => 'date-time',
         'value' => null
@@ -110,7 +108,6 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flag_id' => true,
         'id' => false,
         'name' => false,
-        'plan_version_id' => true,
         'priority' => false,
         'rule_type' => false,
         'updated_at' => false,
@@ -211,7 +208,6 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flag_id' => 'flag_id',
         'id' => 'id',
         'name' => 'name',
-        'plan_version_id' => 'plan_version_id',
         'priority' => 'priority',
         'rule_type' => 'rule_type',
         'updated_at' => 'updated_at',
@@ -232,7 +228,6 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flag_id' => 'setFlagId',
         'id' => 'setId',
         'name' => 'setName',
-        'plan_version_id' => 'setPlanVersionId',
         'priority' => 'setPriority',
         'rule_type' => 'setRuleType',
         'updated_at' => 'setUpdatedAt',
@@ -253,7 +248,6 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flag_id' => 'getFlagId',
         'id' => 'getId',
         'name' => 'getName',
-        'plan_version_id' => 'getPlanVersionId',
         'priority' => 'getPriority',
         'rule_type' => 'getRuleType',
         'updated_at' => 'getUpdatedAt',
@@ -325,7 +319,6 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('flag_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('priority', $data ?? [], null);
         $this->setIfExists('rule_type', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -365,9 +358,17 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['condition_groups'] === null) {
             $invalidProperties[] = "'condition_groups' can't be null";
         }
+        if ((count($this->container['condition_groups']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'condition_groups', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['conditions'] === null) {
             $invalidProperties[] = "'conditions' can't be null";
         }
+        if ((count($this->container['conditions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'conditions', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -456,6 +457,10 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($condition_groups)) {
             throw new \InvalidArgumentException('non-nullable condition_groups cannot be null');
         }
+
+        if ((count($condition_groups) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $condition_groups when calling RuleView., number of items must be less than or equal to 1000.');
+        }
         $this->container['condition_groups'] = $condition_groups;
 
         return $this;
@@ -482,6 +487,10 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($conditions)) {
             throw new \InvalidArgumentException('non-nullable conditions cannot be null');
+        }
+
+        if ((count($conditions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $conditions when calling RuleView., number of items must be less than or equal to 1000.');
         }
         $this->container['conditions'] = $conditions;
 
@@ -565,8 +574,8 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'flag_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('flag_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -631,40 +640,6 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets plan_version_id
-     *
-     * @return string|null
-     */
-    public function getPlanVersionId()
-    {
-        return $this->container['plan_version_id'];
-    }
-
-    /**
-     * Sets plan_version_id
-     *
-     * @param string|null $plan_version_id plan_version_id
-     *
-     * @return self
-     */
-    public function setPlanVersionId($plan_version_id)
-    {
-        if (is_null($plan_version_id)) {
-            array_push($this->openAPINullablesSetToNull, 'plan_version_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_version_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['plan_version_id'] = $plan_version_id;
-
-        return $this;
-    }
-
-    /**
      * Gets priority
      *
      * @return int
@@ -694,7 +669,7 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets rule_type
      *
-     * @return string
+     * @return \Schematic\Model\RuleType
      */
     public function getRuleType()
     {
@@ -704,7 +679,7 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets rule_type
      *
-     * @param string $rule_type rule_type
+     * @param \Schematic\Model\RuleType $rule_type rule_type
      *
      * @return self
      */
@@ -835,7 +810,7 @@ class RuleView implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

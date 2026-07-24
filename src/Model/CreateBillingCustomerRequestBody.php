@@ -379,8 +379,8 @@ class CreateBillingCustomerRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -413,8 +413,8 @@ class CreateBillingCustomerRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'default_payment_method_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_payment_method_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_payment_method_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -567,8 +567,8 @@ class CreateBillingCustomerRequestBody implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'provider_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('provider_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('provider_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -641,7 +641,7 @@ class CreateBillingCustomerRequestBody implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

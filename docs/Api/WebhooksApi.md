@@ -12,6 +12,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**getWebhookEvent()**](WebhooksApi.md#getWebhookEvent) | **GET** /webhook-events/{webhook_event_id} | Get webhook event |
 | [**listWebhookEvents()**](WebhooksApi.md#listWebhookEvents) | **GET** /webhook-events | List webhook events |
 | [**listWebhooks()**](WebhooksApi.md#listWebhooks) | **GET** /webhooks | List webhooks |
+| [**sendTestWebhookAction()**](WebhooksApi.md#sendTestWebhookAction) | **POST** /webhooks/{webhook_id}/test | Send test webhook action |
 | [**updateWebhook()**](WebhooksApi.md#updateWebhook) | **PUT** /webhooks/{webhook_id} | Update webhook |
 
 
@@ -441,6 +442,59 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `sendTestWebhookAction()`
+
+```php
+sendTestWebhookAction($webhook_id, $test_webhook_request_body): \Schematic\Model\SendTestWebhookActionResponse
+```
+
+Send test webhook action
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$webhook_id = 'webhook_id_example'; // string | webhook_id
+$test_webhook_request_body = new \Schematic\Model\TestWebhookRequestBody(); // \Schematic\Model\TestWebhookRequestBody
+
+try {
+    $result = $schematic->WebhooksApi->sendTestWebhookAction($webhook_id, $test_webhook_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->WebhooksApi->sendTestWebhookAction: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **webhook_id** | **string**| webhook_id | |
+| **test_webhook_request_body** | [**\Schematic\Model\TestWebhookRequestBody**](../Model/TestWebhookRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\SendTestWebhookActionResponse**](../Model/SendTestWebhookActionResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

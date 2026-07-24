@@ -82,17 +82,17 @@ class BillingSubscriptionDiscountView implements ModelInterface, ArrayAccess, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'amount_off' => null,
+        'amount_off' => 'int64',
         'coupon_id' => null,
         'coupon_name' => null,
         'currency' => null,
         'customer_facing_code' => null,
         'discount_external_id' => null,
         'duration' => null,
-        'duration_in_months' => null,
+        'duration_in_months' => 'int64',
         'ended_at' => 'date-time',
         'is_active' => null,
-        'percent_off' => null,
+        'percent_off' => 'double',
         'promo_code_external_id' => null,
         'started_at' => 'date-time',
         'subscription_external_id' => null
@@ -425,8 +425,8 @@ class BillingSubscriptionDiscountView implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'amount_off');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('amount_off', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('amount_off', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -513,8 +513,8 @@ class BillingSubscriptionDiscountView implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'currency');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('currency', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -547,8 +547,8 @@ class BillingSubscriptionDiscountView implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'customer_facing_code');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('customer_facing_code', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('customer_facing_code', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -635,8 +635,8 @@ class BillingSubscriptionDiscountView implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'duration_in_months');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('duration_in_months', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('duration_in_months', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -669,8 +669,8 @@ class BillingSubscriptionDiscountView implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'ended_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('ended_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('ended_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -730,8 +730,8 @@ class BillingSubscriptionDiscountView implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'percent_off');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('percent_off', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('percent_off', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -764,8 +764,8 @@ class BillingSubscriptionDiscountView implements ModelInterface, ArrayAccess, \J
             array_push($this->openAPINullablesSetToNull, 'promo_code_external_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('promo_code_external_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('promo_code_external_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -892,7 +892,7 @@ class BillingSubscriptionDiscountView implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

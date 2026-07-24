@@ -5,11 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **add_on_ids** | [**\Schematic\Model\UpdateAddOnRequestBody[]**](UpdateAddOnRequestBody.md) |  |
+**auto_topup_overrides** | [**\Schematic\Model\UpdateAutoTopupOverrideRequestBody[]**](UpdateAutoTopupOverrideRequestBody.md) |  |
+**billing_entity_id** | **string** |  | [optional]
 **company_id** | **string** |  |
 **coupon_external_id** | **string** |  | [optional]
 **credit_bundles** | [**\Schematic\Model\UpdateCreditBundleRequestBody[]**](UpdateCreditBundleRequestBody.md) |  |
+**custom_field_values** | [**\Schematic\Model\CheckoutFieldValue[]**](CheckoutFieldValue.md) |  |
 **new_plan_id** | **string** |  |
 **new_price_id** | **string** |  |
+**opt_in_accepted** | **bool** |  | [optional]
 **pay_in_advance** | [**\Schematic\Model\UpdatePayInAdvanceRequestBody[]**](UpdatePayInAdvanceRequestBody.md) |  |
 **payment_method_id** | **string** |  | [optional]
 **promo_code** | **string** |  | [optional]

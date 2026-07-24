@@ -328,8 +328,8 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'environment_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('environment_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('environment_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -362,8 +362,8 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
             array_push($this->openAPINullablesSetToNull, 'name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('name', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -443,7 +443,7 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

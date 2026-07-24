@@ -77,7 +77,7 @@ class LimitTimeSeriesPointResponseData implements ModelInterface, ArrayAccess, \
         'effective_at' => 'date-time',
         'is_soft_limit' => null,
         'limit_source' => null,
-        'limit_value' => null,
+        'limit_value' => 'int64',
         'plan_id' => null,
         'price_behavior' => null
     ];
@@ -438,8 +438,8 @@ class LimitTimeSeriesPointResponseData implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'limit_value');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('limit_value', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('limit_value', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -472,8 +472,8 @@ class LimitTimeSeriesPointResponseData implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'plan_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('plan_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -506,8 +506,8 @@ class LimitTimeSeriesPointResponseData implements ModelInterface, ArrayAccess, \
             array_push($this->openAPINullablesSetToNull, 'price_behavior');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_behavior', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -580,7 +580,7 @@ class LimitTimeSeriesPointResponseData implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

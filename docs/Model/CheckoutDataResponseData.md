@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **active_usage_based_entitlements** | [**\Schematic\Model\UsageBasedEntitlementResponseData[]**](UsageBasedEntitlementResponseData.md) |  |
 **available_credit_bundles** | [**\Schematic\Model\BillingCreditBundleResponseData[]**](BillingCreditBundleResponseData.md) |  |
 **company** | [**\Schematic\Model\CompanyDetailResponseData**](CompanyDetailResponseData.md) |  | [optional]
+**custom_checkout_fields** | [**\Schematic\Model\CheckoutFieldWithValue[]**](CheckoutFieldWithValue.md) |  |
 **feature_usage** | [**\Schematic\Model\FeatureUsageDetailResponseData**](FeatureUsageDetailResponseData.md) |  | [optional]
 **selected_credit_bundles** | [**\Schematic\Model\CreditBundlePurchaseResponseData[]**](CreditBundlePurchaseResponseData.md) |  |
 **selected_plan** | [**\Schematic\Model\PlanDetailResponseData**](PlanDetailResponseData.md) |  | [optional]

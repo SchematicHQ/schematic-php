@@ -58,15 +58,27 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
+        'active_version' => '\Schematic\Model\PlanVersionResponseData',
         'audience_type' => 'string',
+        'billing_linked_resource' => '\Schematic\Model\BillingLinkedResourceResponseData',
         'billing_product' => '\Schematic\Model\BillingProductDetailResponseData',
+        'billing_strategy' => '\Schematic\Model\BillingStrategy',
+        'catalogs' => '\Schematic\Model\PlanCatalogMembershipResponseData[]',
         'charge_type' => '\Schematic\Model\ChargeType',
         'company_count' => 'int',
-        'controlled_by' => '\Schematic\Model\PlanControlledByType',
+        'company_id' => 'string',
+        'company_logo_url' => 'string',
+        'company_name' => 'string',
+        'controlled_by' => '\Schematic\Model\BillingProviderType',
+        'copied_from_plan_id' => 'string',
         'created_at' => '\DateTime',
+        'credits' => '\Schematic\Model\BillingCreditResponseData[]',
+        'currency_prices' => '\Schematic\Model\PlanCurrencyPricesResponseData[]',
         'description' => 'string',
-        'features' => '\Schematic\Model\FeatureDetailResponseData[]',
-        'icon' => 'string',
+        'draft_version' => '\Schematic\Model\PlanVersionResponseData',
+        'entitlements' => '\Schematic\Model\PlanEntitlementResponseData[]',
+        'features' => '\Schematic\Model\FeatureInPlanResponseData[]',
+        'icon' => '\Schematic\Model\PlanIcon',
         'id' => 'string',
         'included_credit_grants' => '\Schematic\Model\BillingPlanCreditGrantResponseData[]',
         'is_default' => 'bool',
@@ -76,6 +88,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'name' => 'string',
         'one_time_price' => '\Schematic\Model\BillingPriceResponseData',
         'plan_type' => '\Schematic\Model\PlanType',
+        'quarterly_price' => '\Schematic\Model\BillingPriceResponseData',
         'trial_days' => 'int',
         'updated_at' => '\DateTime',
         'versions' => '\Schematic\Model\PlanVersionResponseData[]',
@@ -90,13 +103,25 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'active_version' => null,
         'audience_type' => null,
+        'billing_linked_resource' => null,
         'billing_product' => null,
+        'billing_strategy' => null,
+        'catalogs' => null,
         'charge_type' => null,
-        'company_count' => null,
+        'company_count' => 'int64',
+        'company_id' => null,
+        'company_logo_url' => null,
+        'company_name' => null,
         'controlled_by' => null,
+        'copied_from_plan_id' => null,
         'created_at' => 'date-time',
+        'credits' => null,
+        'currency_prices' => null,
         'description' => null,
+        'draft_version' => null,
+        'entitlements' => null,
         'features' => null,
         'icon' => null,
         'id' => null,
@@ -108,7 +133,8 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'name' => null,
         'one_time_price' => null,
         'plan_type' => null,
-        'trial_days' => null,
+        'quarterly_price' => null,
+        'trial_days' => 'int64',
         'updated_at' => 'date-time',
         'versions' => null,
         'yearly_price' => null
@@ -120,13 +146,25 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'active_version' => false,
         'audience_type' => true,
+        'billing_linked_resource' => false,
         'billing_product' => false,
+        'billing_strategy' => false,
+        'catalogs' => false,
         'charge_type' => false,
         'company_count' => false,
+        'company_id' => true,
+        'company_logo_url' => true,
+        'company_name' => true,
         'controlled_by' => false,
+        'copied_from_plan_id' => true,
         'created_at' => false,
+        'credits' => false,
+        'currency_prices' => false,
         'description' => false,
+        'draft_version' => false,
+        'entitlements' => true,
         'features' => false,
         'icon' => false,
         'id' => false,
@@ -138,6 +176,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'name' => false,
         'one_time_price' => false,
         'plan_type' => false,
+        'quarterly_price' => false,
         'trial_days' => true,
         'updated_at' => false,
         'versions' => false,
@@ -230,13 +269,25 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'active_version' => 'active_version',
         'audience_type' => 'audience_type',
+        'billing_linked_resource' => 'billing_linked_resource',
         'billing_product' => 'billing_product',
+        'billing_strategy' => 'billing_strategy',
+        'catalogs' => 'catalogs',
         'charge_type' => 'charge_type',
         'company_count' => 'company_count',
+        'company_id' => 'company_id',
+        'company_logo_url' => 'company_logo_url',
+        'company_name' => 'company_name',
         'controlled_by' => 'controlled_by',
+        'copied_from_plan_id' => 'copied_from_plan_id',
         'created_at' => 'created_at',
+        'credits' => 'credits',
+        'currency_prices' => 'currency_prices',
         'description' => 'description',
+        'draft_version' => 'draft_version',
+        'entitlements' => 'entitlements',
         'features' => 'features',
         'icon' => 'icon',
         'id' => 'id',
@@ -248,6 +299,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'name' => 'name',
         'one_time_price' => 'one_time_price',
         'plan_type' => 'plan_type',
+        'quarterly_price' => 'quarterly_price',
         'trial_days' => 'trial_days',
         'updated_at' => 'updated_at',
         'versions' => 'versions',
@@ -260,13 +312,25 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'active_version' => 'setActiveVersion',
         'audience_type' => 'setAudienceType',
+        'billing_linked_resource' => 'setBillingLinkedResource',
         'billing_product' => 'setBillingProduct',
+        'billing_strategy' => 'setBillingStrategy',
+        'catalogs' => 'setCatalogs',
         'charge_type' => 'setChargeType',
         'company_count' => 'setCompanyCount',
+        'company_id' => 'setCompanyId',
+        'company_logo_url' => 'setCompanyLogoUrl',
+        'company_name' => 'setCompanyName',
         'controlled_by' => 'setControlledBy',
+        'copied_from_plan_id' => 'setCopiedFromPlanId',
         'created_at' => 'setCreatedAt',
+        'credits' => 'setCredits',
+        'currency_prices' => 'setCurrencyPrices',
         'description' => 'setDescription',
+        'draft_version' => 'setDraftVersion',
+        'entitlements' => 'setEntitlements',
         'features' => 'setFeatures',
         'icon' => 'setIcon',
         'id' => 'setId',
@@ -278,6 +342,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'name' => 'setName',
         'one_time_price' => 'setOneTimePrice',
         'plan_type' => 'setPlanType',
+        'quarterly_price' => 'setQuarterlyPrice',
         'trial_days' => 'setTrialDays',
         'updated_at' => 'setUpdatedAt',
         'versions' => 'setVersions',
@@ -290,13 +355,25 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'active_version' => 'getActiveVersion',
         'audience_type' => 'getAudienceType',
+        'billing_linked_resource' => 'getBillingLinkedResource',
         'billing_product' => 'getBillingProduct',
+        'billing_strategy' => 'getBillingStrategy',
+        'catalogs' => 'getCatalogs',
         'charge_type' => 'getChargeType',
         'company_count' => 'getCompanyCount',
+        'company_id' => 'getCompanyId',
+        'company_logo_url' => 'getCompanyLogoUrl',
+        'company_name' => 'getCompanyName',
         'controlled_by' => 'getControlledBy',
+        'copied_from_plan_id' => 'getCopiedFromPlanId',
         'created_at' => 'getCreatedAt',
+        'credits' => 'getCredits',
+        'currency_prices' => 'getCurrencyPrices',
         'description' => 'getDescription',
+        'draft_version' => 'getDraftVersion',
+        'entitlements' => 'getEntitlements',
         'features' => 'getFeatures',
         'icon' => 'getIcon',
         'id' => 'getId',
@@ -308,6 +385,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'name' => 'getName',
         'one_time_price' => 'getOneTimePrice',
         'plan_type' => 'getPlanType',
+        'quarterly_price' => 'getQuarterlyPrice',
         'trial_days' => 'getTrialDays',
         'updated_at' => 'getUpdatedAt',
         'versions' => 'getVersions',
@@ -371,13 +449,25 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('active_version', $data ?? [], null);
         $this->setIfExists('audience_type', $data ?? [], null);
+        $this->setIfExists('billing_linked_resource', $data ?? [], null);
         $this->setIfExists('billing_product', $data ?? [], null);
+        $this->setIfExists('billing_strategy', $data ?? [], null);
+        $this->setIfExists('catalogs', $data ?? [], null);
         $this->setIfExists('charge_type', $data ?? [], null);
         $this->setIfExists('company_count', $data ?? [], null);
+        $this->setIfExists('company_id', $data ?? [], null);
+        $this->setIfExists('company_logo_url', $data ?? [], null);
+        $this->setIfExists('company_name', $data ?? [], null);
         $this->setIfExists('controlled_by', $data ?? [], null);
+        $this->setIfExists('copied_from_plan_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('credits', $data ?? [], null);
+        $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('draft_version', $data ?? [], null);
+        $this->setIfExists('entitlements', $data ?? [], null);
         $this->setIfExists('features', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -389,6 +479,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('one_time_price', $data ?? [], null);
         $this->setIfExists('plan_type', $data ?? [], null);
+        $this->setIfExists('quarterly_price', $data ?? [], null);
         $this->setIfExists('trial_days', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('versions', $data ?? [], null);
@@ -422,6 +513,13 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
+        if ($this->container['billing_strategy'] === null) {
+            $invalidProperties[] = "'billing_strategy' can't be null";
+        }
+        if (!is_null($this->container['catalogs']) && (count($this->container['catalogs']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'catalogs', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['charge_type'] === null) {
             $invalidProperties[] = "'charge_type' can't be null";
         }
@@ -434,18 +532,44 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
+        if ($this->container['credits'] === null) {
+            $invalidProperties[] = "'credits' can't be null";
+        }
+        if ((count($this->container['credits']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credits', number of items must be less than or equal to 1000.";
+        }
+
+        if ($this->container['currency_prices'] === null) {
+            $invalidProperties[] = "'currency_prices' can't be null";
+        }
+        if ((count($this->container['currency_prices']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['description'] === null) {
             $invalidProperties[] = "'description' can't be null";
         }
+        if (!is_null($this->container['entitlements']) && (count($this->container['entitlements']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['features'] === null) {
             $invalidProperties[] = "'features' can't be null";
         }
+        if ((count($this->container['features']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'features', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['icon'] === null) {
             $invalidProperties[] = "'icon' can't be null";
         }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
+        if (!is_null($this->container['included_credit_grants']) && (count($this->container['included_credit_grants']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'included_credit_grants', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['is_default'] === null) {
             $invalidProperties[] = "'is_default' can't be null";
         }
@@ -467,6 +591,10 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['versions'] === null) {
             $invalidProperties[] = "'versions' can't be null";
         }
+        if ((count($this->container['versions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'versions', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -481,6 +609,33 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets active_version
+     *
+     * @return \Schematic\Model\PlanVersionResponseData|null
+     */
+    public function getActiveVersion()
+    {
+        return $this->container['active_version'];
+    }
+
+    /**
+     * Sets active_version
+     *
+     * @param \Schematic\Model\PlanVersionResponseData|null $active_version active_version
+     *
+     * @return self
+     */
+    public function setActiveVersion($active_version)
+    {
+        if (is_null($active_version)) {
+            throw new \InvalidArgumentException('non-nullable active_version cannot be null');
+        }
+        $this->container['active_version'] = $active_version;
+
+        return $this;
+    }
 
     /**
      * Gets audience_type
@@ -507,13 +662,40 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'audience_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('audience_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('audience_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['audience_type'] = $audience_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_linked_resource
+     *
+     * @return \Schematic\Model\BillingLinkedResourceResponseData|null
+     */
+    public function getBillingLinkedResource()
+    {
+        return $this->container['billing_linked_resource'];
+    }
+
+    /**
+     * Sets billing_linked_resource
+     *
+     * @param \Schematic\Model\BillingLinkedResourceResponseData|null $billing_linked_resource billing_linked_resource
+     *
+     * @return self
+     */
+    public function setBillingLinkedResource($billing_linked_resource)
+    {
+        if (is_null($billing_linked_resource)) {
+            throw new \InvalidArgumentException('non-nullable billing_linked_resource cannot be null');
+        }
+        $this->container['billing_linked_resource'] = $billing_linked_resource;
 
         return $this;
     }
@@ -541,6 +723,64 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable billing_product cannot be null');
         }
         $this->container['billing_product'] = $billing_product;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_strategy
+     *
+     * @return \Schematic\Model\BillingStrategy
+     */
+    public function getBillingStrategy()
+    {
+        return $this->container['billing_strategy'];
+    }
+
+    /**
+     * Sets billing_strategy
+     *
+     * @param \Schematic\Model\BillingStrategy $billing_strategy billing_strategy
+     *
+     * @return self
+     */
+    public function setBillingStrategy($billing_strategy)
+    {
+        if (is_null($billing_strategy)) {
+            throw new \InvalidArgumentException('non-nullable billing_strategy cannot be null');
+        }
+        $this->container['billing_strategy'] = $billing_strategy;
+
+        return $this;
+    }
+
+    /**
+     * Gets catalogs
+     *
+     * @return \Schematic\Model\PlanCatalogMembershipResponseData[]|null
+     */
+    public function getCatalogs()
+    {
+        return $this->container['catalogs'];
+    }
+
+    /**
+     * Sets catalogs
+     *
+     * @param \Schematic\Model\PlanCatalogMembershipResponseData[]|null $catalogs catalogs
+     *
+     * @return self
+     */
+    public function setCatalogs($catalogs)
+    {
+        if (is_null($catalogs)) {
+            throw new \InvalidArgumentException('non-nullable catalogs cannot be null');
+        }
+
+        if ((count($catalogs) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $catalogs when calling PlanDetailResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['catalogs'] = $catalogs;
 
         return $this;
     }
@@ -600,9 +840,111 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets company_id
+     *
+     * @return string|null
+     */
+    public function getCompanyId()
+    {
+        return $this->container['company_id'];
+    }
+
+    /**
+     * Sets company_id
+     *
+     * @param string|null $company_id company_id
+     *
+     * @return self
+     */
+    public function setCompanyId($company_id)
+    {
+        if (is_null($company_id)) {
+            array_push($this->openAPINullablesSetToNull, 'company_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['company_id'] = $company_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets company_logo_url
+     *
+     * @return string|null
+     */
+    public function getCompanyLogoUrl()
+    {
+        return $this->container['company_logo_url'];
+    }
+
+    /**
+     * Sets company_logo_url
+     *
+     * @param string|null $company_logo_url company_logo_url
+     *
+     * @return self
+     */
+    public function setCompanyLogoUrl($company_logo_url)
+    {
+        if (is_null($company_logo_url)) {
+            array_push($this->openAPINullablesSetToNull, 'company_logo_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company_logo_url', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['company_logo_url'] = $company_logo_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets company_name
+     *
+     * @return string|null
+     */
+    public function getCompanyName()
+    {
+        return $this->container['company_name'];
+    }
+
+    /**
+     * Sets company_name
+     *
+     * @param string|null $company_name company_name
+     *
+     * @return self
+     */
+    public function setCompanyName($company_name)
+    {
+        if (is_null($company_name)) {
+            array_push($this->openAPINullablesSetToNull, 'company_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company_name', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['company_name'] = $company_name;
+
+        return $this;
+    }
+
+    /**
      * Gets controlled_by
      *
-     * @return \Schematic\Model\PlanControlledByType
+     * @return \Schematic\Model\BillingProviderType
      */
     public function getControlledBy()
     {
@@ -612,7 +954,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets controlled_by
      *
-     * @param \Schematic\Model\PlanControlledByType $controlled_by controlled_by
+     * @param \Schematic\Model\BillingProviderType $controlled_by controlled_by
      *
      * @return self
      */
@@ -622,6 +964,40 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable controlled_by cannot be null');
         }
         $this->container['controlled_by'] = $controlled_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets copied_from_plan_id
+     *
+     * @return string|null
+     */
+    public function getCopiedFromPlanId()
+    {
+        return $this->container['copied_from_plan_id'];
+    }
+
+    /**
+     * Sets copied_from_plan_id
+     *
+     * @param string|null $copied_from_plan_id copied_from_plan_id
+     *
+     * @return self
+     */
+    public function setCopiedFromPlanId($copied_from_plan_id)
+    {
+        if (is_null($copied_from_plan_id)) {
+            array_push($this->openAPINullablesSetToNull, 'copied_from_plan_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('copied_from_plan_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['copied_from_plan_id'] = $copied_from_plan_id;
 
         return $this;
     }
@@ -654,6 +1030,68 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets credits
+     *
+     * @return \Schematic\Model\BillingCreditResponseData[]
+     */
+    public function getCredits()
+    {
+        return $this->container['credits'];
+    }
+
+    /**
+     * Sets credits
+     *
+     * @param \Schematic\Model\BillingCreditResponseData[] $credits credits
+     *
+     * @return self
+     */
+    public function setCredits($credits)
+    {
+        if (is_null($credits)) {
+            throw new \InvalidArgumentException('non-nullable credits cannot be null');
+        }
+
+        if ((count($credits) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credits when calling PlanDetailResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['credits'] = $credits;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_prices
+     *
+     * @return \Schematic\Model\PlanCurrencyPricesResponseData[]
+     */
+    public function getCurrencyPrices()
+    {
+        return $this->container['currency_prices'];
+    }
+
+    /**
+     * Sets currency_prices
+     *
+     * @param \Schematic\Model\PlanCurrencyPricesResponseData[] $currency_prices currency_prices
+     *
+     * @return self
+     */
+    public function setCurrencyPrices($currency_prices)
+    {
+        if (is_null($currency_prices)) {
+            throw new \InvalidArgumentException('non-nullable currency_prices cannot be null');
+        }
+
+        if ((count($currency_prices) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $currency_prices when calling PlanDetailResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['currency_prices'] = $currency_prices;
+
+        return $this;
+    }
+
+    /**
      * Gets description
      *
      * @return string
@@ -681,9 +1119,74 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets draft_version
+     *
+     * @return \Schematic\Model\PlanVersionResponseData|null
+     */
+    public function getDraftVersion()
+    {
+        return $this->container['draft_version'];
+    }
+
+    /**
+     * Sets draft_version
+     *
+     * @param \Schematic\Model\PlanVersionResponseData|null $draft_version draft_version
+     *
+     * @return self
+     */
+    public function setDraftVersion($draft_version)
+    {
+        if (is_null($draft_version)) {
+            throw new \InvalidArgumentException('non-nullable draft_version cannot be null');
+        }
+        $this->container['draft_version'] = $draft_version;
+
+        return $this;
+    }
+
+    /**
+     * Gets entitlements
+     *
+     * @return \Schematic\Model\PlanEntitlementResponseData[]|null
+     */
+    public function getEntitlements()
+    {
+        return $this->container['entitlements'];
+    }
+
+    /**
+     * Sets entitlements
+     *
+     * @param \Schematic\Model\PlanEntitlementResponseData[]|null $entitlements entitlements
+     *
+     * @return self
+     */
+    public function setEntitlements($entitlements)
+    {
+        if (is_null($entitlements)) {
+            array_push($this->openAPINullablesSetToNull, 'entitlements');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('entitlements', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($entitlements) && (count($entitlements) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $entitlements when calling PlanDetailResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['entitlements'] = $entitlements;
+
+        return $this;
+    }
+
+    /**
      * Gets features
      *
-     * @return \Schematic\Model\FeatureDetailResponseData[]
+     * @return \Schematic\Model\FeatureInPlanResponseData[]
      */
     public function getFeatures()
     {
@@ -693,7 +1196,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets features
      *
-     * @param \Schematic\Model\FeatureDetailResponseData[] $features features
+     * @param \Schematic\Model\FeatureInPlanResponseData[] $features features
      *
      * @return self
      */
@@ -701,6 +1204,10 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($features)) {
             throw new \InvalidArgumentException('non-nullable features cannot be null');
+        }
+
+        if ((count($features) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $features when calling PlanDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['features'] = $features;
 
@@ -710,7 +1217,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets icon
      *
-     * @return string
+     * @return \Schematic\Model\PlanIcon
      */
     public function getIcon()
     {
@@ -720,7 +1227,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets icon
      *
-     * @param string $icon icon
+     * @param \Schematic\Model\PlanIcon $icon icon
      *
      * @return self
      */
@@ -783,6 +1290,10 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         if (is_null($included_credit_grants)) {
             throw new \InvalidArgumentException('non-nullable included_credit_grants cannot be null');
         }
+
+        if ((count($included_credit_grants) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $included_credit_grants when calling PlanDetailResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['included_credit_grants'] = $included_credit_grants;
 
         return $this;
@@ -821,6 +1332,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      * Gets is_free
      *
      * @return bool
+     * @deprecated
      */
     public function getIsFree()
     {
@@ -830,9 +1342,10 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets is_free
      *
-     * @param bool $is_free is_free
+     * @param bool $is_free Deprecated: Use BillingStrategy instead
      *
      * @return self
+     * @deprecated
      */
     public function setIsFree($is_free)
     {
@@ -980,6 +1493,33 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * Gets quarterly_price
+     *
+     * @return \Schematic\Model\BillingPriceResponseData|null
+     */
+    public function getQuarterlyPrice()
+    {
+        return $this->container['quarterly_price'];
+    }
+
+    /**
+     * Sets quarterly_price
+     *
+     * @param \Schematic\Model\BillingPriceResponseData|null $quarterly_price quarterly_price
+     *
+     * @return self
+     */
+    public function setQuarterlyPrice($quarterly_price)
+    {
+        if (is_null($quarterly_price)) {
+            throw new \InvalidArgumentException('non-nullable quarterly_price cannot be null');
+        }
+        $this->container['quarterly_price'] = $quarterly_price;
+
+        return $this;
+    }
+
+    /**
      * Gets trial_days
      *
      * @return int|null
@@ -1002,8 +1542,8 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             array_push($this->openAPINullablesSetToNull, 'trial_days');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_days', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_days', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1061,6 +1601,10 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     {
         if (is_null($versions)) {
             throw new \InvalidArgumentException('non-nullable versions cannot be null');
+        }
+
+        if ((count($versions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $versions when calling PlanDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['versions'] = $versions;
 
@@ -1157,7 +1701,7 @@ class PlanDetailResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

@@ -71,6 +71,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
         'expired_at' => '\DateTime',
         'id' => 'string',
         'interval' => 'string',
+        'invoice_id' => 'string',
+        'invoice_url' => 'string',
         'metadata' => 'object',
         'period_end' => 'int',
         'period_start' => 'int',
@@ -91,7 +93,7 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'application_id' => null,
-        'cancel_at' => null,
+        'cancel_at' => 'int64',
         'cancel_at_period_end' => null,
         'company_id' => null,
         'confirm_payment_intent_client_secret' => null,
@@ -103,14 +105,16 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
         'expired_at' => 'date-time',
         'id' => null,
         'interval' => null,
+        'invoice_id' => null,
+        'invoice_url' => null,
         'metadata' => null,
-        'period_end' => null,
-        'period_start' => null,
+        'period_end' => 'int64',
+        'period_start' => 'int64',
         'provider_type' => null,
         'status' => null,
         'subscription_external_id' => null,
-        'total_price' => null,
-        'trial_end' => null,
+        'total_price' => 'int64',
+        'trial_end' => 'int64',
         'trial_end_setting' => null
     ];
 
@@ -133,6 +137,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
         'expired_at' => true,
         'id' => false,
         'interval' => false,
+        'invoice_id' => true,
+        'invoice_url' => true,
         'metadata' => false,
         'period_end' => false,
         'period_start' => false,
@@ -243,6 +249,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
         'expired_at' => 'expired_at',
         'id' => 'id',
         'interval' => 'interval',
+        'invoice_id' => 'invoice_id',
+        'invoice_url' => 'invoice_url',
         'metadata' => 'metadata',
         'period_end' => 'period_end',
         'period_start' => 'period_start',
@@ -273,6 +281,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
         'expired_at' => 'setExpiredAt',
         'id' => 'setId',
         'interval' => 'setInterval',
+        'invoice_id' => 'setInvoiceId',
+        'invoice_url' => 'setInvoiceUrl',
         'metadata' => 'setMetadata',
         'period_end' => 'setPeriodEnd',
         'period_start' => 'setPeriodStart',
@@ -303,6 +313,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
         'expired_at' => 'getExpiredAt',
         'id' => 'getId',
         'interval' => 'getInterval',
+        'invoice_id' => 'getInvoiceId',
+        'invoice_url' => 'getInvoiceUrl',
         'metadata' => 'getMetadata',
         'period_end' => 'getPeriodEnd',
         'period_start' => 'getPeriodStart',
@@ -384,6 +396,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('expired_at', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
+        $this->setIfExists('invoice_id', $data ?? [], null);
+        $this->setIfExists('invoice_url', $data ?? [], null);
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('period_end', $data ?? [], null);
         $this->setIfExists('period_start', $data ?? [], null);
@@ -496,8 +510,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'application_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('application_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('application_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -530,8 +544,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'cancel_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('cancel_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('cancel_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -591,8 +605,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'company_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('company_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -625,8 +639,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'confirm_payment_intent_client_secret');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('confirm_payment_intent_client_secret', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('confirm_payment_intent_client_secret', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -659,8 +673,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'confirm_payment_intent_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('confirm_payment_intent_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('confirm_payment_intent_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -774,8 +788,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'default_payment_method_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default_payment_method_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('default_payment_method_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -808,8 +822,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'expired_at');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expired_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('expired_at', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -869,6 +883,74 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('non-nullable interval cannot be null');
         }
         $this->container['interval'] = $interval;
+
+        return $this;
+    }
+
+    /**
+     * Gets invoice_id
+     *
+     * @return string|null
+     */
+    public function getInvoiceId()
+    {
+        return $this->container['invoice_id'];
+    }
+
+    /**
+     * Sets invoice_id
+     *
+     * @param string|null $invoice_id invoice_id
+     *
+     * @return self
+     */
+    public function setInvoiceId($invoice_id)
+    {
+        if (is_null($invoice_id)) {
+            array_push($this->openAPINullablesSetToNull, 'invoice_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('invoice_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['invoice_id'] = $invoice_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets invoice_url
+     *
+     * @return string|null
+     */
+    public function getInvoiceUrl()
+    {
+        return $this->container['invoice_url'];
+    }
+
+    /**
+     * Sets invoice_url
+     *
+     * @param string|null $invoice_url invoice_url
+     *
+     * @return self
+     */
+    public function setInvoiceUrl($invoice_url)
+    {
+        if (is_null($invoice_url)) {
+            array_push($this->openAPINullablesSetToNull, 'invoice_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('invoice_url', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['invoice_url'] = $invoice_url;
 
         return $this;
     }
@@ -1085,8 +1167,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'trial_end');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1119,8 +1201,8 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
             array_push($this->openAPINullablesSetToNull, 'trial_end_setting');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('trial_end_setting', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('trial_end_setting', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -1193,7 +1275,7 @@ class CheckoutSubscription implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

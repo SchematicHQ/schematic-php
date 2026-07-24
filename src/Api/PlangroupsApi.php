@@ -198,7 +198,7 @@ class PlangroupsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
                     if ('\Schematic\Model\CreatePlanGroupResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -620,15 +620,16 @@ class PlangroupsApi
      *
      * Get plan group
      *
+     * @param  bool $include_company_counts include_company_counts (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanGroup'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetPlanGroupResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getPlanGroup(string $contentType = self::contentTypes['getPlanGroup'][0])
+    public function getPlanGroup($include_company_counts = null, string $contentType = self::contentTypes['getPlanGroup'][0])
     {
-        list($response) = $this->getPlanGroupWithHttpInfo($contentType);
+        list($response) = $this->getPlanGroupWithHttpInfo($include_company_counts, $contentType);
         return $response;
     }
 
@@ -637,15 +638,16 @@ class PlangroupsApi
      *
      * Get plan group
      *
+     * @param  bool $include_company_counts (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanGroup'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetPlanGroupResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getPlanGroupWithHttpInfo(string $contentType = self::contentTypes['getPlanGroup'][0])
+    public function getPlanGroupWithHttpInfo($include_company_counts = null, string $contentType = self::contentTypes['getPlanGroup'][0])
     {
-        $request = $this->getPlanGroupRequest($contentType);
+        $request = $this->getPlanGroupRequest($include_company_counts, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -682,7 +684,7 @@ class PlangroupsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\GetPlanGroupResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -900,14 +902,15 @@ class PlangroupsApi
      *
      * Get plan group
      *
+     * @param  bool $include_company_counts (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPlanGroupAsync(string $contentType = self::contentTypes['getPlanGroup'][0])
+    public function getPlanGroupAsync($include_company_counts = null, string $contentType = self::contentTypes['getPlanGroup'][0])
     {
-        return $this->getPlanGroupAsyncWithHttpInfo($contentType)
+        return $this->getPlanGroupAsyncWithHttpInfo($include_company_counts, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -920,15 +923,16 @@ class PlangroupsApi
      *
      * Get plan group
      *
+     * @param  bool $include_company_counts (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getPlanGroupAsyncWithHttpInfo(string $contentType = self::contentTypes['getPlanGroup'][0])
+    public function getPlanGroupAsyncWithHttpInfo($include_company_counts = null, string $contentType = self::contentTypes['getPlanGroup'][0])
     {
         $returnType = '\Schematic\Model\GetPlanGroupResponse';
-        $request = $this->getPlanGroupRequest($contentType);
+        $request = $this->getPlanGroupRequest($include_company_counts, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -969,13 +973,15 @@ class PlangroupsApi
     /**
      * Create request for operation 'getPlanGroup'
      *
+     * @param  bool $include_company_counts (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPlanGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getPlanGroupRequest(string $contentType = self::contentTypes['getPlanGroup'][0])
+    public function getPlanGroupRequest($include_company_counts = null, string $contentType = self::contentTypes['getPlanGroup'][0])
     {
+
 
 
         $resourcePath = '/plan-groups';
@@ -985,6 +991,15 @@ class PlangroupsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $include_company_counts,
+            'include_company_counts', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -1118,7 +1133,7 @@ class PlangroupsApi
                 );
             }
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
                     if ('\Schematic\Model\UpdatePlanGroupResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer

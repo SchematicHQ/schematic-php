@@ -59,8 +59,8 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'action' => 'string',
-        'base_plan_action' => 'string',
+        'action' => '\Schematic\Model\PlanChangeAction',
+        'base_plan_action' => '\Schematic\Model\PlanChangeBasePlanAction',
         'company_id' => 'string',
         'company_ids' => 'string[]',
         'limit' => 'int',
@@ -80,8 +80,8 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         'base_plan_action' => null,
         'company_id' => null,
         'company_ids' => null,
-        'limit' => null,
-        'offset' => null,
+        'limit' => 'int64',
+        'offset' => 'int64',
         'plan_ids' => null
     ];
 
@@ -318,12 +318,20 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['action']) && (mb_strlen($this->container['action']) > 255)) {
-            $invalidProperties[] = "invalid value for 'action', the character length must be smaller than or equal to 255.";
+        if (!is_null($this->container['company_ids']) && (count($this->container['company_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'company_ids', number of items must be less than or equal to 100.";
         }
 
-        if (!is_null($this->container['base_plan_action']) && (mb_strlen($this->container['base_plan_action']) > 255)) {
-            $invalidProperties[] = "invalid value for 'base_plan_action', the character length must be smaller than or equal to 255.";
+        if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
+            $invalidProperties[] = "invalid value for 'limit', must be smaller than or equal to 250.";
+        }
+
+        if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['plan_ids']) && (count($this->container['plan_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'plan_ids', number of items must be less than or equal to 100.";
         }
 
         return $invalidProperties;
@@ -344,7 +352,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets action
      *
-     * @return string|null
+     * @return \Schematic\Model\PlanChangeAction|null
      */
     public function getAction()
     {
@@ -354,7 +362,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets action
      *
-     * @param string|null $action action
+     * @param \Schematic\Model\PlanChangeAction|null $action action
      *
      * @return self
      */
@@ -363,10 +371,6 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         if (is_null($action)) {
             throw new \InvalidArgumentException('non-nullable action cannot be null');
         }
-        if ((mb_strlen($action) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $action when calling ListPlanChangesParams., must be smaller than or equal to 255.');
-        }
-
         $this->container['action'] = $action;
 
         return $this;
@@ -375,7 +379,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets base_plan_action
      *
-     * @return string|null
+     * @return \Schematic\Model\PlanChangeBasePlanAction|null
      */
     public function getBasePlanAction()
     {
@@ -385,7 +389,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets base_plan_action
      *
-     * @param string|null $base_plan_action base_plan_action
+     * @param \Schematic\Model\PlanChangeBasePlanAction|null $base_plan_action base_plan_action
      *
      * @return self
      */
@@ -394,10 +398,6 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         if (is_null($base_plan_action)) {
             throw new \InvalidArgumentException('non-nullable base_plan_action cannot be null');
         }
-        if ((mb_strlen($base_plan_action) > 255)) {
-            throw new \InvalidArgumentException('invalid length for $base_plan_action when calling ListPlanChangesParams., must be smaller than or equal to 255.');
-        }
-
         $this->container['base_plan_action'] = $base_plan_action;
 
         return $this;
@@ -452,6 +452,10 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         if (is_null($company_ids)) {
             throw new \InvalidArgumentException('non-nullable company_ids cannot be null');
         }
+
+        if ((count($company_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $company_ids when calling ListPlanChangesParams., number of items must be less than or equal to 100.');
+        }
         $this->container['company_ids'] = $company_ids;
 
         return $this;
@@ -479,6 +483,14 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         if (is_null($limit)) {
             throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
+
+        if (($limit > 250)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListPlanChangesParams., must be smaller than or equal to 250.');
+        }
+        if (($limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $limit when calling ListPlanChangesParams., must be bigger than or equal to 0.');
+        }
+
         $this->container['limit'] = $limit;
 
         return $this;
@@ -532,6 +544,10 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         if (is_null($plan_ids)) {
             throw new \InvalidArgumentException('non-nullable plan_ids cannot be null');
+        }
+
+        if ((count($plan_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $plan_ids when calling ListPlanChangesParams., number of items must be less than or equal to 100.');
         }
         $this->container['plan_ids'] = $plan_ids;
 
@@ -601,7 +617,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

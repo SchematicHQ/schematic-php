@@ -4,26 +4,85 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**countAccountMembers()**](AccountsApi.md#countAccountMembers) | **GET** /account-members/count | Count account members |
 | [**countApiKeys()**](AccountsApi.md#countApiKeys) | **GET** /api-keys/count | Count api keys |
-| [**countApiRequests()**](AccountsApi.md#countApiRequests) | **GET** /api-requests/count | Count api requests |
 | [**countAuditLogs()**](AccountsApi.md#countAuditLogs) | **GET** /audit-log/count | Count audit logs |
 | [**createApiKey()**](AccountsApi.md#createApiKey) | **POST** /api-keys | Create api key |
 | [**createEnvironment()**](AccountsApi.md#createEnvironment) | **POST** /environments | Create environment |
 | [**deleteApiKey()**](AccountsApi.md#deleteApiKey) | **DELETE** /api-keys/{api_key_id} | Delete api key |
 | [**deleteEnvironment()**](AccountsApi.md#deleteEnvironment) | **DELETE** /environments/{environment_id} | Delete environment |
+| [**getAccountMember()**](AccountsApi.md#getAccountMember) | **GET** /account-members/{account_member_id} | Get account member |
 | [**getApiKey()**](AccountsApi.md#getApiKey) | **GET** /api-keys/{api_key_id} | Get api key |
-| [**getApiRequest()**](AccountsApi.md#getApiRequest) | **GET** /api-requests/{api_request_id} | Get api request |
 | [**getAuditLog()**](AccountsApi.md#getAuditLog) | **GET** /audit-log/{audit_log_id} | Get audit log |
 | [**getEnvironment()**](AccountsApi.md#getEnvironment) | **GET** /environments/{environment_id} | Get environment |
-| [**getWhoAmI()**](AccountsApi.md#getWhoAmI) | **GET** /whoami | Get who am i |
+| [**getWhoAmI()**](AccountsApi.md#getWhoAmI) | **GET** /whoami | Get who am I |
+| [**listAccountMembers()**](AccountsApi.md#listAccountMembers) | **GET** /account-members | List account members |
 | [**listApiKeys()**](AccountsApi.md#listApiKeys) | **GET** /api-keys | List api keys |
-| [**listApiRequests()**](AccountsApi.md#listApiRequests) | **GET** /api-requests | List api requests |
 | [**listAuditLogs()**](AccountsApi.md#listAuditLogs) | **GET** /audit-log | List audit logs |
 | [**listEnvironments()**](AccountsApi.md#listEnvironments) | **GET** /environments | List environments |
 | [**quickstart()**](AccountsApi.md#quickstart) | **POST** /quickstart | Quickstart |
 | [**updateApiKey()**](AccountsApi.md#updateApiKey) | **PUT** /api-keys/{api_key_id} | Update api key |
 | [**updateEnvironment()**](AccountsApi.md#updateEnvironment) | **PUT** /environments/{environment_id} | Update environment |
 
+
+## `countAccountMembers()`
+
+```php
+countAccountMembers($ids, $q, $role, $limit, $offset): \Schematic\Model\CountAccountMembersResponse
+```
+
+Count account members
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$ids = array('ids_example'); // string[]
+$q = 'q_example'; // string | Search filter
+$role = new \Schematic\Model\\Schematic\Model\AccountMemberRole(); // \Schematic\Model\AccountMemberRole | Filter by member role
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->AccountsApi->countAccountMembers($ids, $q, $role, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->countAccountMembers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **q** | **string**| Search filter | [optional] |
+| **role** | [**\Schematic\Model\AccountMemberRole**](../Model/.md)| Filter by member role | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\CountAccountMembersResponse**](../Model/CountAccountMembersResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `countApiKeys()`
 
@@ -82,69 +141,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `countApiRequests()`
-
-```php
-countApiRequests($q, $request_type, $environment_id, $limit, $offset): \Schematic\Model\CountApiRequestsResponse
-```
-
-Count api requests
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$q = 'q_example'; // string
-$request_type = 'request_type_example'; // string
-$environment_id = 'environment_id_example'; // string
-$limit = 100; // int | Page limit (default 100)
-$offset = 0; // int | Page offset (default 0)
-
-try {
-    $result = $schematic->AccountsApi->countApiRequests($q, $request_type, $environment_id, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->AccountsApi->countApiRequests: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **q** | **string**|  | [optional] |
-| **request_type** | **string**|  | [optional] |
-| **environment_id** | **string**|  | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\CountApiRequestsResponse**](../Model/CountApiRequestsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `countAuditLogs()`
 
 ```php
-countAuditLogs($actor_type, $environment_id, $q, $limit, $offset): \Schematic\Model\CountAuditLogsResponse
+countAuditLogs($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset): \Schematic\Model\CountAuditLogsResponse
 ```
 
 Count audit logs
@@ -160,13 +160,15 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $actor_type = new \Schematic\Model\ActorType(); // ActorType
+$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $environment_id = 'environment_id_example'; // string
 $q = 'q_example'; // string
+$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->AccountsApi->countAuditLogs($actor_type, $environment_id, $q, $limit, $offset);
+    $result = $schematic->AccountsApi->countAuditLogs($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->AccountsApi->countAuditLogs: ', $e->getMessage(), PHP_EOL;
@@ -178,8 +180,10 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **actor_type** | [**ActorType**](../Model/.md)|  | [optional] |
+| **end_time** | **\DateTime**|  | [optional] |
 | **environment_id** | **string**|  | [optional] |
 | **q** | **string**|  | [optional] |
+| **start_time** | **\DateTime**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 
@@ -404,6 +408,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAccountMember()`
+
+```php
+getAccountMember($account_member_id): \Schematic\Model\GetAccountMemberResponse
+```
+
+Get account member
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$account_member_id = 'account_member_id_example'; // string | account_member_id
+
+try {
+    $result = $schematic->AccountsApi->getAccountMember($account_member_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->getAccountMember: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **account_member_id** | **string**| account_member_id | |
+
+### Return type
+
+[**\Schematic\Model\GetAccountMemberResponse**](../Model/GetAccountMemberResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getApiKey()`
 
 ```php
@@ -441,57 +496,6 @@ try {
 ### Return type
 
 [**\Schematic\Model\GetApiKeyResponse**](../Model/GetApiKeyResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getApiRequest()`
-
-```php
-getApiRequest($api_request_id): \Schematic\Model\GetApiRequestResponse
-```
-
-Get api request
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$api_request_id = 'api_request_id_example'; // string | api_request_id
-
-try {
-    $result = $schematic->AccountsApi->getApiRequest($api_request_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->AccountsApi->getApiRequest: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **api_request_id** | **string**| api_request_id | |
-
-### Return type
-
-[**\Schematic\Model\GetApiRequestResponse**](../Model/GetApiRequestResponse.md)
 
 ### Authorization
 
@@ -614,7 +618,7 @@ try {
 getWhoAmI(): \Schematic\Model\GetWhoAmIResponse
 ```
 
-Get who am i
+Get who am I
 
 ### Example
 
@@ -642,6 +646,65 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\Schematic\Model\GetWhoAmIResponse**](../Model/GetWhoAmIResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listAccountMembers()`
+
+```php
+listAccountMembers($ids, $q, $role, $limit, $offset): \Schematic\Model\ListAccountMembersResponse
+```
+
+List account members
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$ids = array('ids_example'); // string[]
+$q = 'q_example'; // string | Search filter
+$role = new \Schematic\Model\\Schematic\Model\AccountMemberRole(); // \Schematic\Model\AccountMemberRole | Filter by member role
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->AccountsApi->listAccountMembers($ids, $q, $role, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->listAccountMembers: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **q** | **string**| Search filter | [optional] |
+| **role** | [**\Schematic\Model\AccountMemberRole**](../Model/.md)| Filter by member role | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListAccountMembersResponse**](../Model/ListAccountMembersResponse.md)
 
 ### Authorization
 
@@ -713,69 +776,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `listApiRequests()`
-
-```php
-listApiRequests($q, $request_type, $environment_id, $limit, $offset): \Schematic\Model\ListApiRequestsResponse
-```
-
-List api requests
-
-### Example
-
-```php
-<?php
-require_once 'vendor/autoload.php';
-
-use Schematic\Schematic;
-
-$schematic = new Schematic('YOUR_SECRET_API_KEY');
-
-$q = 'q_example'; // string
-$request_type = 'request_type_example'; // string
-$environment_id = 'environment_id_example'; // string
-$limit = 100; // int | Page limit (default 100)
-$offset = 0; // int | Page offset (default 0)
-
-try {
-    $result = $schematic->AccountsApi->listApiRequests($q, $request_type, $environment_id, $limit, $offset);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling Schematic->AccountsApi->listApiRequests: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **q** | **string**|  | [optional] |
-| **request_type** | **string**|  | [optional] |
-| **environment_id** | **string**|  | [optional] |
-| **limit** | **int**| Page limit (default 100) | [optional] |
-| **offset** | **int**| Page offset (default 0) | [optional] |
-
-### Return type
-
-[**\Schematic\Model\ListApiRequestsResponse**](../Model/ListApiRequestsResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `listAuditLogs()`
 
 ```php
-listAuditLogs($actor_type, $environment_id, $q, $limit, $offset): \Schematic\Model\ListAuditLogsResponse
+listAuditLogs($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset): \Schematic\Model\ListAuditLogsResponse
 ```
 
 List audit logs
@@ -791,13 +795,15 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $actor_type = new \Schematic\Model\ActorType(); // ActorType
+$end_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $environment_id = 'environment_id_example'; // string
 $q = 'q_example'; // string
+$start_time = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->AccountsApi->listAuditLogs($actor_type, $environment_id, $q, $limit, $offset);
+    $result = $schematic->AccountsApi->listAuditLogs($actor_type, $end_time, $environment_id, $q, $start_time, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->AccountsApi->listAuditLogs: ', $e->getMessage(), PHP_EOL;
@@ -809,8 +815,10 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **actor_type** | [**ActorType**](../Model/.md)|  | [optional] |
+| **end_time** | **\DateTime**|  | [optional] |
 | **environment_id** | **string**|  | [optional] |
 | **q** | **string**|  | [optional] |
+| **start_time** | **\DateTime**|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 

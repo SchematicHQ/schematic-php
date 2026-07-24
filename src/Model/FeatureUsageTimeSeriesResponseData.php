@@ -312,9 +312,17 @@ class FeatureUsageTimeSeriesResponseData implements ModelInterface, ArrayAccess,
         if ($this->container['limits'] === null) {
             $invalidProperties[] = "'limits' can't be null";
         }
+        if ((count($this->container['limits']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'limits', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['usage_points'] === null) {
             $invalidProperties[] = "'usage_points' can't be null";
         }
+        if ((count($this->container['usage_points']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'usage_points', number of items must be less than or equal to 1000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -406,6 +414,10 @@ class FeatureUsageTimeSeriesResponseData implements ModelInterface, ArrayAccess,
         if (is_null($limits)) {
             throw new \InvalidArgumentException('non-nullable limits cannot be null');
         }
+
+        if ((count($limits) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $limits when calling FeatureUsageTimeSeriesResponseData., number of items must be less than or equal to 1000.');
+        }
         $this->container['limits'] = $limits;
 
         return $this;
@@ -434,8 +446,8 @@ class FeatureUsageTimeSeriesResponseData implements ModelInterface, ArrayAccess,
             array_push($this->openAPINullablesSetToNull, 'period_type');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('period_type', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('period_type', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
@@ -466,6 +478,10 @@ class FeatureUsageTimeSeriesResponseData implements ModelInterface, ArrayAccess,
     {
         if (is_null($usage_points)) {
             throw new \InvalidArgumentException('non-nullable usage_points cannot be null');
+        }
+
+        if ((count($usage_points) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $usage_points when calling FeatureUsageTimeSeriesResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['usage_points'] = $usage_points;
 
@@ -535,7 +551,7 @@ class FeatureUsageTimeSeriesResponseData implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

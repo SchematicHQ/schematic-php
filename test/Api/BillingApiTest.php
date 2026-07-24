@@ -97,12 +97,60 @@ class BillingApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteBillingCoupon
+     *
+     * Delete billing coupon.
+     *
+     */
+    public function testDeleteBillingCoupon()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteBillingCustomer
+     *
+     * Delete billing customer.
+     *
+     */
+    public function testDeleteBillingCustomer()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteBillingInvoice
+     *
+     * Delete billing invoice.
+     *
+     */
+    public function testDeleteBillingInvoice()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteBillingProduct
      *
      * Delete billing product.
      *
      */
     public function testDeleteBillingProduct()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deletePaymentMethodByExternalID
+     *
+     * Delete payment method by external ID.
+     *
+     */
+    public function testDeletePaymentMethodByExternalID()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

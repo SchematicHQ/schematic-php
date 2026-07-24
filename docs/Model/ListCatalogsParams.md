@@ -1,0 +1,12 @@
+# # ListCatalogsParams
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**is_default** | **bool** |  | [optional]
+**limit** | **int** | Page limit (default 100) | [optional]
+**offset** | **int** | Page offset (default 0) | [optional]
+**q** | **string** | Search by catalog name | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

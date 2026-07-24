@@ -73,24 +73,24 @@ class AccountsApiTest extends TestCase
     }
 
     /**
-     * Test case for countApiKeys
+     * Test case for countAccountMembers
      *
-     * Count api keys.
+     * Count account members.
      *
      */
-    public function testCountApiKeys()
+    public function testCountAccountMembers()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for countApiRequests
+     * Test case for countApiKeys
      *
-     * Count api requests.
+     * Count api keys.
      *
      */
-    public function testCountApiRequests()
+    public function testCountApiKeys()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -157,24 +157,24 @@ class AccountsApiTest extends TestCase
     }
 
     /**
-     * Test case for getApiKey
+     * Test case for getAccountMember
      *
-     * Get api key.
+     * Get account member.
      *
      */
-    public function testGetApiKey()
+    public function testGetAccountMember()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getApiRequest
+     * Test case for getApiKey
      *
-     * Get api request.
+     * Get api key.
      *
      */
-    public function testGetApiRequest()
+    public function testGetApiKey()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -207,10 +207,22 @@ class AccountsApiTest extends TestCase
     /**
      * Test case for getWhoAmI
      *
-     * Get who am i.
+     * Get who am I.
      *
      */
     public function testGetWhoAmI()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for listAccountMembers
+     *
+     * List account members.
+     *
+     */
+    public function testListAccountMembers()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -223,18 +235,6 @@ class AccountsApiTest extends TestCase
      *
      */
     public function testListApiKeys()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for listApiRequests
-     *
-     * List api requests.
-     *
-     */
-    public function testListApiRequests()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

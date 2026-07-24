@@ -198,6 +198,24 @@ class CheckoutSubscriptionTest extends TestCase
     }
 
     /**
+     * Test attribute "invoice_id"
+     */
+    public function testPropertyInvoiceId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "invoice_url"
+     */
+    public function testPropertyInvoiceUrl()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "metadata"
      */
     public function testPropertyMetadata()

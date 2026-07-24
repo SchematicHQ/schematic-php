@@ -115,13 +115,4 @@ class CreatePlanBundleRequestBodyTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
-
-    /**
-     * Test attribute "traits"
-     */
-    public function testPropertyTraits()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
 }

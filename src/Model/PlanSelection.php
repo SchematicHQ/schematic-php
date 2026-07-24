@@ -59,7 +59,8 @@ class PlanSelection implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'plan_id' => 'string',
-        'price_id' => 'string'
+        'price_id' => 'string',
+        'version_id' => 'string'
     ];
 
     /**
@@ -71,7 +72,8 @@ class PlanSelection implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'plan_id' => null,
-        'price_id' => null
+        'price_id' => null,
+        'version_id' => null
     ];
 
     /**
@@ -81,7 +83,8 @@ class PlanSelection implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'plan_id' => false,
-        'price_id' => true
+        'price_id' => true,
+        'version_id' => true
     ];
 
     /**
@@ -171,7 +174,8 @@ class PlanSelection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'plan_id' => 'plan_id',
-        'price_id' => 'price_id'
+        'price_id' => 'price_id',
+        'version_id' => 'version_id'
     ];
 
     /**
@@ -181,7 +185,8 @@ class PlanSelection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'plan_id' => 'setPlanId',
-        'price_id' => 'setPriceId'
+        'price_id' => 'setPriceId',
+        'version_id' => 'setVersionId'
     ];
 
     /**
@@ -191,7 +196,8 @@ class PlanSelection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'plan_id' => 'getPlanId',
-        'price_id' => 'getPriceId'
+        'price_id' => 'getPriceId',
+        'version_id' => 'getVersionId'
     ];
 
     /**
@@ -253,6 +259,7 @@ class PlanSelection implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('price_id', $data ?? [], null);
+        $this->setIfExists('version_id', $data ?? [], null);
     }
 
     /**
@@ -350,13 +357,47 @@ class PlanSelection implements ModelInterface, ArrayAccess, \JsonSerializable
             array_push($this->openAPINullablesSetToNull, 'price_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('price_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
+            $index = array_search('price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
         $this->container['price_id'] = $price_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets version_id
+     *
+     * @return string|null
+     */
+    public function getVersionId()
+    {
+        return $this->container['version_id'];
+    }
+
+    /**
+     * Sets version_id
+     *
+     * @param string|null $version_id version_id
+     *
+     * @return self
+     */
+    public function setVersionId($version_id)
+    {
+        if (is_null($version_id)) {
+            array_push($this->openAPINullablesSetToNull, 'version_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('version_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['version_id'] = $version_id;
 
         return $this;
     }
@@ -424,7 +465,7 @@ class PlanSelection implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
