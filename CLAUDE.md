@@ -127,6 +127,15 @@ The SDK version is defined in `config.yaml` (`artifactVersion` and `httpUserAgen
 2. Run `./generate.sh`
 3. Commit, tag, and push
 
+### GitHub Actions
+
+Two workflows automate the above:
+
+- **Regenerate SDK** (`.github/workflows/regenerate.yml`) — runs `./generate.sh` weekly on Monday at 10 AM UTC, or on demand. It opens a pull request from `automated/regenerate-sdk` only when the output actually changes, and reuses that branch while it stays open so unreviewed runs don't stack up pull requests. It runs PHPUnit itself and reports which classes in `src/Api/` are missing from `src/Schematic.php`.
+- **Release** (`.github/workflows/release.yml`) — manual only, with an optional `version` input that defaults to a patch bump of the latest release. It bumps `config.yaml`, regenerates, and opens a `release/vX.Y.Z` pull request. Tagging and publishing the release stay manual: merge the pull request, then tag `v0.X.Y` on `main`.
+
+Both stop at a pull request because `main` requires review. They fall back to `GITHUB_TOKEN`, which cannot start the required `Test` check on its own pull requests — set an `AUTOMATION_TOKEN` secret (a PAT with `contents` and `pull-requests` write) to get checks running automatically.
+
 ## Development Notes
 
 - PHP 7.4 or 8.0+ is required for development

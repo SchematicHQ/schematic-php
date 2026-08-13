@@ -1,0 +1,139 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release, e.g. 0.12.0. Defaults to a patch bump of the latest release.'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prepare:
+    name: Prepare release pull request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # A PAT makes the pull request start the required "Test" check;
+          # pull requests authored by GITHUB_TOKEN do not trigger workflows.
+          token: ${{ secrets.AUTOMATION_TOKEN || github.token }}
+
+      - name: Resolve version
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          if [ -n "$INPUT_VERSION" ]; then
+            version="${INPUT_VERSION#v}"
+          else
+            latest=$(gh release view --json tagName --jq .tagName)
+            core="${latest#v}"; core="${core%%-*}"; core="${core%%+*}"
+            IFS='.' read -r major minor patch <<< "$core"
+            if ! [[ "$major" =~ ^[0-9]+$ && "$minor" =~ ^[0-9]+$ && "$patch" =~ ^[0-9]+$ ]]; then
+              echo "::error::Could not parse a semver from the latest release tag $latest."
+              exit 1
+            fi
+            version="${major}.${minor}.$((patch + 1))"
+            echo "No version given; bumping the patch of $latest."
+          fi
+
+          if ! [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::'$version' is not an X.Y.Z version."
+            exit 1
+          fi
+          if git rev-parse -q --verify "refs/tags/v$version" >/dev/null; then
+            echo "::error::Tag v$version already exists."
+            exit 1
+          fi
+
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Releasing v$version."
+
+      - name: Setup Java # openapi-generator-cli runs on the JVM
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: curl, json, mbstring
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Bump version in config.yaml
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          sed -i -E "s|^( *artifactVersion: ).*|\1$VERSION|" config.yaml
+          sed -i -E "s|^( *httpUserAgent: ).*|\1schematic-php@$VERSION|" config.yaml
+          git diff -- config.yaml
+
+      # generate.sh propagates the version to composer.json and
+      # src/Configuration.php, and refreshes the generated code from the spec.
+      - name: Regenerate SDK
+        run: ./generate.sh
+
+      - name: Verify version propagated
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          grep -q "\"version\": \"$VERSION\"" composer.json \
+            || { echo "::error::composer.json was not bumped to $VERSION."; exit 1; }
+          grep -q "$VERSION" src/Configuration.php \
+            || { echo "::error::src/Configuration.php was not bumped to $VERSION."; exit 1; }
+
+      # The required "Test" check does not run on pull requests authored by
+      # GITHUB_TOKEN, so gate the release on the suite here.
+      - name: PHPUnit tests
+        run: vendor/bin/phpunit
+
+      - name: Open release pull request
+        env:
+          GH_TOKEN: ${{ secrets.AUTOMATION_TOKEN || github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          branch="release/v$VERSION"
+          git checkout -B "$branch"
+          git add -A
+          git commit -m "chore(release): v$VERSION"
+          git push --force origin "$branch"
+
+          {
+            echo "Bumps the SDK to \`v$VERSION\` and regenerates from the OpenAPI spec."
+            echo
+            echo "The diff also carries any spec changes since the last regeneration — review those before merging."
+            echo
+            echo "After merging, tag \`v$VERSION\` on \`main\` and publish the release; Packagist picks the SDK up from the tag."
+          } > /tmp/pr-body.md
+
+          if [ -n "$(gh pr list --head "$branch" --state open --json number --jq '.[].number')" ]; then
+            gh pr edit "$branch" --body-file /tmp/pr-body.md
+            echo "Updated the existing pull request for $branch."
+          else
+            gh pr create \
+              --head "$branch" \
+              --base main \
+              --title "chore(release): v$VERSION" \
+              --body-file /tmp/pr-body.md
+          fi
