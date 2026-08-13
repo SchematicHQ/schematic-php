@@ -6,7 +6,9 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | ------------- | ------------- | ------------- |
 | [**countCompanies()**](CompaniesApi.md#countCompanies) | **GET** /companies/count | Count companies |
 | [**countEntityKeyDefinitions()**](CompaniesApi.md#countEntityKeyDefinitions) | **GET** /entity-key-definitions/count | Count entity key definitions |
+| [**countEntityKeys()**](CompaniesApi.md#countEntityKeys) | **GET** /entity-keys/count | Count entity keys |
 | [**countEntityTraitDefinitions()**](CompaniesApi.md#countEntityTraitDefinitions) | **GET** /entity-trait-definitions/count | Count entity trait definitions |
+| [**countEntityTraits()**](CompaniesApi.md#countEntityTraits) | **GET** /entity-traits/count | Count entity traits |
 | [**countPlanTraits()**](CompaniesApi.md#countPlanTraits) | **GET** /plan-traits/count | Count plan traits |
 | [**countUsers()**](CompaniesApi.md#countUsers) | **GET** /users/count | Count users |
 | [**createCompany()**](CompaniesApi.md#createCompany) | **POST** /companies/create | Create company |
@@ -14,6 +16,8 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**deleteCompany()**](CompaniesApi.md#deleteCompany) | **DELETE** /companies/{company_id} | Delete company |
 | [**deleteCompanyByKeys()**](CompaniesApi.md#deleteCompanyByKeys) | **POST** /companies/delete | Delete company by keys |
 | [**deleteCompanyMembership()**](CompaniesApi.md#deleteCompanyMembership) | **DELETE** /company-memberships/{company_membership_id} | Delete company membership |
+| [**deleteEntityKeyDefinition()**](CompaniesApi.md#deleteEntityKeyDefinition) | **DELETE** /entity-key-definitions/{entity_key_definition_id} | Delete entity key definition |
+| [**deleteEntityTraitDefinition()**](CompaniesApi.md#deleteEntityTraitDefinition) | **DELETE** /entity-trait-definitions/{entity_trait_definition_id} | Delete entity trait definition |
 | [**deleteUser()**](CompaniesApi.md#deleteUser) | **DELETE** /users/{user_id} | Delete user |
 | [**deleteUserByKeys()**](CompaniesApi.md#deleteUserByKeys) | **POST** /users/delete | Delete user by keys |
 | [**getActiveCompanySubscription()**](CompaniesApi.md#getActiveCompanySubscription) | **GET** /company-subscriptions | Get active company subscription |
@@ -21,6 +25,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**getCompany()**](CompaniesApi.md#getCompany) | **GET** /companies/{company_id} | Get company |
 | [**getCompanyBillingEntity()**](CompaniesApi.md#getCompanyBillingEntity) | **GET** /company-billing-entity | Get company billing entity |
 | [**getEntityTraitDefinition()**](CompaniesApi.md#getEntityTraitDefinition) | **GET** /entity-trait-definitions/{entity_trait_definition_id} | Get entity trait definition |
+| [**getEntityTraitDefinitionUsage()**](CompaniesApi.md#getEntityTraitDefinitionUsage) | **GET** /entity-trait-definitions/{entity_trait_definition_id}/usage | Get entity trait definition usage |
 | [**getEntityTraitValues()**](CompaniesApi.md#getEntityTraitValues) | **GET** /entity-trait-values | Get entity trait values |
 | [**getOrCreateCompanyMembership()**](CompaniesApi.md#getOrCreateCompanyMembership) | **POST** /company-memberships | Get or create company membership |
 | [**getOrCreateEntityTraitDefinition()**](CompaniesApi.md#getOrCreateEntityTraitDefinition) | **POST** /entity-trait-definitions | Get or create entity trait definition |
@@ -192,6 +197,63 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `countEntityKeys()`
+
+```php
+countEntityKeys($definition_id, $entity_type, $limit, $offset): \Schematic\Model\CountEntityKeysResponse
+```
+
+Count entity keys
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$definition_id = 'definition_id_example'; // string
+$entity_type = new \Schematic\Model\\Schematic\Model\EntityType(); // \Schematic\Model\EntityType
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CompaniesApi->countEntityKeys($definition_id, $entity_type, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->countEntityKeys: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **definition_id** | **string**|  | [optional] |
+| **entity_type** | [**\Schematic\Model\EntityType**](../Model/.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\CountEntityKeysResponse**](../Model/CountEntityKeysResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `countEntityTraitDefinitions()`
 
 ```php
@@ -241,6 +303,63 @@ try {
 ### Return type
 
 [**\Schematic\Model\CountEntityTraitDefinitionsResponse**](../Model/CountEntityTraitDefinitionsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `countEntityTraits()`
+
+```php
+countEntityTraits($definition_id, $entity_type, $limit, $offset): \Schematic\Model\CountEntityTraitsResponse
+```
+
+Count entity traits
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$definition_id = 'definition_id_example'; // string
+$entity_type = new \Schematic\Model\\Schematic\Model\EntityType(); // \Schematic\Model\EntityType
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CompaniesApi->countEntityTraits($definition_id, $entity_type, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->countEntityTraits: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **definition_id** | **string**|  | [optional] |
+| **entity_type** | [**\Schematic\Model\EntityType**](../Model/.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\CountEntityTraitsResponse**](../Model/CountEntityTraitsResponse.md)
 
 ### Authorization
 
@@ -636,6 +755,108 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteEntityKeyDefinition()`
+
+```php
+deleteEntityKeyDefinition($entity_key_definition_id): \Schematic\Model\DeleteEntityKeyDefinitionResponse
+```
+
+Delete entity key definition
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$entity_key_definition_id = 'entity_key_definition_id_example'; // string | entity_key_definition_id
+
+try {
+    $result = $schematic->CompaniesApi->deleteEntityKeyDefinition($entity_key_definition_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->deleteEntityKeyDefinition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **entity_key_definition_id** | **string**| entity_key_definition_id | |
+
+### Return type
+
+[**\Schematic\Model\DeleteEntityKeyDefinitionResponse**](../Model/DeleteEntityKeyDefinitionResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteEntityTraitDefinition()`
+
+```php
+deleteEntityTraitDefinition($entity_trait_definition_id): \Schematic\Model\DeleteEntityTraitDefinitionResponse
+```
+
+Delete entity trait definition
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$entity_trait_definition_id = 'entity_trait_definition_id_example'; // string | entity_trait_definition_id
+
+try {
+    $result = $schematic->CompaniesApi->deleteEntityTraitDefinition($entity_trait_definition_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->deleteEntityTraitDefinition: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **entity_trait_definition_id** | **string**| entity_trait_definition_id | |
+
+### Return type
+
+[**\Schematic\Model\DeleteEntityTraitDefinitionResponse**](../Model/DeleteEntityTraitDefinitionResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteUser()`
 
 ```php
@@ -985,6 +1206,57 @@ try {
 ### Return type
 
 [**\Schematic\Model\GetEntityTraitDefinitionResponse**](../Model/GetEntityTraitDefinitionResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getEntityTraitDefinitionUsage()`
+
+```php
+getEntityTraitDefinitionUsage($entity_trait_definition_id): \Schematic\Model\GetEntityTraitDefinitionUsageResponse
+```
+
+Get entity trait definition usage
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$entity_trait_definition_id = 'entity_trait_definition_id_example'; // string | entity_trait_definition_id
+
+try {
+    $result = $schematic->CompaniesApi->getEntityTraitDefinitionUsage($entity_trait_definition_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CompaniesApi->getEntityTraitDefinitionUsage: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **entity_trait_definition_id** | **string**| entity_trait_definition_id | |
+
+### Return type
+
+[**\Schematic\Model\GetEntityTraitDefinitionUsageResponse**](../Model/GetEntityTraitDefinitionUsageResponse.md)
 
 ### Authorization
 
@@ -1582,7 +1854,7 @@ try {
 ## `listPlanChanges()`
 
 ```php
-listPlanChanges($action, $base_plan_action, $company_id, $company_ids, $plan_ids, $limit, $offset): \Schematic\Model\ListPlanChangesResponse
+listPlanChanges($action, $base_plan_action, $company_id, $company_ids, $limit, $offset): \Schematic\Model\ListPlanChangesResponse
 ```
 
 List plan changes
@@ -1601,12 +1873,11 @@ $action = new \Schematic\Model\\Schematic\Model\PlanChangeAction(); // \Schemati
 $base_plan_action = new \Schematic\Model\\Schematic\Model\PlanChangeBasePlanAction(); // \Schematic\Model\PlanChangeBasePlanAction
 $company_id = 'company_id_example'; // string
 $company_ids = array('company_ids_example'); // string[]
-$plan_ids = array('plan_ids_example'); // string[]
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CompaniesApi->listPlanChanges($action, $base_plan_action, $company_id, $company_ids, $plan_ids, $limit, $offset);
+    $result = $schematic->CompaniesApi->listPlanChanges($action, $base_plan_action, $company_id, $company_ids, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CompaniesApi->listPlanChanges: ', $e->getMessage(), PHP_EOL;
@@ -1621,7 +1892,6 @@ try {
 | **base_plan_action** | [**\Schematic\Model\PlanChangeBasePlanAction**](../Model/.md)|  | [optional] |
 | **company_id** | **string**|  | [optional] |
 | **company_ids** | [**string[]**](../Model/string.md)|  | [optional] |
-| **plan_ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
 | **offset** | **int**| Page offset (default 0) | [optional] |
 

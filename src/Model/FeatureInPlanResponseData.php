@@ -67,6 +67,7 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => '\Schematic\Model\FlagInPlanResponseData[]',
         'icon' => 'string',
         'id' => 'string',
+        'license_id' => 'string',
         'lifecycle_phase' => '\Schematic\Model\FeatureLifecyclePhase',
         'maintainer_account_member_id' => 'string',
         'name' => 'string',
@@ -75,7 +76,8 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => 'string',
         'trait' => '\Schematic\Model\EntityTraitDefinitionResponseData',
         'trait_id' => 'string',
-        'updated_at' => '\DateTime'
+        'updated_at' => '\DateTime',
+        'usage_limit_trait_id' => 'string'
     ];
 
     /**
@@ -95,6 +97,7 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => null,
         'icon' => null,
         'id' => null,
+        'license_id' => null,
         'lifecycle_phase' => null,
         'maintainer_account_member_id' => null,
         'name' => null,
@@ -103,7 +106,8 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => null,
         'trait' => null,
         'trait_id' => null,
-        'updated_at' => 'date-time'
+        'updated_at' => 'date-time',
+        'usage_limit_trait_id' => null
     ];
 
     /**
@@ -121,6 +125,7 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => false,
         'icon' => false,
         'id' => false,
+        'license_id' => true,
         'lifecycle_phase' => true,
         'maintainer_account_member_id' => true,
         'name' => false,
@@ -129,7 +134,8 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => true,
         'trait' => false,
         'trait_id' => true,
-        'updated_at' => false
+        'updated_at' => false,
+        'usage_limit_trait_id' => true
     ];
 
     /**
@@ -227,6 +233,7 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => 'flags',
         'icon' => 'icon',
         'id' => 'id',
+        'license_id' => 'license_id',
         'lifecycle_phase' => 'lifecycle_phase',
         'maintainer_account_member_id' => 'maintainer_account_member_id',
         'name' => 'name',
@@ -235,7 +242,8 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => 'singular_name',
         'trait' => 'trait',
         'trait_id' => 'trait_id',
-        'updated_at' => 'updated_at'
+        'updated_at' => 'updated_at',
+        'usage_limit_trait_id' => 'usage_limit_trait_id'
     ];
 
     /**
@@ -253,6 +261,7 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => 'setFlags',
         'icon' => 'setIcon',
         'id' => 'setId',
+        'license_id' => 'setLicenseId',
         'lifecycle_phase' => 'setLifecyclePhase',
         'maintainer_account_member_id' => 'setMaintainerAccountMemberId',
         'name' => 'setName',
@@ -261,7 +270,8 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => 'setSingularName',
         'trait' => 'setTrait',
         'trait_id' => 'setTraitId',
-        'updated_at' => 'setUpdatedAt'
+        'updated_at' => 'setUpdatedAt',
+        'usage_limit_trait_id' => 'setUsageLimitTraitId'
     ];
 
     /**
@@ -279,6 +289,7 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => 'getFlags',
         'icon' => 'getIcon',
         'id' => 'getId',
+        'license_id' => 'getLicenseId',
         'lifecycle_phase' => 'getLifecyclePhase',
         'maintainer_account_member_id' => 'getMaintainerAccountMemberId',
         'name' => 'getName',
@@ -287,7 +298,8 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => 'getSingularName',
         'trait' => 'getTrait',
         'trait_id' => 'getTraitId',
-        'updated_at' => 'getUpdatedAt'
+        'updated_at' => 'getUpdatedAt',
+        'usage_limit_trait_id' => 'getUsageLimitTraitId'
     ];
 
     /**
@@ -356,6 +368,7 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('flags', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('license_id', $data ?? [], null);
         $this->setIfExists('lifecycle_phase', $data ?? [], null);
         $this->setIfExists('maintainer_account_member_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -365,6 +378,7 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('trait', $data ?? [], null);
         $this->setIfExists('trait_id', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('usage_limit_trait_id', $data ?? [], null);
     }
 
     /**
@@ -699,6 +713,40 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * Gets license_id
+     *
+     * @return string|null
+     */
+    public function getLicenseId()
+    {
+        return $this->container['license_id'];
+    }
+
+    /**
+     * Sets license_id
+     *
+     * @param string|null $license_id The license sold through this feature. Set only on features of type license, and created automatically with them.
+     *
+     * @return self
+     */
+    public function setLicenseId($license_id)
+    {
+        if (is_null($license_id)) {
+            array_push($this->openAPINullablesSetToNull, 'license_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('license_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['license_id'] = $license_id;
+
+        return $this;
+    }
+
+    /**
      * Gets lifecycle_phase
      *
      * @return \Schematic\Model\FeatureLifecyclePhase|null
@@ -976,6 +1024,40 @@ class FeatureInPlanResponseData implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage_limit_trait_id
+     *
+     * @return string|null
+     */
+    public function getUsageLimitTraitId()
+    {
+        return $this->container['usage_limit_trait_id'];
+    }
+
+    /**
+     * Sets usage_limit_trait_id
+     *
+     * @param string|null $usage_limit_trait_id Set when the feature carries a pay-in-advance quantity. Provisioned lazily for other feature types, and at creation for license features.
+     *
+     * @return self
+     */
+    public function setUsageLimitTraitId($usage_limit_trait_id)
+    {
+        if (is_null($usage_limit_trait_id)) {
+            array_push($this->openAPINullablesSetToNull, 'usage_limit_trait_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('usage_limit_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['usage_limit_trait_id'] = $usage_limit_trait_id;
 
         return $this;
     }

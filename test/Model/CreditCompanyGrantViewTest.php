@@ -108,6 +108,15 @@ class CreditCompanyGrantViewTest extends TestCase
     }
 
     /**
+     * Test attribute "company_license_id"
+     */
+    public function testPropertyCompanyLicenseId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "company_name"
      */
     public function testPropertyCompanyName()
@@ -219,6 +228,15 @@ class CreditCompanyGrantViewTest extends TestCase
      * Test attribute "id"
      */
     public function testPropertyId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "license_name"
+     */
+    public function testPropertyLicenseName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

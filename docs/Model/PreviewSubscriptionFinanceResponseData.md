@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount_off** | **int** |  |
+**discount_amount** | **int** |  |
 **discounts** | [**\Schematic\Model\PreviewSubscriptionDiscountResponseData[]**](PreviewSubscriptionDiscountResponseData.md) |  |
 **due_now** | **int** |  |
 **new_charges** | **int** |  |

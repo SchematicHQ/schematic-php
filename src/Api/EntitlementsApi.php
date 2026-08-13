@@ -117,6 +117,12 @@ class EntitlementsApi
         'getPlanEntitlement' => [
             'application/json',
         ],
+        'getUserUsageByCompany' => [
+            'application/json',
+        ],
+        'getUserUsageDetail' => [
+            'application/json',
+        ],
         'listCompanyOverrides' => [
             'application/json',
         ],
@@ -5473,6 +5479,762 @@ class EntitlementsApi
                 $resourcePath
             );
         }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getUserUsageByCompany
+     *
+     * Get user usage by company
+     *
+     * @param  string $company_id Company to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  string|null $feature_id Restrict to a single event-based feature (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageByCompany'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\GetUserUsageByCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function getUserUsageByCompany($company_id, $end_time = null, $feature_id = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageByCompany'][0])
+    {
+        list($response) = $this->getUserUsageByCompanyWithHttpInfo($company_id, $end_time, $feature_id, $start_time, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getUserUsageByCompanyWithHttpInfo
+     *
+     * Get user usage by company
+     *
+     * @param  string $company_id Company to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  string|null $feature_id Restrict to a single event-based feature (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageByCompany'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\GetUserUsageByCompanyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getUserUsageByCompanyWithHttpInfo($company_id, $end_time = null, $feature_id = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageByCompany'][0])
+    {
+        $request = $this->getUserUsageByCompanyRequest($company_id, $end_time, $feature_id, $start_time, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\GetUserUsageByCompanyResponse',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\GetUserUsageByCompanyResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\GetUserUsageByCompanyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getUserUsageByCompanyAsync
+     *
+     * Get user usage by company
+     *
+     * @param  string $company_id Company to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  string|null $feature_id Restrict to a single event-based feature (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageByCompany'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getUserUsageByCompanyAsync($company_id, $end_time = null, $feature_id = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageByCompany'][0])
+    {
+        return $this->getUserUsageByCompanyAsyncWithHttpInfo($company_id, $end_time, $feature_id, $start_time, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getUserUsageByCompanyAsyncWithHttpInfo
+     *
+     * Get user usage by company
+     *
+     * @param  string $company_id Company to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  string|null $feature_id Restrict to a single event-based feature (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageByCompany'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getUserUsageByCompanyAsyncWithHttpInfo($company_id, $end_time = null, $feature_id = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageByCompany'][0])
+    {
+        $returnType = '\Schematic\Model\GetUserUsageByCompanyResponse';
+        $request = $this->getUserUsageByCompanyRequest($company_id, $end_time, $feature_id, $start_time, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getUserUsageByCompany'
+     *
+     * @param  string $company_id Company to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  string|null $feature_id Restrict to a single event-based feature (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageByCompany'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getUserUsageByCompanyRequest($company_id, $end_time = null, $feature_id = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageByCompany'][0])
+    {
+
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling getUserUsageByCompany'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/user-usage-by-company';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_id,
+            'company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $end_time,
+            'end_time', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $feature_id,
+            'feature_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $start_time,
+            'start_time', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getUserUsageDetail
+     *
+     * Get user usage detail
+     *
+     * @param  string $company_id Company the user belongs to (required)
+     * @param  string $user_id User to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageDetail'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\GetUserUsageDetailResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function getUserUsageDetail($company_id, $user_id, $end_time = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageDetail'][0])
+    {
+        list($response) = $this->getUserUsageDetailWithHttpInfo($company_id, $user_id, $end_time, $start_time, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getUserUsageDetailWithHttpInfo
+     *
+     * Get user usage detail
+     *
+     * @param  string $company_id Company the user belongs to (required)
+     * @param  string $user_id User to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageDetail'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\GetUserUsageDetailResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getUserUsageDetailWithHttpInfo($company_id, $user_id, $end_time = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageDetail'][0])
+    {
+        $request = $this->getUserUsageDetailRequest($company_id, $user_id, $end_time, $start_time, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\GetUserUsageDetailResponse',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\GetUserUsageDetailResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\GetUserUsageDetailResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getUserUsageDetailAsync
+     *
+     * Get user usage detail
+     *
+     * @param  string $company_id Company the user belongs to (required)
+     * @param  string $user_id User to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageDetail'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getUserUsageDetailAsync($company_id, $user_id, $end_time = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageDetail'][0])
+    {
+        return $this->getUserUsageDetailAsyncWithHttpInfo($company_id, $user_id, $end_time, $start_time, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getUserUsageDetailAsyncWithHttpInfo
+     *
+     * Get user usage detail
+     *
+     * @param  string $company_id Company the user belongs to (required)
+     * @param  string $user_id User to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageDetail'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getUserUsageDetailAsyncWithHttpInfo($company_id, $user_id, $end_time = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageDetail'][0])
+    {
+        $returnType = '\Schematic\Model\GetUserUsageDetailResponse';
+        $request = $this->getUserUsageDetailRequest($company_id, $user_id, $end_time, $start_time, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getUserUsageDetail'
+     *
+     * @param  string $company_id Company the user belongs to (required)
+     * @param  string $user_id User to break usage down for (required)
+     * @param  \DateTime|null $end_time End of the usage window (exclusive); defaults to now (optional)
+     * @param  \DateTime|null $start_time Start of the usage window; defaults to 30 days before the end (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserUsageDetail'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getUserUsageDetailRequest($company_id, $user_id, $end_time = null, $start_time = null, string $contentType = self::contentTypes['getUserUsageDetail'][0])
+    {
+
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling getUserUsageDetail'
+            );
+        }
+
+        // verify the required parameter 'user_id' is set
+        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $user_id when calling getUserUsageDetail'
+            );
+        }
+
+
+
+
+        $resourcePath = '/user-usage-detail';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_id,
+            'company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $end_time,
+            'end_time', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $start_time,
+            'start_time', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_id,
+            'user_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+
+
 
 
         $headers = $this->headerSelector->selectHeaders(

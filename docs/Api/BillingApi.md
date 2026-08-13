@@ -475,7 +475,7 @@ try {
 ## `listBillingPrices()`
 
 ```php
-listBillingPrices($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset): \Schematic\Model\ListBillingPricesResponse
+listBillingPrices($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset): \Schematic\Model\ListBillingPricesResponse
 ```
 
 List billing prices
@@ -495,6 +495,7 @@ $for_initial_plan = True; // bool | Filter for prices valid for initial plans (f
 $for_trial_expiry_plan = True; // bool | Filter for prices valid for trial expiry plans (free prices only)
 $ids = array('ids_example'); // string[]
 $interval = 'interval_example'; // string
+$interval_count = 56; // int | Filter for prices billed every N intervals; combine with interval (e.g. interval=month, interval_count=3 for quarterly)
 $is_active = True; // bool | Filter for active prices on active products (defaults to true if not specified)
 $plan_version_id = 'plan_version_id_example'; // string | Filter for prices belonging to a specific plan version (e.g. the latest published version)
 $price = 56; // int
@@ -509,7 +510,7 @@ $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->BillingApi->listBillingPrices($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset);
+    $result = $schematic->BillingApi->listBillingPrices($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->BillingApi->listBillingPrices: ', $e->getMessage(), PHP_EOL;
@@ -525,6 +526,7 @@ try {
 | **for_trial_expiry_plan** | **bool**| Filter for prices valid for trial expiry plans (free prices only) | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **interval** | **string**|  | [optional] |
+| **interval_count** | **int**| Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) | [optional] |
 | **is_active** | **bool**| Filter for active prices on active products (defaults to true if not specified) | [optional] |
 | **plan_version_id** | **string**| Filter for prices belonging to a specific plan version (e.g. the latest published version) | [optional] |
 | **price** | **int**|  | [optional] |
@@ -558,7 +560,7 @@ try {
 ## `listBillingProductPrices()`
 
 ```php
-listBillingProductPrices($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset): \Schematic\Model\ListBillingProductPricesResponse
+listBillingProductPrices($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset): \Schematic\Model\ListBillingProductPricesResponse
 ```
 
 List billing product prices
@@ -578,6 +580,7 @@ $for_initial_plan = True; // bool | Filter for prices valid for initial plans (f
 $for_trial_expiry_plan = True; // bool | Filter for prices valid for trial expiry plans (free prices only)
 $ids = array('ids_example'); // string[]
 $interval = 'interval_example'; // string
+$interval_count = 56; // int | Filter for prices billed every N intervals; combine with interval (e.g. interval=month, interval_count=3 for quarterly)
 $is_active = True; // bool | Filter for active prices on active products (defaults to true if not specified)
 $plan_version_id = 'plan_version_id_example'; // string | Filter for prices belonging to a specific plan version (e.g. the latest published version)
 $price = 56; // int
@@ -592,7 +595,7 @@ $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->BillingApi->listBillingProductPrices($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset);
+    $result = $schematic->BillingApi->listBillingProductPrices($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->BillingApi->listBillingProductPrices: ', $e->getMessage(), PHP_EOL;
@@ -608,6 +611,7 @@ try {
 | **for_trial_expiry_plan** | **bool**| Filter for prices valid for trial expiry plans (free prices only) | [optional] |
 | **ids** | [**string[]**](../Model/string.md)|  | [optional] |
 | **interval** | **string**|  | [optional] |
+| **interval_count** | **int**| Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) | [optional] |
 | **is_active** | **bool**| Filter for active prices on active products (defaults to true if not specified) | [optional] |
 | **plan_version_id** | **string**| Filter for prices belonging to a specific plan version (e.g. the latest published version) | [optional] |
 | **price** | **int**|  | [optional] |

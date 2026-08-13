@@ -106,4 +106,13 @@ class RetryCustomPlanBillingRequestBodyTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "send_invoice"
+     */
+    public function testPropertySendInvoice()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

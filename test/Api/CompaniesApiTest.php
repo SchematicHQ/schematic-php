@@ -97,12 +97,36 @@ class CompaniesApiTest extends TestCase
     }
 
     /**
+     * Test case for countEntityKeys
+     *
+     * Count entity keys.
+     *
+     */
+    public function testCountEntityKeys()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for countEntityTraitDefinitions
      *
      * Count entity trait definitions.
      *
      */
     public function testCountEntityTraitDefinitions()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for countEntityTraits
+     *
+     * Count entity traits.
+     *
+     */
+    public function testCountEntityTraits()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -193,6 +217,30 @@ class CompaniesApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteEntityKeyDefinition
+     *
+     * Delete entity key definition.
+     *
+     */
+    public function testDeleteEntityKeyDefinition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteEntityTraitDefinition
+     *
+     * Delete entity trait definition.
+     *
+     */
+    public function testDeleteEntityTraitDefinition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteUser
      *
      * Delete user.
@@ -271,6 +319,18 @@ class CompaniesApiTest extends TestCase
      *
      */
     public function testGetEntityTraitDefinition()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getEntityTraitDefinitionUsage
+     *
+     * Get entity trait definition usage.
+     *
+     */
+    public function testGetEntityTraitDefinitionUsage()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

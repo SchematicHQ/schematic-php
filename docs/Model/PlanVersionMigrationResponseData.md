@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **plan_version_id_from** | **string** |  | [optional]
 **plan_version_id_to** | **string** |  |
 **plan_version_ids_from** | **string[]** |  |
+**proration_behavior** | [**\Schematic\Model\MigrationProrationBehavior**](MigrationProrationBehavior.md) |  | [optional]
 **skipped_companies** | **int** |  |
 **started_at** | **\DateTime** |  | [optional]
 **status** | [**\Schematic\Model\PlanVersionMigrationStatus**](PlanVersionMigrationStatus.md) |  |

@@ -126,6 +126,15 @@ class CreateMigrationInputTest extends TestCase
     }
 
     /**
+     * Test attribute "proration_behavior"
+     */
+    public function testPropertyProrationBehavior()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "strategy"
      */
     public function testPropertyStrategy()

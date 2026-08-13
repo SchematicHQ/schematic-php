@@ -162,6 +162,15 @@ class FeatureInPlanResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "license_id"
+     */
+    public function testPropertyLicenseId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "lifecycle_phase"
      */
     public function testPropertyLifecyclePhase()
@@ -237,6 +246,15 @@ class FeatureInPlanResponseDataTest extends TestCase
      * Test attribute "updated_at"
      */
     public function testPropertyUpdatedAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "usage_limit_trait_id"
+     */
+    public function testPropertyUsageLimitTraitId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

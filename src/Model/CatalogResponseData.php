@@ -65,7 +65,6 @@ class CatalogResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom_plan_price_text' => 'string',
         'custom_plans_visible' => 'bool',
         'description' => 'string',
-        'environment_id' => 'string',
         'id' => 'string',
         'is_default' => 'bool',
         'name' => 'string',
@@ -89,7 +88,6 @@ class CatalogResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom_plan_price_text' => null,
         'custom_plans_visible' => null,
         'description' => null,
-        'environment_id' => null,
         'id' => null,
         'is_default' => null,
         'name' => null,
@@ -111,7 +109,6 @@ class CatalogResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom_plan_price_text' => true,
         'custom_plans_visible' => false,
         'description' => true,
-        'environment_id' => false,
         'id' => false,
         'is_default' => false,
         'name' => false,
@@ -213,7 +210,6 @@ class CatalogResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom_plan_price_text' => 'custom_plan_price_text',
         'custom_plans_visible' => 'custom_plans_visible',
         'description' => 'description',
-        'environment_id' => 'environment_id',
         'id' => 'id',
         'is_default' => 'is_default',
         'name' => 'name',
@@ -235,7 +231,6 @@ class CatalogResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom_plan_price_text' => 'setCustomPlanPriceText',
         'custom_plans_visible' => 'setCustomPlansVisible',
         'description' => 'setDescription',
-        'environment_id' => 'setEnvironmentId',
         'id' => 'setId',
         'is_default' => 'setIsDefault',
         'name' => 'setName',
@@ -257,7 +252,6 @@ class CatalogResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'custom_plan_price_text' => 'getCustomPlanPriceText',
         'custom_plans_visible' => 'getCustomPlansVisible',
         'description' => 'getDescription',
-        'environment_id' => 'getEnvironmentId',
         'id' => 'getId',
         'is_default' => 'getIsDefault',
         'name' => 'getName',
@@ -330,7 +324,6 @@ class CatalogResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('custom_plan_price_text', $data ?? [], null);
         $this->setIfExists('custom_plans_visible', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('is_default', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -374,9 +367,6 @@ class CatalogResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         }
         if ($this->container['custom_plans_visible'] === null) {
             $invalidProperties[] = "'custom_plans_visible' can't be null";
-        }
-        if ($this->container['environment_id'] === null) {
-            $invalidProperties[] = "'environment_id' can't be null";
         }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
@@ -618,33 +608,6 @@ class CatalogResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets environment_id
-     *
-     * @return string
-     */
-    public function getEnvironmentId()
-    {
-        return $this->container['environment_id'];
-    }
-
-    /**
-     * Sets environment_id
-     *
-     * @param string $environment_id environment_id
-     *
-     * @return self
-     */
-    public function setEnvironmentId($environment_id)
-    {
-        if (is_null($environment_id)) {
-            throw new \InvalidArgumentException('non-nullable environment_id cannot be null');
-        }
-        $this->container['environment_id'] = $environment_id;
 
         return $this;
     }

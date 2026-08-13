@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_id** | **string** |  |
 **billing_linked_resource** | [**\Schematic\Model\BillingLinkedResourceResponseData**](BillingLinkedResourceResponseData.md) |  | [optional]
+**billing_product** | [**\Schematic\Model\BillingProductRecordResponseData**](BillingProductRecordResponseData.md) |  | [optional]
 **created_at** | **\DateTime** |  |
 **description** | **string** |  |
 **event_subtype** | **string** |  | [optional]
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **flags** | [**\Schematic\Model\FlagView[]**](FlagView.md) |  |
 **icon** | **string** |  |
 **id** | **string** |  |
+**license_id** | **string** |  | [optional]
 **lifecycle_phase** | [**\Schematic\Model\FeatureLifecyclePhase**](FeatureLifecyclePhase.md) |  | [optional]
 **name** | **string** |  |
 **plans** | [**\Schematic\Model\PreviewObject[]**](PreviewObject.md) |  |

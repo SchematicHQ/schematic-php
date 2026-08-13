@@ -9,5 +9,6 @@ Name | Type | Description | Notes
 **custom_fields** | [**\Schematic\Model\CheckoutFieldWithValue[]**](CheckoutFieldWithValue.md) |  |
 **email** | **string** |  | [optional]
 **phone** | **string** |  | [optional]
+**tax_ids** | [**\Schematic\Model\CompanyTaxIDView[]**](CompanyTaxIDView.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -59,6 +59,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPITypes = [
         'billing_linked_resource' => '\Schematic\Model\BillingLinkedResourceResponseData',
+        'billing_product' => '\Schematic\Model\BillingProductResponseData',
         'created_at' => '\DateTime',
         'description' => 'string',
         'event_subtype' => 'string',
@@ -67,6 +68,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => '\Schematic\Model\FlagDetailResponseData[]',
         'icon' => 'string',
         'id' => 'string',
+        'license_id' => 'string',
         'lifecycle_phase' => '\Schematic\Model\FeatureLifecyclePhase',
         'maintainer' => '\Schematic\Model\AccountMemberResponseData',
         'maintainer_account_member_id' => 'string',
@@ -76,7 +78,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => 'string',
         'trait' => '\Schematic\Model\EntityTraitDefinitionResponseData',
         'trait_id' => 'string',
-        'updated_at' => '\DateTime'
+        'updated_at' => '\DateTime',
+        'usage_limit_trait_id' => 'string'
     ];
 
     /**
@@ -88,6 +91,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static $openAPIFormats = [
         'billing_linked_resource' => null,
+        'billing_product' => null,
         'created_at' => 'date-time',
         'description' => null,
         'event_subtype' => null,
@@ -96,6 +100,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => null,
         'icon' => null,
         'id' => null,
+        'license_id' => null,
         'lifecycle_phase' => null,
         'maintainer' => null,
         'maintainer_account_member_id' => null,
@@ -105,7 +110,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => null,
         'trait' => null,
         'trait_id' => null,
-        'updated_at' => 'date-time'
+        'updated_at' => 'date-time',
+        'usage_limit_trait_id' => null
     ];
 
     /**
@@ -115,6 +121,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static array $openAPINullables = [
         'billing_linked_resource' => false,
+        'billing_product' => false,
         'created_at' => false,
         'description' => false,
         'event_subtype' => true,
@@ -123,6 +130,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => false,
         'icon' => false,
         'id' => false,
+        'license_id' => true,
         'lifecycle_phase' => true,
         'maintainer' => false,
         'maintainer_account_member_id' => true,
@@ -132,7 +140,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => true,
         'trait' => false,
         'trait_id' => true,
-        'updated_at' => false
+        'updated_at' => false,
+        'usage_limit_trait_id' => true
     ];
 
     /**
@@ -222,6 +231,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $attributeMap = [
         'billing_linked_resource' => 'billing_linked_resource',
+        'billing_product' => 'billing_product',
         'created_at' => 'created_at',
         'description' => 'description',
         'event_subtype' => 'event_subtype',
@@ -230,6 +240,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => 'flags',
         'icon' => 'icon',
         'id' => 'id',
+        'license_id' => 'license_id',
         'lifecycle_phase' => 'lifecycle_phase',
         'maintainer' => 'maintainer',
         'maintainer_account_member_id' => 'maintainer_account_member_id',
@@ -239,7 +250,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => 'singular_name',
         'trait' => 'trait',
         'trait_id' => 'trait_id',
-        'updated_at' => 'updated_at'
+        'updated_at' => 'updated_at',
+        'usage_limit_trait_id' => 'usage_limit_trait_id'
     ];
 
     /**
@@ -249,6 +261,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $setters = [
         'billing_linked_resource' => 'setBillingLinkedResource',
+        'billing_product' => 'setBillingProduct',
         'created_at' => 'setCreatedAt',
         'description' => 'setDescription',
         'event_subtype' => 'setEventSubtype',
@@ -257,6 +270,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => 'setFlags',
         'icon' => 'setIcon',
         'id' => 'setId',
+        'license_id' => 'setLicenseId',
         'lifecycle_phase' => 'setLifecyclePhase',
         'maintainer' => 'setMaintainer',
         'maintainer_account_member_id' => 'setMaintainerAccountMemberId',
@@ -266,7 +280,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => 'setSingularName',
         'trait' => 'setTrait',
         'trait_id' => 'setTraitId',
-        'updated_at' => 'setUpdatedAt'
+        'updated_at' => 'setUpdatedAt',
+        'usage_limit_trait_id' => 'setUsageLimitTraitId'
     ];
 
     /**
@@ -276,6 +291,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static $getters = [
         'billing_linked_resource' => 'getBillingLinkedResource',
+        'billing_product' => 'getBillingProduct',
         'created_at' => 'getCreatedAt',
         'description' => 'getDescription',
         'event_subtype' => 'getEventSubtype',
@@ -284,6 +300,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'flags' => 'getFlags',
         'icon' => 'getIcon',
         'id' => 'getId',
+        'license_id' => 'getLicenseId',
         'lifecycle_phase' => 'getLifecyclePhase',
         'maintainer' => 'getMaintainer',
         'maintainer_account_member_id' => 'getMaintainerAccountMemberId',
@@ -293,7 +310,8 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'singular_name' => 'getSingularName',
         'trait' => 'getTrait',
         'trait_id' => 'getTraitId',
-        'updated_at' => 'getUpdatedAt'
+        'updated_at' => 'getUpdatedAt',
+        'usage_limit_trait_id' => 'getUsageLimitTraitId'
     ];
 
     /**
@@ -354,6 +372,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     public function __construct(?array $data = null)
     {
         $this->setIfExists('billing_linked_resource', $data ?? [], null);
+        $this->setIfExists('billing_product', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('event_subtype', $data ?? [], null);
@@ -362,6 +381,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('flags', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('license_id', $data ?? [], null);
         $this->setIfExists('lifecycle_phase', $data ?? [], null);
         $this->setIfExists('maintainer', $data ?? [], null);
         $this->setIfExists('maintainer_account_member_id', $data ?? [], null);
@@ -372,6 +392,7 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('trait', $data ?? [], null);
         $this->setIfExists('trait_id', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('usage_limit_trait_id', $data ?? [], null);
     }
 
     /**
@@ -474,6 +495,33 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable billing_linked_resource cannot be null');
         }
         $this->container['billing_linked_resource'] = $billing_linked_resource;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_product
+     *
+     * @return \Schematic\Model\BillingProductResponseData|null
+     */
+    public function getBillingProduct()
+    {
+        return $this->container['billing_product'];
+    }
+
+    /**
+     * Sets billing_product
+     *
+     * @param \Schematic\Model\BillingProductResponseData|null $billing_product The billing provider product that sells this feature in the current environment. Set for license features once they have been priced in a plan; a feature priced in several environments has a different product in each.
+     *
+     * @return self
+     */
+    public function setBillingProduct($billing_product)
+    {
+        if (is_null($billing_product)) {
+            throw new \InvalidArgumentException('non-nullable billing_product cannot be null');
+        }
+        $this->container['billing_product'] = $billing_product;
 
         return $this;
     }
@@ -701,6 +749,40 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets license_id
+     *
+     * @return string|null
+     */
+    public function getLicenseId()
+    {
+        return $this->container['license_id'];
+    }
+
+    /**
+     * Sets license_id
+     *
+     * @param string|null $license_id The license sold through this feature. Set only on features of type license, and created automatically with them.
+     *
+     * @return self
+     */
+    public function setLicenseId($license_id)
+    {
+        if (is_null($license_id)) {
+            array_push($this->openAPINullablesSetToNull, 'license_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('license_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['license_id'] = $license_id;
 
         return $this;
     }
@@ -1010,6 +1092,40 @@ class FeatureDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage_limit_trait_id
+     *
+     * @return string|null
+     */
+    public function getUsageLimitTraitId()
+    {
+        return $this->container['usage_limit_trait_id'];
+    }
+
+    /**
+     * Sets usage_limit_trait_id
+     *
+     * @param string|null $usage_limit_trait_id Set when the feature carries a pay-in-advance quantity. Provisioned lazily for other feature types, and at creation for license features.
+     *
+     * @return self
+     */
+    public function setUsageLimitTraitId($usage_limit_trait_id)
+    {
+        if (is_null($usage_limit_trait_id)) {
+            array_push($this->openAPINullablesSetToNull, 'usage_limit_trait_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('usage_limit_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['usage_limit_trait_id'] = $usage_limit_trait_id;
 
         return $this;
     }

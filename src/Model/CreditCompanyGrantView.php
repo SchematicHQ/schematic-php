@@ -61,6 +61,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_credit_bundle_id' => 'string',
         'billing_credit_id' => 'string',
         'company_id' => 'string',
+        'company_license_id' => 'string',
         'company_name' => 'string',
         'created_at' => '\DateTime',
         'credit_description' => 'string',
@@ -74,6 +75,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'expiry_unit_count' => 'int',
         'grant_reason' => '\Schematic\Model\BillingCreditGrantReason',
         'id' => 'string',
+        'license_name' => 'string',
         'plan_id' => 'string',
         'plan_name' => 'string',
         'plural_name' => 'string',
@@ -106,6 +108,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_credit_bundle_id' => null,
         'billing_credit_id' => null,
         'company_id' => null,
+        'company_license_id' => null,
         'company_name' => null,
         'created_at' => 'date-time',
         'credit_description' => null,
@@ -119,6 +122,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'expiry_unit_count' => 'int64',
         'grant_reason' => null,
         'id' => null,
+        'license_name' => null,
         'plan_id' => null,
         'plan_name' => null,
         'plural_name' => null,
@@ -149,6 +153,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_credit_bundle_id' => true,
         'billing_credit_id' => false,
         'company_id' => false,
+        'company_license_id' => true,
         'company_name' => false,
         'created_at' => false,
         'credit_description' => false,
@@ -162,6 +167,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'expiry_unit_count' => true,
         'grant_reason' => false,
         'id' => false,
+        'license_name' => true,
         'plan_id' => true,
         'plan_name' => true,
         'plural_name' => true,
@@ -272,6 +278,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_credit_bundle_id' => 'billing_credit_bundle_id',
         'billing_credit_id' => 'billing_credit_id',
         'company_id' => 'company_id',
+        'company_license_id' => 'company_license_id',
         'company_name' => 'company_name',
         'created_at' => 'created_at',
         'credit_description' => 'credit_description',
@@ -285,6 +292,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'expiry_unit_count' => 'expiry_unit_count',
         'grant_reason' => 'grant_reason',
         'id' => 'id',
+        'license_name' => 'license_name',
         'plan_id' => 'plan_id',
         'plan_name' => 'plan_name',
         'plural_name' => 'plural_name',
@@ -315,6 +323,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_credit_bundle_id' => 'setBillingCreditBundleId',
         'billing_credit_id' => 'setBillingCreditId',
         'company_id' => 'setCompanyId',
+        'company_license_id' => 'setCompanyLicenseId',
         'company_name' => 'setCompanyName',
         'created_at' => 'setCreatedAt',
         'credit_description' => 'setCreditDescription',
@@ -328,6 +337,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'expiry_unit_count' => 'setExpiryUnitCount',
         'grant_reason' => 'setGrantReason',
         'id' => 'setId',
+        'license_name' => 'setLicenseName',
         'plan_id' => 'setPlanId',
         'plan_name' => 'setPlanName',
         'plural_name' => 'setPluralName',
@@ -358,6 +368,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_credit_bundle_id' => 'getBillingCreditBundleId',
         'billing_credit_id' => 'getBillingCreditId',
         'company_id' => 'getCompanyId',
+        'company_license_id' => 'getCompanyLicenseId',
         'company_name' => 'getCompanyName',
         'created_at' => 'getCreatedAt',
         'credit_description' => 'getCreditDescription',
@@ -371,6 +382,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'expiry_unit_count' => 'getExpiryUnitCount',
         'grant_reason' => 'getGrantReason',
         'id' => 'getId',
+        'license_name' => 'getLicenseName',
         'plan_id' => 'getPlanId',
         'plan_name' => 'getPlanName',
         'plural_name' => 'getPluralName',
@@ -452,6 +464,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('billing_credit_bundle_id', $data ?? [], null);
         $this->setIfExists('billing_credit_id', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
+        $this->setIfExists('company_license_id', $data ?? [], null);
         $this->setIfExists('company_name', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('credit_description', $data ?? [], null);
@@ -465,6 +478,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('expiry_unit_count', $data ?? [], null);
         $this->setIfExists('grant_reason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('license_name', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_name', $data ?? [], null);
         $this->setIfExists('plural_name', $data ?? [], null);
@@ -658,6 +672,40 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable company_id cannot be null');
         }
         $this->container['company_id'] = $company_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets company_license_id
+     *
+     * @return string|null
+     */
+    public function getCompanyLicenseId()
+    {
+        return $this->container['company_license_id'];
+    }
+
+    /**
+     * Sets company_license_id
+     *
+     * @param string|null $company_license_id company_license_id
+     *
+     * @return self
+     */
+    public function setCompanyLicenseId($company_license_id)
+    {
+        if (is_null($company_license_id)) {
+            array_push($this->openAPINullablesSetToNull, 'company_license_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company_license_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['company_license_id'] = $company_license_id;
 
         return $this;
     }
@@ -1058,6 +1106,40 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets license_name
+     *
+     * @return string|null
+     */
+    public function getLicenseName()
+    {
+        return $this->container['license_name'];
+    }
+
+    /**
+     * Sets license_name
+     *
+     * @param string|null $license_name license_name
+     *
+     * @return self
+     */
+    public function setLicenseName($license_name)
+    {
+        if (is_null($license_name)) {
+            array_push($this->openAPINullablesSetToNull, 'license_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('license_name', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['license_name'] = $license_name;
 
         return $this;
     }

@@ -60,6 +60,8 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'company_ids' => 'string[]',
         'credit_type_ids' => 'string[]',
+        'entity_key_definition_ids' => 'string[]',
+        'entity_trait_definition_ids' => 'string[]',
         'export_type' => 'string',
         'feature_ids' => 'string[]',
         'has_scheduled_downgrade' => 'bool',
@@ -69,8 +71,11 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'plan_ids' => 'string[]',
         'plan_version_id' => 'string',
         'q' => 'string',
+        'sort_order_column' => 'string',
+        'sort_order_direction' => 'string',
         'subscription_statuses' => 'string[]',
         'subscription_types' => 'string[]',
+        'visible_columns' => 'string[]',
         'with_entitlement_for' => 'string',
         'with_subscription' => 'bool',
         'without_feature_override_for' => 'string',
@@ -78,7 +83,12 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'without_subscription' => 'bool',
         'actor_type' => 'string',
         'end_time' => '\DateTime',
-        'start_time' => '\DateTime'
+        'start_time' => '\DateTime',
+        'company_id' => 'string',
+        'event_subtype' => 'string',
+        'event_types' => 'string[]',
+        'flag_id' => 'string',
+        'user_id' => 'string'
     ];
 
     /**
@@ -91,6 +101,8 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPIFormats = [
         'company_ids' => null,
         'credit_type_ids' => null,
+        'entity_key_definition_ids' => null,
+        'entity_trait_definition_ids' => null,
         'export_type' => null,
         'feature_ids' => null,
         'has_scheduled_downgrade' => null,
@@ -100,8 +112,11 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'plan_ids' => null,
         'plan_version_id' => null,
         'q' => null,
+        'sort_order_column' => null,
+        'sort_order_direction' => null,
         'subscription_statuses' => null,
         'subscription_types' => null,
+        'visible_columns' => null,
         'with_entitlement_for' => null,
         'with_subscription' => null,
         'without_feature_override_for' => null,
@@ -109,7 +124,12 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'without_subscription' => null,
         'actor_type' => null,
         'end_time' => 'date-time',
-        'start_time' => 'date-time'
+        'start_time' => 'date-time',
+        'company_id' => null,
+        'event_subtype' => null,
+        'event_types' => null,
+        'flag_id' => null,
+        'user_id' => null
     ];
 
     /**
@@ -120,6 +140,8 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static array $openAPINullables = [
         'company_ids' => true,
         'credit_type_ids' => true,
+        'entity_key_definition_ids' => true,
+        'entity_trait_definition_ids' => true,
         'export_type' => false,
         'feature_ids' => false,
         'has_scheduled_downgrade' => true,
@@ -129,8 +151,11 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'plan_ids' => true,
         'plan_version_id' => true,
         'q' => true,
+        'sort_order_column' => true,
+        'sort_order_direction' => true,
         'subscription_statuses' => true,
         'subscription_types' => true,
+        'visible_columns' => true,
         'with_entitlement_for' => true,
         'with_subscription' => true,
         'without_feature_override_for' => true,
@@ -138,7 +163,12 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'without_subscription' => true,
         'actor_type' => true,
         'end_time' => true,
-        'start_time' => true
+        'start_time' => true,
+        'company_id' => true,
+        'event_subtype' => true,
+        'event_types' => true,
+        'flag_id' => true,
+        'user_id' => true
     ];
 
     /**
@@ -229,6 +259,8 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $attributeMap = [
         'company_ids' => 'company_ids',
         'credit_type_ids' => 'credit_type_ids',
+        'entity_key_definition_ids' => 'entity_key_definition_ids',
+        'entity_trait_definition_ids' => 'entity_trait_definition_ids',
         'export_type' => 'export_type',
         'feature_ids' => 'feature_ids',
         'has_scheduled_downgrade' => 'has_scheduled_downgrade',
@@ -238,8 +270,11 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'plan_ids' => 'plan_ids',
         'plan_version_id' => 'plan_version_id',
         'q' => 'q',
+        'sort_order_column' => 'sort_order_column',
+        'sort_order_direction' => 'sort_order_direction',
         'subscription_statuses' => 'subscription_statuses',
         'subscription_types' => 'subscription_types',
+        'visible_columns' => 'visible_columns',
         'with_entitlement_for' => 'with_entitlement_for',
         'with_subscription' => 'with_subscription',
         'without_feature_override_for' => 'without_feature_override_for',
@@ -247,7 +282,12 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'without_subscription' => 'without_subscription',
         'actor_type' => 'actor_type',
         'end_time' => 'end_time',
-        'start_time' => 'start_time'
+        'start_time' => 'start_time',
+        'company_id' => 'company_id',
+        'event_subtype' => 'event_subtype',
+        'event_types' => 'event_types',
+        'flag_id' => 'flag_id',
+        'user_id' => 'user_id'
     ];
 
     /**
@@ -258,6 +298,8 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $setters = [
         'company_ids' => 'setCompanyIds',
         'credit_type_ids' => 'setCreditTypeIds',
+        'entity_key_definition_ids' => 'setEntityKeyDefinitionIds',
+        'entity_trait_definition_ids' => 'setEntityTraitDefinitionIds',
         'export_type' => 'setExportType',
         'feature_ids' => 'setFeatureIds',
         'has_scheduled_downgrade' => 'setHasScheduledDowngrade',
@@ -267,8 +309,11 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'plan_ids' => 'setPlanIds',
         'plan_version_id' => 'setPlanVersionId',
         'q' => 'setQ',
+        'sort_order_column' => 'setSortOrderColumn',
+        'sort_order_direction' => 'setSortOrderDirection',
         'subscription_statuses' => 'setSubscriptionStatuses',
         'subscription_types' => 'setSubscriptionTypes',
+        'visible_columns' => 'setVisibleColumns',
         'with_entitlement_for' => 'setWithEntitlementFor',
         'with_subscription' => 'setWithSubscription',
         'without_feature_override_for' => 'setWithoutFeatureOverrideFor',
@@ -276,7 +321,12 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'without_subscription' => 'setWithoutSubscription',
         'actor_type' => 'setActorType',
         'end_time' => 'setEndTime',
-        'start_time' => 'setStartTime'
+        'start_time' => 'setStartTime',
+        'company_id' => 'setCompanyId',
+        'event_subtype' => 'setEventSubtype',
+        'event_types' => 'setEventTypes',
+        'flag_id' => 'setFlagId',
+        'user_id' => 'setUserId'
     ];
 
     /**
@@ -287,6 +337,8 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $getters = [
         'company_ids' => 'getCompanyIds',
         'credit_type_ids' => 'getCreditTypeIds',
+        'entity_key_definition_ids' => 'getEntityKeyDefinitionIds',
+        'entity_trait_definition_ids' => 'getEntityTraitDefinitionIds',
         'export_type' => 'getExportType',
         'feature_ids' => 'getFeatureIds',
         'has_scheduled_downgrade' => 'getHasScheduledDowngrade',
@@ -296,8 +348,11 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'plan_ids' => 'getPlanIds',
         'plan_version_id' => 'getPlanVersionId',
         'q' => 'getQ',
+        'sort_order_column' => 'getSortOrderColumn',
+        'sort_order_direction' => 'getSortOrderDirection',
         'subscription_statuses' => 'getSubscriptionStatuses',
         'subscription_types' => 'getSubscriptionTypes',
+        'visible_columns' => 'getVisibleColumns',
         'with_entitlement_for' => 'getWithEntitlementFor',
         'with_subscription' => 'getWithSubscription',
         'without_feature_override_for' => 'getWithoutFeatureOverrideFor',
@@ -305,7 +360,12 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         'without_subscription' => 'getWithoutSubscription',
         'actor_type' => 'getActorType',
         'end_time' => 'getEndTime',
-        'start_time' => 'getStartTime'
+        'start_time' => 'getStartTime',
+        'company_id' => 'getCompanyId',
+        'event_subtype' => 'getEventSubtype',
+        'event_types' => 'getEventTypes',
+        'flag_id' => 'getFlagId',
+        'user_id' => 'getUserId'
     ];
 
     /**
@@ -349,7 +409,17 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    public const EXPORT_TYPE_AUDIT_LOG = 'audit-log';
+    public const EXPORT_TYPE_EVENT = 'event';
+    public const SORT_ORDER_DIRECTION_ASC = 'asc';
+    public const SORT_ORDER_DIRECTION_DESC = 'desc';
+    public const VISIBLE_COLUMNS_PLAN = 'plan';
+    public const VISIBLE_COLUMNS_SUBSCRIPTION = 'subscription';
+    public const VISIBLE_COLUMNS_USERS = 'users';
+    public const VISIBLE_COLUMNS_LAST_SEEN_AT = 'last_seen_at';
+    public const EVENT_TYPES_FLAG_CHECK = 'flag_check';
+    public const EVENT_TYPES_IDENTIFY = 'identify';
+    public const EVENT_TYPES_INFERENCE = 'inference';
+    public const EVENT_TYPES_TRACK = 'track';
 
     /**
      * Gets allowable values of the enum
@@ -359,7 +429,50 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     public function getExportTypeAllowableValues()
     {
         return [
-            self::EXPORT_TYPE_AUDIT_LOG,
+            self::EXPORT_TYPE_EVENT,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getSortOrderDirectionAllowableValues()
+    {
+        return [
+            self::SORT_ORDER_DIRECTION_ASC,
+            self::SORT_ORDER_DIRECTION_DESC,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVisibleColumnsAllowableValues()
+    {
+        return [
+            self::VISIBLE_COLUMNS_PLAN,
+            self::VISIBLE_COLUMNS_SUBSCRIPTION,
+            self::VISIBLE_COLUMNS_USERS,
+            self::VISIBLE_COLUMNS_LAST_SEEN_AT,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEventTypesAllowableValues()
+    {
+        return [
+            self::EVENT_TYPES_FLAG_CHECK,
+            self::EVENT_TYPES_IDENTIFY,
+            self::EVENT_TYPES_INFERENCE,
+            self::EVENT_TYPES_TRACK,
         ];
     }
 
@@ -380,6 +493,8 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $this->setIfExists('company_ids', $data ?? [], null);
         $this->setIfExists('credit_type_ids', $data ?? [], null);
+        $this->setIfExists('entity_key_definition_ids', $data ?? [], null);
+        $this->setIfExists('entity_trait_definition_ids', $data ?? [], null);
         $this->setIfExists('export_type', $data ?? [], null);
         $this->setIfExists('feature_ids', $data ?? [], null);
         $this->setIfExists('has_scheduled_downgrade', $data ?? [], null);
@@ -389,8 +504,11 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('plan_ids', $data ?? [], null);
         $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
+        $this->setIfExists('sort_order_column', $data ?? [], null);
+        $this->setIfExists('sort_order_direction', $data ?? [], null);
         $this->setIfExists('subscription_statuses', $data ?? [], null);
         $this->setIfExists('subscription_types', $data ?? [], null);
+        $this->setIfExists('visible_columns', $data ?? [], null);
         $this->setIfExists('with_entitlement_for', $data ?? [], null);
         $this->setIfExists('with_subscription', $data ?? [], null);
         $this->setIfExists('without_feature_override_for', $data ?? [], null);
@@ -399,6 +517,11 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('actor_type', $data ?? [], null);
         $this->setIfExists('end_time', $data ?? [], null);
         $this->setIfExists('start_time', $data ?? [], null);
+        $this->setIfExists('company_id', $data ?? [], null);
+        $this->setIfExists('event_subtype', $data ?? [], null);
+        $this->setIfExists('event_types', $data ?? [], null);
+        $this->setIfExists('flag_id', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
 
         // Initialize discriminator property with the model name.
         $this->container['export_type'] = static::$openAPIModelName;
@@ -439,6 +562,14 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
             $invalidProperties[] = "invalid value for 'credit_type_ids', number of items must be less than or equal to 100.";
         }
 
+        if (!is_null($this->container['entity_key_definition_ids']) && (count($this->container['entity_key_definition_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'entity_key_definition_ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['entity_trait_definition_ids']) && (count($this->container['entity_trait_definition_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'entity_trait_definition_ids', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['export_type'] === null) {
             $invalidProperties[] = "'export_type' can't be null";
         }
@@ -451,10 +582,7 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
             );
         }
 
-        if ($this->container['feature_ids'] === null) {
-            $invalidProperties[] = "'feature_ids' can't be null";
-        }
-        if ((count($this->container['feature_ids']) > 100)) {
+        if (!is_null($this->container['feature_ids']) && (count($this->container['feature_ids']) > 100)) {
             $invalidProperties[] = "invalid value for 'feature_ids', number of items must be less than or equal to 100.";
         }
 
@@ -466,12 +594,29 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
             $invalidProperties[] = "invalid value for 'plan_ids', number of items must be less than or equal to 100.";
         }
 
+        $allowedValues = $this->getSortOrderDirectionAllowableValues();
+        if (!is_null($this->container['sort_order_direction']) && !in_array($this->container['sort_order_direction'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'sort_order_direction', must be one of '%s'",
+                $this->container['sort_order_direction'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if (!is_null($this->container['subscription_statuses']) && (count($this->container['subscription_statuses']) > 100)) {
             $invalidProperties[] = "invalid value for 'subscription_statuses', number of items must be less than or equal to 100.";
         }
 
         if (!is_null($this->container['subscription_types']) && (count($this->container['subscription_types']) > 100)) {
             $invalidProperties[] = "invalid value for 'subscription_types', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['visible_columns']) && (count($this->container['visible_columns']) > 10)) {
+            $invalidProperties[] = "invalid value for 'visible_columns', number of items must be less than or equal to 10.";
+        }
+
+        if (!is_null($this->container['event_types']) && (count($this->container['event_types']) > 100)) {
+            $invalidProperties[] = "invalid value for 'event_types', number of items must be less than or equal to 100.";
         }
 
         return $invalidProperties;
@@ -566,6 +711,82 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets entity_key_definition_ids
+     *
+     * @return string[]|null
+     */
+    public function getEntityKeyDefinitionIds()
+    {
+        return $this->container['entity_key_definition_ids'];
+    }
+
+    /**
+     * Sets entity_key_definition_ids
+     *
+     * @param string[]|null $entity_key_definition_ids Company key definition IDs to include as columns, one column per definition, mirroring the companies list
+     *
+     * @return self
+     */
+    public function setEntityKeyDefinitionIds($entity_key_definition_ids)
+    {
+        if (is_null($entity_key_definition_ids)) {
+            array_push($this->openAPINullablesSetToNull, 'entity_key_definition_ids');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('entity_key_definition_ids', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($entity_key_definition_ids) && (count($entity_key_definition_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $entity_key_definition_ids when calling DataExportMetadata., number of items must be less than or equal to 100.');
+        }
+        $this->container['entity_key_definition_ids'] = $entity_key_definition_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets entity_trait_definition_ids
+     *
+     * @return string[]|null
+     */
+    public function getEntityTraitDefinitionIds()
+    {
+        return $this->container['entity_trait_definition_ids'];
+    }
+
+    /**
+     * Sets entity_trait_definition_ids
+     *
+     * @param string[]|null $entity_trait_definition_ids Company trait definition IDs to include as columns, one column per definition, mirroring the companies list
+     *
+     * @return self
+     */
+    public function setEntityTraitDefinitionIds($entity_trait_definition_ids)
+    {
+        if (is_null($entity_trait_definition_ids)) {
+            array_push($this->openAPINullablesSetToNull, 'entity_trait_definition_ids');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('entity_trait_definition_ids', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($entity_trait_definition_ids) && (count($entity_trait_definition_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $entity_trait_definition_ids when calling DataExportMetadata., number of items must be less than or equal to 100.');
+        }
+        $this->container['entity_trait_definition_ids'] = $entity_trait_definition_ids;
+
+        return $this;
+    }
+
+    /**
      * Gets export_type
      *
      * @return string
@@ -578,7 +799,7 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets export_type
      *
-     * @param string $export_type Discriminator: always \"audit-log\" for this variant
+     * @param string $export_type Discriminator: always \"event\" for this variant
      *
      * @return self
      */
@@ -605,7 +826,7 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets feature_ids
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getFeatureIds()
     {
@@ -615,7 +836,7 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets feature_ids
      *
-     * @param string[] $feature_ids Schematic feature IDs (starting with 'feat_') to include as usage columns; at least one is required
+     * @param string[]|null $feature_ids Schematic feature IDs (starting with 'feat_') to include as usage columns; empty means no usage columns
      *
      * @return self
      */
@@ -873,6 +1094,84 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets sort_order_column
+     *
+     * @return string|null
+     */
+    public function getSortOrderColumn()
+    {
+        return $this->container['sort_order_column'];
+    }
+
+    /**
+     * Sets sort_order_column
+     *
+     * @param string|null $sort_order_column Column to sort the exported rows by (e.g. name, created_at, plan); defaults to name
+     *
+     * @return self
+     */
+    public function setSortOrderColumn($sort_order_column)
+    {
+        if (is_null($sort_order_column)) {
+            array_push($this->openAPINullablesSetToNull, 'sort_order_column');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sort_order_column', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['sort_order_column'] = $sort_order_column;
+
+        return $this;
+    }
+
+    /**
+     * Gets sort_order_direction
+     *
+     * @return string|null
+     */
+    public function getSortOrderDirection()
+    {
+        return $this->container['sort_order_direction'];
+    }
+
+    /**
+     * Sets sort_order_direction
+     *
+     * @param string|null $sort_order_direction Direction to sort the exported rows by; defaults to asc
+     *
+     * @return self
+     */
+    public function setSortOrderDirection($sort_order_direction)
+    {
+        if (is_null($sort_order_direction)) {
+            array_push($this->openAPINullablesSetToNull, 'sort_order_direction');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sort_order_direction', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getSortOrderDirectionAllowableValues();
+        if (!is_null($sort_order_direction) && !in_array($sort_order_direction, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'sort_order_direction', must be one of '%s'",
+                    $sort_order_direction,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['sort_order_direction'] = $sort_order_direction;
+
+        return $this;
+    }
+
+    /**
      * Gets subscription_statuses
      *
      * @return string[]|null
@@ -944,6 +1243,53 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('invalid value for $subscription_types when calling DataExportMetadata., number of items must be less than or equal to 100.');
         }
         $this->container['subscription_types'] = $subscription_types;
+
+        return $this;
+    }
+
+    /**
+     * Gets visible_columns
+     *
+     * @return string[]|null
+     */
+    public function getVisibleColumns()
+    {
+        return $this->container['visible_columns'];
+    }
+
+    /**
+     * Sets visible_columns
+     *
+     * @param string[]|null $visible_columns Company columns to include, mirroring the companies list; omit to include the plan column only
+     *
+     * @return self
+     */
+    public function setVisibleColumns($visible_columns)
+    {
+        if (is_null($visible_columns)) {
+            array_push($this->openAPINullablesSetToNull, 'visible_columns');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('visible_columns', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getVisibleColumnsAllowableValues();
+        if (!is_null($visible_columns) && array_diff($visible_columns, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'visible_columns', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (!is_null($visible_columns) && (count($visible_columns) > 10)) {
+            throw new \InvalidArgumentException('invalid value for $visible_columns when calling DataExportMetadata., number of items must be less than or equal to 10.');
+        }
+        $this->container['visible_columns'] = $visible_columns;
 
         return $this;
     }
@@ -1165,7 +1511,7 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets end_time
      *
-     * @param \DateTime|null $end_time Restrict the export to audit log entries that started before this time
+     * @param \DateTime|null $end_time Restrict the export to events captured at or before this time
      *
      * @return self
      */
@@ -1199,7 +1545,7 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets start_time
      *
-     * @param \DateTime|null $start_time Restrict the export to audit log entries that started at or after this time
+     * @param \DateTime|null $start_time Restrict the export to events captured at or after this time
      *
      * @return self
      */
@@ -1216,6 +1562,189 @@ class DataExportMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
             }
         }
         $this->container['start_time'] = $start_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets company_id
+     *
+     * @return string|null
+     */
+    public function getCompanyId()
+    {
+        return $this->container['company_id'];
+    }
+
+    /**
+     * Sets company_id
+     *
+     * @param string|null $company_id Restrict the export to events for this company ID (starting with 'comp_')
+     *
+     * @return self
+     */
+    public function setCompanyId($company_id)
+    {
+        if (is_null($company_id)) {
+            array_push($this->openAPINullablesSetToNull, 'company_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['company_id'] = $company_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets event_subtype
+     *
+     * @return string|null
+     */
+    public function getEventSubtype()
+    {
+        return $this->container['event_subtype'];
+    }
+
+    /**
+     * Sets event_subtype
+     *
+     * @param string|null $event_subtype Restrict the export to track events with this subtype
+     *
+     * @return self
+     */
+    public function setEventSubtype($event_subtype)
+    {
+        if (is_null($event_subtype)) {
+            array_push($this->openAPINullablesSetToNull, 'event_subtype');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('event_subtype', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['event_subtype'] = $event_subtype;
+
+        return $this;
+    }
+
+    /**
+     * Gets event_types
+     *
+     * @return string[]|null
+     */
+    public function getEventTypes()
+    {
+        return $this->container['event_types'];
+    }
+
+    /**
+     * Sets event_types
+     *
+     * @param string[]|null $event_types Restrict the export to these event types (e.g. \"track\", \"identify\"); defaults to track, identify and inference events. Flag check events are only exported when requested here explicitly, and require a flag_id.
+     *
+     * @return self
+     */
+    public function setEventTypes($event_types)
+    {
+        if (is_null($event_types)) {
+            array_push($this->openAPINullablesSetToNull, 'event_types');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('event_types', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getEventTypesAllowableValues();
+        if (!is_null($event_types) && array_diff($event_types, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'event_types', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (!is_null($event_types) && (count($event_types) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $event_types when calling DataExportMetadata., number of items must be less than or equal to 100.');
+        }
+        $this->container['event_types'] = $event_types;
+
+        return $this;
+    }
+
+    /**
+     * Gets flag_id
+     *
+     * @return string|null
+     */
+    public function getFlagId()
+    {
+        return $this->container['flag_id'];
+    }
+
+    /**
+     * Sets flag_id
+     *
+     * @param string|null $flag_id Restrict the export to flag-check events for this flag ID (starting with 'flag_')
+     *
+     * @return self
+     */
+    public function setFlagId($flag_id)
+    {
+        if (is_null($flag_id)) {
+            array_push($this->openAPINullablesSetToNull, 'flag_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('flag_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['flag_id'] = $flag_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     *
+     * @return string|null
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     *
+     * @param string|null $user_id Restrict the export to events for this user ID (starting with 'user_')
+     *
+     * @return self
+     */
+    public function setUserId($user_id)
+    {
+        if (is_null($user_id)) {
+            array_push($this->openAPINullablesSetToNull, 'user_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['user_id'] = $user_id;
 
         return $this;
     }

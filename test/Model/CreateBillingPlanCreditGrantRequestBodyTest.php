@@ -189,6 +189,15 @@ class CreateBillingPlanCreditGrantRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "company_credit_amount"
+     */
+    public function testPropertyCompanyCreditAmount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "credit_amount"
      */
     public function testPropertyCreditAmount()
@@ -228,6 +237,15 @@ class CreateBillingPlanCreditGrantRequestBodyTest extends TestCase
      * Test attribute "expiry_unit_count"
      */
     public function testPropertyExpiryUnitCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "license_id"
+     */
+    public function testPropertyLicenseId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -282,6 +300,15 @@ class CreateBillingPlanCreditGrantRequestBodyTest extends TestCase
      * Test attribute "rollover_percentage"
      */
     public function testPropertyRolloverPercentage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "scaling"
+     */
+    public function testPropertyScaling()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

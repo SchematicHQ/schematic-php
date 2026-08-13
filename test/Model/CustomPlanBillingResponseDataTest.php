@@ -90,6 +90,15 @@ class CustomPlanBillingResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_cycle_anchor"
+     */
+    public function testPropertyBillingCycleAnchor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "company_id"
      */
     public function testPropertyCompanyId()
@@ -144,6 +153,15 @@ class CustomPlanBillingResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "plan_billing_source"
+     */
+    public function testPropertyPlanBillingSource()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "plan_id"
      */
     public function testPropertyPlanId()
@@ -156,6 +174,15 @@ class CustomPlanBillingResponseDataTest extends TestCase
      * Test attribute "published_at"
      */
     public function testPropertyPublishedAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "send_invoice"
+     */
+    public function testPropertySendInvoice()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

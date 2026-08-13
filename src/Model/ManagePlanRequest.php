@@ -58,20 +58,27 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
+        'activate_on_payment' => 'bool',
         'add_on_selections' => '\Schematic\Model\PlanSelection[]',
         'base_plan_id' => 'string',
         'base_plan_price_id' => 'string',
         'base_plan_version_id' => 'string',
+        'billing_cycle_anchor' => '\DateTime',
+        'billing_email' => 'string',
         'billing_entity_id' => 'string',
         'cancel_immediately' => 'bool',
+        'collection_method' => '\Schematic\Model\BillingCollectionMethod',
         'company_id' => 'string',
         'coupon_external_id' => 'string',
         'credit_bundles' => '\Schematic\Model\UpdateCreditBundleRequestBody[]',
         'custom_field_values' => '\Schematic\Model\CheckoutFieldValue[]',
+        'days_until_due' => 'int',
         'pay_in_advance_entitlements' => '\Schematic\Model\UpdatePayInAdvanceRequestBody[]',
         'payment_method_external_id' => 'string',
         'promo_code' => 'string',
         'prorate' => 'bool',
+        'prorate_first_period' => 'bool',
+        'send_invoice' => 'bool',
         'trial_end' => '\DateTime'
     ];
 
@@ -83,20 +90,27 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'activate_on_payment' => null,
         'add_on_selections' => null,
         'base_plan_id' => null,
         'base_plan_price_id' => null,
         'base_plan_version_id' => null,
+        'billing_cycle_anchor' => 'date-time',
+        'billing_email' => null,
         'billing_entity_id' => null,
         'cancel_immediately' => null,
+        'collection_method' => null,
         'company_id' => null,
         'coupon_external_id' => null,
         'credit_bundles' => null,
         'custom_field_values' => null,
+        'days_until_due' => 'int64',
         'pay_in_advance_entitlements' => null,
         'payment_method_external_id' => null,
         'promo_code' => null,
         'prorate' => null,
+        'prorate_first_period' => null,
+        'send_invoice' => null,
         'trial_end' => 'date-time'
     ];
 
@@ -106,20 +120,27 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'activate_on_payment' => true,
         'add_on_selections' => false,
         'base_plan_id' => true,
         'base_plan_price_id' => true,
         'base_plan_version_id' => true,
+        'billing_cycle_anchor' => true,
+        'billing_email' => true,
         'billing_entity_id' => true,
         'cancel_immediately' => true,
+        'collection_method' => true,
         'company_id' => false,
         'coupon_external_id' => true,
         'credit_bundles' => false,
         'custom_field_values' => false,
+        'days_until_due' => true,
         'pay_in_advance_entitlements' => false,
         'payment_method_external_id' => true,
         'promo_code' => true,
         'prorate' => true,
+        'prorate_first_period' => true,
+        'send_invoice' => true,
         'trial_end' => true
     ];
 
@@ -209,20 +230,27 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
+        'activate_on_payment' => 'activate_on_payment',
         'add_on_selections' => 'add_on_selections',
         'base_plan_id' => 'base_plan_id',
         'base_plan_price_id' => 'base_plan_price_id',
         'base_plan_version_id' => 'base_plan_version_id',
+        'billing_cycle_anchor' => 'billing_cycle_anchor',
+        'billing_email' => 'billing_email',
         'billing_entity_id' => 'billing_entity_id',
         'cancel_immediately' => 'cancel_immediately',
+        'collection_method' => 'collection_method',
         'company_id' => 'company_id',
         'coupon_external_id' => 'coupon_external_id',
         'credit_bundles' => 'credit_bundles',
         'custom_field_values' => 'custom_field_values',
+        'days_until_due' => 'days_until_due',
         'pay_in_advance_entitlements' => 'pay_in_advance_entitlements',
         'payment_method_external_id' => 'payment_method_external_id',
         'promo_code' => 'promo_code',
         'prorate' => 'prorate',
+        'prorate_first_period' => 'prorate_first_period',
+        'send_invoice' => 'send_invoice',
         'trial_end' => 'trial_end'
     ];
 
@@ -232,20 +260,27 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
+        'activate_on_payment' => 'setActivateOnPayment',
         'add_on_selections' => 'setAddOnSelections',
         'base_plan_id' => 'setBasePlanId',
         'base_plan_price_id' => 'setBasePlanPriceId',
         'base_plan_version_id' => 'setBasePlanVersionId',
+        'billing_cycle_anchor' => 'setBillingCycleAnchor',
+        'billing_email' => 'setBillingEmail',
         'billing_entity_id' => 'setBillingEntityId',
         'cancel_immediately' => 'setCancelImmediately',
+        'collection_method' => 'setCollectionMethod',
         'company_id' => 'setCompanyId',
         'coupon_external_id' => 'setCouponExternalId',
         'credit_bundles' => 'setCreditBundles',
         'custom_field_values' => 'setCustomFieldValues',
+        'days_until_due' => 'setDaysUntilDue',
         'pay_in_advance_entitlements' => 'setPayInAdvanceEntitlements',
         'payment_method_external_id' => 'setPaymentMethodExternalId',
         'promo_code' => 'setPromoCode',
         'prorate' => 'setProrate',
+        'prorate_first_period' => 'setProrateFirstPeriod',
+        'send_invoice' => 'setSendInvoice',
         'trial_end' => 'setTrialEnd'
     ];
 
@@ -255,20 +290,27 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
+        'activate_on_payment' => 'getActivateOnPayment',
         'add_on_selections' => 'getAddOnSelections',
         'base_plan_id' => 'getBasePlanId',
         'base_plan_price_id' => 'getBasePlanPriceId',
         'base_plan_version_id' => 'getBasePlanVersionId',
+        'billing_cycle_anchor' => 'getBillingCycleAnchor',
+        'billing_email' => 'getBillingEmail',
         'billing_entity_id' => 'getBillingEntityId',
         'cancel_immediately' => 'getCancelImmediately',
+        'collection_method' => 'getCollectionMethod',
         'company_id' => 'getCompanyId',
         'coupon_external_id' => 'getCouponExternalId',
         'credit_bundles' => 'getCreditBundles',
         'custom_field_values' => 'getCustomFieldValues',
+        'days_until_due' => 'getDaysUntilDue',
         'pay_in_advance_entitlements' => 'getPayInAdvanceEntitlements',
         'payment_method_external_id' => 'getPaymentMethodExternalId',
         'promo_code' => 'getPromoCode',
         'prorate' => 'getProrate',
+        'prorate_first_period' => 'getProrateFirstPeriod',
+        'send_invoice' => 'getSendInvoice',
         'trial_end' => 'getTrialEnd'
     ];
 
@@ -329,20 +371,27 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('activate_on_payment', $data ?? [], null);
         $this->setIfExists('add_on_selections', $data ?? [], null);
         $this->setIfExists('base_plan_id', $data ?? [], null);
         $this->setIfExists('base_plan_price_id', $data ?? [], null);
         $this->setIfExists('base_plan_version_id', $data ?? [], null);
+        $this->setIfExists('billing_cycle_anchor', $data ?? [], null);
+        $this->setIfExists('billing_email', $data ?? [], null);
         $this->setIfExists('billing_entity_id', $data ?? [], null);
         $this->setIfExists('cancel_immediately', $data ?? [], null);
+        $this->setIfExists('collection_method', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('coupon_external_id', $data ?? [], null);
         $this->setIfExists('credit_bundles', $data ?? [], null);
         $this->setIfExists('custom_field_values', $data ?? [], null);
+        $this->setIfExists('days_until_due', $data ?? [], null);
         $this->setIfExists('pay_in_advance_entitlements', $data ?? [], null);
         $this->setIfExists('payment_method_external_id', $data ?? [], null);
         $this->setIfExists('promo_code', $data ?? [], null);
         $this->setIfExists('prorate', $data ?? [], null);
+        $this->setIfExists('prorate_first_period', $data ?? [], null);
+        $this->setIfExists('send_invoice', $data ?? [], null);
         $this->setIfExists('trial_end', $data ?? [], null);
     }
 
@@ -380,6 +429,10 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             $invalidProperties[] = "invalid value for 'add_on_selections', number of items must be less than or equal to 100.";
         }
 
+        if (!is_null($this->container['billing_email']) && (mb_strlen($this->container['billing_email']) > 255)) {
+            $invalidProperties[] = "invalid value for 'billing_email', the character length must be smaller than or equal to 255.";
+        }
+
         if ($this->container['company_id'] === null) {
             $invalidProperties[] = "'company_id' can't be null";
         }
@@ -395,6 +448,10 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
         if ((count($this->container['custom_field_values']) > 100)) {
             $invalidProperties[] = "invalid value for 'custom_field_values', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['days_until_due']) && ($this->container['days_until_due'] > 365)) {
+            $invalidProperties[] = "invalid value for 'days_until_due', must be smaller than or equal to 365.";
         }
 
         if ($this->container['pay_in_advance_entitlements'] === null) {
@@ -422,6 +479,40 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets activate_on_payment
+     *
+     * @return bool|null
+     */
+    public function getActivateOnPayment()
+    {
+        return $this->container['activate_on_payment'];
+    }
+
+    /**
+     * Sets activate_on_payment
+     *
+     * @param bool|null $activate_on_payment If true, the company gets the plan only once the first invoice is paid. Only applies to an invoiced subscription. Defaults to false.
+     *
+     * @return self
+     */
+    public function setActivateOnPayment($activate_on_payment)
+    {
+        if (is_null($activate_on_payment)) {
+            array_push($this->openAPINullablesSetToNull, 'activate_on_payment');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('activate_on_payment', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['activate_on_payment'] = $activate_on_payment;
+
+        return $this;
+    }
 
     /**
      * Gets add_on_selections
@@ -557,6 +648,78 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * Gets billing_cycle_anchor
+     *
+     * @return \DateTime|null
+     */
+    public function getBillingCycleAnchor()
+    {
+        return $this->container['billing_cycle_anchor'];
+    }
+
+    /**
+     * Sets billing_cycle_anchor
+     *
+     * @param \DateTime|null $billing_cycle_anchor The date the subscription's billing period renews on. Only honored when starting a new subscription; changing the anchor on an existing subscription is not supported.
+     *
+     * @return self
+     */
+    public function setBillingCycleAnchor($billing_cycle_anchor)
+    {
+        if (is_null($billing_cycle_anchor)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_cycle_anchor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_cycle_anchor', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_cycle_anchor'] = $billing_cycle_anchor;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_email
+     *
+     * @return string|null
+     */
+    public function getBillingEmail()
+    {
+        return $this->container['billing_email'];
+    }
+
+    /**
+     * Sets billing_email
+     *
+     * @param string|null $billing_email Address the invoice is sent to. Required when collection_method is send_invoice.
+     *
+     * @return self
+     */
+    public function setBillingEmail($billing_email)
+    {
+        if (is_null($billing_email)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_email');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_email', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($billing_email) && (mb_strlen($billing_email) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $billing_email when calling ManagePlanRequest., must be smaller than or equal to 255.');
+        }
+
+        $this->container['billing_email'] = $billing_email;
+
+        return $this;
+    }
+
+    /**
      * Gets billing_entity_id
      *
      * @return string|null
@@ -620,6 +783,40 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['cancel_immediately'] = $cancel_immediately;
+
+        return $this;
+    }
+
+    /**
+     * Gets collection_method
+     *
+     * @return \Schematic\Model\BillingCollectionMethod|null
+     */
+    public function getCollectionMethod()
+    {
+        return $this->container['collection_method'];
+    }
+
+    /**
+     * Sets collection_method
+     *
+     * @param \Schematic\Model\BillingCollectionMethod|null $collection_method How the subscription is paid: charged to a payment method on file, or invoiced with payment terms. Invoicing is only available when starting a new subscription. Defaults to charge_automatically.
+     *
+     * @return self
+     */
+    public function setCollectionMethod($collection_method)
+    {
+        if (is_null($collection_method)) {
+            array_push($this->openAPINullablesSetToNull, 'collection_method');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('collection_method', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['collection_method'] = $collection_method;
 
         return $this;
     }
@@ -743,6 +940,45 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('invalid value for $custom_field_values when calling ManagePlanRequest., number of items must be less than or equal to 100.');
         }
         $this->container['custom_field_values'] = $custom_field_values;
+
+        return $this;
+    }
+
+    /**
+     * Gets days_until_due
+     *
+     * @return int|null
+     */
+    public function getDaysUntilDue()
+    {
+        return $this->container['days_until_due'];
+    }
+
+    /**
+     * Sets days_until_due
+     *
+     * @param int|null $days_until_due Payment terms in days for an invoiced subscription. Defaults to 30.
+     *
+     * @return self
+     */
+    public function setDaysUntilDue($days_until_due)
+    {
+        if (is_null($days_until_due)) {
+            array_push($this->openAPINullablesSetToNull, 'days_until_due');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('days_until_due', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($days_until_due) && ($days_until_due > 365)) {
+            throw new \InvalidArgumentException('invalid value for $days_until_due when calling ManagePlanRequest., must be smaller than or equal to 365.');
+        }
+
+        $this->container['days_until_due'] = $days_until_due;
 
         return $this;
     }
@@ -880,6 +1116,74 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['prorate'] = $prorate;
+
+        return $this;
+    }
+
+    /**
+     * Gets prorate_first_period
+     *
+     * @return bool|null
+     */
+    public function getProrateFirstPeriod()
+    {
+        return $this->container['prorate_first_period'];
+    }
+
+    /**
+     * Sets prorate_first_period
+     *
+     * @param bool|null $prorate_first_period When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true.
+     *
+     * @return self
+     */
+    public function setProrateFirstPeriod($prorate_first_period)
+    {
+        if (is_null($prorate_first_period)) {
+            array_push($this->openAPINullablesSetToNull, 'prorate_first_period');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('prorate_first_period', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['prorate_first_period'] = $prorate_first_period;
+
+        return $this;
+    }
+
+    /**
+     * Gets send_invoice
+     *
+     * @return bool|null
+     */
+    public function getSendInvoice()
+    {
+        return $this->container['send_invoice'];
+    }
+
+    /**
+     * Sets send_invoice
+     *
+     * @param bool|null $send_invoice Whether Stripe emails the invoice when it is finalized. Only applies to an invoiced subscription. Defaults to true.
+     *
+     * @return self
+     */
+    public function setSendInvoice($send_invoice)
+    {
+        if (is_null($send_invoice)) {
+            array_push($this->openAPINullablesSetToNull, 'send_invoice');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('send_invoice', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['send_invoice'] = $send_invoice;
 
         return $this;
     }

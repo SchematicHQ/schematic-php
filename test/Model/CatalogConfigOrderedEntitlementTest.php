@@ -81,9 +81,9 @@ class CatalogConfigOrderedEntitlementTest extends TestCase
     }
 
     /**
-     * Test attribute "plan_entitlement_id"
+     * Test attribute "feature_id"
      */
-    public function testPropertyPlanEntitlementId()
+    public function testPropertyFeatureId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

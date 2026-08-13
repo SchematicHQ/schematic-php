@@ -81,6 +81,15 @@ class CheckoutSettingsResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "bundle_purchase_behavior"
+     */
+    public function testPropertyBundlePurchaseBehavior()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "collect_address"
      */
     public function testPropertyCollectAddress()
@@ -102,6 +111,15 @@ class CheckoutSettingsResponseDataTest extends TestCase
      * Test attribute "collect_phone"
      */
     public function testPropertyCollectPhone()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "collect_tax_id"
+     */
+    public function testPropertyCollectTaxId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

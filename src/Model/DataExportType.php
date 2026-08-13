@@ -47,6 +47,8 @@ class DataExportType
 
     public const COMPANY_FEATURE_USAGE = 'company-feature-usage';
 
+    public const EVENT = 'event';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -55,7 +57,8 @@ class DataExportType
     {
         return [
             self::AUDIT_LOG,
-            self::COMPANY_FEATURE_USAGE
+            self::COMPANY_FEATURE_USAGE,
+            self::EVENT
         ];
     }
 }

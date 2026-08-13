@@ -241,6 +241,30 @@ class EntitlementsApiTest extends TestCase
     }
 
     /**
+     * Test case for getUserUsageByCompany
+     *
+     * Get user usage by company.
+     *
+     */
+    public function testGetUserUsageByCompany()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getUserUsageDetail
+     *
+     * Get user usage detail.
+     *
+     */
+    public function testGetUserUsageDetail()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for listCompanyOverrides
      *
      * List company overrides.

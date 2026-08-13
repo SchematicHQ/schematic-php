@@ -60,6 +60,8 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     protected static $openAPITypes = [
         'company_ids' => 'string[]',
         'credit_type_ids' => 'string[]',
+        'entity_key_definition_ids' => 'string[]',
+        'entity_trait_definition_ids' => 'string[]',
         'export_type' => 'string',
         'feature_ids' => 'string[]',
         'has_scheduled_downgrade' => 'bool',
@@ -69,8 +71,11 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_ids' => 'string[]',
         'plan_version_id' => 'string',
         'q' => 'string',
+        'sort_order_column' => 'string',
+        'sort_order_direction' => 'string',
         'subscription_statuses' => 'string[]',
         'subscription_types' => 'string[]',
+        'visible_columns' => 'string[]',
         'with_entitlement_for' => 'string',
         'with_subscription' => 'bool',
         'without_feature_override_for' => 'string',
@@ -88,6 +93,8 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     protected static $openAPIFormats = [
         'company_ids' => null,
         'credit_type_ids' => null,
+        'entity_key_definition_ids' => null,
+        'entity_trait_definition_ids' => null,
         'export_type' => null,
         'feature_ids' => null,
         'has_scheduled_downgrade' => null,
@@ -97,8 +104,11 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_ids' => null,
         'plan_version_id' => null,
         'q' => null,
+        'sort_order_column' => null,
+        'sort_order_direction' => null,
         'subscription_statuses' => null,
         'subscription_types' => null,
+        'visible_columns' => null,
         'with_entitlement_for' => null,
         'with_subscription' => null,
         'without_feature_override_for' => null,
@@ -114,6 +124,8 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     protected static array $openAPINullables = [
         'company_ids' => true,
         'credit_type_ids' => true,
+        'entity_key_definition_ids' => true,
+        'entity_trait_definition_ids' => true,
         'export_type' => false,
         'feature_ids' => false,
         'has_scheduled_downgrade' => true,
@@ -123,8 +135,11 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_ids' => true,
         'plan_version_id' => true,
         'q' => true,
+        'sort_order_column' => true,
+        'sort_order_direction' => true,
         'subscription_statuses' => true,
         'subscription_types' => true,
+        'visible_columns' => true,
         'with_entitlement_for' => true,
         'with_subscription' => true,
         'without_feature_override_for' => true,
@@ -220,6 +235,8 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     protected static $attributeMap = [
         'company_ids' => 'company_ids',
         'credit_type_ids' => 'credit_type_ids',
+        'entity_key_definition_ids' => 'entity_key_definition_ids',
+        'entity_trait_definition_ids' => 'entity_trait_definition_ids',
         'export_type' => 'export_type',
         'feature_ids' => 'feature_ids',
         'has_scheduled_downgrade' => 'has_scheduled_downgrade',
@@ -229,8 +246,11 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_ids' => 'plan_ids',
         'plan_version_id' => 'plan_version_id',
         'q' => 'q',
+        'sort_order_column' => 'sort_order_column',
+        'sort_order_direction' => 'sort_order_direction',
         'subscription_statuses' => 'subscription_statuses',
         'subscription_types' => 'subscription_types',
+        'visible_columns' => 'visible_columns',
         'with_entitlement_for' => 'with_entitlement_for',
         'with_subscription' => 'with_subscription',
         'without_feature_override_for' => 'without_feature_override_for',
@@ -246,6 +266,8 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     protected static $setters = [
         'company_ids' => 'setCompanyIds',
         'credit_type_ids' => 'setCreditTypeIds',
+        'entity_key_definition_ids' => 'setEntityKeyDefinitionIds',
+        'entity_trait_definition_ids' => 'setEntityTraitDefinitionIds',
         'export_type' => 'setExportType',
         'feature_ids' => 'setFeatureIds',
         'has_scheduled_downgrade' => 'setHasScheduledDowngrade',
@@ -255,8 +277,11 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_ids' => 'setPlanIds',
         'plan_version_id' => 'setPlanVersionId',
         'q' => 'setQ',
+        'sort_order_column' => 'setSortOrderColumn',
+        'sort_order_direction' => 'setSortOrderDirection',
         'subscription_statuses' => 'setSubscriptionStatuses',
         'subscription_types' => 'setSubscriptionTypes',
+        'visible_columns' => 'setVisibleColumns',
         'with_entitlement_for' => 'setWithEntitlementFor',
         'with_subscription' => 'setWithSubscription',
         'without_feature_override_for' => 'setWithoutFeatureOverrideFor',
@@ -272,6 +297,8 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     protected static $getters = [
         'company_ids' => 'getCompanyIds',
         'credit_type_ids' => 'getCreditTypeIds',
+        'entity_key_definition_ids' => 'getEntityKeyDefinitionIds',
+        'entity_trait_definition_ids' => 'getEntityTraitDefinitionIds',
         'export_type' => 'getExportType',
         'feature_ids' => 'getFeatureIds',
         'has_scheduled_downgrade' => 'getHasScheduledDowngrade',
@@ -281,8 +308,11 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_ids' => 'getPlanIds',
         'plan_version_id' => 'getPlanVersionId',
         'q' => 'getQ',
+        'sort_order_column' => 'getSortOrderColumn',
+        'sort_order_direction' => 'getSortOrderDirection',
         'subscription_statuses' => 'getSubscriptionStatuses',
         'subscription_types' => 'getSubscriptionTypes',
+        'visible_columns' => 'getVisibleColumns',
         'with_entitlement_for' => 'getWithEntitlementFor',
         'with_subscription' => 'getWithSubscription',
         'without_feature_override_for' => 'getWithoutFeatureOverrideFor',
@@ -332,6 +362,12 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     }
 
     public const EXPORT_TYPE_COMPANY_FEATURE_USAGE = 'company-feature-usage';
+    public const SORT_ORDER_DIRECTION_ASC = 'asc';
+    public const SORT_ORDER_DIRECTION_DESC = 'desc';
+    public const VISIBLE_COLUMNS_PLAN = 'plan';
+    public const VISIBLE_COLUMNS_SUBSCRIPTION = 'subscription';
+    public const VISIBLE_COLUMNS_USERS = 'users';
+    public const VISIBLE_COLUMNS_LAST_SEEN_AT = 'last_seen_at';
 
     /**
      * Gets allowable values of the enum
@@ -342,6 +378,34 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     {
         return [
             self::EXPORT_TYPE_COMPANY_FEATURE_USAGE,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getSortOrderDirectionAllowableValues()
+    {
+        return [
+            self::SORT_ORDER_DIRECTION_ASC,
+            self::SORT_ORDER_DIRECTION_DESC,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVisibleColumnsAllowableValues()
+    {
+        return [
+            self::VISIBLE_COLUMNS_PLAN,
+            self::VISIBLE_COLUMNS_SUBSCRIPTION,
+            self::VISIBLE_COLUMNS_USERS,
+            self::VISIBLE_COLUMNS_LAST_SEEN_AT,
         ];
     }
 
@@ -362,6 +426,8 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     {
         $this->setIfExists('company_ids', $data ?? [], null);
         $this->setIfExists('credit_type_ids', $data ?? [], null);
+        $this->setIfExists('entity_key_definition_ids', $data ?? [], null);
+        $this->setIfExists('entity_trait_definition_ids', $data ?? [], null);
         $this->setIfExists('export_type', $data ?? [], null);
         $this->setIfExists('feature_ids', $data ?? [], null);
         $this->setIfExists('has_scheduled_downgrade', $data ?? [], null);
@@ -371,8 +437,11 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         $this->setIfExists('plan_ids', $data ?? [], null);
         $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
+        $this->setIfExists('sort_order_column', $data ?? [], null);
+        $this->setIfExists('sort_order_direction', $data ?? [], null);
         $this->setIfExists('subscription_statuses', $data ?? [], null);
         $this->setIfExists('subscription_types', $data ?? [], null);
+        $this->setIfExists('visible_columns', $data ?? [], null);
         $this->setIfExists('with_entitlement_for', $data ?? [], null);
         $this->setIfExists('with_subscription', $data ?? [], null);
         $this->setIfExists('without_feature_override_for', $data ?? [], null);
@@ -415,6 +484,14 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
             $invalidProperties[] = "invalid value for 'credit_type_ids', number of items must be less than or equal to 100.";
         }
 
+        if (!is_null($this->container['entity_key_definition_ids']) && (count($this->container['entity_key_definition_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'entity_key_definition_ids', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['entity_trait_definition_ids']) && (count($this->container['entity_trait_definition_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'entity_trait_definition_ids', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['export_type'] === null) {
             $invalidProperties[] = "'export_type' can't be null";
         }
@@ -427,10 +504,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
             );
         }
 
-        if ($this->container['feature_ids'] === null) {
-            $invalidProperties[] = "'feature_ids' can't be null";
-        }
-        if ((count($this->container['feature_ids']) > 100)) {
+        if (!is_null($this->container['feature_ids']) && (count($this->container['feature_ids']) > 100)) {
             $invalidProperties[] = "invalid value for 'feature_ids', number of items must be less than or equal to 100.";
         }
 
@@ -442,12 +516,25 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
             $invalidProperties[] = "invalid value for 'plan_ids', number of items must be less than or equal to 100.";
         }
 
+        $allowedValues = $this->getSortOrderDirectionAllowableValues();
+        if (!is_null($this->container['sort_order_direction']) && !in_array($this->container['sort_order_direction'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'sort_order_direction', must be one of '%s'",
+                $this->container['sort_order_direction'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if (!is_null($this->container['subscription_statuses']) && (count($this->container['subscription_statuses']) > 100)) {
             $invalidProperties[] = "invalid value for 'subscription_statuses', number of items must be less than or equal to 100.";
         }
 
         if (!is_null($this->container['subscription_types']) && (count($this->container['subscription_types']) > 100)) {
             $invalidProperties[] = "invalid value for 'subscription_types', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['visible_columns']) && (count($this->container['visible_columns']) > 10)) {
+            $invalidProperties[] = "invalid value for 'visible_columns', number of items must be less than or equal to 10.";
         }
 
         return $invalidProperties;
@@ -542,6 +629,82 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     }
 
     /**
+     * Gets entity_key_definition_ids
+     *
+     * @return string[]|null
+     */
+    public function getEntityKeyDefinitionIds()
+    {
+        return $this->container['entity_key_definition_ids'];
+    }
+
+    /**
+     * Sets entity_key_definition_ids
+     *
+     * @param string[]|null $entity_key_definition_ids Company key definition IDs to include as columns, one column per definition, mirroring the companies list
+     *
+     * @return self
+     */
+    public function setEntityKeyDefinitionIds($entity_key_definition_ids)
+    {
+        if (is_null($entity_key_definition_ids)) {
+            array_push($this->openAPINullablesSetToNull, 'entity_key_definition_ids');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('entity_key_definition_ids', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($entity_key_definition_ids) && (count($entity_key_definition_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $entity_key_definition_ids when calling CompanyFeatureUsageExportMetadata., number of items must be less than or equal to 100.');
+        }
+        $this->container['entity_key_definition_ids'] = $entity_key_definition_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets entity_trait_definition_ids
+     *
+     * @return string[]|null
+     */
+    public function getEntityTraitDefinitionIds()
+    {
+        return $this->container['entity_trait_definition_ids'];
+    }
+
+    /**
+     * Sets entity_trait_definition_ids
+     *
+     * @param string[]|null $entity_trait_definition_ids Company trait definition IDs to include as columns, one column per definition, mirroring the companies list
+     *
+     * @return self
+     */
+    public function setEntityTraitDefinitionIds($entity_trait_definition_ids)
+    {
+        if (is_null($entity_trait_definition_ids)) {
+            array_push($this->openAPINullablesSetToNull, 'entity_trait_definition_ids');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('entity_trait_definition_ids', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($entity_trait_definition_ids) && (count($entity_trait_definition_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $entity_trait_definition_ids when calling CompanyFeatureUsageExportMetadata., number of items must be less than or equal to 100.');
+        }
+        $this->container['entity_trait_definition_ids'] = $entity_trait_definition_ids;
+
+        return $this;
+    }
+
+    /**
      * Gets export_type
      *
      * @return string
@@ -581,7 +744,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     /**
      * Gets feature_ids
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getFeatureIds()
     {
@@ -591,7 +754,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     /**
      * Sets feature_ids
      *
-     * @param string[] $feature_ids Schematic feature IDs (starting with 'feat_') to include as usage columns; at least one is required
+     * @param string[]|null $feature_ids Schematic feature IDs (starting with 'feat_') to include as usage columns; empty means no usage columns
      *
      * @return self
      */
@@ -849,6 +1012,84 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     }
 
     /**
+     * Gets sort_order_column
+     *
+     * @return string|null
+     */
+    public function getSortOrderColumn()
+    {
+        return $this->container['sort_order_column'];
+    }
+
+    /**
+     * Sets sort_order_column
+     *
+     * @param string|null $sort_order_column Column to sort the exported rows by (e.g. name, created_at, plan); defaults to name
+     *
+     * @return self
+     */
+    public function setSortOrderColumn($sort_order_column)
+    {
+        if (is_null($sort_order_column)) {
+            array_push($this->openAPINullablesSetToNull, 'sort_order_column');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sort_order_column', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['sort_order_column'] = $sort_order_column;
+
+        return $this;
+    }
+
+    /**
+     * Gets sort_order_direction
+     *
+     * @return string|null
+     */
+    public function getSortOrderDirection()
+    {
+        return $this->container['sort_order_direction'];
+    }
+
+    /**
+     * Sets sort_order_direction
+     *
+     * @param string|null $sort_order_direction Direction to sort the exported rows by; defaults to asc
+     *
+     * @return self
+     */
+    public function setSortOrderDirection($sort_order_direction)
+    {
+        if (is_null($sort_order_direction)) {
+            array_push($this->openAPINullablesSetToNull, 'sort_order_direction');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('sort_order_direction', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getSortOrderDirectionAllowableValues();
+        if (!is_null($sort_order_direction) && !in_array($sort_order_direction, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'sort_order_direction', must be one of '%s'",
+                    $sort_order_direction,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['sort_order_direction'] = $sort_order_direction;
+
+        return $this;
+    }
+
+    /**
      * Gets subscription_statuses
      *
      * @return string[]|null
@@ -920,6 +1161,53 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
             throw new \InvalidArgumentException('invalid value for $subscription_types when calling CompanyFeatureUsageExportMetadata., number of items must be less than or equal to 100.');
         }
         $this->container['subscription_types'] = $subscription_types;
+
+        return $this;
+    }
+
+    /**
+     * Gets visible_columns
+     *
+     * @return string[]|null
+     */
+    public function getVisibleColumns()
+    {
+        return $this->container['visible_columns'];
+    }
+
+    /**
+     * Sets visible_columns
+     *
+     * @param string[]|null $visible_columns Company columns to include, mirroring the companies list; omit to include the plan column only
+     *
+     * @return self
+     */
+    public function setVisibleColumns($visible_columns)
+    {
+        if (is_null($visible_columns)) {
+            array_push($this->openAPINullablesSetToNull, 'visible_columns');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('visible_columns', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getVisibleColumnsAllowableValues();
+        if (!is_null($visible_columns) && array_diff($visible_columns, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'visible_columns', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (!is_null($visible_columns) && (count($visible_columns) > 10)) {
+            throw new \InvalidArgumentException('invalid value for $visible_columns when calling CompanyFeatureUsageExportMetadata., number of items must be less than or equal to 10.');
+        }
+        $this->container['visible_columns'] = $visible_columns;
 
         return $this;
     }

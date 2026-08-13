@@ -68,6 +68,7 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'plan_version_id_from' => 'string',
         'plan_version_id_to' => 'string',
         'plan_version_ids_from' => 'string[]',
+        'proration_behavior' => '\Schematic\Model\MigrationProrationBehavior',
         'skipped_companies' => 'int',
         'started_at' => '\DateTime',
         'status' => '\Schematic\Model\PlanVersionMigrationStatus',
@@ -94,6 +95,7 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'plan_version_id_from' => null,
         'plan_version_id_to' => null,
         'plan_version_ids_from' => null,
+        'proration_behavior' => null,
         'skipped_companies' => 'int64',
         'started_at' => 'date-time',
         'status' => null,
@@ -118,6 +120,7 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'plan_version_id_from' => true,
         'plan_version_id_to' => false,
         'plan_version_ids_from' => false,
+        'proration_behavior' => true,
         'skipped_companies' => false,
         'started_at' => true,
         'status' => false,
@@ -222,6 +225,7 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'plan_version_id_from' => 'plan_version_id_from',
         'plan_version_id_to' => 'plan_version_id_to',
         'plan_version_ids_from' => 'plan_version_ids_from',
+        'proration_behavior' => 'proration_behavior',
         'skipped_companies' => 'skipped_companies',
         'started_at' => 'started_at',
         'status' => 'status',
@@ -246,6 +250,7 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'plan_version_id_from' => 'setPlanVersionIdFrom',
         'plan_version_id_to' => 'setPlanVersionIdTo',
         'plan_version_ids_from' => 'setPlanVersionIdsFrom',
+        'proration_behavior' => 'setProrationBehavior',
         'skipped_companies' => 'setSkippedCompanies',
         'started_at' => 'setStartedAt',
         'status' => 'setStatus',
@@ -270,6 +275,7 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'plan_version_id_from' => 'getPlanVersionIdFrom',
         'plan_version_id_to' => 'getPlanVersionIdTo',
         'plan_version_ids_from' => 'getPlanVersionIdsFrom',
+        'proration_behavior' => 'getProrationBehavior',
         'skipped_companies' => 'getSkippedCompanies',
         'started_at' => 'getStartedAt',
         'status' => 'getStatus',
@@ -345,6 +351,7 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         $this->setIfExists('plan_version_id_from', $data ?? [], null);
         $this->setIfExists('plan_version_id_to', $data ?? [], null);
         $this->setIfExists('plan_version_ids_from', $data ?? [], null);
+        $this->setIfExists('proration_behavior', $data ?? [], null);
         $this->setIfExists('skipped_companies', $data ?? [], null);
         $this->setIfExists('started_at', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
@@ -726,6 +733,40 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
             throw new \InvalidArgumentException('invalid value for $plan_version_ids_from when calling PlanVersionMigrationResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['plan_version_ids_from'] = $plan_version_ids_from;
+
+        return $this;
+    }
+
+    /**
+     * Gets proration_behavior
+     *
+     * @return \Schematic\Model\MigrationProrationBehavior|null
+     */
+    public function getProrationBehavior()
+    {
+        return $this->container['proration_behavior'];
+    }
+
+    /**
+     * Sets proration_behavior
+     *
+     * @param \Schematic\Model\MigrationProrationBehavior|null $proration_behavior proration_behavior
+     *
+     * @return self
+     */
+    public function setProrationBehavior($proration_behavior)
+    {
+        if (is_null($proration_behavior)) {
+            array_push($this->openAPINullablesSetToNull, 'proration_behavior');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('proration_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['proration_behavior'] = $proration_behavior;
 
         return $this;
     }

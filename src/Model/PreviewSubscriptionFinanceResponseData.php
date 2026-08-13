@@ -59,6 +59,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
       */
     protected static $openAPITypes = [
         'amount_off' => 'int',
+        'discount_amount' => 'int',
         'discounts' => '\Schematic\Model\PreviewSubscriptionDiscountResponseData[]',
         'due_now' => 'int',
         'new_charges' => 'int',
@@ -84,6 +85,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
       */
     protected static $openAPIFormats = [
         'amount_off' => 'int64',
+        'discount_amount' => 'int64',
         'discounts' => null,
         'due_now' => 'int64',
         'new_charges' => 'int64',
@@ -107,6 +109,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
       */
     protected static array $openAPINullables = [
         'amount_off' => false,
+        'discount_amount' => false,
         'discounts' => false,
         'due_now' => false,
         'new_charges' => false,
@@ -210,6 +213,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
      */
     protected static $attributeMap = [
         'amount_off' => 'amount_off',
+        'discount_amount' => 'discount_amount',
         'discounts' => 'discounts',
         'due_now' => 'due_now',
         'new_charges' => 'new_charges',
@@ -233,6 +237,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
      */
     protected static $setters = [
         'amount_off' => 'setAmountOff',
+        'discount_amount' => 'setDiscountAmount',
         'discounts' => 'setDiscounts',
         'due_now' => 'setDueNow',
         'new_charges' => 'setNewCharges',
@@ -256,6 +261,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
      */
     protected static $getters = [
         'amount_off' => 'getAmountOff',
+        'discount_amount' => 'getDiscountAmount',
         'discounts' => 'getDiscounts',
         'due_now' => 'getDueNow',
         'new_charges' => 'getNewCharges',
@@ -330,6 +336,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
     public function __construct(?array $data = null)
     {
         $this->setIfExists('amount_off', $data ?? [], null);
+        $this->setIfExists('discount_amount', $data ?? [], null);
         $this->setIfExists('discounts', $data ?? [], null);
         $this->setIfExists('due_now', $data ?? [], null);
         $this->setIfExists('new_charges', $data ?? [], null);
@@ -375,6 +382,9 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
 
         if ($this->container['amount_off'] === null) {
             $invalidProperties[] = "'amount_off' can't be null";
+        }
+        if ($this->container['discount_amount'] === null) {
+            $invalidProperties[] = "'discount_amount' can't be null";
         }
         if ($this->container['discounts'] === null) {
             $invalidProperties[] = "'discounts' can't be null";
@@ -455,6 +465,33 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable amount_off cannot be null');
         }
         $this->container['amount_off'] = $amount_off;
+
+        return $this;
+    }
+
+    /**
+     * Gets discount_amount
+     *
+     * @return int
+     */
+    public function getDiscountAmount()
+    {
+        return $this->container['discount_amount'];
+    }
+
+    /**
+     * Sets discount_amount
+     *
+     * @param int $discount_amount discount_amount
+     *
+     * @return self
+     */
+    public function setDiscountAmount($discount_amount)
+    {
+        if (is_null($discount_amount)) {
+            throw new \InvalidArgumentException('non-nullable discount_amount cannot be null');
+        }
+        $this->container['discount_amount'] = $discount_amount;
 
         return $this;
     }

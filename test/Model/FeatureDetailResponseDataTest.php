@@ -90,6 +90,15 @@ class FeatureDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_product"
+     */
+    public function testPropertyBillingProduct()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()
@@ -156,6 +165,15 @@ class FeatureDetailResponseDataTest extends TestCase
      * Test attribute "id"
      */
     public function testPropertyId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "license_id"
+     */
+    public function testPropertyLicenseId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -246,6 +264,15 @@ class FeatureDetailResponseDataTest extends TestCase
      * Test attribute "updated_at"
      */
     public function testPropertyUpdatedAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "usage_limit_trait_id"
+     */
+    public function testPropertyUsageLimitTraitId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

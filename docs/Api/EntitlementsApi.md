@@ -18,6 +18,8 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**getFeatureUsageByCompany()**](EntitlementsApi.md#getFeatureUsageByCompany) | **GET** /usage-by-company | Get feature usage by company |
 | [**getFeatureUsageTimeSeries()**](EntitlementsApi.md#getFeatureUsageTimeSeries) | **GET** /feature-usage-timeseries | Get feature usage time series |
 | [**getPlanEntitlement()**](EntitlementsApi.md#getPlanEntitlement) | **GET** /plan-entitlements/{plan_entitlement_id} | Get plan entitlement |
+| [**getUserUsageByCompany()**](EntitlementsApi.md#getUserUsageByCompany) | **GET** /user-usage-by-company | Get user usage by company |
+| [**getUserUsageDetail()**](EntitlementsApi.md#getUserUsageDetail) | **GET** /user-usage-detail | Get user usage detail |
 | [**listCompanyOverrides()**](EntitlementsApi.md#listCompanyOverrides) | **GET** /company-overrides | List company overrides |
 | [**listFeatureCompanies()**](EntitlementsApi.md#listFeatureCompanies) | **GET** /feature-companies | List feature companies |
 | [**listFeatureUsage()**](EntitlementsApi.md#listFeatureUsage) | **GET** /feature-usage | List feature usage |
@@ -800,6 +802,120 @@ try {
 ### Return type
 
 [**\Schematic\Model\GetPlanEntitlementResponse**](../Model/GetPlanEntitlementResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getUserUsageByCompany()`
+
+```php
+getUserUsageByCompany($company_id, $end_time, $feature_id, $start_time): \Schematic\Model\GetUserUsageByCompanyResponse
+```
+
+Get user usage by company
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string | Company to break usage down for
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | End of the usage window (exclusive); defaults to now
+$feature_id = 'feature_id_example'; // string | Restrict to a single event-based feature
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | Start of the usage window; defaults to 30 days before the end
+
+try {
+    $result = $schematic->EntitlementsApi->getUserUsageByCompany($company_id, $end_time, $feature_id, $start_time);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EntitlementsApi->getUserUsageByCompany: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**| Company to break usage down for | |
+| **end_time** | **\DateTime**| End of the usage window (exclusive); defaults to now | [optional] |
+| **feature_id** | **string**| Restrict to a single event-based feature | [optional] |
+| **start_time** | **\DateTime**| Start of the usage window; defaults to 30 days before the end | [optional] |
+
+### Return type
+
+[**\Schematic\Model\GetUserUsageByCompanyResponse**](../Model/GetUserUsageByCompanyResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getUserUsageDetail()`
+
+```php
+getUserUsageDetail($company_id, $user_id, $end_time, $start_time): \Schematic\Model\GetUserUsageDetailResponse
+```
+
+Get user usage detail
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string | Company the user belongs to
+$user_id = 'user_id_example'; // string | User to break usage down for
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | End of the usage window (exclusive); defaults to now
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | Start of the usage window; defaults to 30 days before the end
+
+try {
+    $result = $schematic->EntitlementsApi->getUserUsageDetail($company_id, $user_id, $end_time, $start_time);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EntitlementsApi->getUserUsageDetail: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**| Company the user belongs to | |
+| **user_id** | **string**| User to break usage down for | |
+| **end_time** | **\DateTime**| End of the usage window (exclusive); defaults to now | [optional] |
+| **start_time** | **\DateTime**| Start of the usage window; defaults to 30 days before the end | [optional] |
+
+### Return type
+
+[**\Schematic\Model\GetUserUsageDetailResponse**](../Model/GetUserUsageDetailResponse.md)
 
 ### Authorization
 

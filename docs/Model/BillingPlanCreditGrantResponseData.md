@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **auto_topup_threshold_credits** | **int** |  | [optional]
 **auto_topup_threshold_percent** | **int** |  | [optional]
 **can_buy_bundles** | **bool** | Whether buyers can purchase one-time credit bundles on this grant, independent of auto top-up availability. |
+**company_credit_amount** | **int** | Credits granted once per company on top of the per-license amount. Always 0 when scaling is fixed. |
 **created_at** | **\DateTime** |  |
 **credit** | [**\Schematic\Model\BillingCreditResponseData**](BillingCreditResponseData.md) |  | [optional]
 **credit_amount** | **int** |  |
@@ -26,6 +27,7 @@ Name | Type | Description | Notes
 **expiry_unit** | [**\Schematic\Model\BillingCreditExpiryUnit**](BillingCreditExpiryUnit.md) |  | [optional]
 **expiry_unit_count** | **int** |  | [optional]
 **id** | **string** |  |
+**license_id** | **string** | The license whose quantity scales this grant. Set only when scaling is per_license. | [optional]
 **plan** | [**\Schematic\Model\PreviewObjectResponseData**](PreviewObjectResponseData.md) |  | [optional]
 **plan_id** | **string** |  |
 **plan_name** | **string** | Use plan.name from the nested plan object instead |
@@ -34,6 +36,7 @@ Name | Type | Description | Notes
 **reset_start** | [**\Schematic\Model\BillingPlanCreditGrantResetStart**](BillingPlanCreditGrantResetStart.md) |  | [optional]
 **reset_type** | [**\Schematic\Model\BillingPlanCreditGrantResetType**](BillingPlanCreditGrantResetType.md) |  | [optional]
 **rollover_percentage** | **int** | Percentage of unused credits that carry over when this grant resets. Only meaningful when reset_type is plan_period. |
+**scaling** | [**\Schematic\Model\PlanCreditGrantScaling**](PlanCreditGrantScaling.md) | Whether the grant is a fixed amount per company, or issued once per license the company holds. |
 **updated_at** | **\DateTime** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -108,6 +108,15 @@ class UpdateCompanyBillingDetailsRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "tax_id"
+     */
+    public function testPropertyTaxId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "values"
      */
     public function testPropertyValues()

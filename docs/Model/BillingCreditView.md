@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **price** | [**\Schematic\Model\BillingPriceView**](BillingPriceView.md) |  | [optional]
 **price_per_unit** | **int** |  | [optional]
 **price_per_unit_decimal** | **string** |  | [optional]
-**product** | [**\Schematic\Model\BillingProductResponseData**](BillingProductResponseData.md) |  | [optional]
+**product** | [**\Schematic\Model\BillingProductRecordResponseData**](BillingProductRecordResponseData.md) |  | [optional]
 **singular_name** | **string** |  | [optional]
 **updated_at** | **\DateTime** |  |
 

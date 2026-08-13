@@ -58,6 +58,7 @@ class TestWebhookResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
+        'failure_reason' => 'string',
         'response_code' => 'int',
         'success' => 'bool'
     ];
@@ -70,6 +71,7 @@ class TestWebhookResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'failure_reason' => null,
         'response_code' => 'int64',
         'success' => null
     ];
@@ -80,6 +82,7 @@ class TestWebhookResponseData implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'failure_reason' => true,
         'response_code' => false,
         'success' => false
     ];
@@ -170,6 +173,7 @@ class TestWebhookResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
+        'failure_reason' => 'failure_reason',
         'response_code' => 'response_code',
         'success' => 'success'
     ];
@@ -180,6 +184,7 @@ class TestWebhookResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
+        'failure_reason' => 'setFailureReason',
         'response_code' => 'setResponseCode',
         'success' => 'setSuccess'
     ];
@@ -190,6 +195,7 @@ class TestWebhookResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
+        'failure_reason' => 'getFailureReason',
         'response_code' => 'getResponseCode',
         'success' => 'getSuccess'
     ];
@@ -251,6 +257,7 @@ class TestWebhookResponseData implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('failure_reason', $data ?? [], null);
         $this->setIfExists('response_code', $data ?? [], null);
         $this->setIfExists('success', $data ?? [], null);
     }
@@ -302,6 +309,40 @@ class TestWebhookResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets failure_reason
+     *
+     * @return string|null
+     */
+    public function getFailureReason()
+    {
+        return $this->container['failure_reason'];
+    }
+
+    /**
+     * Sets failure_reason
+     *
+     * @param string|null $failure_reason failure_reason
+     *
+     * @return self
+     */
+    public function setFailureReason($failure_reason)
+    {
+        if (is_null($failure_reason)) {
+            array_push($this->openAPINullablesSetToNull, 'failure_reason');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('failure_reason', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['failure_reason'] = $failure_reason;
+
+        return $this;
+    }
 
     /**
      * Gets response_code
