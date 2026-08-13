@@ -23,7 +23,15 @@ jobs:
           fetch-depth: 0
           # A PAT makes the pull request start the required "Test" check;
           # pull requests authored by GITHUB_TOKEN do not trigger workflows.
-          token: ${{ secrets.AUTOMATION_TOKEN || github.token }}
+          token: ${{ secrets.GH_TOKEN || github.token }}
+
+      - name: Report authentication
+        run: |
+          if [ "${{ secrets.GH_TOKEN != '' }}" = "true" ]; then
+            echo "Authenticating with the org GH_TOKEN secret."
+          else
+            echo "::warning::GH_TOKEN is unavailable, so this run falls back to GITHUB_TOKEN and its pull request will not start the required Test check."
+          fi
 
       - name: Resolve version
         id: version
@@ -111,7 +119,7 @@ jobs:
 
       - name: Open release pull request
         env:
-          GH_TOKEN: ${{ secrets.AUTOMATION_TOKEN || github.token }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           git config user.name "github-actions[bot]"
