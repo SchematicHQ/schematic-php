@@ -73,6 +73,16 @@ jobs:
             git checkout -B "$BRANCH" origin/main
           fi
 
+      # Most of the ~900 generated files are byte-identical between runs, so a
+      # warm fixer cache skips nearly all of them. The key is unique per run
+      # because cache entries are immutable; restore-keys picks the newest.
+      - name: Restore php-cs-fixer cache
+        uses: actions/cache@v4
+        with:
+          path: .php-cs-fixer.cache
+          key: php-cs-fixer-${{ github.run_id }}
+          restore-keys: php-cs-fixer-
+
       - name: Regenerate from the OpenAPI spec
         env:
           # php-cs-fixer refuses to run on PHP newer than 8.3.

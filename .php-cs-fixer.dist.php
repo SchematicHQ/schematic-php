@@ -26,4 +26,7 @@ return $config->setRules([
         'no_leading_import_slash' => false,
     ])
     ->setFinder($finder)
+    // Generation formats ~900 files from a cold cache, which takes minutes on
+    // one core. Sized to the host, so CI and laptops both use what they have.
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
 ;

@@ -95,6 +95,15 @@ jobs:
           sed -i -E "s|^( *httpUserAgent: ).*|\1schematic-php@$VERSION|" config.yaml
           git diff -- config.yaml
 
+      # Shares the rolling cache the regeneration workflow writes, so the fixer
+      # skips the files that did not change.
+      - name: Restore php-cs-fixer cache
+        uses: actions/cache@v4
+        with:
+          path: .php-cs-fixer.cache
+          key: php-cs-fixer-${{ github.run_id }}
+          restore-keys: php-cs-fixer-
+
       # generate.sh propagates the version to composer.json and
       # src/Configuration.php, and refreshes the generated code from the spec.
       - name: Regenerate SDK

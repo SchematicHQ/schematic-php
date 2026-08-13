@@ -2,7 +2,15 @@
 
 # Use this file to prevent files from being overwritten by the generator.
 # The patterns follow closely to .gitignore or .dockerignore.
+# Comments must be on their own line: a trailing comment becomes part of the
+# pattern, which then matches nothing.
 
-src/Schematic.php # Not generated code; don't overwrite
-.travis.yml # Don't generate this unneeded file
-git_push.sh # Don't generate this unneeded file
+# Not generated code; don't overwrite
+src/Schematic.php
+
+# Hand-tuned to run the fixer in parallel; don't overwrite
+.php-cs-fixer.dist.php
+
+# Unneeded files; don't generate them at all
+.travis.yml
+git_push.sh
