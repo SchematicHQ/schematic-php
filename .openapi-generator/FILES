@@ -1,6 +1,4 @@
 .gitignore
-.php-cs-fixer.dist.php
-.travis.yml
 README.md
 composer.json
 docs/Api/AccesstokensApi.md
@@ -885,7 +883,6 @@ docs/Model/WhoAmIResponseData.md
 docs/Model/WorkOSIntegrationConfig.md
 docs/Model/ZeroOutGrantRequestBody.md
 docs/Model/ZeroOutGrantResponse.md
-git_push.sh
 phpunit.xml.dist
 src/Api/AccesstokensApi.php
 src/Api/AccountsApi.php
