@@ -3224,6 +3224,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids ids (optional)
      * @param  string|null $interval interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price price (optional)
@@ -3242,9 +3243,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListBillingPricesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listBillingPrices($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPrices($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
-        list($response) = $this->listBillingPricesWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        list($response) = $this->listBillingPricesWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3258,6 +3259,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids (optional)
      * @param  string|null $interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price (optional)
@@ -3276,9 +3278,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListBillingPricesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listBillingPricesWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPricesWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
-        $request = $this->listBillingPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        $request = $this->listBillingPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3429,6 +3431,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids (optional)
      * @param  string|null $interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price (optional)
@@ -3446,9 +3449,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingPricesAsync($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPricesAsync($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
-        return $this->listBillingPricesAsyncWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType)
+        return $this->listBillingPricesAsyncWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3466,6 +3469,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids (optional)
      * @param  string|null $interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price (optional)
@@ -3483,10 +3487,10 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingPricesAsyncWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPricesAsyncWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
         $returnType = '\Schematic\Model\ListBillingPricesResponse';
-        $request = $this->listBillingPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        $request = $this->listBillingPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3532,6 +3536,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids (optional)
      * @param  string|null $interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price (optional)
@@ -3549,7 +3554,7 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listBillingPricesRequest($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
+    public function listBillingPricesRequest($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingPrices'][0])
     {
 
         if ($currency !== null && strlen($currency) > 3) {
@@ -3564,6 +3569,10 @@ class BillingApi
 
         if ($interval !== null && strlen($interval) > 255) {
             throw new \InvalidArgumentException('invalid length for "$interval" when calling BillingApi.listBillingPrices, must be smaller than or equal to 255.');
+        }
+
+        if ($interval_count !== null && $interval_count < 1) {
+            throw new \InvalidArgumentException('invalid value for "$interval_count" when calling BillingApi.listBillingPrices, must be bigger than or equal to 1.');
         }
 
 
@@ -3636,6 +3645,15 @@ class BillingApi
             $interval,
             'interval', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $interval_count,
+            'interval_count', // param base name
+            'integer', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -3820,6 +3838,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids ids (optional)
      * @param  string|null $interval interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price price (optional)
@@ -3838,9 +3857,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListBillingProductPricesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listBillingProductPrices($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPrices($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
-        list($response) = $this->listBillingProductPricesWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        list($response) = $this->listBillingProductPricesWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3854,6 +3873,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids (optional)
      * @param  string|null $interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price (optional)
@@ -3872,9 +3892,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListBillingProductPricesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listBillingProductPricesWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPricesWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
-        $request = $this->listBillingProductPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        $request = $this->listBillingProductPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4025,6 +4045,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids (optional)
      * @param  string|null $interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price (optional)
@@ -4042,9 +4063,9 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingProductPricesAsync($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPricesAsync($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
-        return $this->listBillingProductPricesAsyncWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType)
+        return $this->listBillingProductPricesAsyncWithHttpInfo($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4062,6 +4083,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids (optional)
      * @param  string|null $interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price (optional)
@@ -4079,10 +4101,10 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listBillingProductPricesAsyncWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPricesAsyncWithHttpInfo($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
         $returnType = '\Schematic\Model\ListBillingProductPricesResponse';
-        $request = $this->listBillingProductPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
+        $request = $this->listBillingProductPricesRequest($currency, $for_initial_plan, $for_trial_expiry_plan, $ids, $interval, $interval_count, $is_active, $plan_version_id, $price, $product_id, $product_ids, $provider_type, $q, $tiers_mode, $usage_type, $with_meter, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4128,6 +4150,7 @@ class BillingApi
      * @param  bool|null $for_trial_expiry_plan Filter for prices valid for trial expiry plans (free prices only) (optional)
      * @param  string[]|null $ids (optional)
      * @param  string|null $interval (optional)
+     * @param  int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) (optional)
      * @param  bool|null $is_active Filter for active prices on active products (defaults to true if not specified) (optional)
      * @param  string|null $plan_version_id Filter for prices belonging to a specific plan version (e.g. the latest published version) (optional)
      * @param  int|null $price (optional)
@@ -4145,7 +4168,7 @@ class BillingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listBillingProductPricesRequest($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
+    public function listBillingProductPricesRequest($currency = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $ids = null, $interval = null, $interval_count = null, $is_active = null, $plan_version_id = null, $price = null, $product_id = null, $product_ids = null, $provider_type = null, $q = null, $tiers_mode = null, $usage_type = null, $with_meter = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listBillingProductPrices'][0])
     {
 
         if ($currency !== null && strlen($currency) > 3) {
@@ -4160,6 +4183,10 @@ class BillingApi
 
         if ($interval !== null && strlen($interval) > 255) {
             throw new \InvalidArgumentException('invalid length for "$interval" when calling BillingApi.listBillingProductPrices, must be smaller than or equal to 255.');
+        }
+
+        if ($interval_count !== null && $interval_count < 1) {
+            throw new \InvalidArgumentException('invalid value for "$interval_count" when calling BillingApi.listBillingProductPrices, must be bigger than or equal to 1.');
         }
 
 
@@ -4232,6 +4259,15 @@ class BillingApi
             $interval,
             'interval', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $interval_count,
+            'interval_count', // param base name
+            'integer', // openApiType
             'form', // style
             true, // explode
             false // required

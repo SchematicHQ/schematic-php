@@ -90,6 +90,15 @@ class PreviewSubscriptionFinanceResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "discount_amount"
+     */
+    public function testPropertyDiscountAmount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "discounts"
      */
     public function testPropertyDiscounts()

@@ -60,6 +60,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'account_id' => 'string',
         'billing_linked_resource' => '\Schematic\Model\BillingLinkedResourceResponseData',
+        'billing_product' => '\Schematic\Model\BillingProductRecordResponseData',
         'created_at' => '\DateTime',
         'description' => 'string',
         'event_subtype' => 'string',
@@ -68,6 +69,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flags' => '\Schematic\Model\FlagView[]',
         'icon' => 'string',
         'id' => 'string',
+        'license_id' => 'string',
         'lifecycle_phase' => '\Schematic\Model\FeatureLifecyclePhase',
         'name' => 'string',
         'plans' => '\Schematic\Model\PreviewObject[]',
@@ -89,6 +91,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'account_id' => null,
         'billing_linked_resource' => null,
+        'billing_product' => null,
         'created_at' => 'date-time',
         'description' => null,
         'event_subtype' => null,
@@ -97,6 +100,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flags' => null,
         'icon' => null,
         'id' => null,
+        'license_id' => null,
         'lifecycle_phase' => null,
         'name' => null,
         'plans' => null,
@@ -116,6 +120,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'account_id' => false,
         'billing_linked_resource' => false,
+        'billing_product' => false,
         'created_at' => false,
         'description' => false,
         'event_subtype' => true,
@@ -124,6 +129,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flags' => false,
         'icon' => false,
         'id' => false,
+        'license_id' => true,
         'lifecycle_phase' => true,
         'name' => false,
         'plans' => false,
@@ -223,6 +229,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'account_id' => 'account_id',
         'billing_linked_resource' => 'billing_linked_resource',
+        'billing_product' => 'billing_product',
         'created_at' => 'created_at',
         'description' => 'description',
         'event_subtype' => 'event_subtype',
@@ -231,6 +238,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flags' => 'flags',
         'icon' => 'icon',
         'id' => 'id',
+        'license_id' => 'license_id',
         'lifecycle_phase' => 'lifecycle_phase',
         'name' => 'name',
         'plans' => 'plans',
@@ -250,6 +258,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'account_id' => 'setAccountId',
         'billing_linked_resource' => 'setBillingLinkedResource',
+        'billing_product' => 'setBillingProduct',
         'created_at' => 'setCreatedAt',
         'description' => 'setDescription',
         'event_subtype' => 'setEventSubtype',
@@ -258,6 +267,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flags' => 'setFlags',
         'icon' => 'setIcon',
         'id' => 'setId',
+        'license_id' => 'setLicenseId',
         'lifecycle_phase' => 'setLifecyclePhase',
         'name' => 'setName',
         'plans' => 'setPlans',
@@ -277,6 +287,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'account_id' => 'getAccountId',
         'billing_linked_resource' => 'getBillingLinkedResource',
+        'billing_product' => 'getBillingProduct',
         'created_at' => 'getCreatedAt',
         'description' => 'getDescription',
         'event_subtype' => 'getEventSubtype',
@@ -285,6 +296,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         'flags' => 'getFlags',
         'icon' => 'getIcon',
         'id' => 'getId',
+        'license_id' => 'getLicenseId',
         'lifecycle_phase' => 'getLifecyclePhase',
         'name' => 'getName',
         'plans' => 'getPlans',
@@ -355,6 +367,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('account_id', $data ?? [], null);
         $this->setIfExists('billing_linked_resource', $data ?? [], null);
+        $this->setIfExists('billing_product', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('event_subtype', $data ?? [], null);
@@ -363,6 +376,7 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('flags', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('license_id', $data ?? [], null);
         $this->setIfExists('lifecycle_phase', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('plans', $data ?? [], null);
@@ -504,6 +518,33 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable billing_linked_resource cannot be null');
         }
         $this->container['billing_linked_resource'] = $billing_linked_resource;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_product
+     *
+     * @return \Schematic\Model\BillingProductRecordResponseData|null
+     */
+    public function getBillingProduct()
+    {
+        return $this->container['billing_product'];
+    }
+
+    /**
+     * Sets billing_product
+     *
+     * @param \Schematic\Model\BillingProductRecordResponseData|null $billing_product billing_product
+     *
+     * @return self
+     */
+    public function setBillingProduct($billing_product)
+    {
+        if (is_null($billing_product)) {
+            throw new \InvalidArgumentException('non-nullable billing_product cannot be null');
+        }
+        $this->container['billing_product'] = $billing_product;
 
         return $this;
     }
@@ -731,6 +772,40 @@ class FeatureView implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets license_id
+     *
+     * @return string|null
+     */
+    public function getLicenseId()
+    {
+        return $this->container['license_id'];
+    }
+
+    /**
+     * Sets license_id
+     *
+     * @param string|null $license_id license_id
+     *
+     * @return self
+     */
+    public function setLicenseId($license_id)
+    {
+        if (is_null($license_id)) {
+            array_push($this->openAPINullablesSetToNull, 'license_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('license_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['license_id'] = $license_id;
 
         return $this;
     }

@@ -70,17 +70,20 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_threshold_credits' => 'int',
         'auto_topup_threshold_percent' => 'int',
         'can_buy_bundles' => 'bool',
+        'company_credit_amount' => 'int',
         'credit_amount' => 'int',
         'credit_id' => 'string',
         'expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'expiry_unit_count' => 'int',
+        'license_id' => 'string',
         'plan_id' => 'string',
         'plan_version_id' => 'string',
         'reset_cadence' => '\Schematic\Model\BillingPlanCreditGrantResetCadence',
         'reset_start' => '\Schematic\Model\BillingPlanCreditGrantResetStart',
         'reset_type' => '\Schematic\Model\BillingPlanCreditGrantResetType',
-        'rollover_percentage' => 'int'
+        'rollover_percentage' => 'int',
+        'scaling' => '\Schematic\Model\PlanCreditGrantScaling'
     ];
 
     /**
@@ -103,17 +106,20 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_threshold_credits' => 'int64',
         'auto_topup_threshold_percent' => 'int64',
         'can_buy_bundles' => null,
+        'company_credit_amount' => 'int64',
         'credit_amount' => 'int64',
         'credit_id' => null,
         'expiry_type' => null,
         'expiry_unit' => null,
         'expiry_unit_count' => 'int64',
+        'license_id' => null,
         'plan_id' => null,
         'plan_version_id' => null,
         'reset_cadence' => null,
         'reset_start' => null,
         'reset_type' => null,
-        'rollover_percentage' => 'int64'
+        'rollover_percentage' => 'int64',
+        'scaling' => null
     ];
 
     /**
@@ -134,17 +140,20 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_threshold_credits' => true,
         'auto_topup_threshold_percent' => true,
         'can_buy_bundles' => true,
+        'company_credit_amount' => true,
         'credit_amount' => false,
         'credit_id' => false,
         'expiry_type' => true,
         'expiry_unit' => true,
         'expiry_unit_count' => true,
+        'license_id' => true,
         'plan_id' => false,
         'plan_version_id' => true,
         'reset_cadence' => false,
         'reset_start' => false,
         'reset_type' => true,
-        'rollover_percentage' => true
+        'rollover_percentage' => true,
+        'scaling' => true
     ];
 
     /**
@@ -245,17 +254,20 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_threshold_credits' => 'auto_topup_threshold_credits',
         'auto_topup_threshold_percent' => 'auto_topup_threshold_percent',
         'can_buy_bundles' => 'can_buy_bundles',
+        'company_credit_amount' => 'company_credit_amount',
         'credit_amount' => 'credit_amount',
         'credit_id' => 'credit_id',
         'expiry_type' => 'expiry_type',
         'expiry_unit' => 'expiry_unit',
         'expiry_unit_count' => 'expiry_unit_count',
+        'license_id' => 'license_id',
         'plan_id' => 'plan_id',
         'plan_version_id' => 'plan_version_id',
         'reset_cadence' => 'reset_cadence',
         'reset_start' => 'reset_start',
         'reset_type' => 'reset_type',
-        'rollover_percentage' => 'rollover_percentage'
+        'rollover_percentage' => 'rollover_percentage',
+        'scaling' => 'scaling'
     ];
 
     /**
@@ -276,17 +288,20 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_threshold_credits' => 'setAutoTopupThresholdCredits',
         'auto_topup_threshold_percent' => 'setAutoTopupThresholdPercent',
         'can_buy_bundles' => 'setCanBuyBundles',
+        'company_credit_amount' => 'setCompanyCreditAmount',
         'credit_amount' => 'setCreditAmount',
         'credit_id' => 'setCreditId',
         'expiry_type' => 'setExpiryType',
         'expiry_unit' => 'setExpiryUnit',
         'expiry_unit_count' => 'setExpiryUnitCount',
+        'license_id' => 'setLicenseId',
         'plan_id' => 'setPlanId',
         'plan_version_id' => 'setPlanVersionId',
         'reset_cadence' => 'setResetCadence',
         'reset_start' => 'setResetStart',
         'reset_type' => 'setResetType',
-        'rollover_percentage' => 'setRolloverPercentage'
+        'rollover_percentage' => 'setRolloverPercentage',
+        'scaling' => 'setScaling'
     ];
 
     /**
@@ -307,17 +322,20 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_threshold_credits' => 'getAutoTopupThresholdCredits',
         'auto_topup_threshold_percent' => 'getAutoTopupThresholdPercent',
         'can_buy_bundles' => 'getCanBuyBundles',
+        'company_credit_amount' => 'getCompanyCreditAmount',
         'credit_amount' => 'getCreditAmount',
         'credit_id' => 'getCreditId',
         'expiry_type' => 'getExpiryType',
         'expiry_unit' => 'getExpiryUnit',
         'expiry_unit_count' => 'getExpiryUnitCount',
+        'license_id' => 'getLicenseId',
         'plan_id' => 'getPlanId',
         'plan_version_id' => 'getPlanVersionId',
         'reset_cadence' => 'getResetCadence',
         'reset_start' => 'getResetStart',
         'reset_type' => 'getResetType',
-        'rollover_percentage' => 'getRolloverPercentage'
+        'rollover_percentage' => 'getRolloverPercentage',
+        'scaling' => 'getScaling'
     ];
 
     /**
@@ -389,17 +407,20 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         $this->setIfExists('auto_topup_threshold_credits', $data ?? [], null);
         $this->setIfExists('auto_topup_threshold_percent', $data ?? [], null);
         $this->setIfExists('can_buy_bundles', $data ?? [], null);
+        $this->setIfExists('company_credit_amount', $data ?? [], null);
         $this->setIfExists('credit_amount', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('expiry_type', $data ?? [], null);
         $this->setIfExists('expiry_unit', $data ?? [], null);
         $this->setIfExists('expiry_unit_count', $data ?? [], null);
+        $this->setIfExists('license_id', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('reset_cadence', $data ?? [], null);
         $this->setIfExists('reset_start', $data ?? [], null);
         $this->setIfExists('reset_type', $data ?? [], null);
         $this->setIfExists('rollover_percentage', $data ?? [], null);
+        $this->setIfExists('scaling', $data ?? [], null);
     }
 
     /**
@@ -447,6 +468,14 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
 
         if (!is_null($this->container['auto_topup_threshold_percent']) && ($this->container['auto_topup_threshold_percent'] < 1)) {
             $invalidProperties[] = "invalid value for 'auto_topup_threshold_percent', must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['company_credit_amount']) && ($this->container['company_credit_amount'] > 9999999999)) {
+            $invalidProperties[] = "invalid value for 'company_credit_amount', must be smaller than or equal to 9999999999.";
+        }
+
+        if (!is_null($this->container['company_credit_amount']) && ($this->container['company_credit_amount'] < 0)) {
+            $invalidProperties[] = "invalid value for 'company_credit_amount', must be bigger than or equal to 0.";
         }
 
         if ($this->container['credit_amount'] === null) {
@@ -931,6 +960,48 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
     }
 
     /**
+     * Gets company_credit_amount
+     *
+     * @return int|null
+     */
+    public function getCompanyCreditAmount()
+    {
+        return $this->container['company_credit_amount'];
+    }
+
+    /**
+     * Sets company_credit_amount
+     *
+     * @param int|null $company_credit_amount Credits granted once per company on top of the per-license amount. Only valid when scaling is per_license. Defaults to 0.
+     *
+     * @return self
+     */
+    public function setCompanyCreditAmount($company_credit_amount)
+    {
+        if (is_null($company_credit_amount)) {
+            array_push($this->openAPINullablesSetToNull, 'company_credit_amount');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company_credit_amount', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($company_credit_amount) && ($company_credit_amount > 9999999999)) {
+            throw new \InvalidArgumentException('invalid value for $company_credit_amount when calling CreateBillingPlanCreditGrantRequestBody., must be smaller than or equal to 9999999999.');
+        }
+        if (!is_null($company_credit_amount) && ($company_credit_amount < 0)) {
+            throw new \InvalidArgumentException('invalid value for $company_credit_amount when calling CreateBillingPlanCreditGrantRequestBody., must be bigger than or equal to 0.');
+        }
+
+        $this->container['company_credit_amount'] = $company_credit_amount;
+
+        return $this;
+    }
+
+    /**
      * Gets credit_amount
      *
      * @return int
@@ -1095,6 +1166,40 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         }
 
         $this->container['expiry_unit_count'] = $expiry_unit_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets license_id
+     *
+     * @return string|null
+     */
+    public function getLicenseId()
+    {
+        return $this->container['license_id'];
+    }
+
+    /**
+     * Sets license_id
+     *
+     * @param string|null $license_id The license whose quantity scales this grant. Required when scaling is per_license.
+     *
+     * @return self
+     */
+    public function setLicenseId($license_id)
+    {
+        if (is_null($license_id)) {
+            array_push($this->openAPINullablesSetToNull, 'license_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('license_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['license_id'] = $license_id;
 
         return $this;
     }
@@ -1286,6 +1391,40 @@ class CreateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         }
 
         $this->container['rollover_percentage'] = $rollover_percentage;
+
+        return $this;
+    }
+
+    /**
+     * Gets scaling
+     *
+     * @return \Schematic\Model\PlanCreditGrantScaling|null
+     */
+    public function getScaling()
+    {
+        return $this->container['scaling'];
+    }
+
+    /**
+     * Sets scaling
+     *
+     * @param \Schematic\Model\PlanCreditGrantScaling|null $scaling Whether the grant is a fixed amount per company, or issued once per license the company holds. Defaults to fixed.
+     *
+     * @return self
+     */
+    public function setScaling($scaling)
+    {
+        if (is_null($scaling)) {
+            array_push($this->openAPINullablesSetToNull, 'scaling');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('scaling', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['scaling'] = $scaling;
 
         return $this;
     }

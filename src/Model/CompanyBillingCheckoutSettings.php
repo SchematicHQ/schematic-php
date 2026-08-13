@@ -60,7 +60,8 @@ class CompanyBillingCheckoutSettings implements ModelInterface, ArrayAccess, \Js
     protected static $openAPITypes = [
         'collect_address' => 'bool',
         'collect_email' => 'bool',
-        'collect_phone' => 'bool'
+        'collect_phone' => 'bool',
+        'collect_tax_id' => 'bool'
     ];
 
     /**
@@ -73,7 +74,8 @@ class CompanyBillingCheckoutSettings implements ModelInterface, ArrayAccess, \Js
     protected static $openAPIFormats = [
         'collect_address' => null,
         'collect_email' => null,
-        'collect_phone' => null
+        'collect_phone' => null,
+        'collect_tax_id' => null
     ];
 
     /**
@@ -84,7 +86,8 @@ class CompanyBillingCheckoutSettings implements ModelInterface, ArrayAccess, \Js
     protected static array $openAPINullables = [
         'collect_address' => false,
         'collect_email' => false,
-        'collect_phone' => false
+        'collect_phone' => false,
+        'collect_tax_id' => false
     ];
 
     /**
@@ -175,7 +178,8 @@ class CompanyBillingCheckoutSettings implements ModelInterface, ArrayAccess, \Js
     protected static $attributeMap = [
         'collect_address' => 'collect_address',
         'collect_email' => 'collect_email',
-        'collect_phone' => 'collect_phone'
+        'collect_phone' => 'collect_phone',
+        'collect_tax_id' => 'collect_tax_id'
     ];
 
     /**
@@ -186,7 +190,8 @@ class CompanyBillingCheckoutSettings implements ModelInterface, ArrayAccess, \Js
     protected static $setters = [
         'collect_address' => 'setCollectAddress',
         'collect_email' => 'setCollectEmail',
-        'collect_phone' => 'setCollectPhone'
+        'collect_phone' => 'setCollectPhone',
+        'collect_tax_id' => 'setCollectTaxId'
     ];
 
     /**
@@ -197,7 +202,8 @@ class CompanyBillingCheckoutSettings implements ModelInterface, ArrayAccess, \Js
     protected static $getters = [
         'collect_address' => 'getCollectAddress',
         'collect_email' => 'getCollectEmail',
-        'collect_phone' => 'getCollectPhone'
+        'collect_phone' => 'getCollectPhone',
+        'collect_tax_id' => 'getCollectTaxId'
     ];
 
     /**
@@ -260,6 +266,7 @@ class CompanyBillingCheckoutSettings implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('collect_address', $data ?? [], null);
         $this->setIfExists('collect_email', $data ?? [], null);
         $this->setIfExists('collect_phone', $data ?? [], null);
+        $this->setIfExists('collect_tax_id', $data ?? [], null);
     }
 
     /**
@@ -297,6 +304,9 @@ class CompanyBillingCheckoutSettings implements ModelInterface, ArrayAccess, \Js
         }
         if ($this->container['collect_phone'] === null) {
             $invalidProperties[] = "'collect_phone' can't be null";
+        }
+        if ($this->container['collect_tax_id'] === null) {
+            $invalidProperties[] = "'collect_tax_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -390,6 +400,33 @@ class CompanyBillingCheckoutSettings implements ModelInterface, ArrayAccess, \Js
             throw new \InvalidArgumentException('non-nullable collect_phone cannot be null');
         }
         $this->container['collect_phone'] = $collect_phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets collect_tax_id
+     *
+     * @return bool
+     */
+    public function getCollectTaxId()
+    {
+        return $this->container['collect_tax_id'];
+    }
+
+    /**
+     * Sets collect_tax_id
+     *
+     * @param bool $collect_tax_id collect_tax_id
+     *
+     * @return self
+     */
+    public function setCollectTaxId($collect_tax_id)
+    {
+        if (is_null($collect_tax_id)) {
+            throw new \InvalidArgumentException('non-nullable collect_tax_id cannot be null');
+        }
+        $this->container['collect_tax_id'] = $collect_tax_id;
 
         return $this;
     }

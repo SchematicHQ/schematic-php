@@ -144,6 +144,15 @@ class UpsertCompanyRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "remove_keys"
+     */
+    public function testPropertyRemoveKeys()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "traits"
      */
     public function testPropertyTraits()

@@ -47,6 +47,8 @@ class FeatureType
 
     public const EVENT = 'event';
 
+    public const LICENSE = 'license';
+
     public const _TRAIT = 'trait';
 
     /**
@@ -58,6 +60,7 @@ class FeatureType
         return [
             self::BOOLEAN,
             self::EVENT,
+            self::LICENSE,
             self::_TRAIT
         ];
     }

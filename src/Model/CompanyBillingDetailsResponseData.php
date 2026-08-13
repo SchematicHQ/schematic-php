@@ -62,7 +62,8 @@ class CompanyBillingDetailsResponseData implements ModelInterface, ArrayAccess, 
         'checkout_settings' => '\Schematic\Model\CompanyBillingCheckoutSettings',
         'custom_fields' => '\Schematic\Model\CheckoutFieldWithValue[]',
         'email' => 'string',
-        'phone' => 'string'
+        'phone' => 'string',
+        'tax_ids' => '\Schematic\Model\CompanyTaxIDView[]'
     ];
 
     /**
@@ -77,7 +78,8 @@ class CompanyBillingDetailsResponseData implements ModelInterface, ArrayAccess, 
         'checkout_settings' => null,
         'custom_fields' => null,
         'email' => null,
-        'phone' => null
+        'phone' => null,
+        'tax_ids' => null
     ];
 
     /**
@@ -90,7 +92,8 @@ class CompanyBillingDetailsResponseData implements ModelInterface, ArrayAccess, 
         'checkout_settings' => false,
         'custom_fields' => false,
         'email' => true,
-        'phone' => true
+        'phone' => true,
+        'tax_ids' => false
     ];
 
     /**
@@ -183,7 +186,8 @@ class CompanyBillingDetailsResponseData implements ModelInterface, ArrayAccess, 
         'checkout_settings' => 'checkout_settings',
         'custom_fields' => 'custom_fields',
         'email' => 'email',
-        'phone' => 'phone'
+        'phone' => 'phone',
+        'tax_ids' => 'tax_ids'
     ];
 
     /**
@@ -196,7 +200,8 @@ class CompanyBillingDetailsResponseData implements ModelInterface, ArrayAccess, 
         'checkout_settings' => 'setCheckoutSettings',
         'custom_fields' => 'setCustomFields',
         'email' => 'setEmail',
-        'phone' => 'setPhone'
+        'phone' => 'setPhone',
+        'tax_ids' => 'setTaxIds'
     ];
 
     /**
@@ -209,7 +214,8 @@ class CompanyBillingDetailsResponseData implements ModelInterface, ArrayAccess, 
         'checkout_settings' => 'getCheckoutSettings',
         'custom_fields' => 'getCustomFields',
         'email' => 'getEmail',
-        'phone' => 'getPhone'
+        'phone' => 'getPhone',
+        'tax_ids' => 'getTaxIds'
     ];
 
     /**
@@ -274,6 +280,7 @@ class CompanyBillingDetailsResponseData implements ModelInterface, ArrayAccess, 
         $this->setIfExists('custom_fields', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('phone', $data ?? [], null);
+        $this->setIfExists('tax_ids', $data ?? [], null);
     }
 
     /**
@@ -311,6 +318,13 @@ class CompanyBillingDetailsResponseData implements ModelInterface, ArrayAccess, 
         }
         if ((count($this->container['custom_fields']) > 1000)) {
             $invalidProperties[] = "invalid value for 'custom_fields', number of items must be less than or equal to 1000.";
+        }
+
+        if ($this->container['tax_ids'] === null) {
+            $invalidProperties[] = "'tax_ids' can't be null";
+        }
+        if ((count($this->container['tax_ids']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'tax_ids', number of items must be less than or equal to 1000.";
         }
 
         return $invalidProperties;
@@ -477,6 +491,37 @@ class CompanyBillingDetailsResponseData implements ModelInterface, ArrayAccess, 
             }
         }
         $this->container['phone'] = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets tax_ids
+     *
+     * @return \Schematic\Model\CompanyTaxIDView[]
+     */
+    public function getTaxIds()
+    {
+        return $this->container['tax_ids'];
+    }
+
+    /**
+     * Sets tax_ids
+     *
+     * @param \Schematic\Model\CompanyTaxIDView[] $tax_ids tax_ids
+     *
+     * @return self
+     */
+    public function setTaxIds($tax_ids)
+    {
+        if (is_null($tax_ids)) {
+            throw new \InvalidArgumentException('non-nullable tax_ids cannot be null');
+        }
+
+        if ((count($tax_ids) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $tax_ids when calling CompanyBillingDetailsResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['tax_ids'] = $tax_ids;
 
         return $this;
     }

@@ -62,6 +62,7 @@ class ListCustomPlanBillingsParams implements ModelInterface, ArrayAccess, \Json
         'company_id' => 'string',
         'limit' => 'int',
         'offset' => 'int',
+        'plan_billing_source' => '\Schematic\Model\PlanBillingSource',
         'plan_id' => 'string',
         'status' => '\Schematic\Model\CustomPlanBillingStatus',
         'statuses' => '\Schematic\Model\CustomPlanBillingStatus[]'
@@ -78,6 +79,7 @@ class ListCustomPlanBillingsParams implements ModelInterface, ArrayAccess, \Json
         'company_id' => null,
         'limit' => 'int64',
         'offset' => 'int64',
+        'plan_billing_source' => null,
         'plan_id' => null,
         'status' => null,
         'statuses' => null
@@ -92,6 +94,7 @@ class ListCustomPlanBillingsParams implements ModelInterface, ArrayAccess, \Json
         'company_id' => false,
         'limit' => false,
         'offset' => false,
+        'plan_billing_source' => false,
         'plan_id' => false,
         'status' => false,
         'statuses' => false
@@ -186,6 +189,7 @@ class ListCustomPlanBillingsParams implements ModelInterface, ArrayAccess, \Json
         'company_id' => 'company_id',
         'limit' => 'limit',
         'offset' => 'offset',
+        'plan_billing_source' => 'plan_billing_source',
         'plan_id' => 'plan_id',
         'status' => 'status',
         'statuses' => 'statuses'
@@ -200,6 +204,7 @@ class ListCustomPlanBillingsParams implements ModelInterface, ArrayAccess, \Json
         'company_id' => 'setCompanyId',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
+        'plan_billing_source' => 'setPlanBillingSource',
         'plan_id' => 'setPlanId',
         'status' => 'setStatus',
         'statuses' => 'setStatuses'
@@ -214,6 +219,7 @@ class ListCustomPlanBillingsParams implements ModelInterface, ArrayAccess, \Json
         'company_id' => 'getCompanyId',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
+        'plan_billing_source' => 'getPlanBillingSource',
         'plan_id' => 'getPlanId',
         'status' => 'getStatus',
         'statuses' => 'getStatuses'
@@ -279,6 +285,7 @@ class ListCustomPlanBillingsParams implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
+        $this->setIfExists('plan_billing_source', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('statuses', $data ?? [], null);
@@ -423,6 +430,33 @@ class ListCustomPlanBillingsParams implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_billing_source
+     *
+     * @return \Schematic\Model\PlanBillingSource|null
+     */
+    public function getPlanBillingSource()
+    {
+        return $this->container['plan_billing_source'];
+    }
+
+    /**
+     * Sets plan_billing_source
+     *
+     * @param \Schematic\Model\PlanBillingSource|null $plan_billing_source Filter by the flow that created the billing record. Defaults to custom_plan.
+     *
+     * @return self
+     */
+    public function setPlanBillingSource($plan_billing_source)
+    {
+        if (is_null($plan_billing_source)) {
+            throw new \InvalidArgumentException('non-nullable plan_billing_source cannot be null');
+        }
+        $this->container['plan_billing_source'] = $plan_billing_source;
 
         return $this;
     }

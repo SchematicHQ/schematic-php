@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **custom_plan_price_text** | **string** |  | [optional]
 **custom_plans_visible** | **bool** |  |
 **description** | **string** |  | [optional]
-**environment_id** | **string** |  |
 **id** | **string** |  |
 **is_default** | **bool** |  |
 **name** | **string** |  |

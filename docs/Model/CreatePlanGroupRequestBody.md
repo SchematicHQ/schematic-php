@@ -6,9 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **add_on_compatibilities** | [**\Schematic\Model\CompatiblePlans[]**](CompatiblePlans.md) |  | [optional]
 **add_on_ids** | **string[]** | Use OrderedAddOns instead |
+**checkout_bundle_purchase_behavior** | [**\Schematic\Model\CheckoutBundlePurchaseBehavior**](CheckoutBundlePurchaseBehavior.md) |  |
 **checkout_collect_address** | **bool** |  |
 **checkout_collect_email** | **bool** |  |
 **checkout_collect_phone** | **bool** |  |
+**checkout_collect_tax_id** | **bool** |  |
 **custom_checkout_fields** | [**\Schematic\Model\CheckoutFieldInput[]**](CheckoutFieldInput.md) |  | [optional]
 **custom_plan_config** | [**\Schematic\Model\CustomPlanConfig**](CustomPlanConfig.md) |  | [optional]
 **custom_plan_id** | **string** |  | [optional]

@@ -90,15 +90,6 @@ class CreateCatalogRequestBodyTest extends TestCase
     }
 
     /**
-     * Test attribute "is_default"
-     */
-    public function testPropertyIsDefault()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "name"
      */
     public function testPropertyName()

@@ -58,9 +58,12 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
+        'bundle_purchase_behavior' => '\Schematic\Model\CheckoutBundlePurchaseBehavior',
         'collect_address' => 'bool',
         'collect_email' => 'bool',
         'collect_phone' => 'bool',
+        'collect_tax_id' => 'bool',
+        'proration_behavior' => '\Schematic\Model\ProrationBehavior',
         'tax_collection_enabled' => 'bool'
     ];
 
@@ -72,9 +75,12 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'bundle_purchase_behavior' => null,
         'collect_address' => null,
         'collect_email' => null,
         'collect_phone' => null,
+        'collect_tax_id' => null,
+        'proration_behavior' => null,
         'tax_collection_enabled' => null
     ];
 
@@ -84,9 +90,12 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'bundle_purchase_behavior' => false,
         'collect_address' => false,
         'collect_email' => false,
         'collect_phone' => false,
+        'collect_tax_id' => false,
+        'proration_behavior' => false,
         'tax_collection_enabled' => false
     ];
 
@@ -176,9 +185,12 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
+        'bundle_purchase_behavior' => 'bundle_purchase_behavior',
         'collect_address' => 'collect_address',
         'collect_email' => 'collect_email',
         'collect_phone' => 'collect_phone',
+        'collect_tax_id' => 'collect_tax_id',
+        'proration_behavior' => 'proration_behavior',
         'tax_collection_enabled' => 'tax_collection_enabled'
     ];
 
@@ -188,9 +200,12 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
+        'bundle_purchase_behavior' => 'setBundlePurchaseBehavior',
         'collect_address' => 'setCollectAddress',
         'collect_email' => 'setCollectEmail',
         'collect_phone' => 'setCollectPhone',
+        'collect_tax_id' => 'setCollectTaxId',
+        'proration_behavior' => 'setProrationBehavior',
         'tax_collection_enabled' => 'setTaxCollectionEnabled'
     ];
 
@@ -200,9 +215,12 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
+        'bundle_purchase_behavior' => 'getBundlePurchaseBehavior',
         'collect_address' => 'getCollectAddress',
         'collect_email' => 'getCollectEmail',
         'collect_phone' => 'getCollectPhone',
+        'collect_tax_id' => 'getCollectTaxId',
+        'proration_behavior' => 'getProrationBehavior',
         'tax_collection_enabled' => 'getTaxCollectionEnabled'
     ];
 
@@ -263,9 +281,12 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('bundle_purchase_behavior', $data ?? [], null);
         $this->setIfExists('collect_address', $data ?? [], null);
         $this->setIfExists('collect_email', $data ?? [], null);
         $this->setIfExists('collect_phone', $data ?? [], null);
+        $this->setIfExists('collect_tax_id', $data ?? [], null);
+        $this->setIfExists('proration_behavior', $data ?? [], null);
         $this->setIfExists('tax_collection_enabled', $data ?? [], null);
     }
 
@@ -296,6 +317,9 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
+        if ($this->container['bundle_purchase_behavior'] === null) {
+            $invalidProperties[] = "'bundle_purchase_behavior' can't be null";
+        }
         if ($this->container['collect_address'] === null) {
             $invalidProperties[] = "'collect_address' can't be null";
         }
@@ -304,6 +328,12 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
         }
         if ($this->container['collect_phone'] === null) {
             $invalidProperties[] = "'collect_phone' can't be null";
+        }
+        if ($this->container['collect_tax_id'] === null) {
+            $invalidProperties[] = "'collect_tax_id' can't be null";
+        }
+        if ($this->container['proration_behavior'] === null) {
+            $invalidProperties[] = "'proration_behavior' can't be null";
         }
         if ($this->container['tax_collection_enabled'] === null) {
             $invalidProperties[] = "'tax_collection_enabled' can't be null";
@@ -322,6 +352,33 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets bundle_purchase_behavior
+     *
+     * @return \Schematic\Model\CheckoutBundlePurchaseBehavior
+     */
+    public function getBundlePurchaseBehavior()
+    {
+        return $this->container['bundle_purchase_behavior'];
+    }
+
+    /**
+     * Sets bundle_purchase_behavior
+     *
+     * @param \Schematic\Model\CheckoutBundlePurchaseBehavior $bundle_purchase_behavior bundle_purchase_behavior
+     *
+     * @return self
+     */
+    public function setBundlePurchaseBehavior($bundle_purchase_behavior)
+    {
+        if (is_null($bundle_purchase_behavior)) {
+            throw new \InvalidArgumentException('non-nullable bundle_purchase_behavior cannot be null');
+        }
+        $this->container['bundle_purchase_behavior'] = $bundle_purchase_behavior;
+
+        return $this;
+    }
 
     /**
      * Gets collect_address
@@ -400,6 +457,60 @@ class ComponentCheckoutSettings implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable collect_phone cannot be null');
         }
         $this->container['collect_phone'] = $collect_phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets collect_tax_id
+     *
+     * @return bool
+     */
+    public function getCollectTaxId()
+    {
+        return $this->container['collect_tax_id'];
+    }
+
+    /**
+     * Sets collect_tax_id
+     *
+     * @param bool $collect_tax_id collect_tax_id
+     *
+     * @return self
+     */
+    public function setCollectTaxId($collect_tax_id)
+    {
+        if (is_null($collect_tax_id)) {
+            throw new \InvalidArgumentException('non-nullable collect_tax_id cannot be null');
+        }
+        $this->container['collect_tax_id'] = $collect_tax_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets proration_behavior
+     *
+     * @return \Schematic\Model\ProrationBehavior
+     */
+    public function getProrationBehavior()
+    {
+        return $this->container['proration_behavior'];
+    }
+
+    /**
+     * Sets proration_behavior
+     *
+     * @param \Schematic\Model\ProrationBehavior $proration_behavior proration_behavior
+     *
+     * @return self
+     */
+    public function setProrationBehavior($proration_behavior)
+    {
+        if (is_null($proration_behavior)) {
+            throw new \InvalidArgumentException('non-nullable proration_behavior cannot be null');
+        }
+        $this->container['proration_behavior'] = $proration_behavior;
 
         return $this;
     }

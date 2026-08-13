@@ -18,6 +18,7 @@ use Schematic\Api\EventsApi;
 use Schematic\Api\FeaturesApi;
 use Schematic\Api\InsightsApi;
 use Schematic\Api\IntegrationsapiApi;
+use Schematic\Api\LicensesApi;
 use Schematic\Api\PlanbundleApi;
 use Schematic\Api\PlangroupsApi;
 use Schematic\Api\PlanmigrationsApi;
@@ -42,6 +43,7 @@ class Schematic
     public $FeaturesApi;
     public $InsightsApi;
     public $IntegrationsapiApi;
+    public $LicensesApi;
     public $PlanbundleApi;
     public $PlangroupsApi;
     public $PlanmigrationsApi;
@@ -88,6 +90,7 @@ class Schematic
         $this->FeaturesApi = new FeaturesApi($httpClient, $config);
         $this->InsightsApi = new InsightsApi($httpClient, $config);
         $this->IntegrationsapiApi = new IntegrationsapiApi($httpClient, $config);
+        $this->LicensesApi = new LicensesApi($httpClient, $config);
         $this->PlanbundleApi = new PlanbundleApi($httpClient, $config);
         $this->PlangroupsApi = new PlangroupsApi($httpClient, $config);
         $this->PlanmigrationsApi = new PlanmigrationsApi($httpClient, $config);

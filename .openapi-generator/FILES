@@ -18,6 +18,7 @@ docs/Api/EventsApi.md
 docs/Api/FeaturesApi.md
 docs/Api/InsightsApi.md
 docs/Api/IntegrationsapiApi.md
+docs/Api/LicensesApi.md
 docs/Api/PlanbundleApi.md
 docs/Api/PlangroupsApi.md
 docs/Api/PlanmigrationsApi.md
@@ -41,6 +42,7 @@ docs/Model/AssumeStripeInstalledResponse.md
 docs/Model/AuditLogExportMetadata.md
 docs/Model/AuditLogListResponseData.md
 docs/Model/AuditLogResponseData.md
+docs/Model/BillingCollectionMethod.md
 docs/Model/BillingCouponResponseData.md
 docs/Model/BillingCreditAutoTopupAvailability.md
 docs/Model/BillingCreditBundleResponseData.md
@@ -78,6 +80,7 @@ docs/Model/BillingProductPriceInterval.md
 docs/Model/BillingProductPriceResponseData.md
 docs/Model/BillingProductPriceTierResponseData.md
 docs/Model/BillingProductPricing.md
+docs/Model/BillingProductRecordResponseData.md
 docs/Model/BillingProductResponseData.md
 docs/Model/BillingProviderType.md
 docs/Model/BillingStrategy.md
@@ -116,6 +119,7 @@ docs/Model/CheckFlagsBulkResponse.md
 docs/Model/CheckFlagsBulkResponseData.md
 docs/Model/CheckFlagsResponse.md
 docs/Model/CheckFlagsResponseData.md
+docs/Model/CheckoutBundlePurchaseBehavior.md
 docs/Model/CheckoutDataRequestBody.md
 docs/Model/CheckoutDataResponseData.md
 docs/Model/CheckoutFieldInput.md
@@ -149,6 +153,7 @@ docs/Model/CompanyPlanInvalidReason.md
 docs/Model/CompanyPlanWithBillingSubView.md
 docs/Model/CompanyResponseData.md
 docs/Model/CompanySubscriptionResponseData.md
+docs/Model/CompanyTaxIDView.md
 docs/Model/ComparableOperator.md
 docs/Model/CompatiblePlans.md
 docs/Model/CompatiblePlansResponseData.md
@@ -202,8 +207,12 @@ docs/Model/CountCustomersParams.md
 docs/Model/CountCustomersResponse.md
 docs/Model/CountEntityKeyDefinitionsParams.md
 docs/Model/CountEntityKeyDefinitionsResponse.md
+docs/Model/CountEntityKeysParams.md
+docs/Model/CountEntityKeysResponse.md
 docs/Model/CountEntityTraitDefinitionsParams.md
 docs/Model/CountEntityTraitDefinitionsResponse.md
+docs/Model/CountEntityTraitsParams.md
+docs/Model/CountEntityTraitsResponse.md
 docs/Model/CountFeatureCompaniesParams.md
 docs/Model/CountFeatureCompaniesResponse.md
 docs/Model/CountFeatureUsageParams.md
@@ -214,6 +223,8 @@ docs/Model/CountFeaturesParams.md
 docs/Model/CountFeaturesResponse.md
 docs/Model/CountFlagsParams.md
 docs/Model/CountFlagsResponse.md
+docs/Model/CountLicensesParams.md
+docs/Model/CountLicensesResponse.md
 docs/Model/CountMigrationsParams.md
 docs/Model/CountMigrationsResponse.md
 docs/Model/CountPlanEntitlementsParams.md
@@ -357,6 +368,8 @@ docs/Model/DeleteCompanyParams.md
 docs/Model/DeleteCompanyResponse.md
 docs/Model/DeleteComponentResponse.md
 docs/Model/DeleteCreditBundleResponse.md
+docs/Model/DeleteEntityKeyDefinitionResponse.md
+docs/Model/DeleteEntityTraitDefinitionResponse.md
 docs/Model/DeleteEnvironmentResponse.md
 docs/Model/DeleteFeatureResponse.md
 docs/Model/DeleteFlagResponse.md
@@ -383,6 +396,7 @@ docs/Model/EntityKeyDefinitionResponseData.md
 docs/Model/EntityKeyDetailResponseData.md
 docs/Model/EntityKeyResponseData.md
 docs/Model/EntityTraitDefinitionResponseData.md
+docs/Model/EntityTraitDefinitionUsage.md
 docs/Model/EntityTraitDetailResponseData.md
 docs/Model/EntityTraitResponseData.md
 docs/Model/EntityTraitValue.md
@@ -400,6 +414,7 @@ docs/Model/EventBodyIdentifyCompany.md
 docs/Model/EventBodyInference.md
 docs/Model/EventBodyTrack.md
 docs/Model/EventDetailResponseData.md
+docs/Model/EventExportMetadata.md
 docs/Model/EventResponseData.md
 docs/Model/EventStatus.md
 docs/Model/EventSummaryResponseData.md
@@ -449,6 +464,7 @@ docs/Model/GetCreditBundlesInCatalogResponse.md
 docs/Model/GetDataExportResponse.md
 docs/Model/GetDerivedFeaturesResponse.md
 docs/Model/GetEntityTraitDefinitionResponse.md
+docs/Model/GetEntityTraitDefinitionUsageResponse.md
 docs/Model/GetEntityTraitValuesParams.md
 docs/Model/GetEntityTraitValuesResponse.md
 docs/Model/GetEnvironmentFeatureUsageTimeSeriesParams.md
@@ -485,10 +501,15 @@ docs/Model/GetScheduledCheckoutResponse.md
 docs/Model/GetSegmentIntegrationStatusResponse.md
 docs/Model/GetSingleBillingCreditResponse.md
 docs/Model/GetSingleBillingPlanCreditGrantResponse.md
+docs/Model/GetSingleLicenseResponse.md
 docs/Model/GetSummaryResponse.md
 docs/Model/GetTopFeaturesByUsageParams.md
 docs/Model/GetTopFeaturesByUsageResponse.md
 docs/Model/GetUserResponse.md
+docs/Model/GetUserUsageByCompanyParams.md
+docs/Model/GetUserUsageByCompanyResponse.md
+docs/Model/GetUserUsageDetailParams.md
+docs/Model/GetUserUsageDetailResponse.md
 docs/Model/GetWebhookEventResponse.md
 docs/Model/GetWebhookResponse.md
 docs/Model/GetWhoAmIResponse.md
@@ -515,6 +536,7 @@ docs/Model/IssueTemporaryAccessTokenRequestBody.md
 docs/Model/IssueTemporaryAccessTokenResponse.md
 docs/Model/IssueTemporaryAccessTokenResponseData.md
 docs/Model/KeysRequestBody.md
+docs/Model/LicenseResponseData.md
 docs/Model/LimitTimeSeriesPointResponseData.md
 docs/Model/ListAccountMembersParams.md
 docs/Model/ListAccountMembersResponse.md
@@ -586,6 +608,8 @@ docs/Model/ListIntegrationsParams.md
 docs/Model/ListIntegrationsResponse.md
 docs/Model/ListInvoicesParams.md
 docs/Model/ListInvoicesResponse.md
+docs/Model/ListLicensesParams.md
+docs/Model/ListLicensesResponse.md
 docs/Model/ListMetersParams.md
 docs/Model/ListMetersResponse.md
 docs/Model/ListMigrationsParams.md
@@ -625,11 +649,13 @@ docs/Model/MetricPeriod.md
 docs/Model/MetricPeriodMonthReset.md
 docs/Model/MetronomeIntegrationConfig.md
 docs/Model/MigrationErrorCode.md
+docs/Model/MigrationProrationBehavior.md
 docs/Model/MrrResponseData.md
 docs/Model/OrbIntegrationConfig.md
 docs/Model/OrderedPlansInGroup.md
 docs/Model/PaymentMethodRequestBody.md
 docs/Model/PaymentMethodResponseData.md
+docs/Model/PlanBillingSource.md
 docs/Model/PlanBundleAction.md
 docs/Model/PlanBundleCreditGrantRequestBody.md
 docs/Model/PlanBundleEntitlementRequestBody.md
@@ -639,6 +665,7 @@ docs/Model/PlanChangeAction.md
 docs/Model/PlanChangeBasePlanAction.md
 docs/Model/PlanChangeResponseData.md
 docs/Model/PlanChangeSubscriptionAction.md
+docs/Model/PlanCreditGrantScaling.md
 docs/Model/PlanCreditGrantView.md
 docs/Model/PlanCurrencyPriceRequestBody.md
 docs/Model/PlanCurrencyPricesResponseData.md
@@ -745,6 +772,8 @@ docs/Model/StripeIntegrationConfig.md
 docs/Model/SubscriptionStatus.md
 docs/Model/SubscriptionTraitUpdate.md
 docs/Model/SubscriptionType.md
+docs/Model/TaxIDInput.md
+docs/Model/TaxIdType.md
 docs/Model/TemporaryAccessTokenResourceType.md
 docs/Model/TemporaryAccessTokenResponseData.md
 docs/Model/TestWebhookRequestBody.md
@@ -832,8 +861,14 @@ docs/Model/UpsertUserTraitResponse.md
 docs/Model/UsageBasedEntitlementRequestBody.md
 docs/Model/UsageBasedEntitlementResponseData.md
 docs/Model/UsageTimeSeriesPointResponseData.md
+docs/Model/UserCreditUsageResponseData.md
+docs/Model/UserDailyCreditPointResponseData.md
+docs/Model/UserDailyUsagePointResponseData.md
 docs/Model/UserDetailResponseData.md
+docs/Model/UserFeatureUsageResponseData.md
 docs/Model/UserResponseData.md
+docs/Model/UserUsageByCompanyResponseData.md
+docs/Model/UserUsageDetailResponseData.md
 docs/Model/WarningTier.md
 docs/Model/WarningTierRequestBody.md
 docs/Model/WarningTierResponseData.md
@@ -867,6 +902,7 @@ src/Api/EventsApi.php
 src/Api/FeaturesApi.php
 src/Api/InsightsApi.php
 src/Api/IntegrationsapiApi.php
+src/Api/LicensesApi.php
 src/Api/PlanbundleApi.php
 src/Api/PlangroupsApi.php
 src/Api/PlanmigrationsApi.php
@@ -894,6 +930,7 @@ src/Model/AssumeStripeInstalledResponse.php
 src/Model/AuditLogExportMetadata.php
 src/Model/AuditLogListResponseData.php
 src/Model/AuditLogResponseData.php
+src/Model/BillingCollectionMethod.php
 src/Model/BillingCouponResponseData.php
 src/Model/BillingCreditAutoTopupAvailability.php
 src/Model/BillingCreditBundleResponseData.php
@@ -931,6 +968,7 @@ src/Model/BillingProductPriceInterval.php
 src/Model/BillingProductPriceResponseData.php
 src/Model/BillingProductPriceTierResponseData.php
 src/Model/BillingProductPricing.php
+src/Model/BillingProductRecordResponseData.php
 src/Model/BillingProductResponseData.php
 src/Model/BillingProviderType.php
 src/Model/BillingStrategy.php
@@ -969,6 +1007,7 @@ src/Model/CheckFlagsBulkResponse.php
 src/Model/CheckFlagsBulkResponseData.php
 src/Model/CheckFlagsResponse.php
 src/Model/CheckFlagsResponseData.php
+src/Model/CheckoutBundlePurchaseBehavior.php
 src/Model/CheckoutDataRequestBody.php
 src/Model/CheckoutDataResponseData.php
 src/Model/CheckoutFieldInput.php
@@ -1002,6 +1041,7 @@ src/Model/CompanyPlanInvalidReason.php
 src/Model/CompanyPlanWithBillingSubView.php
 src/Model/CompanyResponseData.php
 src/Model/CompanySubscriptionResponseData.php
+src/Model/CompanyTaxIDView.php
 src/Model/ComparableOperator.php
 src/Model/CompatiblePlans.php
 src/Model/CompatiblePlansResponseData.php
@@ -1055,8 +1095,12 @@ src/Model/CountCustomersParams.php
 src/Model/CountCustomersResponse.php
 src/Model/CountEntityKeyDefinitionsParams.php
 src/Model/CountEntityKeyDefinitionsResponse.php
+src/Model/CountEntityKeysParams.php
+src/Model/CountEntityKeysResponse.php
 src/Model/CountEntityTraitDefinitionsParams.php
 src/Model/CountEntityTraitDefinitionsResponse.php
+src/Model/CountEntityTraitsParams.php
+src/Model/CountEntityTraitsResponse.php
 src/Model/CountFeatureCompaniesParams.php
 src/Model/CountFeatureCompaniesResponse.php
 src/Model/CountFeatureUsageParams.php
@@ -1067,6 +1111,8 @@ src/Model/CountFeaturesParams.php
 src/Model/CountFeaturesResponse.php
 src/Model/CountFlagsParams.php
 src/Model/CountFlagsResponse.php
+src/Model/CountLicensesParams.php
+src/Model/CountLicensesResponse.php
 src/Model/CountMigrationsParams.php
 src/Model/CountMigrationsResponse.php
 src/Model/CountPlanEntitlementsParams.php
@@ -1210,6 +1256,8 @@ src/Model/DeleteCompanyParams.php
 src/Model/DeleteCompanyResponse.php
 src/Model/DeleteComponentResponse.php
 src/Model/DeleteCreditBundleResponse.php
+src/Model/DeleteEntityKeyDefinitionResponse.php
+src/Model/DeleteEntityTraitDefinitionResponse.php
 src/Model/DeleteEnvironmentResponse.php
 src/Model/DeleteFeatureResponse.php
 src/Model/DeleteFlagResponse.php
@@ -1236,6 +1284,7 @@ src/Model/EntityKeyDefinitionResponseData.php
 src/Model/EntityKeyDetailResponseData.php
 src/Model/EntityKeyResponseData.php
 src/Model/EntityTraitDefinitionResponseData.php
+src/Model/EntityTraitDefinitionUsage.php
 src/Model/EntityTraitDetailResponseData.php
 src/Model/EntityTraitResponseData.php
 src/Model/EntityTraitValue.php
@@ -1253,6 +1302,7 @@ src/Model/EventBodyIdentifyCompany.php
 src/Model/EventBodyInference.php
 src/Model/EventBodyTrack.php
 src/Model/EventDetailResponseData.php
+src/Model/EventExportMetadata.php
 src/Model/EventResponseData.php
 src/Model/EventStatus.php
 src/Model/EventSummaryResponseData.php
@@ -1302,6 +1352,7 @@ src/Model/GetCreditBundlesInCatalogResponse.php
 src/Model/GetDataExportResponse.php
 src/Model/GetDerivedFeaturesResponse.php
 src/Model/GetEntityTraitDefinitionResponse.php
+src/Model/GetEntityTraitDefinitionUsageResponse.php
 src/Model/GetEntityTraitValuesParams.php
 src/Model/GetEntityTraitValuesResponse.php
 src/Model/GetEnvironmentFeatureUsageTimeSeriesParams.php
@@ -1338,10 +1389,15 @@ src/Model/GetScheduledCheckoutResponse.php
 src/Model/GetSegmentIntegrationStatusResponse.php
 src/Model/GetSingleBillingCreditResponse.php
 src/Model/GetSingleBillingPlanCreditGrantResponse.php
+src/Model/GetSingleLicenseResponse.php
 src/Model/GetSummaryResponse.php
 src/Model/GetTopFeaturesByUsageParams.php
 src/Model/GetTopFeaturesByUsageResponse.php
 src/Model/GetUserResponse.php
+src/Model/GetUserUsageByCompanyParams.php
+src/Model/GetUserUsageByCompanyResponse.php
+src/Model/GetUserUsageDetailParams.php
+src/Model/GetUserUsageDetailResponse.php
 src/Model/GetWebhookEventResponse.php
 src/Model/GetWebhookResponse.php
 src/Model/GetWhoAmIResponse.php
@@ -1368,6 +1424,7 @@ src/Model/IssueTemporaryAccessTokenRequestBody.php
 src/Model/IssueTemporaryAccessTokenResponse.php
 src/Model/IssueTemporaryAccessTokenResponseData.php
 src/Model/KeysRequestBody.php
+src/Model/LicenseResponseData.php
 src/Model/LimitTimeSeriesPointResponseData.php
 src/Model/ListAccountMembersParams.php
 src/Model/ListAccountMembersResponse.php
@@ -1439,6 +1496,8 @@ src/Model/ListIntegrationsParams.php
 src/Model/ListIntegrationsResponse.php
 src/Model/ListInvoicesParams.php
 src/Model/ListInvoicesResponse.php
+src/Model/ListLicensesParams.php
+src/Model/ListLicensesResponse.php
 src/Model/ListMetersParams.php
 src/Model/ListMetersResponse.php
 src/Model/ListMigrationsParams.php
@@ -1478,12 +1537,14 @@ src/Model/MetricPeriod.php
 src/Model/MetricPeriodMonthReset.php
 src/Model/MetronomeIntegrationConfig.php
 src/Model/MigrationErrorCode.php
+src/Model/MigrationProrationBehavior.php
 src/Model/ModelInterface.php
 src/Model/MrrResponseData.php
 src/Model/OrbIntegrationConfig.php
 src/Model/OrderedPlansInGroup.php
 src/Model/PaymentMethodRequestBody.php
 src/Model/PaymentMethodResponseData.php
+src/Model/PlanBillingSource.php
 src/Model/PlanBundleAction.php
 src/Model/PlanBundleCreditGrantRequestBody.php
 src/Model/PlanBundleEntitlementRequestBody.php
@@ -1493,6 +1554,7 @@ src/Model/PlanChangeAction.php
 src/Model/PlanChangeBasePlanAction.php
 src/Model/PlanChangeResponseData.php
 src/Model/PlanChangeSubscriptionAction.php
+src/Model/PlanCreditGrantScaling.php
 src/Model/PlanCreditGrantView.php
 src/Model/PlanCurrencyPriceRequestBody.php
 src/Model/PlanCurrencyPricesResponseData.php
@@ -1599,6 +1661,8 @@ src/Model/StripeIntegrationConfig.php
 src/Model/SubscriptionStatus.php
 src/Model/SubscriptionTraitUpdate.php
 src/Model/SubscriptionType.php
+src/Model/TaxIDInput.php
+src/Model/TaxIdType.php
 src/Model/TemporaryAccessTokenResourceType.php
 src/Model/TemporaryAccessTokenResponseData.php
 src/Model/TestWebhookRequestBody.php
@@ -1686,8 +1750,14 @@ src/Model/UpsertUserTraitResponse.php
 src/Model/UsageBasedEntitlementRequestBody.php
 src/Model/UsageBasedEntitlementResponseData.php
 src/Model/UsageTimeSeriesPointResponseData.php
+src/Model/UserCreditUsageResponseData.php
+src/Model/UserDailyCreditPointResponseData.php
+src/Model/UserDailyUsagePointResponseData.php
 src/Model/UserDetailResponseData.php
+src/Model/UserFeatureUsageResponseData.php
 src/Model/UserResponseData.php
+src/Model/UserUsageByCompanyResponseData.php
+src/Model/UserUsageDetailResponseData.php
 src/Model/WarningTier.php
 src/Model/WarningTierRequestBody.php
 src/Model/WarningTierResponseData.php
@@ -1720,6 +1790,7 @@ test/Api/EventsApiTest.php
 test/Api/FeaturesApiTest.php
 test/Api/InsightsApiTest.php
 test/Api/IntegrationsapiApiTest.php
+test/Api/LicensesApiTest.php
 test/Api/PlanbundleApiTest.php
 test/Api/PlangroupsApiTest.php
 test/Api/PlanmigrationsApiTest.php
@@ -1743,6 +1814,7 @@ test/Model/AssumeStripeInstalledResponseTest.php
 test/Model/AuditLogExportMetadataTest.php
 test/Model/AuditLogListResponseDataTest.php
 test/Model/AuditLogResponseDataTest.php
+test/Model/BillingCollectionMethodTest.php
 test/Model/BillingCouponResponseDataTest.php
 test/Model/BillingCreditAutoTopupAvailabilityTest.php
 test/Model/BillingCreditBundleResponseDataTest.php
@@ -1780,6 +1852,7 @@ test/Model/BillingProductPriceIntervalTest.php
 test/Model/BillingProductPriceResponseDataTest.php
 test/Model/BillingProductPriceTierResponseDataTest.php
 test/Model/BillingProductPricingTest.php
+test/Model/BillingProductRecordResponseDataTest.php
 test/Model/BillingProductResponseDataTest.php
 test/Model/BillingProviderTypeTest.php
 test/Model/BillingStrategyTest.php
@@ -1818,6 +1891,7 @@ test/Model/CheckFlagsBulkResponseDataTest.php
 test/Model/CheckFlagsBulkResponseTest.php
 test/Model/CheckFlagsResponseDataTest.php
 test/Model/CheckFlagsResponseTest.php
+test/Model/CheckoutBundlePurchaseBehaviorTest.php
 test/Model/CheckoutDataRequestBodyTest.php
 test/Model/CheckoutDataResponseDataTest.php
 test/Model/CheckoutFieldInputTest.php
@@ -1851,6 +1925,7 @@ test/Model/CompanyPlanInvalidReasonTest.php
 test/Model/CompanyPlanWithBillingSubViewTest.php
 test/Model/CompanyResponseDataTest.php
 test/Model/CompanySubscriptionResponseDataTest.php
+test/Model/CompanyTaxIDViewTest.php
 test/Model/ComparableOperatorTest.php
 test/Model/CompatiblePlansResponseDataTest.php
 test/Model/CompatiblePlansTest.php
@@ -1904,8 +1979,12 @@ test/Model/CountCustomersParamsTest.php
 test/Model/CountCustomersResponseTest.php
 test/Model/CountEntityKeyDefinitionsParamsTest.php
 test/Model/CountEntityKeyDefinitionsResponseTest.php
+test/Model/CountEntityKeysParamsTest.php
+test/Model/CountEntityKeysResponseTest.php
 test/Model/CountEntityTraitDefinitionsParamsTest.php
 test/Model/CountEntityTraitDefinitionsResponseTest.php
+test/Model/CountEntityTraitsParamsTest.php
+test/Model/CountEntityTraitsResponseTest.php
 test/Model/CountFeatureCompaniesParamsTest.php
 test/Model/CountFeatureCompaniesResponseTest.php
 test/Model/CountFeatureUsageParamsTest.php
@@ -1916,6 +1995,8 @@ test/Model/CountFeaturesParamsTest.php
 test/Model/CountFeaturesResponseTest.php
 test/Model/CountFlagsParamsTest.php
 test/Model/CountFlagsResponseTest.php
+test/Model/CountLicensesParamsTest.php
+test/Model/CountLicensesResponseTest.php
 test/Model/CountMigrationsParamsTest.php
 test/Model/CountMigrationsResponseTest.php
 test/Model/CountPlanEntitlementsParamsTest.php
@@ -2059,6 +2140,8 @@ test/Model/DeleteCompanyParamsTest.php
 test/Model/DeleteCompanyResponseTest.php
 test/Model/DeleteComponentResponseTest.php
 test/Model/DeleteCreditBundleResponseTest.php
+test/Model/DeleteEntityKeyDefinitionResponseTest.php
+test/Model/DeleteEntityTraitDefinitionResponseTest.php
 test/Model/DeleteEnvironmentResponseTest.php
 test/Model/DeleteFeatureResponseTest.php
 test/Model/DeleteFlagResponseTest.php
@@ -2085,6 +2168,7 @@ test/Model/EntityKeyDefinitionResponseDataTest.php
 test/Model/EntityKeyDetailResponseDataTest.php
 test/Model/EntityKeyResponseDataTest.php
 test/Model/EntityTraitDefinitionResponseDataTest.php
+test/Model/EntityTraitDefinitionUsageTest.php
 test/Model/EntityTraitDetailResponseDataTest.php
 test/Model/EntityTraitResponseDataTest.php
 test/Model/EntityTraitValueTest.php
@@ -2102,6 +2186,7 @@ test/Model/EventBodyInferenceTest.php
 test/Model/EventBodyTest.php
 test/Model/EventBodyTrackTest.php
 test/Model/EventDetailResponseDataTest.php
+test/Model/EventExportMetadataTest.php
 test/Model/EventResponseDataTest.php
 test/Model/EventStatusTest.php
 test/Model/EventSummaryResponseDataTest.php
@@ -2151,6 +2236,7 @@ test/Model/GetCreditBundlesInCatalogResponseTest.php
 test/Model/GetDataExportResponseTest.php
 test/Model/GetDerivedFeaturesResponseTest.php
 test/Model/GetEntityTraitDefinitionResponseTest.php
+test/Model/GetEntityTraitDefinitionUsageResponseTest.php
 test/Model/GetEntityTraitValuesParamsTest.php
 test/Model/GetEntityTraitValuesResponseTest.php
 test/Model/GetEnvironmentFeatureUsageTimeSeriesParamsTest.php
@@ -2187,10 +2273,15 @@ test/Model/GetScheduledCheckoutResponseTest.php
 test/Model/GetSegmentIntegrationStatusResponseTest.php
 test/Model/GetSingleBillingCreditResponseTest.php
 test/Model/GetSingleBillingPlanCreditGrantResponseTest.php
+test/Model/GetSingleLicenseResponseTest.php
 test/Model/GetSummaryResponseTest.php
 test/Model/GetTopFeaturesByUsageParamsTest.php
 test/Model/GetTopFeaturesByUsageResponseTest.php
 test/Model/GetUserResponseTest.php
+test/Model/GetUserUsageByCompanyParamsTest.php
+test/Model/GetUserUsageByCompanyResponseTest.php
+test/Model/GetUserUsageDetailParamsTest.php
+test/Model/GetUserUsageDetailResponseTest.php
 test/Model/GetWebhookEventResponseTest.php
 test/Model/GetWebhookResponseTest.php
 test/Model/GetWhoAmIResponseTest.php
@@ -2217,6 +2308,7 @@ test/Model/IssueTemporaryAccessTokenRequestBodyTest.php
 test/Model/IssueTemporaryAccessTokenResponseDataTest.php
 test/Model/IssueTemporaryAccessTokenResponseTest.php
 test/Model/KeysRequestBodyTest.php
+test/Model/LicenseResponseDataTest.php
 test/Model/LimitTimeSeriesPointResponseDataTest.php
 test/Model/ListAccountMembersParamsTest.php
 test/Model/ListAccountMembersResponseTest.php
@@ -2288,6 +2380,8 @@ test/Model/ListIntegrationsParamsTest.php
 test/Model/ListIntegrationsResponseTest.php
 test/Model/ListInvoicesParamsTest.php
 test/Model/ListInvoicesResponseTest.php
+test/Model/ListLicensesParamsTest.php
+test/Model/ListLicensesResponseTest.php
 test/Model/ListMetersParamsTest.php
 test/Model/ListMetersResponseTest.php
 test/Model/ListMigrationsParamsTest.php
@@ -2327,11 +2421,13 @@ test/Model/MetricPeriodMonthResetTest.php
 test/Model/MetricPeriodTest.php
 test/Model/MetronomeIntegrationConfigTest.php
 test/Model/MigrationErrorCodeTest.php
+test/Model/MigrationProrationBehaviorTest.php
 test/Model/MrrResponseDataTest.php
 test/Model/OrbIntegrationConfigTest.php
 test/Model/OrderedPlansInGroupTest.php
 test/Model/PaymentMethodRequestBodyTest.php
 test/Model/PaymentMethodResponseDataTest.php
+test/Model/PlanBillingSourceTest.php
 test/Model/PlanBundleActionTest.php
 test/Model/PlanBundleCreditGrantRequestBodyTest.php
 test/Model/PlanBundleEntitlementRequestBodyTest.php
@@ -2341,6 +2437,7 @@ test/Model/PlanChangeActionTest.php
 test/Model/PlanChangeBasePlanActionTest.php
 test/Model/PlanChangeResponseDataTest.php
 test/Model/PlanChangeSubscriptionActionTest.php
+test/Model/PlanCreditGrantScalingTest.php
 test/Model/PlanCreditGrantViewTest.php
 test/Model/PlanCurrencyPriceRequestBodyTest.php
 test/Model/PlanCurrencyPricesResponseDataTest.php
@@ -2447,6 +2544,8 @@ test/Model/StripeIntegrationConfigTest.php
 test/Model/SubscriptionStatusTest.php
 test/Model/SubscriptionTraitUpdateTest.php
 test/Model/SubscriptionTypeTest.php
+test/Model/TaxIDInputTest.php
+test/Model/TaxIdTypeTest.php
 test/Model/TemporaryAccessTokenResourceTypeTest.php
 test/Model/TemporaryAccessTokenResponseDataTest.php
 test/Model/TestWebhookRequestBodyTest.php
@@ -2534,8 +2633,14 @@ test/Model/UpsertUserTraitResponseTest.php
 test/Model/UsageBasedEntitlementRequestBodyTest.php
 test/Model/UsageBasedEntitlementResponseDataTest.php
 test/Model/UsageTimeSeriesPointResponseDataTest.php
+test/Model/UserCreditUsageResponseDataTest.php
+test/Model/UserDailyCreditPointResponseDataTest.php
+test/Model/UserDailyUsagePointResponseDataTest.php
 test/Model/UserDetailResponseDataTest.php
+test/Model/UserFeatureUsageResponseDataTest.php
 test/Model/UserResponseDataTest.php
+test/Model/UserUsageByCompanyResponseDataTest.php
+test/Model/UserUsageDetailResponseDataTest.php
 test/Model/WarningTierRequestBodyTest.php
 test/Model/WarningTierResponseDataTest.php
 test/Model/WarningTierTest.php

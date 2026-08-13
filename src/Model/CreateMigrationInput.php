@@ -63,6 +63,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_id' => 'string',
         'plan_version_id_to' => 'string',
         'plan_version_ids_from' => 'string[]',
+        'proration_behavior' => '\Schematic\Model\MigrationProrationBehavior',
         'strategy' => '\Schematic\Model\PlanVersionMigrationStrategy',
         'target_plan_type' => '\Schematic\Model\PlanType'
     ];
@@ -80,6 +81,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_id' => null,
         'plan_version_id_to' => null,
         'plan_version_ids_from' => null,
+        'proration_behavior' => null,
         'strategy' => null,
         'target_plan_type' => null
     ];
@@ -95,6 +97,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_id' => false,
         'plan_version_id_to' => false,
         'plan_version_ids_from' => false,
+        'proration_behavior' => true,
         'strategy' => false,
         'target_plan_type' => false
     ];
@@ -190,6 +193,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_id' => 'plan_id',
         'plan_version_id_to' => 'plan_version_id_to',
         'plan_version_ids_from' => 'plan_version_ids_from',
+        'proration_behavior' => 'proration_behavior',
         'strategy' => 'strategy',
         'target_plan_type' => 'target_plan_type'
     ];
@@ -205,6 +209,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_id' => 'setPlanId',
         'plan_version_id_to' => 'setPlanVersionIdTo',
         'plan_version_ids_from' => 'setPlanVersionIdsFrom',
+        'proration_behavior' => 'setProrationBehavior',
         'strategy' => 'setStrategy',
         'target_plan_type' => 'setTargetPlanType'
     ];
@@ -220,6 +225,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_id' => 'getPlanId',
         'plan_version_id_to' => 'getPlanVersionIdTo',
         'plan_version_ids_from' => 'getPlanVersionIdsFrom',
+        'proration_behavior' => 'getProrationBehavior',
         'strategy' => 'getStrategy',
         'target_plan_type' => 'getTargetPlanType'
     ];
@@ -286,6 +292,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_version_id_to', $data ?? [], null);
         $this->setIfExists('plan_version_ids_from', $data ?? [], null);
+        $this->setIfExists('proration_behavior', $data ?? [], null);
         $this->setIfExists('strategy', $data ?? [], null);
         $this->setIfExists('target_plan_type', $data ?? [], null);
     }
@@ -317,17 +324,11 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['company_ids'] === null) {
-            $invalidProperties[] = "'company_ids' can't be null";
-        }
-        if ((count($this->container['company_ids']) > 10000)) {
+        if (!is_null($this->container['company_ids']) && (count($this->container['company_ids']) > 10000)) {
             $invalidProperties[] = "invalid value for 'company_ids', number of items must be less than or equal to 10000.";
         }
 
-        if ($this->container['excluded_company_ids'] === null) {
-            $invalidProperties[] = "'excluded_company_ids' can't be null";
-        }
-        if ((count($this->container['excluded_company_ids']) > 10000)) {
+        if (!is_null($this->container['excluded_company_ids']) && (count($this->container['excluded_company_ids']) > 10000)) {
             $invalidProperties[] = "invalid value for 'excluded_company_ids', number of items must be less than or equal to 10000.";
         }
 
@@ -337,10 +338,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         if ($this->container['plan_version_id_to'] === null) {
             $invalidProperties[] = "'plan_version_id_to' can't be null";
         }
-        if ($this->container['plan_version_ids_from'] === null) {
-            $invalidProperties[] = "'plan_version_ids_from' can't be null";
-        }
-        if ((count($this->container['plan_version_ids_from']) > 20)) {
+        if (!is_null($this->container['plan_version_ids_from']) && (count($this->container['plan_version_ids_from']) > 20)) {
             $invalidProperties[] = "invalid value for 'plan_version_ids_from', number of items must be less than or equal to 20.";
         }
 
@@ -368,7 +366,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets company_ids
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getCompanyIds()
     {
@@ -378,7 +376,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets company_ids
      *
-     * @param string[] $company_ids company_ids
+     * @param string[]|null $company_ids company_ids
      *
      * @return self
      */
@@ -399,7 +397,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets excluded_company_ids
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getExcludedCompanyIds()
     {
@@ -409,7 +407,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets excluded_company_ids
      *
-     * @param string[] $excluded_company_ids excluded_company_ids
+     * @param string[]|null $excluded_company_ids excluded_company_ids
      *
      * @return self
      */
@@ -484,7 +482,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets plan_version_ids_from
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getPlanVersionIdsFrom()
     {
@@ -494,7 +492,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets plan_version_ids_from
      *
-     * @param string[] $plan_version_ids_from plan_version_ids_from
+     * @param string[]|null $plan_version_ids_from plan_version_ids_from
      *
      * @return self
      */
@@ -508,6 +506,40 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('invalid value for $plan_version_ids_from when calling CreateMigrationInput., number of items must be less than or equal to 20.');
         }
         $this->container['plan_version_ids_from'] = $plan_version_ids_from;
+
+        return $this;
+    }
+
+    /**
+     * Gets proration_behavior
+     *
+     * @return \Schematic\Model\MigrationProrationBehavior|null
+     */
+    public function getProrationBehavior()
+    {
+        return $this->container['proration_behavior'];
+    }
+
+    /**
+     * Sets proration_behavior
+     *
+     * @param \Schematic\Model\MigrationProrationBehavior|null $proration_behavior proration_behavior
+     *
+     * @return self
+     */
+    public function setProrationBehavior($proration_behavior)
+    {
+        if (is_null($proration_behavior)) {
+            array_push($this->openAPINullablesSetToNull, 'proration_behavior');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('proration_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['proration_behavior'] = $proration_behavior;
 
         return $this;
     }

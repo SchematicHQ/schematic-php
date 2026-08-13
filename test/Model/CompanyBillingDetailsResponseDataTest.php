@@ -124,4 +124,13 @@ class CompanyBillingDetailsResponseDataTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "tax_ids"
+     */
+    public function testPropertyTaxIds()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

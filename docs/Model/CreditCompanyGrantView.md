@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **billing_credit_bundle_id** | **string** |  | [optional]
 **billing_credit_id** | **string** |  |
 **company_id** | **string** |  |
+**company_license_id** | **string** |  | [optional]
 **company_name** | **string** |  |
 **created_at** | **\DateTime** |  |
 **credit_description** | **string** |  |
@@ -20,6 +21,7 @@ Name | Type | Description | Notes
 **expiry_unit_count** | **int** |  | [optional]
 **grant_reason** | [**\Schematic\Model\BillingCreditGrantReason**](BillingCreditGrantReason.md) |  |
 **id** | **string** |  |
+**license_name** | **string** |  | [optional]
 **plan_id** | **string** |  | [optional]
 **plan_name** | **string** |  | [optional]
 **plural_name** | **string** |  | [optional]

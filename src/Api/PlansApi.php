@@ -2194,7 +2194,7 @@ class PlansApi
      *
      * Delete plan version
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  bool|null $promote_archived_version promote_archived_version (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
      *
@@ -2202,9 +2202,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\DeletePlanVersionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function deletePlanVersion($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
+    public function deletePlanVersion($plan_version_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
     {
-        list($response) = $this->deletePlanVersionWithHttpInfo($plan_id, $promote_archived_version, $contentType);
+        list($response) = $this->deletePlanVersionWithHttpInfo($plan_version_id, $promote_archived_version, $contentType);
         return $response;
     }
 
@@ -2213,7 +2213,7 @@ class PlansApi
      *
      * Delete plan version
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  bool|null $promote_archived_version (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
      *
@@ -2221,9 +2221,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\DeletePlanVersionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePlanVersionWithHttpInfo($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
+    public function deletePlanVersionWithHttpInfo($plan_version_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
     {
-        $request = $this->deletePlanVersionRequest($plan_id, $promote_archived_version, $contentType);
+        $request = $this->deletePlanVersionRequest($plan_version_id, $promote_archived_version, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2369,16 +2369,16 @@ class PlansApi
      *
      * Delete plan version
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  bool|null $promote_archived_version (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePlanVersionAsync($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
+    public function deletePlanVersionAsync($plan_version_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
     {
-        return $this->deletePlanVersionAsyncWithHttpInfo($plan_id, $promote_archived_version, $contentType)
+        return $this->deletePlanVersionAsyncWithHttpInfo($plan_version_id, $promote_archived_version, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2391,17 +2391,17 @@ class PlansApi
      *
      * Delete plan version
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  bool|null $promote_archived_version (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePlanVersionAsyncWithHttpInfo($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
+    public function deletePlanVersionAsyncWithHttpInfo($plan_version_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
     {
         $returnType = '\Schematic\Model\DeletePlanVersionResponse';
-        $request = $this->deletePlanVersionRequest($plan_id, $promote_archived_version, $contentType);
+        $request = $this->deletePlanVersionRequest($plan_version_id, $promote_archived_version, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2442,26 +2442,26 @@ class PlansApi
     /**
      * Create request for operation 'deletePlanVersion'
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  bool|null $promote_archived_version (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePlanVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePlanVersionRequest($plan_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
+    public function deletePlanVersionRequest($plan_version_id, $promote_archived_version = null, string $contentType = self::contentTypes['deletePlanVersion'][0])
     {
 
-        // verify the required parameter 'plan_id' is set
-        if ($plan_id === null || (is_array($plan_id) && count($plan_id) === 0)) {
+        // verify the required parameter 'plan_version_id' is set
+        if ($plan_version_id === null || (is_array($plan_version_id) && count($plan_version_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $plan_id when calling deletePlanVersion'
+                'Missing the required parameter $plan_version_id when calling deletePlanVersion'
             );
         }
 
 
 
-        $resourcePath = '/plans/version/{plan_id}';
+        $resourcePath = '/plans/version/{plan_version_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2480,10 +2480,10 @@ class PlansApi
 
 
         // path params
-        if ($plan_id !== null) {
+        if ($plan_version_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'plan_id' . '}',
-                ObjectSerializer::toPathValue($plan_id),
+                '{' . 'plan_version_id' . '}',
+                ObjectSerializer::toPathValue($plan_version_id),
                 $resourcePath
             );
         }
@@ -3296,6 +3296,7 @@ class PlansApi
      *
      * @param  string|null $company_id Filter by company ID (optional)
      * @param  string|null $plan_id Filter by plan ID (optional)
+     * @param  \SchematicModelPlanBillingSource|null $plan_billing_source Filter by the flow that created the billing record. Defaults to custom_plan. (optional)
      * @param  \SchematicModelCustomPlanBillingStatus|null $status Filter by billing status (optional)
      * @param  \Schematic\Model\CustomPlanBillingStatus[]|null $statuses Filter by multiple billing statuses (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -3306,9 +3307,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCustomPlanBillingsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCustomPlanBillings($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    public function listCustomPlanBillings($company_id = null, $plan_id = null, $plan_billing_source = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
     {
-        list($response) = $this->listCustomPlanBillingsWithHttpInfo($company_id, $plan_id, $status, $statuses, $limit, $offset, $contentType);
+        list($response) = $this->listCustomPlanBillingsWithHttpInfo($company_id, $plan_id, $plan_billing_source, $status, $statuses, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -3319,6 +3320,7 @@ class PlansApi
      *
      * @param  string|null $company_id Filter by company ID (optional)
      * @param  string|null $plan_id Filter by plan ID (optional)
+     * @param  \SchematicModelPlanBillingSource|null $plan_billing_source Filter by the flow that created the billing record. Defaults to custom_plan. (optional)
      * @param  \SchematicModelCustomPlanBillingStatus|null $status Filter by billing status (optional)
      * @param  \Schematic\Model\CustomPlanBillingStatus[]|null $statuses Filter by multiple billing statuses (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -3329,9 +3331,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCustomPlanBillingsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCustomPlanBillingsWithHttpInfo($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    public function listCustomPlanBillingsWithHttpInfo($company_id = null, $plan_id = null, $plan_billing_source = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
     {
-        $request = $this->listCustomPlanBillingsRequest($company_id, $plan_id, $status, $statuses, $limit, $offset, $contentType);
+        $request = $this->listCustomPlanBillingsRequest($company_id, $plan_id, $plan_billing_source, $status, $statuses, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3479,6 +3481,7 @@ class PlansApi
      *
      * @param  string|null $company_id Filter by company ID (optional)
      * @param  string|null $plan_id Filter by plan ID (optional)
+     * @param  \SchematicModelPlanBillingSource|null $plan_billing_source Filter by the flow that created the billing record. Defaults to custom_plan. (optional)
      * @param  \SchematicModelCustomPlanBillingStatus|null $status Filter by billing status (optional)
      * @param  \Schematic\Model\CustomPlanBillingStatus[]|null $statuses Filter by multiple billing statuses (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -3488,9 +3491,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCustomPlanBillingsAsync($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    public function listCustomPlanBillingsAsync($company_id = null, $plan_id = null, $plan_billing_source = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
     {
-        return $this->listCustomPlanBillingsAsyncWithHttpInfo($company_id, $plan_id, $status, $statuses, $limit, $offset, $contentType)
+        return $this->listCustomPlanBillingsAsyncWithHttpInfo($company_id, $plan_id, $plan_billing_source, $status, $statuses, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3505,6 +3508,7 @@ class PlansApi
      *
      * @param  string|null $company_id Filter by company ID (optional)
      * @param  string|null $plan_id Filter by plan ID (optional)
+     * @param  \SchematicModelPlanBillingSource|null $plan_billing_source Filter by the flow that created the billing record. Defaults to custom_plan. (optional)
      * @param  \SchematicModelCustomPlanBillingStatus|null $status Filter by billing status (optional)
      * @param  \Schematic\Model\CustomPlanBillingStatus[]|null $statuses Filter by multiple billing statuses (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -3514,10 +3518,10 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCustomPlanBillingsAsyncWithHttpInfo($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    public function listCustomPlanBillingsAsyncWithHttpInfo($company_id = null, $plan_id = null, $plan_billing_source = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
     {
         $returnType = '\Schematic\Model\ListCustomPlanBillingsResponse';
-        $request = $this->listCustomPlanBillingsRequest($company_id, $plan_id, $status, $statuses, $limit, $offset, $contentType);
+        $request = $this->listCustomPlanBillingsRequest($company_id, $plan_id, $plan_billing_source, $status, $statuses, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3560,6 +3564,7 @@ class PlansApi
      *
      * @param  string|null $company_id Filter by company ID (optional)
      * @param  string|null $plan_id Filter by plan ID (optional)
+     * @param  \SchematicModelPlanBillingSource|null $plan_billing_source Filter by the flow that created the billing record. Defaults to custom_plan. (optional)
      * @param  \SchematicModelCustomPlanBillingStatus|null $status Filter by billing status (optional)
      * @param  \Schematic\Model\CustomPlanBillingStatus[]|null $statuses Filter by multiple billing statuses (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -3569,8 +3574,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCustomPlanBillingsRequest($company_id = null, $plan_id = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
+    public function listCustomPlanBillingsRequest($company_id = null, $plan_id = null, $plan_billing_source = null, $status = null, $statuses = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCustomPlanBillings'][0])
     {
+
 
 
 
@@ -3609,6 +3615,15 @@ class PlansApi
             $plan_id,
             'plan_id', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_billing_source,
+            'plan_billing_source', // param base name
+            'PlanBillingSource', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -5024,7 +5039,7 @@ class PlansApi
      *
      * Publish plan version
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body publish_plan_version_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
      *
@@ -5032,9 +5047,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\PublishPlanVersionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function publishPlanVersion($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    public function publishPlanVersion($plan_version_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
     {
-        list($response) = $this->publishPlanVersionWithHttpInfo($plan_id, $publish_plan_version_request_body, $contentType);
+        list($response) = $this->publishPlanVersionWithHttpInfo($plan_version_id, $publish_plan_version_request_body, $contentType);
         return $response;
     }
 
@@ -5043,7 +5058,7 @@ class PlansApi
      *
      * Publish plan version
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
      *
@@ -5051,9 +5066,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\PublishPlanVersionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function publishPlanVersionWithHttpInfo($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    public function publishPlanVersionWithHttpInfo($plan_version_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
     {
-        $request = $this->publishPlanVersionRequest($plan_id, $publish_plan_version_request_body, $contentType);
+        $request = $this->publishPlanVersionRequest($plan_version_id, $publish_plan_version_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5199,16 +5214,16 @@ class PlansApi
      *
      * Publish plan version
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function publishPlanVersionAsync($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    public function publishPlanVersionAsync($plan_version_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
     {
-        return $this->publishPlanVersionAsyncWithHttpInfo($plan_id, $publish_plan_version_request_body, $contentType)
+        return $this->publishPlanVersionAsyncWithHttpInfo($plan_version_id, $publish_plan_version_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5221,17 +5236,17 @@ class PlansApi
      *
      * Publish plan version
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function publishPlanVersionAsyncWithHttpInfo($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    public function publishPlanVersionAsyncWithHttpInfo($plan_version_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
     {
         $returnType = '\Schematic\Model\PublishPlanVersionResponse';
-        $request = $this->publishPlanVersionRequest($plan_id, $publish_plan_version_request_body, $contentType);
+        $request = $this->publishPlanVersionRequest($plan_version_id, $publish_plan_version_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5272,20 +5287,20 @@ class PlansApi
     /**
      * Create request for operation 'publishPlanVersion'
      *
-     * @param  string $plan_id plan_id (required)
+     * @param  string $plan_version_id plan_version_id (required)
      * @param  \Schematic\Model\PublishPlanVersionRequestBody $publish_plan_version_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['publishPlanVersion'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function publishPlanVersionRequest($plan_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
+    public function publishPlanVersionRequest($plan_version_id, $publish_plan_version_request_body, string $contentType = self::contentTypes['publishPlanVersion'][0])
     {
 
-        // verify the required parameter 'plan_id' is set
-        if ($plan_id === null || (is_array($plan_id) && count($plan_id) === 0)) {
+        // verify the required parameter 'plan_version_id' is set
+        if ($plan_version_id === null || (is_array($plan_version_id) && count($plan_version_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $plan_id when calling publishPlanVersion'
+                'Missing the required parameter $plan_version_id when calling publishPlanVersion'
             );
         }
 
@@ -5297,7 +5312,7 @@ class PlansApi
         }
 
 
-        $resourcePath = '/plans/version/{plan_id}/publish';
+        $resourcePath = '/plans/version/{plan_version_id}/publish';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -5307,10 +5322,10 @@ class PlansApi
 
 
         // path params
-        if ($plan_id !== null) {
+        if ($plan_version_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'plan_id' . '}',
-                ObjectSerializer::toPathValue($plan_id),
+                '{' . 'plan_version_id' . '}',
+                ObjectSerializer::toPathValue($plan_version_id),
                 $resourcePath
             );
         }

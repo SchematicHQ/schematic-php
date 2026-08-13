@@ -49,6 +49,8 @@ class BillingCreditGrantZeroedOutReason
 
     public const INTEGRATION_UNINSTALLED = 'integration_uninstalled';
 
+    public const LICENSE_RETIRED = 'license_retired';
+
     public const MANUAL = 'manual';
 
     public const PLAN_CHANGE = 'plan_change';
@@ -67,6 +69,7 @@ class BillingCreditGrantZeroedOutReason
             self::CUSTOMER_ARCHIVED,
             self::EXPIRED,
             self::INTEGRATION_UNINSTALLED,
+            self::LICENSE_RETIRED,
             self::MANUAL,
             self::PLAN_CHANGE,
             self::PLAN_PERIOD_RESET,

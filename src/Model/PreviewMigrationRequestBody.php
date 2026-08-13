@@ -61,6 +61,7 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'company_ids' => 'string[]',
         'plan_id' => 'string',
         'plan_version_id_to' => 'string',
+        'plan_version_ids_from' => 'string[]',
         'target_plan_type' => '\Schematic\Model\PlanType'
     ];
 
@@ -75,6 +76,7 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'company_ids' => null,
         'plan_id' => null,
         'plan_version_id_to' => null,
+        'plan_version_ids_from' => null,
         'target_plan_type' => null
     ];
 
@@ -87,6 +89,7 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'company_ids' => false,
         'plan_id' => false,
         'plan_version_id_to' => false,
+        'plan_version_ids_from' => false,
         'target_plan_type' => false
     ];
 
@@ -179,6 +182,7 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'company_ids' => 'company_ids',
         'plan_id' => 'plan_id',
         'plan_version_id_to' => 'plan_version_id_to',
+        'plan_version_ids_from' => 'plan_version_ids_from',
         'target_plan_type' => 'target_plan_type'
     ];
 
@@ -191,6 +195,7 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'company_ids' => 'setCompanyIds',
         'plan_id' => 'setPlanId',
         'plan_version_id_to' => 'setPlanVersionIdTo',
+        'plan_version_ids_from' => 'setPlanVersionIdsFrom',
         'target_plan_type' => 'setTargetPlanType'
     ];
 
@@ -203,6 +208,7 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
         'company_ids' => 'getCompanyIds',
         'plan_id' => 'getPlanId',
         'plan_version_id_to' => 'getPlanVersionIdTo',
+        'plan_version_ids_from' => 'getPlanVersionIdsFrom',
         'target_plan_type' => 'getTargetPlanType'
     ];
 
@@ -266,6 +272,7 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('company_ids', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_version_id_to', $data ?? [], null);
+        $this->setIfExists('plan_version_ids_from', $data ?? [], null);
         $this->setIfExists('target_plan_type', $data ?? [], null);
     }
 
@@ -296,15 +303,8 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
-        if ($this->container['company_ids'] === null) {
-            $invalidProperties[] = "'company_ids' can't be null";
-        }
-        if ((count($this->container['company_ids']) > 100)) {
+        if (!is_null($this->container['company_ids']) && (count($this->container['company_ids']) > 100)) {
             $invalidProperties[] = "invalid value for 'company_ids', number of items must be less than or equal to 100.";
-        }
-
-        if ((count($this->container['company_ids']) < 1)) {
-            $invalidProperties[] = "invalid value for 'company_ids', number of items must be greater than or equal to 1.";
         }
 
         if ($this->container['plan_id'] === null) {
@@ -313,6 +313,10 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
         if ($this->container['plan_version_id_to'] === null) {
             $invalidProperties[] = "'plan_version_id_to' can't be null";
         }
+        if (!is_null($this->container['plan_version_ids_from']) && (count($this->container['plan_version_ids_from']) > 20)) {
+            $invalidProperties[] = "invalid value for 'plan_version_ids_from', number of items must be less than or equal to 20.";
+        }
+
         if ($this->container['target_plan_type'] === null) {
             $invalidProperties[] = "'target_plan_type' can't be null";
         }
@@ -334,7 +338,7 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets company_ids
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getCompanyIds()
     {
@@ -344,7 +348,7 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets company_ids
      *
-     * @param string[] $company_ids company_ids
+     * @param string[]|null $company_ids company_ids
      *
      * @return self
      */
@@ -356,9 +360,6 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
 
         if ((count($company_ids) > 100)) {
             throw new \InvalidArgumentException('invalid value for $company_ids when calling PreviewMigrationRequestBody., number of items must be less than or equal to 100.');
-        }
-        if ((count($company_ids) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $company_ids when calling PreviewMigrationRequestBody., number of items must be greater than or equal to 1.');
         }
         $this->container['company_ids'] = $company_ids;
 
@@ -415,6 +416,37 @@ class PreviewMigrationRequestBody implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable plan_version_id_to cannot be null');
         }
         $this->container['plan_version_id_to'] = $plan_version_id_to;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_ids_from
+     *
+     * @return string[]|null
+     */
+    public function getPlanVersionIdsFrom()
+    {
+        return $this->container['plan_version_ids_from'];
+    }
+
+    /**
+     * Sets plan_version_ids_from
+     *
+     * @param string[]|null $plan_version_ids_from plan_version_ids_from
+     *
+     * @return self
+     */
+    public function setPlanVersionIdsFrom($plan_version_ids_from)
+    {
+        if (is_null($plan_version_ids_from)) {
+            throw new \InvalidArgumentException('non-nullable plan_version_ids_from cannot be null');
+        }
+
+        if ((count($plan_version_ids_from) > 20)) {
+            throw new \InvalidArgumentException('invalid value for $plan_version_ids_from when calling PreviewMigrationRequestBody., number of items must be less than or equal to 20.');
+        }
+        $this->container['plan_version_ids_from'] = $plan_version_ids_from;
 
         return $this;
     }

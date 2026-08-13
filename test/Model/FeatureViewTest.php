@@ -99,6 +99,15 @@ class FeatureViewTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_product"
+     */
+    public function testPropertyBillingProduct()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()
@@ -165,6 +174,15 @@ class FeatureViewTest extends TestCase
      * Test attribute "id"
      */
     public function testPropertyId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "license_id"
+     */
+    public function testPropertyLicenseId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

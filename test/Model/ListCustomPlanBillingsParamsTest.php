@@ -108,6 +108,15 @@ class ListCustomPlanBillingsParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "plan_billing_source"
+     */
+    public function testPropertyPlanBillingSource()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "plan_id"
      */
     public function testPropertyPlanId()

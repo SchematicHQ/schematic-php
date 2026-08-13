@@ -59,7 +59,6 @@ class CreateCatalogRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPITypes = [
         'description' => 'string',
-        'is_default' => 'bool',
         'name' => 'string'
     ];
 
@@ -72,7 +71,6 @@ class CreateCatalogRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPIFormats = [
         'description' => null,
-        'is_default' => null,
         'name' => null
     ];
 
@@ -83,7 +81,6 @@ class CreateCatalogRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static array $openAPINullables = [
         'description' => true,
-        'is_default' => false,
         'name' => false
     ];
 
@@ -174,7 +171,6 @@ class CreateCatalogRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $attributeMap = [
         'description' => 'description',
-        'is_default' => 'is_default',
         'name' => 'name'
     ];
 
@@ -185,7 +181,6 @@ class CreateCatalogRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $setters = [
         'description' => 'setDescription',
-        'is_default' => 'setIsDefault',
         'name' => 'setName'
     ];
 
@@ -196,7 +191,6 @@ class CreateCatalogRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $getters = [
         'description' => 'getDescription',
-        'is_default' => 'getIsDefault',
         'name' => 'getName'
     ];
 
@@ -258,7 +252,6 @@ class CreateCatalogRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
     public function __construct(?array $data = null)
     {
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('is_default', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
     }
 
@@ -293,9 +286,6 @@ class CreateCatalogRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 1024.";
         }
 
-        if ($this->container['is_default'] === null) {
-            $invalidProperties[] = "'is_default' can't be null";
-        }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
@@ -352,33 +342,6 @@ class CreateCatalogRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         }
 
         $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_default
-     *
-     * @return bool
-     */
-    public function getIsDefault()
-    {
-        return $this->container['is_default'];
-    }
-
-    /**
-     * Sets is_default
-     *
-     * @param bool $is_default is_default
-     *
-     * @return self
-     */
-    public function setIsDefault($is_default)
-    {
-        if (is_null($is_default)) {
-            throw new \InvalidArgumentException('non-nullable is_default cannot be null');
-        }
-        $this->container['is_default'] = $is_default;
 
         return $this;
     }

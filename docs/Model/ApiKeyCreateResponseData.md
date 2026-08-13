@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **integration** | [**\Schematic\Model\ApiKeyIntegrationResponseData**](ApiKeyIntegrationResponseData.md) |  | [optional]
 **last_used_at** | **\DateTime** |  | [optional]
 **name** | **string** |  |
+**rate_limit_percent** | **int** |  | [optional]
 **readonly** | **bool** |  |
 **scopes** | [**\Schematic\Model\ApiKeyScope[]**](ApiKeyScope.md) |  |
 **secret** | **string** |  |

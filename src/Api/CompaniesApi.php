@@ -81,7 +81,13 @@ class CompaniesApi
         'countEntityKeyDefinitions' => [
             'application/json',
         ],
+        'countEntityKeys' => [
+            'application/json',
+        ],
         'countEntityTraitDefinitions' => [
+            'application/json',
+        ],
+        'countEntityTraits' => [
             'application/json',
         ],
         'countPlanTraits' => [
@@ -105,6 +111,12 @@ class CompaniesApi
         'deleteCompanyMembership' => [
             'application/json',
         ],
+        'deleteEntityKeyDefinition' => [
+            'application/json',
+        ],
+        'deleteEntityTraitDefinition' => [
+            'application/json',
+        ],
         'deleteUser' => [
             'application/json',
         ],
@@ -124,6 +136,9 @@ class CompaniesApi
             'application/json',
         ],
         'getEntityTraitDefinition' => [
+            'application/json',
+        ],
+        'getEntityTraitDefinitionUsage' => [
             'application/json',
         ],
         'getEntityTraitValues' => [
@@ -1298,6 +1313,395 @@ class CompaniesApi
     }
 
     /**
+     * Operation countEntityKeys
+     *
+     * Count entity keys
+     *
+     * @param  string|null $definition_id definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityKeys'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CountEntityKeysResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function countEntityKeys($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityKeys'][0])
+    {
+        list($response) = $this->countEntityKeysWithHttpInfo($definition_id, $entity_type, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation countEntityKeysWithHttpInfo
+     *
+     * Count entity keys
+     *
+     * @param  string|null $definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityKeys'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CountEntityKeysResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function countEntityKeysWithHttpInfo($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityKeys'][0])
+    {
+        $request = $this->countEntityKeysRequest($definition_id, $entity_type, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\CountEntityKeysResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\CountEntityKeysResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CountEntityKeysResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation countEntityKeysAsync
+     *
+     * Count entity keys
+     *
+     * @param  string|null $definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityKeys'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countEntityKeysAsync($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityKeys'][0])
+    {
+        return $this->countEntityKeysAsyncWithHttpInfo($definition_id, $entity_type, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation countEntityKeysAsyncWithHttpInfo
+     *
+     * Count entity keys
+     *
+     * @param  string|null $definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityKeys'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countEntityKeysAsyncWithHttpInfo($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityKeys'][0])
+    {
+        $returnType = '\Schematic\Model\CountEntityKeysResponse';
+        $request = $this->countEntityKeysRequest($definition_id, $entity_type, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'countEntityKeys'
+     *
+     * @param  string|null $definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityKeys'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function countEntityKeysRequest($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityKeys'][0])
+    {
+
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CompaniesApi.countEntityKeys, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CompaniesApi.countEntityKeys, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/entity-keys/count';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $definition_id,
+            'definition_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $entity_type,
+            'entity_type', // param base name
+            'EntityType', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation countEntityTraitDefinitions
      *
      * Count entity trait definitions
@@ -1653,6 +2057,395 @@ class CompaniesApi
             $trait_types,
             'trait_types', // param base name
             'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation countEntityTraits
+     *
+     * Count entity traits
+     *
+     * @param  string|null $definition_id definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityTraits'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CountEntityTraitsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function countEntityTraits($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityTraits'][0])
+    {
+        list($response) = $this->countEntityTraitsWithHttpInfo($definition_id, $entity_type, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation countEntityTraitsWithHttpInfo
+     *
+     * Count entity traits
+     *
+     * @param  string|null $definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityTraits'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CountEntityTraitsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function countEntityTraitsWithHttpInfo($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityTraits'][0])
+    {
+        $request = $this->countEntityTraitsRequest($definition_id, $entity_type, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\CountEntityTraitsResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\CountEntityTraitsResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CountEntityTraitsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation countEntityTraitsAsync
+     *
+     * Count entity traits
+     *
+     * @param  string|null $definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityTraits'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countEntityTraitsAsync($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityTraits'][0])
+    {
+        return $this->countEntityTraitsAsyncWithHttpInfo($definition_id, $entity_type, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation countEntityTraitsAsyncWithHttpInfo
+     *
+     * Count entity traits
+     *
+     * @param  string|null $definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityTraits'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countEntityTraitsAsyncWithHttpInfo($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityTraits'][0])
+    {
+        $returnType = '\Schematic\Model\CountEntityTraitsResponse';
+        $request = $this->countEntityTraitsRequest($definition_id, $entity_type, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'countEntityTraits'
+     *
+     * @param  string|null $definition_id (optional)
+     * @param  \Schematic\Model\EntityType|null $entity_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countEntityTraits'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function countEntityTraitsRequest($definition_id = null, $entity_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countEntityTraits'][0])
+    {
+
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CompaniesApi.countEntityTraits, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CompaniesApi.countEntityTraits, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/entity-traits/count';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $definition_id,
+            'definition_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $entity_type,
+            'entity_type', // param base name
+            'EntityType', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -4330,6 +5123,692 @@ class CompaniesApi
     }
 
     /**
+     * Operation deleteEntityKeyDefinition
+     *
+     * Delete entity key definition
+     *
+     * @param  string $entity_key_definition_id entity_key_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityKeyDefinition'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\DeleteEntityKeyDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function deleteEntityKeyDefinition($entity_key_definition_id, string $contentType = self::contentTypes['deleteEntityKeyDefinition'][0])
+    {
+        list($response) = $this->deleteEntityKeyDefinitionWithHttpInfo($entity_key_definition_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteEntityKeyDefinitionWithHttpInfo
+     *
+     * Delete entity key definition
+     *
+     * @param  string $entity_key_definition_id entity_key_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityKeyDefinition'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\DeleteEntityKeyDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteEntityKeyDefinitionWithHttpInfo($entity_key_definition_id, string $contentType = self::contentTypes['deleteEntityKeyDefinition'][0])
+    {
+        $request = $this->deleteEntityKeyDefinitionRequest($entity_key_definition_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\DeleteEntityKeyDefinitionResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\DeleteEntityKeyDefinitionResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeleteEntityKeyDefinitionResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteEntityKeyDefinitionAsync
+     *
+     * Delete entity key definition
+     *
+     * @param  string $entity_key_definition_id entity_key_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityKeyDefinition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteEntityKeyDefinitionAsync($entity_key_definition_id, string $contentType = self::contentTypes['deleteEntityKeyDefinition'][0])
+    {
+        return $this->deleteEntityKeyDefinitionAsyncWithHttpInfo($entity_key_definition_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteEntityKeyDefinitionAsyncWithHttpInfo
+     *
+     * Delete entity key definition
+     *
+     * @param  string $entity_key_definition_id entity_key_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityKeyDefinition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteEntityKeyDefinitionAsyncWithHttpInfo($entity_key_definition_id, string $contentType = self::contentTypes['deleteEntityKeyDefinition'][0])
+    {
+        $returnType = '\Schematic\Model\DeleteEntityKeyDefinitionResponse';
+        $request = $this->deleteEntityKeyDefinitionRequest($entity_key_definition_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteEntityKeyDefinition'
+     *
+     * @param  string $entity_key_definition_id entity_key_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityKeyDefinition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteEntityKeyDefinitionRequest($entity_key_definition_id, string $contentType = self::contentTypes['deleteEntityKeyDefinition'][0])
+    {
+
+        // verify the required parameter 'entity_key_definition_id' is set
+        if ($entity_key_definition_id === null || (is_array($entity_key_definition_id) && count($entity_key_definition_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $entity_key_definition_id when calling deleteEntityKeyDefinition'
+            );
+        }
+
+
+        $resourcePath = '/entity-key-definitions/{entity_key_definition_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($entity_key_definition_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'entity_key_definition_id' . '}',
+                ObjectSerializer::toPathValue($entity_key_definition_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteEntityTraitDefinition
+     *
+     * Delete entity trait definition
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\DeleteEntityTraitDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function deleteEntityTraitDefinition($entity_trait_definition_id, string $contentType = self::contentTypes['deleteEntityTraitDefinition'][0])
+    {
+        list($response) = $this->deleteEntityTraitDefinitionWithHttpInfo($entity_trait_definition_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteEntityTraitDefinitionWithHttpInfo
+     *
+     * Delete entity trait definition
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\DeleteEntityTraitDefinitionResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteEntityTraitDefinitionWithHttpInfo($entity_trait_definition_id, string $contentType = self::contentTypes['deleteEntityTraitDefinition'][0])
+    {
+        $request = $this->deleteEntityTraitDefinitionRequest($entity_trait_definition_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\DeleteEntityTraitDefinitionResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\DeleteEntityTraitDefinitionResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeleteEntityTraitDefinitionResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteEntityTraitDefinitionAsync
+     *
+     * Delete entity trait definition
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteEntityTraitDefinitionAsync($entity_trait_definition_id, string $contentType = self::contentTypes['deleteEntityTraitDefinition'][0])
+    {
+        return $this->deleteEntityTraitDefinitionAsyncWithHttpInfo($entity_trait_definition_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteEntityTraitDefinitionAsyncWithHttpInfo
+     *
+     * Delete entity trait definition
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteEntityTraitDefinitionAsyncWithHttpInfo($entity_trait_definition_id, string $contentType = self::contentTypes['deleteEntityTraitDefinition'][0])
+    {
+        $returnType = '\Schematic\Model\DeleteEntityTraitDefinitionResponse';
+        $request = $this->deleteEntityTraitDefinitionRequest($entity_trait_definition_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteEntityTraitDefinition'
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEntityTraitDefinition'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteEntityTraitDefinitionRequest($entity_trait_definition_id, string $contentType = self::contentTypes['deleteEntityTraitDefinition'][0])
+    {
+
+        // verify the required parameter 'entity_trait_definition_id' is set
+        if ($entity_trait_definition_id === null || (is_array($entity_trait_definition_id) && count($entity_trait_definition_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $entity_trait_definition_id when calling deleteEntityTraitDefinition'
+            );
+        }
+
+
+        $resourcePath = '/entity-trait-definitions/{entity_trait_definition_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($entity_trait_definition_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'entity_trait_definition_id' . '}',
+                ObjectSerializer::toPathValue($entity_trait_definition_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteUser
      *
      * Delete user
@@ -6664,6 +8143,335 @@ class CompaniesApi
 
 
         $resourcePath = '/entity-trait-definitions/{entity_trait_definition_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($entity_trait_definition_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'entity_trait_definition_id' . '}',
+                ObjectSerializer::toPathValue($entity_trait_definition_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getEntityTraitDefinitionUsage
+     *
+     * Get entity trait definition usage
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityTraitDefinitionUsage'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\GetEntityTraitDefinitionUsageResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function getEntityTraitDefinitionUsage($entity_trait_definition_id, string $contentType = self::contentTypes['getEntityTraitDefinitionUsage'][0])
+    {
+        list($response) = $this->getEntityTraitDefinitionUsageWithHttpInfo($entity_trait_definition_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getEntityTraitDefinitionUsageWithHttpInfo
+     *
+     * Get entity trait definition usage
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityTraitDefinitionUsage'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\GetEntityTraitDefinitionUsageResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getEntityTraitDefinitionUsageWithHttpInfo($entity_trait_definition_id, string $contentType = self::contentTypes['getEntityTraitDefinitionUsage'][0])
+    {
+        $request = $this->getEntityTraitDefinitionUsageRequest($entity_trait_definition_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\GetEntityTraitDefinitionUsageResponse',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\GetEntityTraitDefinitionUsageResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\GetEntityTraitDefinitionUsageResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getEntityTraitDefinitionUsageAsync
+     *
+     * Get entity trait definition usage
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityTraitDefinitionUsage'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getEntityTraitDefinitionUsageAsync($entity_trait_definition_id, string $contentType = self::contentTypes['getEntityTraitDefinitionUsage'][0])
+    {
+        return $this->getEntityTraitDefinitionUsageAsyncWithHttpInfo($entity_trait_definition_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getEntityTraitDefinitionUsageAsyncWithHttpInfo
+     *
+     * Get entity trait definition usage
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityTraitDefinitionUsage'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getEntityTraitDefinitionUsageAsyncWithHttpInfo($entity_trait_definition_id, string $contentType = self::contentTypes['getEntityTraitDefinitionUsage'][0])
+    {
+        $returnType = '\Schematic\Model\GetEntityTraitDefinitionUsageResponse';
+        $request = $this->getEntityTraitDefinitionUsageRequest($entity_trait_definition_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getEntityTraitDefinitionUsage'
+     *
+     * @param  string $entity_trait_definition_id entity_trait_definition_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEntityTraitDefinitionUsage'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getEntityTraitDefinitionUsageRequest($entity_trait_definition_id, string $contentType = self::contentTypes['getEntityTraitDefinitionUsage'][0])
+    {
+
+        // verify the required parameter 'entity_trait_definition_id' is set
+        if ($entity_trait_definition_id === null || (is_array($entity_trait_definition_id) && count($entity_trait_definition_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $entity_trait_definition_id when calling getEntityTraitDefinitionUsage'
+            );
+        }
+
+
+        $resourcePath = '/entity-trait-definitions/{entity_trait_definition_id}/usage';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -10704,7 +12512,6 @@ class CompaniesApi
      * @param  \Schematic\Model\PlanChangeBasePlanAction|null $base_plan_action base_plan_action (optional)
      * @param  string|null $company_id company_id (optional)
      * @param  string[]|null $company_ids company_ids (optional)
-     * @param  string[]|null $plan_ids plan_ids (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
      * @param  int|null $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanChanges'] to see the possible values for this operation
@@ -10713,9 +12520,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListPlanChangesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listPlanChanges($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $plan_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
+    public function listPlanChanges($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
     {
-        list($response) = $this->listPlanChangesWithHttpInfo($action, $base_plan_action, $company_id, $company_ids, $plan_ids, $limit, $offset, $contentType);
+        list($response) = $this->listPlanChangesWithHttpInfo($action, $base_plan_action, $company_id, $company_ids, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -10728,7 +12535,6 @@ class CompaniesApi
      * @param  \Schematic\Model\PlanChangeBasePlanAction|null $base_plan_action (optional)
      * @param  string|null $company_id (optional)
      * @param  string[]|null $company_ids (optional)
-     * @param  string[]|null $plan_ids (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
      * @param  int|null $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanChanges'] to see the possible values for this operation
@@ -10737,9 +12543,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListPlanChangesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listPlanChangesWithHttpInfo($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $plan_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
+    public function listPlanChangesWithHttpInfo($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
     {
-        $request = $this->listPlanChangesRequest($action, $base_plan_action, $company_id, $company_ids, $plan_ids, $limit, $offset, $contentType);
+        $request = $this->listPlanChangesRequest($action, $base_plan_action, $company_id, $company_ids, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -10889,7 +12695,6 @@ class CompaniesApi
      * @param  \Schematic\Model\PlanChangeBasePlanAction|null $base_plan_action (optional)
      * @param  string|null $company_id (optional)
      * @param  string[]|null $company_ids (optional)
-     * @param  string[]|null $plan_ids (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
      * @param  int|null $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanChanges'] to see the possible values for this operation
@@ -10897,9 +12702,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlanChangesAsync($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $plan_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
+    public function listPlanChangesAsync($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
     {
-        return $this->listPlanChangesAsyncWithHttpInfo($action, $base_plan_action, $company_id, $company_ids, $plan_ids, $limit, $offset, $contentType)
+        return $this->listPlanChangesAsyncWithHttpInfo($action, $base_plan_action, $company_id, $company_ids, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -10916,7 +12721,6 @@ class CompaniesApi
      * @param  \Schematic\Model\PlanChangeBasePlanAction|null $base_plan_action (optional)
      * @param  string|null $company_id (optional)
      * @param  string[]|null $company_ids (optional)
-     * @param  string[]|null $plan_ids (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
      * @param  int|null $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanChanges'] to see the possible values for this operation
@@ -10924,10 +12728,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlanChangesAsyncWithHttpInfo($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $plan_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
+    public function listPlanChangesAsyncWithHttpInfo($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
     {
         $returnType = '\Schematic\Model\ListPlanChangesResponse';
-        $request = $this->listPlanChangesRequest($action, $base_plan_action, $company_id, $company_ids, $plan_ids, $limit, $offset, $contentType);
+        $request = $this->listPlanChangesRequest($action, $base_plan_action, $company_id, $company_ids, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -10972,7 +12776,6 @@ class CompaniesApi
      * @param  \Schematic\Model\PlanChangeBasePlanAction|null $base_plan_action (optional)
      * @param  string|null $company_id (optional)
      * @param  string[]|null $company_ids (optional)
-     * @param  string[]|null $plan_ids (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
      * @param  int|null $offset Page offset (default 0) (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listPlanChanges'] to see the possible values for this operation
@@ -10980,7 +12783,7 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listPlanChangesRequest($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $plan_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
+    public function listPlanChangesRequest($action = null, $base_plan_action = null, $company_id = null, $company_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlanChanges'][0])
     {
 
 
@@ -10988,10 +12791,6 @@ class CompaniesApi
 
         if ($company_ids !== null && count($company_ids) > 100) {
             throw new \InvalidArgumentException('invalid value for "$company_ids" when calling CompaniesApi.listPlanChanges, number of items must be less than or equal to 100.');
-        }
-
-        if ($plan_ids !== null && count($plan_ids) > 100) {
-            throw new \InvalidArgumentException('invalid value for "$plan_ids" when calling CompaniesApi.listPlanChanges, number of items must be less than or equal to 100.');
         }
 
         if ($limit !== null && $limit > 250) {
@@ -11041,15 +12840,6 @@ class CompaniesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $company_ids,
             'company_ids', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $plan_ids,
-            'plan_ids', // param base name
             'array', // openApiType
             'form', // style
             true, // explode

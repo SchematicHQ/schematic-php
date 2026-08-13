@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **company_id** | **string** |  |
+**company_license_id** | **string** | The license instance this grant was issued for. Set only when a per-license plan grant issued it; null on a plan&#39;s own grant. | [optional]
 **company_name** | **string** |  |
 **created_at** | **\DateTime** |  |
 **credit_icon** | **string** |  | [optional]
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **expires_at** | **\DateTime** |  | [optional]
 **grant_reason** | [**\Schematic\Model\BillingCreditGrantReason**](BillingCreditGrantReason.md) |  |
 **id** | **string** |  |
+**license_name** | **string** | Name of the license this grant was issued for, when it came from a per-license plan grant. | [optional]
 **plan_id** | **string** |  | [optional]
 **plan_name** | **string** |  | [optional]
 **price** | [**\Schematic\Model\BillingPriceResponseData**](BillingPriceResponseData.md) |  | [optional]

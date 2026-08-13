@@ -133,13 +133,4 @@ class ListPlanChangesParamsTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
-
-    /**
-     * Test attribute "plan_ids"
-     */
-    public function testPropertyPlanIds()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
 }

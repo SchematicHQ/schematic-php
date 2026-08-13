@@ -61,7 +61,8 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => '\Schematic\Model\BillingProductPlanResponseData',
         'credit_grants' => '\Schematic\Model\BillingPlanCreditGrantResponseData[]',
         'entitlements' => '\Schematic\Model\PlanEntitlementResponseData[]',
-        'plan' => '\Schematic\Model\PlanResponseData'
+        'plan' => '\Schematic\Model\PlanResponseData',
+        'plan_version' => '\Schematic\Model\PlanVersionResponseData'
     ];
 
     /**
@@ -75,7 +76,8 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => null,
         'credit_grants' => null,
         'entitlements' => null,
-        'plan' => null
+        'plan' => null,
+        'plan_version' => null
     ];
 
     /**
@@ -87,7 +89,8 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => false,
         'credit_grants' => false,
         'entitlements' => false,
-        'plan' => false
+        'plan' => false,
+        'plan_version' => false
     ];
 
     /**
@@ -179,7 +182,8 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => 'billing_product',
         'credit_grants' => 'credit_grants',
         'entitlements' => 'entitlements',
-        'plan' => 'plan'
+        'plan' => 'plan',
+        'plan_version' => 'plan_version'
     ];
 
     /**
@@ -191,7 +195,8 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => 'setBillingProduct',
         'credit_grants' => 'setCreditGrants',
         'entitlements' => 'setEntitlements',
-        'plan' => 'setPlan'
+        'plan' => 'setPlan',
+        'plan_version' => 'setPlanVersion'
     ];
 
     /**
@@ -203,7 +208,8 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'billing_product' => 'getBillingProduct',
         'credit_grants' => 'getCreditGrants',
         'entitlements' => 'getEntitlements',
-        'plan' => 'getPlan'
+        'plan' => 'getPlan',
+        'plan_version' => 'getPlanVersion'
     ];
 
     /**
@@ -267,6 +273,7 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('credit_grants', $data ?? [], null);
         $this->setIfExists('entitlements', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
+        $this->setIfExists('plan_version', $data ?? [], null);
     }
 
     /**
@@ -431,6 +438,33 @@ class PlanBundleResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable plan cannot be null');
         }
         $this->container['plan'] = $plan;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version
+     *
+     * @return \Schematic\Model\PlanVersionResponseData|null
+     */
+    public function getPlanVersion()
+    {
+        return $this->container['plan_version'];
+    }
+
+    /**
+     * Sets plan_version
+     *
+     * @param \Schematic\Model\PlanVersionResponseData|null $plan_version plan_version
+     *
+     * @return self
+     */
+    public function setPlanVersion($plan_version)
+    {
+        if (is_null($plan_version)) {
+            throw new \InvalidArgumentException('non-nullable plan_version cannot be null');
+        }
+        $this->container['plan_version'] = $plan_version;
 
         return $this;
     }

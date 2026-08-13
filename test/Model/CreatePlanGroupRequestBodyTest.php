@@ -99,6 +99,15 @@ class CreatePlanGroupRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "checkout_bundle_purchase_behavior"
+     */
+    public function testPropertyCheckoutBundlePurchaseBehavior()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "checkout_collect_address"
      */
     public function testPropertyCheckoutCollectAddress()
@@ -120,6 +129,15 @@ class CreatePlanGroupRequestBodyTest extends TestCase
      * Test attribute "checkout_collect_phone"
      */
     public function testPropertyCheckoutCollectPhone()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "checkout_collect_tax_id"
+     */
+    public function testPropertyCheckoutCollectTaxId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

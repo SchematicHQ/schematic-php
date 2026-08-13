@@ -60,7 +60,8 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
     protected static $openAPITypes = [
         'activation_strategy' => '\Schematic\Model\CustomPlanActivationStrategy',
         'customer_email' => 'string',
-        'days_until_due' => 'int'
+        'days_until_due' => 'int',
+        'send_invoice' => 'bool'
     ];
 
     /**
@@ -73,7 +74,8 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
     protected static $openAPIFormats = [
         'activation_strategy' => null,
         'customer_email' => null,
-        'days_until_due' => 'int64'
+        'days_until_due' => 'int64',
+        'send_invoice' => null
     ];
 
     /**
@@ -84,7 +86,8 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
     protected static array $openAPINullables = [
         'activation_strategy' => true,
         'customer_email' => false,
-        'days_until_due' => true
+        'days_until_due' => true,
+        'send_invoice' => true
     ];
 
     /**
@@ -175,7 +178,8 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
     protected static $attributeMap = [
         'activation_strategy' => 'activation_strategy',
         'customer_email' => 'customer_email',
-        'days_until_due' => 'days_until_due'
+        'days_until_due' => 'days_until_due',
+        'send_invoice' => 'send_invoice'
     ];
 
     /**
@@ -186,7 +190,8 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
     protected static $setters = [
         'activation_strategy' => 'setActivationStrategy',
         'customer_email' => 'setCustomerEmail',
-        'days_until_due' => 'setDaysUntilDue'
+        'days_until_due' => 'setDaysUntilDue',
+        'send_invoice' => 'setSendInvoice'
     ];
 
     /**
@@ -197,7 +202,8 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
     protected static $getters = [
         'activation_strategy' => 'getActivationStrategy',
         'customer_email' => 'getCustomerEmail',
-        'days_until_due' => 'getDaysUntilDue'
+        'days_until_due' => 'getDaysUntilDue',
+        'send_invoice' => 'getSendInvoice'
     ];
 
     /**
@@ -260,6 +266,7 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
         $this->setIfExists('activation_strategy', $data ?? [], null);
         $this->setIfExists('customer_email', $data ?? [], null);
         $this->setIfExists('days_until_due', $data ?? [], null);
+        $this->setIfExists('send_invoice', $data ?? [], null);
     }
 
     /**
@@ -415,6 +422,40 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
         }
 
         $this->container['days_until_due'] = $days_until_due;
+
+        return $this;
+    }
+
+    /**
+     * Gets send_invoice
+     *
+     * @return bool|null
+     */
+    public function getSendInvoice()
+    {
+        return $this->container['send_invoice'];
+    }
+
+    /**
+     * Sets send_invoice
+     *
+     * @param bool|null $send_invoice Whether Stripe emails the invoice when it is finalized. Defaults to true.
+     *
+     * @return self
+     */
+    public function setSendInvoice($send_invoice)
+    {
+        if (is_null($send_invoice)) {
+            array_push($this->openAPINullablesSetToNull, 'send_invoice');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('send_invoice', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['send_invoice'] = $send_invoice;
 
         return $this;
     }

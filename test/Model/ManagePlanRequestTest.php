@@ -81,6 +81,15 @@ class ManagePlanRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "activate_on_payment"
+     */
+    public function testPropertyActivateOnPayment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "add_on_selections"
      */
     public function testPropertyAddOnSelections()
@@ -117,6 +126,24 @@ class ManagePlanRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_cycle_anchor"
+     */
+    public function testPropertyBillingCycleAnchor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_email"
+     */
+    public function testPropertyBillingEmail()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "billing_entity_id"
      */
     public function testPropertyBillingEntityId()
@@ -129,6 +156,15 @@ class ManagePlanRequestTest extends TestCase
      * Test attribute "cancel_immediately"
      */
     public function testPropertyCancelImmediately()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "collection_method"
+     */
+    public function testPropertyCollectionMethod()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -171,6 +207,15 @@ class ManagePlanRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "days_until_due"
+     */
+    public function testPropertyDaysUntilDue()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "pay_in_advance_entitlements"
      */
     public function testPropertyPayInAdvanceEntitlements()
@@ -201,6 +246,24 @@ class ManagePlanRequestTest extends TestCase
      * Test attribute "prorate"
      */
     public function testPropertyProrate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "prorate_first_period"
+     */
+    public function testPropertyProrateFirstPeriod()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "send_invoice"
+     */
+    public function testPropertySendInvoice()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

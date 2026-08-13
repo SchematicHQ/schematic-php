@@ -64,6 +64,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'for_trial_expiry_plan' => 'bool',
         'ids' => 'string[]',
         'interval' => 'string',
+        'interval_count' => 'int',
         'is_active' => 'bool',
         'limit' => 'int',
         'offset' => 'int',
@@ -91,6 +92,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'for_trial_expiry_plan' => null,
         'ids' => null,
         'interval' => null,
+        'interval_count' => 'int64',
         'is_active' => null,
         'limit' => 'int64',
         'offset' => 'int64',
@@ -116,6 +118,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'for_trial_expiry_plan' => false,
         'ids' => false,
         'interval' => false,
+        'interval_count' => false,
         'is_active' => false,
         'limit' => false,
         'offset' => false,
@@ -221,6 +224,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'for_trial_expiry_plan' => 'for_trial_expiry_plan',
         'ids' => 'ids',
         'interval' => 'interval',
+        'interval_count' => 'interval_count',
         'is_active' => 'is_active',
         'limit' => 'limit',
         'offset' => 'offset',
@@ -246,6 +250,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'for_trial_expiry_plan' => 'setForTrialExpiryPlan',
         'ids' => 'setIds',
         'interval' => 'setInterval',
+        'interval_count' => 'setIntervalCount',
         'is_active' => 'setIsActive',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
@@ -271,6 +276,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         'for_trial_expiry_plan' => 'getForTrialExpiryPlan',
         'ids' => 'getIds',
         'interval' => 'getInterval',
+        'interval_count' => 'getIntervalCount',
         'is_active' => 'getIsActive',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
@@ -347,6 +353,7 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('for_trial_expiry_plan', $data ?? [], null);
         $this->setIfExists('ids', $data ?? [], null);
         $this->setIfExists('interval', $data ?? [], null);
+        $this->setIfExists('interval_count', $data ?? [], null);
         $this->setIfExists('is_active', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
@@ -398,6 +405,10 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
 
         if (!is_null($this->container['interval']) && (mb_strlen($this->container['interval']) > 255)) {
             $invalidProperties[] = "invalid value for 'interval', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['interval_count']) && ($this->container['interval_count'] < 1)) {
+            $invalidProperties[] = "invalid value for 'interval_count', must be bigger than or equal to 1.";
         }
 
         if (!is_null($this->container['limit']) && ($this->container['limit'] > 250)) {
@@ -570,6 +581,38 @@ class ListBillingProductPricesParams implements ModelInterface, ArrayAccess, \Js
         }
 
         $this->container['interval'] = $interval;
+
+        return $this;
+    }
+
+    /**
+     * Gets interval_count
+     *
+     * @return int|null
+     */
+    public function getIntervalCount()
+    {
+        return $this->container['interval_count'];
+    }
+
+    /**
+     * Sets interval_count
+     *
+     * @param int|null $interval_count Filter for prices billed every N intervals; combine with interval (e.g. interval=month, interval_count=3 for quarterly)
+     *
+     * @return self
+     */
+    public function setIntervalCount($interval_count)
+    {
+        if (is_null($interval_count)) {
+            throw new \InvalidArgumentException('non-nullable interval_count cannot be null');
+        }
+
+        if (($interval_count < 1)) {
+            throw new \InvalidArgumentException('invalid value for $interval_count when calling ListBillingProductPricesParams., must be bigger than or equal to 1.');
+        }
+
+        $this->container['interval_count'] = $interval_count;
 
         return $this;
     }
