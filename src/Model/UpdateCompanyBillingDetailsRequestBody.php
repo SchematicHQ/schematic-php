@@ -61,6 +61,7 @@ class UpdateCompanyBillingDetailsRequestBody implements ModelInterface, ArrayAcc
         'address' => '\Schematic\Model\CustomerBillingAddress',
         'email' => 'string',
         'phone' => 'string',
+        'tax_id' => '\Schematic\Model\TaxIDInput',
         'values' => '\Schematic\Model\CheckoutFieldValue[]'
     ];
 
@@ -75,6 +76,7 @@ class UpdateCompanyBillingDetailsRequestBody implements ModelInterface, ArrayAcc
         'address' => null,
         'email' => null,
         'phone' => null,
+        'tax_id' => null,
         'values' => null
     ];
 
@@ -87,6 +89,7 @@ class UpdateCompanyBillingDetailsRequestBody implements ModelInterface, ArrayAcc
         'address' => false,
         'email' => true,
         'phone' => true,
+        'tax_id' => false,
         'values' => false
     ];
 
@@ -179,6 +182,7 @@ class UpdateCompanyBillingDetailsRequestBody implements ModelInterface, ArrayAcc
         'address' => 'address',
         'email' => 'email',
         'phone' => 'phone',
+        'tax_id' => 'tax_id',
         'values' => 'values'
     ];
 
@@ -191,6 +195,7 @@ class UpdateCompanyBillingDetailsRequestBody implements ModelInterface, ArrayAcc
         'address' => 'setAddress',
         'email' => 'setEmail',
         'phone' => 'setPhone',
+        'tax_id' => 'setTaxId',
         'values' => 'setValues'
     ];
 
@@ -203,6 +208,7 @@ class UpdateCompanyBillingDetailsRequestBody implements ModelInterface, ArrayAcc
         'address' => 'getAddress',
         'email' => 'getEmail',
         'phone' => 'getPhone',
+        'tax_id' => 'getTaxId',
         'values' => 'getValues'
     ];
 
@@ -266,6 +272,7 @@ class UpdateCompanyBillingDetailsRequestBody implements ModelInterface, ArrayAcc
         $this->setIfExists('address', $data ?? [], null);
         $this->setIfExists('email', $data ?? [], null);
         $this->setIfExists('phone', $data ?? [], null);
+        $this->setIfExists('tax_id', $data ?? [], null);
         $this->setIfExists('values', $data ?? [], null);
     }
 
@@ -425,6 +432,33 @@ class UpdateCompanyBillingDetailsRequestBody implements ModelInterface, ArrayAcc
         }
 
         $this->container['phone'] = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets tax_id
+     *
+     * @return \Schematic\Model\TaxIDInput|null
+     */
+    public function getTaxId()
+    {
+        return $this->container['tax_id'];
+    }
+
+    /**
+     * Sets tax_id
+     *
+     * @param \Schematic\Model\TaxIDInput|null $tax_id tax_id
+     *
+     * @return self
+     */
+    public function setTaxId($tax_id)
+    {
+        if (is_null($tax_id)) {
+            throw new \InvalidArgumentException('non-nullable tax_id cannot be null');
+        }
+        $this->container['tax_id'] = $tax_id;
 
         return $this;
     }

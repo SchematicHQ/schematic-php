@@ -58,7 +58,8 @@ class PlanVersionMigrationPreviewResponseData implements ModelInterface, ArrayAc
       * @var string[]
       */
     protected static $openAPITypes = [
-        'companies' => '\Schematic\Model\PlanVersionMigrationPreviewCompanyResponseData[]'
+        'companies' => '\Schematic\Model\PlanVersionMigrationPreviewCompanyResponseData[]',
+        'has_billing_changes' => 'bool'
     ];
 
     /**
@@ -69,7 +70,8 @@ class PlanVersionMigrationPreviewResponseData implements ModelInterface, ArrayAc
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'companies' => null
+        'companies' => null,
+        'has_billing_changes' => null
     ];
 
     /**
@@ -78,7 +80,8 @@ class PlanVersionMigrationPreviewResponseData implements ModelInterface, ArrayAc
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'companies' => false
+        'companies' => false,
+        'has_billing_changes' => false
     ];
 
     /**
@@ -167,7 +170,8 @@ class PlanVersionMigrationPreviewResponseData implements ModelInterface, ArrayAc
      * @var string[]
      */
     protected static $attributeMap = [
-        'companies' => 'companies'
+        'companies' => 'companies',
+        'has_billing_changes' => 'has_billing_changes'
     ];
 
     /**
@@ -176,7 +180,8 @@ class PlanVersionMigrationPreviewResponseData implements ModelInterface, ArrayAc
      * @var string[]
      */
     protected static $setters = [
-        'companies' => 'setCompanies'
+        'companies' => 'setCompanies',
+        'has_billing_changes' => 'setHasBillingChanges'
     ];
 
     /**
@@ -185,7 +190,8 @@ class PlanVersionMigrationPreviewResponseData implements ModelInterface, ArrayAc
      * @var string[]
      */
     protected static $getters = [
-        'companies' => 'getCompanies'
+        'companies' => 'getCompanies',
+        'has_billing_changes' => 'getHasBillingChanges'
     ];
 
     /**
@@ -246,6 +252,7 @@ class PlanVersionMigrationPreviewResponseData implements ModelInterface, ArrayAc
     public function __construct(?array $data = null)
     {
         $this->setIfExists('companies', $data ?? [], null);
+        $this->setIfExists('has_billing_changes', $data ?? [], null);
     }
 
     /**
@@ -282,6 +289,9 @@ class PlanVersionMigrationPreviewResponseData implements ModelInterface, ArrayAc
             $invalidProperties[] = "invalid value for 'companies', number of items must be less than or equal to 1000.";
         }
 
+        if ($this->container['has_billing_changes'] === null) {
+            $invalidProperties[] = "'has_billing_changes' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -324,6 +334,33 @@ class PlanVersionMigrationPreviewResponseData implements ModelInterface, ArrayAc
             throw new \InvalidArgumentException('invalid value for $companies when calling PlanVersionMigrationPreviewResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['companies'] = $companies;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_billing_changes
+     *
+     * @return bool
+     */
+    public function getHasBillingChanges()
+    {
+        return $this->container['has_billing_changes'];
+    }
+
+    /**
+     * Sets has_billing_changes
+     *
+     * @param bool $has_billing_changes has_billing_changes
+     *
+     * @return self
+     */
+    public function setHasBillingChanges($has_billing_changes)
+    {
+        if (is_null($has_billing_changes)) {
+            throw new \InvalidArgumentException('non-nullable has_billing_changes cannot be null');
+        }
+        $this->container['has_billing_changes'] = $has_billing_changes;
 
         return $this;
     }

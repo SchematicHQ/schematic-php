@@ -108,6 +108,15 @@ class PreviewMigrationRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "plan_version_ids_from"
+     */
+    public function testPropertyPlanVersionIdsFrom()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "target_plan_type"
      */
     public function testPropertyTargetPlanType()

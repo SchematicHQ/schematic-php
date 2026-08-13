@@ -76,7 +76,7 @@ class BillingCreditView implements ModelInterface, ArrayAccess, \JsonSerializabl
         'price' => '\Schematic\Model\BillingPriceView',
         'price_per_unit' => 'int',
         'price_per_unit_decimal' => 'string',
-        'product' => '\Schematic\Model\BillingProductResponseData',
+        'product' => '\Schematic\Model\BillingProductRecordResponseData',
         'singular_name' => 'string',
         'updated_at' => '\DateTime'
     ];
@@ -1001,7 +1001,7 @@ class BillingCreditView implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets product
      *
-     * @return \Schematic\Model\BillingProductResponseData|null
+     * @return \Schematic\Model\BillingProductRecordResponseData|null
      */
     public function getProduct()
     {
@@ -1011,7 +1011,7 @@ class BillingCreditView implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets product
      *
-     * @param \Schematic\Model\BillingProductResponseData|null $product product
+     * @param \Schematic\Model\BillingProductRecordResponseData|null $product product
      *
      * @return self
      */

@@ -59,6 +59,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPITypes = [
         'company_id' => 'string',
+        'company_license_id' => 'string',
         'company_name' => 'string',
         'created_at' => '\DateTime',
         'credit_icon' => 'string',
@@ -68,6 +69,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'expires_at' => '\DateTime',
         'grant_reason' => '\Schematic\Model\BillingCreditGrantReason',
         'id' => 'string',
+        'license_name' => 'string',
         'plan_id' => 'string',
         'plan_name' => 'string',
         'price' => '\Schematic\Model\BillingPriceResponseData',
@@ -96,6 +98,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
       */
     protected static $openAPIFormats = [
         'company_id' => null,
+        'company_license_id' => null,
         'company_name' => null,
         'created_at' => 'date-time',
         'credit_icon' => null,
@@ -105,6 +108,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'expires_at' => 'date-time',
         'grant_reason' => null,
         'id' => null,
+        'license_name' => null,
         'plan_id' => null,
         'plan_name' => null,
         'price' => null,
@@ -131,6 +135,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
       */
     protected static array $openAPINullables = [
         'company_id' => false,
+        'company_license_id' => true,
         'company_name' => false,
         'created_at' => false,
         'credit_icon' => true,
@@ -140,6 +145,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'expires_at' => true,
         'grant_reason' => false,
         'id' => false,
+        'license_name' => true,
         'plan_id' => true,
         'plan_name' => true,
         'price' => false,
@@ -246,6 +252,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
      */
     protected static $attributeMap = [
         'company_id' => 'company_id',
+        'company_license_id' => 'company_license_id',
         'company_name' => 'company_name',
         'created_at' => 'created_at',
         'credit_icon' => 'credit_icon',
@@ -255,6 +262,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'expires_at' => 'expires_at',
         'grant_reason' => 'grant_reason',
         'id' => 'id',
+        'license_name' => 'license_name',
         'plan_id' => 'plan_id',
         'plan_name' => 'plan_name',
         'price' => 'price',
@@ -281,6 +289,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
      */
     protected static $setters = [
         'company_id' => 'setCompanyId',
+        'company_license_id' => 'setCompanyLicenseId',
         'company_name' => 'setCompanyName',
         'created_at' => 'setCreatedAt',
         'credit_icon' => 'setCreditIcon',
@@ -290,6 +299,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'expires_at' => 'setExpiresAt',
         'grant_reason' => 'setGrantReason',
         'id' => 'setId',
+        'license_name' => 'setLicenseName',
         'plan_id' => 'setPlanId',
         'plan_name' => 'setPlanName',
         'price' => 'setPrice',
@@ -316,6 +326,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
      */
     protected static $getters = [
         'company_id' => 'getCompanyId',
+        'company_license_id' => 'getCompanyLicenseId',
         'company_name' => 'getCompanyName',
         'created_at' => 'getCreatedAt',
         'credit_icon' => 'getCreditIcon',
@@ -325,6 +336,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'expires_at' => 'getExpiresAt',
         'grant_reason' => 'getGrantReason',
         'id' => 'getId',
+        'license_name' => 'getLicenseName',
         'plan_id' => 'getPlanId',
         'plan_name' => 'getPlanName',
         'price' => 'getPrice',
@@ -402,6 +414,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
     public function __construct(?array $data = null)
     {
         $this->setIfExists('company_id', $data ?? [], null);
+        $this->setIfExists('company_license_id', $data ?? [], null);
         $this->setIfExists('company_name', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('credit_icon', $data ?? [], null);
@@ -411,6 +424,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('expires_at', $data ?? [], null);
         $this->setIfExists('grant_reason', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('license_name', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_name', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
@@ -538,6 +552,40 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             throw new \InvalidArgumentException('non-nullable company_id cannot be null');
         }
         $this->container['company_id'] = $company_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets company_license_id
+     *
+     * @return string|null
+     */
+    public function getCompanyLicenseId()
+    {
+        return $this->container['company_license_id'];
+    }
+
+    /**
+     * Sets company_license_id
+     *
+     * @param string|null $company_license_id The license instance this grant was issued for. Set only when a per-license plan grant issued it; null on a plan's own grant.
+     *
+     * @return self
+     */
+    public function setCompanyLicenseId($company_license_id)
+    {
+        if (is_null($company_license_id)) {
+            array_push($this->openAPINullablesSetToNull, 'company_license_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('company_license_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['company_license_id'] = $company_license_id;
 
         return $this;
     }
@@ -802,6 +850,40 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets license_name
+     *
+     * @return string|null
+     */
+    public function getLicenseName()
+    {
+        return $this->container['license_name'];
+    }
+
+    /**
+     * Sets license_name
+     *
+     * @param string|null $license_name Name of the license this grant was issued for, when it came from a per-license plan grant.
+     *
+     * @return self
+     */
+    public function setLicenseName($license_name)
+    {
+        if (is_null($license_name)) {
+            array_push($this->openAPINullablesSetToNull, 'license_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('license_name', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['license_name'] = $license_name;
 
         return $this;
     }

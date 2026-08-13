@@ -88,4 +88,13 @@ class PlanVersionMigrationPreviewResponseDataTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "has_billing_changes"
+     */
+    public function testPropertyHasBillingChanges()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **included_credit_grants** | [**\Schematic\Model\BillingPlanCreditGrantResponseData[]**](BillingPlanCreditGrantResponseData.md) |  | [optional]
 **is_custom** | **bool** |  |
 **is_default** | **bool** |  |
-**is_free** | **bool** | Deprecated: Use BillingStrategy instead |
+**is_free** | **bool** | Deprecated: reports the plan&#39;s charge type, not its price. Read the plan&#39;s prices to tell whether it costs anything, or billing_strategy to tell how it is billed. | [optional]
 **is_trialable** | **bool** |  |
 **monthly_price** | [**\Schematic\Model\BillingPriceResponseData**](BillingPriceResponseData.md) |  | [optional]
 **name** | **string** |  |

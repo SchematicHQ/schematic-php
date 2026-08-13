@@ -99,6 +99,24 @@ class CompanyFeatureUsageExportMetadataTest extends TestCase
     }
 
     /**
+     * Test attribute "entity_key_definition_ids"
+     */
+    public function testPropertyEntityKeyDefinitionIds()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "entity_trait_definition_ids"
+     */
+    public function testPropertyEntityTraitDefinitionIds()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "export_type"
      */
     public function testPropertyExportType()
@@ -180,6 +198,24 @@ class CompanyFeatureUsageExportMetadataTest extends TestCase
     }
 
     /**
+     * Test attribute "sort_order_column"
+     */
+    public function testPropertySortOrderColumn()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "sort_order_direction"
+     */
+    public function testPropertySortOrderDirection()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "subscription_statuses"
      */
     public function testPropertySubscriptionStatuses()
@@ -192,6 +228,15 @@ class CompanyFeatureUsageExportMetadataTest extends TestCase
      * Test attribute "subscription_types"
      */
     public function testPropertySubscriptionTypes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "visible_columns"
+     */
+    public function testPropertyVisibleColumns()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -66,6 +66,7 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'keys' => 'array<string,string>',
         'last_seen_at' => '\DateTime',
         'name' => 'string',
+        'remove_keys' => 'string[]',
         'traits' => 'object',
         'update_only' => 'bool'
     ];
@@ -86,6 +87,7 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'keys' => null,
         'last_seen_at' => 'date-time',
         'name' => null,
+        'remove_keys' => null,
         'traits' => null,
         'update_only' => null
     ];
@@ -104,6 +106,7 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'keys' => false,
         'last_seen_at' => true,
         'name' => true,
+        'remove_keys' => false,
         'traits' => false,
         'update_only' => true
     ];
@@ -202,6 +205,7 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'keys' => 'keys',
         'last_seen_at' => 'last_seen_at',
         'name' => 'name',
+        'remove_keys' => 'remove_keys',
         'traits' => 'traits',
         'update_only' => 'update_only'
     ];
@@ -220,6 +224,7 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'keys' => 'setKeys',
         'last_seen_at' => 'setLastSeenAt',
         'name' => 'setName',
+        'remove_keys' => 'setRemoveKeys',
         'traits' => 'setTraits',
         'update_only' => 'setUpdateOnly'
     ];
@@ -238,6 +243,7 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         'keys' => 'getKeys',
         'last_seen_at' => 'getLastSeenAt',
         'name' => 'getName',
+        'remove_keys' => 'getRemoveKeys',
         'traits' => 'getTraits',
         'update_only' => 'getUpdateOnly'
     ];
@@ -307,6 +313,7 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('keys', $data ?? [], null);
         $this->setIfExists('last_seen_at', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('remove_keys', $data ?? [], null);
         $this->setIfExists('traits', $data ?? [], null);
         $this->setIfExists('update_only', $data ?? [], null);
     }
@@ -351,6 +358,10 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         }
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 256)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 256.";
+        }
+
+        if (!is_null($this->container['remove_keys']) && (count($this->container['remove_keys']) > 100)) {
+            $invalidProperties[] = "invalid value for 'remove_keys', number of items must be less than or equal to 100.";
         }
 
         return $invalidProperties;
@@ -641,6 +652,37 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         }
 
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets remove_keys
+     *
+     * @return string[]|null
+     */
+    public function getRemoveKeys()
+    {
+        return $this->container['remove_keys'];
+    }
+
+    /**
+     * Sets remove_keys
+     *
+     * @param string[]|null $remove_keys Names of keys to remove from the user. Removing a key the user does not have does nothing, and a user must keep at least one key.
+     *
+     * @return self
+     */
+    public function setRemoveKeys($remove_keys)
+    {
+        if (is_null($remove_keys)) {
+            throw new \InvalidArgumentException('non-nullable remove_keys cannot be null');
+        }
+
+        if ((count($remove_keys) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $remove_keys when calling UpsertUserRequestBody., number of items must be less than or equal to 100.');
+        }
+        $this->container['remove_keys'] = $remove_keys;
 
         return $this;
     }

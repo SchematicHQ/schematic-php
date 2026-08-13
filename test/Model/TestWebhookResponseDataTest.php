@@ -81,6 +81,15 @@ class TestWebhookResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "failure_reason"
+     */
+    public function testPropertyFailureReason()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "response_code"
      */
     public function testPropertyResponseCode()

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **last_seen_at** | **\DateTime** |  | [optional]
 **name** | **string** |  | [optional]
 **prevent_key_remap** | **bool** |  | [optional]
+**remove_keys** | **string[]** | Names of keys to remove from the company. Removing a key the company does not have does nothing, and a company must keep at least one key. | [optional]
 **traits** | **object** | A map of trait names to trait values | [optional]
 **update_only** | **bool** |  | [optional]
 

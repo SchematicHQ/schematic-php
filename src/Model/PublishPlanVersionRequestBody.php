@@ -59,11 +59,17 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPITypes = [
         'activation_strategy' => '\Schematic\Model\CustomPlanActivationStrategy',
+        'address' => '\Schematic\Model\CustomerBillingAddress',
         'coupon_external_id' => 'string',
+        'custom_field_values' => '\Schematic\Model\CheckoutFieldValue[]',
         'customer_email' => 'string',
         'days_until_due' => 'int',
         'excluded_company_ids' => 'string[]',
-        'migration_strategy' => '\Schematic\Model\PlanVersionMigrationStrategy'
+        'migration_strategy' => '\Schematic\Model\PlanVersionMigrationStrategy',
+        'phone' => 'string',
+        'proration_behavior' => '\Schematic\Model\MigrationProrationBehavior',
+        'send_invoice' => 'bool',
+        'tax_id' => '\Schematic\Model\TaxIDInput'
     ];
 
     /**
@@ -75,11 +81,17 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPIFormats = [
         'activation_strategy' => null,
+        'address' => null,
         'coupon_external_id' => null,
+        'custom_field_values' => null,
         'customer_email' => null,
         'days_until_due' => 'int64',
         'excluded_company_ids' => null,
-        'migration_strategy' => null
+        'migration_strategy' => null,
+        'phone' => null,
+        'proration_behavior' => null,
+        'send_invoice' => null,
+        'tax_id' => null
     ];
 
     /**
@@ -89,11 +101,17 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
       */
     protected static array $openAPINullables = [
         'activation_strategy' => true,
+        'address' => false,
         'coupon_external_id' => true,
+        'custom_field_values' => true,
         'customer_email' => true,
         'days_until_due' => true,
         'excluded_company_ids' => false,
-        'migration_strategy' => false
+        'migration_strategy' => false,
+        'phone' => true,
+        'proration_behavior' => true,
+        'send_invoice' => true,
+        'tax_id' => false
     ];
 
     /**
@@ -183,11 +201,17 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $attributeMap = [
         'activation_strategy' => 'activation_strategy',
+        'address' => 'address',
         'coupon_external_id' => 'coupon_external_id',
+        'custom_field_values' => 'custom_field_values',
         'customer_email' => 'customer_email',
         'days_until_due' => 'days_until_due',
         'excluded_company_ids' => 'excluded_company_ids',
-        'migration_strategy' => 'migration_strategy'
+        'migration_strategy' => 'migration_strategy',
+        'phone' => 'phone',
+        'proration_behavior' => 'proration_behavior',
+        'send_invoice' => 'send_invoice',
+        'tax_id' => 'tax_id'
     ];
 
     /**
@@ -197,11 +221,17 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $setters = [
         'activation_strategy' => 'setActivationStrategy',
+        'address' => 'setAddress',
         'coupon_external_id' => 'setCouponExternalId',
+        'custom_field_values' => 'setCustomFieldValues',
         'customer_email' => 'setCustomerEmail',
         'days_until_due' => 'setDaysUntilDue',
         'excluded_company_ids' => 'setExcludedCompanyIds',
-        'migration_strategy' => 'setMigrationStrategy'
+        'migration_strategy' => 'setMigrationStrategy',
+        'phone' => 'setPhone',
+        'proration_behavior' => 'setProrationBehavior',
+        'send_invoice' => 'setSendInvoice',
+        'tax_id' => 'setTaxId'
     ];
 
     /**
@@ -211,11 +241,17 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $getters = [
         'activation_strategy' => 'getActivationStrategy',
+        'address' => 'getAddress',
         'coupon_external_id' => 'getCouponExternalId',
+        'custom_field_values' => 'getCustomFieldValues',
         'customer_email' => 'getCustomerEmail',
         'days_until_due' => 'getDaysUntilDue',
         'excluded_company_ids' => 'getExcludedCompanyIds',
-        'migration_strategy' => 'getMigrationStrategy'
+        'migration_strategy' => 'getMigrationStrategy',
+        'phone' => 'getPhone',
+        'proration_behavior' => 'getProrationBehavior',
+        'send_invoice' => 'getSendInvoice',
+        'tax_id' => 'getTaxId'
     ];
 
     /**
@@ -276,11 +312,17 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     public function __construct(?array $data = null)
     {
         $this->setIfExists('activation_strategy', $data ?? [], null);
+        $this->setIfExists('address', $data ?? [], null);
         $this->setIfExists('coupon_external_id', $data ?? [], null);
+        $this->setIfExists('custom_field_values', $data ?? [], null);
         $this->setIfExists('customer_email', $data ?? [], null);
         $this->setIfExists('days_until_due', $data ?? [], null);
         $this->setIfExists('excluded_company_ids', $data ?? [], null);
         $this->setIfExists('migration_strategy', $data ?? [], null);
+        $this->setIfExists('phone', $data ?? [], null);
+        $this->setIfExists('proration_behavior', $data ?? [], null);
+        $this->setIfExists('send_invoice', $data ?? [], null);
+        $this->setIfExists('tax_id', $data ?? [], null);
     }
 
     /**
@@ -314,6 +356,10 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
             $invalidProperties[] = "invalid value for 'coupon_external_id', the character length must be smaller than or equal to 255.";
         }
 
+        if (!is_null($this->container['custom_field_values']) && (count($this->container['custom_field_values']) > 100)) {
+            $invalidProperties[] = "invalid value for 'custom_field_values', number of items must be less than or equal to 100.";
+        }
+
         if (!is_null($this->container['customer_email']) && (mb_strlen($this->container['customer_email']) > 255)) {
             $invalidProperties[] = "invalid value for 'customer_email', the character length must be smaller than or equal to 255.";
         }
@@ -332,6 +378,10 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['migration_strategy'] === null) {
             $invalidProperties[] = "'migration_strategy' can't be null";
         }
+        if (!is_null($this->container['phone']) && (mb_strlen($this->container['phone']) > 255)) {
+            $invalidProperties[] = "invalid value for 'phone', the character length must be smaller than or equal to 255.";
+        }
+
         return $invalidProperties;
     }
 
@@ -382,6 +432,33 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
+     * Gets address
+     *
+     * @return \Schematic\Model\CustomerBillingAddress|null
+     */
+    public function getAddress()
+    {
+        return $this->container['address'];
+    }
+
+    /**
+     * Sets address
+     *
+     * @param \Schematic\Model\CustomerBillingAddress|null $address address
+     *
+     * @return self
+     */
+    public function setAddress($address)
+    {
+        if (is_null($address)) {
+            throw new \InvalidArgumentException('non-nullable address cannot be null');
+        }
+        $this->container['address'] = $address;
+
+        return $this;
+    }
+
+    /**
      * Gets coupon_external_id
      *
      * @return string|null
@@ -415,6 +492,44 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
         }
 
         $this->container['coupon_external_id'] = $coupon_external_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_field_values
+     *
+     * @return \Schematic\Model\CheckoutFieldValue[]|null
+     */
+    public function getCustomFieldValues()
+    {
+        return $this->container['custom_field_values'];
+    }
+
+    /**
+     * Sets custom_field_values
+     *
+     * @param \Schematic\Model\CheckoutFieldValue[]|null $custom_field_values custom_field_values
+     *
+     * @return self
+     */
+    public function setCustomFieldValues($custom_field_values)
+    {
+        if (is_null($custom_field_values)) {
+            array_push($this->openAPINullablesSetToNull, 'custom_field_values');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('custom_field_values', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($custom_field_values) && (count($custom_field_values) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $custom_field_values when calling PublishPlanVersionRequestBody., number of items must be less than or equal to 100.');
+        }
+        $this->container['custom_field_values'] = $custom_field_values;
 
         return $this;
     }
@@ -550,6 +665,139 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable migration_strategy cannot be null');
         }
         $this->container['migration_strategy'] = $migration_strategy;
+
+        return $this;
+    }
+
+    /**
+     * Gets phone
+     *
+     * @return string|null
+     */
+    public function getPhone()
+    {
+        return $this->container['phone'];
+    }
+
+    /**
+     * Sets phone
+     *
+     * @param string|null $phone phone
+     *
+     * @return self
+     */
+    public function setPhone($phone)
+    {
+        if (is_null($phone)) {
+            array_push($this->openAPINullablesSetToNull, 'phone');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('phone', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($phone) && (mb_strlen($phone) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $phone when calling PublishPlanVersionRequestBody., must be smaller than or equal to 255.');
+        }
+
+        $this->container['phone'] = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets proration_behavior
+     *
+     * @return \Schematic\Model\MigrationProrationBehavior|null
+     */
+    public function getProrationBehavior()
+    {
+        return $this->container['proration_behavior'];
+    }
+
+    /**
+     * Sets proration_behavior
+     *
+     * @param \Schematic\Model\MigrationProrationBehavior|null $proration_behavior proration_behavior
+     *
+     * @return self
+     */
+    public function setProrationBehavior($proration_behavior)
+    {
+        if (is_null($proration_behavior)) {
+            array_push($this->openAPINullablesSetToNull, 'proration_behavior');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('proration_behavior', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['proration_behavior'] = $proration_behavior;
+
+        return $this;
+    }
+
+    /**
+     * Gets send_invoice
+     *
+     * @return bool|null
+     */
+    public function getSendInvoice()
+    {
+        return $this->container['send_invoice'];
+    }
+
+    /**
+     * Sets send_invoice
+     *
+     * @param bool|null $send_invoice Whether Stripe emails the invoice when it is finalized. Defaults to true.
+     *
+     * @return self
+     */
+    public function setSendInvoice($send_invoice)
+    {
+        if (is_null($send_invoice)) {
+            array_push($this->openAPINullablesSetToNull, 'send_invoice');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('send_invoice', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['send_invoice'] = $send_invoice;
+
+        return $this;
+    }
+
+    /**
+     * Gets tax_id
+     *
+     * @return \Schematic\Model\TaxIDInput|null
+     */
+    public function getTaxId()
+    {
+        return $this->container['tax_id'];
+    }
+
+    /**
+     * Sets tax_id
+     *
+     * @param \Schematic\Model\TaxIDInput|null $tax_id tax_id
+     *
+     * @return self
+     */
+    public function setTaxId($tax_id)
+    {
+        if (is_null($tax_id)) {
+            throw new \InvalidArgumentException('non-nullable tax_id cannot be null');
+        }
+        $this->container['tax_id'] = $tax_id;
 
         return $this;
     }

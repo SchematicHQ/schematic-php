@@ -66,6 +66,7 @@ class ApiKeyResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'integration' => '\Schematic\Model\ApiKeyIntegrationResponseData',
         'last_used_at' => '\DateTime',
         'name' => 'string',
+        'rate_limit_percent' => 'int',
         'readonly' => 'bool',
         'scopes' => '\Schematic\Model\ApiKeyScope[]',
         'updated_at' => '\DateTime'
@@ -87,6 +88,7 @@ class ApiKeyResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'integration' => null,
         'last_used_at' => 'date-time',
         'name' => null,
+        'rate_limit_percent' => 'int64',
         'readonly' => null,
         'scopes' => null,
         'updated_at' => 'date-time'
@@ -106,6 +108,7 @@ class ApiKeyResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'integration' => false,
         'last_used_at' => true,
         'name' => false,
+        'rate_limit_percent' => true,
         'readonly' => false,
         'scopes' => false,
         'updated_at' => false
@@ -205,6 +208,7 @@ class ApiKeyResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'integration' => 'integration',
         'last_used_at' => 'last_used_at',
         'name' => 'name',
+        'rate_limit_percent' => 'rate_limit_percent',
         'readonly' => 'readonly',
         'scopes' => 'scopes',
         'updated_at' => 'updated_at'
@@ -224,6 +228,7 @@ class ApiKeyResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'integration' => 'setIntegration',
         'last_used_at' => 'setLastUsedAt',
         'name' => 'setName',
+        'rate_limit_percent' => 'setRateLimitPercent',
         'readonly' => 'setReadonly',
         'scopes' => 'setScopes',
         'updated_at' => 'setUpdatedAt'
@@ -243,6 +248,7 @@ class ApiKeyResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'integration' => 'getIntegration',
         'last_used_at' => 'getLastUsedAt',
         'name' => 'getName',
+        'rate_limit_percent' => 'getRateLimitPercent',
         'readonly' => 'getReadonly',
         'scopes' => 'getScopes',
         'updated_at' => 'getUpdatedAt'
@@ -313,6 +319,7 @@ class ApiKeyResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('integration', $data ?? [], null);
         $this->setIfExists('last_used_at', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('rate_limit_percent', $data ?? [], null);
         $this->setIfExists('readonly', $data ?? [], null);
         $this->setIfExists('scopes', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -615,6 +622,40 @@ class ApiKeyResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets rate_limit_percent
+     *
+     * @return int|null
+     */
+    public function getRateLimitPercent()
+    {
+        return $this->container['rate_limit_percent'];
+    }
+
+    /**
+     * Sets rate_limit_percent
+     *
+     * @param int|null $rate_limit_percent rate_limit_percent
+     *
+     * @return self
+     */
+    public function setRateLimitPercent($rate_limit_percent)
+    {
+        if (is_null($rate_limit_percent)) {
+            array_push($this->openAPINullablesSetToNull, 'rate_limit_percent');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rate_limit_percent', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['rate_limit_percent'] = $rate_limit_percent;
 
         return $this;
     }

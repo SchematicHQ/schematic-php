@@ -9,14 +9,14 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**createCustomPlan()**](PlansApi.md#createCustomPlan) | **POST** /custom-plans | Create custom plan |
 | [**createPlan()**](PlansApi.md#createPlan) | **POST** /plans | Create plan |
 | [**deletePlan()**](PlansApi.md#deletePlan) | **DELETE** /plans/{plan_id} | Delete plan |
-| [**deletePlanVersion()**](PlansApi.md#deletePlanVersion) | **DELETE** /plans/version/{plan_id} | Delete plan version |
+| [**deletePlanVersion()**](PlansApi.md#deletePlanVersion) | **DELETE** /plans/version/{plan_version_id} | Delete plan version |
 | [**getPlan()**](PlansApi.md#getPlan) | **GET** /plans/{plan_id} | Get plan |
 | [**listBillingProductMatchCompanies()**](PlansApi.md#listBillingProductMatchCompanies) | **GET** /plans/billing-product-match-companies | List billing product match companies |
 | [**listCustomPlanBillings()**](PlansApi.md#listCustomPlanBillings) | **GET** /custom-plan-billings | List custom plan billings |
 | [**listPlanIssues()**](PlansApi.md#listPlanIssues) | **GET** /plans/issues | List plan issues |
 | [**listPlans()**](PlansApi.md#listPlans) | **GET** /plans | List plans |
 | [**markCustomPlanBillingPaid()**](PlansApi.md#markCustomPlanBillingPaid) | **PUT** /custom-plan-billings/{custom_plan_billing_id}/mark-paid | Mark custom plan billing paid |
-| [**publishPlanVersion()**](PlansApi.md#publishPlanVersion) | **PUT** /plans/version/{plan_id}/publish | Publish plan version |
+| [**publishPlanVersion()**](PlansApi.md#publishPlanVersion) | **PUT** /plans/version/{plan_version_id}/publish | Publish plan version |
 | [**retryCustomPlanBilling()**](PlansApi.md#retryCustomPlanBilling) | **PUT** /custom-plan-billings/{custom_plan_billing_id}/retry | Retry custom plan billing |
 | [**updateCompanyPlans()**](PlansApi.md#updateCompanyPlans) | **PUT** /company-plans/{company_plan_id} | Update company plans |
 | [**updatePlan()**](PlansApi.md#updatePlan) | **PUT** /plans/{plan_id} | Update plan |
@@ -320,7 +320,7 @@ try {
 ## `deletePlanVersion()`
 
 ```php
-deletePlanVersion($plan_id, $promote_archived_version): \Schematic\Model\DeletePlanVersionResponse
+deletePlanVersion($plan_version_id, $promote_archived_version): \Schematic\Model\DeletePlanVersionResponse
 ```
 
 Delete plan version
@@ -335,11 +335,11 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$plan_id = 'plan_id_example'; // string | plan_id
+$plan_version_id = 'plan_version_id_example'; // string | plan_version_id
 $promote_archived_version = True; // bool
 
 try {
-    $result = $schematic->PlansApi->deletePlanVersion($plan_id, $promote_archived_version);
+    $result = $schematic->PlansApi->deletePlanVersion($plan_version_id, $promote_archived_version);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlansApi->deletePlanVersion: ', $e->getMessage(), PHP_EOL;
@@ -350,7 +350,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **plan_id** | **string**| plan_id | |
+| **plan_version_id** | **string**| plan_version_id | |
 | **promote_archived_version** | **bool**|  | [optional] |
 
 ### Return type
@@ -483,7 +483,7 @@ try {
 ## `listCustomPlanBillings()`
 
 ```php
-listCustomPlanBillings($company_id, $plan_id, $status, $statuses, $limit, $offset): \Schematic\Model\ListCustomPlanBillingsResponse
+listCustomPlanBillings($company_id, $plan_id, $plan_billing_source, $status, $statuses, $limit, $offset): \Schematic\Model\ListCustomPlanBillingsResponse
 ```
 
 List custom plan billings
@@ -500,13 +500,14 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $company_id = 'company_id_example'; // string | Filter by company ID
 $plan_id = 'plan_id_example'; // string | Filter by plan ID
+$plan_billing_source = new \Schematic\Model\\SchematicModelPlanBillingSource(); // \SchematicModelPlanBillingSource | Filter by the flow that created the billing record. Defaults to custom_plan.
 $status = new \Schematic\Model\\SchematicModelCustomPlanBillingStatus(); // \SchematicModelCustomPlanBillingStatus | Filter by billing status
 $statuses = array(new \Schematic\Model\\Schematic\Model\CustomPlanBillingStatus()); // \Schematic\Model\CustomPlanBillingStatus[] | Filter by multiple billing statuses
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->PlansApi->listCustomPlanBillings($company_id, $plan_id, $status, $statuses, $limit, $offset);
+    $result = $schematic->PlansApi->listCustomPlanBillings($company_id, $plan_id, $plan_billing_source, $status, $statuses, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlansApi->listCustomPlanBillings: ', $e->getMessage(), PHP_EOL;
@@ -519,6 +520,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **company_id** | **string**| Filter by company ID | [optional] |
 | **plan_id** | **string**| Filter by plan ID | [optional] |
+| **plan_billing_source** | [**\SchematicModelPlanBillingSource**](../Model/.md)| Filter by the flow that created the billing record. Defaults to custom_plan. | [optional] |
 | **status** | [**\SchematicModelCustomPlanBillingStatus**](../Model/.md)| Filter by billing status | [optional] |
 | **statuses** | [**\Schematic\Model\CustomPlanBillingStatus[]**](../Model/\Schematic\Model\CustomPlanBillingStatus.md)| Filter by multiple billing statuses | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -733,7 +735,7 @@ try {
 ## `publishPlanVersion()`
 
 ```php
-publishPlanVersion($plan_id, $publish_plan_version_request_body): \Schematic\Model\PublishPlanVersionResponse
+publishPlanVersion($plan_version_id, $publish_plan_version_request_body): \Schematic\Model\PublishPlanVersionResponse
 ```
 
 Publish plan version
@@ -748,11 +750,11 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$plan_id = 'plan_id_example'; // string | plan_id
+$plan_version_id = 'plan_version_id_example'; // string | plan_version_id
 $publish_plan_version_request_body = new \Schematic\Model\PublishPlanVersionRequestBody(); // \Schematic\Model\PublishPlanVersionRequestBody
 
 try {
-    $result = $schematic->PlansApi->publishPlanVersion($plan_id, $publish_plan_version_request_body);
+    $result = $schematic->PlansApi->publishPlanVersion($plan_version_id, $publish_plan_version_request_body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlansApi->publishPlanVersion: ', $e->getMessage(), PHP_EOL;
@@ -763,7 +765,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **plan_id** | **string**| plan_id | |
+| **plan_version_id** | **string**| plan_version_id | |
 | **publish_plan_version_request_body** | [**\Schematic\Model\PublishPlanVersionRequestBody**](../Model/PublishPlanVersionRequestBody.md)|  | |
 
 ### Return type

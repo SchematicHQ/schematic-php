@@ -153,6 +153,15 @@ class ApiKeyResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "rate_limit_percent"
+     */
+    public function testPropertyRateLimitPercent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "readonly"
      */
     public function testPropertyReadonly()

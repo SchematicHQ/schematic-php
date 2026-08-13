@@ -115,4 +115,13 @@ class PlanBundleResponseDataTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "plan_version"
+     */
+    public function testPropertyPlanVersion()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

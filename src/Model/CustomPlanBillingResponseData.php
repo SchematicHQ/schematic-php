@@ -59,14 +59,17 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPITypes = [
         'activation_strategy' => '\Schematic\Model\CustomPlanActivationStrategy',
+        'billing_cycle_anchor' => '\DateTime',
         'company_id' => 'string',
         'created_at' => '\DateTime',
         'days_until_due' => 'int',
         'external_invoice_id' => 'string',
         'id' => 'string',
         'paid_at' => '\DateTime',
+        'plan_billing_source' => '\Schematic\Model\PlanBillingSource',
         'plan_id' => 'string',
         'published_at' => '\DateTime',
+        'send_invoice' => 'bool',
         'status' => '\Schematic\Model\CustomPlanBillingStatus',
         'stripe_invoice_url' => 'string',
         'updated_at' => '\DateTime'
@@ -81,14 +84,17 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPIFormats = [
         'activation_strategy' => null,
+        'billing_cycle_anchor' => 'date-time',
         'company_id' => null,
         'created_at' => 'date-time',
         'days_until_due' => 'int64',
         'external_invoice_id' => null,
         'id' => null,
         'paid_at' => 'date-time',
+        'plan_billing_source' => null,
         'plan_id' => null,
         'published_at' => 'date-time',
+        'send_invoice' => null,
         'status' => null,
         'stripe_invoice_url' => null,
         'updated_at' => 'date-time'
@@ -101,14 +107,17 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
       */
     protected static array $openAPINullables = [
         'activation_strategy' => false,
+        'billing_cycle_anchor' => true,
         'company_id' => false,
         'created_at' => false,
         'days_until_due' => false,
         'external_invoice_id' => true,
         'id' => false,
         'paid_at' => true,
+        'plan_billing_source' => false,
         'plan_id' => false,
         'published_at' => true,
+        'send_invoice' => false,
         'status' => false,
         'stripe_invoice_url' => true,
         'updated_at' => false
@@ -201,14 +210,17 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $attributeMap = [
         'activation_strategy' => 'activation_strategy',
+        'billing_cycle_anchor' => 'billing_cycle_anchor',
         'company_id' => 'company_id',
         'created_at' => 'created_at',
         'days_until_due' => 'days_until_due',
         'external_invoice_id' => 'external_invoice_id',
         'id' => 'id',
         'paid_at' => 'paid_at',
+        'plan_billing_source' => 'plan_billing_source',
         'plan_id' => 'plan_id',
         'published_at' => 'published_at',
+        'send_invoice' => 'send_invoice',
         'status' => 'status',
         'stripe_invoice_url' => 'stripe_invoice_url',
         'updated_at' => 'updated_at'
@@ -221,14 +233,17 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $setters = [
         'activation_strategy' => 'setActivationStrategy',
+        'billing_cycle_anchor' => 'setBillingCycleAnchor',
         'company_id' => 'setCompanyId',
         'created_at' => 'setCreatedAt',
         'days_until_due' => 'setDaysUntilDue',
         'external_invoice_id' => 'setExternalInvoiceId',
         'id' => 'setId',
         'paid_at' => 'setPaidAt',
+        'plan_billing_source' => 'setPlanBillingSource',
         'plan_id' => 'setPlanId',
         'published_at' => 'setPublishedAt',
+        'send_invoice' => 'setSendInvoice',
         'status' => 'setStatus',
         'stripe_invoice_url' => 'setStripeInvoiceUrl',
         'updated_at' => 'setUpdatedAt'
@@ -241,14 +256,17 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
      */
     protected static $getters = [
         'activation_strategy' => 'getActivationStrategy',
+        'billing_cycle_anchor' => 'getBillingCycleAnchor',
         'company_id' => 'getCompanyId',
         'created_at' => 'getCreatedAt',
         'days_until_due' => 'getDaysUntilDue',
         'external_invoice_id' => 'getExternalInvoiceId',
         'id' => 'getId',
         'paid_at' => 'getPaidAt',
+        'plan_billing_source' => 'getPlanBillingSource',
         'plan_id' => 'getPlanId',
         'published_at' => 'getPublishedAt',
+        'send_invoice' => 'getSendInvoice',
         'status' => 'getStatus',
         'stripe_invoice_url' => 'getStripeInvoiceUrl',
         'updated_at' => 'getUpdatedAt'
@@ -312,14 +330,17 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
     public function __construct(?array $data = null)
     {
         $this->setIfExists('activation_strategy', $data ?? [], null);
+        $this->setIfExists('billing_cycle_anchor', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('days_until_due', $data ?? [], null);
         $this->setIfExists('external_invoice_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('paid_at', $data ?? [], null);
+        $this->setIfExists('plan_billing_source', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('published_at', $data ?? [], null);
+        $this->setIfExists('send_invoice', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('stripe_invoice_url', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -367,8 +388,14 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
         }
+        if ($this->container['plan_billing_source'] === null) {
+            $invalidProperties[] = "'plan_billing_source' can't be null";
+        }
         if ($this->container['plan_id'] === null) {
             $invalidProperties[] = "'plan_id' can't be null";
+        }
+        if ($this->container['send_invoice'] === null) {
+            $invalidProperties[] = "'send_invoice' can't be null";
         }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
@@ -414,6 +441,40 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable activation_strategy cannot be null');
         }
         $this->container['activation_strategy'] = $activation_strategy;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_cycle_anchor
+     *
+     * @return \DateTime|null
+     */
+    public function getBillingCycleAnchor()
+    {
+        return $this->container['billing_cycle_anchor'];
+    }
+
+    /**
+     * Sets billing_cycle_anchor
+     *
+     * @param \DateTime|null $billing_cycle_anchor The billing period renewal date pinned when the subscription started, when one was set. When no invoice exists yet, the first invoice is raised on this date.
+     *
+     * @return self
+     */
+    public function setBillingCycleAnchor($billing_cycle_anchor)
+    {
+        if (is_null($billing_cycle_anchor)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_cycle_anchor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_cycle_anchor', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_cycle_anchor'] = $billing_cycle_anchor;
 
         return $this;
     }
@@ -595,6 +656,33 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
+     * Gets plan_billing_source
+     *
+     * @return \Schematic\Model\PlanBillingSource
+     */
+    public function getPlanBillingSource()
+    {
+        return $this->container['plan_billing_source'];
+    }
+
+    /**
+     * Sets plan_billing_source
+     *
+     * @param \Schematic\Model\PlanBillingSource $plan_billing_source The flow that created this billing record: a custom plan, or a standard plan assigned by invoice through Manage Plan.
+     *
+     * @return self
+     */
+    public function setPlanBillingSource($plan_billing_source)
+    {
+        if (is_null($plan_billing_source)) {
+            throw new \InvalidArgumentException('non-nullable plan_billing_source cannot be null');
+        }
+        $this->container['plan_billing_source'] = $plan_billing_source;
+
+        return $this;
+    }
+
+    /**
      * Gets plan_id
      *
      * @return string
@@ -651,6 +739,33 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['published_at'] = $published_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets send_invoice
+     *
+     * @return bool
+     */
+    public function getSendInvoice()
+    {
+        return $this->container['send_invoice'];
+    }
+
+    /**
+     * Sets send_invoice
+     *
+     * @param bool $send_invoice send_invoice
+     *
+     * @return self
+     */
+    public function setSendInvoice($send_invoice)
+    {
+        if (is_null($send_invoice)) {
+            throw new \InvalidArgumentException('non-nullable send_invoice cannot be null');
+        }
+        $this->container['send_invoice'] = $send_invoice;
 
         return $this;
     }

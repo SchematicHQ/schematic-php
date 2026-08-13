@@ -69,6 +69,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'int',
         'billing_credit_auto_topup_threshold_percent' => 'int',
         'billing_credit_can_buy_bundles' => 'bool',
+        'company_credit_amount' => 'int',
         'created_at' => '\DateTime',
         'credit' => '\Schematic\Model\BillingCreditView',
         'credit_amount' => 'int',
@@ -80,6 +81,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'expiry_unit_count' => 'int',
         'id' => 'string',
+        'license_id' => 'string',
         'plan' => '\Schematic\Model\GenericPreviewObject',
         'plan_id' => 'string',
         'plan_version_id' => 'string',
@@ -88,6 +90,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'reset_start' => '\Schematic\Model\BillingPlanCreditGrantResetStart',
         'reset_type' => '\Schematic\Model\BillingPlanCreditGrantResetType',
         'rollover_percentage' => 'int',
+        'scaling' => '\Schematic\Model\PlanCreditGrantScaling',
         'singular_name' => 'string',
         'updated_at' => '\DateTime'
     ];
@@ -111,6 +114,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'int64',
         'billing_credit_auto_topup_threshold_percent' => 'int64',
         'billing_credit_can_buy_bundles' => null,
+        'company_credit_amount' => 'int64',
         'created_at' => 'date-time',
         'credit' => null,
         'credit_amount' => 'int64',
@@ -122,6 +126,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'expiry_unit' => null,
         'expiry_unit_count' => 'int64',
         'id' => null,
+        'license_id' => null,
         'plan' => null,
         'plan_id' => null,
         'plan_version_id' => null,
@@ -130,6 +135,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'reset_start' => null,
         'reset_type' => null,
         'rollover_percentage' => 'int64',
+        'scaling' => null,
         'singular_name' => null,
         'updated_at' => 'date-time'
     ];
@@ -151,6 +157,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => true,
         'billing_credit_auto_topup_threshold_percent' => true,
         'billing_credit_can_buy_bundles' => false,
+        'company_credit_amount' => false,
         'created_at' => false,
         'credit' => false,
         'credit_amount' => false,
@@ -162,6 +169,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'expiry_unit' => true,
         'expiry_unit_count' => true,
         'id' => false,
+        'license_id' => true,
         'plan' => false,
         'plan_id' => false,
         'plan_version_id' => true,
@@ -170,6 +178,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'reset_start' => true,
         'reset_type' => false,
         'rollover_percentage' => false,
+        'scaling' => false,
         'singular_name' => true,
         'updated_at' => false
     ];
@@ -271,6 +280,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'billing_credit_auto_topup_threshold_credits',
         'billing_credit_auto_topup_threshold_percent' => 'billing_credit_auto_topup_threshold_percent',
         'billing_credit_can_buy_bundles' => 'billing_credit_can_buy_bundles',
+        'company_credit_amount' => 'company_credit_amount',
         'created_at' => 'created_at',
         'credit' => 'credit',
         'credit_amount' => 'credit_amount',
@@ -282,6 +292,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'expiry_unit' => 'expiry_unit',
         'expiry_unit_count' => 'expiry_unit_count',
         'id' => 'id',
+        'license_id' => 'license_id',
         'plan' => 'plan',
         'plan_id' => 'plan_id',
         'plan_version_id' => 'plan_version_id',
@@ -290,6 +301,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'reset_start' => 'reset_start',
         'reset_type' => 'reset_type',
         'rollover_percentage' => 'rollover_percentage',
+        'scaling' => 'scaling',
         'singular_name' => 'singular_name',
         'updated_at' => 'updated_at'
     ];
@@ -311,6 +323,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'setBillingCreditAutoTopupThresholdCredits',
         'billing_credit_auto_topup_threshold_percent' => 'setBillingCreditAutoTopupThresholdPercent',
         'billing_credit_can_buy_bundles' => 'setBillingCreditCanBuyBundles',
+        'company_credit_amount' => 'setCompanyCreditAmount',
         'created_at' => 'setCreatedAt',
         'credit' => 'setCredit',
         'credit_amount' => 'setCreditAmount',
@@ -322,6 +335,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'expiry_unit' => 'setExpiryUnit',
         'expiry_unit_count' => 'setExpiryUnitCount',
         'id' => 'setId',
+        'license_id' => 'setLicenseId',
         'plan' => 'setPlan',
         'plan_id' => 'setPlanId',
         'plan_version_id' => 'setPlanVersionId',
@@ -330,6 +344,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'reset_start' => 'setResetStart',
         'reset_type' => 'setResetType',
         'rollover_percentage' => 'setRolloverPercentage',
+        'scaling' => 'setScaling',
         'singular_name' => 'setSingularName',
         'updated_at' => 'setUpdatedAt'
     ];
@@ -351,6 +366,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'getBillingCreditAutoTopupThresholdCredits',
         'billing_credit_auto_topup_threshold_percent' => 'getBillingCreditAutoTopupThresholdPercent',
         'billing_credit_can_buy_bundles' => 'getBillingCreditCanBuyBundles',
+        'company_credit_amount' => 'getCompanyCreditAmount',
         'created_at' => 'getCreatedAt',
         'credit' => 'getCredit',
         'credit_amount' => 'getCreditAmount',
@@ -362,6 +378,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'expiry_unit' => 'getExpiryUnit',
         'expiry_unit_count' => 'getExpiryUnitCount',
         'id' => 'getId',
+        'license_id' => 'getLicenseId',
         'plan' => 'getPlan',
         'plan_id' => 'getPlanId',
         'plan_version_id' => 'getPlanVersionId',
@@ -370,6 +387,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'reset_start' => 'getResetStart',
         'reset_type' => 'getResetType',
         'rollover_percentage' => 'getRolloverPercentage',
+        'scaling' => 'getScaling',
         'singular_name' => 'getSingularName',
         'updated_at' => 'getUpdatedAt'
     ];
@@ -442,6 +460,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('billing_credit_auto_topup_threshold_credits', $data ?? [], null);
         $this->setIfExists('billing_credit_auto_topup_threshold_percent', $data ?? [], null);
         $this->setIfExists('billing_credit_can_buy_bundles', $data ?? [], null);
+        $this->setIfExists('company_credit_amount', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('credit', $data ?? [], null);
         $this->setIfExists('credit_amount', $data ?? [], null);
@@ -453,6 +472,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('expiry_unit', $data ?? [], null);
         $this->setIfExists('expiry_unit_count', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('license_id', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_version_id', $data ?? [], null);
@@ -461,6 +481,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('reset_start', $data ?? [], null);
         $this->setIfExists('reset_type', $data ?? [], null);
         $this->setIfExists('rollover_percentage', $data ?? [], null);
+        $this->setIfExists('scaling', $data ?? [], null);
         $this->setIfExists('singular_name', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
     }
@@ -501,6 +522,9 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         if ($this->container['billing_credit_can_buy_bundles'] === null) {
             $invalidProperties[] = "'billing_credit_can_buy_bundles' can't be null";
         }
+        if ($this->container['company_credit_amount'] === null) {
+            $invalidProperties[] = "'company_credit_amount' can't be null";
+        }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -527,6 +551,9 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         }
         if ($this->container['rollover_percentage'] === null) {
             $invalidProperties[] = "'rollover_percentage' can't be null";
+        }
+        if ($this->container['scaling'] === null) {
+            $invalidProperties[] = "'scaling' can't be null";
         }
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
@@ -900,6 +927,33 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Gets company_credit_amount
+     *
+     * @return int
+     */
+    public function getCompanyCreditAmount()
+    {
+        return $this->container['company_credit_amount'];
+    }
+
+    /**
+     * Sets company_credit_amount
+     *
+     * @param int $company_credit_amount company_credit_amount
+     *
+     * @return self
+     */
+    public function setCompanyCreditAmount($company_credit_amount)
+    {
+        if (is_null($company_credit_amount)) {
+            throw new \InvalidArgumentException('non-nullable company_credit_amount cannot be null');
+        }
+        $this->container['company_credit_amount'] = $company_credit_amount;
+
+        return $this;
+    }
+
+    /**
      * Gets created_at
      *
      * @return \DateTime
@@ -1231,6 +1285,40 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Gets license_id
+     *
+     * @return string|null
+     */
+    public function getLicenseId()
+    {
+        return $this->container['license_id'];
+    }
+
+    /**
+     * Sets license_id
+     *
+     * @param string|null $license_id license_id
+     *
+     * @return self
+     */
+    public function setLicenseId($license_id)
+    {
+        if (is_null($license_id)) {
+            array_push($this->openAPINullablesSetToNull, 'license_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('license_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['license_id'] = $license_id;
+
+        return $this;
+    }
+
+    /**
      * Gets plan
      *
      * @return \Schematic\Model\GenericPreviewObject|null
@@ -1472,6 +1560,33 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable rollover_percentage cannot be null');
         }
         $this->container['rollover_percentage'] = $rollover_percentage;
+
+        return $this;
+    }
+
+    /**
+     * Gets scaling
+     *
+     * @return \Schematic\Model\PlanCreditGrantScaling
+     */
+    public function getScaling()
+    {
+        return $this->container['scaling'];
+    }
+
+    /**
+     * Sets scaling
+     *
+     * @param \Schematic\Model\PlanCreditGrantScaling $scaling scaling
+     *
+     * @return self
+     */
+    public function setScaling($scaling)
+    {
+        if (is_null($scaling)) {
+            throw new \InvalidArgumentException('non-nullable scaling cannot be null');
+        }
+        $this->container['scaling'] = $scaling;
 
         return $this;
     }

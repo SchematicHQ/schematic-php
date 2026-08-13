@@ -64,8 +64,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         'company_id' => 'string',
         'company_ids' => 'string[]',
         'limit' => 'int',
-        'offset' => 'int',
-        'plan_ids' => 'string[]'
+        'offset' => 'int'
     ];
 
     /**
@@ -81,8 +80,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         'company_id' => null,
         'company_ids' => null,
         'limit' => 'int64',
-        'offset' => 'int64',
-        'plan_ids' => null
+        'offset' => 'int64'
     ];
 
     /**
@@ -96,8 +94,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         'company_id' => false,
         'company_ids' => false,
         'limit' => false,
-        'offset' => false,
-        'plan_ids' => false
+        'offset' => false
     ];
 
     /**
@@ -191,8 +188,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         'company_id' => 'company_id',
         'company_ids' => 'company_ids',
         'limit' => 'limit',
-        'offset' => 'offset',
-        'plan_ids' => 'plan_ids'
+        'offset' => 'offset'
     ];
 
     /**
@@ -206,8 +202,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         'company_id' => 'setCompanyId',
         'company_ids' => 'setCompanyIds',
         'limit' => 'setLimit',
-        'offset' => 'setOffset',
-        'plan_ids' => 'setPlanIds'
+        'offset' => 'setOffset'
     ];
 
     /**
@@ -221,8 +216,7 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         'company_id' => 'getCompanyId',
         'company_ids' => 'getCompanyIds',
         'limit' => 'getLimit',
-        'offset' => 'getOffset',
-        'plan_ids' => 'getPlanIds'
+        'offset' => 'getOffset'
     ];
 
     /**
@@ -288,7 +282,6 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('company_ids', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('plan_ids', $data ?? [], null);
     }
 
     /**
@@ -328,10 +321,6 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
 
         if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
             $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['plan_ids']) && (count($this->container['plan_ids']) > 100)) {
-            $invalidProperties[] = "invalid value for 'plan_ids', number of items must be less than or equal to 100.";
         }
 
         return $invalidProperties;
@@ -519,37 +508,6 @@ class ListPlanChangesParams implements ModelInterface, ArrayAccess, \JsonSeriali
             throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
         $this->container['offset'] = $offset;
-
-        return $this;
-    }
-
-    /**
-     * Gets plan_ids
-     *
-     * @return string[]|null
-     */
-    public function getPlanIds()
-    {
-        return $this->container['plan_ids'];
-    }
-
-    /**
-     * Sets plan_ids
-     *
-     * @param string[]|null $plan_ids plan_ids
-     *
-     * @return self
-     */
-    public function setPlanIds($plan_ids)
-    {
-        if (is_null($plan_ids)) {
-            throw new \InvalidArgumentException('non-nullable plan_ids cannot be null');
-        }
-
-        if ((count($plan_ids) > 100)) {
-            throw new \InvalidArgumentException('invalid value for $plan_ids when calling ListPlanChangesParams., number of items must be less than or equal to 100.');
-        }
-        $this->container['plan_ids'] = $plan_ids;
 
         return $this;
     }

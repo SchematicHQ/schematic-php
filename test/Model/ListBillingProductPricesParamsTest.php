@@ -126,6 +126,15 @@ class ListBillingProductPricesParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "interval_count"
+     */
+    public function testPropertyIntervalCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "is_active"
      */
     public function testPropertyIsActive()

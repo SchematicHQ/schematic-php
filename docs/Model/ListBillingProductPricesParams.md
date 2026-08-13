@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **for_trial_expiry_plan** | **bool** | Filter for prices valid for trial expiry plans (free prices only) | [optional]
 **ids** | **string[]** |  | [optional]
 **interval** | **string** |  | [optional]
+**interval_count** | **int** | Filter for prices billed every N intervals; combine with interval (e.g. interval&#x3D;month, interval_count&#x3D;3 for quarterly) | [optional]
 **is_active** | **bool** | Filter for active prices on active products (defaults to true if not specified) | [optional]
 **limit** | **int** | Page limit (default 100) | [optional]
 **offset** | **int** | Page offset (default 0) | [optional]

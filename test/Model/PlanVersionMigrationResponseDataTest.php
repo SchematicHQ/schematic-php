@@ -171,6 +171,15 @@ class PlanVersionMigrationResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "proration_behavior"
+     */
+    public function testPropertyProrationBehavior()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "skipped_companies"
      */
     public function testPropertySkippedCompanies()

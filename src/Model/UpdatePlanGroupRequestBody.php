@@ -60,9 +60,11 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPITypes = [
         'add_on_compatibilities' => '\Schematic\Model\CompatiblePlans[]',
         'add_on_ids' => 'string[]',
+        'checkout_bundle_purchase_behavior' => '\Schematic\Model\CheckoutBundlePurchaseBehavior',
         'checkout_collect_address' => 'bool',
         'checkout_collect_email' => 'bool',
         'checkout_collect_phone' => 'bool',
+        'checkout_collect_tax_id' => 'bool',
         'custom_checkout_fields' => '\Schematic\Model\CheckoutFieldInput[]',
         'custom_plan_config' => '\Schematic\Model\CustomPlanConfig',
         'custom_plan_id' => 'string',
@@ -106,9 +108,11 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPIFormats = [
         'add_on_compatibilities' => null,
         'add_on_ids' => null,
+        'checkout_bundle_purchase_behavior' => null,
         'checkout_collect_address' => null,
         'checkout_collect_email' => null,
         'checkout_collect_phone' => null,
+        'checkout_collect_tax_id' => null,
         'custom_checkout_fields' => null,
         'custom_plan_config' => null,
         'custom_plan_id' => null,
@@ -150,9 +154,11 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     protected static array $openAPINullables = [
         'add_on_compatibilities' => true,
         'add_on_ids' => false,
+        'checkout_bundle_purchase_behavior' => false,
         'checkout_collect_address' => false,
         'checkout_collect_email' => false,
         'checkout_collect_phone' => false,
+        'checkout_collect_tax_id' => false,
         'custom_checkout_fields' => true,
         'custom_plan_config' => false,
         'custom_plan_id' => true,
@@ -274,9 +280,11 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     protected static $attributeMap = [
         'add_on_compatibilities' => 'add_on_compatibilities',
         'add_on_ids' => 'add_on_ids',
+        'checkout_bundle_purchase_behavior' => 'checkout_bundle_purchase_behavior',
         'checkout_collect_address' => 'checkout_collect_address',
         'checkout_collect_email' => 'checkout_collect_email',
         'checkout_collect_phone' => 'checkout_collect_phone',
+        'checkout_collect_tax_id' => 'checkout_collect_tax_id',
         'custom_checkout_fields' => 'custom_checkout_fields',
         'custom_plan_config' => 'custom_plan_config',
         'custom_plan_id' => 'custom_plan_id',
@@ -318,9 +326,11 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     protected static $setters = [
         'add_on_compatibilities' => 'setAddOnCompatibilities',
         'add_on_ids' => 'setAddOnIds',
+        'checkout_bundle_purchase_behavior' => 'setCheckoutBundlePurchaseBehavior',
         'checkout_collect_address' => 'setCheckoutCollectAddress',
         'checkout_collect_email' => 'setCheckoutCollectEmail',
         'checkout_collect_phone' => 'setCheckoutCollectPhone',
+        'checkout_collect_tax_id' => 'setCheckoutCollectTaxId',
         'custom_checkout_fields' => 'setCustomCheckoutFields',
         'custom_plan_config' => 'setCustomPlanConfig',
         'custom_plan_id' => 'setCustomPlanId',
@@ -362,9 +372,11 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     protected static $getters = [
         'add_on_compatibilities' => 'getAddOnCompatibilities',
         'add_on_ids' => 'getAddOnIds',
+        'checkout_bundle_purchase_behavior' => 'getCheckoutBundlePurchaseBehavior',
         'checkout_collect_address' => 'getCheckoutCollectAddress',
         'checkout_collect_email' => 'getCheckoutCollectEmail',
         'checkout_collect_phone' => 'getCheckoutCollectPhone',
+        'checkout_collect_tax_id' => 'getCheckoutCollectTaxId',
         'custom_checkout_fields' => 'getCustomCheckoutFields',
         'custom_plan_config' => 'getCustomPlanConfig',
         'custom_plan_id' => 'getCustomPlanId',
@@ -457,9 +469,11 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     {
         $this->setIfExists('add_on_compatibilities', $data ?? [], null);
         $this->setIfExists('add_on_ids', $data ?? [], null);
+        $this->setIfExists('checkout_bundle_purchase_behavior', $data ?? [], null);
         $this->setIfExists('checkout_collect_address', $data ?? [], null);
         $this->setIfExists('checkout_collect_email', $data ?? [], null);
         $this->setIfExists('checkout_collect_phone', $data ?? [], null);
+        $this->setIfExists('checkout_collect_tax_id', $data ?? [], null);
         $this->setIfExists('custom_checkout_fields', $data ?? [], null);
         $this->setIfExists('custom_plan_config', $data ?? [], null);
         $this->setIfExists('custom_plan_id', $data ?? [], null);
@@ -531,6 +545,9 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             $invalidProperties[] = "invalid value for 'add_on_ids', number of items must be less than or equal to 100.";
         }
 
+        if ($this->container['checkout_bundle_purchase_behavior'] === null) {
+            $invalidProperties[] = "'checkout_bundle_purchase_behavior' can't be null";
+        }
         if ($this->container['checkout_collect_address'] === null) {
             $invalidProperties[] = "'checkout_collect_address' can't be null";
         }
@@ -539,6 +556,9 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         }
         if ($this->container['checkout_collect_phone'] === null) {
             $invalidProperties[] = "'checkout_collect_phone' can't be null";
+        }
+        if ($this->container['checkout_collect_tax_id'] === null) {
+            $invalidProperties[] = "'checkout_collect_tax_id' can't be null";
         }
         if (!is_null($this->container['custom_checkout_fields']) && (count($this->container['custom_checkout_fields']) > 100)) {
             $invalidProperties[] = "invalid value for 'custom_checkout_fields', number of items must be less than or equal to 100.";
@@ -704,6 +724,33 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * Gets checkout_bundle_purchase_behavior
+     *
+     * @return \Schematic\Model\CheckoutBundlePurchaseBehavior
+     */
+    public function getCheckoutBundlePurchaseBehavior()
+    {
+        return $this->container['checkout_bundle_purchase_behavior'];
+    }
+
+    /**
+     * Sets checkout_bundle_purchase_behavior
+     *
+     * @param \Schematic\Model\CheckoutBundlePurchaseBehavior $checkout_bundle_purchase_behavior checkout_bundle_purchase_behavior
+     *
+     * @return self
+     */
+    public function setCheckoutBundlePurchaseBehavior($checkout_bundle_purchase_behavior)
+    {
+        if (is_null($checkout_bundle_purchase_behavior)) {
+            throw new \InvalidArgumentException('non-nullable checkout_bundle_purchase_behavior cannot be null');
+        }
+        $this->container['checkout_bundle_purchase_behavior'] = $checkout_bundle_purchase_behavior;
+
+        return $this;
+    }
+
+    /**
      * Gets checkout_collect_address
      *
      * @return bool
@@ -780,6 +827,33 @@ class UpdatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable checkout_collect_phone cannot be null');
         }
         $this->container['checkout_collect_phone'] = $checkout_collect_phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets checkout_collect_tax_id
+     *
+     * @return bool
+     */
+    public function getCheckoutCollectTaxId()
+    {
+        return $this->container['checkout_collect_tax_id'];
+    }
+
+    /**
+     * Sets checkout_collect_tax_id
+     *
+     * @param bool $checkout_collect_tax_id checkout_collect_tax_id
+     *
+     * @return self
+     */
+    public function setCheckoutCollectTaxId($checkout_collect_tax_id)
+    {
+        if (is_null($checkout_collect_tax_id)) {
+            throw new \InvalidArgumentException('non-nullable checkout_collect_tax_id cannot be null');
+        }
+        $this->container['checkout_collect_tax_id'] = $checkout_collect_tax_id;
 
         return $this;
     }

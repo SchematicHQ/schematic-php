@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**failure_reason** | **string** |  | [optional]
 **response_code** | **int** |  |
 **success** | **bool** |  |
 

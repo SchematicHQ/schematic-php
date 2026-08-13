@@ -59,7 +59,8 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPITypes = [
         'description' => 'string',
-        'name' => 'string'
+        'name' => 'string',
+        'rate_limit_percent' => 'int'
     ];
 
     /**
@@ -71,7 +72,8 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static $openAPIFormats = [
         'description' => null,
-        'name' => null
+        'name' => null,
+        'rate_limit_percent' => 'int64'
     ];
 
     /**
@@ -81,7 +83,8 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'description' => true,
-        'name' => true
+        'name' => true,
+        'rate_limit_percent' => true
     ];
 
     /**
@@ -171,7 +174,8 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $attributeMap = [
         'description' => 'description',
-        'name' => 'name'
+        'name' => 'name',
+        'rate_limit_percent' => 'rate_limit_percent'
     ];
 
     /**
@@ -181,7 +185,8 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $setters = [
         'description' => 'setDescription',
-        'name' => 'setName'
+        'name' => 'setName',
+        'rate_limit_percent' => 'setRateLimitPercent'
     ];
 
     /**
@@ -191,7 +196,8 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
      */
     protected static $getters = [
         'description' => 'getDescription',
-        'name' => 'getName'
+        'name' => 'getName',
+        'rate_limit_percent' => 'getRateLimitPercent'
     ];
 
     /**
@@ -253,6 +259,7 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('rate_limit_percent', $data ?? [], null);
     }
 
     /**
@@ -292,6 +299,14 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) < 1)) {
             $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['rate_limit_percent']) && ($this->container['rate_limit_percent'] > 99)) {
+            $invalidProperties[] = "invalid value for 'rate_limit_percent', must be smaller than or equal to 99.";
+        }
+
+        if (!is_null($this->container['rate_limit_percent']) && ($this->container['rate_limit_percent'] < 0)) {
+            $invalidProperties[] = "invalid value for 'rate_limit_percent', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -384,6 +399,48 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
         }
 
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets rate_limit_percent
+     *
+     * @return int|null
+     */
+    public function getRateLimitPercent()
+    {
+        return $this->container['rate_limit_percent'];
+    }
+
+    /**
+     * Sets rate_limit_percent
+     *
+     * @param int|null $rate_limit_percent rate_limit_percent
+     *
+     * @return self
+     */
+    public function setRateLimitPercent($rate_limit_percent)
+    {
+        if (is_null($rate_limit_percent)) {
+            array_push($this->openAPINullablesSetToNull, 'rate_limit_percent');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('rate_limit_percent', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($rate_limit_percent) && ($rate_limit_percent > 99)) {
+            throw new \InvalidArgumentException('invalid value for $rate_limit_percent when calling UpdateApiKeyRequestBody., must be smaller than or equal to 99.');
+        }
+        if (!is_null($rate_limit_percent) && ($rate_limit_percent < 0)) {
+            throw new \InvalidArgumentException('invalid value for $rate_limit_percent when calling UpdateApiKeyRequestBody., must be bigger than or equal to 0.');
+        }
+
+        $this->container['rate_limit_percent'] = $rate_limit_percent;
 
         return $this;
     }

@@ -90,9 +90,27 @@ class PublishPlanVersionRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "address"
+     */
+    public function testPropertyAddress()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "coupon_external_id"
      */
     public function testPropertyCouponExternalId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "custom_field_values"
+     */
+    public function testPropertyCustomFieldValues()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -129,6 +147,42 @@ class PublishPlanVersionRequestBodyTest extends TestCase
      * Test attribute "migration_strategy"
      */
     public function testPropertyMigrationStrategy()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "phone"
+     */
+    public function testPropertyPhone()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "proration_behavior"
+     */
+    public function testPropertyProrationBehavior()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "send_invoice"
+     */
+    public function testPropertySendInvoice()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tax_id"
+     */
+    public function testPropertyTaxId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

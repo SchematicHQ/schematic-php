@@ -106,4 +106,13 @@ class CompanyBillingCheckoutSettingsTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "collect_tax_id"
+     */
+    public function testPropertyCollectTaxId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

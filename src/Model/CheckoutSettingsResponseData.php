@@ -58,9 +58,11 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
+        'bundle_purchase_behavior' => '\Schematic\Model\CheckoutBundlePurchaseBehavior',
         'collect_address' => 'bool',
         'collect_email' => 'bool',
         'collect_phone' => 'bool',
+        'collect_tax_id' => 'bool',
         'opt_in_enabled' => 'bool',
         'opt_in_text' => 'string',
         'opt_in_title' => 'string'
@@ -74,9 +76,11 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'bundle_purchase_behavior' => null,
         'collect_address' => null,
         'collect_email' => null,
         'collect_phone' => null,
+        'collect_tax_id' => null,
         'opt_in_enabled' => null,
         'opt_in_text' => null,
         'opt_in_title' => null
@@ -88,9 +92,11 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'bundle_purchase_behavior' => false,
         'collect_address' => false,
         'collect_email' => false,
         'collect_phone' => false,
+        'collect_tax_id' => false,
         'opt_in_enabled' => false,
         'opt_in_text' => true,
         'opt_in_title' => true
@@ -182,9 +188,11 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
+        'bundle_purchase_behavior' => 'bundle_purchase_behavior',
         'collect_address' => 'collect_address',
         'collect_email' => 'collect_email',
         'collect_phone' => 'collect_phone',
+        'collect_tax_id' => 'collect_tax_id',
         'opt_in_enabled' => 'opt_in_enabled',
         'opt_in_text' => 'opt_in_text',
         'opt_in_title' => 'opt_in_title'
@@ -196,9 +204,11 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
+        'bundle_purchase_behavior' => 'setBundlePurchaseBehavior',
         'collect_address' => 'setCollectAddress',
         'collect_email' => 'setCollectEmail',
         'collect_phone' => 'setCollectPhone',
+        'collect_tax_id' => 'setCollectTaxId',
         'opt_in_enabled' => 'setOptInEnabled',
         'opt_in_text' => 'setOptInText',
         'opt_in_title' => 'setOptInTitle'
@@ -210,9 +220,11 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
+        'bundle_purchase_behavior' => 'getBundlePurchaseBehavior',
         'collect_address' => 'getCollectAddress',
         'collect_email' => 'getCollectEmail',
         'collect_phone' => 'getCollectPhone',
+        'collect_tax_id' => 'getCollectTaxId',
         'opt_in_enabled' => 'getOptInEnabled',
         'opt_in_text' => 'getOptInText',
         'opt_in_title' => 'getOptInTitle'
@@ -275,9 +287,11 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('bundle_purchase_behavior', $data ?? [], null);
         $this->setIfExists('collect_address', $data ?? [], null);
         $this->setIfExists('collect_email', $data ?? [], null);
         $this->setIfExists('collect_phone', $data ?? [], null);
+        $this->setIfExists('collect_tax_id', $data ?? [], null);
         $this->setIfExists('opt_in_enabled', $data ?? [], null);
         $this->setIfExists('opt_in_text', $data ?? [], null);
         $this->setIfExists('opt_in_title', $data ?? [], null);
@@ -310,6 +324,9 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
     {
         $invalidProperties = [];
 
+        if ($this->container['bundle_purchase_behavior'] === null) {
+            $invalidProperties[] = "'bundle_purchase_behavior' can't be null";
+        }
         if ($this->container['collect_address'] === null) {
             $invalidProperties[] = "'collect_address' can't be null";
         }
@@ -318,6 +335,9 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
         }
         if ($this->container['collect_phone'] === null) {
             $invalidProperties[] = "'collect_phone' can't be null";
+        }
+        if ($this->container['collect_tax_id'] === null) {
+            $invalidProperties[] = "'collect_tax_id' can't be null";
         }
         if ($this->container['opt_in_enabled'] === null) {
             $invalidProperties[] = "'opt_in_enabled' can't be null";
@@ -336,6 +356,33 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets bundle_purchase_behavior
+     *
+     * @return \Schematic\Model\CheckoutBundlePurchaseBehavior
+     */
+    public function getBundlePurchaseBehavior()
+    {
+        return $this->container['bundle_purchase_behavior'];
+    }
+
+    /**
+     * Sets bundle_purchase_behavior
+     *
+     * @param \Schematic\Model\CheckoutBundlePurchaseBehavior $bundle_purchase_behavior bundle_purchase_behavior
+     *
+     * @return self
+     */
+    public function setBundlePurchaseBehavior($bundle_purchase_behavior)
+    {
+        if (is_null($bundle_purchase_behavior)) {
+            throw new \InvalidArgumentException('non-nullable bundle_purchase_behavior cannot be null');
+        }
+        $this->container['bundle_purchase_behavior'] = $bundle_purchase_behavior;
+
+        return $this;
+    }
 
     /**
      * Gets collect_address
@@ -414,6 +461,33 @@ class CheckoutSettingsResponseData implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable collect_phone cannot be null');
         }
         $this->container['collect_phone'] = $collect_phone;
+
+        return $this;
+    }
+
+    /**
+     * Gets collect_tax_id
+     *
+     * @return bool
+     */
+    public function getCollectTaxId()
+    {
+        return $this->container['collect_tax_id'];
+    }
+
+    /**
+     * Sets collect_tax_id
+     *
+     * @param bool $collect_tax_id collect_tax_id
+     *
+     * @return self
+     */
+    public function setCollectTaxId($collect_tax_id)
+    {
+        if (is_null($collect_tax_id)) {
+            throw new \InvalidArgumentException('non-nullable collect_tax_id cannot be null');
+        }
+        $this->container['collect_tax_id'] = $collect_tax_id;
 
         return $this;
     }

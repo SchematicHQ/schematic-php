@@ -97,4 +97,13 @@ class UpdateApiKeyRequestBodyTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "rate_limit_percent"
+     */
+    public function testPropertyRateLimitPercent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

@@ -182,7 +182,7 @@ class PlanGroupPlanDetailResponseData implements ModelInterface, ArrayAccess, \J
         'included_credit_grants' => false,
         'is_custom' => false,
         'is_default' => false,
-        'is_free' => false,
+        'is_free' => true,
         'is_trialable' => false,
         'monthly_price' => false,
         'name' => false,
@@ -617,9 +617,6 @@ class PlanGroupPlanDetailResponseData implements ModelInterface, ArrayAccess, \J
         }
         if ($this->container['is_default'] === null) {
             $invalidProperties[] = "'is_default' can't be null";
-        }
-        if ($this->container['is_free'] === null) {
-            $invalidProperties[] = "'is_free' can't be null";
         }
         if ($this->container['is_trialable'] === null) {
             $invalidProperties[] = "'is_trialable' can't be null";
@@ -1492,7 +1489,7 @@ class PlanGroupPlanDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Gets is_free
      *
-     * @return bool
+     * @return bool|null
      * @deprecated
      */
     public function getIsFree()
@@ -1503,7 +1500,7 @@ class PlanGroupPlanDetailResponseData implements ModelInterface, ArrayAccess, \J
     /**
      * Sets is_free
      *
-     * @param bool $is_free Deprecated: Use BillingStrategy instead
+     * @param bool|null $is_free Deprecated: reports the plan's charge type, not its price. Read the plan's prices to tell whether it costs anything, or billing_strategy to tell how it is billed.
      *
      * @return self
      * @deprecated
@@ -1511,7 +1508,14 @@ class PlanGroupPlanDetailResponseData implements ModelInterface, ArrayAccess, \J
     public function setIsFree($is_free)
     {
         if (is_null($is_free)) {
-            throw new \InvalidArgumentException('non-nullable is_free cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'is_free');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('is_free', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['is_free'] = $is_free;
 

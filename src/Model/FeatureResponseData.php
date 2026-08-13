@@ -64,13 +64,15 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'feature_type' => '\Schematic\Model\FeatureType',
         'icon' => 'string',
         'id' => 'string',
+        'license_id' => 'string',
         'lifecycle_phase' => '\Schematic\Model\FeatureLifecyclePhase',
         'maintainer_account_member_id' => 'string',
         'name' => 'string',
         'plural_name' => 'string',
         'singular_name' => 'string',
         'trait_id' => 'string',
-        'updated_at' => '\DateTime'
+        'updated_at' => '\DateTime',
+        'usage_limit_trait_id' => 'string'
     ];
 
     /**
@@ -87,13 +89,15 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'feature_type' => null,
         'icon' => null,
         'id' => null,
+        'license_id' => null,
         'lifecycle_phase' => null,
         'maintainer_account_member_id' => null,
         'name' => null,
         'plural_name' => null,
         'singular_name' => null,
         'trait_id' => null,
-        'updated_at' => 'date-time'
+        'updated_at' => 'date-time',
+        'usage_limit_trait_id' => null
     ];
 
     /**
@@ -108,13 +112,15 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'feature_type' => false,
         'icon' => false,
         'id' => false,
+        'license_id' => true,
         'lifecycle_phase' => true,
         'maintainer_account_member_id' => true,
         'name' => false,
         'plural_name' => true,
         'singular_name' => true,
         'trait_id' => true,
-        'updated_at' => false
+        'updated_at' => false,
+        'usage_limit_trait_id' => true
     ];
 
     /**
@@ -209,13 +215,15 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'feature_type' => 'feature_type',
         'icon' => 'icon',
         'id' => 'id',
+        'license_id' => 'license_id',
         'lifecycle_phase' => 'lifecycle_phase',
         'maintainer_account_member_id' => 'maintainer_account_member_id',
         'name' => 'name',
         'plural_name' => 'plural_name',
         'singular_name' => 'singular_name',
         'trait_id' => 'trait_id',
-        'updated_at' => 'updated_at'
+        'updated_at' => 'updated_at',
+        'usage_limit_trait_id' => 'usage_limit_trait_id'
     ];
 
     /**
@@ -230,13 +238,15 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'feature_type' => 'setFeatureType',
         'icon' => 'setIcon',
         'id' => 'setId',
+        'license_id' => 'setLicenseId',
         'lifecycle_phase' => 'setLifecyclePhase',
         'maintainer_account_member_id' => 'setMaintainerAccountMemberId',
         'name' => 'setName',
         'plural_name' => 'setPluralName',
         'singular_name' => 'setSingularName',
         'trait_id' => 'setTraitId',
-        'updated_at' => 'setUpdatedAt'
+        'updated_at' => 'setUpdatedAt',
+        'usage_limit_trait_id' => 'setUsageLimitTraitId'
     ];
 
     /**
@@ -251,13 +261,15 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'feature_type' => 'getFeatureType',
         'icon' => 'getIcon',
         'id' => 'getId',
+        'license_id' => 'getLicenseId',
         'lifecycle_phase' => 'getLifecyclePhase',
         'maintainer_account_member_id' => 'getMaintainerAccountMemberId',
         'name' => 'getName',
         'plural_name' => 'getPluralName',
         'singular_name' => 'getSingularName',
         'trait_id' => 'getTraitId',
-        'updated_at' => 'getUpdatedAt'
+        'updated_at' => 'getUpdatedAt',
+        'usage_limit_trait_id' => 'getUsageLimitTraitId'
     ];
 
     /**
@@ -323,6 +335,7 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('feature_type', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('license_id', $data ?? [], null);
         $this->setIfExists('lifecycle_phase', $data ?? [], null);
         $this->setIfExists('maintainer_account_member_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -330,6 +343,7 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('singular_name', $data ?? [], null);
         $this->setIfExists('trait_id', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('usage_limit_trait_id', $data ?? [], null);
     }
 
     /**
@@ -565,6 +579,40 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Gets license_id
+     *
+     * @return string|null
+     */
+    public function getLicenseId()
+    {
+        return $this->container['license_id'];
+    }
+
+    /**
+     * Sets license_id
+     *
+     * @param string|null $license_id The license sold through this feature. Set only on features of type license, and created automatically with them.
+     *
+     * @return self
+     */
+    public function setLicenseId($license_id)
+    {
+        if (is_null($license_id)) {
+            array_push($this->openAPINullablesSetToNull, 'license_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('license_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['license_id'] = $license_id;
+
+        return $this;
+    }
+
+    /**
      * Gets lifecycle_phase
      *
      * @return \Schematic\Model\FeatureLifecyclePhase|null
@@ -784,6 +832,40 @@ class FeatureResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage_limit_trait_id
+     *
+     * @return string|null
+     */
+    public function getUsageLimitTraitId()
+    {
+        return $this->container['usage_limit_trait_id'];
+    }
+
+    /**
+     * Sets usage_limit_trait_id
+     *
+     * @param string|null $usage_limit_trait_id Set when the feature carries a pay-in-advance quantity. Provisioned lazily for other feature types, and at creation for license features.
+     *
+     * @return self
+     */
+    public function setUsageLimitTraitId($usage_limit_trait_id)
+    {
+        if (is_null($usage_limit_trait_id)) {
+            array_push($this->openAPINullablesSetToNull, 'usage_limit_trait_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('usage_limit_trait_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['usage_limit_trait_id'] = $usage_limit_trait_id;
 
         return $this;
     }

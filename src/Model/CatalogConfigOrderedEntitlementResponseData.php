@@ -58,7 +58,7 @@ class CatalogConfigOrderedEntitlementResponseData implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'plan_entitlement_id' => 'string',
+        'feature_id' => 'string',
         'visible' => 'bool'
     ];
 
@@ -70,7 +70,7 @@ class CatalogConfigOrderedEntitlementResponseData implements ModelInterface, Arr
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'plan_entitlement_id' => null,
+        'feature_id' => null,
         'visible' => null
     ];
 
@@ -80,7 +80,7 @@ class CatalogConfigOrderedEntitlementResponseData implements ModelInterface, Arr
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'plan_entitlement_id' => false,
+        'feature_id' => false,
         'visible' => false
     ];
 
@@ -170,7 +170,7 @@ class CatalogConfigOrderedEntitlementResponseData implements ModelInterface, Arr
      * @var string[]
      */
     protected static $attributeMap = [
-        'plan_entitlement_id' => 'plan_entitlement_id',
+        'feature_id' => 'feature_id',
         'visible' => 'visible'
     ];
 
@@ -180,7 +180,7 @@ class CatalogConfigOrderedEntitlementResponseData implements ModelInterface, Arr
      * @var string[]
      */
     protected static $setters = [
-        'plan_entitlement_id' => 'setPlanEntitlementId',
+        'feature_id' => 'setFeatureId',
         'visible' => 'setVisible'
     ];
 
@@ -190,7 +190,7 @@ class CatalogConfigOrderedEntitlementResponseData implements ModelInterface, Arr
      * @var string[]
      */
     protected static $getters = [
-        'plan_entitlement_id' => 'getPlanEntitlementId',
+        'feature_id' => 'getFeatureId',
         'visible' => 'getVisible'
     ];
 
@@ -251,7 +251,7 @@ class CatalogConfigOrderedEntitlementResponseData implements ModelInterface, Arr
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('plan_entitlement_id', $data ?? [], null);
+        $this->setIfExists('feature_id', $data ?? [], null);
         $this->setIfExists('visible', $data ?? [], null);
     }
 
@@ -282,8 +282,8 @@ class CatalogConfigOrderedEntitlementResponseData implements ModelInterface, Arr
     {
         $invalidProperties = [];
 
-        if ($this->container['plan_entitlement_id'] === null) {
-            $invalidProperties[] = "'plan_entitlement_id' can't be null";
+        if ($this->container['feature_id'] === null) {
+            $invalidProperties[] = "'feature_id' can't be null";
         }
         if ($this->container['visible'] === null) {
             $invalidProperties[] = "'visible' can't be null";
@@ -304,28 +304,28 @@ class CatalogConfigOrderedEntitlementResponseData implements ModelInterface, Arr
 
 
     /**
-     * Gets plan_entitlement_id
+     * Gets feature_id
      *
      * @return string
      */
-    public function getPlanEntitlementId()
+    public function getFeatureId()
     {
-        return $this->container['plan_entitlement_id'];
+        return $this->container['feature_id'];
     }
 
     /**
-     * Sets plan_entitlement_id
+     * Sets feature_id
      *
-     * @param string $plan_entitlement_id plan_entitlement_id
+     * @param string $feature_id feature_id
      *
      * @return self
      */
-    public function setPlanEntitlementId($plan_entitlement_id)
+    public function setFeatureId($feature_id)
     {
-        if (is_null($plan_entitlement_id)) {
-            throw new \InvalidArgumentException('non-nullable plan_entitlement_id cannot be null');
+        if (is_null($feature_id)) {
+            throw new \InvalidArgumentException('non-nullable feature_id cannot be null');
         }
-        $this->container['plan_entitlement_id'] = $plan_entitlement_id;
+        $this->container['feature_id'] = $feature_id;
 
         return $this;
     }

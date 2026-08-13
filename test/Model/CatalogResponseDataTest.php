@@ -144,15 +144,6 @@ class CatalogResponseDataTest extends TestCase
     }
 
     /**
-     * Test attribute "environment_id"
-     */
-    public function testPropertyEnvironmentId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "id"
      */
     public function testPropertyId()
