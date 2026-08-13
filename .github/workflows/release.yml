@@ -71,7 +71,8 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          # composer.lock resolves dev dependencies that require PHP 8.4.
+          php-version: '8.4'
           extensions: curl, json, mbstring
           tools: composer
 
@@ -89,6 +90,9 @@ jobs:
       # generate.sh propagates the version to composer.json and
       # src/Configuration.php, and refreshes the generated code from the spec.
       - name: Regenerate SDK
+        env:
+          # php-cs-fixer refuses to run on PHP newer than 8.3.
+          PHP_CS_FIXER_IGNORE_ENV: 1
         run: ./generate.sh
 
       - name: Verify version propagated
