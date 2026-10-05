@@ -59,6 +59,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
       */
     protected static $openAPITypes = [
         'apply_to_existing' => 'bool',
+        'arrears_anchor' => '\Schematic\Model\BillingArrearsAnchor',
+        'arrears_cadence' => '\Schematic\Model\BillingArrearsCadence',
         'auto_topup_amount' => 'int',
         'auto_topup_amount_type' => '\Schematic\Model\CreditAutoTopupAmountType',
         'auto_topup_availability' => '\Schematic\Model\BillingCreditAutoTopupAvailability',
@@ -69,6 +71,7 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_self_service' => 'bool',
         'auto_topup_threshold_credits' => 'int',
         'auto_topup_threshold_percent' => 'int',
+        'billing_mode' => '\Schematic\Model\BillingPlanCreditGrantBillingMode',
         'can_buy_bundles' => 'bool',
         'company_credit_amount' => 'int',
         'credit_amount' => 'int',
@@ -76,11 +79,19 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
         'expiry_unit_count' => 'int',
         'license_id' => 'string',
+        'overdraft_limit' => 'float',
+        'postpaid_enabled' => 'bool',
+        'postpaid_rate_per_unit' => 'int',
+        'postpaid_rate_per_unit_decimal' => 'string',
+        'price_tiers' => '\Schematic\Model\CreditGrantPriceTierRequestBody[]',
         'reset_cadence' => '\Schematic\Model\BillingPlanCreditGrantResetCadence',
         'reset_start' => '\Schematic\Model\BillingPlanCreditGrantResetStart',
         'reset_type' => '\Schematic\Model\BillingPlanCreditGrantResetType',
         'rollover_percentage' => 'int',
-        'scaling' => '\Schematic\Model\PlanCreditGrantScaling'
+        'scaling' => '\Schematic\Model\PlanCreditGrantScaling',
+        'tier_mode' => '\Schematic\Model\BillingTiersMode',
+        'unit_price' => 'int',
+        'unit_price_decimal' => 'string'
     ];
 
     /**
@@ -92,6 +103,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
       */
     protected static $openAPIFormats = [
         'apply_to_existing' => null,
+        'arrears_anchor' => null,
+        'arrears_cadence' => null,
         'auto_topup_amount' => 'int64',
         'auto_topup_amount_type' => null,
         'auto_topup_availability' => null,
@@ -102,6 +115,7 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_self_service' => null,
         'auto_topup_threshold_credits' => 'int64',
         'auto_topup_threshold_percent' => 'int64',
+        'billing_mode' => null,
         'can_buy_bundles' => null,
         'company_credit_amount' => 'int64',
         'credit_amount' => 'int64',
@@ -109,11 +123,19 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'expiry_unit' => null,
         'expiry_unit_count' => 'int64',
         'license_id' => null,
+        'overdraft_limit' => 'double',
+        'postpaid_enabled' => null,
+        'postpaid_rate_per_unit' => 'int64',
+        'postpaid_rate_per_unit_decimal' => null,
+        'price_tiers' => null,
         'reset_cadence' => null,
         'reset_start' => null,
         'reset_type' => null,
         'rollover_percentage' => 'int64',
-        'scaling' => null
+        'scaling' => null,
+        'tier_mode' => null,
+        'unit_price' => 'int64',
+        'unit_price_decimal' => null
     ];
 
     /**
@@ -123,6 +145,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
       */
     protected static array $openAPINullables = [
         'apply_to_existing' => true,
+        'arrears_anchor' => true,
+        'arrears_cadence' => true,
         'auto_topup_amount' => true,
         'auto_topup_amount_type' => true,
         'auto_topup_availability' => true,
@@ -133,6 +157,7 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_self_service' => true,
         'auto_topup_threshold_credits' => true,
         'auto_topup_threshold_percent' => true,
+        'billing_mode' => true,
         'can_buy_bundles' => true,
         'company_credit_amount' => true,
         'credit_amount' => true,
@@ -140,11 +165,19 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'expiry_unit' => true,
         'expiry_unit_count' => true,
         'license_id' => true,
+        'overdraft_limit' => true,
+        'postpaid_enabled' => true,
+        'postpaid_rate_per_unit' => true,
+        'postpaid_rate_per_unit_decimal' => true,
+        'price_tiers' => true,
         'reset_cadence' => false,
         'reset_start' => false,
         'reset_type' => true,
         'rollover_percentage' => true,
-        'scaling' => true
+        'scaling' => true,
+        'tier_mode' => true,
+        'unit_price' => true,
+        'unit_price_decimal' => true
     ];
 
     /**
@@ -234,6 +267,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
      */
     protected static $attributeMap = [
         'apply_to_existing' => 'apply_to_existing',
+        'arrears_anchor' => 'arrears_anchor',
+        'arrears_cadence' => 'arrears_cadence',
         'auto_topup_amount' => 'auto_topup_amount',
         'auto_topup_amount_type' => 'auto_topup_amount_type',
         'auto_topup_availability' => 'auto_topup_availability',
@@ -244,6 +279,7 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_self_service' => 'auto_topup_self_service',
         'auto_topup_threshold_credits' => 'auto_topup_threshold_credits',
         'auto_topup_threshold_percent' => 'auto_topup_threshold_percent',
+        'billing_mode' => 'billing_mode',
         'can_buy_bundles' => 'can_buy_bundles',
         'company_credit_amount' => 'company_credit_amount',
         'credit_amount' => 'credit_amount',
@@ -251,11 +287,19 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'expiry_unit' => 'expiry_unit',
         'expiry_unit_count' => 'expiry_unit_count',
         'license_id' => 'license_id',
+        'overdraft_limit' => 'overdraft_limit',
+        'postpaid_enabled' => 'postpaid_enabled',
+        'postpaid_rate_per_unit' => 'postpaid_rate_per_unit',
+        'postpaid_rate_per_unit_decimal' => 'postpaid_rate_per_unit_decimal',
+        'price_tiers' => 'price_tiers',
         'reset_cadence' => 'reset_cadence',
         'reset_start' => 'reset_start',
         'reset_type' => 'reset_type',
         'rollover_percentage' => 'rollover_percentage',
-        'scaling' => 'scaling'
+        'scaling' => 'scaling',
+        'tier_mode' => 'tier_mode',
+        'unit_price' => 'unit_price',
+        'unit_price_decimal' => 'unit_price_decimal'
     ];
 
     /**
@@ -265,6 +309,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
      */
     protected static $setters = [
         'apply_to_existing' => 'setApplyToExisting',
+        'arrears_anchor' => 'setArrearsAnchor',
+        'arrears_cadence' => 'setArrearsCadence',
         'auto_topup_amount' => 'setAutoTopupAmount',
         'auto_topup_amount_type' => 'setAutoTopupAmountType',
         'auto_topup_availability' => 'setAutoTopupAvailability',
@@ -275,6 +321,7 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_self_service' => 'setAutoTopupSelfService',
         'auto_topup_threshold_credits' => 'setAutoTopupThresholdCredits',
         'auto_topup_threshold_percent' => 'setAutoTopupThresholdPercent',
+        'billing_mode' => 'setBillingMode',
         'can_buy_bundles' => 'setCanBuyBundles',
         'company_credit_amount' => 'setCompanyCreditAmount',
         'credit_amount' => 'setCreditAmount',
@@ -282,11 +329,19 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'expiry_unit' => 'setExpiryUnit',
         'expiry_unit_count' => 'setExpiryUnitCount',
         'license_id' => 'setLicenseId',
+        'overdraft_limit' => 'setOverdraftLimit',
+        'postpaid_enabled' => 'setPostpaidEnabled',
+        'postpaid_rate_per_unit' => 'setPostpaidRatePerUnit',
+        'postpaid_rate_per_unit_decimal' => 'setPostpaidRatePerUnitDecimal',
+        'price_tiers' => 'setPriceTiers',
         'reset_cadence' => 'setResetCadence',
         'reset_start' => 'setResetStart',
         'reset_type' => 'setResetType',
         'rollover_percentage' => 'setRolloverPercentage',
-        'scaling' => 'setScaling'
+        'scaling' => 'setScaling',
+        'tier_mode' => 'setTierMode',
+        'unit_price' => 'setUnitPrice',
+        'unit_price_decimal' => 'setUnitPriceDecimal'
     ];
 
     /**
@@ -296,6 +351,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
      */
     protected static $getters = [
         'apply_to_existing' => 'getApplyToExisting',
+        'arrears_anchor' => 'getArrearsAnchor',
+        'arrears_cadence' => 'getArrearsCadence',
         'auto_topup_amount' => 'getAutoTopupAmount',
         'auto_topup_amount_type' => 'getAutoTopupAmountType',
         'auto_topup_availability' => 'getAutoTopupAvailability',
@@ -306,6 +363,7 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'auto_topup_self_service' => 'getAutoTopupSelfService',
         'auto_topup_threshold_credits' => 'getAutoTopupThresholdCredits',
         'auto_topup_threshold_percent' => 'getAutoTopupThresholdPercent',
+        'billing_mode' => 'getBillingMode',
         'can_buy_bundles' => 'getCanBuyBundles',
         'company_credit_amount' => 'getCompanyCreditAmount',
         'credit_amount' => 'getCreditAmount',
@@ -313,11 +371,19 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         'expiry_unit' => 'getExpiryUnit',
         'expiry_unit_count' => 'getExpiryUnitCount',
         'license_id' => 'getLicenseId',
+        'overdraft_limit' => 'getOverdraftLimit',
+        'postpaid_enabled' => 'getPostpaidEnabled',
+        'postpaid_rate_per_unit' => 'getPostpaidRatePerUnit',
+        'postpaid_rate_per_unit_decimal' => 'getPostpaidRatePerUnitDecimal',
+        'price_tiers' => 'getPriceTiers',
         'reset_cadence' => 'getResetCadence',
         'reset_start' => 'getResetStart',
         'reset_type' => 'getResetType',
         'rollover_percentage' => 'getRolloverPercentage',
-        'scaling' => 'getScaling'
+        'scaling' => 'getScaling',
+        'tier_mode' => 'getTierMode',
+        'unit_price' => 'getUnitPrice',
+        'unit_price_decimal' => 'getUnitPriceDecimal'
     ];
 
     /**
@@ -378,6 +444,8 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
     public function __construct(?array $data = null)
     {
         $this->setIfExists('apply_to_existing', $data ?? [], null);
+        $this->setIfExists('arrears_anchor', $data ?? [], null);
+        $this->setIfExists('arrears_cadence', $data ?? [], null);
         $this->setIfExists('auto_topup_amount', $data ?? [], null);
         $this->setIfExists('auto_topup_amount_type', $data ?? [], null);
         $this->setIfExists('auto_topup_availability', $data ?? [], null);
@@ -388,6 +456,7 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         $this->setIfExists('auto_topup_self_service', $data ?? [], null);
         $this->setIfExists('auto_topup_threshold_credits', $data ?? [], null);
         $this->setIfExists('auto_topup_threshold_percent', $data ?? [], null);
+        $this->setIfExists('billing_mode', $data ?? [], null);
         $this->setIfExists('can_buy_bundles', $data ?? [], null);
         $this->setIfExists('company_credit_amount', $data ?? [], null);
         $this->setIfExists('credit_amount', $data ?? [], null);
@@ -395,11 +464,19 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
         $this->setIfExists('expiry_unit', $data ?? [], null);
         $this->setIfExists('expiry_unit_count', $data ?? [], null);
         $this->setIfExists('license_id', $data ?? [], null);
+        $this->setIfExists('overdraft_limit', $data ?? [], null);
+        $this->setIfExists('postpaid_enabled', $data ?? [], null);
+        $this->setIfExists('postpaid_rate_per_unit', $data ?? [], null);
+        $this->setIfExists('postpaid_rate_per_unit_decimal', $data ?? [], null);
+        $this->setIfExists('price_tiers', $data ?? [], null);
         $this->setIfExists('reset_cadence', $data ?? [], null);
         $this->setIfExists('reset_start', $data ?? [], null);
         $this->setIfExists('reset_type', $data ?? [], null);
         $this->setIfExists('rollover_percentage', $data ?? [], null);
         $this->setIfExists('scaling', $data ?? [], null);
+        $this->setIfExists('tier_mode', $data ?? [], null);
+        $this->setIfExists('unit_price', $data ?? [], null);
+        $this->setIfExists('unit_price_decimal', $data ?? [], null);
     }
 
     /**
@@ -469,6 +546,18 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             $invalidProperties[] = "invalid value for 'expiry_unit_count', must be bigger than or equal to 1.";
         }
 
+        if (!is_null($this->container['postpaid_rate_per_unit']) && ($this->container['postpaid_rate_per_unit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'postpaid_rate_per_unit', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['price_tiers']) && (count($this->container['price_tiers']) > 20)) {
+            $invalidProperties[] = "invalid value for 'price_tiers', number of items must be less than or equal to 20.";
+        }
+
+        if (!is_null($this->container['price_tiers']) && (count($this->container['price_tiers']) < 2)) {
+            $invalidProperties[] = "invalid value for 'price_tiers', number of items must be greater than or equal to 2.";
+        }
+
         if ($this->container['reset_cadence'] === null) {
             $invalidProperties[] = "'reset_cadence' can't be null";
         }
@@ -481,6 +570,10 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
 
         if (!is_null($this->container['rollover_percentage']) && ($this->container['rollover_percentage'] < 0)) {
             $invalidProperties[] = "invalid value for 'rollover_percentage', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['unit_price']) && ($this->container['unit_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'unit_price', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -528,6 +621,74 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             }
         }
         $this->container['apply_to_existing'] = $apply_to_existing;
+
+        return $this;
+    }
+
+    /**
+     * Gets arrears_anchor
+     *
+     * @return \Schematic\Model\BillingArrearsAnchor|null
+     */
+    public function getArrearsAnchor()
+    {
+        return $this->container['arrears_anchor'];
+    }
+
+    /**
+     * Sets arrears_anchor
+     *
+     * @param \Schematic\Model\BillingArrearsAnchor|null $arrears_anchor Which boundary closes a monthly arrears window: the subscription's own recurrence (billing_period_start) or the calendar month (month_end). Only applies when arrears_cadence is monthly; defaults to billing_period_start. Send null to fall back to the default.
+     *
+     * @return self
+     */
+    public function setArrearsAnchor($arrears_anchor)
+    {
+        if (is_null($arrears_anchor)) {
+            array_push($this->openAPINullablesSetToNull, 'arrears_anchor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('arrears_anchor', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['arrears_anchor'] = $arrears_anchor;
+
+        return $this;
+    }
+
+    /**
+     * Gets arrears_cadence
+     *
+     * @return \Schematic\Model\BillingArrearsCadence|null
+     */
+    public function getArrearsCadence()
+    {
+        return $this->container['arrears_cadence'];
+    }
+
+    /**
+     * Sets arrears_cadence
+     *
+     * @param \Schematic\Model\BillingArrearsCadence|null $arrears_cadence How often postpaid charges are closed and invoiced: end_of_billing_period (the default) or monthly. Quarterly is not available for postpaid charges. Send null to fall back to the default.
+     *
+     * @return self
+     */
+    public function setArrearsCadence($arrears_cadence)
+    {
+        if (is_null($arrears_cadence)) {
+            array_push($this->openAPINullablesSetToNull, 'arrears_cadence');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('arrears_cadence', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['arrears_cadence'] = $arrears_cadence;
 
         return $this;
     }
@@ -896,9 +1057,44 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
     }
 
     /**
+     * Gets billing_mode
+     *
+     * @return \Schematic\Model\BillingPlanCreditGrantBillingMode|null
+     */
+    public function getBillingMode()
+    {
+        return $this->container['billing_mode'];
+    }
+
+    /**
+     * Sets billing_mode
+     *
+     * @param \Schematic\Model\BillingPlanCreditGrantBillingMode|null $billing_mode Whether the credits are included in the plan price (granted) or billed as their own subscription line at a price per credit (billed). Billed is only available on custom plans.
+     *
+     * @return self
+     */
+    public function setBillingMode($billing_mode)
+    {
+        if (is_null($billing_mode)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_mode');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_mode', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_mode'] = $billing_mode;
+
+        return $this;
+    }
+
+    /**
      * Gets can_buy_bundles
      *
      * @return bool|null
+     * @deprecated
      */
     public function getCanBuyBundles()
     {
@@ -908,9 +1104,10 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
     /**
      * Sets can_buy_bundles
      *
-     * @param bool|null $can_buy_bundles can_buy_bundles
+     * @param bool|null $can_buy_bundles Deprecated: use compatible_plan_ids on credit bundles instead. Still accepted; writes through to the credit's bundle compatibility.
      *
      * @return self
+     * @deprecated
      */
     public function setCanBuyBundles($can_buy_bundles)
     {
@@ -1155,6 +1352,188 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
     }
 
     /**
+     * Gets overdraft_limit
+     *
+     * @return float|null
+     */
+    public function getOverdraftLimit()
+    {
+        return $this->container['overdraft_limit'];
+    }
+
+    /**
+     * Sets overdraft_limit
+     *
+     * @param float|null $overdraft_limit Optional limit on how far the balance may go below zero, in credits. It is a floor on the balance rather than an allowance per invoice window: the balance may run down to minus this figure, and beyond it the flag check denies the same way an exhausted balance does with postpaid off. Nothing resets when an invoice window rolls, so a company that reaches the limit stays denied until a new grant lands or the negative balance is settled. Send null to remove the limit.
+     *
+     * @return self
+     */
+    public function setOverdraftLimit($overdraft_limit)
+    {
+        if (is_null($overdraft_limit)) {
+            array_push($this->openAPINullablesSetToNull, 'overdraft_limit');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('overdraft_limit', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['overdraft_limit'] = $overdraft_limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_enabled
+     *
+     * @return bool|null
+     */
+    public function getPostpaidEnabled()
+    {
+        return $this->container['postpaid_enabled'];
+    }
+
+    /**
+     * Sets postpaid_enabled
+     *
+     * @param bool|null $postpaid_enabled Whether consumption may continue past a zero balance. When false (the default) the flag check denies once the balance is exhausted, which is the existing behavior. When true, consumption continues and accrues at postpaid_rate_per_unit, settled on arrears_cadence. Intended for invoice-billed customers on net terms, who have no card for auto top-up to charge.
+     *
+     * @return self
+     */
+    public function setPostpaidEnabled($postpaid_enabled)
+    {
+        if (is_null($postpaid_enabled)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_enabled');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_enabled', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_enabled'] = $postpaid_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_rate_per_unit
+     *
+     * @return int|null
+     */
+    public function getPostpaidRatePerUnit()
+    {
+        return $this->container['postpaid_rate_per_unit'];
+    }
+
+    /**
+     * Sets postpaid_rate_per_unit
+     *
+     * @param int|null $postpaid_rate_per_unit Amount charged per credit consumed past a zero balance, in the currency's minor unit. Send null to clear it, in which case an enabled grant falls back to the credit's own cost basis (price_per_unit).
+     *
+     * @return self
+     */
+    public function setPostpaidRatePerUnit($postpaid_rate_per_unit)
+    {
+        if (is_null($postpaid_rate_per_unit)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_rate_per_unit');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_rate_per_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($postpaid_rate_per_unit) && ($postpaid_rate_per_unit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $postpaid_rate_per_unit when calling UpdateBillingPlanCreditGrantRequestBody., must be bigger than or equal to 0.');
+        }
+
+        $this->container['postpaid_rate_per_unit'] = $postpaid_rate_per_unit;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_rate_per_unit_decimal
+     *
+     * @return string|null
+     */
+    public function getPostpaidRatePerUnitDecimal()
+    {
+        return $this->container['postpaid_rate_per_unit_decimal'];
+    }
+
+    /**
+     * Sets postpaid_rate_per_unit_decimal
+     *
+     * @param string|null $postpaid_rate_per_unit_decimal Decimal string form of postpaid_rate_per_unit, for rates finer than one minor unit (for example 0.0002). Takes precedence over postpaid_rate_per_unit when both are set, matching how the credit's own price_per_unit_decimal behaves. Send null to clear it.
+     *
+     * @return self
+     */
+    public function setPostpaidRatePerUnitDecimal($postpaid_rate_per_unit_decimal)
+    {
+        if (is_null($postpaid_rate_per_unit_decimal)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_rate_per_unit_decimal');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_rate_per_unit_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_rate_per_unit_decimal'] = $postpaid_rate_per_unit_decimal;
+
+        return $this;
+    }
+
+    /**
+     * Gets price_tiers
+     *
+     * @return \Schematic\Model\CreditGrantPriceTierRequestBody[]|null
+     */
+    public function getPriceTiers()
+    {
+        return $this->container['price_tiers'];
+    }
+
+    /**
+     * Sets price_tiers
+     *
+     * @param \Schematic\Model\CreditGrantPriceTierRequestBody[]|null $price_tiers Tier table pricing the credits on this grant, cheapest bound first, the last tier unbounded. Sending it moves the grant off one rate per credit. Requires tier_mode.
+     *
+     * @return self
+     */
+    public function setPriceTiers($price_tiers)
+    {
+        if (is_null($price_tiers)) {
+            array_push($this->openAPINullablesSetToNull, 'price_tiers');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('price_tiers', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($price_tiers) && (count($price_tiers) > 20)) {
+            throw new \InvalidArgumentException('invalid value for $price_tiers when calling UpdateBillingPlanCreditGrantRequestBody., number of items must be less than or equal to 20.');
+        }
+        if (!is_null($price_tiers) && (count($price_tiers) < 2)) {
+            throw new \InvalidArgumentException('invalid length for $price_tiers when calling UpdateBillingPlanCreditGrantRequestBody., number of items must be greater than or equal to 2.');
+        }
+        $this->container['price_tiers'] = $price_tiers;
+
+        return $this;
+    }
+
+    /**
      * Gets reset_cadence
      *
      * @return \Schematic\Model\BillingPlanCreditGrantResetCadence
@@ -1314,6 +1693,113 @@ class UpdateBillingPlanCreditGrantRequestBody implements ModelInterface, ArrayAc
             }
         }
         $this->container['scaling'] = $scaling;
+
+        return $this;
+    }
+
+    /**
+     * Gets tier_mode
+     *
+     * @return \Schematic\Model\BillingTiersMode|null
+     */
+    public function getTierMode()
+    {
+        return $this->container['tier_mode'];
+    }
+
+    /**
+     * Sets tier_mode
+     *
+     * @param \Schematic\Model\BillingTiersMode|null $tier_mode How price_tiers apply: volume prices every credit at the rate of the tier the total lands in, graduated prices each tier's own credits at its own rate. Required with price_tiers.
+     *
+     * @return self
+     */
+    public function setTierMode($tier_mode)
+    {
+        if (is_null($tier_mode)) {
+            array_push($this->openAPINullablesSetToNull, 'tier_mode');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('tier_mode', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['tier_mode'] = $tier_mode;
+
+        return $this;
+    }
+
+    /**
+     * Gets unit_price
+     *
+     * @return int|null
+     */
+    public function getUnitPrice()
+    {
+        return $this->container['unit_price'];
+    }
+
+    /**
+     * Sets unit_price
+     *
+     * @param int|null $unit_price Price per credit in the plan currency's smallest unit. Required when billing_mode is billed, unless unit_price_decimal or price_tiers is set. Sending it moves a tiered grant back to one rate per credit.
+     *
+     * @return self
+     */
+    public function setUnitPrice($unit_price)
+    {
+        if (is_null($unit_price)) {
+            array_push($this->openAPINullablesSetToNull, 'unit_price');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('unit_price', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($unit_price) && ($unit_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $unit_price when calling UpdateBillingPlanCreditGrantRequestBody., must be bigger than or equal to 0.');
+        }
+
+        $this->container['unit_price'] = $unit_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets unit_price_decimal
+     *
+     * @return string|null
+     */
+    public function getUnitPriceDecimal()
+    {
+        return $this->container['unit_price_decimal'];
+    }
+
+    /**
+     * Sets unit_price_decimal
+     *
+     * @param string|null $unit_price_decimal Price per credit as a decimal in the plan currency's smallest unit, for prices below one cent.
+     *
+     * @return self
+     */
+    public function setUnitPriceDecimal($unit_price_decimal)
+    {
+        if (is_null($unit_price_decimal)) {
+            array_push($this->openAPINullablesSetToNull, 'unit_price_decimal');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('unit_price_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['unit_price_decimal'] = $unit_price_decimal;
 
         return $this;
     }

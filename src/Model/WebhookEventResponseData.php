@@ -58,6 +58,7 @@ class WebhookEventResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
+        'attempt_count' => 'int',
         'created_at' => '\DateTime',
         'id' => 'string',
         'payload' => 'string',
@@ -77,6 +78,7 @@ class WebhookEventResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'attempt_count' => 'int64',
         'created_at' => 'date-time',
         'id' => null,
         'payload' => null,
@@ -94,6 +96,7 @@ class WebhookEventResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'attempt_count' => false,
         'created_at' => false,
         'id' => false,
         'payload' => true,
@@ -191,6 +194,7 @@ class WebhookEventResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
+        'attempt_count' => 'attempt_count',
         'created_at' => 'created_at',
         'id' => 'id',
         'payload' => 'payload',
@@ -208,6 +212,7 @@ class WebhookEventResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
+        'attempt_count' => 'setAttemptCount',
         'created_at' => 'setCreatedAt',
         'id' => 'setId',
         'payload' => 'setPayload',
@@ -225,6 +230,7 @@ class WebhookEventResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
+        'attempt_count' => 'getAttemptCount',
         'created_at' => 'getCreatedAt',
         'id' => 'getId',
         'payload' => 'getPayload',
@@ -293,6 +299,7 @@ class WebhookEventResponseData implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('attempt_count', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('payload', $data ?? [], null);
@@ -331,6 +338,9 @@ class WebhookEventResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['attempt_count'] === null) {
+            $invalidProperties[] = "'attempt_count' can't be null";
+        }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -363,6 +373,33 @@ class WebhookEventResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets attempt_count
+     *
+     * @return int
+     */
+    public function getAttemptCount()
+    {
+        return $this->container['attempt_count'];
+    }
+
+    /**
+     * Sets attempt_count
+     *
+     * @param int $attempt_count attempt_count
+     *
+     * @return self
+     */
+    public function setAttemptCount($attempt_count)
+    {
+        if (is_null($attempt_count)) {
+            throw new \InvalidArgumentException('non-nullable attempt_count cannot be null');
+        }
+        $this->container['attempt_count'] = $attempt_count;
+
+        return $this;
+    }
 
     /**
      * Gets created_at

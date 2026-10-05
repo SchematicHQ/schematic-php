@@ -342,6 +342,15 @@ class UpdatePlanGroupRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "show_estimated_total"
+     */
+    public function testPropertyShowEstimatedTotal()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "show_feature_description"
      */
     public function testPropertyShowFeatureDescription()
@@ -390,6 +399,15 @@ class UpdatePlanGroupRequestBodyTest extends TestCase
      * Test attribute "trial_days"
      */
     public function testPropertyTrialDays()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "trial_eligibility_per_plan"
+     */
+    public function testPropertyTrialEligibilityPerPlan()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

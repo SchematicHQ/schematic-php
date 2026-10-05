@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**billing_credit_arrears_anchor** | [**\Schematic\Model\BillingArrearsAnchor**](BillingArrearsAnchor.md) |  | [optional]
+**billing_credit_arrears_cadence** | [**\Schematic\Model\BillingArrearsCadence**](BillingArrearsCadence.md) |  | [optional]
 **billing_credit_auto_topup_amount** | **int** |  | [optional]
 **billing_credit_auto_topup_amount_type** | **string** |  | [optional]
 **billing_credit_auto_topup_availability** | [**\Schematic\Model\BillingCreditAutoTopupAvailability**](BillingCreditAutoTopupAvailability.md) |  | [optional]
@@ -15,6 +17,12 @@ Name | Type | Description | Notes
 **billing_credit_auto_topup_threshold_credits** | **int** |  | [optional]
 **billing_credit_auto_topup_threshold_percent** | **int** |  | [optional]
 **billing_credit_can_buy_bundles** | **bool** |  |
+**billing_credit_overdraft_limit** | **float** |  | [optional]
+**billing_credit_postpaid_enabled** | **bool** |  |
+**billing_credit_postpaid_rate_per_unit** | **int** |  | [optional]
+**billing_credit_postpaid_rate_per_unit_decimal** | **string** |  | [optional]
+**billing_mode** | [**\Schematic\Model\BillingPlanCreditGrantBillingMode**](BillingPlanCreditGrantBillingMode.md) |  |
+**billing_product_price_id** | **string** |  | [optional]
 **company_credit_amount** | **int** |  |
 **created_at** | **\DateTime** |  |
 **credit** | [**\Schematic\Model\BillingCreditView**](BillingCreditView.md) |  | [optional]
@@ -32,6 +40,7 @@ Name | Type | Description | Notes
 **plan_id** | **string** |  |
 **plan_version_id** | **string** |  | [optional]
 **plural_name** | **string** | Deprecated field, will be removed in the future. Use Credit.PluralName instead. | [optional]
+**price** | [**\Schematic\Model\BillingPriceView**](BillingPriceView.md) |  | [optional]
 **reset_cadence** | [**\Schematic\Model\BillingPlanCreditGrantResetCadence**](BillingPlanCreditGrantResetCadence.md) |  | [optional]
 **reset_start** | [**\Schematic\Model\BillingPlanCreditGrantResetStart**](BillingPlanCreditGrantResetStart.md) |  | [optional]
 **reset_type** | [**\Schematic\Model\BillingPlanCreditGrantResetType**](BillingPlanCreditGrantResetType.md) |  |

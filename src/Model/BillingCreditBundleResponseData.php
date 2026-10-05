@@ -60,6 +60,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
     protected static $openAPITypes = [
         'billing_invoice_id' => 'string',
         'bundle_type' => '\Schematic\Model\BillingCreditBundleType',
+        'compatible_plan_ids' => 'string[]',
         'created_at' => '\DateTime',
         'credit_description' => 'string',
         'credit_icon' => 'string',
@@ -91,6 +92,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
     protected static $openAPIFormats = [
         'billing_invoice_id' => null,
         'bundle_type' => null,
+        'compatible_plan_ids' => null,
         'created_at' => 'date-time',
         'credit_description' => null,
         'credit_icon' => null,
@@ -120,6 +122,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
     protected static array $openAPINullables = [
         'billing_invoice_id' => true,
         'bundle_type' => false,
+        'compatible_plan_ids' => false,
         'created_at' => false,
         'credit_description' => false,
         'credit_icon' => true,
@@ -229,6 +232,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
     protected static $attributeMap = [
         'billing_invoice_id' => 'billing_invoice_id',
         'bundle_type' => 'bundle_type',
+        'compatible_plan_ids' => 'compatible_plan_ids',
         'created_at' => 'created_at',
         'credit_description' => 'credit_description',
         'credit_icon' => 'credit_icon',
@@ -258,6 +262,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
     protected static $setters = [
         'billing_invoice_id' => 'setBillingInvoiceId',
         'bundle_type' => 'setBundleType',
+        'compatible_plan_ids' => 'setCompatiblePlanIds',
         'created_at' => 'setCreatedAt',
         'credit_description' => 'setCreditDescription',
         'credit_icon' => 'setCreditIcon',
@@ -287,6 +292,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
     protected static $getters = [
         'billing_invoice_id' => 'getBillingInvoiceId',
         'bundle_type' => 'getBundleType',
+        'compatible_plan_ids' => 'getCompatiblePlanIds',
         'created_at' => 'getCreatedAt',
         'credit_description' => 'getCreditDescription',
         'credit_icon' => 'getCreditIcon',
@@ -367,6 +373,7 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
     {
         $this->setIfExists('billing_invoice_id', $data ?? [], null);
         $this->setIfExists('bundle_type', $data ?? [], null);
+        $this->setIfExists('compatible_plan_ids', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('credit_description', $data ?? [], null);
         $this->setIfExists('credit_icon', $data ?? [], null);
@@ -418,6 +425,13 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
         if ($this->container['bundle_type'] === null) {
             $invalidProperties[] = "'bundle_type' can't be null";
         }
+        if ($this->container['compatible_plan_ids'] === null) {
+            $invalidProperties[] = "'compatible_plan_ids' can't be null";
+        }
+        if ((count($this->container['compatible_plan_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'compatible_plan_ids', number of items must be less than or equal to 100.";
+        }
+
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -527,6 +541,37 @@ class BillingCreditBundleResponseData implements ModelInterface, ArrayAccess, \J
             throw new \InvalidArgumentException('non-nullable bundle_type cannot be null');
         }
         $this->container['bundle_type'] = $bundle_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets compatible_plan_ids
+     *
+     * @return string[]
+     */
+    public function getCompatiblePlanIds()
+    {
+        return $this->container['compatible_plan_ids'];
+    }
+
+    /**
+     * Sets compatible_plan_ids
+     *
+     * @param string[] $compatible_plan_ids Plans whose companies may purchase this bundle. Empty means the bundle is purchasable on every plan.
+     *
+     * @return self
+     */
+    public function setCompatiblePlanIds($compatible_plan_ids)
+    {
+        if (is_null($compatible_plan_ids)) {
+            throw new \InvalidArgumentException('non-nullable compatible_plan_ids cannot be null');
+        }
+
+        if ((count($compatible_plan_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $compatible_plan_ids when calling BillingCreditBundleResponseData., number of items must be less than or equal to 100.');
+        }
+        $this->container['compatible_plan_ids'] = $compatible_plan_ids;
 
         return $this;
     }

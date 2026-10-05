@@ -90,6 +90,15 @@ class PreviewSubscriptionFinanceResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "discount_amount"
      */
     public function testPropertyDiscountAmount()
@@ -165,6 +174,15 @@ class PreviewSubscriptionFinanceResponseDataTest extends TestCase
      * Test attribute "proration"
      */
     public function testPropertyProration()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "proration_billed_at"
+     */
+    public function testPropertyProrationBilledAt()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

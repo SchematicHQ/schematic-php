@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **description** | **string** |  |
 **draft_version** | [**\Schematic\Model\PlanVersionResponseData**](PlanVersionResponseData.md) |  | [optional]
 **entitlements** | [**\Schematic\Model\PlanEntitlementResponseData[]**](PlanEntitlementResponseData.md) |  | [optional]
+**estimated_totals** | [**\Schematic\Model\EstimatedPlanTotal[]**](EstimatedPlanTotal.md) |  | [optional]
 **features** | [**\Schematic\Model\FeatureInPlanResponseData[]**](FeatureInPlanResponseData.md) |  |
 **icon** | [**\Schematic\Model\PlanIcon**](PlanIcon.md) |  |
 **id** | **string** |  |

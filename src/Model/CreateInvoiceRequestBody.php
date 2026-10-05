@@ -72,6 +72,7 @@ class CreateInvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'status' => '\Schematic\Model\InvoiceStatus',
         'subscription_external_id' => 'string',
         'subtotal' => 'int',
+        'total' => 'int',
         'url' => 'string'
     ];
 
@@ -97,6 +98,7 @@ class CreateInvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'status' => null,
         'subscription_external_id' => null,
         'subtotal' => 'int64',
+        'total' => 'int64',
         'url' => null
     ];
 
@@ -120,6 +122,7 @@ class CreateInvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'status' => true,
         'subscription_external_id' => true,
         'subtotal' => false,
+        'total' => true,
         'url' => true
     ];
 
@@ -223,6 +226,7 @@ class CreateInvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'status' => 'status',
         'subscription_external_id' => 'subscription_external_id',
         'subtotal' => 'subtotal',
+        'total' => 'total',
         'url' => 'url'
     ];
 
@@ -246,6 +250,7 @@ class CreateInvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'status' => 'setStatus',
         'subscription_external_id' => 'setSubscriptionExternalId',
         'subtotal' => 'setSubtotal',
+        'total' => 'setTotal',
         'url' => 'setUrl'
     ];
 
@@ -269,6 +274,7 @@ class CreateInvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         'status' => 'getStatus',
         'subscription_external_id' => 'getSubscriptionExternalId',
         'subtotal' => 'getSubtotal',
+        'total' => 'getTotal',
         'url' => 'getUrl'
     ];
 
@@ -343,6 +349,7 @@ class CreateInvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('subscription_external_id', $data ?? [], null);
         $this->setIfExists('subtotal', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
     }
 
@@ -884,6 +891,40 @@ class CreateInvoiceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable subtotal cannot be null');
         }
         $this->container['subtotal'] = $subtotal;
+
+        return $this;
+    }
+
+    /**
+     * Gets total
+     *
+     * @return int|null
+     */
+    public function getTotal()
+    {
+        return $this->container['total'];
+    }
+
+    /**
+     * Sets total
+     *
+     * @param int|null $total total
+     *
+     * @return self
+     */
+    public function setTotal($total)
+    {
+        if (is_null($total)) {
+            array_push($this->openAPINullablesSetToNull, 'total');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['total'] = $total;
 
         return $this;
     }

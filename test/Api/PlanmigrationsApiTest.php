@@ -73,6 +73,30 @@ class PlanmigrationsApiTest extends TestCase
     }
 
     /**
+     * Test case for cancelMigration
+     *
+     * Cancel migration.
+     *
+     */
+    public function testCancelMigration()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for completeMigrationNow
+     *
+     * Complete migration now.
+     *
+     */
+    public function testCompleteMigrationNow()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for countCompanyMigrations
      *
      * Count company migrations.

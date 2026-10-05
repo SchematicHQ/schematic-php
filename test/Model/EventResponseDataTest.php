@@ -216,6 +216,15 @@ class EventResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "reservation_id"
+     */
+    public function testPropertyReservationId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "sent_at"
      */
     public function testPropertySentAt()

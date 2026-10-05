@@ -63,6 +63,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'environment_type' => '\Schematic\Model\EnvironmentType',
         'id' => 'string',
         'name' => 'string',
+        'require_context_signature' => 'bool',
         'updated_at' => '\DateTime'
     ];
 
@@ -79,6 +80,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'environment_type' => null,
         'id' => null,
         'name' => null,
+        'require_context_signature' => null,
         'updated_at' => 'date-time'
     ];
 
@@ -93,6 +95,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'environment_type' => false,
         'id' => false,
         'name' => false,
+        'require_context_signature' => false,
         'updated_at' => false
     ];
 
@@ -187,6 +190,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'environment_type' => 'environment_type',
         'id' => 'id',
         'name' => 'name',
+        'require_context_signature' => 'require_context_signature',
         'updated_at' => 'updated_at'
     ];
 
@@ -201,6 +205,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'environment_type' => 'setEnvironmentType',
         'id' => 'setId',
         'name' => 'setName',
+        'require_context_signature' => 'setRequireContextSignature',
         'updated_at' => 'setUpdatedAt'
     ];
 
@@ -215,6 +220,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'environment_type' => 'getEnvironmentType',
         'id' => 'getId',
         'name' => 'getName',
+        'require_context_signature' => 'getRequireContextSignature',
         'updated_at' => 'getUpdatedAt'
     ];
 
@@ -280,6 +286,7 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('environment_type', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('require_context_signature', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
     }
 
@@ -328,6 +335,9 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['require_context_signature'] === null) {
+            $invalidProperties[] = "'require_context_signature' can't be null";
         }
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
@@ -482,6 +492,33 @@ class EnvironmentDetailResponseData implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets require_context_signature
+     *
+     * @return bool
+     */
+    public function getRequireContextSignature()
+    {
+        return $this->container['require_context_signature'];
+    }
+
+    /**
+     * Sets require_context_signature
+     *
+     * @param bool $require_context_signature require_context_signature
+     *
+     * @return self
+     */
+    public function setRequireContextSignature($require_context_signature)
+    {
+        if (is_null($require_context_signature)) {
+            throw new \InvalidArgumentException('non-nullable require_context_signature cannot be null');
+        }
+        $this->container['require_context_signature'] = $require_context_signature;
 
         return $this;
     }

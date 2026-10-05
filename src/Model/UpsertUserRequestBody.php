@@ -356,8 +356,12 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['keys'] === null) {
             $invalidProperties[] = "'keys' can't be null";
         }
-        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 256)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 256.";
+        if ((count($this->container['keys']) > 100)) {
+            $invalidProperties[] = "invalid value for 'keys', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
         }
 
         if (!is_null($this->container['remove_keys']) && (count($this->container['remove_keys']) > 100)) {
@@ -579,6 +583,10 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         if (is_null($keys)) {
             throw new \InvalidArgumentException('non-nullable keys cannot be null');
         }
+
+        if ((count($keys) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $keys when calling UpsertUserRequestBody., number of items must be less than or equal to 100.');
+        }
         $this->container['keys'] = $keys;
 
         return $this;
@@ -647,8 +655,8 @@ class UpsertUserRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        if (!is_null($name) && (mb_strlen($name) > 256)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling UpsertUserRequestBody., must be smaller than or equal to 256.');
+        if (!is_null($name) && (mb_strlen($name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling UpsertUserRequestBody., must be smaller than or equal to 255.');
         }
 
         $this->container['name'] = $name;

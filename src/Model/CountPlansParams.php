@@ -62,6 +62,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'company_id' => 'string',
         'company_scoped_only' => 'bool',
         'exclude_company_scoped' => 'bool',
+        'exclude_unused' => 'bool',
         'for_fallback_plan' => 'bool',
         'for_initial_plan' => 'bool',
         'for_trial_expiry_plan' => 'bool',
@@ -74,7 +75,9 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'q' => 'string',
         'scoped_to_company_id' => 'string',
         'with_entitlements' => 'bool',
+        'with_published_version' => 'bool',
         'without_entitlement_for' => 'string',
+        'without_entitlement_for_include_drafts' => 'bool',
         'without_paid_product_id' => 'bool'
     ];
 
@@ -89,6 +92,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'company_id' => null,
         'company_scoped_only' => null,
         'exclude_company_scoped' => null,
+        'exclude_unused' => null,
         'for_fallback_plan' => null,
         'for_initial_plan' => null,
         'for_trial_expiry_plan' => null,
@@ -101,7 +105,9 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'q' => null,
         'scoped_to_company_id' => null,
         'with_entitlements' => null,
+        'with_published_version' => null,
         'without_entitlement_for' => null,
+        'without_entitlement_for_include_drafts' => null,
         'without_paid_product_id' => null
     ];
 
@@ -114,6 +120,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'company_id' => false,
         'company_scoped_only' => false,
         'exclude_company_scoped' => false,
+        'exclude_unused' => false,
         'for_fallback_plan' => false,
         'for_initial_plan' => false,
         'for_trial_expiry_plan' => false,
@@ -126,7 +133,9 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'q' => false,
         'scoped_to_company_id' => false,
         'with_entitlements' => false,
+        'with_published_version' => false,
         'without_entitlement_for' => false,
+        'without_entitlement_for_include_drafts' => false,
         'without_paid_product_id' => false
     ];
 
@@ -219,6 +228,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'company_id' => 'company_id',
         'company_scoped_only' => 'company_scoped_only',
         'exclude_company_scoped' => 'exclude_company_scoped',
+        'exclude_unused' => 'exclude_unused',
         'for_fallback_plan' => 'for_fallback_plan',
         'for_initial_plan' => 'for_initial_plan',
         'for_trial_expiry_plan' => 'for_trial_expiry_plan',
@@ -231,7 +241,9 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'q' => 'q',
         'scoped_to_company_id' => 'scoped_to_company_id',
         'with_entitlements' => 'with_entitlements',
+        'with_published_version' => 'with_published_version',
         'without_entitlement_for' => 'without_entitlement_for',
+        'without_entitlement_for_include_drafts' => 'without_entitlement_for_include_drafts',
         'without_paid_product_id' => 'without_paid_product_id'
     ];
 
@@ -244,6 +256,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'company_id' => 'setCompanyId',
         'company_scoped_only' => 'setCompanyScopedOnly',
         'exclude_company_scoped' => 'setExcludeCompanyScoped',
+        'exclude_unused' => 'setExcludeUnused',
         'for_fallback_plan' => 'setForFallbackPlan',
         'for_initial_plan' => 'setForInitialPlan',
         'for_trial_expiry_plan' => 'setForTrialExpiryPlan',
@@ -256,7 +269,9 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'q' => 'setQ',
         'scoped_to_company_id' => 'setScopedToCompanyId',
         'with_entitlements' => 'setWithEntitlements',
+        'with_published_version' => 'setWithPublishedVersion',
         'without_entitlement_for' => 'setWithoutEntitlementFor',
+        'without_entitlement_for_include_drafts' => 'setWithoutEntitlementForIncludeDrafts',
         'without_paid_product_id' => 'setWithoutPaidProductId'
     ];
 
@@ -269,6 +284,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'company_id' => 'getCompanyId',
         'company_scoped_only' => 'getCompanyScopedOnly',
         'exclude_company_scoped' => 'getExcludeCompanyScoped',
+        'exclude_unused' => 'getExcludeUnused',
         'for_fallback_plan' => 'getForFallbackPlan',
         'for_initial_plan' => 'getForInitialPlan',
         'for_trial_expiry_plan' => 'getForTrialExpiryPlan',
@@ -281,7 +297,9 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         'q' => 'getQ',
         'scoped_to_company_id' => 'getScopedToCompanyId',
         'with_entitlements' => 'getWithEntitlements',
+        'with_published_version' => 'getWithPublishedVersion',
         'without_entitlement_for' => 'getWithoutEntitlementFor',
+        'without_entitlement_for_include_drafts' => 'getWithoutEntitlementForIncludeDrafts',
         'without_paid_product_id' => 'getWithoutPaidProductId'
     ];
 
@@ -345,6 +363,7 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('company_scoped_only', $data ?? [], null);
         $this->setIfExists('exclude_company_scoped', $data ?? [], null);
+        $this->setIfExists('exclude_unused', $data ?? [], null);
         $this->setIfExists('for_fallback_plan', $data ?? [], null);
         $this->setIfExists('for_initial_plan', $data ?? [], null);
         $this->setIfExists('for_trial_expiry_plan', $data ?? [], null);
@@ -357,7 +376,9 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('q', $data ?? [], null);
         $this->setIfExists('scoped_to_company_id', $data ?? [], null);
         $this->setIfExists('with_entitlements', $data ?? [], null);
+        $this->setIfExists('with_published_version', $data ?? [], null);
         $this->setIfExists('without_entitlement_for', $data ?? [], null);
+        $this->setIfExists('without_entitlement_for_include_drafts', $data ?? [], null);
         $this->setIfExists('without_paid_product_id', $data ?? [], null);
     }
 
@@ -398,6 +419,10 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['limit']) && ($this->container['limit'] < 0)) {
             $invalidProperties[] = "invalid value for 'limit', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['q']) && (mb_strlen($this->container['q']) > 512)) {
+            $invalidProperties[] = "invalid value for 'q', the character length must be smaller than or equal to 512.";
         }
 
         return $invalidProperties;
@@ -492,6 +517,33 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable exclude_company_scoped cannot be null');
         }
         $this->container['exclude_company_scoped'] = $exclude_company_scoped;
+
+        return $this;
+    }
+
+    /**
+     * Gets exclude_unused
+     *
+     * @return bool|null
+     */
+    public function getExcludeUnused()
+    {
+        return $this->container['exclude_unused'];
+    }
+
+    /**
+     * Sets exclude_unused
+     *
+     * @param bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version
+     *
+     * @return self
+     */
+    public function setExcludeUnused($exclude_unused)
+    {
+        if (is_null($exclude_unused)) {
+            throw new \InvalidArgumentException('non-nullable exclude_unused cannot be null');
+        }
+        $this->container['exclude_unused'] = $exclude_unused;
 
         return $this;
     }
@@ -773,6 +825,10 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($q)) {
             throw new \InvalidArgumentException('non-nullable q cannot be null');
         }
+        if ((mb_strlen($q) > 512)) {
+            throw new \InvalidArgumentException('invalid length for $q when calling CountPlansParams., must be smaller than or equal to 512.');
+        }
+
         $this->container['q'] = $q;
 
         return $this;
@@ -833,6 +889,33 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets with_published_version
+     *
+     * @return bool|null
+     */
+    public function getWithPublishedVersion()
+    {
+        return $this->container['with_published_version'];
+    }
+
+    /**
+     * Sets with_published_version
+     *
+     * @param bool|null $with_published_version Only return plans that have a published version
+     *
+     * @return self
+     */
+    public function setWithPublishedVersion($with_published_version)
+    {
+        if (is_null($with_published_version)) {
+            throw new \InvalidArgumentException('non-nullable with_published_version cannot be null');
+        }
+        $this->container['with_published_version'] = $with_published_version;
+
+        return $this;
+    }
+
+    /**
      * Gets without_entitlement_for
      *
      * @return string|null
@@ -855,6 +938,33 @@ class CountPlansParams implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable without_entitlement_for cannot be null');
         }
         $this->container['without_entitlement_for'] = $without_entitlement_for;
+
+        return $this;
+    }
+
+    /**
+     * Gets without_entitlement_for_include_drafts
+     *
+     * @return bool|null
+     */
+    public function getWithoutEntitlementForIncludeDrafts()
+    {
+        return $this->container['without_entitlement_for_include_drafts'];
+    }
+
+    /**
+     * Sets without_entitlement_for_include_drafts
+     *
+     * @param bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan's draft version as existing
+     *
+     * @return self
+     */
+    public function setWithoutEntitlementForIncludeDrafts($without_entitlement_for_include_drafts)
+    {
+        if (is_null($without_entitlement_for_include_drafts)) {
+            throw new \InvalidArgumentException('non-nullable without_entitlement_for_include_drafts cannot be null');
+        }
+        $this->container['without_entitlement_for_include_drafts'] = $without_entitlement_for_include_drafts;
 
         return $this;
     }

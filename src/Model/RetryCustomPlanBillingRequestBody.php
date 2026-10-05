@@ -59,8 +59,11 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
       */
     protected static $openAPITypes = [
         'activation_strategy' => '\Schematic\Model\CustomPlanActivationStrategy',
+        'billing_cycle_anchor' => '\DateTime',
+        'billing_start_date' => '\DateTime',
         'customer_email' => 'string',
         'days_until_due' => 'int',
+        'prorate_first_period' => 'bool',
         'send_invoice' => 'bool'
     ];
 
@@ -73,8 +76,11 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
       */
     protected static $openAPIFormats = [
         'activation_strategy' => null,
+        'billing_cycle_anchor' => 'date-time',
+        'billing_start_date' => 'date-time',
         'customer_email' => null,
         'days_until_due' => 'int64',
+        'prorate_first_period' => null,
         'send_invoice' => null
     ];
 
@@ -85,8 +91,11 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
       */
     protected static array $openAPINullables = [
         'activation_strategy' => true,
+        'billing_cycle_anchor' => true,
+        'billing_start_date' => true,
         'customer_email' => false,
         'days_until_due' => true,
+        'prorate_first_period' => true,
         'send_invoice' => true
     ];
 
@@ -177,8 +186,11 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
      */
     protected static $attributeMap = [
         'activation_strategy' => 'activation_strategy',
+        'billing_cycle_anchor' => 'billing_cycle_anchor',
+        'billing_start_date' => 'billing_start_date',
         'customer_email' => 'customer_email',
         'days_until_due' => 'days_until_due',
+        'prorate_first_period' => 'prorate_first_period',
         'send_invoice' => 'send_invoice'
     ];
 
@@ -189,8 +201,11 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
      */
     protected static $setters = [
         'activation_strategy' => 'setActivationStrategy',
+        'billing_cycle_anchor' => 'setBillingCycleAnchor',
+        'billing_start_date' => 'setBillingStartDate',
         'customer_email' => 'setCustomerEmail',
         'days_until_due' => 'setDaysUntilDue',
+        'prorate_first_period' => 'setProrateFirstPeriod',
         'send_invoice' => 'setSendInvoice'
     ];
 
@@ -201,8 +216,11 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
      */
     protected static $getters = [
         'activation_strategy' => 'getActivationStrategy',
+        'billing_cycle_anchor' => 'getBillingCycleAnchor',
+        'billing_start_date' => 'getBillingStartDate',
         'customer_email' => 'getCustomerEmail',
         'days_until_due' => 'getDaysUntilDue',
+        'prorate_first_period' => 'getProrateFirstPeriod',
         'send_invoice' => 'getSendInvoice'
     ];
 
@@ -264,8 +282,11 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
     public function __construct(?array $data = null)
     {
         $this->setIfExists('activation_strategy', $data ?? [], null);
+        $this->setIfExists('billing_cycle_anchor', $data ?? [], null);
+        $this->setIfExists('billing_start_date', $data ?? [], null);
         $this->setIfExists('customer_email', $data ?? [], null);
         $this->setIfExists('days_until_due', $data ?? [], null);
+        $this->setIfExists('prorate_first_period', $data ?? [], null);
         $this->setIfExists('send_invoice', $data ?? [], null);
     }
 
@@ -357,6 +378,74 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
     }
 
     /**
+     * Gets billing_cycle_anchor
+     *
+     * @return \DateTime|null
+     */
+    public function getBillingCycleAnchor()
+    {
+        return $this->container['billing_cycle_anchor'];
+    }
+
+    /**
+     * Sets billing_cycle_anchor
+     *
+     * @param \DateTime|null $billing_cycle_anchor The date the subscription's billing period renews on. Only honored when the retry creates a subscription.
+     *
+     * @return self
+     */
+    public function setBillingCycleAnchor($billing_cycle_anchor)
+    {
+        if (is_null($billing_cycle_anchor)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_cycle_anchor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_cycle_anchor', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_cycle_anchor'] = $billing_cycle_anchor;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_start_date
+     *
+     * @return \DateTime|null
+     */
+    public function getBillingStartDate()
+    {
+        return $this->container['billing_start_date'];
+    }
+
+    /**
+     * Sets billing_start_date
+     *
+     * @param \DateTime|null $billing_start_date The date the contract term starts. A past date backdates the subscription so the first invoice covers the term from this date to the renewal date. Requires billing_cycle_anchor. When both are omitted, the term pinned at finalize is reissued. Only honored when the retry creates a subscription.
+     *
+     * @return self
+     */
+    public function setBillingStartDate($billing_start_date)
+    {
+        if (is_null($billing_start_date)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_start_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_start_date', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_start_date'] = $billing_start_date;
+
+        return $this;
+    }
+
+    /**
      * Gets customer_email
      *
      * @return string
@@ -422,6 +511,40 @@ class RetryCustomPlanBillingRequestBody implements ModelInterface, ArrayAccess, 
         }
 
         $this->container['days_until_due'] = $days_until_due;
+
+        return $this;
+    }
+
+    /**
+     * Gets prorate_first_period
+     *
+     * @return bool|null
+     */
+    public function getProrateFirstPeriod()
+    {
+        return $this->container['prorate_first_period'];
+    }
+
+    /**
+     * Sets prorate_first_period
+     *
+     * @param bool|null $prorate_first_period When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true.
+     *
+     * @return self
+     */
+    public function setProrateFirstPeriod($prorate_first_period)
+    {
+        if (is_null($prorate_first_period)) {
+            array_push($this->openAPINullablesSetToNull, 'prorate_first_period');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('prorate_first_period', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['prorate_first_period'] = $prorate_first_period;
 
         return $this;
     }

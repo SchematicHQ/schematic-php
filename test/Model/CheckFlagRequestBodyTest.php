@@ -90,6 +90,15 @@ class CheckFlagRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "preflight"
+     */
+    public function testPropertyPreflight()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "user"
      */
     public function testPropertyUser()

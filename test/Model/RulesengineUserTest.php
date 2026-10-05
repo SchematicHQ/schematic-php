@@ -90,6 +90,15 @@ class RulesengineUserTest extends TestCase
     }
 
     /**
+     * Test attribute "credit_spend_policies"
+     */
+    public function testPropertyCreditSpendPolicies()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "environment_id"
      */
     public function testPropertyEnvironmentId()

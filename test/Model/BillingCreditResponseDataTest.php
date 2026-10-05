@@ -171,6 +171,15 @@ class BillingCreditResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "ledger_authority"
+     */
+    public function testPropertyLedgerAuthority()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "name"
      */
     public function testPropertyName()

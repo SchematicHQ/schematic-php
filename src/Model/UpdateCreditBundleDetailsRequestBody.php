@@ -59,6 +59,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
       */
     protected static $openAPITypes = [
         'bundle_name' => 'string',
+        'compatible_plan_ids' => 'string[]',
         'currency_prices' => '\Schematic\Model\CreditBundleCurrencyPriceRequestBody[]',
         'expiry_type' => '\Schematic\Model\BillingCreditExpiryType',
         'expiry_unit' => '\Schematic\Model\BillingCreditExpiryUnit',
@@ -78,6 +79,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
       */
     protected static $openAPIFormats = [
         'bundle_name' => null,
+        'compatible_plan_ids' => null,
         'currency_prices' => null,
         'expiry_type' => null,
         'expiry_unit' => null,
@@ -95,6 +97,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
       */
     protected static array $openAPINullables = [
         'bundle_name' => false,
+        'compatible_plan_ids' => true,
         'currency_prices' => true,
         'expiry_type' => true,
         'expiry_unit' => true,
@@ -192,6 +195,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
      */
     protected static $attributeMap = [
         'bundle_name' => 'bundle_name',
+        'compatible_plan_ids' => 'compatible_plan_ids',
         'currency_prices' => 'currency_prices',
         'expiry_type' => 'expiry_type',
         'expiry_unit' => 'expiry_unit',
@@ -209,6 +213,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
      */
     protected static $setters = [
         'bundle_name' => 'setBundleName',
+        'compatible_plan_ids' => 'setCompatiblePlanIds',
         'currency_prices' => 'setCurrencyPrices',
         'expiry_type' => 'setExpiryType',
         'expiry_unit' => 'setExpiryUnit',
@@ -226,6 +231,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
      */
     protected static $getters = [
         'bundle_name' => 'getBundleName',
+        'compatible_plan_ids' => 'getCompatiblePlanIds',
         'currency_prices' => 'getCurrencyPrices',
         'expiry_type' => 'getExpiryType',
         'expiry_unit' => 'getExpiryUnit',
@@ -294,6 +300,7 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
     public function __construct(?array $data = null)
     {
         $this->setIfExists('bundle_name', $data ?? [], null);
+        $this->setIfExists('compatible_plan_ids', $data ?? [], null);
         $this->setIfExists('currency_prices', $data ?? [], null);
         $this->setIfExists('expiry_type', $data ?? [], null);
         $this->setIfExists('expiry_unit', $data ?? [], null);
@@ -334,8 +341,12 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
         if ($this->container['bundle_name'] === null) {
             $invalidProperties[] = "'bundle_name' can't be null";
         }
-        if ((mb_strlen($this->container['bundle_name']) > 256)) {
-            $invalidProperties[] = "invalid value for 'bundle_name', the character length must be smaller than or equal to 256.";
+        if ((mb_strlen($this->container['bundle_name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'bundle_name', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['compatible_plan_ids']) && (count($this->container['compatible_plan_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'compatible_plan_ids', number of items must be less than or equal to 100.";
         }
 
         if (!is_null($this->container['currency_prices']) && (count($this->container['currency_prices']) > 50)) {
@@ -394,11 +405,49 @@ class UpdateCreditBundleDetailsRequestBody implements ModelInterface, ArrayAcces
         if (is_null($bundle_name)) {
             throw new \InvalidArgumentException('non-nullable bundle_name cannot be null');
         }
-        if ((mb_strlen($bundle_name) > 256)) {
-            throw new \InvalidArgumentException('invalid length for $bundle_name when calling UpdateCreditBundleDetailsRequestBody., must be smaller than or equal to 256.');
+        if ((mb_strlen($bundle_name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $bundle_name when calling UpdateCreditBundleDetailsRequestBody., must be smaller than or equal to 255.');
         }
 
         $this->container['bundle_name'] = $bundle_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets compatible_plan_ids
+     *
+     * @return string[]|null
+     */
+    public function getCompatiblePlanIds()
+    {
+        return $this->container['compatible_plan_ids'];
+    }
+
+    /**
+     * Sets compatible_plan_ids
+     *
+     * @param string[]|null $compatible_plan_ids Plans whose companies may purchase this bundle. Omitted leaves compatibility unchanged; empty resets the bundle to purchasable on every plan.
+     *
+     * @return self
+     */
+    public function setCompatiblePlanIds($compatible_plan_ids)
+    {
+        if (is_null($compatible_plan_ids)) {
+            array_push($this->openAPINullablesSetToNull, 'compatible_plan_ids');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('compatible_plan_ids', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($compatible_plan_ids) && (count($compatible_plan_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $compatible_plan_ids when calling UpdateCreditBundleDetailsRequestBody., number of items must be less than or equal to 100.');
+        }
+        $this->container['compatible_plan_ids'] = $compatible_plan_ids;
 
         return $this;
     }

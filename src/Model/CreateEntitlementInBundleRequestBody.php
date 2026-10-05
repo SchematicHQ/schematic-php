@@ -70,7 +70,9 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_price_tiers' => '\Schematic\Model\CreatePriceTierRequestBody[]',
         'monthly_unit_price' => 'int',
         'monthly_unit_price_decimal' => 'string',
+        'overage_billing_cadence' => '\Schematic\Model\BillingArrearsCadence',
         'overage_billing_product_id' => 'string',
+        'overage_invoice_anchor' => '\Schematic\Model\BillingArrearsAnchor',
         'plan_id' => 'string',
         'plan_version_id' => 'string',
         'price_behavior' => '\Schematic\Model\EntitlementPriceBehavior',
@@ -114,7 +116,9 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_price_tiers' => null,
         'monthly_unit_price' => 'int64',
         'monthly_unit_price_decimal' => null,
+        'overage_billing_cadence' => null,
         'overage_billing_product_id' => null,
+        'overage_invoice_anchor' => null,
         'plan_id' => null,
         'plan_version_id' => null,
         'price_behavior' => null,
@@ -156,7 +160,9 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_price_tiers' => true,
         'monthly_unit_price' => true,
         'monthly_unit_price_decimal' => true,
+        'overage_billing_cadence' => true,
         'overage_billing_product_id' => true,
+        'overage_invoice_anchor' => true,
         'plan_id' => false,
         'plan_version_id' => true,
         'price_behavior' => true,
@@ -278,7 +284,9 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_price_tiers' => 'monthly_price_tiers',
         'monthly_unit_price' => 'monthly_unit_price',
         'monthly_unit_price_decimal' => 'monthly_unit_price_decimal',
+        'overage_billing_cadence' => 'overage_billing_cadence',
         'overage_billing_product_id' => 'overage_billing_product_id',
+        'overage_invoice_anchor' => 'overage_invoice_anchor',
         'plan_id' => 'plan_id',
         'plan_version_id' => 'plan_version_id',
         'price_behavior' => 'price_behavior',
@@ -320,7 +328,9 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_price_tiers' => 'setMonthlyPriceTiers',
         'monthly_unit_price' => 'setMonthlyUnitPrice',
         'monthly_unit_price_decimal' => 'setMonthlyUnitPriceDecimal',
+        'overage_billing_cadence' => 'setOverageBillingCadence',
         'overage_billing_product_id' => 'setOverageBillingProductId',
+        'overage_invoice_anchor' => 'setOverageInvoiceAnchor',
         'plan_id' => 'setPlanId',
         'plan_version_id' => 'setPlanVersionId',
         'price_behavior' => 'setPriceBehavior',
@@ -362,7 +372,9 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         'monthly_price_tiers' => 'getMonthlyPriceTiers',
         'monthly_unit_price' => 'getMonthlyUnitPrice',
         'monthly_unit_price_decimal' => 'getMonthlyUnitPriceDecimal',
+        'overage_billing_cadence' => 'getOverageBillingCadence',
         'overage_billing_product_id' => 'getOverageBillingProductId',
+        'overage_invoice_anchor' => 'getOverageInvoiceAnchor',
         'plan_id' => 'getPlanId',
         'plan_version_id' => 'getPlanVersionId',
         'price_behavior' => 'getPriceBehavior',
@@ -455,7 +467,9 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
         $this->setIfExists('monthly_price_tiers', $data ?? [], null);
         $this->setIfExists('monthly_unit_price', $data ?? [], null);
         $this->setIfExists('monthly_unit_price_decimal', $data ?? [], null);
+        $this->setIfExists('overage_billing_cadence', $data ?? [], null);
         $this->setIfExists('overage_billing_product_id', $data ?? [], null);
+        $this->setIfExists('overage_invoice_anchor', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('price_behavior', $data ?? [], null);
@@ -525,6 +539,10 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             $invalidProperties[] = "invalid value for 'monthly_price_tiers', number of items must be less than or equal to 100.";
         }
 
+        if (!is_null($this->container['monthly_unit_price']) && ($this->container['monthly_unit_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'monthly_unit_price', must be bigger than or equal to 0.";
+        }
+
         if ($this->container['plan_id'] === null) {
             $invalidProperties[] = "'plan_id' can't be null";
         }
@@ -534,6 +552,10 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
 
         if (!is_null($this->container['quarterly_price_tiers']) && (count($this->container['quarterly_price_tiers']) > 100)) {
             $invalidProperties[] = "invalid value for 'quarterly_price_tiers', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['quarterly_unit_price']) && ($this->container['quarterly_unit_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'quarterly_unit_price', must be bigger than or equal to 0.";
         }
 
         if (!is_null($this->container['usage_quantity']) && ($this->container['usage_quantity'] < 0)) {
@@ -549,6 +571,10 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
 
         if (!is_null($this->container['yearly_price_tiers']) && (count($this->container['yearly_price_tiers']) > 100)) {
             $invalidProperties[] = "invalid value for 'yearly_price_tiers', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['yearly_unit_price']) && ($this->container['yearly_unit_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'yearly_unit_price', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -946,6 +972,11 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($monthly_unit_price) && ($monthly_unit_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $monthly_unit_price when calling CreateEntitlementInBundleRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['monthly_unit_price'] = $monthly_unit_price;
 
         return $this;
@@ -986,6 +1017,40 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
     }
 
     /**
+     * Gets overage_billing_cadence
+     *
+     * @return \Schematic\Model\BillingArrearsCadence|null
+     */
+    public function getOverageBillingCadence()
+    {
+        return $this->container['overage_billing_cadence'];
+    }
+
+    /**
+     * Sets overage_billing_cadence
+     *
+     * @param \Schematic\Model\BillingArrearsCadence|null $overage_billing_cadence How often overage charges are assessed and invoiced. Defaults to end_of_billing_period, where the billing provider aggregates usage over the subscription's own period and bills it at period end. Set to monthly or quarterly to have overage assessed each month or quarter and billed on its own invoice, which is the point of the setting on annual plans. A quarter charges each month's usage against that month's allowance. Only applies to overage price behavior.
+     *
+     * @return self
+     */
+    public function setOverageBillingCadence($overage_billing_cadence)
+    {
+        if (is_null($overage_billing_cadence)) {
+            array_push($this->openAPINullablesSetToNull, 'overage_billing_cadence');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('overage_billing_cadence', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['overage_billing_cadence'] = $overage_billing_cadence;
+
+        return $this;
+    }
+
+    /**
      * Gets overage_billing_product_id
      *
      * @return string|null
@@ -1017,6 +1082,40 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
             }
         }
         $this->container['overage_billing_product_id'] = $overage_billing_product_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets overage_invoice_anchor
+     *
+     * @return \Schematic\Model\BillingArrearsAnchor|null
+     */
+    public function getOverageInvoiceAnchor()
+    {
+        return $this->container['overage_invoice_anchor'];
+    }
+
+    /**
+     * Sets overage_invoice_anchor
+     *
+     * @param \Schematic\Model\BillingArrearsAnchor|null $overage_invoice_anchor Which boundary closes a monthly or quarterly overage window: the subscription's own recurrence (billing_period_start) or the calendar month (month_end). Quarterly windows run in three-month blocks from the billing period start, held to the subscription's own period, or in calendar quarters at month_end. Only applies when overage_billing_cadence is monthly or quarterly, and must match metric_period_month_reset so each window closes when the allowance resets: billing_period_start for billing_cycle, month_end for first_of_month. Defaults to the anchor that matches the reset.
+     *
+     * @return self
+     */
+    public function setOverageInvoiceAnchor($overage_invoice_anchor)
+    {
+        if (is_null($overage_invoice_anchor)) {
+            array_push($this->openAPINullablesSetToNull, 'overage_invoice_anchor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('overage_invoice_anchor', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['overage_invoice_anchor'] = $overage_invoice_anchor;
 
         return $this;
     }
@@ -1259,6 +1358,11 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($quarterly_unit_price) && ($quarterly_unit_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $quarterly_unit_price when calling CreateEntitlementInBundleRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['quarterly_unit_price'] = $quarterly_unit_price;
 
         return $this;
@@ -1379,7 +1483,7 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
     /**
      * Sets usage_quantity
      *
-     * @param int|null $usage_quantity The committed unit quantity for this entitlement. For custom plans this is the quantity the company is contractually committed to; for standard plans it is the quantity pre-filled when subscribing. Only applies to pay-in-advance entitlements. Note: this is not yet enforced/auto-provisioned as a true default — it is currently stored for downstream billing use.
+     * @param int|null $usage_quantity The committed unit quantity for this entitlement. For custom plans this is the minimum the company is contractually committed to: the company can buy more, and finalizing a new plan version sets the subscription quantity to the larger of this value and what the subscription already holds. For standard plans it is the quantity pre-filled when subscribing. Only applies to pay-in-advance entitlements.
      *
      * @return self
      */
@@ -1709,6 +1813,11 @@ class CreateEntitlementInBundleRequestBody implements ModelInterface, ArrayAcces
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($yearly_unit_price) && ($yearly_unit_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $yearly_unit_price when calling CreateEntitlementInBundleRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['yearly_unit_price'] = $yearly_unit_price;
 
         return $this;

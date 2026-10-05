@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **plan_id** | **string** | Restrict the export to companies on this plan ID (starting with &#39;plan_&#39;) | [optional]
 **plan_ids** | **string[]** | Restrict the export to companies on any of these plan IDs | [optional]
 **plan_version_id** | **string** | Restrict the export to companies on this plan version ID | [optional]
+**plan_version_unpublished** | **bool** | Restrict the export to companies on a plan version that is no longer published | [optional]
 **q** | **string** | Free-text search over audit log entries | [optional]
 **sort_order_column** | **string** | Column to sort the exported rows by (e.g. name, created_at, plan); defaults to name | [optional]
 **sort_order_direction** | **string** | Direction to sort the exported rows by; defaults to asc | [optional]

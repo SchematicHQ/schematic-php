@@ -64,6 +64,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_version_id_to' => 'string',
         'plan_version_ids_from' => 'string[]',
         'proration_behavior' => '\Schematic\Model\MigrationProrationBehavior',
+        'scheduled_at' => '\DateTime',
         'strategy' => '\Schematic\Model\PlanVersionMigrationStrategy',
         'target_plan_type' => '\Schematic\Model\PlanType'
     ];
@@ -82,6 +83,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_version_id_to' => null,
         'plan_version_ids_from' => null,
         'proration_behavior' => null,
+        'scheduled_at' => 'date-time',
         'strategy' => null,
         'target_plan_type' => null
     ];
@@ -98,6 +100,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_version_id_to' => false,
         'plan_version_ids_from' => false,
         'proration_behavior' => true,
+        'scheduled_at' => true,
         'strategy' => false,
         'target_plan_type' => false
     ];
@@ -194,6 +197,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_version_id_to' => 'plan_version_id_to',
         'plan_version_ids_from' => 'plan_version_ids_from',
         'proration_behavior' => 'proration_behavior',
+        'scheduled_at' => 'scheduled_at',
         'strategy' => 'strategy',
         'target_plan_type' => 'target_plan_type'
     ];
@@ -210,6 +214,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_version_id_to' => 'setPlanVersionIdTo',
         'plan_version_ids_from' => 'setPlanVersionIdsFrom',
         'proration_behavior' => 'setProrationBehavior',
+        'scheduled_at' => 'setScheduledAt',
         'strategy' => 'setStrategy',
         'target_plan_type' => 'setTargetPlanType'
     ];
@@ -226,6 +231,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_version_id_to' => 'getPlanVersionIdTo',
         'plan_version_ids_from' => 'getPlanVersionIdsFrom',
         'proration_behavior' => 'getProrationBehavior',
+        'scheduled_at' => 'getScheduledAt',
         'strategy' => 'getStrategy',
         'target_plan_type' => 'getTargetPlanType'
     ];
@@ -293,6 +299,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('plan_version_id_to', $data ?? [], null);
         $this->setIfExists('plan_version_ids_from', $data ?? [], null);
         $this->setIfExists('proration_behavior', $data ?? [], null);
+        $this->setIfExists('scheduled_at', $data ?? [], null);
         $this->setIfExists('strategy', $data ?? [], null);
         $this->setIfExists('target_plan_type', $data ?? [], null);
     }
@@ -523,7 +530,7 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets proration_behavior
      *
-     * @param \Schematic\Model\MigrationProrationBehavior|null $proration_behavior proration_behavior
+     * @param \Schematic\Model\MigrationProrationBehavior|null $proration_behavior How Stripe handles the price difference when companies are migrated. With strategy immediate, omitted means create_prorations. With end_of_billing_period only none is accepted and means the same as omitting it: the change lands on the renewal boundary, so there is nothing to prorate. With scheduled any value is accepted and omitted means none.
      *
      * @return self
      */
@@ -540,6 +547,40 @@ class CreateMigrationInput implements ModelInterface, ArrayAccess, \JsonSerializ
             }
         }
         $this->container['proration_behavior'] = $proration_behavior;
+
+        return $this;
+    }
+
+    /**
+     * Gets scheduled_at
+     *
+     * @return \DateTime|null
+     */
+    public function getScheduledAt()
+    {
+        return $this->container['scheduled_at'];
+    }
+
+    /**
+     * Sets scheduled_at
+     *
+     * @param \DateTime|null $scheduled_at When every company moves, for strategy scheduled. Must be in the future; the migration runs within about a minute of this time. Not accepted with other strategies.
+     *
+     * @return self
+     */
+    public function setScheduledAt($scheduled_at)
+    {
+        if (is_null($scheduled_at)) {
+            array_push($this->openAPINullablesSetToNull, 'scheduled_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('scheduled_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['scheduled_at'] = $scheduled_at;
 
         return $this;
     }

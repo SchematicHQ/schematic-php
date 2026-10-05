@@ -144,6 +144,15 @@ class CreditLeaseResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "tracked_amount"
+     */
+    public function testPropertyTrackedAmount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "updated_at"
      */
     public function testPropertyUpdatedAt()

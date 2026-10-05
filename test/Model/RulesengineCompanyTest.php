@@ -117,6 +117,24 @@ class RulesengineCompanyTest extends TestCase
     }
 
     /**
+     * Test attribute "credit_postpaid"
+     */
+    public function testPropertyCreditPostpaid()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "credit_spend_policies"
+     */
+    public function testPropertyCreditSpendPolicies()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "entitlements"
      */
     public function testPropertyEntitlements()

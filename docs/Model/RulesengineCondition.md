@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **metric_period** | [**\Schematic\Model\RulesengineMetricPeriod**](RulesengineMetricPeriod.md) |  | [optional]
 **metric_period_month_reset** | [**\Schematic\Model\RulesengineMetricPeriodMonthReset**](RulesengineMetricPeriodMonthReset.md) |  | [optional]
 **metric_value** | **int** |  | [optional]
-**operator** | [**\Schematic\Model\ComparableOperator**](ComparableOperator.md) |  |
+**operator** | [**\Schematic\Model\RulesengineComparableOperator**](RulesengineComparableOperator.md) |  |
 **resource_ids** | **string[]** |  |
 **trait_definition** | [**\Schematic\Model\RulesengineTraitDefinition**](RulesengineTraitDefinition.md) |  | [optional]
 **trait_value** | **string** |  |

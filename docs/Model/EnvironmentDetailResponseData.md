@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **environment_type** | [**\Schematic\Model\EnvironmentType**](EnvironmentType.md) |  |
 **id** | **string** |  |
 **name** | **string** |  |
+**require_context_signature** | **bool** |  |
 **updated_at** | **\DateTime** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

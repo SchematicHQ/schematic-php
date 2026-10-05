@@ -61,7 +61,8 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
         'company_id' => 'string',
         'credit_type_id' => 'string',
         'expires_at' => '\DateTime',
-        'requested_amount' => 'float'
+        'requested_amount' => 'float',
+        'user_id' => 'string'
     ];
 
     /**
@@ -75,7 +76,8 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
         'company_id' => null,
         'credit_type_id' => null,
         'expires_at' => 'date-time',
-        'requested_amount' => 'double'
+        'requested_amount' => 'double',
+        'user_id' => null
     ];
 
     /**
@@ -87,7 +89,8 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
         'company_id' => false,
         'credit_type_id' => false,
         'expires_at' => true,
-        'requested_amount' => false
+        'requested_amount' => false,
+        'user_id' => true
     ];
 
     /**
@@ -179,7 +182,8 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
         'company_id' => 'company_id',
         'credit_type_id' => 'credit_type_id',
         'expires_at' => 'expires_at',
-        'requested_amount' => 'requested_amount'
+        'requested_amount' => 'requested_amount',
+        'user_id' => 'user_id'
     ];
 
     /**
@@ -191,7 +195,8 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
         'company_id' => 'setCompanyId',
         'credit_type_id' => 'setCreditTypeId',
         'expires_at' => 'setExpiresAt',
-        'requested_amount' => 'setRequestedAmount'
+        'requested_amount' => 'setRequestedAmount',
+        'user_id' => 'setUserId'
     ];
 
     /**
@@ -203,7 +208,8 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
         'company_id' => 'getCompanyId',
         'credit_type_id' => 'getCreditTypeId',
         'expires_at' => 'getExpiresAt',
-        'requested_amount' => 'getRequestedAmount'
+        'requested_amount' => 'getRequestedAmount',
+        'user_id' => 'getUserId'
     ];
 
     /**
@@ -267,6 +273,7 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('credit_type_id', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
         $this->setIfExists('requested_amount', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
     }
 
     /**
@@ -305,6 +312,10 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['requested_amount'] === null) {
             $invalidProperties[] = "'requested_amount' can't be null";
         }
+        if (($this->container['requested_amount'] > 9999999999)) {
+            $invalidProperties[] = "invalid value for 'requested_amount', must be smaller than or equal to 9999999999.";
+        }
+
         return $invalidProperties;
     }
 
@@ -387,7 +398,7 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets expires_at
      *
-     * @param \DateTime|null $expires_at expires_at
+     * @param \DateTime|null $expires_at When the hold lapses if the lease is never released; defaults to five minutes from now and may be at most one hour out. The unspent hold is refunded on expiry
      *
      * @return self
      */
@@ -430,7 +441,46 @@ class AcquireCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Jso
         if (is_null($requested_amount)) {
             throw new \InvalidArgumentException('non-nullable requested_amount cannot be null');
         }
+
+        if (($requested_amount > 9999999999)) {
+            throw new \InvalidArgumentException('invalid value for $requested_amount when calling AcquireCreditLeaseRequestBody., must be smaller than or equal to 9999999999.');
+        }
+
         $this->container['requested_amount'] = $requested_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     *
+     * @return string|null
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     *
+     * @param string|null $user_id The user drawing the hold, so a user-scope spend policy applies to it
+     *
+     * @return self
+     */
+    public function setUserId($user_id)
+    {
+        if (is_null($user_id)) {
+            array_push($this->openAPINullablesSetToNull, 'user_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['user_id'] = $user_id;
 
         return $this;
     }

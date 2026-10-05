@@ -126,6 +126,15 @@ class IssueTemporaryAccessTokenResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "issuer_type"
+     */
+    public function testPropertyIssuerType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "resource_type"
      */
     public function testPropertyResourceType()

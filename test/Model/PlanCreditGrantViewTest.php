@@ -81,6 +81,24 @@ class PlanCreditGrantViewTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_credit_arrears_anchor"
+     */
+    public function testPropertyBillingCreditArrearsAnchor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_credit_arrears_cadence"
+     */
+    public function testPropertyBillingCreditArrearsCadence()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "billing_credit_auto_topup_amount"
      */
     public function testPropertyBillingCreditAutoTopupAmount()
@@ -174,6 +192,60 @@ class PlanCreditGrantViewTest extends TestCase
      * Test attribute "billing_credit_can_buy_bundles"
      */
     public function testPropertyBillingCreditCanBuyBundles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_credit_overdraft_limit"
+     */
+    public function testPropertyBillingCreditOverdraftLimit()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_credit_postpaid_enabled"
+     */
+    public function testPropertyBillingCreditPostpaidEnabled()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_credit_postpaid_rate_per_unit"
+     */
+    public function testPropertyBillingCreditPostpaidRatePerUnit()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_credit_postpaid_rate_per_unit_decimal"
+     */
+    public function testPropertyBillingCreditPostpaidRatePerUnitDecimal()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_mode"
+     */
+    public function testPropertyBillingMode()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_product_price_id"
+     */
+    public function testPropertyBillingProductPriceId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -327,6 +399,15 @@ class PlanCreditGrantViewTest extends TestCase
      * Test attribute "plural_name"
      */
     public function testPropertyPluralName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "price"
+     */
+    public function testPropertyPrice()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

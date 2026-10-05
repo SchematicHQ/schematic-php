@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **note** | **string** |  | [optional]
 **plan_version_id_from** | **string** |  | [optional]
 **will_update_subscription** | **bool** |  |
+**would_fail** | **bool** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

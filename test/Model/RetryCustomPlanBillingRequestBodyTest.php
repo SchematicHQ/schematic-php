@@ -90,6 +90,24 @@ class RetryCustomPlanBillingRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_cycle_anchor"
+     */
+    public function testPropertyBillingCycleAnchor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_start_date"
+     */
+    public function testPropertyBillingStartDate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "customer_email"
      */
     public function testPropertyCustomerEmail()
@@ -102,6 +120,15 @@ class RetryCustomPlanBillingRequestBodyTest extends TestCase
      * Test attribute "days_until_due"
      */
     public function testPropertyDaysUntilDue()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "prorate_first_period"
+     */
+    public function testPropertyProrateFirstPeriod()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

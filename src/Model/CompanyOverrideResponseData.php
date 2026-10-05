@@ -74,6 +74,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         'rule_id_usage_exceeded' => 'string',
         'updated_at' => '\DateTime',
         'value_bool' => 'bool',
+        'value_credit' => '\Schematic\Model\BillingCreditResponseData',
+        'value_credit_id' => 'string',
         'value_numeric' => 'int',
         'value_trait' => '\Schematic\Model\EntityTraitDefinitionResponseData',
         'value_trait_id' => 'string',
@@ -104,6 +106,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         'rule_id_usage_exceeded' => null,
         'updated_at' => 'date-time',
         'value_bool' => null,
+        'value_credit' => null,
+        'value_credit_id' => null,
         'value_numeric' => 'int64',
         'value_trait' => null,
         'value_trait_id' => null,
@@ -132,6 +136,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         'rule_id_usage_exceeded' => true,
         'updated_at' => false,
         'value_bool' => true,
+        'value_credit' => false,
+        'value_credit_id' => true,
         'value_numeric' => true,
         'value_trait' => false,
         'value_trait_id' => true,
@@ -240,6 +246,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         'rule_id_usage_exceeded' => 'rule_id_usage_exceeded',
         'updated_at' => 'updated_at',
         'value_bool' => 'value_bool',
+        'value_credit' => 'value_credit',
+        'value_credit_id' => 'value_credit_id',
         'value_numeric' => 'value_numeric',
         'value_trait' => 'value_trait',
         'value_trait_id' => 'value_trait_id',
@@ -268,6 +276,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         'rule_id_usage_exceeded' => 'setRuleIdUsageExceeded',
         'updated_at' => 'setUpdatedAt',
         'value_bool' => 'setValueBool',
+        'value_credit' => 'setValueCredit',
+        'value_credit_id' => 'setValueCreditId',
         'value_numeric' => 'setValueNumeric',
         'value_trait' => 'setValueTrait',
         'value_trait_id' => 'setValueTraitId',
@@ -296,6 +306,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         'rule_id_usage_exceeded' => 'getRuleIdUsageExceeded',
         'updated_at' => 'getUpdatedAt',
         'value_bool' => 'getValueBool',
+        'value_credit' => 'getValueCredit',
+        'value_credit_id' => 'getValueCreditId',
         'value_numeric' => 'getValueNumeric',
         'value_trait' => 'getValueTrait',
         'value_trait_id' => 'getValueTraitId',
@@ -375,6 +387,8 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('rule_id_usage_exceeded', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('value_bool', $data ?? [], null);
+        $this->setIfExists('value_credit', $data ?? [], null);
+        $this->setIfExists('value_credit_id', $data ?? [], null);
         $this->setIfExists('value_numeric', $data ?? [], null);
         $this->setIfExists('value_trait', $data ?? [], null);
         $this->setIfExists('value_trait_id', $data ?? [], null);
@@ -932,6 +946,67 @@ class CompanyOverrideResponseData implements ModelInterface, ArrayAccess, \JsonS
             }
         }
         $this->container['value_bool'] = $value_bool;
+
+        return $this;
+    }
+
+    /**
+     * Gets value_credit
+     *
+     * @return \Schematic\Model\BillingCreditResponseData|null
+     */
+    public function getValueCredit()
+    {
+        return $this->container['value_credit'];
+    }
+
+    /**
+     * Sets value_credit
+     *
+     * @param \Schematic\Model\BillingCreditResponseData|null $value_credit value_credit
+     *
+     * @return self
+     */
+    public function setValueCredit($value_credit)
+    {
+        if (is_null($value_credit)) {
+            throw new \InvalidArgumentException('non-nullable value_credit cannot be null');
+        }
+        $this->container['value_credit'] = $value_credit;
+
+        return $this;
+    }
+
+    /**
+     * Gets value_credit_id
+     *
+     * @return string|null
+     */
+    public function getValueCreditId()
+    {
+        return $this->container['value_credit_id'];
+    }
+
+    /**
+     * Sets value_credit_id
+     *
+     * @param string|null $value_credit_id value_credit_id
+     *
+     * @return self
+     */
+    public function setValueCreditId($value_credit_id)
+    {
+        if (is_null($value_credit_id)) {
+            array_push($this->openAPINullablesSetToNull, 'value_credit_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('value_credit_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['value_credit_id'] = $value_credit_id;
 
         return $this;
     }

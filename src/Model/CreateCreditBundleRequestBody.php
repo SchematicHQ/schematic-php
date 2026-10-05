@@ -60,6 +60,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPITypes = [
         'bundle_name' => 'string',
         'bundle_type' => '\Schematic\Model\BillingCreditBundleType',
+        'compatible_plan_ids' => 'string[]',
         'credit_id' => 'string',
         'currency' => 'string',
         'currency_prices' => '\Schematic\Model\CreditBundleCurrencyPriceRequestBody[]',
@@ -82,6 +83,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPIFormats = [
         'bundle_name' => null,
         'bundle_type' => null,
+        'compatible_plan_ids' => null,
         'credit_id' => null,
         'currency' => null,
         'currency_prices' => null,
@@ -102,6 +104,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static array $openAPINullables = [
         'bundle_name' => false,
         'bundle_type' => true,
+        'compatible_plan_ids' => true,
         'credit_id' => false,
         'currency' => false,
         'currency_prices' => true,
@@ -202,6 +205,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $attributeMap = [
         'bundle_name' => 'bundle_name',
         'bundle_type' => 'bundle_type',
+        'compatible_plan_ids' => 'compatible_plan_ids',
         'credit_id' => 'credit_id',
         'currency' => 'currency',
         'currency_prices' => 'currency_prices',
@@ -222,6 +226,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $setters = [
         'bundle_name' => 'setBundleName',
         'bundle_type' => 'setBundleType',
+        'compatible_plan_ids' => 'setCompatiblePlanIds',
         'credit_id' => 'setCreditId',
         'currency' => 'setCurrency',
         'currency_prices' => 'setCurrencyPrices',
@@ -242,6 +247,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $getters = [
         'bundle_name' => 'getBundleName',
         'bundle_type' => 'getBundleType',
+        'compatible_plan_ids' => 'getCompatiblePlanIds',
         'credit_id' => 'getCreditId',
         'currency' => 'getCurrency',
         'currency_prices' => 'getCurrencyPrices',
@@ -313,6 +319,7 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
     {
         $this->setIfExists('bundle_name', $data ?? [], null);
         $this->setIfExists('bundle_type', $data ?? [], null);
+        $this->setIfExists('compatible_plan_ids', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('currency_prices', $data ?? [], null);
@@ -355,8 +362,12 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['bundle_name'] === null) {
             $invalidProperties[] = "'bundle_name' can't be null";
         }
-        if ((mb_strlen($this->container['bundle_name']) > 256)) {
-            $invalidProperties[] = "invalid value for 'bundle_name', the character length must be smaller than or equal to 256.";
+        if ((mb_strlen($this->container['bundle_name']) > 255)) {
+            $invalidProperties[] = "invalid value for 'bundle_name', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['compatible_plan_ids']) && (count($this->container['compatible_plan_ids']) > 100)) {
+            $invalidProperties[] = "invalid value for 'compatible_plan_ids', number of items must be less than or equal to 100.";
         }
 
         if ($this->container['credit_id'] === null) {
@@ -365,6 +376,10 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
+        if ((mb_strlen($this->container['currency']) > 3)) {
+            $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
+        }
+
         if (!is_null($this->container['currency_prices']) && (count($this->container['currency_prices']) > 50)) {
             $invalidProperties[] = "invalid value for 'currency_prices', number of items must be less than or equal to 50.";
         }
@@ -421,8 +436,8 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         if (is_null($bundle_name)) {
             throw new \InvalidArgumentException('non-nullable bundle_name cannot be null');
         }
-        if ((mb_strlen($bundle_name) > 256)) {
-            throw new \InvalidArgumentException('invalid length for $bundle_name when calling CreateCreditBundleRequestBody., must be smaller than or equal to 256.');
+        if ((mb_strlen($bundle_name) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $bundle_name when calling CreateCreditBundleRequestBody., must be smaller than or equal to 255.');
         }
 
         $this->container['bundle_name'] = $bundle_name;
@@ -460,6 +475,44 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['bundle_type'] = $bundle_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets compatible_plan_ids
+     *
+     * @return string[]|null
+     */
+    public function getCompatiblePlanIds()
+    {
+        return $this->container['compatible_plan_ids'];
+    }
+
+    /**
+     * Sets compatible_plan_ids
+     *
+     * @param string[]|null $compatible_plan_ids Plans whose companies may purchase this bundle. Omitted or empty means the bundle is purchasable on every plan.
+     *
+     * @return self
+     */
+    public function setCompatiblePlanIds($compatible_plan_ids)
+    {
+        if (is_null($compatible_plan_ids)) {
+            array_push($this->openAPINullablesSetToNull, 'compatible_plan_ids');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('compatible_plan_ids', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($compatible_plan_ids) && (count($compatible_plan_ids) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $compatible_plan_ids when calling CreateCreditBundleRequestBody., number of items must be less than or equal to 100.');
+        }
+        $this->container['compatible_plan_ids'] = $compatible_plan_ids;
 
         return $this;
     }
@@ -513,6 +566,10 @@ class CreateCreditBundleRequestBody implements ModelInterface, ArrayAccess, \Jso
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
+        if ((mb_strlen($currency) > 3)) {
+            throw new \InvalidArgumentException('invalid length for $currency when calling CreateCreditBundleRequestBody., must be smaller than or equal to 3.');
+        }
+
         $this->container['currency'] = $currency;
 
         return $this;

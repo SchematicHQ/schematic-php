@@ -91,6 +91,7 @@ class PlanGroupDetailResponseData implements ModelInterface, ArrayAccess, \JsonS
         'sync_customer_billing_details' => 'bool',
         'tax_collection_enabled' => 'bool',
         'trial_days' => 'int',
+        'trial_eligibility_per_plan' => 'bool',
         'trial_expiry_plan' => '\Schematic\Model\PlanGroupPlanDetailResponseData',
         'trial_expiry_plan_id' => 'string',
         'trial_expiry_plan_price' => '\Schematic\Model\BillingPriceView',
@@ -139,6 +140,7 @@ class PlanGroupDetailResponseData implements ModelInterface, ArrayAccess, \JsonS
         'sync_customer_billing_details' => null,
         'tax_collection_enabled' => null,
         'trial_days' => 'int64',
+        'trial_eligibility_per_plan' => null,
         'trial_expiry_plan' => null,
         'trial_expiry_plan_id' => null,
         'trial_expiry_plan_price' => null,
@@ -185,6 +187,7 @@ class PlanGroupDetailResponseData implements ModelInterface, ArrayAccess, \JsonS
         'sync_customer_billing_details' => false,
         'tax_collection_enabled' => false,
         'trial_days' => true,
+        'trial_eligibility_per_plan' => false,
         'trial_expiry_plan' => false,
         'trial_expiry_plan_id' => true,
         'trial_expiry_plan_price' => false,
@@ -311,6 +314,7 @@ class PlanGroupDetailResponseData implements ModelInterface, ArrayAccess, \JsonS
         'sync_customer_billing_details' => 'sync_customer_billing_details',
         'tax_collection_enabled' => 'tax_collection_enabled',
         'trial_days' => 'trial_days',
+        'trial_eligibility_per_plan' => 'trial_eligibility_per_plan',
         'trial_expiry_plan' => 'trial_expiry_plan',
         'trial_expiry_plan_id' => 'trial_expiry_plan_id',
         'trial_expiry_plan_price' => 'trial_expiry_plan_price',
@@ -357,6 +361,7 @@ class PlanGroupDetailResponseData implements ModelInterface, ArrayAccess, \JsonS
         'sync_customer_billing_details' => 'setSyncCustomerBillingDetails',
         'tax_collection_enabled' => 'setTaxCollectionEnabled',
         'trial_days' => 'setTrialDays',
+        'trial_eligibility_per_plan' => 'setTrialEligibilityPerPlan',
         'trial_expiry_plan' => 'setTrialExpiryPlan',
         'trial_expiry_plan_id' => 'setTrialExpiryPlanId',
         'trial_expiry_plan_price' => 'setTrialExpiryPlanPrice',
@@ -403,6 +408,7 @@ class PlanGroupDetailResponseData implements ModelInterface, ArrayAccess, \JsonS
         'sync_customer_billing_details' => 'getSyncCustomerBillingDetails',
         'tax_collection_enabled' => 'getTaxCollectionEnabled',
         'trial_days' => 'getTrialDays',
+        'trial_eligibility_per_plan' => 'getTrialEligibilityPerPlan',
         'trial_expiry_plan' => 'getTrialExpiryPlan',
         'trial_expiry_plan_id' => 'getTrialExpiryPlanId',
         'trial_expiry_plan_price' => 'getTrialExpiryPlanPrice',
@@ -500,6 +506,7 @@ class PlanGroupDetailResponseData implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('sync_customer_billing_details', $data ?? [], null);
         $this->setIfExists('tax_collection_enabled', $data ?? [], null);
         $this->setIfExists('trial_days', $data ?? [], null);
+        $this->setIfExists('trial_eligibility_per_plan', $data ?? [], null);
         $this->setIfExists('trial_expiry_plan', $data ?? [], null);
         $this->setIfExists('trial_expiry_plan_id', $data ?? [], null);
         $this->setIfExists('trial_expiry_plan_price', $data ?? [], null);
@@ -611,6 +618,9 @@ class PlanGroupDetailResponseData implements ModelInterface, ArrayAccess, \JsonS
         }
         if ($this->container['tax_collection_enabled'] === null) {
             $invalidProperties[] = "'tax_collection_enabled' can't be null";
+        }
+        if ($this->container['trial_eligibility_per_plan'] === null) {
+            $invalidProperties[] = "'trial_eligibility_per_plan' can't be null";
         }
         return $invalidProperties;
     }
@@ -1618,6 +1628,33 @@ class PlanGroupDetailResponseData implements ModelInterface, ArrayAccess, \JsonS
             }
         }
         $this->container['trial_days'] = $trial_days;
+
+        return $this;
+    }
+
+    /**
+     * Gets trial_eligibility_per_plan
+     *
+     * @return bool
+     */
+    public function getTrialEligibilityPerPlan()
+    {
+        return $this->container['trial_eligibility_per_plan'];
+    }
+
+    /**
+     * Sets trial_eligibility_per_plan
+     *
+     * @param bool $trial_eligibility_per_plan trial_eligibility_per_plan
+     *
+     * @return self
+     */
+    public function setTrialEligibilityPerPlan($trial_eligibility_per_plan)
+    {
+        if (is_null($trial_eligibility_per_plan)) {
+            throw new \InvalidArgumentException('non-nullable trial_eligibility_per_plan cannot be null');
+        }
+        $this->container['trial_eligibility_per_plan'] = $trial_eligibility_per_plan;
 
         return $this;
     }

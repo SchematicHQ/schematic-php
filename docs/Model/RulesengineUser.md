@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_id** | **string** |  |
+**credit_spend_policies** | [**\Schematic\Model\RulesengineCreditSpendPolicy[]**](RulesengineCreditSpendPolicy.md) |  | [optional]
 **environment_id** | **string** |  |
 **id** | **string** |  |
 **keys** | **array<string,string>** |  |

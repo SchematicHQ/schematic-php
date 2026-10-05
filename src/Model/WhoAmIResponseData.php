@@ -64,6 +64,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'api_key_id' => 'string',
         'environment_id' => 'string',
         'environments' => '\Schematic\Model\EnvironmentResponseData[]',
+        'onboarding_complete' => 'bool',
         'stripe_user_id' => 'string',
         'user_id' => 'string',
         'user_name' => 'string'
@@ -83,6 +84,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'api_key_id' => null,
         'environment_id' => null,
         'environments' => null,
+        'onboarding_complete' => null,
         'stripe_user_id' => null,
         'user_id' => null,
         'user_name' => null
@@ -100,6 +102,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'api_key_id' => true,
         'environment_id' => true,
         'environments' => false,
+        'onboarding_complete' => false,
         'stripe_user_id' => false,
         'user_id' => false,
         'user_name' => false
@@ -197,6 +200,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'api_key_id' => 'api_key_id',
         'environment_id' => 'environment_id',
         'environments' => 'environments',
+        'onboarding_complete' => 'onboarding_complete',
         'stripe_user_id' => 'stripe_user_id',
         'user_id' => 'user_id',
         'user_name' => 'user_name'
@@ -214,6 +218,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'api_key_id' => 'setApiKeyId',
         'environment_id' => 'setEnvironmentId',
         'environments' => 'setEnvironments',
+        'onboarding_complete' => 'setOnboardingComplete',
         'stripe_user_id' => 'setStripeUserId',
         'user_id' => 'setUserId',
         'user_name' => 'setUserName'
@@ -231,6 +236,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'api_key_id' => 'getApiKeyId',
         'environment_id' => 'getEnvironmentId',
         'environments' => 'getEnvironments',
+        'onboarding_complete' => 'getOnboardingComplete',
         'stripe_user_id' => 'getStripeUserId',
         'user_id' => 'getUserId',
         'user_name' => 'getUserName'
@@ -299,6 +305,7 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('api_key_id', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('environments', $data ?? [], null);
+        $this->setIfExists('onboarding_complete', $data ?? [], null);
         $this->setIfExists('stripe_user_id', $data ?? [], null);
         $this->setIfExists('user_id', $data ?? [], null);
         $this->setIfExists('user_name', $data ?? [], null);
@@ -347,6 +354,9 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
             $invalidProperties[] = "invalid value for 'environments', number of items must be less than or equal to 1000.";
         }
 
+        if ($this->container['onboarding_complete'] === null) {
+            $invalidProperties[] = "'onboarding_complete' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -538,6 +548,33 @@ class WhoAmIResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('invalid value for $environments when calling WhoAmIResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['environments'] = $environments;
+
+        return $this;
+    }
+
+    /**
+     * Gets onboarding_complete
+     *
+     * @return bool
+     */
+    public function getOnboardingComplete()
+    {
+        return $this->container['onboarding_complete'];
+    }
+
+    /**
+     * Sets onboarding_complete
+     *
+     * @param bool $onboarding_complete onboarding_complete
+     *
+     * @return self
+     */
+    public function setOnboardingComplete($onboarding_complete)
+    {
+        if (is_null($onboarding_complete)) {
+            throw new \InvalidArgumentException('non-nullable onboarding_complete cannot be null');
+        }
+        $this->container['onboarding_complete'] = $onboarding_complete;
 
         return $this;
     }

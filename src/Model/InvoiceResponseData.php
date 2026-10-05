@@ -77,6 +77,7 @@ class InvoiceResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => '\Schematic\Model\InvoiceStatus',
         'subscription_external_id' => 'string',
         'subtotal' => 'int',
+        'total' => 'int',
         'updated_at' => '\DateTime',
         'url' => 'string'
     ];
@@ -108,6 +109,7 @@ class InvoiceResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => null,
         'subscription_external_id' => null,
         'subtotal' => 'int64',
+        'total' => 'int64',
         'updated_at' => 'date-time',
         'url' => null
     ];
@@ -137,6 +139,7 @@ class InvoiceResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => true,
         'subscription_external_id' => true,
         'subtotal' => false,
+        'total' => true,
         'updated_at' => false,
         'url' => true
     ];
@@ -246,6 +249,7 @@ class InvoiceResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => 'status',
         'subscription_external_id' => 'subscription_external_id',
         'subtotal' => 'subtotal',
+        'total' => 'total',
         'updated_at' => 'updated_at',
         'url' => 'url'
     ];
@@ -275,6 +279,7 @@ class InvoiceResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => 'setStatus',
         'subscription_external_id' => 'setSubscriptionExternalId',
         'subtotal' => 'setSubtotal',
+        'total' => 'setTotal',
         'updated_at' => 'setUpdatedAt',
         'url' => 'setUrl'
     ];
@@ -304,6 +309,7 @@ class InvoiceResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         'status' => 'getStatus',
         'subscription_external_id' => 'getSubscriptionExternalId',
         'subtotal' => 'getSubtotal',
+        'total' => 'getTotal',
         'updated_at' => 'getUpdatedAt',
         'url' => 'getUrl'
     ];
@@ -384,6 +390,7 @@ class InvoiceResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('subscription_external_id', $data ?? [], null);
         $this->setIfExists('subtotal', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('url', $data ?? [], null);
     }
@@ -1023,6 +1030,40 @@ class InvoiceResponseData implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable subtotal cannot be null');
         }
         $this->container['subtotal'] = $subtotal;
+
+        return $this;
+    }
+
+    /**
+     * Gets total
+     *
+     * @return int|null
+     */
+    public function getTotal()
+    {
+        return $this->container['total'];
+    }
+
+    /**
+     * Sets total
+     *
+     * @param int|null $total Amount after discounts and tax, before applying the customer balance. Null when the provider has not reported it: rows synced before the column existed, or pushed without one.
+     *
+     * @return self
+     */
+    public function setTotal($total)
+    {
+        if (is_null($total)) {
+            array_push($this->openAPINullablesSetToNull, 'total');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('total', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['total'] = $total;
 
         return $this;
     }

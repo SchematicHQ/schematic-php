@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **company_id** | **string** |  |
 **copied_from_plan_id** | **string** |  | [optional]
-**description** | **string** |  |
+**copied_price_id** | **string** |  | [optional]
+**description** | **string** |  | [optional]
 **icon** | [**\Schematic\Model\PlanIcon**](PlanIcon.md) |  | [optional]
 **name** | **string** |  |
 

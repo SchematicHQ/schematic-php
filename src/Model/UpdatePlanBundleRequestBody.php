@@ -314,6 +314,9 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
             $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 100.";
         }
 
+        if ($this->container['plan'] === null) {
+            $invalidProperties[] = "'plan' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -421,7 +424,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets plan
      *
-     * @return \Schematic\Model\UpdatePlanRequestBody|null
+     * @return \Schematic\Model\UpdatePlanRequestBody
      */
     public function getPlan()
     {
@@ -431,7 +434,7 @@ class UpdatePlanBundleRequestBody implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets plan
      *
-     * @param \Schematic\Model\UpdatePlanRequestBody|null $plan plan
+     * @param \Schematic\Model\UpdatePlanRequestBody $plan plan
      *
      * @return self
      */

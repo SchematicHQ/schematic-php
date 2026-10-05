@@ -198,6 +198,15 @@ class RuleConditionDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "plan_versions"
+     */
+    public function testPropertyPlanVersions()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "resource_ids"
      */
     public function testPropertyResourceIds()

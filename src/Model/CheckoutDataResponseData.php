@@ -63,10 +63,12 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => '\Schematic\Model\UsageBasedEntitlementResponseData[]',
         'available_credit_bundles' => '\Schematic\Model\BillingCreditBundleResponseData[]',
         'company' => '\Schematic\Model\CompanyDetailResponseData',
+        'company_can_trial_selected_plan' => 'bool',
         'custom_checkout_fields' => '\Schematic\Model\CheckoutFieldWithValue[]',
         'feature_usage' => '\Schematic\Model\FeatureUsageDetailResponseData',
         'selected_credit_bundles' => '\Schematic\Model\CreditBundlePurchaseResponseData[]',
         'selected_plan' => '\Schematic\Model\PlanDetailResponseData',
+        'selected_plan_already_trialed' => 'bool',
         'selected_usage_based_entitlements' => '\Schematic\Model\UsageBasedEntitlementResponseData[]',
         'subscription' => '\Schematic\Model\CompanySubscriptionResponseData'
     ];
@@ -84,10 +86,12 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => null,
         'available_credit_bundles' => null,
         'company' => null,
+        'company_can_trial_selected_plan' => null,
         'custom_checkout_fields' => null,
         'feature_usage' => null,
         'selected_credit_bundles' => null,
         'selected_plan' => null,
+        'selected_plan_already_trialed' => null,
         'selected_usage_based_entitlements' => null,
         'subscription' => null
     ];
@@ -103,10 +107,12 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => false,
         'available_credit_bundles' => false,
         'company' => false,
+        'company_can_trial_selected_plan' => false,
         'custom_checkout_fields' => false,
         'feature_usage' => false,
         'selected_credit_bundles' => false,
         'selected_plan' => false,
+        'selected_plan_already_trialed' => false,
         'selected_usage_based_entitlements' => false,
         'subscription' => false
     ];
@@ -202,10 +208,12 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => 'active_usage_based_entitlements',
         'available_credit_bundles' => 'available_credit_bundles',
         'company' => 'company',
+        'company_can_trial_selected_plan' => 'company_can_trial_selected_plan',
         'custom_checkout_fields' => 'custom_checkout_fields',
         'feature_usage' => 'feature_usage',
         'selected_credit_bundles' => 'selected_credit_bundles',
         'selected_plan' => 'selected_plan',
+        'selected_plan_already_trialed' => 'selected_plan_already_trialed',
         'selected_usage_based_entitlements' => 'selected_usage_based_entitlements',
         'subscription' => 'subscription'
     ];
@@ -221,10 +229,12 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => 'setActiveUsageBasedEntitlements',
         'available_credit_bundles' => 'setAvailableCreditBundles',
         'company' => 'setCompany',
+        'company_can_trial_selected_plan' => 'setCompanyCanTrialSelectedPlan',
         'custom_checkout_fields' => 'setCustomCheckoutFields',
         'feature_usage' => 'setFeatureUsage',
         'selected_credit_bundles' => 'setSelectedCreditBundles',
         'selected_plan' => 'setSelectedPlan',
+        'selected_plan_already_trialed' => 'setSelectedPlanAlreadyTrialed',
         'selected_usage_based_entitlements' => 'setSelectedUsageBasedEntitlements',
         'subscription' => 'setSubscription'
     ];
@@ -240,10 +250,12 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'active_usage_based_entitlements' => 'getActiveUsageBasedEntitlements',
         'available_credit_bundles' => 'getAvailableCreditBundles',
         'company' => 'getCompany',
+        'company_can_trial_selected_plan' => 'getCompanyCanTrialSelectedPlan',
         'custom_checkout_fields' => 'getCustomCheckoutFields',
         'feature_usage' => 'getFeatureUsage',
         'selected_credit_bundles' => 'getSelectedCreditBundles',
         'selected_plan' => 'getSelectedPlan',
+        'selected_plan_already_trialed' => 'getSelectedPlanAlreadyTrialed',
         'selected_usage_based_entitlements' => 'getSelectedUsageBasedEntitlements',
         'subscription' => 'getSubscription'
     ];
@@ -310,10 +322,12 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('active_usage_based_entitlements', $data ?? [], null);
         $this->setIfExists('available_credit_bundles', $data ?? [], null);
         $this->setIfExists('company', $data ?? [], null);
+        $this->setIfExists('company_can_trial_selected_plan', $data ?? [], null);
         $this->setIfExists('custom_checkout_fields', $data ?? [], null);
         $this->setIfExists('feature_usage', $data ?? [], null);
         $this->setIfExists('selected_credit_bundles', $data ?? [], null);
         $this->setIfExists('selected_plan', $data ?? [], null);
+        $this->setIfExists('selected_plan_already_trialed', $data ?? [], null);
         $this->setIfExists('selected_usage_based_entitlements', $data ?? [], null);
         $this->setIfExists('subscription', $data ?? [], null);
     }
@@ -366,6 +380,9 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             $invalidProperties[] = "invalid value for 'available_credit_bundles', number of items must be less than or equal to 1000.";
         }
 
+        if ($this->container['company_can_trial_selected_plan'] === null) {
+            $invalidProperties[] = "'company_can_trial_selected_plan' can't be null";
+        }
         if ($this->container['custom_checkout_fields'] === null) {
             $invalidProperties[] = "'custom_checkout_fields' can't be null";
         }
@@ -380,6 +397,9 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             $invalidProperties[] = "invalid value for 'selected_credit_bundles', number of items must be less than or equal to 1000.";
         }
 
+        if ($this->container['selected_plan_already_trialed'] === null) {
+            $invalidProperties[] = "'selected_plan_already_trialed' can't be null";
+        }
         if ($this->container['selected_usage_based_entitlements'] === null) {
             $invalidProperties[] = "'selected_usage_based_entitlements' can't be null";
         }
@@ -550,6 +570,33 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * Gets company_can_trial_selected_plan
+     *
+     * @return bool
+     */
+    public function getCompanyCanTrialSelectedPlan()
+    {
+        return $this->container['company_can_trial_selected_plan'];
+    }
+
+    /**
+     * Sets company_can_trial_selected_plan
+     *
+     * @param bool $company_can_trial_selected_plan company_can_trial_selected_plan
+     *
+     * @return self
+     */
+    public function setCompanyCanTrialSelectedPlan($company_can_trial_selected_plan)
+    {
+        if (is_null($company_can_trial_selected_plan)) {
+            throw new \InvalidArgumentException('non-nullable company_can_trial_selected_plan cannot be null');
+        }
+        $this->container['company_can_trial_selected_plan'] = $company_can_trial_selected_plan;
+
+        return $this;
+    }
+
+    /**
      * Gets custom_checkout_fields
      *
      * @return \Schematic\Model\CheckoutFieldWithValue[]
@@ -661,6 +708,33 @@ class CheckoutDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable selected_plan cannot be null');
         }
         $this->container['selected_plan'] = $selected_plan;
+
+        return $this;
+    }
+
+    /**
+     * Gets selected_plan_already_trialed
+     *
+     * @return bool
+     */
+    public function getSelectedPlanAlreadyTrialed()
+    {
+        return $this->container['selected_plan_already_trialed'];
+    }
+
+    /**
+     * Sets selected_plan_already_trialed
+     *
+     * @param bool $selected_plan_already_trialed selected_plan_already_trialed
+     *
+     * @return self
+     */
+    public function setSelectedPlanAlreadyTrialed($selected_plan_already_trialed)
+    {
+        if (is_null($selected_plan_already_trialed)) {
+            throw new \InvalidArgumentException('non-nullable selected_plan_already_trialed cannot be null');
+        }
+        $this->container['selected_plan_already_trialed'] = $selected_plan_already_trialed;
 
         return $this;
     }

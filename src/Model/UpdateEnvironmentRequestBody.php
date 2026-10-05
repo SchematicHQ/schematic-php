@@ -59,7 +59,8 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'environment_type' => '\Schematic\Model\EnvironmentType',
-        'name' => 'string'
+        'name' => 'string',
+        'require_context_signature' => 'bool'
     ];
 
     /**
@@ -71,7 +72,8 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'environment_type' => null,
-        'name' => null
+        'name' => null,
+        'require_context_signature' => null
     ];
 
     /**
@@ -81,7 +83,8 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
       */
     protected static array $openAPINullables = [
         'environment_type' => true,
-        'name' => true
+        'name' => true,
+        'require_context_signature' => true
     ];
 
     /**
@@ -171,7 +174,8 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'environment_type' => 'environment_type',
-        'name' => 'name'
+        'name' => 'name',
+        'require_context_signature' => 'require_context_signature'
     ];
 
     /**
@@ -181,7 +185,8 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'environment_type' => 'setEnvironmentType',
-        'name' => 'setName'
+        'name' => 'setName',
+        'require_context_signature' => 'setRequireContextSignature'
     ];
 
     /**
@@ -191,7 +196,8 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'environment_type' => 'getEnvironmentType',
-        'name' => 'getName'
+        'name' => 'getName',
+        'require_context_signature' => 'getRequireContextSignature'
     ];
 
     /**
@@ -253,6 +259,7 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('environment_type', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('require_context_signature', $data ?? [], null);
     }
 
     /**
@@ -376,6 +383,40 @@ class UpdateEnvironmentRequestBody implements ModelInterface, ArrayAccess, \Json
         }
 
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets require_context_signature
+     *
+     * @return bool|null
+     */
+    public function getRequireContextSignature()
+    {
+        return $this->container['require_context_signature'];
+    }
+
+    /**
+     * Sets require_context_signature
+     *
+     * @param bool|null $require_context_signature require_context_signature
+     *
+     * @return self
+     */
+    public function setRequireContextSignature($require_context_signature)
+    {
+        if (is_null($require_context_signature)) {
+            array_push($this->openAPINullablesSetToNull, 'require_context_signature');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('require_context_signature', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['require_context_signature'] = $require_context_signature;
 
         return $this;
     }

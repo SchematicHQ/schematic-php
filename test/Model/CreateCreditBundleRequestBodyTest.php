@@ -99,6 +99,15 @@ class CreateCreditBundleRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "compatible_plan_ids"
+     */
+    public function testPropertyCompatiblePlanIds()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "credit_id"
      */
     public function testPropertyCreditId()

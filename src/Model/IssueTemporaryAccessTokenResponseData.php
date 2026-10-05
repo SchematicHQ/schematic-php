@@ -63,6 +63,7 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
         'environment_id' => 'string',
         'expired_at' => '\DateTime',
         'id' => 'string',
+        'issuer_type' => '\Schematic\Model\TemporaryAccessTokenIssuerType',
         'resource_type' => '\Schematic\Model\TemporaryAccessTokenResourceType',
         'token' => 'string',
         'updated_at' => '\DateTime'
@@ -81,6 +82,7 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
         'environment_id' => null,
         'expired_at' => 'date-time',
         'id' => null,
+        'issuer_type' => null,
         'resource_type' => null,
         'token' => null,
         'updated_at' => 'date-time'
@@ -92,11 +94,12 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'api_key_id' => false,
+        'api_key_id' => true,
         'created_at' => false,
         'environment_id' => false,
         'expired_at' => false,
         'id' => false,
+        'issuer_type' => false,
         'resource_type' => false,
         'token' => false,
         'updated_at' => false
@@ -193,6 +196,7 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
         'environment_id' => 'environment_id',
         'expired_at' => 'expired_at',
         'id' => 'id',
+        'issuer_type' => 'issuer_type',
         'resource_type' => 'resource_type',
         'token' => 'token',
         'updated_at' => 'updated_at'
@@ -209,6 +213,7 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
         'environment_id' => 'setEnvironmentId',
         'expired_at' => 'setExpiredAt',
         'id' => 'setId',
+        'issuer_type' => 'setIssuerType',
         'resource_type' => 'setResourceType',
         'token' => 'setToken',
         'updated_at' => 'setUpdatedAt'
@@ -225,6 +230,7 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
         'environment_id' => 'getEnvironmentId',
         'expired_at' => 'getExpiredAt',
         'id' => 'getId',
+        'issuer_type' => 'getIssuerType',
         'resource_type' => 'getResourceType',
         'token' => 'getToken',
         'updated_at' => 'getUpdatedAt'
@@ -292,6 +298,7 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('expired_at', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('issuer_type', $data ?? [], null);
         $this->setIfExists('resource_type', $data ?? [], null);
         $this->setIfExists('token', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -324,9 +331,6 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
     {
         $invalidProperties = [];
 
-        if ($this->container['api_key_id'] === null) {
-            $invalidProperties[] = "'api_key_id' can't be null";
-        }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
@@ -338,6 +342,9 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
         }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['issuer_type'] === null) {
+            $invalidProperties[] = "'issuer_type' can't be null";
         }
         if ($this->container['resource_type'] === null) {
             $invalidProperties[] = "'resource_type' can't be null";
@@ -366,7 +373,7 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
     /**
      * Gets api_key_id
      *
-     * @return string
+     * @return string|null
      */
     public function getApiKeyId()
     {
@@ -376,14 +383,21 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
     /**
      * Sets api_key_id
      *
-     * @param string $api_key_id api_key_id
+     * @param string|null $api_key_id api_key_id
      *
      * @return self
      */
     public function setApiKeyId($api_key_id)
     {
         if (is_null($api_key_id)) {
-            throw new \InvalidArgumentException('non-nullable api_key_id cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'api_key_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('api_key_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['api_key_id'] = $api_key_id;
 
@@ -494,6 +508,33 @@ class IssueTemporaryAccessTokenResponseData implements ModelInterface, ArrayAcce
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets issuer_type
+     *
+     * @return \Schematic\Model\TemporaryAccessTokenIssuerType
+     */
+    public function getIssuerType()
+    {
+        return $this->container['issuer_type'];
+    }
+
+    /**
+     * Sets issuer_type
+     *
+     * @param \Schematic\Model\TemporaryAccessTokenIssuerType $issuer_type issuer_type
+     *
+     * @return self
+     */
+    public function setIssuerType($issuer_type)
+    {
+        if (is_null($issuer_type)) {
+            throw new \InvalidArgumentException('non-nullable issuer_type cannot be null');
+        }
+        $this->container['issuer_type'] = $issuer_type;
 
         return $this;
     }

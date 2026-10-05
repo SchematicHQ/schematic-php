@@ -135,6 +135,15 @@ class WhoAmIResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "onboarding_complete"
+     */
+    public function testPropertyOnboardingComplete()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "stripe_user_id"
      */
     public function testPropertyStripeUserId()

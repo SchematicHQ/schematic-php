@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**account_member_id** | **string** |  | [optional]
 **actor_type** | [**\Schematic\Model\ActorType**](ActorType.md) |  |
 **api_key** | [**\Schematic\Model\ApiKeyResponseData**](ApiKeyResponseData.md) |  | [optional]
 **api_key_id** | **string** |  | [optional]

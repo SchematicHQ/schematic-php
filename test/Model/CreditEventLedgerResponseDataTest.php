@@ -153,6 +153,15 @@ class CreditEventLedgerResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "environment_id"
      */
     public function testPropertyEnvironmentId()
@@ -297,6 +306,15 @@ class CreditEventLedgerResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "kind"
+     */
+    public function testPropertyKind()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "plan_id"
      */
     public function testPropertyPlanId()
@@ -342,6 +360,15 @@ class CreditEventLedgerResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "transfer_reason"
+     */
+    public function testPropertyTransferReason()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "usage_event_id"
      */
     public function testPropertyUsageEventId()
@@ -354,6 +381,15 @@ class CreditEventLedgerResponseDataTest extends TestCase
      * Test attribute "usage_reason"
      */
     public function testPropertyUsageReason()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "user_id"
+     */
+    public function testPropertyUserId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

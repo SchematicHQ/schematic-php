@@ -265,6 +265,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -283,9 +284,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countCompanies($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
+    public function countCompanies($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
     {
-        list($response) = $this->countCompaniesWithHttpInfo($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
+        list($response) = $this->countCompaniesWithHttpInfo($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -302,6 +303,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -320,9 +322,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countCompaniesWithHttpInfo($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
+    public function countCompaniesWithHttpInfo($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
     {
-        $request = $this->countCompaniesRequest($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
+        $request = $this->countCompaniesRequest($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -476,6 +478,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -493,9 +496,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCompaniesAsync($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
+    public function countCompaniesAsync($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
     {
-        return $this->countCompaniesAsyncWithHttpInfo($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType)
+        return $this->countCompaniesAsyncWithHttpInfo($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -516,6 +519,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -533,10 +537,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCompaniesAsyncWithHttpInfo($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
+    public function countCompaniesAsyncWithHttpInfo($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
     {
         $returnType = '\Schematic\Model\CountCompaniesResponse';
-        $request = $this->countCompaniesRequest($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
+        $request = $this->countCompaniesRequest($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -585,6 +589,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -602,7 +607,7 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countCompaniesRequest($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
+    public function countCompaniesRequest($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanies'][0])
     {
 
         if ($credit_type_ids !== null && count($credit_type_ids) > 100) {
@@ -624,6 +629,7 @@ class CompaniesApi
         if ($plan_version_ids !== null && count($plan_version_ids) > 100) {
             throw new \InvalidArgumentException('invalid value for "$plan_version_ids" when calling CompaniesApi.countCompanies, number of items must be less than or equal to 100.');
         }
+
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling CompaniesApi.countCompanies, must be smaller than or equal to 512.');
@@ -731,6 +737,15 @@ class CompaniesApi
             $plan_version_ids,
             'plan_version_ids', // param base name
             'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_unpublished,
+            'plan_version_unpublished', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -6890,14 +6905,14 @@ class CompaniesApi
      *
      * Get billing entity child subscriptions
      *
-     * @param  string|null $company_id company_id (optional)
+     * @param  string $company_id company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBillingEntityChildSubscriptions'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetBillingEntityChildSubscriptionsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getBillingEntityChildSubscriptions($company_id = null, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
+    public function getBillingEntityChildSubscriptions($company_id, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
     {
         list($response) = $this->getBillingEntityChildSubscriptionsWithHttpInfo($company_id, $contentType);
         return $response;
@@ -6908,14 +6923,14 @@ class CompaniesApi
      *
      * Get billing entity child subscriptions
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBillingEntityChildSubscriptions'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetBillingEntityChildSubscriptionsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getBillingEntityChildSubscriptionsWithHttpInfo($company_id = null, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
+    public function getBillingEntityChildSubscriptionsWithHttpInfo($company_id, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
     {
         $request = $this->getBillingEntityChildSubscriptionsRequest($company_id, $contentType);
 
@@ -7063,13 +7078,13 @@ class CompaniesApi
      *
      * Get billing entity child subscriptions
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBillingEntityChildSubscriptions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBillingEntityChildSubscriptionsAsync($company_id = null, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
+    public function getBillingEntityChildSubscriptionsAsync($company_id, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
     {
         return $this->getBillingEntityChildSubscriptionsAsyncWithHttpInfo($company_id, $contentType)
             ->then(
@@ -7084,13 +7099,13 @@ class CompaniesApi
      *
      * Get billing entity child subscriptions
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBillingEntityChildSubscriptions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBillingEntityChildSubscriptionsAsyncWithHttpInfo($company_id = null, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
+    public function getBillingEntityChildSubscriptionsAsyncWithHttpInfo($company_id, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
     {
         $returnType = '\Schematic\Model\GetBillingEntityChildSubscriptionsResponse';
         $request = $this->getBillingEntityChildSubscriptionsRequest($company_id, $contentType);
@@ -7134,15 +7149,21 @@ class CompaniesApi
     /**
      * Create request for operation 'getBillingEntityChildSubscriptions'
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBillingEntityChildSubscriptions'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getBillingEntityChildSubscriptionsRequest($company_id = null, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
+    public function getBillingEntityChildSubscriptionsRequest($company_id, string $contentType = self::contentTypes['getBillingEntityChildSubscriptions'][0])
     {
 
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling getBillingEntityChildSubscriptions'
+            );
+        }
 
 
         $resourcePath = '/company-billing-entity-subscriptions';
@@ -7159,7 +7180,7 @@ class CompaniesApi
             'string', // openApiType
             'form', // style
             true, // explode
-            false // required
+            true // required
         ) ?? []);
 
 
@@ -7557,14 +7578,14 @@ class CompaniesApi
      *
      * Get company billing entity
      *
-     * @param  string|null $company_id company_id (optional)
+     * @param  string $company_id company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyBillingEntity'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\GetCompanyBillingEntityResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function getCompanyBillingEntity($company_id = null, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
+    public function getCompanyBillingEntity($company_id, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
     {
         list($response) = $this->getCompanyBillingEntityWithHttpInfo($company_id, $contentType);
         return $response;
@@ -7575,14 +7596,14 @@ class CompaniesApi
      *
      * Get company billing entity
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyBillingEntity'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\GetCompanyBillingEntityResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCompanyBillingEntityWithHttpInfo($company_id = null, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
+    public function getCompanyBillingEntityWithHttpInfo($company_id, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
     {
         $request = $this->getCompanyBillingEntityRequest($company_id, $contentType);
 
@@ -7730,13 +7751,13 @@ class CompaniesApi
      *
      * Get company billing entity
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyBillingEntity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyBillingEntityAsync($company_id = null, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
+    public function getCompanyBillingEntityAsync($company_id, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
     {
         return $this->getCompanyBillingEntityAsyncWithHttpInfo($company_id, $contentType)
             ->then(
@@ -7751,13 +7772,13 @@ class CompaniesApi
      *
      * Get company billing entity
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyBillingEntity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyBillingEntityAsyncWithHttpInfo($company_id = null, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
+    public function getCompanyBillingEntityAsyncWithHttpInfo($company_id, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
     {
         $returnType = '\Schematic\Model\GetCompanyBillingEntityResponse';
         $request = $this->getCompanyBillingEntityRequest($company_id, $contentType);
@@ -7801,15 +7822,21 @@ class CompaniesApi
     /**
      * Create request for operation 'getCompanyBillingEntity'
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyBillingEntity'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCompanyBillingEntityRequest($company_id = null, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
+    public function getCompanyBillingEntityRequest($company_id, string $contentType = self::contentTypes['getCompanyBillingEntity'][0])
     {
 
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling getCompanyBillingEntity'
+            );
+        }
 
 
         $resourcePath = '/company-billing-entity';
@@ -7826,7 +7853,7 @@ class CompaniesApi
             'string', // openApiType
             'form', // style
             true, // explode
-            false // required
+            true // required
         ) ?? []);
 
 
@@ -10627,6 +10654,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -10645,9 +10673,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanies($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompanies($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-        list($response) = $this->listCompaniesWithHttpInfo($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
+        list($response) = $this->listCompaniesWithHttpInfo($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -10664,6 +10692,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -10682,9 +10711,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompaniesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompaniesWithHttpInfo($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesWithHttpInfo($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-        $request = $this->listCompaniesRequest($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
+        $request = $this->listCompaniesRequest($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -10838,6 +10867,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -10855,9 +10885,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompaniesAsync($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesAsync($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
-        return $this->listCompaniesAsyncWithHttpInfo($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType)
+        return $this->listCompaniesAsyncWithHttpInfo($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -10878,6 +10908,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -10895,10 +10926,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompaniesAsyncWithHttpInfo($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesAsyncWithHttpInfo($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
         $returnType = '\Schematic\Model\ListCompaniesResponse';
-        $request = $this->listCompaniesRequest($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
+        $request = $this->listCompaniesRequest($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -10947,6 +10978,7 @@ class CompaniesApi
      * @param  string[]|null $plan_ids Filter companies by one or more plan IDs (each ID starts with plan_) (optional)
      * @param  string|null $plan_version_id Filter companies by plan version ID (starts with plvr_) (optional)
      * @param  string[]|null $plan_version_ids Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. (optional)
+     * @param  bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version (optional)
      * @param  string|null $q Search for companies by name, keys or string traits (optional)
      * @param  string|null $sort_order_column Column to sort by (e.g. name, created_at, last_seen_at) (optional)
      * @param  \SchematicModelSortDirection|null $sort_order_direction Direction to sort by (asc or desc) (optional)
@@ -10964,7 +10996,7 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompaniesRequest($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
+    public function listCompaniesRequest($credit_type_ids = null, $has_scheduled_downgrade = null, $ids = null, $monetized_subscriptions = null, $plan_id = null, $plan_ids = null, $plan_version_id = null, $plan_version_ids = null, $plan_version_unpublished = null, $q = null, $sort_order_column = null, $sort_order_direction = null, $subscription_statuses = null, $subscription_types = null, $with_entitlement_for = null, $without_feature_override_for = null, $without_plan = null, $without_subscription = null, $with_subscription = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanies'][0])
     {
 
         if ($credit_type_ids !== null && count($credit_type_ids) > 100) {
@@ -10986,6 +11018,7 @@ class CompaniesApi
         if ($plan_version_ids !== null && count($plan_version_ids) > 100) {
             throw new \InvalidArgumentException('invalid value for "$plan_version_ids" when calling CompaniesApi.listCompanies, number of items must be less than or equal to 100.');
         }
+
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling CompaniesApi.listCompanies, must be smaller than or equal to 512.');
@@ -11093,6 +11126,15 @@ class CompaniesApi
             $plan_version_ids,
             'plan_version_ids', // param base name
             'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $plan_version_unpublished,
+            'plan_version_unpublished', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required

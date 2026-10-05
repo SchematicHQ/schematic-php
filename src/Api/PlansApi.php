@@ -583,6 +583,7 @@ class PlansApi
      * @param  string|null $company_id company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -593,6 +594,8 @@ class PlansApi
      * @param  string|null $q q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -603,9 +606,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countPlans($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countPlans($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
     {
-        list($response) = $this->countPlansWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        list($response) = $this->countPlansWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -617,6 +620,7 @@ class PlansApi
      * @param  string|null $company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -627,6 +631,8 @@ class PlansApi
      * @param  string|null $q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -637,9 +643,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countPlansWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countPlansWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
     {
-        $request = $this->countPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        $request = $this->countPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -788,6 +794,7 @@ class PlansApi
      * @param  string|null $company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -798,6 +805,8 @@ class PlansApi
      * @param  string|null $q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -807,9 +816,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countPlansAsync($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countPlansAsync($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
     {
-        return $this->countPlansAsyncWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType)
+        return $this->countPlansAsyncWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -825,6 +834,7 @@ class PlansApi
      * @param  string|null $company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -835,6 +845,8 @@ class PlansApi
      * @param  string|null $q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -844,10 +856,10 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countPlansAsyncWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countPlansAsyncWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
     {
         $returnType = '\Schematic\Model\CountPlansResponse';
-        $request = $this->countPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        $request = $this->countPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -891,6 +903,7 @@ class PlansApi
      * @param  string|null $company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -901,6 +914,8 @@ class PlansApi
      * @param  string|null $q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -910,8 +925,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countPlansRequest($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
+    public function countPlansRequest($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countPlans'][0])
     {
+
 
 
 
@@ -924,6 +940,11 @@ class PlansApi
             throw new \InvalidArgumentException('invalid value for "$ids" when calling PlansApi.countPlans, number of items must be less than or equal to 100.');
         }
 
+
+
+        if ($q !== null && strlen($q) > 512) {
+            throw new \InvalidArgumentException('invalid length for "$q" when calling PlansApi.countPlans, must be smaller than or equal to 512.');
+        }
 
 
 
@@ -969,6 +990,15 @@ class PlansApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $exclude_company_scoped,
             'exclude_company_scoped', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $exclude_unused,
+            'exclude_unused', // param base name
             'boolean', // openApiType
             'form', // style
             true, // explode
@@ -1059,6 +1089,24 @@ class PlansApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $with_entitlements,
             'with_entitlements', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $with_published_version,
+            'with_published_version', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $without_entitlement_for_include_drafts,
+            'without_entitlement_for_include_drafts', // param base name
             'boolean', // openApiType
             'form', // style
             true, // explode
@@ -4093,6 +4141,7 @@ class PlansApi
      * @param  string|null $company_id company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -4103,6 +4152,8 @@ class PlansApi
      * @param  string|null $q q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -4113,9 +4164,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listPlans($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlans($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-        list($response) = $this->listPlansWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        list($response) = $this->listPlansWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -4127,6 +4178,7 @@ class PlansApi
      * @param  string|null $company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -4137,6 +4189,8 @@ class PlansApi
      * @param  string|null $q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -4147,9 +4201,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listPlansWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-        $request = $this->listPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        $request = $this->listPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4298,6 +4352,7 @@ class PlansApi
      * @param  string|null $company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -4308,6 +4363,8 @@ class PlansApi
      * @param  string|null $q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -4317,9 +4374,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlansAsync($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansAsync($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
-        return $this->listPlansAsyncWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType)
+        return $this->listPlansAsyncWithHttpInfo($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4335,6 +4392,7 @@ class PlansApi
      * @param  string|null $company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -4345,6 +4403,8 @@ class PlansApi
      * @param  string|null $q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -4354,10 +4414,10 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listPlansAsyncWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansAsyncWithHttpInfo($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
         $returnType = '\Schematic\Model\ListPlansResponse';
-        $request = $this->listPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
+        $request = $this->listPlansRequest($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4401,6 +4461,7 @@ class PlansApi
      * @param  string|null $company_id (optional)
      * @param  bool|null $company_scoped_only Only return plans that are scoped to a company (custom plans assigned to a company) (optional)
      * @param  bool|null $exclude_company_scoped Exclude plans that are scoped to a company (custom plans assigned to a company) (optional)
+     * @param  bool|null $exclude_unused Exclude plans that nothing is using: no company is on the plan and it has no draft version (optional)
      * @param  bool|null $for_fallback_plan Filter for plans valid as fallback plans (not linked to billing) (optional)
      * @param  bool|null $for_initial_plan Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) (optional)
      * @param  bool|null $for_trial_expiry_plan Filter for plans valid as trial expiry plans (not linked to billing or free) (optional)
@@ -4411,6 +4472,8 @@ class PlansApi
      * @param  string|null $q (optional)
      * @param  string|null $scoped_to_company_id Filter plans scoped to a specific company (custom plans) (optional)
      * @param  bool|null $with_entitlements Include each plan&#39;s entitlements in the response (optional)
+     * @param  bool|null $with_published_version Only return plans that have a published version (optional)
+     * @param  bool|null $without_entitlement_for_include_drafts With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing (optional)
      * @param  string|null $without_entitlement_for Filter out plans that already have a plan entitlement for the specified feature ID (optional)
      * @param  bool|null $without_paid_product_id Filter out plans that have a paid billing product ID (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -4420,8 +4483,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listPlansRequest($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
+    public function listPlansRequest($company_id = null, $company_scoped_only = null, $exclude_company_scoped = null, $exclude_unused = null, $for_fallback_plan = null, $for_initial_plan = null, $for_trial_expiry_plan = null, $has_product_id = null, $ids = null, $include_draft_versions = null, $plan_type = null, $q = null, $scoped_to_company_id = null, $with_entitlements = null, $with_published_version = null, $without_entitlement_for_include_drafts = null, $without_entitlement_for = null, $without_paid_product_id = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listPlans'][0])
     {
+
 
 
 
@@ -4434,6 +4498,11 @@ class PlansApi
             throw new \InvalidArgumentException('invalid value for "$ids" when calling PlansApi.listPlans, number of items must be less than or equal to 100.');
         }
 
+
+
+        if ($q !== null && strlen($q) > 512) {
+            throw new \InvalidArgumentException('invalid length for "$q" when calling PlansApi.listPlans, must be smaller than or equal to 512.');
+        }
 
 
 
@@ -4479,6 +4548,15 @@ class PlansApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $exclude_company_scoped,
             'exclude_company_scoped', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $exclude_unused,
+            'exclude_unused', // param base name
             'boolean', // openApiType
             'form', // style
             true, // explode
@@ -4569,6 +4647,24 @@ class PlansApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $with_entitlements,
             'with_entitlements', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $with_published_version,
+            'with_published_version', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $without_entitlement_for_include_drafts,
+            'without_entitlement_for_include_drafts', // param base name
             'boolean', // openApiType
             'form', // style
             true, // explode
@@ -5763,7 +5859,7 @@ class PlansApi
      *
      * Update company plans
      *
-     * @param  string $company_plan_id company_plan_id (required)
+     * @param  string $company_id company_id (required)
      * @param  \Schematic\Model\UpdateCompanyPlansRequestBody $update_company_plans_request_body update_company_plans_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyPlans'] to see the possible values for this operation
      *
@@ -5771,9 +5867,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\UpdateCompanyPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function updateCompanyPlans($company_plan_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
+    public function updateCompanyPlans($company_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
     {
-        list($response) = $this->updateCompanyPlansWithHttpInfo($company_plan_id, $update_company_plans_request_body, $contentType);
+        list($response) = $this->updateCompanyPlansWithHttpInfo($company_id, $update_company_plans_request_body, $contentType);
         return $response;
     }
 
@@ -5782,7 +5878,7 @@ class PlansApi
      *
      * Update company plans
      *
-     * @param  string $company_plan_id company_plan_id (required)
+     * @param  string $company_id company_id (required)
      * @param  \Schematic\Model\UpdateCompanyPlansRequestBody $update_company_plans_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyPlans'] to see the possible values for this operation
      *
@@ -5790,9 +5886,9 @@ class PlansApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\UpdateCompanyPlansResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateCompanyPlansWithHttpInfo($company_plan_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
+    public function updateCompanyPlansWithHttpInfo($company_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
     {
-        $request = $this->updateCompanyPlansRequest($company_plan_id, $update_company_plans_request_body, $contentType);
+        $request = $this->updateCompanyPlansRequest($company_id, $update_company_plans_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5938,16 +6034,16 @@ class PlansApi
      *
      * Update company plans
      *
-     * @param  string $company_plan_id company_plan_id (required)
+     * @param  string $company_id company_id (required)
      * @param  \Schematic\Model\UpdateCompanyPlansRequestBody $update_company_plans_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyPlans'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateCompanyPlansAsync($company_plan_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
+    public function updateCompanyPlansAsync($company_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
     {
-        return $this->updateCompanyPlansAsyncWithHttpInfo($company_plan_id, $update_company_plans_request_body, $contentType)
+        return $this->updateCompanyPlansAsyncWithHttpInfo($company_id, $update_company_plans_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5960,17 +6056,17 @@ class PlansApi
      *
      * Update company plans
      *
-     * @param  string $company_plan_id company_plan_id (required)
+     * @param  string $company_id company_id (required)
      * @param  \Schematic\Model\UpdateCompanyPlansRequestBody $update_company_plans_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyPlans'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateCompanyPlansAsyncWithHttpInfo($company_plan_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
+    public function updateCompanyPlansAsyncWithHttpInfo($company_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
     {
         $returnType = '\Schematic\Model\UpdateCompanyPlansResponse';
-        $request = $this->updateCompanyPlansRequest($company_plan_id, $update_company_plans_request_body, $contentType);
+        $request = $this->updateCompanyPlansRequest($company_id, $update_company_plans_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6011,20 +6107,20 @@ class PlansApi
     /**
      * Create request for operation 'updateCompanyPlans'
      *
-     * @param  string $company_plan_id company_plan_id (required)
+     * @param  string $company_id company_id (required)
      * @param  \Schematic\Model\UpdateCompanyPlansRequestBody $update_company_plans_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyPlans'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateCompanyPlansRequest($company_plan_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
+    public function updateCompanyPlansRequest($company_id, $update_company_plans_request_body, string $contentType = self::contentTypes['updateCompanyPlans'][0])
     {
 
-        // verify the required parameter 'company_plan_id' is set
-        if ($company_plan_id === null || (is_array($company_plan_id) && count($company_plan_id) === 0)) {
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $company_plan_id when calling updateCompanyPlans'
+                'Missing the required parameter $company_id when calling updateCompanyPlans'
             );
         }
 
@@ -6036,7 +6132,7 @@ class PlansApi
         }
 
 
-        $resourcePath = '/company-plans/{company_plan_id}';
+        $resourcePath = '/company-plans/{company_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -6046,10 +6142,10 @@ class PlansApi
 
 
         // path params
-        if ($company_plan_id !== null) {
+        if ($company_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'company_plan_id' . '}',
-                ObjectSerializer::toPathValue($company_plan_id),
+                '{' . 'company_id' . '}',
+                ObjectSerializer::toPathValue($company_id),
                 $resourcePath
             );
         }

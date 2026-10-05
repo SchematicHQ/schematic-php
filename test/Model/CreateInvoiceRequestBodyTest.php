@@ -207,6 +207,15 @@ class CreateInvoiceRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "total"
+     */
+    public function testPropertyTotal()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "url"
      */
     public function testPropertyUrl()

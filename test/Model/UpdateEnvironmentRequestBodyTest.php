@@ -97,4 +97,13 @@ class UpdateEnvironmentRequestBodyTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "require_context_signature"
+     */
+    public function testPropertyRequireContextSignature()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

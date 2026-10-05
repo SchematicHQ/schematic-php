@@ -59,6 +59,8 @@ class ListMigrationsParams implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
+        'feature_id' => 'string',
+        'feature_plan_rollout_id' => 'string',
         'limit' => 'int',
         'offset' => 'int',
         'plan_version_id' => 'string',
@@ -73,6 +75,8 @@ class ListMigrationsParams implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'feature_id' => null,
+        'feature_plan_rollout_id' => null,
         'limit' => 'int64',
         'offset' => 'int64',
         'plan_version_id' => null,
@@ -85,6 +89,8 @@ class ListMigrationsParams implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'feature_id' => false,
+        'feature_plan_rollout_id' => false,
         'limit' => false,
         'offset' => false,
         'plan_version_id' => false,
@@ -177,6 +183,8 @@ class ListMigrationsParams implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
+        'feature_id' => 'feature_id',
+        'feature_plan_rollout_id' => 'feature_plan_rollout_id',
         'limit' => 'limit',
         'offset' => 'offset',
         'plan_version_id' => 'plan_version_id',
@@ -189,6 +197,8 @@ class ListMigrationsParams implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
+        'feature_id' => 'setFeatureId',
+        'feature_plan_rollout_id' => 'setFeaturePlanRolloutId',
         'limit' => 'setLimit',
         'offset' => 'setOffset',
         'plan_version_id' => 'setPlanVersionId',
@@ -201,6 +211,8 @@ class ListMigrationsParams implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
+        'feature_id' => 'getFeatureId',
+        'feature_plan_rollout_id' => 'getFeaturePlanRolloutId',
         'limit' => 'getLimit',
         'offset' => 'getOffset',
         'plan_version_id' => 'getPlanVersionId',
@@ -264,6 +276,8 @@ class ListMigrationsParams implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('feature_id', $data ?? [], null);
+        $this->setIfExists('feature_plan_rollout_id', $data ?? [], null);
         $this->setIfExists('limit', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('plan_version_id', $data ?? [], null);
@@ -319,6 +333,60 @@ class ListMigrationsParams implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets feature_id
+     *
+     * @return string|null
+     */
+    public function getFeatureId()
+    {
+        return $this->container['feature_id'];
+    }
+
+    /**
+     * Sets feature_id
+     *
+     * @param string|null $feature_id feature_id
+     *
+     * @return self
+     */
+    public function setFeatureId($feature_id)
+    {
+        if (is_null($feature_id)) {
+            throw new \InvalidArgumentException('non-nullable feature_id cannot be null');
+        }
+        $this->container['feature_id'] = $feature_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets feature_plan_rollout_id
+     *
+     * @return string|null
+     */
+    public function getFeaturePlanRolloutId()
+    {
+        return $this->container['feature_plan_rollout_id'];
+    }
+
+    /**
+     * Sets feature_plan_rollout_id
+     *
+     * @param string|null $feature_plan_rollout_id feature_plan_rollout_id
+     *
+     * @return self
+     */
+    public function setFeaturePlanRolloutId($feature_plan_rollout_id)
+    {
+        if (is_null($feature_plan_rollout_id)) {
+            throw new \InvalidArgumentException('non-nullable feature_plan_rollout_id cannot be null');
+        }
+        $this->container['feature_plan_rollout_id'] = $feature_plan_rollout_id;
+
+        return $this;
+    }
 
     /**
      * Gets limit

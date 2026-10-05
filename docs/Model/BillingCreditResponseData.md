@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **description** | **string** |  |
 **icon** | **string** |  | [optional]
 **id** | **string** |  |
+**ledger_authority** | [**\Schematic\Model\BillingCreditLedgerAuthority**](BillingCreditLedgerAuthority.md) |  |
 **name** | **string** |  |
 **plural_name** | **string** |  | [optional]
 **price** | [**\Schematic\Model\BillingPriceResponseData**](BillingPriceResponseData.md) |  | [optional]

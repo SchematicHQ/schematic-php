@@ -60,6 +60,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'billing_periods_count' => 'int',
         'company_id' => 'string',
+        'credit_bundle_id' => 'string',
         'credit_id' => 'string',
         'currency' => 'string',
         'expires_at' => '\DateTime',
@@ -82,6 +83,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPIFormats = [
         'billing_periods_count' => 'int64',
         'company_id' => null,
+        'credit_bundle_id' => null,
         'credit_id' => null,
         'currency' => null,
         'expires_at' => 'date-time',
@@ -102,6 +104,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
     protected static array $openAPINullables = [
         'billing_periods_count' => true,
         'company_id' => false,
+        'credit_bundle_id' => true,
         'credit_id' => false,
         'currency' => true,
         'expires_at' => true,
@@ -202,6 +205,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $attributeMap = [
         'billing_periods_count' => 'billing_periods_count',
         'company_id' => 'company_id',
+        'credit_bundle_id' => 'credit_bundle_id',
         'credit_id' => 'credit_id',
         'currency' => 'currency',
         'expires_at' => 'expires_at',
@@ -222,6 +226,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $setters = [
         'billing_periods_count' => 'setBillingPeriodsCount',
         'company_id' => 'setCompanyId',
+        'credit_bundle_id' => 'setCreditBundleId',
         'credit_id' => 'setCreditId',
         'currency' => 'setCurrency',
         'expires_at' => 'setExpiresAt',
@@ -242,6 +247,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $getters = [
         'billing_periods_count' => 'getBillingPeriodsCount',
         'company_id' => 'getCompanyId',
+        'credit_bundle_id' => 'getCreditBundleId',
         'credit_id' => 'getCreditId',
         'currency' => 'getCurrency',
         'expires_at' => 'getExpiresAt',
@@ -313,6 +319,7 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $this->setIfExists('billing_periods_count', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
+        $this->setIfExists('credit_bundle_id', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
@@ -457,6 +464,40 @@ class CreateCompanyCreditGrant implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable company_id cannot be null');
         }
         $this->container['company_id'] = $company_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets credit_bundle_id
+     *
+     * @return string|null
+     */
+    public function getCreditBundleId()
+    {
+        return $this->container['credit_bundle_id'];
+    }
+
+    /**
+     * Sets credit_bundle_id
+     *
+     * @param string|null $credit_bundle_id credit_bundle_id
+     *
+     * @return self
+     */
+    public function setCreditBundleId($credit_bundle_id)
+    {
+        if (is_null($credit_bundle_id)) {
+            array_push($this->openAPINullablesSetToNull, 'credit_bundle_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('credit_bundle_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['credit_bundle_id'] = $credit_bundle_id;
 
         return $this;
     }

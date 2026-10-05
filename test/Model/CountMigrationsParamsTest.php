@@ -81,6 +81,24 @@ class CountMigrationsParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "feature_id"
+     */
+    public function testPropertyFeatureId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "feature_plan_rollout_id"
+     */
+    public function testPropertyFeaturePlanRolloutId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "limit"
      */
     public function testPropertyLimit()

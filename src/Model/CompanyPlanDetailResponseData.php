@@ -83,6 +83,7 @@ class CompanyPlanDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'description' => 'string',
         'draft_version' => '\Schematic\Model\PlanVersionResponseData',
         'entitlements' => '\Schematic\Model\PlanEntitlementResponseData[]',
+        'estimated_totals' => '\Schematic\Model\EstimatedPlanTotal[]',
         'features' => '\Schematic\Model\FeatureInPlanResponseData[]',
         'icon' => '\Schematic\Model\PlanIcon',
         'id' => 'string',
@@ -138,6 +139,7 @@ class CompanyPlanDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'description' => null,
         'draft_version' => null,
         'entitlements' => null,
+        'estimated_totals' => null,
         'features' => null,
         'icon' => null,
         'id' => null,
@@ -191,6 +193,7 @@ class CompanyPlanDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'description' => false,
         'draft_version' => false,
         'entitlements' => true,
+        'estimated_totals' => false,
         'features' => false,
         'icon' => false,
         'id' => false,
@@ -324,6 +327,7 @@ class CompanyPlanDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'description' => 'description',
         'draft_version' => 'draft_version',
         'entitlements' => 'entitlements',
+        'estimated_totals' => 'estimated_totals',
         'features' => 'features',
         'icon' => 'icon',
         'id' => 'id',
@@ -377,6 +381,7 @@ class CompanyPlanDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'description' => 'setDescription',
         'draft_version' => 'setDraftVersion',
         'entitlements' => 'setEntitlements',
+        'estimated_totals' => 'setEstimatedTotals',
         'features' => 'setFeatures',
         'icon' => 'setIcon',
         'id' => 'setId',
@@ -430,6 +435,7 @@ class CompanyPlanDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         'description' => 'getDescription',
         'draft_version' => 'getDraftVersion',
         'entitlements' => 'getEntitlements',
+        'estimated_totals' => 'getEstimatedTotals',
         'features' => 'getFeatures',
         'icon' => 'getIcon',
         'id' => 'getId',
@@ -534,6 +540,7 @@ class CompanyPlanDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('draft_version', $data ?? [], null);
         $this->setIfExists('entitlements', $data ?? [], null);
+        $this->setIfExists('estimated_totals', $data ?? [], null);
         $this->setIfExists('features', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -644,6 +651,10 @@ class CompanyPlanDetailResponseData implements ModelInterface, ArrayAccess, \Jso
         }
         if (!is_null($this->container['entitlements']) && (count($this->container['entitlements']) > 1000)) {
             $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 1000.";
+        }
+
+        if (!is_null($this->container['estimated_totals']) && (count($this->container['estimated_totals']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'estimated_totals', number of items must be less than or equal to 1000.";
         }
 
         if ($this->container['features'] === null) {
@@ -1455,6 +1466,37 @@ class CompanyPlanDetailResponseData implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('invalid value for $entitlements when calling CompanyPlanDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['entitlements'] = $entitlements;
+
+        return $this;
+    }
+
+    /**
+     * Gets estimated_totals
+     *
+     * @return \Schematic\Model\EstimatedPlanTotal[]|null
+     */
+    public function getEstimatedTotals()
+    {
+        return $this->container['estimated_totals'];
+    }
+
+    /**
+     * Sets estimated_totals
+     *
+     * @param \Schematic\Model\EstimatedPlanTotal[]|null $estimated_totals estimated_totals
+     *
+     * @return self
+     */
+    public function setEstimatedTotals($estimated_totals)
+    {
+        if (is_null($estimated_totals)) {
+            throw new \InvalidArgumentException('non-nullable estimated_totals cannot be null');
+        }
+
+        if ((count($estimated_totals) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $estimated_totals when calling CompanyPlanDetailResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['estimated_totals'] = $estimated_totals;
 
         return $this;
     }

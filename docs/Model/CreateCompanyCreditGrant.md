@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_periods_count** | **int** |  | [optional]
 **company_id** | **string** |  |
+**credit_bundle_id** | **string** |  | [optional]
 **credit_id** | **string** |  |
 **currency** | **string** |  | [optional]
 **expires_at** | **\DateTime** |  | [optional]

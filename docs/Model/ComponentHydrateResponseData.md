@@ -30,6 +30,6 @@ Name | Type | Description | Notes
 **stripe_embed** | [**\Schematic\Model\StripeEmbedInfo**](StripeEmbedInfo.md) |  | [optional]
 **subscription** | [**\Schematic\Model\CompanySubscriptionResponseData**](CompanySubscriptionResponseData.md) |  | [optional]
 **trial_payment_method_required** | **bool** |  | [optional]
-**upcoming_invoice** | [**\Schematic\Model\InvoiceResponseData**](InvoiceResponseData.md) |  | [optional]
+**upcoming_invoice** | [**\Schematic\Model\UpcomingInvoiceResponseData**](UpcomingInvoiceResponseData.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

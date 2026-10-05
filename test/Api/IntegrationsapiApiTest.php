@@ -85,12 +85,48 @@ class IntegrationsapiApiTest extends TestCase
     }
 
     /**
+     * Test case for claimStripeSandboxKeys
+     *
+     * Claim stripe sandbox keys.
+     *
+     */
+    public function testClaimStripeSandboxKeys()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getIntegrationWebhookUrl
      *
      * Get integration webhook url.
      *
      */
     public function testGetIntegrationWebhookUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getStripeSandboxClaimLink
+     *
+     * Get stripe sandbox claim link.
+     *
+     */
+    public function testGetStripeSandboxClaimLink()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getStripeSandboxKeys
+     *
+     * Get stripe sandbox keys.
+     *
+     */
+    public function testGetStripeSandboxKeys()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -121,12 +157,36 @@ class IntegrationsapiApiTest extends TestCase
     }
 
     /**
+     * Test case for installStripeClaimableSandbox
+     *
+     * Install stripe claimable sandbox.
+     *
+     */
+    public function testInstallStripeClaimableSandbox()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for listIntegrations
      *
      * List integrations.
      *
      */
     public function testListIntegrations()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for listStripeSandboxCountries
+     *
+     * List stripe sandbox countries.
+     *
+     */
+    public function testListStripeSandboxCountries()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

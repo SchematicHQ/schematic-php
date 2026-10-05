@@ -83,6 +83,7 @@ class PlanGroupResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'sync_customer_billing_details' => 'bool',
         'tax_collection_enabled' => 'bool',
         'trial_days' => 'int',
+        'trial_eligibility_per_plan' => 'bool',
         'trial_expiry_plan_id' => 'string',
         'trial_expiry_plan_price_id' => 'string',
         'trial_payment_method_required' => 'bool'
@@ -121,6 +122,7 @@ class PlanGroupResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'sync_customer_billing_details' => null,
         'tax_collection_enabled' => null,
         'trial_days' => 'int64',
+        'trial_eligibility_per_plan' => null,
         'trial_expiry_plan_id' => null,
         'trial_expiry_plan_price_id' => null,
         'trial_payment_method_required' => null
@@ -157,6 +159,7 @@ class PlanGroupResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'sync_customer_billing_details' => false,
         'tax_collection_enabled' => false,
         'trial_days' => true,
+        'trial_eligibility_per_plan' => false,
         'trial_expiry_plan_id' => true,
         'trial_expiry_plan_price_id' => true,
         'trial_payment_method_required' => true
@@ -273,6 +276,7 @@ class PlanGroupResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'sync_customer_billing_details' => 'sync_customer_billing_details',
         'tax_collection_enabled' => 'tax_collection_enabled',
         'trial_days' => 'trial_days',
+        'trial_eligibility_per_plan' => 'trial_eligibility_per_plan',
         'trial_expiry_plan_id' => 'trial_expiry_plan_id',
         'trial_expiry_plan_price_id' => 'trial_expiry_plan_price_id',
         'trial_payment_method_required' => 'trial_payment_method_required'
@@ -309,6 +313,7 @@ class PlanGroupResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'sync_customer_billing_details' => 'setSyncCustomerBillingDetails',
         'tax_collection_enabled' => 'setTaxCollectionEnabled',
         'trial_days' => 'setTrialDays',
+        'trial_eligibility_per_plan' => 'setTrialEligibilityPerPlan',
         'trial_expiry_plan_id' => 'setTrialExpiryPlanId',
         'trial_expiry_plan_price_id' => 'setTrialExpiryPlanPriceId',
         'trial_payment_method_required' => 'setTrialPaymentMethodRequired'
@@ -345,6 +350,7 @@ class PlanGroupResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         'sync_customer_billing_details' => 'getSyncCustomerBillingDetails',
         'tax_collection_enabled' => 'getTaxCollectionEnabled',
         'trial_days' => 'getTrialDays',
+        'trial_eligibility_per_plan' => 'getTrialEligibilityPerPlan',
         'trial_expiry_plan_id' => 'getTrialExpiryPlanId',
         'trial_expiry_plan_price_id' => 'getTrialExpiryPlanPriceId',
         'trial_payment_method_required' => 'getTrialPaymentMethodRequired'
@@ -432,6 +438,7 @@ class PlanGroupResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('sync_customer_billing_details', $data ?? [], null);
         $this->setIfExists('tax_collection_enabled', $data ?? [], null);
         $this->setIfExists('trial_days', $data ?? [], null);
+        $this->setIfExists('trial_eligibility_per_plan', $data ?? [], null);
         $this->setIfExists('trial_expiry_plan_id', $data ?? [], null);
         $this->setIfExists('trial_expiry_plan_price_id', $data ?? [], null);
         $this->setIfExists('trial_payment_method_required', $data ?? [], null);
@@ -527,6 +534,9 @@ class PlanGroupResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
         }
         if ($this->container['tax_collection_enabled'] === null) {
             $invalidProperties[] = "'tax_collection_enabled' can't be null";
+        }
+        if ($this->container['trial_eligibility_per_plan'] === null) {
+            $invalidProperties[] = "'trial_eligibility_per_plan' can't be null";
         }
         return $invalidProperties;
     }
@@ -1303,6 +1313,33 @@ class PlanGroupResponseData implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['trial_days'] = $trial_days;
+
+        return $this;
+    }
+
+    /**
+     * Gets trial_eligibility_per_plan
+     *
+     * @return bool
+     */
+    public function getTrialEligibilityPerPlan()
+    {
+        return $this->container['trial_eligibility_per_plan'];
+    }
+
+    /**
+     * Sets trial_eligibility_per_plan
+     *
+     * @param bool $trial_eligibility_per_plan trial_eligibility_per_plan
+     *
+     * @return self
+     */
+    public function setTrialEligibilityPerPlan($trial_eligibility_per_plan)
+    {
+        if (is_null($trial_eligibility_per_plan)) {
+            throw new \InvalidArgumentException('non-nullable trial_eligibility_per_plan cannot be null');
+        }
+        $this->container['trial_eligibility_per_plan'] = $trial_eligibility_per_plan;
 
         return $this;
     }

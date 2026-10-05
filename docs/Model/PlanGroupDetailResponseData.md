@@ -37,6 +37,7 @@ Name | Type | Description | Notes
 **sync_customer_billing_details** | **bool** |  |
 **tax_collection_enabled** | **bool** |  |
 **trial_days** | **int** |  | [optional]
+**trial_eligibility_per_plan** | **bool** |  |
 **trial_expiry_plan** | [**\Schematic\Model\PlanGroupPlanDetailResponseData**](PlanGroupPlanDetailResponseData.md) |  | [optional]
 **trial_expiry_plan_id** | **string** |  | [optional]
 **trial_expiry_plan_price** | [**\Schematic\Model\BillingPriceView**](BillingPriceView.md) |  | [optional]

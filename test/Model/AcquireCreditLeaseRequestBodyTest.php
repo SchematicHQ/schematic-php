@@ -115,4 +115,13 @@ class AcquireCreditLeaseRequestBodyTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "user_id"
+     */
+    public function testPropertyUserId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

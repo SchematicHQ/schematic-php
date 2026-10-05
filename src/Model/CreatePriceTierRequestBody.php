@@ -296,6 +296,14 @@ class CreatePriceTierRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['flat_amount']) && ($this->container['flat_amount'] < 0)) {
+            $invalidProperties[] = "invalid value for 'flat_amount', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['per_unit_price']) && ($this->container['per_unit_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'per_unit_price', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -340,6 +348,11 @@ class CreatePriceTierRequestBody implements ModelInterface, ArrayAccess, \JsonSe
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($flat_amount) && ($flat_amount < 0)) {
+            throw new \InvalidArgumentException('invalid value for $flat_amount when calling CreatePriceTierRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['flat_amount'] = $flat_amount;
 
         return $this;
@@ -374,6 +387,11 @@ class CreatePriceTierRequestBody implements ModelInterface, ArrayAccess, \JsonSe
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($per_unit_price) && ($per_unit_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $per_unit_price when calling CreatePriceTierRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['per_unit_price'] = $per_unit_price;
 
         return $this;

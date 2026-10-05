@@ -43,6 +43,8 @@ class PlanVersionCompanyMigrationStatus
     /**
      * Possible values of this enum
      */
+    public const CANCELLED = 'cancelled';
+
     public const COMPLETED = 'completed';
 
     public const FAILED = 'failed';
@@ -60,6 +62,7 @@ class PlanVersionCompanyMigrationStatus
     public static function getAllowableEnumValues()
     {
         return [
+            self::CANCELLED,
             self::COMPLETED,
             self::FAILED,
             self::IN_PROGRESS,

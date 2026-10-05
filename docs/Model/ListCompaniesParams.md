@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **plan_ids** | **string[]** | Filter companies by one or more plan IDs (each ID starts with plan_) | [optional]
 **plan_version_id** | **string** | Filter companies by plan version ID (starts with plvr_) | [optional]
 **plan_version_ids** | **string[]** | Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. | [optional]
+**plan_version_unpublished** | **bool** | Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version | [optional]
 **q** | **string** | Search for companies by name, keys or string traits | [optional]
 **sort_order_column** | **string** | Column to sort by (e.g. name, created_at, last_seen_at) | [optional]
 **sort_order_direction** | [**\Schematic\Model\SortDirection**](SortDirection.md) | Direction to sort by (asc or desc) | [optional]

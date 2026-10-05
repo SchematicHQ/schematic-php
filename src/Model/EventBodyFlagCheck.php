@@ -62,6 +62,7 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
         'error' => 'string',
         'flag_id' => 'string',
         'flag_key' => 'string',
+        'preflight' => 'bool',
         'reason' => 'string',
         'req_company' => 'array<string,string>',
         'req_user' => 'array<string,string>',
@@ -82,6 +83,7 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
         'error' => null,
         'flag_id' => null,
         'flag_key' => null,
+        'preflight' => null,
         'reason' => null,
         'req_company' => null,
         'req_user' => null,
@@ -100,6 +102,7 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
         'error' => true,
         'flag_id' => true,
         'flag_key' => false,
+        'preflight' => false,
         'reason' => false,
         'req_company' => true,
         'req_user' => true,
@@ -198,6 +201,7 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
         'error' => 'error',
         'flag_id' => 'flag_id',
         'flag_key' => 'flag_key',
+        'preflight' => 'preflight',
         'reason' => 'reason',
         'req_company' => 'req_company',
         'req_user' => 'req_user',
@@ -216,6 +220,7 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
         'error' => 'setError',
         'flag_id' => 'setFlagId',
         'flag_key' => 'setFlagKey',
+        'preflight' => 'setPreflight',
         'reason' => 'setReason',
         'req_company' => 'setReqCompany',
         'req_user' => 'setReqUser',
@@ -234,6 +239,7 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
         'error' => 'getError',
         'flag_id' => 'getFlagId',
         'flag_key' => 'getFlagKey',
+        'preflight' => 'getPreflight',
         'reason' => 'getReason',
         'req_company' => 'getReqCompany',
         'req_user' => 'getReqUser',
@@ -303,6 +309,7 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('error', $data ?? [], null);
         $this->setIfExists('flag_id', $data ?? [], null);
         $this->setIfExists('flag_key', $data ?? [], null);
+        $this->setIfExists('preflight', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
         $this->setIfExists('req_company', $data ?? [], null);
         $this->setIfExists('req_user', $data ?? [], null);
@@ -487,6 +494,33 @@ class EventBodyFlagCheck implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable flag_key cannot be null');
         }
         $this->container['flag_key'] = $flag_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets preflight
+     *
+     * @return bool|null
+     */
+    public function getPreflight()
+    {
+        return $this->container['preflight'];
+    }
+
+    /**
+     * Sets preflight
+     *
+     * @param bool|null $preflight Whether the check was a preflight, asking whether an action would be allowed rather than reporting one that happened. Absent on ordinary checks
+     *
+     * @return self
+     */
+    public function setPreflight($preflight)
+    {
+        if (is_null($preflight)) {
+            throw new \InvalidArgumentException('non-nullable preflight cannot be null');
+        }
+        $this->container['preflight'] = $preflight;
 
         return $this;
     }

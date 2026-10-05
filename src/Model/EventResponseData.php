@@ -73,6 +73,7 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'loaded_at' => '\DateTime',
         'processed_at' => '\DateTime',
         'quantity' => 'int',
+        'reservation_id' => 'string',
         'sent_at' => '\DateTime',
         'status' => '\Schematic\Model\EventStatus',
         'subtype' => 'string',
@@ -104,6 +105,7 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'loaded_at' => 'date-time',
         'processed_at' => 'date-time',
         'quantity' => 'int64',
+        'reservation_id' => null,
         'sent_at' => 'date-time',
         'status' => null,
         'subtype' => null,
@@ -133,6 +135,7 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'loaded_at' => true,
         'processed_at' => true,
         'quantity' => false,
+        'reservation_id' => true,
         'sent_at' => true,
         'status' => false,
         'subtype' => true,
@@ -242,6 +245,7 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'loaded_at' => 'loaded_at',
         'processed_at' => 'processed_at',
         'quantity' => 'quantity',
+        'reservation_id' => 'reservation_id',
         'sent_at' => 'sent_at',
         'status' => 'status',
         'subtype' => 'subtype',
@@ -271,6 +275,7 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'loaded_at' => 'setLoadedAt',
         'processed_at' => 'setProcessedAt',
         'quantity' => 'setQuantity',
+        'reservation_id' => 'setReservationId',
         'sent_at' => 'setSentAt',
         'status' => 'setStatus',
         'subtype' => 'setSubtype',
@@ -300,6 +305,7 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         'loaded_at' => 'getLoadedAt',
         'processed_at' => 'getProcessedAt',
         'quantity' => 'getQuantity',
+        'reservation_id' => 'getReservationId',
         'sent_at' => 'getSentAt',
         'status' => 'getStatus',
         'subtype' => 'getSubtype',
@@ -380,6 +386,7 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('loaded_at', $data ?? [], null);
         $this->setIfExists('processed_at', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('reservation_id', $data ?? [], null);
         $this->setIfExists('sent_at', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('subtype', $data ?? [], null);
@@ -930,6 +937,40 @@ class EventResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
         $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets reservation_id
+     *
+     * @return string|null
+     */
+    public function getReservationId()
+    {
+        return $this->container['reservation_id'];
+    }
+
+    /**
+     * Sets reservation_id
+     *
+     * @param string|null $reservation_id reservation_id
+     *
+     * @return self
+     */
+    public function setReservationId($reservation_id)
+    {
+        if (is_null($reservation_id)) {
+            array_push($this->openAPINullablesSetToNull, 'reservation_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('reservation_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['reservation_id'] = $reservation_id;
 
         return $this;
     }

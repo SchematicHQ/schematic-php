@@ -99,6 +99,15 @@ class CreateCustomPlanRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "copied_price_id"
+     */
+    public function testPropertyCopiedPriceId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "description"
      */
     public function testPropertyDescription()

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **billing_entity_id** | **string** |  | [optional]
 **coupon_external_id** | **string** |  | [optional]
 **credit_bundles** | [**\Schematic\Model\UpdateCreditBundleRequestBody[]**](UpdateCreditBundleRequestBody.md) |  |
+**currency** | **string** | ISO 4217 currency this cart is being built in. Prices are still selected by id; this records the intent, and a cart that prices in another currency is reported as a problem. | [optional]
 **custom_field_values** | [**\Schematic\Model\CheckoutFieldValue[]**](CheckoutFieldValue.md) |  |
 **new_plan_id** | **string** |  |
 **new_price_id** | **string** |  |

@@ -96,6 +96,9 @@ class CreditsApi
         'countCreditEventLedger' => [
             'application/json',
         ],
+        'countCreditSpendPolicies' => [
+            'application/json',
+        ],
         'createBillingCredit' => [
             'application/json',
         ],
@@ -105,16 +108,28 @@ class CreditsApi
         'createCreditBundle' => [
             'application/json',
         ],
+        'createCreditSpendPolicy' => [
+            'application/json',
+        ],
         'deleteBillingPlanCreditGrant' => [
             'application/json',
         ],
         'deleteCreditBundle' => [
             'application/json',
         ],
+        'deleteCreditSpendPolicy' => [
+            'application/json',
+        ],
         'extendCreditLease' => [
             'application/json',
         ],
         'getCreditBundle' => [
+            'application/json',
+        ],
+        'getCreditSpendPolicy' => [
+            'application/json',
+        ],
+        'getCreditSpendPolicyUsage' => [
             'application/json',
         ],
         'getSingleBillingCredit' => [
@@ -144,10 +159,19 @@ class CreditsApi
         'listCreditEventLedger' => [
             'application/json',
         ],
+        'listCreditSpendPolicies' => [
+            'application/json',
+        ],
         'listGrantsForCredit' => [
             'application/json',
         ],
         'releaseCreditLease' => [
+            'application/json',
+        ],
+        'releaseCreditReservation' => [
+            'application/json',
+        ],
+        'reserveCredits' => [
             'application/json',
         ],
         'softDeleteBillingCredit' => [
@@ -160,6 +184,9 @@ class CreditsApi
             'application/json',
         ],
         'updateCreditBundleDetails' => [
+            'application/json',
+        ],
+        'updateCreditSpendPolicy' => [
             'application/json',
         ],
         'zeroOutGrant' => [
@@ -223,7 +250,7 @@ class CreditsApi
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Schematic\Model\AcquireCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     * @return \Schematic\Model\AcquireCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function acquireCreditLease($acquire_credit_lease_request_body, string $contentType = self::contentTypes['acquireCreditLease'][0])
     {
@@ -241,7 +268,7 @@ class CreditsApi
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\AcquireCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\AcquireCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function acquireCreditLeaseWithHttpInfo($acquire_credit_lease_request_body, string $contentType = self::contentTypes['acquireCreditLease'][0])
     {
@@ -284,6 +311,12 @@ class CreditsApi
                         $response,
                     );
                 case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 402:
                     return $this->handleResponseWithDataType(
                         '\Schematic\Model\ApiError',
                         $request,
@@ -348,6 +381,14 @@ class CreditsApi
                     $e->setResponseObject($data);
                     throw $e;
                 case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 402:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Schematic\Model\ApiError',
@@ -1805,7 +1846,7 @@ class CreditsApi
      *
      * Count company grants
      *
-     * @param  string|null $company_id company_id (optional)
+     * @param  string $company_id company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -1816,7 +1857,7 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountCompanyGrantsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countCompanyGrants($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
+    public function countCompanyGrants($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
     {
         list($response) = $this->countCompanyGrantsWithHttpInfo($company_id, $order, $dir, $limit, $offset, $contentType);
         return $response;
@@ -1827,7 +1868,7 @@ class CreditsApi
      *
      * Count company grants
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -1838,7 +1879,7 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountCompanyGrantsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countCompanyGrantsWithHttpInfo($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
+    public function countCompanyGrantsWithHttpInfo($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
     {
         $request = $this->countCompanyGrantsRequest($company_id, $order, $dir, $limit, $offset, $contentType);
 
@@ -1986,7 +2027,7 @@ class CreditsApi
      *
      * Count company grants
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -1996,7 +2037,7 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCompanyGrantsAsync($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
+    public function countCompanyGrantsAsync($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
     {
         return $this->countCompanyGrantsAsyncWithHttpInfo($company_id, $order, $dir, $limit, $offset, $contentType)
             ->then(
@@ -2011,7 +2052,7 @@ class CreditsApi
      *
      * Count company grants
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -2021,7 +2062,7 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCompanyGrantsAsyncWithHttpInfo($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
+    public function countCompanyGrantsAsyncWithHttpInfo($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
     {
         $returnType = '\Schematic\Model\CountCompanyGrantsResponse';
         $request = $this->countCompanyGrantsRequest($company_id, $order, $dir, $limit, $offset, $contentType);
@@ -2065,7 +2106,7 @@ class CreditsApi
     /**
      * Create request for operation 'countCompanyGrants'
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -2075,9 +2116,15 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countCompanyGrantsRequest($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
+    public function countCompanyGrantsRequest($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyGrants'][0])
     {
 
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling countCompanyGrants'
+            );
+        }
 
 
 
@@ -2104,7 +2151,7 @@ class CreditsApi
             'string', // openApiType
             'form', // style
             true, // explode
-            false // required
+            true // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2997,6 +3044,446 @@ class CreditsApi
             $start_time,
             'start_time', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation countCreditSpendPolicies
+     *
+     * Count credit spend policies
+     *
+     * @param  string|null $billing_credit_id billing_credit_id (optional)
+     * @param  string|null $company_id company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type scope_type (optional)
+     * @param  string|null $user_id user_id (optional)
+     * @param  string[]|null $user_ids user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CountCreditSpendPoliciesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function countCreditSpendPolicies($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditSpendPolicies'][0])
+    {
+        list($response) = $this->countCreditSpendPoliciesWithHttpInfo($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation countCreditSpendPoliciesWithHttpInfo
+     *
+     * Count credit spend policies
+     *
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string|null $company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type (optional)
+     * @param  string|null $user_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CountCreditSpendPoliciesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function countCreditSpendPoliciesWithHttpInfo($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditSpendPolicies'][0])
+    {
+        $request = $this->countCreditSpendPoliciesRequest($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\CountCreditSpendPoliciesResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\CountCreditSpendPoliciesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CountCreditSpendPoliciesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation countCreditSpendPoliciesAsync
+     *
+     * Count credit spend policies
+     *
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string|null $company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type (optional)
+     * @param  string|null $user_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countCreditSpendPoliciesAsync($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditSpendPolicies'][0])
+    {
+        return $this->countCreditSpendPoliciesAsyncWithHttpInfo($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation countCreditSpendPoliciesAsyncWithHttpInfo
+     *
+     * Count credit spend policies
+     *
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string|null $company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type (optional)
+     * @param  string|null $user_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function countCreditSpendPoliciesAsyncWithHttpInfo($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditSpendPolicies'][0])
+    {
+        $returnType = '\Schematic\Model\CountCreditSpendPoliciesResponse';
+        $request = $this->countCreditSpendPoliciesRequest($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'countCreditSpendPolicies'
+     *
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string|null $company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type (optional)
+     * @param  string|null $user_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['countCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function countCreditSpendPoliciesRequest($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCreditSpendPolicies'][0])
+    {
+
+
+
+
+
+        if ($user_ids !== null && count($user_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$user_ids" when calling CreditsApi.countCreditSpendPolicies, number of items must be less than or equal to 100.');
+        }
+        if ($user_ids !== null && count($user_ids) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$user_ids" when calling CreditsApi.countCreditSpendPolicies, number of items must be greater than or equal to 1.');
+        }
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countCreditSpendPolicies, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.countCreditSpendPolicies, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/billing/credits/spend-policies/count';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $billing_credit_id,
+            'billing_credit_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_id,
+            'company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $scope_type,
+            'scope_type', // param base name
+            'CreditSpendPolicyScope', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_id,
+            'user_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_ids,
+            'user_ids', // param base name
+            'array', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -4108,6 +4595,348 @@ class CreditsApi
     }
 
     /**
+     * Operation createCreditSpendPolicy
+     *
+     * Create credit spend policy
+     *
+     * @param  \Schematic\Model\CreateCreditSpendPolicyRequestBody $create_credit_spend_policy_request_body create_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CreateCreditSpendPolicyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function createCreditSpendPolicy($create_credit_spend_policy_request_body, string $contentType = self::contentTypes['createCreditSpendPolicy'][0])
+    {
+        list($response) = $this->createCreditSpendPolicyWithHttpInfo($create_credit_spend_policy_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createCreditSpendPolicyWithHttpInfo
+     *
+     * Create credit spend policy
+     *
+     * @param  \Schematic\Model\CreateCreditSpendPolicyRequestBody $create_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CreateCreditSpendPolicyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createCreditSpendPolicyWithHttpInfo($create_credit_spend_policy_request_body, string $contentType = self::contentTypes['createCreditSpendPolicy'][0])
+    {
+        $request = $this->createCreditSpendPolicyRequest($create_credit_spend_policy_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 201:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\CreateCreditSpendPolicyResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\CreateCreditSpendPolicyResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CreateCreditSpendPolicyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createCreditSpendPolicyAsync
+     *
+     * Create credit spend policy
+     *
+     * @param  \Schematic\Model\CreateCreditSpendPolicyRequestBody $create_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCreditSpendPolicyAsync($create_credit_spend_policy_request_body, string $contentType = self::contentTypes['createCreditSpendPolicy'][0])
+    {
+        return $this->createCreditSpendPolicyAsyncWithHttpInfo($create_credit_spend_policy_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createCreditSpendPolicyAsyncWithHttpInfo
+     *
+     * Create credit spend policy
+     *
+     * @param  \Schematic\Model\CreateCreditSpendPolicyRequestBody $create_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createCreditSpendPolicyAsyncWithHttpInfo($create_credit_spend_policy_request_body, string $contentType = self::contentTypes['createCreditSpendPolicy'][0])
+    {
+        $returnType = '\Schematic\Model\CreateCreditSpendPolicyResponse';
+        $request = $this->createCreditSpendPolicyRequest($create_credit_spend_policy_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createCreditSpendPolicy'
+     *
+     * @param  \Schematic\Model\CreateCreditSpendPolicyRequestBody $create_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createCreditSpendPolicyRequest($create_credit_spend_policy_request_body, string $contentType = self::contentTypes['createCreditSpendPolicy'][0])
+    {
+
+        // verify the required parameter 'create_credit_spend_policy_request_body' is set
+        if ($create_credit_spend_policy_request_body === null || (is_array($create_credit_spend_policy_request_body) && count($create_credit_spend_policy_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_credit_spend_policy_request_body when calling createCreditSpendPolicy'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/spend-policies';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($create_credit_spend_policy_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($create_credit_spend_policy_request_body));
+            } else {
+                $httpBody = $create_credit_spend_policy_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteBillingPlanCreditGrant
      *
      * Delete billing plan credit grant
@@ -4809,6 +5638,349 @@ class CreditsApi
     }
 
     /**
+     * Operation deleteCreditSpendPolicy
+     *
+     * Delete credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\DeleteCreditSpendPolicyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function deleteCreditSpendPolicy($spend_policy_id, string $contentType = self::contentTypes['deleteCreditSpendPolicy'][0])
+    {
+        list($response) = $this->deleteCreditSpendPolicyWithHttpInfo($spend_policy_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteCreditSpendPolicyWithHttpInfo
+     *
+     * Delete credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\DeleteCreditSpendPolicyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteCreditSpendPolicyWithHttpInfo($spend_policy_id, string $contentType = self::contentTypes['deleteCreditSpendPolicy'][0])
+    {
+        $request = $this->deleteCreditSpendPolicyRequest($spend_policy_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\DeleteCreditSpendPolicyResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\DeleteCreditSpendPolicyResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\DeleteCreditSpendPolicyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteCreditSpendPolicyAsync
+     *
+     * Delete credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteCreditSpendPolicyAsync($spend_policy_id, string $contentType = self::contentTypes['deleteCreditSpendPolicy'][0])
+    {
+        return $this->deleteCreditSpendPolicyAsyncWithHttpInfo($spend_policy_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteCreditSpendPolicyAsyncWithHttpInfo
+     *
+     * Delete credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteCreditSpendPolicyAsyncWithHttpInfo($spend_policy_id, string $contentType = self::contentTypes['deleteCreditSpendPolicy'][0])
+    {
+        $returnType = '\Schematic\Model\DeleteCreditSpendPolicyResponse';
+        $request = $this->deleteCreditSpendPolicyRequest($spend_policy_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteCreditSpendPolicy'
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteCreditSpendPolicyRequest($spend_policy_id, string $contentType = self::contentTypes['deleteCreditSpendPolicy'][0])
+    {
+
+        // verify the required parameter 'spend_policy_id' is set
+        if ($spend_policy_id === null || (is_array($spend_policy_id) && count($spend_policy_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $spend_policy_id when calling deleteCreditSpendPolicy'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/spend-policies/{spend_policy_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($spend_policy_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'spend_policy_id' . '}',
+                ObjectSerializer::toPathValue($spend_policy_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation extendCreditLease
      *
      * Extend credit lease
@@ -4819,7 +5991,7 @@ class CreditsApi
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Schematic\Model\ExtendCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     * @return \Schematic\Model\ExtendCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
     public function extendCreditLease($lease_id, $extend_credit_lease_request_body, string $contentType = self::contentTypes['extendCreditLease'][0])
     {
@@ -4838,7 +6010,7 @@ class CreditsApi
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Schematic\Model\ExtendCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Schematic\Model\ExtendCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
     public function extendCreditLeaseWithHttpInfo($lease_id, $extend_credit_lease_request_body, string $contentType = self::contentTypes['extendCreditLease'][0])
     {
@@ -4881,6 +6053,12 @@ class CreditsApi
                         $response,
                     );
                 case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 402:
                     return $this->handleResponseWithDataType(
                         '\Schematic\Model\ApiError',
                         $request,
@@ -4945,6 +6123,14 @@ class CreditsApi
                     $e->setResponseObject($data);
                     throw $e;
                 case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 402:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Schematic\Model\ApiError',
@@ -5439,6 +6625,712 @@ class CreditsApi
                 $resourcePath
             );
         }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getCreditSpendPolicy
+     *
+     * Get credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\GetCreditSpendPolicyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function getCreditSpendPolicy($spend_policy_id, string $contentType = self::contentTypes['getCreditSpendPolicy'][0])
+    {
+        list($response) = $this->getCreditSpendPolicyWithHttpInfo($spend_policy_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getCreditSpendPolicyWithHttpInfo
+     *
+     * Get credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\GetCreditSpendPolicyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getCreditSpendPolicyWithHttpInfo($spend_policy_id, string $contentType = self::contentTypes['getCreditSpendPolicy'][0])
+    {
+        $request = $this->getCreditSpendPolicyRequest($spend_policy_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\GetCreditSpendPolicyResponse',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\GetCreditSpendPolicyResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\GetCreditSpendPolicyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getCreditSpendPolicyAsync
+     *
+     * Get credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCreditSpendPolicyAsync($spend_policy_id, string $contentType = self::contentTypes['getCreditSpendPolicy'][0])
+    {
+        return $this->getCreditSpendPolicyAsyncWithHttpInfo($spend_policy_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getCreditSpendPolicyAsyncWithHttpInfo
+     *
+     * Get credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCreditSpendPolicyAsyncWithHttpInfo($spend_policy_id, string $contentType = self::contentTypes['getCreditSpendPolicy'][0])
+    {
+        $returnType = '\Schematic\Model\GetCreditSpendPolicyResponse';
+        $request = $this->getCreditSpendPolicyRequest($spend_policy_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getCreditSpendPolicy'
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getCreditSpendPolicyRequest($spend_policy_id, string $contentType = self::contentTypes['getCreditSpendPolicy'][0])
+    {
+
+        // verify the required parameter 'spend_policy_id' is set
+        if ($spend_policy_id === null || (is_array($spend_policy_id) && count($spend_policy_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $spend_policy_id when calling getCreditSpendPolicy'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/spend-policies/{spend_policy_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($spend_policy_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'spend_policy_id' . '}',
+                ObjectSerializer::toPathValue($spend_policy_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getCreditSpendPolicyUsage
+     *
+     * Get credit spend policy usage
+     *
+     * @param  string $company_id company_id (required)
+     * @param  string|null $billing_credit_id billing_credit_id (optional)
+     * @param  string[]|null $user_ids user_ids (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicyUsage'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\GetCreditSpendPolicyUsageResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function getCreditSpendPolicyUsage($company_id, $billing_credit_id = null, $user_ids = null, string $contentType = self::contentTypes['getCreditSpendPolicyUsage'][0])
+    {
+        list($response) = $this->getCreditSpendPolicyUsageWithHttpInfo($company_id, $billing_credit_id, $user_ids, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getCreditSpendPolicyUsageWithHttpInfo
+     *
+     * Get credit spend policy usage
+     *
+     * @param  string $company_id (required)
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicyUsage'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\GetCreditSpendPolicyUsageResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getCreditSpendPolicyUsageWithHttpInfo($company_id, $billing_credit_id = null, $user_ids = null, string $contentType = self::contentTypes['getCreditSpendPolicyUsage'][0])
+    {
+        $request = $this->getCreditSpendPolicyUsageRequest($company_id, $billing_credit_id, $user_ids, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\GetCreditSpendPolicyUsageResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\GetCreditSpendPolicyUsageResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\GetCreditSpendPolicyUsageResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getCreditSpendPolicyUsageAsync
+     *
+     * Get credit spend policy usage
+     *
+     * @param  string $company_id (required)
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicyUsage'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCreditSpendPolicyUsageAsync($company_id, $billing_credit_id = null, $user_ids = null, string $contentType = self::contentTypes['getCreditSpendPolicyUsage'][0])
+    {
+        return $this->getCreditSpendPolicyUsageAsyncWithHttpInfo($company_id, $billing_credit_id, $user_ids, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getCreditSpendPolicyUsageAsyncWithHttpInfo
+     *
+     * Get credit spend policy usage
+     *
+     * @param  string $company_id (required)
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicyUsage'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCreditSpendPolicyUsageAsyncWithHttpInfo($company_id, $billing_credit_id = null, $user_ids = null, string $contentType = self::contentTypes['getCreditSpendPolicyUsage'][0])
+    {
+        $returnType = '\Schematic\Model\GetCreditSpendPolicyUsageResponse';
+        $request = $this->getCreditSpendPolicyUsageRequest($company_id, $billing_credit_id, $user_ids, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getCreditSpendPolicyUsage'
+     *
+     * @param  string $company_id (required)
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCreditSpendPolicyUsage'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getCreditSpendPolicyUsageRequest($company_id, $billing_credit_id = null, $user_ids = null, string $contentType = self::contentTypes['getCreditSpendPolicyUsage'][0])
+    {
+
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling getCreditSpendPolicyUsage'
+            );
+        }
+
+
+        if ($user_ids !== null && count($user_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$user_ids" when calling CreditsApi.getCreditSpendPolicyUsage, number of items must be less than or equal to 100.');
+        }
+
+
+        $resourcePath = '/billing/credits/spend-policies/usage';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $billing_credit_id,
+            'billing_credit_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_id,
+            'company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_ids,
+            'user_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -7701,7 +9593,7 @@ class CreditsApi
      *
      * List company grants
      *
-     * @param  string|null $company_id company_id (optional)
+     * @param  string $company_id company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -7712,7 +9604,7 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompanyGrantsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanyGrants($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
+    public function listCompanyGrants($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
     {
         list($response) = $this->listCompanyGrantsWithHttpInfo($company_id, $order, $dir, $limit, $offset, $contentType);
         return $response;
@@ -7723,7 +9615,7 @@ class CreditsApi
      *
      * List company grants
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -7734,7 +9626,7 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompanyGrantsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompanyGrantsWithHttpInfo($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
+    public function listCompanyGrantsWithHttpInfo($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
     {
         $request = $this->listCompanyGrantsRequest($company_id, $order, $dir, $limit, $offset, $contentType);
 
@@ -7882,7 +9774,7 @@ class CreditsApi
      *
      * List company grants
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -7892,7 +9784,7 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyGrantsAsync($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
+    public function listCompanyGrantsAsync($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
     {
         return $this->listCompanyGrantsAsyncWithHttpInfo($company_id, $order, $dir, $limit, $offset, $contentType)
             ->then(
@@ -7907,7 +9799,7 @@ class CreditsApi
      *
      * List company grants
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -7917,7 +9809,7 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyGrantsAsyncWithHttpInfo($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
+    public function listCompanyGrantsAsyncWithHttpInfo($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
     {
         $returnType = '\Schematic\Model\ListCompanyGrantsResponse';
         $request = $this->listCompanyGrantsRequest($company_id, $order, $dir, $limit, $offset, $contentType);
@@ -7961,7 +9853,7 @@ class CreditsApi
     /**
      * Create request for operation 'listCompanyGrants'
      *
-     * @param  string|null $company_id (optional)
+     * @param  string $company_id (required)
      * @param  \Schematic\Model\CreditGrantSortOrder|null $order (optional)
      * @param  \Schematic\Model\SortDirection|null $dir (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -7971,9 +9863,15 @@ class CreditsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompanyGrantsRequest($company_id = null, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
+    public function listCompanyGrantsRequest($company_id, $order = null, $dir = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyGrants'][0])
     {
 
+        // verify the required parameter 'company_id' is set
+        if ($company_id === null || (is_array($company_id) && count($company_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $company_id when calling listCompanyGrants'
+            );
+        }
 
 
 
@@ -8000,7 +9898,7 @@ class CreditsApi
             'string', // openApiType
             'form', // style
             true, // explode
-            false // required
+            true // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -8978,6 +10876,446 @@ class CreditsApi
     }
 
     /**
+     * Operation listCreditSpendPolicies
+     *
+     * List credit spend policies
+     *
+     * @param  string|null $billing_credit_id billing_credit_id (optional)
+     * @param  string|null $company_id company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type scope_type (optional)
+     * @param  string|null $user_id user_id (optional)
+     * @param  string[]|null $user_ids user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ListCreditSpendPoliciesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function listCreditSpendPolicies($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditSpendPolicies'][0])
+    {
+        list($response) = $this->listCreditSpendPoliciesWithHttpInfo($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listCreditSpendPoliciesWithHttpInfo
+     *
+     * List credit spend policies
+     *
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string|null $company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type (optional)
+     * @param  string|null $user_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ListCreditSpendPoliciesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCreditSpendPoliciesWithHttpInfo($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditSpendPolicies'][0])
+    {
+        $request = $this->listCreditSpendPoliciesRequest($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ListCreditSpendPoliciesResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\ListCreditSpendPoliciesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ListCreditSpendPoliciesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listCreditSpendPoliciesAsync
+     *
+     * List credit spend policies
+     *
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string|null $company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type (optional)
+     * @param  string|null $user_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCreditSpendPoliciesAsync($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditSpendPolicies'][0])
+    {
+        return $this->listCreditSpendPoliciesAsyncWithHttpInfo($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listCreditSpendPoliciesAsyncWithHttpInfo
+     *
+     * List credit spend policies
+     *
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string|null $company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type (optional)
+     * @param  string|null $user_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCreditSpendPoliciesAsyncWithHttpInfo($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditSpendPolicies'][0])
+    {
+        $returnType = '\Schematic\Model\ListCreditSpendPoliciesResponse';
+        $request = $this->listCreditSpendPoliciesRequest($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listCreditSpendPolicies'
+     *
+     * @param  string|null $billing_credit_id (optional)
+     * @param  string|null $company_id (optional)
+     * @param  \Schematic\Model\CreditSpendPolicyScope|null $scope_type (optional)
+     * @param  string|null $user_id (optional)
+     * @param  string[]|null $user_ids (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCreditSpendPolicies'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listCreditSpendPoliciesRequest($billing_credit_id = null, $company_id = null, $scope_type = null, $user_id = null, $user_ids = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCreditSpendPolicies'][0])
+    {
+
+
+
+
+
+        if ($user_ids !== null && count($user_ids) > 100) {
+            throw new \InvalidArgumentException('invalid value for "$user_ids" when calling CreditsApi.listCreditSpendPolicies, number of items must be less than or equal to 100.');
+        }
+        if ($user_ids !== null && count($user_ids) < 1) {
+            throw new \InvalidArgumentException('invalid value for "$user_ids" when calling CreditsApi.listCreditSpendPolicies, number of items must be greater than or equal to 1.');
+        }
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listCreditSpendPolicies, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling CreditsApi.listCreditSpendPolicies, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/billing/credits/spend-policies';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $billing_credit_id,
+            'billing_credit_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_id,
+            'company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $scope_type,
+            'scope_type', // param base name
+            'CreditSpendPolicyScope', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_id,
+            'user_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_ids,
+            'user_ids', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation listGrantsForCredit
      *
      * List grants for credit
@@ -9375,16 +11713,15 @@ class CreditsApi
      * Release credit lease
      *
      * @param  string $lease_id lease_id (required)
-     * @param  object $body body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ReleaseCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function releaseCreditLease($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    public function releaseCreditLease($lease_id, string $contentType = self::contentTypes['releaseCreditLease'][0])
     {
-        list($response) = $this->releaseCreditLeaseWithHttpInfo($lease_id, $body, $contentType);
+        list($response) = $this->releaseCreditLeaseWithHttpInfo($lease_id, $contentType);
         return $response;
     }
 
@@ -9394,16 +11731,15 @@ class CreditsApi
      * Release credit lease
      *
      * @param  string $lease_id lease_id (required)
-     * @param  object $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
      *
      * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ReleaseCreditLeaseResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function releaseCreditLeaseWithHttpInfo($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    public function releaseCreditLeaseWithHttpInfo($lease_id, string $contentType = self::contentTypes['releaseCreditLease'][0])
     {
-        $request = $this->releaseCreditLeaseRequest($lease_id, $body, $contentType);
+        $request = $this->releaseCreditLeaseRequest($lease_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -9550,15 +11886,14 @@ class CreditsApi
      * Release credit lease
      *
      * @param  string $lease_id lease_id (required)
-     * @param  object $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function releaseCreditLeaseAsync($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    public function releaseCreditLeaseAsync($lease_id, string $contentType = self::contentTypes['releaseCreditLease'][0])
     {
-        return $this->releaseCreditLeaseAsyncWithHttpInfo($lease_id, $body, $contentType)
+        return $this->releaseCreditLeaseAsyncWithHttpInfo($lease_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -9572,16 +11907,15 @@ class CreditsApi
      * Release credit lease
      *
      * @param  string $lease_id lease_id (required)
-     * @param  object $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function releaseCreditLeaseAsyncWithHttpInfo($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    public function releaseCreditLeaseAsyncWithHttpInfo($lease_id, string $contentType = self::contentTypes['releaseCreditLease'][0])
     {
         $returnType = '\Schematic\Model\ReleaseCreditLeaseResponse';
-        $request = $this->releaseCreditLeaseRequest($lease_id, $body, $contentType);
+        $request = $this->releaseCreditLeaseRequest($lease_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -9623,26 +11957,18 @@ class CreditsApi
      * Create request for operation 'releaseCreditLease'
      *
      * @param  string $lease_id lease_id (required)
-     * @param  object $body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditLease'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function releaseCreditLeaseRequest($lease_id, $body, string $contentType = self::contentTypes['releaseCreditLease'][0])
+    public function releaseCreditLeaseRequest($lease_id, string $contentType = self::contentTypes['releaseCreditLease'][0])
     {
 
         // verify the required parameter 'lease_id' is set
         if ($lease_id === null || (is_array($lease_id) && count($lease_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $lease_id when calling releaseCreditLease'
-            );
-        }
-
-        // verify the required parameter 'body' is set
-        if ($body === null || (is_array($body) && count($body) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $body when calling releaseCreditLease'
             );
         }
 
@@ -9673,12 +11999,704 @@ class CreditsApi
         );
 
         // for model (json/xml)
-        if (isset($body)) {
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation releaseCreditReservation
+     *
+     * Release credit reservation
+     *
+     * @param  string $reservation_id reservation_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditReservation'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ReleaseCreditReservationResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function releaseCreditReservation($reservation_id, string $contentType = self::contentTypes['releaseCreditReservation'][0])
+    {
+        list($response) = $this->releaseCreditReservationWithHttpInfo($reservation_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation releaseCreditReservationWithHttpInfo
+     *
+     * Release credit reservation
+     *
+     * @param  string $reservation_id reservation_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditReservation'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ReleaseCreditReservationResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function releaseCreditReservationWithHttpInfo($reservation_id, string $contentType = self::contentTypes['releaseCreditReservation'][0])
+    {
+        $request = $this->releaseCreditReservationRequest($reservation_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ReleaseCreditReservationResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\ReleaseCreditReservationResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ReleaseCreditReservationResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation releaseCreditReservationAsync
+     *
+     * Release credit reservation
+     *
+     * @param  string $reservation_id reservation_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditReservation'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function releaseCreditReservationAsync($reservation_id, string $contentType = self::contentTypes['releaseCreditReservation'][0])
+    {
+        return $this->releaseCreditReservationAsyncWithHttpInfo($reservation_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation releaseCreditReservationAsyncWithHttpInfo
+     *
+     * Release credit reservation
+     *
+     * @param  string $reservation_id reservation_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditReservation'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function releaseCreditReservationAsyncWithHttpInfo($reservation_id, string $contentType = self::contentTypes['releaseCreditReservation'][0])
+    {
+        $returnType = '\Schematic\Model\ReleaseCreditReservationResponse';
+        $request = $this->releaseCreditReservationRequest($reservation_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'releaseCreditReservation'
+     *
+     * @param  string $reservation_id reservation_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['releaseCreditReservation'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function releaseCreditReservationRequest($reservation_id, string $contentType = self::contentTypes['releaseCreditReservation'][0])
+    {
+
+        // verify the required parameter 'reservation_id' is set
+        if ($reservation_id === null || (is_array($reservation_id) && count($reservation_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $reservation_id when calling releaseCreditReservation'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/reservations/{reservation_id}/release';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($reservation_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'reservation_id' . '}',
+                ObjectSerializer::toPathValue($reservation_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation reserveCredits
+     *
+     * Reserve credits
+     *
+     * @param  \Schematic\Model\ReserveCreditsRequestBody $reserve_credits_request_body reserve_credits_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reserveCredits'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ReserveCreditsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function reserveCredits($reserve_credits_request_body, string $contentType = self::contentTypes['reserveCredits'][0])
+    {
+        list($response) = $this->reserveCreditsWithHttpInfo($reserve_credits_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation reserveCreditsWithHttpInfo
+     *
+     * Reserve credits
+     *
+     * @param  \Schematic\Model\ReserveCreditsRequestBody $reserve_credits_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reserveCredits'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ReserveCreditsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function reserveCreditsWithHttpInfo($reserve_credits_request_body, string $contentType = self::contentTypes['reserveCredits'][0])
+    {
+        $request = $this->reserveCreditsRequest($reserve_credits_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 201:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ReserveCreditsResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 402:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\ReserveCreditsResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ReserveCreditsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 402:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation reserveCreditsAsync
+     *
+     * Reserve credits
+     *
+     * @param  \Schematic\Model\ReserveCreditsRequestBody $reserve_credits_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reserveCredits'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function reserveCreditsAsync($reserve_credits_request_body, string $contentType = self::contentTypes['reserveCredits'][0])
+    {
+        return $this->reserveCreditsAsyncWithHttpInfo($reserve_credits_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation reserveCreditsAsyncWithHttpInfo
+     *
+     * Reserve credits
+     *
+     * @param  \Schematic\Model\ReserveCreditsRequestBody $reserve_credits_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reserveCredits'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function reserveCreditsAsyncWithHttpInfo($reserve_credits_request_body, string $contentType = self::contentTypes['reserveCredits'][0])
+    {
+        $returnType = '\Schematic\Model\ReserveCreditsResponse';
+        $request = $this->reserveCreditsRequest($reserve_credits_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'reserveCredits'
+     *
+     * @param  \Schematic\Model\ReserveCreditsRequestBody $reserve_credits_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reserveCredits'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function reserveCreditsRequest($reserve_credits_request_body, string $contentType = self::contentTypes['reserveCredits'][0])
+    {
+
+        // verify the required parameter 'reserve_credits_request_body' is set
+        if ($reserve_credits_request_body === null || (is_array($reserve_credits_request_body) && count($reserve_credits_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $reserve_credits_request_body when calling reserveCredits'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/reservations';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($reserve_credits_request_body)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($body));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($reserve_credits_request_body));
             } else {
-                $httpBody = $body;
+                $httpBody = $reserve_credits_request_body;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -9724,7 +12742,7 @@ class CreditsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'PUT',
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -11108,6 +14126,368 @@ class CreditsApi
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_credit_bundle_details_request_body));
             } else {
                 $httpBody = $update_credit_bundle_details_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateCreditSpendPolicy
+     *
+     * Update credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  \Schematic\Model\UpdateCreditSpendPolicyRequestBody $update_credit_spend_policy_request_body update_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\UpdateCreditSpendPolicyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function updateCreditSpendPolicy($spend_policy_id, $update_credit_spend_policy_request_body, string $contentType = self::contentTypes['updateCreditSpendPolicy'][0])
+    {
+        list($response) = $this->updateCreditSpendPolicyWithHttpInfo($spend_policy_id, $update_credit_spend_policy_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateCreditSpendPolicyWithHttpInfo
+     *
+     * Update credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  \Schematic\Model\UpdateCreditSpendPolicyRequestBody $update_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\UpdateCreditSpendPolicyResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateCreditSpendPolicyWithHttpInfo($spend_policy_id, $update_credit_spend_policy_request_body, string $contentType = self::contentTypes['updateCreditSpendPolicy'][0])
+    {
+        $request = $this->updateCreditSpendPolicyRequest($spend_policy_id, $update_credit_spend_policy_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\UpdateCreditSpendPolicyResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\UpdateCreditSpendPolicyResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\UpdateCreditSpendPolicyResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateCreditSpendPolicyAsync
+     *
+     * Update credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  \Schematic\Model\UpdateCreditSpendPolicyRequestBody $update_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateCreditSpendPolicyAsync($spend_policy_id, $update_credit_spend_policy_request_body, string $contentType = self::contentTypes['updateCreditSpendPolicy'][0])
+    {
+        return $this->updateCreditSpendPolicyAsyncWithHttpInfo($spend_policy_id, $update_credit_spend_policy_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateCreditSpendPolicyAsyncWithHttpInfo
+     *
+     * Update credit spend policy
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  \Schematic\Model\UpdateCreditSpendPolicyRequestBody $update_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateCreditSpendPolicyAsyncWithHttpInfo($spend_policy_id, $update_credit_spend_policy_request_body, string $contentType = self::contentTypes['updateCreditSpendPolicy'][0])
+    {
+        $returnType = '\Schematic\Model\UpdateCreditSpendPolicyResponse';
+        $request = $this->updateCreditSpendPolicyRequest($spend_policy_id, $update_credit_spend_policy_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateCreditSpendPolicy'
+     *
+     * @param  string $spend_policy_id spend_policy_id (required)
+     * @param  \Schematic\Model\UpdateCreditSpendPolicyRequestBody $update_credit_spend_policy_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCreditSpendPolicy'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateCreditSpendPolicyRequest($spend_policy_id, $update_credit_spend_policy_request_body, string $contentType = self::contentTypes['updateCreditSpendPolicy'][0])
+    {
+
+        // verify the required parameter 'spend_policy_id' is set
+        if ($spend_policy_id === null || (is_array($spend_policy_id) && count($spend_policy_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $spend_policy_id when calling updateCreditSpendPolicy'
+            );
+        }
+
+        // verify the required parameter 'update_credit_spend_policy_request_body' is set
+        if ($update_credit_spend_policy_request_body === null || (is_array($update_credit_spend_policy_request_body) && count($update_credit_spend_policy_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $update_credit_spend_policy_request_body when calling updateCreditSpendPolicy'
+            );
+        }
+
+
+        $resourcePath = '/billing/credits/spend-policies/{spend_policy_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($spend_policy_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'spend_policy_id' . '}',
+                ObjectSerializer::toPathValue($spend_policy_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($update_credit_spend_policy_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_credit_spend_policy_request_body));
+            } else {
+                $httpBody = $update_credit_spend_policy_request_body;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

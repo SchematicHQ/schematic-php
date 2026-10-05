@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **captured_at** | **\DateTime** |  |
+**context_signature** | **string** |  | [optional]
+**context_signature_checked** | **bool** |  | [optional]
 **event_id** | **string** |  | [optional]
 **raw_bytes** | **string** |  |
 **remote_ip** | **string** |  |

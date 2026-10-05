@@ -65,6 +65,7 @@ class CreditLeaseResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'granted_amount' => 'float',
         'id' => 'string',
         'released_at' => '\DateTime',
+        'tracked_amount' => 'float',
         'updated_at' => '\DateTime'
     ];
 
@@ -83,6 +84,7 @@ class CreditLeaseResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'granted_amount' => 'double',
         'id' => null,
         'released_at' => 'date-time',
+        'tracked_amount' => 'double',
         'updated_at' => 'date-time'
     ];
 
@@ -99,6 +101,7 @@ class CreditLeaseResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'granted_amount' => false,
         'id' => false,
         'released_at' => true,
+        'tracked_amount' => false,
         'updated_at' => false
     ];
 
@@ -195,6 +198,7 @@ class CreditLeaseResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'granted_amount' => 'granted_amount',
         'id' => 'id',
         'released_at' => 'released_at',
+        'tracked_amount' => 'tracked_amount',
         'updated_at' => 'updated_at'
     ];
 
@@ -211,6 +215,7 @@ class CreditLeaseResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'granted_amount' => 'setGrantedAmount',
         'id' => 'setId',
         'released_at' => 'setReleasedAt',
+        'tracked_amount' => 'setTrackedAmount',
         'updated_at' => 'setUpdatedAt'
     ];
 
@@ -227,6 +232,7 @@ class CreditLeaseResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         'granted_amount' => 'getGrantedAmount',
         'id' => 'getId',
         'released_at' => 'getReleasedAt',
+        'tracked_amount' => 'getTrackedAmount',
         'updated_at' => 'getUpdatedAt'
     ];
 
@@ -294,6 +300,7 @@ class CreditLeaseResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('granted_amount', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('released_at', $data ?? [], null);
+        $this->setIfExists('tracked_amount', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
     }
 
@@ -341,6 +348,9 @@ class CreditLeaseResponseData implements ModelInterface, ArrayAccess, \JsonSeria
         }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['tracked_amount'] === null) {
+            $invalidProperties[] = "'tracked_amount' can't be null";
         }
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
@@ -552,6 +562,33 @@ class CreditLeaseResponseData implements ModelInterface, ArrayAccess, \JsonSeria
             }
         }
         $this->container['released_at'] = $released_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets tracked_amount
+     *
+     * @return float
+     */
+    public function getTrackedAmount()
+    {
+        return $this->container['tracked_amount'];
+    }
+
+    /**
+     * Sets tracked_amount
+     *
+     * @param float $tracked_amount tracked_amount
+     *
+     * @return self
+     */
+    public function setTrackedAmount($tracked_amount)
+    {
+        if (is_null($tracked_amount)) {
+            throw new \InvalidArgumentException('non-nullable tracked_amount cannot be null');
+        }
+        $this->container['tracked_amount'] = $tracked_amount;
 
         return $this;
     }

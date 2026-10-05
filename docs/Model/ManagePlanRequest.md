@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **company_id** | **string** |  |
 **coupon_external_id** | **string** |  | [optional]
 **credit_bundles** | [**\Schematic\Model\UpdateCreditBundleRequestBody[]**](UpdateCreditBundleRequestBody.md) |  |
+**currency** | **string** | ISO 4217 currency this change is being built in. Prices are still selected by id; this records the intent. | [optional]
 **custom_field_values** | [**\Schematic\Model\CheckoutFieldValue[]**](CheckoutFieldValue.md) |  |
 **days_until_due** | **int** | Payment terms in days for an invoiced subscription. Defaults to 30. | [optional]
 **pay_in_advance_entitlements** | [**\Schematic\Model\UpdatePayInAdvanceRequestBody[]**](UpdatePayInAdvanceRequestBody.md) |  |

@@ -59,6 +59,8 @@ class CaptureRawEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'captured_at' => '\DateTime',
+        'context_signature' => 'string',
+        'context_signature_checked' => 'bool',
         'event_id' => 'string',
         'raw_bytes' => 'string',
         'remote_ip' => 'string',
@@ -74,6 +76,8 @@ class CaptureRawEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'captured_at' => 'date-time',
+        'context_signature' => null,
+        'context_signature_checked' => null,
         'event_id' => null,
         'raw_bytes' => 'byte',
         'remote_ip' => null,
@@ -87,6 +91,8 @@ class CaptureRawEvent implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'captured_at' => false,
+        'context_signature' => false,
+        'context_signature_checked' => false,
         'event_id' => true,
         'raw_bytes' => false,
         'remote_ip' => false,
@@ -180,6 +186,8 @@ class CaptureRawEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'captured_at' => 'captured_at',
+        'context_signature' => 'context_signature',
+        'context_signature_checked' => 'context_signature_checked',
         'event_id' => 'event_id',
         'raw_bytes' => 'raw_bytes',
         'remote_ip' => 'remote_ip',
@@ -193,6 +201,8 @@ class CaptureRawEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'captured_at' => 'setCapturedAt',
+        'context_signature' => 'setContextSignature',
+        'context_signature_checked' => 'setContextSignatureChecked',
         'event_id' => 'setEventId',
         'raw_bytes' => 'setRawBytes',
         'remote_ip' => 'setRemoteIp',
@@ -206,6 +216,8 @@ class CaptureRawEvent implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'captured_at' => 'getCapturedAt',
+        'context_signature' => 'getContextSignature',
+        'context_signature_checked' => 'getContextSignatureChecked',
         'event_id' => 'getEventId',
         'raw_bytes' => 'getRawBytes',
         'remote_ip' => 'getRemoteIp',
@@ -270,6 +282,8 @@ class CaptureRawEvent implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('captured_at', $data ?? [], null);
+        $this->setIfExists('context_signature', $data ?? [], null);
+        $this->setIfExists('context_signature_checked', $data ?? [], null);
         $this->setIfExists('event_id', $data ?? [], null);
         $this->setIfExists('raw_bytes', $data ?? [], null);
         $this->setIfExists('remote_ip', $data ?? [], null);
@@ -353,6 +367,60 @@ class CaptureRawEvent implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable captured_at cannot be null');
         }
         $this->container['captured_at'] = $captured_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets context_signature
+     *
+     * @return string|null
+     */
+    public function getContextSignature()
+    {
+        return $this->container['context_signature'];
+    }
+
+    /**
+     * Sets context_signature
+     *
+     * @param string|null $context_signature context_signature
+     *
+     * @return self
+     */
+    public function setContextSignature($context_signature)
+    {
+        if (is_null($context_signature)) {
+            throw new \InvalidArgumentException('non-nullable context_signature cannot be null');
+        }
+        $this->container['context_signature'] = $context_signature;
+
+        return $this;
+    }
+
+    /**
+     * Gets context_signature_checked
+     *
+     * @return bool|null
+     */
+    public function getContextSignatureChecked()
+    {
+        return $this->container['context_signature_checked'];
+    }
+
+    /**
+     * Sets context_signature_checked
+     *
+     * @param bool|null $context_signature_checked context_signature_checked
+     *
+     * @return self
+     */
+    public function setContextSignatureChecked($context_signature_checked)
+    {
+        if (is_null($context_signature_checked)) {
+            throw new \InvalidArgumentException('non-nullable context_signature_checked cannot be null');
+        }
+        $this->container['context_signature_checked'] = $context_signature_checked;
 
         return $this;
     }

@@ -47,6 +47,8 @@ class MigrationProrationBehavior
 
     public const CREATE_PRORATIONS = 'create_prorations';
 
+    public const NONE = 'none';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -55,7 +57,8 @@ class MigrationProrationBehavior
     {
         return [
             self::ALWAYS_INVOICE,
-            self::CREATE_PRORATIONS
+            self::CREATE_PRORATIONS,
+            self::NONE
         ];
     }
 }

@@ -133,4 +133,13 @@ class PlanVersionMigrationPreviewCompanyResponseDataTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "would_fail"
+     */
+    public function testPropertyWouldFail()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

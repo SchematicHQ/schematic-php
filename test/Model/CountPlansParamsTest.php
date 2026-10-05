@@ -108,6 +108,15 @@ class CountPlansParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "exclude_unused"
+     */
+    public function testPropertyExcludeUnused()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "for_fallback_plan"
      */
     public function testPropertyForFallbackPlan()
@@ -216,9 +225,27 @@ class CountPlansParamsTest extends TestCase
     }
 
     /**
+     * Test attribute "with_published_version"
+     */
+    public function testPropertyWithPublishedVersion()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "without_entitlement_for"
      */
     public function testPropertyWithoutEntitlementFor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "without_entitlement_for_include_drafts"
+     */
+    public function testPropertyWithoutEntitlementForIncludeDrafts()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

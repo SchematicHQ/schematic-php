@@ -81,6 +81,15 @@ class WebhookEventDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "attempt_count"
+     */
+    public function testPropertyAttemptCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()

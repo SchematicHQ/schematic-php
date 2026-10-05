@@ -135,6 +135,15 @@ class CreateMigrationInputTest extends TestCase
     }
 
     /**
+     * Test attribute "scheduled_at"
+     */
+    public function testPropertyScheduledAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "strategy"
      */
     public function testPropertyStrategy()

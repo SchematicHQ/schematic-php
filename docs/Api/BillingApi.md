@@ -15,11 +15,13 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**listBillingPrices()**](BillingApi.md#listBillingPrices) | **GET** /billing/price | List billing prices |
 | [**listBillingProductPrices()**](BillingApi.md#listBillingProductPrices) | **GET** /billing/product/prices | List billing product prices |
 | [**listBillingProducts()**](BillingApi.md#listBillingProducts) | **GET** /billing/products | List billing products |
+| [**listCompanyBillingProfiles()**](BillingApi.md#listCompanyBillingProfiles) | **GET** /billing/profiles | List company billing profiles |
 | [**listCoupons()**](BillingApi.md#listCoupons) | **GET** /billing/coupons | List coupons |
 | [**listCustomersWithSubscriptions()**](BillingApi.md#listCustomersWithSubscriptions) | **GET** /billing/customers | List customers with subscriptions |
 | [**listInvoices()**](BillingApi.md#listInvoices) | **GET** /billing/invoices | List invoices |
 | [**listMeters()**](BillingApi.md#listMeters) | **GET** /billing/meter | List meters |
 | [**listPaymentMethods()**](BillingApi.md#listPaymentMethods) | **GET** /billing/payment-methods | List payment methods |
+| [**updateCompanyBillingProfile()**](BillingApi.md#updateCompanyBillingProfile) | **PUT** /billing/profiles/{billing_profile_id} | Update company billing profile |
 | [**upsertBillingCoupon()**](BillingApi.md#upsertBillingCoupon) | **POST** /billing/coupons | Upsert billing coupon |
 | [**upsertBillingCustomer()**](BillingApi.md#upsertBillingCustomer) | **POST** /billing/customer/upsert | Upsert billing customer |
 | [**upsertBillingMeter()**](BillingApi.md#upsertBillingMeter) | **POST** /billing/meter/upsert | Upsert billing meter |
@@ -717,6 +719,65 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listCompanyBillingProfiles()`
+
+```php
+listCompanyBillingProfiles($company_id, $is_default, $provider_type, $limit, $offset): \Schematic\Model\ListCompanyBillingProfilesResponse
+```
+
+List company billing profiles
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string
+$is_default = True; // bool
+$provider_type = new \Schematic\Model\\Schematic\Model\BillingProviderType(); // \Schematic\Model\BillingProviderType
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->BillingApi->listCompanyBillingProfiles($company_id, $is_default, $provider_type, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->BillingApi->listCompanyBillingProfiles: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**|  | [optional] |
+| **is_default** | **bool**|  | [optional] |
+| **provider_type** | [**\Schematic\Model\BillingProviderType**](../Model/.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListCompanyBillingProfilesResponse**](../Model/ListCompanyBillingProfilesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listCoupons()`
 
 ```php
@@ -1000,6 +1061,59 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateCompanyBillingProfile()`
+
+```php
+updateCompanyBillingProfile($billing_profile_id, $update_company_billing_profile_request_body): \Schematic\Model\UpdateCompanyBillingProfileResponse
+```
+
+Update company billing profile
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$billing_profile_id = 'billing_profile_id_example'; // string | billing_profile_id
+$update_company_billing_profile_request_body = new \Schematic\Model\UpdateCompanyBillingProfileRequestBody(); // \Schematic\Model\UpdateCompanyBillingProfileRequestBody
+
+try {
+    $result = $schematic->BillingApi->updateCompanyBillingProfile($billing_profile_id, $update_company_billing_profile_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->BillingApi->updateCompanyBillingProfile: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **billing_profile_id** | **string**| billing_profile_id | |
+| **update_company_billing_profile_request_body** | [**\Schematic\Model\UpdateCompanyBillingProfileRequestBody**](../Model/UpdateCompanyBillingProfileRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpdateCompanyBillingProfileResponse**](../Model/UpdateCompanyBillingProfileResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

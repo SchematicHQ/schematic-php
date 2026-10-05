@@ -296,6 +296,9 @@ class CreateCustomPlanBundleRequestBody implements ModelInterface, ArrayAccess, 
     {
         $invalidProperties = [];
 
+        if ($this->container['billing_product'] === null) {
+            $invalidProperties[] = "'billing_product' can't be null";
+        }
         if (!is_null($this->container['credit_grants']) && (count($this->container['credit_grants']) > 100)) {
             $invalidProperties[] = "invalid value for 'credit_grants', number of items must be less than or equal to 100.";
         }
@@ -307,6 +310,9 @@ class CreateCustomPlanBundleRequestBody implements ModelInterface, ArrayAccess, 
             $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 100.";
         }
 
+        if ($this->container['plan'] === null) {
+            $invalidProperties[] = "'plan' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -325,7 +331,7 @@ class CreateCustomPlanBundleRequestBody implements ModelInterface, ArrayAccess, 
     /**
      * Gets billing_product
      *
-     * @return \Schematic\Model\UpsertBillingProductRequestBody|null
+     * @return \Schematic\Model\UpsertBillingProductRequestBody
      */
     public function getBillingProduct()
     {
@@ -335,7 +341,7 @@ class CreateCustomPlanBundleRequestBody implements ModelInterface, ArrayAccess, 
     /**
      * Sets billing_product
      *
-     * @param \Schematic\Model\UpsertBillingProductRequestBody|null $billing_product billing_product
+     * @param \Schematic\Model\UpsertBillingProductRequestBody $billing_product billing_product
      *
      * @return self
      */
@@ -414,7 +420,7 @@ class CreateCustomPlanBundleRequestBody implements ModelInterface, ArrayAccess, 
     /**
      * Gets plan
      *
-     * @return \Schematic\Model\CreateCustomPlanBundlePlanRequestBody|null
+     * @return \Schematic\Model\CreateCustomPlanBundlePlanRequestBody
      */
     public function getPlan()
     {
@@ -424,7 +430,7 @@ class CreateCustomPlanBundleRequestBody implements ModelInterface, ArrayAccess, 
     /**
      * Sets plan
      *
-     * @param \Schematic\Model\CreateCustomPlanBundlePlanRequestBody|null $plan plan
+     * @param \Schematic\Model\CreateCustomPlanBundlePlanRequestBody $plan plan
      *
      * @return self
      */

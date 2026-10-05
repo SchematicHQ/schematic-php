@@ -79,6 +79,9 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'request_id' => 'string',
         'subscription_change_action' => '\Schematic\Model\PlanChangeSubscriptionAction',
         'traits_updated' => '\Schematic\Model\SubscriptionTraitUpdate[]',
+        'trial_converted_at' => '\DateTime',
+        'trial_expires_at' => '\DateTime',
+        'trial_status' => '\Schematic\Model\TrialStatus',
         'updated_at' => '\DateTime',
         'user_id' => 'string',
         'user_name' => 'string'
@@ -113,6 +116,9 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'request_id' => null,
         'subscription_change_action' => null,
         'traits_updated' => null,
+        'trial_converted_at' => 'date-time',
+        'trial_expires_at' => 'date-time',
+        'trial_status' => null,
         'updated_at' => 'date-time',
         'user_id' => null,
         'user_name' => null
@@ -145,6 +151,9 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'request_id' => true,
         'subscription_change_action' => true,
         'traits_updated' => false,
+        'trial_converted_at' => true,
+        'trial_expires_at' => true,
+        'trial_status' => true,
         'updated_at' => false,
         'user_id' => true,
         'user_name' => true
@@ -257,6 +266,9 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'request_id' => 'request_id',
         'subscription_change_action' => 'subscription_change_action',
         'traits_updated' => 'traits_updated',
+        'trial_converted_at' => 'trial_converted_at',
+        'trial_expires_at' => 'trial_expires_at',
+        'trial_status' => 'trial_status',
         'updated_at' => 'updated_at',
         'user_id' => 'user_id',
         'user_name' => 'user_name'
@@ -289,6 +301,9 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'request_id' => 'setRequestId',
         'subscription_change_action' => 'setSubscriptionChangeAction',
         'traits_updated' => 'setTraitsUpdated',
+        'trial_converted_at' => 'setTrialConvertedAt',
+        'trial_expires_at' => 'setTrialExpiresAt',
+        'trial_status' => 'setTrialStatus',
         'updated_at' => 'setUpdatedAt',
         'user_id' => 'setUserId',
         'user_name' => 'setUserName'
@@ -321,6 +336,9 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         'request_id' => 'getRequestId',
         'subscription_change_action' => 'getSubscriptionChangeAction',
         'traits_updated' => 'getTraitsUpdated',
+        'trial_converted_at' => 'getTrialConvertedAt',
+        'trial_expires_at' => 'getTrialExpiresAt',
+        'trial_status' => 'getTrialStatus',
         'updated_at' => 'getUpdatedAt',
         'user_id' => 'getUserId',
         'user_name' => 'getUserName'
@@ -404,6 +422,9 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('request_id', $data ?? [], null);
         $this->setIfExists('subscription_change_action', $data ?? [], null);
         $this->setIfExists('traits_updated', $data ?? [], null);
+        $this->setIfExists('trial_converted_at', $data ?? [], null);
+        $this->setIfExists('trial_expires_at', $data ?? [], null);
+        $this->setIfExists('trial_status', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('user_id', $data ?? [], null);
         $this->setIfExists('user_name', $data ?? [], null);
@@ -1092,6 +1113,108 @@ class PlanChangeResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('invalid value for $traits_updated when calling PlanChangeResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['traits_updated'] = $traits_updated;
+
+        return $this;
+    }
+
+    /**
+     * Gets trial_converted_at
+     *
+     * @return \DateTime|null
+     */
+    public function getTrialConvertedAt()
+    {
+        return $this->container['trial_converted_at'];
+    }
+
+    /**
+     * Sets trial_converted_at
+     *
+     * @param \DateTime|null $trial_converted_at When the company's trial had converted to a paid subscription as of this change. Null when the trial had not converted, or for changes recorded before trial status was tracked.
+     *
+     * @return self
+     */
+    public function setTrialConvertedAt($trial_converted_at)
+    {
+        if (is_null($trial_converted_at)) {
+            array_push($this->openAPINullablesSetToNull, 'trial_converted_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('trial_converted_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['trial_converted_at'] = $trial_converted_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets trial_expires_at
+     *
+     * @return \DateTime|null
+     */
+    public function getTrialExpiresAt()
+    {
+        return $this->container['trial_expires_at'];
+    }
+
+    /**
+     * Sets trial_expires_at
+     *
+     * @param \DateTime|null $trial_expires_at When the company's trial was set to end as of this change. Null when the company had never trialed, or for changes recorded before trial status was tracked.
+     *
+     * @return self
+     */
+    public function setTrialExpiresAt($trial_expires_at)
+    {
+        if (is_null($trial_expires_at)) {
+            array_push($this->openAPINullablesSetToNull, 'trial_expires_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('trial_expires_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['trial_expires_at'] = $trial_expires_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets trial_status
+     *
+     * @return \Schematic\Model\TrialStatus|null
+     */
+    public function getTrialStatus()
+    {
+        return $this->container['trial_status'];
+    }
+
+    /**
+     * Sets trial_status
+     *
+     * @param \Schematic\Model\TrialStatus|null $trial_status The company's trial status. Null when the company had never trialed, or for changes recorded before trial status was tracked.
+     *
+     * @return self
+     */
+    public function setTrialStatus($trial_status)
+    {
+        if (is_null($trial_status)) {
+            array_push($this->openAPINullablesSetToNull, 'trial_status');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('trial_status', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['trial_status'] = $trial_status;
 
         return $this;
     }

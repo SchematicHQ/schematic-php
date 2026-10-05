@@ -117,6 +117,15 @@ class EnvironmentResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "require_context_signature"
+     */
+    public function testPropertyRequireContextSignature()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "updated_at"
      */
     public function testPropertyUpdatedAt()

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **metric_period_month_reset** | [**\Schematic\Model\MetricPeriodMonthReset**](MetricPeriodMonthReset.md) |  | [optional]
 **metric_value** | **int** |  | [optional]
 **operator** | [**\Schematic\Model\ComparableOperator**](ComparableOperator.md) |  |
+**plan_versions** | [**\Schematic\Model\RuleConditionPlanVersionResponseData[]**](RuleConditionPlanVersionResponseData.md) |  | [optional]
 **resource_ids** | **string[]** |  |
 **resources** | [**\Schematic\Model\PreviewObjectResponseData[]**](PreviewObjectResponseData.md) |  |
 **rule_id** | **string** |  |

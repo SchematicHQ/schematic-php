@@ -25,6 +25,9 @@ Name | Type | Description | Notes
 **request_id** | **string** |  | [optional]
 **subscription_change_action** | [**\Schematic\Model\PlanChangeSubscriptionAction**](PlanChangeSubscriptionAction.md) | If a subscription was changed as a part of this plan change, indicates the type of change that was made. | [optional]
 **traits_updated** | [**\Schematic\Model\SubscriptionTraitUpdate[]**](SubscriptionTraitUpdate.md) | Any traits were updated as part of this plan change (via pay-in-advance entitlements). |
+**trial_converted_at** | **\DateTime** | When the company&#39;s trial had converted to a paid subscription as of this change. Null when the trial had not converted, or for changes recorded before trial status was tracked. | [optional]
+**trial_expires_at** | **\DateTime** | When the company&#39;s trial was set to end as of this change. Null when the company had never trialed, or for changes recorded before trial status was tracked. | [optional]
+**trial_status** | [**\Schematic\Model\TrialStatus**](TrialStatus.md) | The company&#39;s trial status. Null when the company had never trialed, or for changes recorded before trial status was tracked. | [optional]
 **updated_at** | **\DateTime** |  |
 **user_id** | **string** |  | [optional]
 **user_name** | **string** |  | [optional]

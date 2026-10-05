@@ -62,6 +62,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => 'string',
         'lease_id' => 'string',
         'quantity' => 'int',
+        'reservation_id' => 'string',
         'traits' => 'object',
         'user' => 'array<string,string>'
     ];
@@ -78,6 +79,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => null,
         'lease_id' => null,
         'quantity' => 'int64',
+        'reservation_id' => null,
         'traits' => null,
         'user' => null
     ];
@@ -92,6 +94,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => false,
         'lease_id' => false,
         'quantity' => false,
+        'reservation_id' => false,
         'traits' => false,
         'user' => false
     ];
@@ -186,6 +189,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => 'event',
         'lease_id' => 'lease_id',
         'quantity' => 'quantity',
+        'reservation_id' => 'reservation_id',
         'traits' => 'traits',
         'user' => 'user'
     ];
@@ -200,6 +204,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => 'setEvent',
         'lease_id' => 'setLeaseId',
         'quantity' => 'setQuantity',
+        'reservation_id' => 'setReservationId',
         'traits' => 'setTraits',
         'user' => 'setUser'
     ];
@@ -214,6 +219,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => 'getEvent',
         'lease_id' => 'getLeaseId',
         'quantity' => 'getQuantity',
+        'reservation_id' => 'getReservationId',
         'traits' => 'getTraits',
         'user' => 'getUser'
     ];
@@ -279,6 +285,7 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('event', $data ?? [], null);
         $this->setIfExists('lease_id', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('reservation_id', $data ?? [], null);
         $this->setIfExists('traits', $data ?? [], null);
         $this->setIfExists('user', $data ?? [], null);
     }
@@ -432,6 +439,33 @@ class EventBodyTrack implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
         $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets reservation_id
+     *
+     * @return string|null
+     */
+    public function getReservationId()
+    {
+        return $this->container['reservation_id'];
+    }
+
+    /**
+     * Sets reservation_id
+     *
+     * @param string|null $reservation_id Credit reservation ID this track event settles. lease_id takes precedence when both are set
+     *
+     * @return self
+     */
+    public function setReservationId($reservation_id)
+    {
+        if (is_null($reservation_id)) {
+            throw new \InvalidArgumentException('non-nullable reservation_id cannot be null');
+        }
+        $this->container['reservation_id'] = $reservation_id;
 
         return $this;
     }

@@ -67,6 +67,7 @@ class PlanVersionCompanyMigrationResponseData implements ModelInterface, ArrayAc
         'id' => 'string',
         'migration_id' => 'string',
         'plan_version_id_from' => 'string',
+        'scheduled_for' => '\DateTime',
         'started_at' => '\DateTime',
         'status' => '\Schematic\Model\PlanVersionCompanyMigrationStatus',
         'updated_at' => '\DateTime'
@@ -89,6 +90,7 @@ class PlanVersionCompanyMigrationResponseData implements ModelInterface, ArrayAc
         'id' => null,
         'migration_id' => null,
         'plan_version_id_from' => null,
+        'scheduled_for' => 'date-time',
         'started_at' => 'date-time',
         'status' => null,
         'updated_at' => 'date-time'
@@ -109,6 +111,7 @@ class PlanVersionCompanyMigrationResponseData implements ModelInterface, ArrayAc
         'id' => false,
         'migration_id' => false,
         'plan_version_id_from' => true,
+        'scheduled_for' => true,
         'started_at' => true,
         'status' => false,
         'updated_at' => false
@@ -209,6 +212,7 @@ class PlanVersionCompanyMigrationResponseData implements ModelInterface, ArrayAc
         'id' => 'id',
         'migration_id' => 'migration_id',
         'plan_version_id_from' => 'plan_version_id_from',
+        'scheduled_for' => 'scheduled_for',
         'started_at' => 'started_at',
         'status' => 'status',
         'updated_at' => 'updated_at'
@@ -229,6 +233,7 @@ class PlanVersionCompanyMigrationResponseData implements ModelInterface, ArrayAc
         'id' => 'setId',
         'migration_id' => 'setMigrationId',
         'plan_version_id_from' => 'setPlanVersionIdFrom',
+        'scheduled_for' => 'setScheduledFor',
         'started_at' => 'setStartedAt',
         'status' => 'setStatus',
         'updated_at' => 'setUpdatedAt'
@@ -249,6 +254,7 @@ class PlanVersionCompanyMigrationResponseData implements ModelInterface, ArrayAc
         'id' => 'getId',
         'migration_id' => 'getMigrationId',
         'plan_version_id_from' => 'getPlanVersionIdFrom',
+        'scheduled_for' => 'getScheduledFor',
         'started_at' => 'getStartedAt',
         'status' => 'getStatus',
         'updated_at' => 'getUpdatedAt'
@@ -320,6 +326,7 @@ class PlanVersionCompanyMigrationResponseData implements ModelInterface, ArrayAc
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('migration_id', $data ?? [], null);
         $this->setIfExists('plan_version_id_from', $data ?? [], null);
+        $this->setIfExists('scheduled_for', $data ?? [], null);
         $this->setIfExists('started_at', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -655,6 +662,40 @@ class PlanVersionCompanyMigrationResponseData implements ModelInterface, ArrayAc
             }
         }
         $this->container['plan_version_id_from'] = $plan_version_id_from;
+
+        return $this;
+    }
+
+    /**
+     * Gets scheduled_for
+     *
+     * @return \DateTime|null
+     */
+    public function getScheduledFor()
+    {
+        return $this->container['scheduled_for'];
+    }
+
+    /**
+     * Sets scheduled_for
+     *
+     * @param \DateTime|null $scheduled_for When this company is expected to migrate, for a migration scheduled at the end of the billing period: the end of the company's current billing period. Only set while both the company and the migration are still pending. A value at or before the time of the request means the company has no active subscription and migrates as soon as processing runs. Null means no upcoming renewal could be determined from the company's current billing status (for example, a past-due subscription or one set to cancel); it does not mean the company will never migrate.
+     *
+     * @return self
+     */
+    public function setScheduledFor($scheduled_for)
+    {
+        if (is_null($scheduled_for)) {
+            array_push($this->openAPINullablesSetToNull, 'scheduled_for');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('scheduled_for', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['scheduled_for'] = $scheduled_for;
 
         return $this;
     }

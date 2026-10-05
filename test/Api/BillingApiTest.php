@@ -205,6 +205,18 @@ class BillingApiTest extends TestCase
     }
 
     /**
+     * Test case for listCompanyBillingProfiles
+     *
+     * List company billing profiles.
+     *
+     */
+    public function testListCompanyBillingProfiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for listCoupons
      *
      * List coupons.
@@ -259,6 +271,18 @@ class BillingApiTest extends TestCase
      *
      */
     public function testListPaymentMethods()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateCompanyBillingProfile
+     *
+     * Update company billing profile.
+     *
+     */
+    public function testUpdateCompanyBillingProfile()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

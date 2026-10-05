@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bundle_type** | [**\Schematic\Model\BillingCreditBundleType**](BillingCreditBundleType.md) |  |
+**compatible_plan_ids** | **string[]** |  |
 **created_at** | **\DateTime** |  |
 **credit_description** | **string** |  | [optional]
 **credit_icon** | **string** |  | [optional]

@@ -60,6 +60,9 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPITypes = [
         'add_ons' => '\Schematic\Model\CompanyPlanWithBillingSubView[]',
         'billing_credit_balances' => 'array<string,float>',
+        'billing_email' => 'string',
+        'billing_profile' => '\Schematic\Model\CompanyBillingProfileResponseData',
+        'billing_profiles' => '\Schematic\Model\CompanyBillingProfileResponseData[]',
         'billing_subscription' => '\Schematic\Model\BillingSubscriptionView',
         'billing_subscriptions' => '\Schematic\Model\BillingSubscriptionView[]',
         'created_at' => '\DateTime',
@@ -75,6 +78,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metrics' => '\Schematic\Model\CompanyEventPeriodMetricsResponseData[]',
         'name' => 'string',
         'payment_methods' => '\Schematic\Model\PaymentMethodResponseData[]',
+        'pending_migration' => '\Schematic\Model\PendingMigrationResponseData',
         'plan' => '\Schematic\Model\CompanyPlanWithBillingSubView',
         'plans' => '\Schematic\Model\GenericPreviewObject[]',
         'rules' => '\Schematic\Model\Rule[]',
@@ -94,6 +98,9 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPIFormats = [
         'add_ons' => null,
         'billing_credit_balances' => 'double',
+        'billing_email' => null,
+        'billing_profile' => null,
+        'billing_profiles' => null,
         'billing_subscription' => null,
         'billing_subscriptions' => null,
         'created_at' => 'date-time',
@@ -109,6 +116,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metrics' => null,
         'name' => null,
         'payment_methods' => null,
+        'pending_migration' => null,
         'plan' => null,
         'plans' => null,
         'rules' => null,
@@ -126,6 +134,9 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     protected static array $openAPINullables = [
         'add_ons' => false,
         'billing_credit_balances' => true,
+        'billing_email' => true,
+        'billing_profile' => false,
+        'billing_profiles' => true,
         'billing_subscription' => false,
         'billing_subscriptions' => false,
         'created_at' => false,
@@ -141,6 +152,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metrics' => false,
         'name' => false,
         'payment_methods' => false,
+        'pending_migration' => false,
         'plan' => false,
         'plans' => false,
         'rules' => false,
@@ -238,6 +250,9 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     protected static $attributeMap = [
         'add_ons' => 'add_ons',
         'billing_credit_balances' => 'billing_credit_balances',
+        'billing_email' => 'billing_email',
+        'billing_profile' => 'billing_profile',
+        'billing_profiles' => 'billing_profiles',
         'billing_subscription' => 'billing_subscription',
         'billing_subscriptions' => 'billing_subscriptions',
         'created_at' => 'created_at',
@@ -253,6 +268,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metrics' => 'metrics',
         'name' => 'name',
         'payment_methods' => 'payment_methods',
+        'pending_migration' => 'pending_migration',
         'plan' => 'plan',
         'plans' => 'plans',
         'rules' => 'rules',
@@ -270,6 +286,9 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     protected static $setters = [
         'add_ons' => 'setAddOns',
         'billing_credit_balances' => 'setBillingCreditBalances',
+        'billing_email' => 'setBillingEmail',
+        'billing_profile' => 'setBillingProfile',
+        'billing_profiles' => 'setBillingProfiles',
         'billing_subscription' => 'setBillingSubscription',
         'billing_subscriptions' => 'setBillingSubscriptions',
         'created_at' => 'setCreatedAt',
@@ -285,6 +304,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metrics' => 'setMetrics',
         'name' => 'setName',
         'payment_methods' => 'setPaymentMethods',
+        'pending_migration' => 'setPendingMigration',
         'plan' => 'setPlan',
         'plans' => 'setPlans',
         'rules' => 'setRules',
@@ -302,6 +322,9 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     protected static $getters = [
         'add_ons' => 'getAddOns',
         'billing_credit_balances' => 'getBillingCreditBalances',
+        'billing_email' => 'getBillingEmail',
+        'billing_profile' => 'getBillingProfile',
+        'billing_profiles' => 'getBillingProfiles',
         'billing_subscription' => 'getBillingSubscription',
         'billing_subscriptions' => 'getBillingSubscriptions',
         'created_at' => 'getCreatedAt',
@@ -317,6 +340,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'metrics' => 'getMetrics',
         'name' => 'getName',
         'payment_methods' => 'getPaymentMethods',
+        'pending_migration' => 'getPendingMigration',
         'plan' => 'getPlan',
         'plans' => 'getPlans',
         'rules' => 'getRules',
@@ -385,6 +409,9 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
     {
         $this->setIfExists('add_ons', $data ?? [], null);
         $this->setIfExists('billing_credit_balances', $data ?? [], null);
+        $this->setIfExists('billing_email', $data ?? [], null);
+        $this->setIfExists('billing_profile', $data ?? [], null);
+        $this->setIfExists('billing_profiles', $data ?? [], null);
         $this->setIfExists('billing_subscription', $data ?? [], null);
         $this->setIfExists('billing_subscriptions', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
@@ -400,6 +427,7 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('metrics', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('payment_methods', $data ?? [], null);
+        $this->setIfExists('pending_migration', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
         $this->setIfExists('plans', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
@@ -441,6 +469,10 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
         }
         if ((count($this->container['add_ons']) > 1000)) {
             $invalidProperties[] = "invalid value for 'add_ons', number of items must be less than or equal to 1000.";
+        }
+
+        if (!is_null($this->container['billing_profiles']) && (count($this->container['billing_profiles']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'billing_profiles', number of items must be less than or equal to 1000.";
         }
 
         if ($this->container['billing_subscriptions'] === null) {
@@ -600,6 +632,105 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['billing_credit_balances'] = $billing_credit_balances;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_email
+     *
+     * @return string|null
+     */
+    public function getBillingEmail()
+    {
+        return $this->container['billing_email'];
+    }
+
+    /**
+     * Sets billing_email
+     *
+     * @param string|null $billing_email billing_email
+     *
+     * @return self
+     */
+    public function setBillingEmail($billing_email)
+    {
+        if (is_null($billing_email)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_email');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_email', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_email'] = $billing_email;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_profile
+     *
+     * @return \Schematic\Model\CompanyBillingProfileResponseData|null
+     */
+    public function getBillingProfile()
+    {
+        return $this->container['billing_profile'];
+    }
+
+    /**
+     * Sets billing_profile
+     *
+     * @param \Schematic\Model\CompanyBillingProfileResponseData|null $billing_profile billing_profile
+     *
+     * @return self
+     */
+    public function setBillingProfile($billing_profile)
+    {
+        if (is_null($billing_profile)) {
+            throw new \InvalidArgumentException('non-nullable billing_profile cannot be null');
+        }
+        $this->container['billing_profile'] = $billing_profile;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_profiles
+     *
+     * @return \Schematic\Model\CompanyBillingProfileResponseData[]|null
+     */
+    public function getBillingProfiles()
+    {
+        return $this->container['billing_profiles'];
+    }
+
+    /**
+     * Sets billing_profiles
+     *
+     * @param \Schematic\Model\CompanyBillingProfileResponseData[]|null $billing_profiles billing_profiles
+     *
+     * @return self
+     */
+    public function setBillingProfiles($billing_profiles)
+    {
+        if (is_null($billing_profiles)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_profiles');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_profiles', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+        if (!is_null($billing_profiles) && (count($billing_profiles) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $billing_profiles when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['billing_profiles'] = $billing_profiles;
 
         return $this;
     }
@@ -1047,6 +1178,33 @@ class CompanyDetailResponseData implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('invalid value for $payment_methods when calling CompanyDetailResponseData., number of items must be less than or equal to 1000.');
         }
         $this->container['payment_methods'] = $payment_methods;
+
+        return $this;
+    }
+
+    /**
+     * Gets pending_migration
+     *
+     * @return \Schematic\Model\PendingMigrationResponseData|null
+     */
+    public function getPendingMigration()
+    {
+        return $this->container['pending_migration'];
+    }
+
+    /**
+     * Sets pending_migration
+     *
+     * @param \Schematic\Model\PendingMigrationResponseData|null $pending_migration pending_migration
+     *
+     * @return self
+     */
+    public function setPendingMigration($pending_migration)
+    {
+        if (is_null($pending_migration)) {
+            throw new \InvalidArgumentException('non-nullable pending_migration cannot be null');
+        }
+        $this->container['pending_migration'] = $pending_migration;
 
         return $this;
     }

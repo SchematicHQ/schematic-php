@@ -306,6 +306,15 @@ class CompanyPlanDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "estimated_totals"
+     */
+    public function testPropertyEstimatedTotals()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "features"
      */
     public function testPropertyFeatures()

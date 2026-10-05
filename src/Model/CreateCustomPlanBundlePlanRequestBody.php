@@ -299,15 +299,8 @@ class CreateCustomPlanBundlePlanRequestBody implements ModelInterface, ArrayAcce
         if ($this->container['company_id'] === null) {
             $invalidProperties[] = "'company_id' can't be null";
         }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ((mb_strlen($this->container['description']) > 1024)) {
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 1024)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 1024.";
-        }
-
-        if ((mb_strlen($this->container['description']) < 0)) {
-            $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 0.";
         }
 
         if ($this->container['name'] === null) {
@@ -366,7 +359,7 @@ class CreateCustomPlanBundlePlanRequestBody implements ModelInterface, ArrayAcce
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -376,7 +369,7 @@ class CreateCustomPlanBundlePlanRequestBody implements ModelInterface, ArrayAcce
     /**
      * Sets description
      *
-     * @param string $description description
+     * @param string|null $description description
      *
      * @return self
      */
@@ -387,9 +380,6 @@ class CreateCustomPlanBundlePlanRequestBody implements ModelInterface, ArrayAcce
         }
         if ((mb_strlen($description) > 1024)) {
             throw new \InvalidArgumentException('invalid length for $description when calling CreateCustomPlanBundlePlanRequestBody., must be smaller than or equal to 1024.');
-        }
-        if ((mb_strlen($description) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $description when calling CreateCustomPlanBundlePlanRequestBody., must be bigger than or equal to 0.');
         }
 
         $this->container['description'] = $description;

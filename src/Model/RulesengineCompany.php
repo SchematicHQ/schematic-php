@@ -62,6 +62,8 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         'base_plan_id' => 'string',
         'billing_product_ids' => 'string[]',
         'credit_balances' => 'array<string,float>',
+        'credit_postpaid' => 'array<string,\Schematic\Model\RulesengineCreditPostpaidConfig>',
+        'credit_spend_policies' => '\Schematic\Model\RulesengineCreditSpendPolicy[]',
         'entitlements' => '\Schematic\Model\RulesengineFeatureEntitlement[]',
         'environment_id' => 'string',
         'id' => 'string',
@@ -86,6 +88,8 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         'base_plan_id' => null,
         'billing_product_ids' => null,
         'credit_balances' => 'double',
+        'credit_postpaid' => null,
+        'credit_spend_policies' => null,
         'entitlements' => null,
         'environment_id' => null,
         'id' => null,
@@ -108,6 +112,8 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         'base_plan_id' => true,
         'billing_product_ids' => false,
         'credit_balances' => false,
+        'credit_postpaid' => false,
+        'credit_spend_policies' => false,
         'entitlements' => false,
         'environment_id' => false,
         'id' => false,
@@ -210,6 +216,8 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         'base_plan_id' => 'base_plan_id',
         'billing_product_ids' => 'billing_product_ids',
         'credit_balances' => 'credit_balances',
+        'credit_postpaid' => 'credit_postpaid',
+        'credit_spend_policies' => 'credit_spend_policies',
         'entitlements' => 'entitlements',
         'environment_id' => 'environment_id',
         'id' => 'id',
@@ -232,6 +240,8 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         'base_plan_id' => 'setBasePlanId',
         'billing_product_ids' => 'setBillingProductIds',
         'credit_balances' => 'setCreditBalances',
+        'credit_postpaid' => 'setCreditPostpaid',
+        'credit_spend_policies' => 'setCreditSpendPolicies',
         'entitlements' => 'setEntitlements',
         'environment_id' => 'setEnvironmentId',
         'id' => 'setId',
@@ -254,6 +264,8 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         'base_plan_id' => 'getBasePlanId',
         'billing_product_ids' => 'getBillingProductIds',
         'credit_balances' => 'getCreditBalances',
+        'credit_postpaid' => 'getCreditPostpaid',
+        'credit_spend_policies' => 'getCreditSpendPolicies',
         'entitlements' => 'getEntitlements',
         'environment_id' => 'getEnvironmentId',
         'id' => 'getId',
@@ -327,6 +339,8 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('base_plan_id', $data ?? [], null);
         $this->setIfExists('billing_product_ids', $data ?? [], null);
         $this->setIfExists('credit_balances', $data ?? [], null);
+        $this->setIfExists('credit_postpaid', $data ?? [], null);
+        $this->setIfExists('credit_spend_policies', $data ?? [], null);
         $this->setIfExists('entitlements', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -379,6 +393,10 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['credit_balances'] === null) {
             $invalidProperties[] = "'credit_balances' can't be null";
         }
+        if (!is_null($this->container['credit_spend_policies']) && (count($this->container['credit_spend_policies']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credit_spend_policies', number of items must be less than or equal to 1000.";
+        }
+
         if (!is_null($this->container['entitlements']) && (count($this->container['entitlements']) > 1000)) {
             $invalidProperties[] = "invalid value for 'entitlements', number of items must be less than or equal to 1000.";
         }
@@ -557,6 +575,64 @@ class RulesengineCompany implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable credit_balances cannot be null');
         }
         $this->container['credit_balances'] = $credit_balances;
+
+        return $this;
+    }
+
+    /**
+     * Gets credit_postpaid
+     *
+     * @return array<string,\Schematic\Model\RulesengineCreditPostpaidConfig>|null
+     */
+    public function getCreditPostpaid()
+    {
+        return $this->container['credit_postpaid'];
+    }
+
+    /**
+     * Sets credit_postpaid
+     *
+     * @param array<string,\Schematic\Model\RulesengineCreditPostpaidConfig>|null $credit_postpaid credit_postpaid
+     *
+     * @return self
+     */
+    public function setCreditPostpaid($credit_postpaid)
+    {
+        if (is_null($credit_postpaid)) {
+            throw new \InvalidArgumentException('non-nullable credit_postpaid cannot be null');
+        }
+        $this->container['credit_postpaid'] = $credit_postpaid;
+
+        return $this;
+    }
+
+    /**
+     * Gets credit_spend_policies
+     *
+     * @return \Schematic\Model\RulesengineCreditSpendPolicy[]|null
+     */
+    public function getCreditSpendPolicies()
+    {
+        return $this->container['credit_spend_policies'];
+    }
+
+    /**
+     * Sets credit_spend_policies
+     *
+     * @param \Schematic\Model\RulesengineCreditSpendPolicy[]|null $credit_spend_policies credit_spend_policies
+     *
+     * @return self
+     */
+    public function setCreditSpendPolicies($credit_spend_policies)
+    {
+        if (is_null($credit_spend_policies)) {
+            throw new \InvalidArgumentException('non-nullable credit_spend_policies cannot be null');
+        }
+
+        if ((count($credit_spend_policies) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credit_spend_policies when calling RulesengineCompany., number of items must be less than or equal to 1000.');
+        }
+        $this->container['credit_spend_policies'] = $credit_spend_policies;
 
         return $this;
     }

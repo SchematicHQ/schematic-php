@@ -51,6 +51,12 @@ class BillingCreditGrantReason
 
     public const PLAN = 'plan';
 
+    public const POSTPAID_FORGIVEN = 'postpaid_forgiven';
+
+    public const POSTPAID_OVERDRAFT = 'postpaid_overdraft';
+
+    public const POSTPAID_SETTLEMENT = 'postpaid_settlement';
+
     public const PURCHASED = 'purchased';
 
     public const ROLLOVER = 'rollover';
@@ -66,6 +72,9 @@ class BillingCreditGrantReason
             self::BILLING_CREDIT_AUTO_TOPUP,
             self::FREE,
             self::PLAN,
+            self::POSTPAID_FORGIVEN,
+            self::POSTPAID_OVERDRAFT,
+            self::POSTPAID_SETTLEMENT,
             self::PURCHASED,
             self::ROLLOVER
         ];

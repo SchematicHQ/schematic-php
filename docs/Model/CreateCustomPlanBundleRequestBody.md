@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_product** | [**\Schematic\Model\UpsertBillingProductRequestBody**](UpsertBillingProductRequestBody.md) |  | [optional]
+**billing_product** | [**\Schematic\Model\UpsertBillingProductRequestBody**](UpsertBillingProductRequestBody.md) |  |
 **credit_grants** | [**\Schematic\Model\PlanBundleCreditGrantRequestBody[]**](PlanBundleCreditGrantRequestBody.md) |  | [optional]
 **entitlements** | [**\Schematic\Model\PlanBundleEntitlementRequestBody[]**](PlanBundleEntitlementRequestBody.md) |  |
-**plan** | [**\Schematic\Model\CreateCustomPlanBundlePlanRequestBody**](CreateCustomPlanBundlePlanRequestBody.md) |  | [optional]
+**plan** | [**\Schematic\Model\CreateCustomPlanBundlePlanRequestBody**](CreateCustomPlanBundlePlanRequestBody.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

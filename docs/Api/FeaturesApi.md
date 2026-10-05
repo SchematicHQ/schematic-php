@@ -4,6 +4,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**checkAndReserveFlag()**](FeaturesApi.md#checkAndReserveFlag) | **POST** /flags/{key}/check-and-reserve | Check and reserve flag |
 | [**checkFlag()**](FeaturesApi.md#checkFlag) | **POST** /flags/{key}/check | Check flag |
 | [**checkFlags()**](FeaturesApi.md#checkFlags) | **POST** /flags/check | Check flags |
 | [**checkFlagsBulk()**](FeaturesApi.md#checkFlagsBulk) | **POST** /flags/check-bulk | Check flags bulk |
@@ -22,6 +23,59 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**updateFlagRules()**](FeaturesApi.md#updateFlagRules) | **PUT** /flags/{flag_id}/rules | Update flag rules |
 | [**upsertFeatureForBillingProduct()**](FeaturesApi.md#upsertFeatureForBillingProduct) | **POST** /features/billing-linked | Upsert feature for billing product |
 
+
+## `checkAndReserveFlag()`
+
+```php
+checkAndReserveFlag($key, $check_and_reserve_flag_request_body): \Schematic\Model\CheckAndReserveFlagResponse
+```
+
+Check and reserve flag
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$key = 'key_example'; // string | key
+$check_and_reserve_flag_request_body = new \Schematic\Model\CheckAndReserveFlagRequestBody(); // \Schematic\Model\CheckAndReserveFlagRequestBody
+
+try {
+    $result = $schematic->FeaturesApi->checkAndReserveFlag($key, $check_and_reserve_flag_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->FeaturesApi->checkAndReserveFlag: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **key** | **string**| key | |
+| **check_and_reserve_flag_request_body** | [**\Schematic\Model\CheckAndReserveFlagRequestBody**](../Model/CheckAndReserveFlagRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\CheckAndReserveFlagResponse**](../Model/CheckAndReserveFlagResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `checkFlag()`
 

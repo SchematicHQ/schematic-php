@@ -43,9 +43,13 @@ class PlanVersionMigrationStrategy
     /**
      * Possible values of this enum
      */
+    public const END_OF_BILLING_PERIOD = 'end_of_billing_period';
+
     public const IMMEDIATE = 'immediate';
 
     public const LEAVE = 'leave';
+
+    public const SCHEDULED = 'scheduled';
 
     /**
      * Gets allowable values of the enum
@@ -54,8 +58,10 @@ class PlanVersionMigrationStrategy
     public static function getAllowableEnumValues()
     {
         return [
+            self::END_OF_BILLING_PERIOD,
             self::IMMEDIATE,
-            self::LEAVE
+            self::LEAVE,
+            self::SCHEDULED
         ];
     }
 }

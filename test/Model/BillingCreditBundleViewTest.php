@@ -90,6 +90,15 @@ class BillingCreditBundleViewTest extends TestCase
     }
 
     /**
+     * Test attribute "compatible_plan_ids"
+     */
+    public function testPropertyCompatiblePlanIds()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()

@@ -126,6 +126,15 @@ class CheckoutDataResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "company_can_trial_selected_plan"
+     */
+    public function testPropertyCompanyCanTrialSelectedPlan()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "custom_checkout_fields"
      */
     public function testPropertyCustomCheckoutFields()
@@ -156,6 +165,15 @@ class CheckoutDataResponseDataTest extends TestCase
      * Test attribute "selected_plan"
      */
     public function testPropertySelectedPlan()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "selected_plan_already_trialed"
+     */
+    public function testPropertySelectedPlanAlreadyTrialed()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**attempt_count** | **int** |  |
 **created_at** | **\DateTime** |  |
 **id** | **string** |  |
 **payload** | **string** |  | [optional]

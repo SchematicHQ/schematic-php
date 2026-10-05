@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**description** | **string** |  |
+**description** | **string** |  | [optional]
 **icon** | [**\Schematic\Model\PlanIcon**](PlanIcon.md) |  | [optional]
 **name** | **string** |  |
 **plan_type** | [**\Schematic\Model\PlanType**](PlanType.md) |  |

@@ -66,6 +66,7 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'company_id' => 'string',
         'credit' => '\Schematic\Model\BillingCreditLedgerResponseData',
         'credit_name' => 'string',
+        'currency' => 'string',
         'environment_id' => 'string',
         'event_at' => '\DateTime',
         'event_id' => 'string',
@@ -82,13 +83,16 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'grant_quantity_remaining' => 'float',
         'grant_reason' => '\Schematic\Model\BillingCreditGrantReason',
         'grant_valid_from' => '\DateTime',
+        'kind' => '\Schematic\Model\CreditLedgerEntryKind',
         'plan_id' => 'string',
         'quantity_consumed' => 'float',
         'quantity_remaining_at_zero_out' => 'float',
         'source_id' => 'int',
         'to_grant_id' => 'string',
+        'transfer_reason' => '\Schematic\Model\CreditTransferReason',
         'usage_event_id' => 'string',
         'usage_reason' => '\Schematic\Model\CreditUsageReason',
+        'user_id' => 'string',
         'zeroed_out_reason' => '\Schematic\Model\BillingCreditGrantZeroedOutReason'
     ];
 
@@ -108,6 +112,7 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'company_id' => null,
         'credit' => null,
         'credit_name' => null,
+        'currency' => null,
         'environment_id' => null,
         'event_at' => 'date-time',
         'event_id' => null,
@@ -124,13 +129,16 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'grant_quantity_remaining' => 'double',
         'grant_reason' => null,
         'grant_valid_from' => 'date-time',
+        'kind' => null,
         'plan_id' => null,
         'quantity_consumed' => 'double',
         'quantity_remaining_at_zero_out' => 'double',
         'source_id' => 'int64',
         'to_grant_id' => null,
+        'transfer_reason' => null,
         'usage_event_id' => null,
         'usage_reason' => null,
+        'user_id' => null,
         'zeroed_out_reason' => null
     ];
 
@@ -143,11 +151,12 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'amount' => false,
         'auto_topup_log_id' => true,
         'billing_credit_bundle_id' => true,
-        'billing_credit_id' => false,
+        'billing_credit_id' => true,
         'company' => false,
         'company_id' => false,
         'credit' => false,
         'credit_name' => false,
+        'currency' => true,
         'environment_id' => false,
         'event_at' => false,
         'event_id' => false,
@@ -164,13 +173,16 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'grant_quantity_remaining' => true,
         'grant_reason' => true,
         'grant_valid_from' => true,
+        'kind' => false,
         'plan_id' => true,
         'quantity_consumed' => true,
         'quantity_remaining_at_zero_out' => true,
         'source_id' => false,
         'to_grant_id' => true,
+        'transfer_reason' => true,
         'usage_event_id' => true,
         'usage_reason' => true,
+        'user_id' => true,
         'zeroed_out_reason' => true
     ];
 
@@ -268,6 +280,7 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'company_id' => 'company_id',
         'credit' => 'credit',
         'credit_name' => 'credit_name',
+        'currency' => 'currency',
         'environment_id' => 'environment_id',
         'event_at' => 'event_at',
         'event_id' => 'event_id',
@@ -284,13 +297,16 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'grant_quantity_remaining' => 'grant_quantity_remaining',
         'grant_reason' => 'grant_reason',
         'grant_valid_from' => 'grant_valid_from',
+        'kind' => 'kind',
         'plan_id' => 'plan_id',
         'quantity_consumed' => 'quantity_consumed',
         'quantity_remaining_at_zero_out' => 'quantity_remaining_at_zero_out',
         'source_id' => 'source_id',
         'to_grant_id' => 'to_grant_id',
+        'transfer_reason' => 'transfer_reason',
         'usage_event_id' => 'usage_event_id',
         'usage_reason' => 'usage_reason',
+        'user_id' => 'user_id',
         'zeroed_out_reason' => 'zeroed_out_reason'
     ];
 
@@ -308,6 +324,7 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'company_id' => 'setCompanyId',
         'credit' => 'setCredit',
         'credit_name' => 'setCreditName',
+        'currency' => 'setCurrency',
         'environment_id' => 'setEnvironmentId',
         'event_at' => 'setEventAt',
         'event_id' => 'setEventId',
@@ -324,13 +341,16 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'grant_quantity_remaining' => 'setGrantQuantityRemaining',
         'grant_reason' => 'setGrantReason',
         'grant_valid_from' => 'setGrantValidFrom',
+        'kind' => 'setKind',
         'plan_id' => 'setPlanId',
         'quantity_consumed' => 'setQuantityConsumed',
         'quantity_remaining_at_zero_out' => 'setQuantityRemainingAtZeroOut',
         'source_id' => 'setSourceId',
         'to_grant_id' => 'setToGrantId',
+        'transfer_reason' => 'setTransferReason',
         'usage_event_id' => 'setUsageEventId',
         'usage_reason' => 'setUsageReason',
+        'user_id' => 'setUserId',
         'zeroed_out_reason' => 'setZeroedOutReason'
     ];
 
@@ -348,6 +368,7 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'company_id' => 'getCompanyId',
         'credit' => 'getCredit',
         'credit_name' => 'getCreditName',
+        'currency' => 'getCurrency',
         'environment_id' => 'getEnvironmentId',
         'event_at' => 'getEventAt',
         'event_id' => 'getEventId',
@@ -364,13 +385,16 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         'grant_quantity_remaining' => 'getGrantQuantityRemaining',
         'grant_reason' => 'getGrantReason',
         'grant_valid_from' => 'getGrantValidFrom',
+        'kind' => 'getKind',
         'plan_id' => 'getPlanId',
         'quantity_consumed' => 'getQuantityConsumed',
         'quantity_remaining_at_zero_out' => 'getQuantityRemainingAtZeroOut',
         'source_id' => 'getSourceId',
         'to_grant_id' => 'getToGrantId',
+        'transfer_reason' => 'getTransferReason',
         'usage_event_id' => 'getUsageEventId',
         'usage_reason' => 'getUsageReason',
+        'user_id' => 'getUserId',
         'zeroed_out_reason' => 'getZeroedOutReason'
     ];
 
@@ -439,6 +463,7 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('credit', $data ?? [], null);
         $this->setIfExists('credit_name', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('event_at', $data ?? [], null);
         $this->setIfExists('event_id', $data ?? [], null);
@@ -455,13 +480,16 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('grant_quantity_remaining', $data ?? [], null);
         $this->setIfExists('grant_reason', $data ?? [], null);
         $this->setIfExists('grant_valid_from', $data ?? [], null);
+        $this->setIfExists('kind', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('quantity_consumed', $data ?? [], null);
         $this->setIfExists('quantity_remaining_at_zero_out', $data ?? [], null);
         $this->setIfExists('source_id', $data ?? [], null);
         $this->setIfExists('to_grant_id', $data ?? [], null);
+        $this->setIfExists('transfer_reason', $data ?? [], null);
         $this->setIfExists('usage_event_id', $data ?? [], null);
         $this->setIfExists('usage_reason', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
         $this->setIfExists('zeroed_out_reason', $data ?? [], null);
     }
 
@@ -495,9 +523,6 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         if ($this->container['amount'] === null) {
             $invalidProperties[] = "'amount' can't be null";
         }
-        if ($this->container['billing_credit_id'] === null) {
-            $invalidProperties[] = "'billing_credit_id' can't be null";
-        }
         if ($this->container['company_id'] === null) {
             $invalidProperties[] = "'company_id' can't be null";
         }
@@ -515,6 +540,9 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
         }
         if ($this->container['event_type'] === null) {
             $invalidProperties[] = "'event_type' can't be null";
+        }
+        if ($this->container['kind'] === null) {
+            $invalidProperties[] = "'kind' can't be null";
         }
         if ($this->container['source_id'] === null) {
             $invalidProperties[] = "'source_id' can't be null";
@@ -632,7 +660,7 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets billing_credit_id
      *
-     * @return string
+     * @return string|null
      */
     public function getBillingCreditId()
     {
@@ -642,14 +670,21 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets billing_credit_id
      *
-     * @param string $billing_credit_id billing_credit_id
+     * @param string|null $billing_credit_id billing_credit_id
      *
      * @return self
      */
     public function setBillingCreditId($billing_credit_id)
     {
         if (is_null($billing_credit_id)) {
-            throw new \InvalidArgumentException('non-nullable billing_credit_id cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'billing_credit_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_credit_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['billing_credit_id'] = $billing_credit_id;
 
@@ -760,6 +795,40 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable credit_name cannot be null');
         }
         $this->container['credit_name'] = $credit_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency currency
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['currency'] = $currency;
 
         return $this;
     }
@@ -1274,6 +1343,33 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
+     * Gets kind
+     *
+     * @return \Schematic\Model\CreditLedgerEntryKind
+     */
+    public function getKind()
+    {
+        return $this->container['kind'];
+    }
+
+    /**
+     * Sets kind
+     *
+     * @param \Schematic\Model\CreditLedgerEntryKind $kind kind
+     *
+     * @return self
+     */
+    public function setKind($kind)
+    {
+        if (is_null($kind)) {
+            throw new \InvalidArgumentException('non-nullable kind cannot be null');
+        }
+        $this->container['kind'] = $kind;
+
+        return $this;
+    }
+
+    /**
      * Gets plan_id
      *
      * @return string|null
@@ -1437,6 +1533,40 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
+     * Gets transfer_reason
+     *
+     * @return \Schematic\Model\CreditTransferReason|null
+     */
+    public function getTransferReason()
+    {
+        return $this->container['transfer_reason'];
+    }
+
+    /**
+     * Sets transfer_reason
+     *
+     * @param \Schematic\Model\CreditTransferReason|null $transfer_reason transfer_reason
+     *
+     * @return self
+     */
+    public function setTransferReason($transfer_reason)
+    {
+        if (is_null($transfer_reason)) {
+            array_push($this->openAPINullablesSetToNull, 'transfer_reason');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('transfer_reason', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['transfer_reason'] = $transfer_reason;
+
+        return $this;
+    }
+
+    /**
      * Gets usage_event_id
      *
      * @return string|null
@@ -1500,6 +1630,40 @@ class CreditEventLedgerResponseData implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['usage_reason'] = $usage_reason;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     *
+     * @return string|null
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     *
+     * @param string|null $user_id user_id
+     *
+     * @return self
+     */
+    public function setUserId($user_id)
+    {
+        if (is_null($user_id)) {
+            array_push($this->openAPINullablesSetToNull, 'user_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['user_id'] = $user_id;
 
         return $this;
     }

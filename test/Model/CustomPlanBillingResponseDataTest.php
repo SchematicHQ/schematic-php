@@ -99,6 +99,15 @@ class CustomPlanBillingResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_start_date"
+     */
+    public function testPropertyBillingStartDate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "company_id"
      */
     public function testPropertyCompanyId()
@@ -165,6 +174,15 @@ class CustomPlanBillingResponseDataTest extends TestCase
      * Test attribute "plan_id"
      */
     public function testPropertyPlanId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "prorate_first_period"
+     */
+    public function testPropertyProrateFirstPeriod()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

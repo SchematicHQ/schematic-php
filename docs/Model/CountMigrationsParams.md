@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**feature_id** | **string** |  | [optional]
+**feature_plan_rollout_id** | **string** |  | [optional]
 **limit** | **int** | Page limit (default 100) | [optional]
 **offset** | **int** | Page offset (default 0) | [optional]
 **plan_version_id** | **string** |  | [optional]

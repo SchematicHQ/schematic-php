@@ -135,6 +135,15 @@ class ChangeSubscriptionInternalRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "custom_field_values"
      */
     public function testPropertyCustomFieldValues()

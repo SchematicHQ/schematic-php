@@ -99,6 +99,33 @@ class IntegrationConfigTest extends TestCase
     }
 
     /**
+     * Test attribute "claimable_sandbox_expires_at"
+     */
+    public function testPropertyClaimableSandboxExpiresAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "claimable_sandbox_id"
+     */
+    public function testPropertyClaimableSandboxId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "claimable_sandbox_status"
+     */
+    public function testPropertyClaimableSandboxStatus()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "company_update_only"
      */
     public function testPropertyCompanyUpdateOnly()
@@ -129,6 +156,15 @@ class IntegrationConfigTest extends TestCase
      * Test attribute "onboard_url"
      */
     public function testPropertyOnboardUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "return_to"
+     */
+    public function testPropertyReturnTo()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

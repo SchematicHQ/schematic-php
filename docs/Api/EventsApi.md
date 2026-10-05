@@ -6,10 +6,13 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | ------------- | ------------- | ------------- |
 | [**createEvent()**](EventsApi.md#createEvent) | **POST** /events | Create event |
 | [**createEventBatch()**](EventsApi.md#createEventBatch) | **POST** /event-batch | Create event batch |
+| [**deleteOTLPEnvironmentSettings()**](EventsApi.md#deleteOTLPEnvironmentSettings) | **DELETE** /otlp/settings | Delete OTLP environment settings |
 | [**getEvent()**](EventsApi.md#getEvent) | **GET** /events/{event_id} | Get event |
 | [**getEventSummaries()**](EventsApi.md#getEventSummaries) | **GET** /event-types | Get event summaries |
+| [**getOTLPEnvironmentSettings()**](EventsApi.md#getOTLPEnvironmentSettings) | **GET** /otlp/settings | Get OTLP environment settings |
 | [**getSegmentIntegrationStatus()**](EventsApi.md#getSegmentIntegrationStatus) | **GET** /segment-integration | Get segment integration status |
 | [**listEvents()**](EventsApi.md#listEvents) | **GET** /events | List events |
+| [**upsertOTLPEnvironmentSettings()**](EventsApi.md#upsertOTLPEnvironmentSettings) | **POST** /otlp/settings | Upsert OTLP environment settings |
 
 
 ## `createEvent()`
@@ -114,6 +117,54 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteOTLPEnvironmentSettings()`
+
+```php
+deleteOTLPEnvironmentSettings(): \Schematic\Model\DeleteOTLPEnvironmentSettingsResponse
+```
+
+Delete OTLP environment settings
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+
+try {
+    $result = $schematic->EventsApi->deleteOTLPEnvironmentSettings();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EventsApi->deleteOTLPEnvironmentSettings: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Schematic\Model\DeleteOTLPEnvironmentSettingsResponse**](../Model/DeleteOTLPEnvironmentSettingsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getEvent()`
 
 ```php
@@ -208,6 +259,54 @@ try {
 ### Return type
 
 [**\Schematic\Model\GetEventSummariesResponse**](../Model/GetEventSummariesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getOTLPEnvironmentSettings()`
+
+```php
+getOTLPEnvironmentSettings(): \Schematic\Model\GetOTLPEnvironmentSettingsResponse
+```
+
+Get OTLP environment settings
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+
+try {
+    $result = $schematic->EventsApi->getOTLPEnvironmentSettings();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EventsApi->getOTLPEnvironmentSettings: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Schematic\Model\GetOTLPEnvironmentSettingsResponse**](../Model/GetOTLPEnvironmentSettingsResponse.md)
 
 ### Authorization
 
@@ -329,6 +428,57 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `upsertOTLPEnvironmentSettings()`
+
+```php
+upsertOTLPEnvironmentSettings($upsert_otlp_environment_settings_request_body): \Schematic\Model\UpsertOTLPEnvironmentSettingsResponse
+```
+
+Upsert OTLP environment settings
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$upsert_otlp_environment_settings_request_body = new \Schematic\Model\UpsertOTLPEnvironmentSettingsRequestBody(); // \Schematic\Model\UpsertOTLPEnvironmentSettingsRequestBody
+
+try {
+    $result = $schematic->EventsApi->upsertOTLPEnvironmentSettings($upsert_otlp_environment_settings_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EventsApi->upsertOTLPEnvironmentSettings: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **upsert_otlp_environment_settings_request_body** | [**\Schematic\Model\UpsertOTLPEnvironmentSettingsRequestBody**](../Model/UpsertOTLPEnvironmentSettingsRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpsertOTLPEnvironmentSettingsResponse**](../Model/UpsertOTLPEnvironmentSettingsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

@@ -5,6 +5,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**countCompanyOverrides()**](EntitlementsApi.md#countCompanyOverrides) | **GET** /company-overrides/count | Count company overrides |
+| [**countCompanyUserUsage()**](EntitlementsApi.md#countCompanyUserUsage) | **GET** /user-usage-by-company/users/count | Count company user usage |
 | [**countFeatureCompanies()**](EntitlementsApi.md#countFeatureCompanies) | **GET** /feature-companies/count | Count feature companies |
 | [**countFeatureUsage()**](EntitlementsApi.md#countFeatureUsage) | **GET** /feature-usage/count | Count feature usage |
 | [**countFeatureUsers()**](EntitlementsApi.md#countFeatureUsers) | **GET** /feature-users/count | Count feature users |
@@ -15,14 +16,17 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**deletePlanEntitlement()**](EntitlementsApi.md#deletePlanEntitlement) | **DELETE** /plan-entitlements/{plan_entitlement_id} | Delete plan entitlement |
 | [**duplicatePlanEntitlements()**](EntitlementsApi.md#duplicatePlanEntitlements) | **POST** /plan-entitlements/duplicate | Duplicate plan entitlements |
 | [**getCompanyOverride()**](EntitlementsApi.md#getCompanyOverride) | **GET** /company-overrides/{company_override_id} | Get company override |
+| [**getCompanyUserUsageMetrics()**](EntitlementsApi.md#getCompanyUserUsageMetrics) | **GET** /user-usage-by-company/metrics | Get company user usage metrics |
 | [**getFeatureUsageByCompany()**](EntitlementsApi.md#getFeatureUsageByCompany) | **GET** /usage-by-company | Get feature usage by company |
 | [**getFeatureUsageTimeSeries()**](EntitlementsApi.md#getFeatureUsageTimeSeries) | **GET** /feature-usage-timeseries | Get feature usage time series |
 | [**getPlanEntitlement()**](EntitlementsApi.md#getPlanEntitlement) | **GET** /plan-entitlements/{plan_entitlement_id} | Get plan entitlement |
 | [**getUserUsageByCompany()**](EntitlementsApi.md#getUserUsageByCompany) | **GET** /user-usage-by-company | Get user usage by company |
 | [**getUserUsageDetail()**](EntitlementsApi.md#getUserUsageDetail) | **GET** /user-usage-detail | Get user usage detail |
 | [**listCompanyOverrides()**](EntitlementsApi.md#listCompanyOverrides) | **GET** /company-overrides | List company overrides |
+| [**listCompanyUserUsage()**](EntitlementsApi.md#listCompanyUserUsage) | **GET** /user-usage-by-company/users | List company user usage |
 | [**listFeatureCompanies()**](EntitlementsApi.md#listFeatureCompanies) | **GET** /feature-companies | List feature companies |
 | [**listFeatureUsage()**](EntitlementsApi.md#listFeatureUsage) | **GET** /feature-usage | List feature usage |
+| [**listFeatureUsageHistory()**](EntitlementsApi.md#listFeatureUsageHistory) | **GET** /feature-usage-history | List feature usage history |
 | [**listFeatureUsers()**](EntitlementsApi.md#listFeatureUsers) | **GET** /feature-users | List feature users |
 | [**listPlanEntitlements()**](EntitlementsApi.md#listPlanEntitlements) | **GET** /plan-entitlements | List plan entitlements |
 | [**updateCompanyOverride()**](EntitlementsApi.md#updateCompanyOverride) | **PUT** /company-overrides/{company_override_id} | Update company override |
@@ -83,6 +87,69 @@ try {
 ### Return type
 
 [**\Schematic\Model\CountCompanyOverridesResponse**](../Model/CountCompanyOverridesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `countCompanyUserUsage()`
+
+```php
+countCompanyUserUsage($company_id, $metric, $end_time, $feature_id, $limit, $offset, $start_time): \Schematic\Model\CountCompanyUserUsageResponse
+```
+
+Count company user usage
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string | Company to break usage down for
+$metric = new \Schematic\Model\\SchematicModelUserUsageMetric(); // \SchematicModelUserUsageMetric | Which metric to break usage down by
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | End of the usage window (exclusive); defaults to now
+$feature_id = 'feature_id_example'; // string | The event-based feature to break down; required when metric is feature
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | Start of the usage window; defaults to 30 days before the end
+
+try {
+    $result = $schematic->EntitlementsApi->countCompanyUserUsage($company_id, $metric, $end_time, $feature_id, $limit, $offset, $start_time);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EntitlementsApi->countCompanyUserUsage: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**| Company to break usage down for | |
+| **metric** | [**\SchematicModelUserUsageMetric**](../Model/.md)| Which metric to break usage down by | |
+| **end_time** | **\DateTime**| End of the usage window (exclusive); defaults to now | [optional] |
+| **feature_id** | **string**| The event-based feature to break down; required when metric is feature | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+| **start_time** | **\DateTime**| Start of the usage window; defaults to 30 days before the end | [optional] |
+
+### Return type
+
+[**\Schematic\Model\CountCompanyUserUsageResponse**](../Model/CountCompanyUserUsageResponse.md)
 
 ### Authorization
 
@@ -655,6 +722,61 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getCompanyUserUsageMetrics()`
+
+```php
+getCompanyUserUsageMetrics($company_id, $end_time, $start_time): \Schematic\Model\GetCompanyUserUsageMetricsResponse
+```
+
+Get company user usage metrics
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string | Company to list available metrics for
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | End of the usage window (exclusive); defaults to now
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | Start of the usage window; defaults to 30 days before the end
+
+try {
+    $result = $schematic->EntitlementsApi->getCompanyUserUsageMetrics($company_id, $end_time, $start_time);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EntitlementsApi->getCompanyUserUsageMetrics: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**| Company to list available metrics for | |
+| **end_time** | **\DateTime**| End of the usage window (exclusive); defaults to now | [optional] |
+| **start_time** | **\DateTime**| Start of the usage window; defaults to 30 days before the end | [optional] |
+
+### Return type
+
+[**\Schematic\Model\GetCompanyUserUsageMetricsResponse**](../Model/GetCompanyUserUsageMetricsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getFeatureUsageByCompany()`
 
 ```php
@@ -997,6 +1119,69 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listCompanyUserUsage()`
+
+```php
+listCompanyUserUsage($company_id, $metric, $end_time, $feature_id, $limit, $offset, $start_time): \Schematic\Model\ListCompanyUserUsageResponse
+```
+
+List company user usage
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string | Company to break usage down for
+$metric = new \Schematic\Model\\SchematicModelUserUsageMetric(); // \SchematicModelUserUsageMetric | Which metric to break usage down by
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | End of the usage window (exclusive); defaults to now
+$feature_id = 'feature_id_example'; // string | The event-based feature to break down; required when metric is feature
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | Start of the usage window; defaults to 30 days before the end
+
+try {
+    $result = $schematic->EntitlementsApi->listCompanyUserUsage($company_id, $metric, $end_time, $feature_id, $limit, $offset, $start_time);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EntitlementsApi->listCompanyUserUsage: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**| Company to break usage down for | |
+| **metric** | [**\SchematicModelUserUsageMetric**](../Model/.md)| Which metric to break usage down by | |
+| **end_time** | **\DateTime**| End of the usage window (exclusive); defaults to now | [optional] |
+| **feature_id** | **string**| The event-based feature to break down; required when metric is feature | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+| **start_time** | **\DateTime**| Start of the usage window; defaults to 30 days before the end | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListCompanyUserUsageResponse**](../Model/ListCompanyUserUsageResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listFeatureCompanies()`
 
 ```php
@@ -1107,6 +1292,69 @@ try {
 ### Return type
 
 [**\Schematic\Model\ListFeatureUsageResponse**](../Model/ListFeatureUsageResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listFeatureUsageHistory()`
+
+```php
+listFeatureUsageHistory($end_time, $start_time, $company_ids, $feature_ids, $granularity, $limit, $offset): \Schematic\Model\ListFeatureUsageHistoryResponse
+```
+
+List feature usage history
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$end_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | Exclusive end of the window; must fall on an hour boundary
+$start_time = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | Inclusive start of the window; must fall on an hour boundary
+$company_ids = array('company_ids_example'); // string[] | Restrict to these company IDs; omit for every company in the environment
+$feature_ids = array('feature_ids_example'); // string[] | Restrict to these event features; omit for every event feature in the environment. Where several features measure the same event, each is reported separately and a page may carry more rows than the requested limit
+$granularity = new \Schematic\Model\\SchematicModelTimeSeriesGranularity(); // \SchematicModelTimeSeriesGranularity | Bucket the window; omit for a single total per company and feature
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->EntitlementsApi->listFeatureUsageHistory($end_time, $start_time, $company_ids, $feature_ids, $granularity, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->EntitlementsApi->listFeatureUsageHistory: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **end_time** | **\DateTime**| Exclusive end of the window; must fall on an hour boundary | |
+| **start_time** | **\DateTime**| Inclusive start of the window; must fall on an hour boundary | |
+| **company_ids** | [**string[]**](../Model/string.md)| Restrict to these company IDs; omit for every company in the environment | [optional] |
+| **feature_ids** | [**string[]**](../Model/string.md)| Restrict to these event features; omit for every event feature in the environment. Where several features measure the same event, each is reported separately and a page may carry more rows than the requested limit | [optional] |
+| **granularity** | [**\SchematicModelTimeSeriesGranularity**](../Model/.md)| Bucket the window; omit for a single total per company and feature | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListFeatureUsageHistoryResponse**](../Model/ListFeatureUsageHistoryResponse.md)
 
 ### Authorization
 
