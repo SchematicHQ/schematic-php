@@ -72,6 +72,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'metered_yearly_price' => '\Schematic\Model\BillingPriceView',
         'metric_period' => '\Schematic\Model\MetricPeriod',
         'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
+        'overage_billing_cadence' => '\Schematic\Model\BillingArrearsCadence',
+        'overage_invoice_anchor' => '\Schematic\Model\BillingArrearsAnchor',
         'plan' => '\Schematic\Model\PlanResponseData',
         'plan_id' => 'string',
         'price_behavior' => '\Schematic\Model\EntitlementPriceBehavior',
@@ -112,6 +114,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'metered_yearly_price' => null,
         'metric_period' => null,
         'metric_period_month_reset' => null,
+        'overage_billing_cadence' => null,
+        'overage_invoice_anchor' => null,
         'plan' => null,
         'plan_id' => null,
         'price_behavior' => null,
@@ -150,6 +154,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'metered_yearly_price' => false,
         'metric_period' => true,
         'metric_period_month_reset' => true,
+        'overage_billing_cadence' => true,
+        'overage_invoice_anchor' => true,
         'plan' => false,
         'plan_id' => false,
         'price_behavior' => true,
@@ -268,6 +274,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'metered_yearly_price' => 'metered_yearly_price',
         'metric_period' => 'metric_period',
         'metric_period_month_reset' => 'metric_period_month_reset',
+        'overage_billing_cadence' => 'overage_billing_cadence',
+        'overage_invoice_anchor' => 'overage_invoice_anchor',
         'plan' => 'plan',
         'plan_id' => 'plan_id',
         'price_behavior' => 'price_behavior',
@@ -306,6 +314,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'metered_yearly_price' => 'setMeteredYearlyPrice',
         'metric_period' => 'setMetricPeriod',
         'metric_period_month_reset' => 'setMetricPeriodMonthReset',
+        'overage_billing_cadence' => 'setOverageBillingCadence',
+        'overage_invoice_anchor' => 'setOverageInvoiceAnchor',
         'plan' => 'setPlan',
         'plan_id' => 'setPlanId',
         'price_behavior' => 'setPriceBehavior',
@@ -344,6 +354,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         'metered_yearly_price' => 'getMeteredYearlyPrice',
         'metric_period' => 'getMetricPeriod',
         'metric_period_month_reset' => 'getMetricPeriodMonthReset',
+        'overage_billing_cadence' => 'getOverageBillingCadence',
+        'overage_invoice_anchor' => 'getOverageInvoiceAnchor',
         'plan' => 'getPlan',
         'plan_id' => 'getPlanId',
         'price_behavior' => 'getPriceBehavior',
@@ -433,6 +445,8 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('metered_yearly_price', $data ?? [], null);
         $this->setIfExists('metric_period', $data ?? [], null);
         $this->setIfExists('metric_period_month_reset', $data ?? [], null);
+        $this->setIfExists('overage_billing_cadence', $data ?? [], null);
+        $this->setIfExists('overage_invoice_anchor', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('price_behavior', $data ?? [], null);
@@ -942,6 +956,74 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * Gets overage_billing_cadence
+     *
+     * @return \Schematic\Model\BillingArrearsCadence|null
+     */
+    public function getOverageBillingCadence()
+    {
+        return $this->container['overage_billing_cadence'];
+    }
+
+    /**
+     * Sets overage_billing_cadence
+     *
+     * @param \Schematic\Model\BillingArrearsCadence|null $overage_billing_cadence How often overage charges are assessed and invoiced. Null or end_of_billing_period means the billing provider aggregates usage over the subscription's own period and bills it at period end. Monthly and quarterly mean Schematic assesses the overage each month or quarter and bills it on its own invoice. Only applies to overage price behavior.
+     *
+     * @return self
+     */
+    public function setOverageBillingCadence($overage_billing_cadence)
+    {
+        if (is_null($overage_billing_cadence)) {
+            array_push($this->openAPINullablesSetToNull, 'overage_billing_cadence');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('overage_billing_cadence', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['overage_billing_cadence'] = $overage_billing_cadence;
+
+        return $this;
+    }
+
+    /**
+     * Gets overage_invoice_anchor
+     *
+     * @return \Schematic\Model\BillingArrearsAnchor|null
+     */
+    public function getOverageInvoiceAnchor()
+    {
+        return $this->container['overage_invoice_anchor'];
+    }
+
+    /**
+     * Sets overage_invoice_anchor
+     *
+     * @param \Schematic\Model\BillingArrearsAnchor|null $overage_invoice_anchor Which boundary closes a monthly or quarterly overage window: the subscription's own recurrence (billing_period_start) or the calendar month (month_end), which for a quarterly window means calendar quarters. Only meaningful when overage_billing_cadence is monthly or quarterly.
+     *
+     * @return self
+     */
+    public function setOverageInvoiceAnchor($overage_invoice_anchor)
+    {
+        if (is_null($overage_invoice_anchor)) {
+            array_push($this->openAPINullablesSetToNull, 'overage_invoice_anchor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('overage_invoice_anchor', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['overage_invoice_anchor'] = $overage_invoice_anchor;
+
+        return $this;
+    }
+
+    /**
      * Gets plan
      *
      * @return \Schematic\Model\PlanResponseData|null
@@ -1191,7 +1273,7 @@ class PlanEntitlementResponseData implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets usage_quantity
      *
-     * @param int|null $usage_quantity The committed unit quantity for this entitlement. For custom plans this is the quantity the company is contractually committed to; for standard plans it is the quantity pre-filled when subscribing. Only applies to pay-in-advance entitlements. Note: this is not yet enforced/auto-provisioned as a true default — it is currently stored for downstream billing use.
+     * @param int|null $usage_quantity The committed unit quantity for this entitlement. For custom plans this is the minimum the company is contractually committed to: the company can buy more, and finalizing a new plan version sets the subscription quantity to the larger of this value and what the subscription already holds. For standard plans it is the quantity pre-filled when subscribing. Only applies to pay-in-advance entitlements.
      *
      * @return self
      */

@@ -58,6 +58,7 @@ class AuditLogResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
+        'account_member_id' => 'string',
         'actor_type' => '\Schematic\Model\ActorType',
         'api_key' => '\Schematic\Model\ApiKeyResponseData',
         'api_key_id' => 'string',
@@ -88,6 +89,7 @@ class AuditLogResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'account_member_id' => null,
         'actor_type' => null,
         'api_key' => null,
         'api_key_id' => null,
@@ -116,6 +118,7 @@ class AuditLogResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'account_member_id' => true,
         'actor_type' => false,
         'api_key' => false,
         'api_key_id' => true,
@@ -224,6 +227,7 @@ class AuditLogResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
+        'account_member_id' => 'account_member_id',
         'actor_type' => 'actor_type',
         'api_key' => 'api_key',
         'api_key_id' => 'api_key_id',
@@ -252,6 +256,7 @@ class AuditLogResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
+        'account_member_id' => 'setAccountMemberId',
         'actor_type' => 'setActorType',
         'api_key' => 'setApiKey',
         'api_key_id' => 'setApiKeyId',
@@ -280,6 +285,7 @@ class AuditLogResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
+        'account_member_id' => 'getAccountMemberId',
         'actor_type' => 'getActorType',
         'api_key' => 'getApiKey',
         'api_key_id' => 'getApiKeyId',
@@ -359,6 +365,7 @@ class AuditLogResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('account_member_id', $data ?? [], null);
         $this->setIfExists('actor_type', $data ?? [], null);
         $this->setIfExists('api_key', $data ?? [], null);
         $this->setIfExists('api_key_id', $data ?? [], null);
@@ -493,6 +500,40 @@ class AuditLogResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets account_member_id
+     *
+     * @return string|null
+     */
+    public function getAccountMemberId()
+    {
+        return $this->container['account_member_id'];
+    }
+
+    /**
+     * Sets account_member_id
+     *
+     * @param string|null $account_member_id account_member_id
+     *
+     * @return self
+     */
+    public function setAccountMemberId($account_member_id)
+    {
+        if (is_null($account_member_id)) {
+            array_push($this->openAPINullablesSetToNull, 'account_member_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('account_member_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['account_member_id'] = $account_member_id;
+
+        return $this;
+    }
 
     /**
      * Gets actor_type

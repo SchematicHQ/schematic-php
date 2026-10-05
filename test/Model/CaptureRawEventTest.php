@@ -90,6 +90,24 @@ class CaptureRawEventTest extends TestCase
     }
 
     /**
+     * Test attribute "context_signature"
+     */
+    public function testPropertyContextSignature()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "context_signature_checked"
+     */
+    public function testPropertyContextSignatureChecked()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "event_id"
      */
     public function testPropertyEventId()

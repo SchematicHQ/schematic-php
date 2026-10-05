@@ -99,6 +99,24 @@ class PublishPlanVersionRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_cycle_anchor"
+     */
+    public function testPropertyBillingCycleAnchor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_start_date"
+     */
+    public function testPropertyBillingStartDate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "coupon_external_id"
      */
     public function testPropertyCouponExternalId()
@@ -162,9 +180,36 @@ class PublishPlanVersionRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "prorate_first_period"
+     */
+    public function testPropertyProrateFirstPeriod()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "proration_behavior"
      */
     public function testPropertyProrationBehavior()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "require_no_migration"
+     */
+    public function testPropertyRequireNoMigration()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "scheduled_at"
+     */
+    public function testPropertyScheduledAt()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **api_key_id** | **string** |  | [optional]
 **environment_id** | **string** |  | [optional]
 **environments** | [**\Schematic\Model\EnvironmentResponseData[]**](EnvironmentResponseData.md) |  |
+**onboarding_complete** | **bool** |  |
 **stripe_user_id** | **string** |  | [optional]
 **user_id** | **string** |  | [optional]
 **user_name** | **string** |  | [optional]

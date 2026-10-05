@@ -157,6 +157,18 @@ class CreditsApiTest extends TestCase
     }
 
     /**
+     * Test case for countCreditSpendPolicies
+     *
+     * Count credit spend policies.
+     *
+     */
+    public function testCountCreditSpendPolicies()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createBillingCredit
      *
      * Create billing credit.
@@ -193,6 +205,18 @@ class CreditsApiTest extends TestCase
     }
 
     /**
+     * Test case for createCreditSpendPolicy
+     *
+     * Create credit spend policy.
+     *
+     */
+    public function testCreateCreditSpendPolicy()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for deleteBillingPlanCreditGrant
      *
      * Delete billing plan credit grant.
@@ -217,6 +241,18 @@ class CreditsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteCreditSpendPolicy
+     *
+     * Delete credit spend policy.
+     *
+     */
+    public function testDeleteCreditSpendPolicy()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for extendCreditLease
      *
      * Extend credit lease.
@@ -235,6 +271,30 @@ class CreditsApiTest extends TestCase
      *
      */
     public function testGetCreditBundle()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCreditSpendPolicy
+     *
+     * Get credit spend policy.
+     *
+     */
+    public function testGetCreditSpendPolicy()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getCreditSpendPolicyUsage
+     *
+     * Get credit spend policy usage.
+     *
+     */
+    public function testGetCreditSpendPolicyUsage()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -349,6 +409,18 @@ class CreditsApiTest extends TestCase
     }
 
     /**
+     * Test case for listCreditSpendPolicies
+     *
+     * List credit spend policies.
+     *
+     */
+    public function testListCreditSpendPolicies()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for listGrantsForCredit
      *
      * List grants for credit.
@@ -367,6 +439,30 @@ class CreditsApiTest extends TestCase
      *
      */
     public function testReleaseCreditLease()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for releaseCreditReservation
+     *
+     * Release credit reservation.
+     *
+     */
+    public function testReleaseCreditReservation()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for reserveCredits
+     *
+     * Reserve credits.
+     *
+     */
+    public function testReserveCredits()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -415,6 +511,18 @@ class CreditsApiTest extends TestCase
      *
      */
     public function testUpdateCreditBundleDetails()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateCreditSpendPolicy
+     *
+     * Update credit spend policy.
+     *
+     */
+    public function testUpdateCreditSpendPolicy()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

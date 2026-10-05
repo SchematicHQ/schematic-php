@@ -68,6 +68,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'description' => 'string',
         'icon' => 'string',
         'id' => 'string',
+        'ledger_authority' => '\Schematic\Model\BillingCreditLedgerAuthority',
         'name' => 'string',
         'plural_name' => 'string',
         'price' => '\Schematic\Model\BillingPriceResponseData',
@@ -94,6 +95,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'description' => null,
         'icon' => null,
         'id' => null,
+        'ledger_authority' => null,
         'name' => null,
         'plural_name' => null,
         'price' => null,
@@ -118,6 +120,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'description' => false,
         'icon' => true,
         'id' => false,
+        'ledger_authority' => false,
         'name' => false,
         'plural_name' => true,
         'price' => false,
@@ -222,6 +225,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'description' => 'description',
         'icon' => 'icon',
         'id' => 'id',
+        'ledger_authority' => 'ledger_authority',
         'name' => 'name',
         'plural_name' => 'plural_name',
         'price' => 'price',
@@ -246,6 +250,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'description' => 'setDescription',
         'icon' => 'setIcon',
         'id' => 'setId',
+        'ledger_authority' => 'setLedgerAuthority',
         'name' => 'setName',
         'plural_name' => 'setPluralName',
         'price' => 'setPrice',
@@ -270,6 +275,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         'description' => 'getDescription',
         'icon' => 'getIcon',
         'id' => 'getId',
+        'ledger_authority' => 'getLedgerAuthority',
         'name' => 'getName',
         'plural_name' => 'getPluralName',
         'price' => 'getPrice',
@@ -345,6 +351,7 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('ledger_authority', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('plural_name', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
@@ -407,6 +414,9 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
         }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['ledger_authority'] === null) {
+            $invalidProperties[] = "'ledger_authority' can't be null";
         }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
@@ -713,6 +723,33 @@ class BillingCreditResponseData implements ModelInterface, ArrayAccess, \JsonSer
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets ledger_authority
+     *
+     * @return \Schematic\Model\BillingCreditLedgerAuthority
+     */
+    public function getLedgerAuthority()
+    {
+        return $this->container['ledger_authority'];
+    }
+
+    /**
+     * Sets ledger_authority
+     *
+     * @param \Schematic\Model\BillingCreditLedgerAuthority $ledger_authority ledger_authority
+     *
+     * @return self
+     */
+    public function setLedgerAuthority($ledger_authority)
+    {
+        if (is_null($ledger_authority)) {
+            throw new \InvalidArgumentException('non-nullable ledger_authority cannot be null');
+        }
+        $this->container['ledger_authority'] = $ledger_authority;
 
         return $this;
     }

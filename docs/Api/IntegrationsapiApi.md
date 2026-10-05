@@ -5,10 +5,15 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**assumeStripeInstalled()**](IntegrationsapiApi.md#assumeStripeInstalled) | **POST** /integrations/stripe/v2/assume-installed | Assume stripe installed |
+| [**claimStripeSandboxKeys()**](IntegrationsapiApi.md#claimStripeSandboxKeys) | **POST** /integrations/stripe/sandbox/keys/claim | Claim stripe sandbox keys |
 | [**getIntegrationWebhookUrl()**](IntegrationsapiApi.md#getIntegrationWebhookUrl) | **GET** /integrations/{type}/webhook-url | Get integration webhook url |
+| [**getStripeSandboxClaimLink()**](IntegrationsapiApi.md#getStripeSandboxClaimLink) | **GET** /integrations/stripe/sandbox/claim-link | Get stripe sandbox claim link |
+| [**getStripeSandboxKeys()**](IntegrationsapiApi.md#getStripeSandboxKeys) | **GET** /integrations/stripe/sandbox/keys | Get stripe sandbox keys |
 | [**installIntegration()**](IntegrationsapiApi.md#installIntegration) | **POST** /integrations/install | Install integration |
 | [**installStripe()**](IntegrationsapiApi.md#installStripe) | **POST** /integrations/stripe/v2/install | Install stripe |
+| [**installStripeClaimableSandbox()**](IntegrationsapiApi.md#installStripeClaimableSandbox) | **POST** /integrations/stripe/v2/sandbox | Install stripe claimable sandbox |
 | [**listIntegrations()**](IntegrationsapiApi.md#listIntegrations) | **GET** /integrations | List integrations |
+| [**listStripeSandboxCountries()**](IntegrationsapiApi.md#listStripeSandboxCountries) | **GET** /integrations/stripe/v2/sandbox-countries | List stripe sandbox countries |
 | [**loadSampleDataSet()**](IntegrationsapiApi.md#loadSampleDataSet) | **GET** /integrations/stripe/dataset-sample-v2 | Load sample data set |
 | [**runIntegration()**](IntegrationsapiApi.md#runIntegration) | **GET** /integration/start/{integration_id} | Run integration |
 | [**startDataImport()**](IntegrationsapiApi.md#startDataImport) | **POST** /integrations/start-data-import | Start data import |
@@ -66,6 +71,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `claimStripeSandboxKeys()`
+
+```php
+claimStripeSandboxKeys($claim_stripe_sandbox_keys_request_body): \Schematic\Model\ClaimStripeSandboxKeysResponse
+```
+
+Claim stripe sandbox keys
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$claim_stripe_sandbox_keys_request_body = new \Schematic\Model\ClaimStripeSandboxKeysRequestBody(); // \Schematic\Model\ClaimStripeSandboxKeysRequestBody
+
+try {
+    $result = $schematic->IntegrationsapiApi->claimStripeSandboxKeys($claim_stripe_sandbox_keys_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->IntegrationsapiApi->claimStripeSandboxKeys: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **claim_stripe_sandbox_keys_request_body** | [**\Schematic\Model\ClaimStripeSandboxKeysRequestBody**](../Model/ClaimStripeSandboxKeysRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\ClaimStripeSandboxKeysResponse**](../Model/ClaimStripeSandboxKeysResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getIntegrationWebhookUrl()`
 
 ```php
@@ -103,6 +159,102 @@ try {
 ### Return type
 
 [**\Schematic\Model\GetIntegrationWebhookUrlResponse**](../Model/GetIntegrationWebhookUrlResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getStripeSandboxClaimLink()`
+
+```php
+getStripeSandboxClaimLink(): \Schematic\Model\GetStripeSandboxClaimLinkResponse
+```
+
+Get stripe sandbox claim link
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+
+try {
+    $result = $schematic->IntegrationsapiApi->getStripeSandboxClaimLink();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->IntegrationsapiApi->getStripeSandboxClaimLink: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Schematic\Model\GetStripeSandboxClaimLinkResponse**](../Model/GetStripeSandboxClaimLinkResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getStripeSandboxKeys()`
+
+```php
+getStripeSandboxKeys(): \Schematic\Model\GetStripeSandboxKeysResponse
+```
+
+Get stripe sandbox keys
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+
+try {
+    $result = $schematic->IntegrationsapiApi->getStripeSandboxKeys();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->IntegrationsapiApi->getStripeSandboxKeys: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Schematic\Model\GetStripeSandboxKeysResponse**](../Model/GetStripeSandboxKeysResponse.md)
 
 ### Authorization
 
@@ -219,6 +371,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `installStripeClaimableSandbox()`
+
+```php
+installStripeClaimableSandbox($install_stripe_sandbox_request_body): \Schematic\Model\InstallStripeClaimableSandboxResponse
+```
+
+Install stripe claimable sandbox
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$install_stripe_sandbox_request_body = new \Schematic\Model\InstallStripeSandboxRequestBody(); // \Schematic\Model\InstallStripeSandboxRequestBody
+
+try {
+    $result = $schematic->IntegrationsapiApi->installStripeClaimableSandbox($install_stripe_sandbox_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->IntegrationsapiApi->installStripeClaimableSandbox: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **install_stripe_sandbox_request_body** | [**\Schematic\Model\InstallStripeSandboxRequestBody**](../Model/InstallStripeSandboxRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\InstallStripeClaimableSandboxResponse**](../Model/InstallStripeClaimableSandboxResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listIntegrations()`
 
 ```php
@@ -268,6 +471,54 @@ try {
 ### Return type
 
 [**\Schematic\Model\ListIntegrationsResponse**](../Model/ListIntegrationsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `listStripeSandboxCountries()`
+
+```php
+listStripeSandboxCountries(): \Schematic\Model\ListStripeSandboxCountriesResponse
+```
+
+List stripe sandbox countries
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+
+try {
+    $result = $schematic->IntegrationsapiApi->listStripeSandboxCountries();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->IntegrationsapiApi->listStripeSandboxCountries: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Schematic\Model\ListStripeSandboxCountriesResponse**](../Model/ListStripeSandboxCountriesResponse.md)
 
 ### Authorization
 

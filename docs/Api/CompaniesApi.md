@@ -52,7 +52,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 ## `countCompanies()`
 
 ```php
-countCompanies($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset): \Schematic\Model\CountCompaniesResponse
+countCompanies($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset): \Schematic\Model\CountCompaniesResponse
 ```
 
 Count companies
@@ -75,6 +75,7 @@ $plan_id = 'plan_id_example'; // string | Filter companies by plan ID (starts wi
 $plan_ids = array('plan_ids_example'); // string[] | Filter companies by one or more plan IDs (each ID starts with plan_)
 $plan_version_id = 'plan_version_id_example'; // string | Filter companies by plan version ID (starts with plvr_)
 $plan_version_ids = array('plan_version_ids_example'); // string[] | Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set.
+$plan_version_unpublished = True; // bool | Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version
 $q = 'q_example'; // string | Search for companies by name, keys or string traits
 $sort_order_column = 'sort_order_column_example'; // string | Column to sort by (e.g. name, created_at, last_seen_at)
 $sort_order_direction = new \Schematic\Model\\SchematicModelSortDirection(); // \SchematicModelSortDirection | Direction to sort by (asc or desc)
@@ -89,7 +90,7 @@ $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CompaniesApi->countCompanies($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset);
+    $result = $schematic->CompaniesApi->countCompanies($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CompaniesApi->countCompanies: ', $e->getMessage(), PHP_EOL;
@@ -108,6 +109,7 @@ try {
 | **plan_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan IDs (each ID starts with plan_) | [optional] |
 | **plan_version_id** | **string**| Filter companies by plan version ID (starts with plvr_) | [optional] |
 | **plan_version_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. | [optional] |
+| **plan_version_unpublished** | **bool**| Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version | [optional] |
 | **q** | **string**| Search for companies by name, keys or string traits | [optional] |
 | **sort_order_column** | **string**| Column to sort by (e.g. name, created_at, last_seen_at) | [optional] |
 | **sort_order_direction** | [**\SchematicModelSortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |
@@ -1048,7 +1050,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **company_id** | **string**|  | [optional] |
+| **company_id** | **string**|  | |
 
 ### Return type
 
@@ -1150,7 +1152,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **company_id** | **string**|  | [optional] |
+| **company_id** | **string**|  | |
 
 ### Return type
 
@@ -1586,7 +1588,7 @@ try {
 ## `listCompanies()`
 
 ```php
-listCompanies($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset): \Schematic\Model\ListCompaniesResponse
+listCompanies($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset): \Schematic\Model\ListCompaniesResponse
 ```
 
 List companies
@@ -1609,6 +1611,7 @@ $plan_id = 'plan_id_example'; // string | Filter companies by plan ID (starts wi
 $plan_ids = array('plan_ids_example'); // string[] | Filter companies by one or more plan IDs (each ID starts with plan_)
 $plan_version_id = 'plan_version_id_example'; // string | Filter companies by plan version ID (starts with plvr_)
 $plan_version_ids = array('plan_version_ids_example'); // string[] | Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set.
+$plan_version_unpublished = True; // bool | Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version
 $q = 'q_example'; // string | Search for companies by name, keys or string traits
 $sort_order_column = 'sort_order_column_example'; // string | Column to sort by (e.g. name, created_at, last_seen_at)
 $sort_order_direction = new \Schematic\Model\\SchematicModelSortDirection(); // \SchematicModelSortDirection | Direction to sort by (asc or desc)
@@ -1623,7 +1626,7 @@ $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->CompaniesApi->listCompanies($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset);
+    $result = $schematic->CompaniesApi->listCompanies($credit_type_ids, $has_scheduled_downgrade, $ids, $monetized_subscriptions, $plan_id, $plan_ids, $plan_version_id, $plan_version_ids, $plan_version_unpublished, $q, $sort_order_column, $sort_order_direction, $subscription_statuses, $subscription_types, $with_entitlement_for, $without_feature_override_for, $without_plan, $without_subscription, $with_subscription, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CompaniesApi->listCompanies: ', $e->getMessage(), PHP_EOL;
@@ -1642,6 +1645,7 @@ try {
 | **plan_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan IDs (each ID starts with plan_) | [optional] |
 | **plan_version_id** | **string**| Filter companies by plan version ID (starts with plvr_) | [optional] |
 | **plan_version_ids** | [**string[]**](../Model/string.md)| Filter companies by one or more plan version IDs (each ID starts with plvr_). Takes precedence over plan_version_id when set. | [optional] |
+| **plan_version_unpublished** | **bool**| Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version | [optional] |
 | **q** | **string**| Search for companies by name, keys or string traits | [optional] |
 | **sort_order_column** | **string**| Column to sort by (e.g. name, created_at, last_seen_at) | [optional] |
 | **sort_order_direction** | [**\SchematicModelSortDirection**](../Model/.md)| Direction to sort by (asc or desc) | [optional] |

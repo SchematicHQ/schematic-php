@@ -108,6 +108,9 @@ class BillingApi
         'listBillingProducts' => [
             'application/json',
         ],
+        'listCompanyBillingProfiles' => [
+            'application/json',
+        ],
         'listCoupons' => [
             'application/json',
         ],
@@ -121,6 +124,9 @@ class BillingApi
             'application/json',
         ],
         'listPaymentMethods' => [
+            'application/json',
+        ],
+        'updateCompanyBillingProfile' => [
             'application/json',
         ],
         'upsertBillingCoupon' => [
@@ -4976,6 +4982,410 @@ class BillingApi
     }
 
     /**
+     * Operation listCompanyBillingProfiles
+     *
+     * List company billing profiles
+     *
+     * @param  string|null $company_id company_id (optional)
+     * @param  bool|null $is_default is_default (optional)
+     * @param  \Schematic\Model\BillingProviderType|null $provider_type provider_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyBillingProfiles'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\ListCompanyBillingProfilesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function listCompanyBillingProfiles($company_id = null, $is_default = null, $provider_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyBillingProfiles'][0])
+    {
+        list($response) = $this->listCompanyBillingProfilesWithHttpInfo($company_id, $is_default, $provider_type, $limit, $offset, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation listCompanyBillingProfilesWithHttpInfo
+     *
+     * List company billing profiles
+     *
+     * @param  string|null $company_id (optional)
+     * @param  bool|null $is_default (optional)
+     * @param  \Schematic\Model\BillingProviderType|null $provider_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyBillingProfiles'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\ListCompanyBillingProfilesResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCompanyBillingProfilesWithHttpInfo($company_id = null, $is_default = null, $provider_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyBillingProfiles'][0])
+    {
+        $request = $this->listCompanyBillingProfilesRequest($company_id, $is_default, $provider_type, $limit, $offset, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ListCompanyBillingProfilesResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\ListCompanyBillingProfilesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ListCompanyBillingProfilesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listCompanyBillingProfilesAsync
+     *
+     * List company billing profiles
+     *
+     * @param  string|null $company_id (optional)
+     * @param  bool|null $is_default (optional)
+     * @param  \Schematic\Model\BillingProviderType|null $provider_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyBillingProfiles'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCompanyBillingProfilesAsync($company_id = null, $is_default = null, $provider_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyBillingProfiles'][0])
+    {
+        return $this->listCompanyBillingProfilesAsyncWithHttpInfo($company_id, $is_default, $provider_type, $limit, $offset, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listCompanyBillingProfilesAsyncWithHttpInfo
+     *
+     * List company billing profiles
+     *
+     * @param  string|null $company_id (optional)
+     * @param  bool|null $is_default (optional)
+     * @param  \Schematic\Model\BillingProviderType|null $provider_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyBillingProfiles'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCompanyBillingProfilesAsyncWithHttpInfo($company_id = null, $is_default = null, $provider_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyBillingProfiles'][0])
+    {
+        $returnType = '\Schematic\Model\ListCompanyBillingProfilesResponse';
+        $request = $this->listCompanyBillingProfilesRequest($company_id, $is_default, $provider_type, $limit, $offset, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listCompanyBillingProfiles'
+     *
+     * @param  string|null $company_id (optional)
+     * @param  bool|null $is_default (optional)
+     * @param  \Schematic\Model\BillingProviderType|null $provider_type (optional)
+     * @param  int|null $limit Page limit (default 100) (optional)
+     * @param  int|null $offset Page offset (default 0) (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listCompanyBillingProfiles'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listCompanyBillingProfilesRequest($company_id = null, $is_default = null, $provider_type = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyBillingProfiles'][0])
+    {
+
+
+
+
+        if ($limit !== null && $limit > 250) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listCompanyBillingProfiles, must be smaller than or equal to 250.');
+        }
+        if ($limit !== null && $limit < 0) {
+            throw new \InvalidArgumentException('invalid value for "$limit" when calling BillingApi.listCompanyBillingProfiles, must be bigger than or equal to 0.');
+        }
+
+
+
+        $resourcePath = '/billing/profiles';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $company_id,
+            'company_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $is_default,
+            'is_default', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $provider_type,
+            'provider_type', // param base name
+            'BillingProviderType', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $limit,
+            'limit', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $offset,
+            'offset', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation listCoupons
      *
      * List coupons
@@ -6983,6 +7393,368 @@ class BillingApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateCompanyBillingProfile
+     *
+     * Update company billing profile
+     *
+     * @param  string $billing_profile_id billing_profile_id (required)
+     * @param  \Schematic\Model\UpdateCompanyBillingProfileRequestBody $update_company_billing_profile_request_body update_company_billing_profile_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyBillingProfile'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\UpdateCompanyBillingProfileResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function updateCompanyBillingProfile($billing_profile_id, $update_company_billing_profile_request_body, string $contentType = self::contentTypes['updateCompanyBillingProfile'][0])
+    {
+        list($response) = $this->updateCompanyBillingProfileWithHttpInfo($billing_profile_id, $update_company_billing_profile_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateCompanyBillingProfileWithHttpInfo
+     *
+     * Update company billing profile
+     *
+     * @param  string $billing_profile_id billing_profile_id (required)
+     * @param  \Schematic\Model\UpdateCompanyBillingProfileRequestBody $update_company_billing_profile_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyBillingProfile'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\UpdateCompanyBillingProfileResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateCompanyBillingProfileWithHttpInfo($billing_profile_id, $update_company_billing_profile_request_body, string $contentType = self::contentTypes['updateCompanyBillingProfile'][0])
+    {
+        $request = $this->updateCompanyBillingProfileRequest($billing_profile_id, $update_company_billing_profile_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\UpdateCompanyBillingProfileResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\UpdateCompanyBillingProfileResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\UpdateCompanyBillingProfileResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateCompanyBillingProfileAsync
+     *
+     * Update company billing profile
+     *
+     * @param  string $billing_profile_id billing_profile_id (required)
+     * @param  \Schematic\Model\UpdateCompanyBillingProfileRequestBody $update_company_billing_profile_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyBillingProfile'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateCompanyBillingProfileAsync($billing_profile_id, $update_company_billing_profile_request_body, string $contentType = self::contentTypes['updateCompanyBillingProfile'][0])
+    {
+        return $this->updateCompanyBillingProfileAsyncWithHttpInfo($billing_profile_id, $update_company_billing_profile_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateCompanyBillingProfileAsyncWithHttpInfo
+     *
+     * Update company billing profile
+     *
+     * @param  string $billing_profile_id billing_profile_id (required)
+     * @param  \Schematic\Model\UpdateCompanyBillingProfileRequestBody $update_company_billing_profile_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyBillingProfile'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateCompanyBillingProfileAsyncWithHttpInfo($billing_profile_id, $update_company_billing_profile_request_body, string $contentType = self::contentTypes['updateCompanyBillingProfile'][0])
+    {
+        $returnType = '\Schematic\Model\UpdateCompanyBillingProfileResponse';
+        $request = $this->updateCompanyBillingProfileRequest($billing_profile_id, $update_company_billing_profile_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateCompanyBillingProfile'
+     *
+     * @param  string $billing_profile_id billing_profile_id (required)
+     * @param  \Schematic\Model\UpdateCompanyBillingProfileRequestBody $update_company_billing_profile_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateCompanyBillingProfile'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateCompanyBillingProfileRequest($billing_profile_id, $update_company_billing_profile_request_body, string $contentType = self::contentTypes['updateCompanyBillingProfile'][0])
+    {
+
+        // verify the required parameter 'billing_profile_id' is set
+        if ($billing_profile_id === null || (is_array($billing_profile_id) && count($billing_profile_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $billing_profile_id when calling updateCompanyBillingProfile'
+            );
+        }
+
+        // verify the required parameter 'update_company_billing_profile_request_body' is set
+        if ($update_company_billing_profile_request_body === null || (is_array($update_company_billing_profile_request_body) && count($update_company_billing_profile_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $update_company_billing_profile_request_body when calling updateCompanyBillingProfile'
+            );
+        }
+
+
+        $resourcePath = '/billing/profiles/{billing_profile_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($billing_profile_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'billing_profile_id' . '}',
+                ObjectSerializer::toPathValue($billing_profile_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($update_company_billing_profile_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($update_company_billing_profile_request_body));
+            } else {
+                $httpBody = $update_company_billing_profile_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

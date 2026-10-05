@@ -73,6 +73,18 @@ class FeaturesApiTest extends TestCase
     }
 
     /**
+     * Test case for checkAndReserveFlag
+     *
+     * Check and reserve flag.
+     *
+     */
+    public function testCheckAndReserveFlag()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for checkFlag
      *
      * Check flag.

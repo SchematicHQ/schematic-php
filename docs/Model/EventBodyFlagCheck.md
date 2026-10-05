@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **error** | **string** | Report an error that occurred during the flag check | [optional]
 **flag_id** | **string** | Schematic flag ID (starting with &#39;flag_&#39;) for the flag matching the key, if any | [optional]
 **flag_key** | **string** | The key of the flag being checked |
+**preflight** | **bool** | Whether the check was a preflight, asking whether an action would be allowed rather than reporting one that happened. Absent on ordinary checks | [optional]
 **reason** | **string** | The reason why the value was returned |
 **req_company** | **array<string,string>** | Key-value pairs used to to identify company for which the flag was checked | [optional]
 **req_user** | **array<string,string>** | Key-value pairs used to to identify user for which the flag was checked | [optional]

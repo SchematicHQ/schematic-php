@@ -90,6 +90,15 @@ class UpdateCreditBundleDetailsRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "compatible_plan_ids"
+     */
+    public function testPropertyCompatiblePlanIds()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "currency_prices"
      */
     public function testPropertyCurrencyPrices()

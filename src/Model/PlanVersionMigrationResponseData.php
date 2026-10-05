@@ -63,12 +63,16 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'created_at' => '\DateTime',
         'error' => 'string',
         'failed_companies' => 'int',
+        'feature_id' => 'string',
+        'feature_plan_rollout_id' => 'string',
         'id' => 'string',
+        'next_due_at' => '\DateTime',
         'plan_id' => 'string',
         'plan_version_id_from' => 'string',
         'plan_version_id_to' => 'string',
         'plan_version_ids_from' => 'string[]',
         'proration_behavior' => '\Schematic\Model\MigrationProrationBehavior',
+        'scheduled_at' => '\DateTime',
         'skipped_companies' => 'int',
         'started_at' => '\DateTime',
         'status' => '\Schematic\Model\PlanVersionMigrationStatus',
@@ -90,12 +94,16 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'created_at' => 'date-time',
         'error' => null,
         'failed_companies' => 'int64',
+        'feature_id' => null,
+        'feature_plan_rollout_id' => null,
         'id' => null,
+        'next_due_at' => 'date-time',
         'plan_id' => null,
         'plan_version_id_from' => null,
         'plan_version_id_to' => null,
         'plan_version_ids_from' => null,
         'proration_behavior' => null,
+        'scheduled_at' => 'date-time',
         'skipped_companies' => 'int64',
         'started_at' => 'date-time',
         'status' => null,
@@ -115,12 +123,16 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'created_at' => false,
         'error' => true,
         'failed_companies' => false,
+        'feature_id' => true,
+        'feature_plan_rollout_id' => true,
         'id' => false,
+        'next_due_at' => true,
         'plan_id' => false,
         'plan_version_id_from' => true,
         'plan_version_id_to' => false,
         'plan_version_ids_from' => false,
         'proration_behavior' => true,
+        'scheduled_at' => true,
         'skipped_companies' => false,
         'started_at' => true,
         'status' => false,
@@ -220,12 +232,16 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'created_at' => 'created_at',
         'error' => 'error',
         'failed_companies' => 'failed_companies',
+        'feature_id' => 'feature_id',
+        'feature_plan_rollout_id' => 'feature_plan_rollout_id',
         'id' => 'id',
+        'next_due_at' => 'next_due_at',
         'plan_id' => 'plan_id',
         'plan_version_id_from' => 'plan_version_id_from',
         'plan_version_id_to' => 'plan_version_id_to',
         'plan_version_ids_from' => 'plan_version_ids_from',
         'proration_behavior' => 'proration_behavior',
+        'scheduled_at' => 'scheduled_at',
         'skipped_companies' => 'skipped_companies',
         'started_at' => 'started_at',
         'status' => 'status',
@@ -245,12 +261,16 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'created_at' => 'setCreatedAt',
         'error' => 'setError',
         'failed_companies' => 'setFailedCompanies',
+        'feature_id' => 'setFeatureId',
+        'feature_plan_rollout_id' => 'setFeaturePlanRolloutId',
         'id' => 'setId',
+        'next_due_at' => 'setNextDueAt',
         'plan_id' => 'setPlanId',
         'plan_version_id_from' => 'setPlanVersionIdFrom',
         'plan_version_id_to' => 'setPlanVersionIdTo',
         'plan_version_ids_from' => 'setPlanVersionIdsFrom',
         'proration_behavior' => 'setProrationBehavior',
+        'scheduled_at' => 'setScheduledAt',
         'skipped_companies' => 'setSkippedCompanies',
         'started_at' => 'setStartedAt',
         'status' => 'setStatus',
@@ -270,12 +290,16 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         'created_at' => 'getCreatedAt',
         'error' => 'getError',
         'failed_companies' => 'getFailedCompanies',
+        'feature_id' => 'getFeatureId',
+        'feature_plan_rollout_id' => 'getFeaturePlanRolloutId',
         'id' => 'getId',
+        'next_due_at' => 'getNextDueAt',
         'plan_id' => 'getPlanId',
         'plan_version_id_from' => 'getPlanVersionIdFrom',
         'plan_version_id_to' => 'getPlanVersionIdTo',
         'plan_version_ids_from' => 'getPlanVersionIdsFrom',
         'proration_behavior' => 'getProrationBehavior',
+        'scheduled_at' => 'getScheduledAt',
         'skipped_companies' => 'getSkippedCompanies',
         'started_at' => 'getStartedAt',
         'status' => 'getStatus',
@@ -346,12 +370,16 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('error', $data ?? [], null);
         $this->setIfExists('failed_companies', $data ?? [], null);
+        $this->setIfExists('feature_id', $data ?? [], null);
+        $this->setIfExists('feature_plan_rollout_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('next_due_at', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_version_id_from', $data ?? [], null);
         $this->setIfExists('plan_version_id_to', $data ?? [], null);
         $this->setIfExists('plan_version_ids_from', $data ?? [], null);
         $this->setIfExists('proration_behavior', $data ?? [], null);
+        $this->setIfExists('scheduled_at', $data ?? [], null);
         $this->setIfExists('skipped_companies', $data ?? [], null);
         $this->setIfExists('started_at', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
@@ -592,6 +620,74 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
     }
 
     /**
+     * Gets feature_id
+     *
+     * @return string|null
+     */
+    public function getFeatureId()
+    {
+        return $this->container['feature_id'];
+    }
+
+    /**
+     * Sets feature_id
+     *
+     * @param string|null $feature_id feature_id
+     *
+     * @return self
+     */
+    public function setFeatureId($feature_id)
+    {
+        if (is_null($feature_id)) {
+            array_push($this->openAPINullablesSetToNull, 'feature_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('feature_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['feature_id'] = $feature_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets feature_plan_rollout_id
+     *
+     * @return string|null
+     */
+    public function getFeaturePlanRolloutId()
+    {
+        return $this->container['feature_plan_rollout_id'];
+    }
+
+    /**
+     * Sets feature_plan_rollout_id
+     *
+     * @param string|null $feature_plan_rollout_id feature_plan_rollout_id
+     *
+     * @return self
+     */
+    public function setFeaturePlanRolloutId($feature_plan_rollout_id)
+    {
+        if (is_null($feature_plan_rollout_id)) {
+            array_push($this->openAPINullablesSetToNull, 'feature_plan_rollout_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('feature_plan_rollout_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['feature_plan_rollout_id'] = $feature_plan_rollout_id;
+
+        return $this;
+    }
+
+    /**
      * Gets id
      *
      * @return string
@@ -614,6 +710,40 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets next_due_at
+     *
+     * @return \DateTime|null
+     */
+    public function getNextDueAt()
+    {
+        return $this->container['next_due_at'];
+    }
+
+    /**
+     * Sets next_due_at
+     *
+     * @param \DateTime|null $next_due_at next_due_at
+     *
+     * @return self
+     */
+    public function setNextDueAt($next_due_at)
+    {
+        if (is_null($next_due_at)) {
+            array_push($this->openAPINullablesSetToNull, 'next_due_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('next_due_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['next_due_at'] = $next_due_at;
 
         return $this;
     }
@@ -767,6 +897,40 @@ class PlanVersionMigrationResponseData implements ModelInterface, ArrayAccess, \
             }
         }
         $this->container['proration_behavior'] = $proration_behavior;
+
+        return $this;
+    }
+
+    /**
+     * Gets scheduled_at
+     *
+     * @return \DateTime|null
+     */
+    public function getScheduledAt()
+    {
+        return $this->container['scheduled_at'];
+    }
+
+    /**
+     * Sets scheduled_at
+     *
+     * @param \DateTime|null $scheduled_at scheduled_at
+     *
+     * @return self
+     */
+    public function setScheduledAt($scheduled_at)
+    {
+        if (is_null($scheduled_at)) {
+            array_push($this->openAPINullablesSetToNull, 'scheduled_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('scheduled_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['scheduled_at'] = $scheduled_at;
 
         return $this;
     }

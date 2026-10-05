@@ -87,12 +87,14 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'scheduled_downgrade_prevent_when_over_limit' => 'bool',
         'show_as_monthly_prices' => 'bool',
         'show_credits' => 'bool',
+        'show_estimated_total' => 'bool',
         'show_feature_description' => 'bool',
         'show_hard_limit' => 'bool',
         'show_period_toggle' => 'bool',
         'show_zero_price_as_free' => 'bool',
         'sync_customer_billing_details' => 'bool',
         'trial_days' => 'int',
+        'trial_eligibility_per_plan' => 'bool',
         'trial_expiry_plan_id' => 'string',
         'trial_expiry_plan_price_id' => 'string',
         'trial_payment_method_required' => 'bool'
@@ -135,12 +137,14 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'scheduled_downgrade_prevent_when_over_limit' => null,
         'show_as_monthly_prices' => null,
         'show_credits' => null,
+        'show_estimated_total' => null,
         'show_feature_description' => null,
         'show_hard_limit' => null,
         'show_period_toggle' => null,
         'show_zero_price_as_free' => null,
         'sync_customer_billing_details' => null,
         'trial_days' => 'int64',
+        'trial_eligibility_per_plan' => null,
         'trial_expiry_plan_id' => null,
         'trial_expiry_plan_price_id' => null,
         'trial_payment_method_required' => null
@@ -181,12 +185,14 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'scheduled_downgrade_prevent_when_over_limit' => true,
         'show_as_monthly_prices' => false,
         'show_credits' => false,
+        'show_estimated_total' => false,
         'show_feature_description' => false,
         'show_hard_limit' => false,
         'show_period_toggle' => false,
         'show_zero_price_as_free' => false,
         'sync_customer_billing_details' => false,
         'trial_days' => true,
+        'trial_eligibility_per_plan' => true,
         'trial_expiry_plan_id' => true,
         'trial_expiry_plan_price_id' => true,
         'trial_payment_method_required' => true
@@ -307,12 +313,14 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'scheduled_downgrade_prevent_when_over_limit' => 'scheduled_downgrade_prevent_when_over_limit',
         'show_as_monthly_prices' => 'show_as_monthly_prices',
         'show_credits' => 'show_credits',
+        'show_estimated_total' => 'show_estimated_total',
         'show_feature_description' => 'show_feature_description',
         'show_hard_limit' => 'show_hard_limit',
         'show_period_toggle' => 'show_period_toggle',
         'show_zero_price_as_free' => 'show_zero_price_as_free',
         'sync_customer_billing_details' => 'sync_customer_billing_details',
         'trial_days' => 'trial_days',
+        'trial_eligibility_per_plan' => 'trial_eligibility_per_plan',
         'trial_expiry_plan_id' => 'trial_expiry_plan_id',
         'trial_expiry_plan_price_id' => 'trial_expiry_plan_price_id',
         'trial_payment_method_required' => 'trial_payment_method_required'
@@ -353,12 +361,14 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'scheduled_downgrade_prevent_when_over_limit' => 'setScheduledDowngradePreventWhenOverLimit',
         'show_as_monthly_prices' => 'setShowAsMonthlyPrices',
         'show_credits' => 'setShowCredits',
+        'show_estimated_total' => 'setShowEstimatedTotal',
         'show_feature_description' => 'setShowFeatureDescription',
         'show_hard_limit' => 'setShowHardLimit',
         'show_period_toggle' => 'setShowPeriodToggle',
         'show_zero_price_as_free' => 'setShowZeroPriceAsFree',
         'sync_customer_billing_details' => 'setSyncCustomerBillingDetails',
         'trial_days' => 'setTrialDays',
+        'trial_eligibility_per_plan' => 'setTrialEligibilityPerPlan',
         'trial_expiry_plan_id' => 'setTrialExpiryPlanId',
         'trial_expiry_plan_price_id' => 'setTrialExpiryPlanPriceId',
         'trial_payment_method_required' => 'setTrialPaymentMethodRequired'
@@ -399,12 +409,14 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         'scheduled_downgrade_prevent_when_over_limit' => 'getScheduledDowngradePreventWhenOverLimit',
         'show_as_monthly_prices' => 'getShowAsMonthlyPrices',
         'show_credits' => 'getShowCredits',
+        'show_estimated_total' => 'getShowEstimatedTotal',
         'show_feature_description' => 'getShowFeatureDescription',
         'show_hard_limit' => 'getShowHardLimit',
         'show_period_toggle' => 'getShowPeriodToggle',
         'show_zero_price_as_free' => 'getShowZeroPriceAsFree',
         'sync_customer_billing_details' => 'getSyncCustomerBillingDetails',
         'trial_days' => 'getTrialDays',
+        'trial_eligibility_per_plan' => 'getTrialEligibilityPerPlan',
         'trial_expiry_plan_id' => 'getTrialExpiryPlanId',
         'trial_expiry_plan_price_id' => 'getTrialExpiryPlanPriceId',
         'trial_payment_method_required' => 'getTrialPaymentMethodRequired'
@@ -496,12 +508,14 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('scheduled_downgrade_prevent_when_over_limit', $data ?? [], null);
         $this->setIfExists('show_as_monthly_prices', $data ?? [], null);
         $this->setIfExists('show_credits', $data ?? [], null);
+        $this->setIfExists('show_estimated_total', $data ?? [], null);
         $this->setIfExists('show_feature_description', $data ?? [], null);
         $this->setIfExists('show_hard_limit', $data ?? [], null);
         $this->setIfExists('show_period_toggle', $data ?? [], null);
         $this->setIfExists('show_zero_price_as_free', $data ?? [], null);
         $this->setIfExists('sync_customer_billing_details', $data ?? [], null);
         $this->setIfExists('trial_days', $data ?? [], null);
+        $this->setIfExists('trial_eligibility_per_plan', $data ?? [], null);
         $this->setIfExists('trial_expiry_plan_id', $data ?? [], null);
         $this->setIfExists('trial_expiry_plan_price_id', $data ?? [], null);
         $this->setIfExists('trial_payment_method_required', $data ?? [], null);
@@ -545,9 +559,6 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             $invalidProperties[] = "invalid value for 'add_on_ids', number of items must be less than or equal to 100.";
         }
 
-        if ($this->container['checkout_bundle_purchase_behavior'] === null) {
-            $invalidProperties[] = "'checkout_bundle_purchase_behavior' can't be null";
-        }
         if ($this->container['checkout_collect_address'] === null) {
             $invalidProperties[] = "'checkout_collect_address' can't be null";
         }
@@ -621,6 +632,9 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
         }
         if ($this->container['show_credits'] === null) {
             $invalidProperties[] = "'show_credits' can't be null";
+        }
+        if ($this->container['show_estimated_total'] === null) {
+            $invalidProperties[] = "'show_estimated_total' can't be null";
         }
         if ($this->container['show_feature_description'] === null) {
             $invalidProperties[] = "'show_feature_description' can't be null";
@@ -726,7 +740,7 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets checkout_bundle_purchase_behavior
      *
-     * @return \Schematic\Model\CheckoutBundlePurchaseBehavior
+     * @return \Schematic\Model\CheckoutBundlePurchaseBehavior|null
      */
     public function getCheckoutBundlePurchaseBehavior()
     {
@@ -736,7 +750,7 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Sets checkout_bundle_purchase_behavior
      *
-     * @param \Schematic\Model\CheckoutBundlePurchaseBehavior $checkout_bundle_purchase_behavior checkout_bundle_purchase_behavior
+     * @param \Schematic\Model\CheckoutBundlePurchaseBehavior|null $checkout_bundle_purchase_behavior checkout_bundle_purchase_behavior
      *
      * @return self
      */
@@ -1562,6 +1576,33 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * Gets show_estimated_total
+     *
+     * @return bool
+     */
+    public function getShowEstimatedTotal()
+    {
+        return $this->container['show_estimated_total'];
+    }
+
+    /**
+     * Sets show_estimated_total
+     *
+     * @param bool $show_estimated_total show_estimated_total
+     *
+     * @return self
+     */
+    public function setShowEstimatedTotal($show_estimated_total)
+    {
+        if (is_null($show_estimated_total)) {
+            throw new \InvalidArgumentException('non-nullable show_estimated_total cannot be null');
+        }
+        $this->container['show_estimated_total'] = $show_estimated_total;
+
+        return $this;
+    }
+
+    /**
      * Gets show_feature_description
      *
      * @return bool
@@ -1726,6 +1767,40 @@ class CreatePlanGroupRequestBody implements ModelInterface, ArrayAccess, \JsonSe
             }
         }
         $this->container['trial_days'] = $trial_days;
+
+        return $this;
+    }
+
+    /**
+     * Gets trial_eligibility_per_plan
+     *
+     * @return bool|null
+     */
+    public function getTrialEligibilityPerPlan()
+    {
+        return $this->container['trial_eligibility_per_plan'];
+    }
+
+    /**
+     * Sets trial_eligibility_per_plan
+     *
+     * @param bool|null $trial_eligibility_per_plan trial_eligibility_per_plan
+     *
+     * @return self
+     */
+    public function setTrialEligibilityPerPlan($trial_eligibility_per_plan)
+    {
+        if (is_null($trial_eligibility_per_plan)) {
+            array_push($this->openAPINullablesSetToNull, 'trial_eligibility_per_plan');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('trial_eligibility_per_plan', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['trial_eligibility_per_plan'] = $trial_eligibility_per_plan;
 
         return $this;
     }

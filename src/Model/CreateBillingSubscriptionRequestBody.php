@@ -74,6 +74,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_start' => 'int',
         'product_external_ids' => '\Schematic\Model\BillingProductPricing[]',
         'provider_type' => '\Schematic\Model\BillingProviderType',
+        'started_at' => '\DateTime',
         'status' => 'string',
         'subscription_external_id' => 'string',
         'total_price' => 'int',
@@ -105,6 +106,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_start' => 'int64',
         'product_external_ids' => null,
         'provider_type' => null,
+        'started_at' => 'date-time',
         'status' => null,
         'subscription_external_id' => null,
         'total_price' => 'int64',
@@ -134,6 +136,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_start' => true,
         'product_external_ids' => false,
         'provider_type' => true,
+        'started_at' => true,
         'status' => true,
         'subscription_external_id' => false,
         'total_price' => false,
@@ -243,6 +246,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_start' => 'period_start',
         'product_external_ids' => 'product_external_ids',
         'provider_type' => 'provider_type',
+        'started_at' => 'started_at',
         'status' => 'status',
         'subscription_external_id' => 'subscription_external_id',
         'total_price' => 'total_price',
@@ -272,6 +276,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_start' => 'setPeriodStart',
         'product_external_ids' => 'setProductExternalIds',
         'provider_type' => 'setProviderType',
+        'started_at' => 'setStartedAt',
         'status' => 'setStatus',
         'subscription_external_id' => 'setSubscriptionExternalId',
         'total_price' => 'setTotalPrice',
@@ -301,6 +306,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         'period_start' => 'getPeriodStart',
         'product_external_ids' => 'getProductExternalIds',
         'provider_type' => 'getProviderType',
+        'started_at' => 'getStartedAt',
         'status' => 'getStatus',
         'subscription_external_id' => 'getSubscriptionExternalId',
         'total_price' => 'getTotalPrice',
@@ -381,6 +387,7 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
         $this->setIfExists('period_start', $data ?? [], null);
         $this->setIfExists('product_external_ids', $data ?? [], null);
         $this->setIfExists('provider_type', $data ?? [], null);
+        $this->setIfExists('started_at', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('subscription_external_id', $data ?? [], null);
         $this->setIfExists('total_price', $data ?? [], null);
@@ -1016,6 +1023,40 @@ class CreateBillingSubscriptionRequestBody implements ModelInterface, ArrayAcces
             }
         }
         $this->container['provider_type'] = $provider_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets started_at
+     *
+     * @return \DateTime|null
+     */
+    public function getStartedAt()
+    {
+        return $this->container['started_at'];
+    }
+
+    /**
+     * Sets started_at
+     *
+     * @param \DateTime|null $started_at started_at
+     *
+     * @return self
+     */
+    public function setStartedAt($started_at)
+    {
+        if (is_null($started_at)) {
+            array_push($this->openAPINullablesSetToNull, 'started_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('started_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['started_at'] = $started_at;
 
         return $this;
     }

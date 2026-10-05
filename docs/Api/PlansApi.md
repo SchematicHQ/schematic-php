@@ -18,7 +18,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**markCustomPlanBillingPaid()**](PlansApi.md#markCustomPlanBillingPaid) | **PUT** /custom-plan-billings/{custom_plan_billing_id}/mark-paid | Mark custom plan billing paid |
 | [**publishPlanVersion()**](PlansApi.md#publishPlanVersion) | **PUT** /plans/version/{plan_version_id}/publish | Publish plan version |
 | [**retryCustomPlanBilling()**](PlansApi.md#retryCustomPlanBilling) | **PUT** /custom-plan-billings/{custom_plan_billing_id}/retry | Retry custom plan billing |
-| [**updateCompanyPlans()**](PlansApi.md#updateCompanyPlans) | **PUT** /company-plans/{company_plan_id} | Update company plans |
+| [**updateCompanyPlans()**](PlansApi.md#updateCompanyPlans) | **PUT** /company-plans/{company_id} | Update company plans |
 | [**updatePlan()**](PlansApi.md#updatePlan) | **PUT** /plans/{plan_id} | Update plan |
 | [**upsertBillingProductPlan()**](PlansApi.md#upsertBillingProductPlan) | **PUT** /plans/{plan_id}/billing_products | Upsert billing product plan |
 | [**upsertPlanForBillingProduct()**](PlansApi.md#upsertPlanForBillingProduct) | **POST** /plans/billing-linked | Upsert plan for billing product |
@@ -84,7 +84,7 @@ try {
 ## `countPlans()`
 
 ```php
-countPlans($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset): \Schematic\Model\CountPlansResponse
+countPlans($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset): \Schematic\Model\CountPlansResponse
 ```
 
 Count plans
@@ -102,6 +102,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $company_id = 'company_id_example'; // string
 $company_scoped_only = True; // bool | Only return plans that are scoped to a company (custom plans assigned to a company)
 $exclude_company_scoped = True; // bool | Exclude plans that are scoped to a company (custom plans assigned to a company)
+$exclude_unused = True; // bool | Exclude plans that nothing is using: no company is on the plan and it has no draft version
 $for_fallback_plan = True; // bool | Filter for plans valid as fallback plans (not linked to billing)
 $for_initial_plan = True; // bool | Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial)
 $for_trial_expiry_plan = True; // bool | Filter for plans valid as trial expiry plans (not linked to billing or free)
@@ -112,13 +113,15 @@ $plan_type = new \Schematic\Model\\SchematicModelPlanType(); // \SchematicModelP
 $q = 'q_example'; // string
 $scoped_to_company_id = 'scoped_to_company_id_example'; // string | Filter plans scoped to a specific company (custom plans)
 $with_entitlements = True; // bool | Include each plan's entitlements in the response
+$with_published_version = True; // bool | Only return plans that have a published version
+$without_entitlement_for_include_drafts = True; // bool | With without_entitlement_for, also treat an entitlement on a plan's draft version as existing
 $without_entitlement_for = 'without_entitlement_for_example'; // string | Filter out plans that already have a plan entitlement for the specified feature ID
 $without_paid_product_id = True; // bool | Filter out plans that have a paid billing product ID
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->PlansApi->countPlans($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset);
+    $result = $schematic->PlansApi->countPlans($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlansApi->countPlans: ', $e->getMessage(), PHP_EOL;
@@ -132,6 +135,7 @@ try {
 | **company_id** | **string**|  | [optional] |
 | **company_scoped_only** | **bool**| Only return plans that are scoped to a company (custom plans assigned to a company) | [optional] |
 | **exclude_company_scoped** | **bool**| Exclude plans that are scoped to a company (custom plans assigned to a company) | [optional] |
+| **exclude_unused** | **bool**| Exclude plans that nothing is using: no company is on the plan and it has no draft version | [optional] |
 | **for_fallback_plan** | **bool**| Filter for plans valid as fallback plans (not linked to billing) | [optional] |
 | **for_initial_plan** | **bool**| Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) | [optional] |
 | **for_trial_expiry_plan** | **bool**| Filter for plans valid as trial expiry plans (not linked to billing or free) | [optional] |
@@ -142,6 +146,8 @@ try {
 | **q** | **string**|  | [optional] |
 | **scoped_to_company_id** | **string**| Filter plans scoped to a specific company (custom plans) | [optional] |
 | **with_entitlements** | **bool**| Include each plan&#39;s entitlements in the response | [optional] |
+| **with_published_version** | **bool**| Only return plans that have a published version | [optional] |
+| **without_entitlement_for_include_drafts** | **bool**| With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing | [optional] |
 | **without_entitlement_for** | **string**| Filter out plans that already have a plan entitlement for the specified feature ID | [optional] |
 | **without_paid_product_id** | **bool**| Filter out plans that have a paid billing product ID | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -599,7 +605,7 @@ try {
 ## `listPlans()`
 
 ```php
-listPlans($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset): \Schematic\Model\ListPlansResponse
+listPlans($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset): \Schematic\Model\ListPlansResponse
 ```
 
 List plans
@@ -617,6 +623,7 @@ $schematic = new Schematic('YOUR_SECRET_API_KEY');
 $company_id = 'company_id_example'; // string
 $company_scoped_only = True; // bool | Only return plans that are scoped to a company (custom plans assigned to a company)
 $exclude_company_scoped = True; // bool | Exclude plans that are scoped to a company (custom plans assigned to a company)
+$exclude_unused = True; // bool | Exclude plans that nothing is using: no company is on the plan and it has no draft version
 $for_fallback_plan = True; // bool | Filter for plans valid as fallback plans (not linked to billing)
 $for_initial_plan = True; // bool | Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial)
 $for_trial_expiry_plan = True; // bool | Filter for plans valid as trial expiry plans (not linked to billing or free)
@@ -627,13 +634,15 @@ $plan_type = new \Schematic\Model\\SchematicModelPlanType(); // \SchematicModelP
 $q = 'q_example'; // string
 $scoped_to_company_id = 'scoped_to_company_id_example'; // string | Filter plans scoped to a specific company (custom plans)
 $with_entitlements = True; // bool | Include each plan's entitlements in the response
+$with_published_version = True; // bool | Only return plans that have a published version
+$without_entitlement_for_include_drafts = True; // bool | With without_entitlement_for, also treat an entitlement on a plan's draft version as existing
 $without_entitlement_for = 'without_entitlement_for_example'; // string | Filter out plans that already have a plan entitlement for the specified feature ID
 $without_paid_product_id = True; // bool | Filter out plans that have a paid billing product ID
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->PlansApi->listPlans($company_id, $company_scoped_only, $exclude_company_scoped, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $without_entitlement_for, $without_paid_product_id, $limit, $offset);
+    $result = $schematic->PlansApi->listPlans($company_id, $company_scoped_only, $exclude_company_scoped, $exclude_unused, $for_fallback_plan, $for_initial_plan, $for_trial_expiry_plan, $has_product_id, $ids, $include_draft_versions, $plan_type, $q, $scoped_to_company_id, $with_entitlements, $with_published_version, $without_entitlement_for_include_drafts, $without_entitlement_for, $without_paid_product_id, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlansApi->listPlans: ', $e->getMessage(), PHP_EOL;
@@ -647,6 +656,7 @@ try {
 | **company_id** | **string**|  | [optional] |
 | **company_scoped_only** | **bool**| Only return plans that are scoped to a company (custom plans assigned to a company) | [optional] |
 | **exclude_company_scoped** | **bool**| Exclude plans that are scoped to a company (custom plans assigned to a company) | [optional] |
+| **exclude_unused** | **bool**| Exclude plans that nothing is using: no company is on the plan and it has no draft version | [optional] |
 | **for_fallback_plan** | **bool**| Filter for plans valid as fallback plans (not linked to billing) | [optional] |
 | **for_initial_plan** | **bool**| Filter for plans valid as initial plans (not linked to billing, free, or auto-cancelling trial) | [optional] |
 | **for_trial_expiry_plan** | **bool**| Filter for plans valid as trial expiry plans (not linked to billing or free) | [optional] |
@@ -657,6 +667,8 @@ try {
 | **q** | **string**|  | [optional] |
 | **scoped_to_company_id** | **string**| Filter plans scoped to a specific company (custom plans) | [optional] |
 | **with_entitlements** | **bool**| Include each plan&#39;s entitlements in the response | [optional] |
+| **with_published_version** | **bool**| Only return plans that have a published version | [optional] |
+| **without_entitlement_for_include_drafts** | **bool**| With without_entitlement_for, also treat an entitlement on a plan&#39;s draft version as existing | [optional] |
 | **without_entitlement_for** | **string**| Filter out plans that already have a plan entitlement for the specified feature ID | [optional] |
 | **without_paid_product_id** | **bool**| Filter out plans that have a paid billing product ID | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -841,7 +853,7 @@ try {
 ## `updateCompanyPlans()`
 
 ```php
-updateCompanyPlans($company_plan_id, $update_company_plans_request_body): \Schematic\Model\UpdateCompanyPlansResponse
+updateCompanyPlans($company_id, $update_company_plans_request_body): \Schematic\Model\UpdateCompanyPlansResponse
 ```
 
 Update company plans
@@ -856,11 +868,11 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$company_plan_id = 'company_plan_id_example'; // string | company_plan_id
+$company_id = 'company_id_example'; // string | company_id
 $update_company_plans_request_body = new \Schematic\Model\UpdateCompanyPlansRequestBody(); // \Schematic\Model\UpdateCompanyPlansRequestBody
 
 try {
-    $result = $schematic->PlansApi->updateCompanyPlans($company_plan_id, $update_company_plans_request_body);
+    $result = $schematic->PlansApi->updateCompanyPlans($company_id, $update_company_plans_request_body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlansApi->updateCompanyPlans: ', $e->getMessage(), PHP_EOL;
@@ -871,7 +883,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **company_plan_id** | **string**| company_plan_id | |
+| **company_id** | **string**| company_id | |
 | **update_company_plans_request_body** | [**\Schematic\Model\UpdateCompanyPlansRequestBody**](../Model/UpdateCompanyPlansRequestBody.md)|  | |
 
 ### Return type

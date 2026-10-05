@@ -60,6 +60,8 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPITypes = [
         'activation_strategy' => '\Schematic\Model\CustomPlanActivationStrategy',
         'address' => '\Schematic\Model\CustomerBillingAddress',
+        'billing_cycle_anchor' => '\DateTime',
+        'billing_start_date' => '\DateTime',
         'coupon_external_id' => 'string',
         'custom_field_values' => '\Schematic\Model\CheckoutFieldValue[]',
         'customer_email' => 'string',
@@ -67,7 +69,10 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
         'excluded_company_ids' => 'string[]',
         'migration_strategy' => '\Schematic\Model\PlanVersionMigrationStrategy',
         'phone' => 'string',
+        'prorate_first_period' => 'bool',
         'proration_behavior' => '\Schematic\Model\MigrationProrationBehavior',
+        'require_no_migration' => 'bool',
+        'scheduled_at' => '\DateTime',
         'send_invoice' => 'bool',
         'tax_id' => '\Schematic\Model\TaxIDInput'
     ];
@@ -82,6 +87,8 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPIFormats = [
         'activation_strategy' => null,
         'address' => null,
+        'billing_cycle_anchor' => 'date-time',
+        'billing_start_date' => 'date-time',
         'coupon_external_id' => null,
         'custom_field_values' => null,
         'customer_email' => null,
@@ -89,7 +96,10 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
         'excluded_company_ids' => null,
         'migration_strategy' => null,
         'phone' => null,
+        'prorate_first_period' => null,
         'proration_behavior' => null,
+        'require_no_migration' => null,
+        'scheduled_at' => 'date-time',
         'send_invoice' => null,
         'tax_id' => null
     ];
@@ -102,6 +112,8 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static array $openAPINullables = [
         'activation_strategy' => true,
         'address' => false,
+        'billing_cycle_anchor' => true,
+        'billing_start_date' => true,
         'coupon_external_id' => true,
         'custom_field_values' => true,
         'customer_email' => true,
@@ -109,7 +121,10 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
         'excluded_company_ids' => false,
         'migration_strategy' => false,
         'phone' => true,
+        'prorate_first_period' => true,
         'proration_behavior' => true,
+        'require_no_migration' => true,
+        'scheduled_at' => true,
         'send_invoice' => true,
         'tax_id' => false
     ];
@@ -202,6 +217,8 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $attributeMap = [
         'activation_strategy' => 'activation_strategy',
         'address' => 'address',
+        'billing_cycle_anchor' => 'billing_cycle_anchor',
+        'billing_start_date' => 'billing_start_date',
         'coupon_external_id' => 'coupon_external_id',
         'custom_field_values' => 'custom_field_values',
         'customer_email' => 'customer_email',
@@ -209,7 +226,10 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
         'excluded_company_ids' => 'excluded_company_ids',
         'migration_strategy' => 'migration_strategy',
         'phone' => 'phone',
+        'prorate_first_period' => 'prorate_first_period',
         'proration_behavior' => 'proration_behavior',
+        'require_no_migration' => 'require_no_migration',
+        'scheduled_at' => 'scheduled_at',
         'send_invoice' => 'send_invoice',
         'tax_id' => 'tax_id'
     ];
@@ -222,6 +242,8 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $setters = [
         'activation_strategy' => 'setActivationStrategy',
         'address' => 'setAddress',
+        'billing_cycle_anchor' => 'setBillingCycleAnchor',
+        'billing_start_date' => 'setBillingStartDate',
         'coupon_external_id' => 'setCouponExternalId',
         'custom_field_values' => 'setCustomFieldValues',
         'customer_email' => 'setCustomerEmail',
@@ -229,7 +251,10 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
         'excluded_company_ids' => 'setExcludedCompanyIds',
         'migration_strategy' => 'setMigrationStrategy',
         'phone' => 'setPhone',
+        'prorate_first_period' => 'setProrateFirstPeriod',
         'proration_behavior' => 'setProrationBehavior',
+        'require_no_migration' => 'setRequireNoMigration',
+        'scheduled_at' => 'setScheduledAt',
         'send_invoice' => 'setSendInvoice',
         'tax_id' => 'setTaxId'
     ];
@@ -242,6 +267,8 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     protected static $getters = [
         'activation_strategy' => 'getActivationStrategy',
         'address' => 'getAddress',
+        'billing_cycle_anchor' => 'getBillingCycleAnchor',
+        'billing_start_date' => 'getBillingStartDate',
         'coupon_external_id' => 'getCouponExternalId',
         'custom_field_values' => 'getCustomFieldValues',
         'customer_email' => 'getCustomerEmail',
@@ -249,7 +276,10 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
         'excluded_company_ids' => 'getExcludedCompanyIds',
         'migration_strategy' => 'getMigrationStrategy',
         'phone' => 'getPhone',
+        'prorate_first_period' => 'getProrateFirstPeriod',
         'proration_behavior' => 'getProrationBehavior',
+        'require_no_migration' => 'getRequireNoMigration',
+        'scheduled_at' => 'getScheduledAt',
         'send_invoice' => 'getSendInvoice',
         'tax_id' => 'getTaxId'
     ];
@@ -313,6 +343,8 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     {
         $this->setIfExists('activation_strategy', $data ?? [], null);
         $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('billing_cycle_anchor', $data ?? [], null);
+        $this->setIfExists('billing_start_date', $data ?? [], null);
         $this->setIfExists('coupon_external_id', $data ?? [], null);
         $this->setIfExists('custom_field_values', $data ?? [], null);
         $this->setIfExists('customer_email', $data ?? [], null);
@@ -320,7 +352,10 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('excluded_company_ids', $data ?? [], null);
         $this->setIfExists('migration_strategy', $data ?? [], null);
         $this->setIfExists('phone', $data ?? [], null);
+        $this->setIfExists('prorate_first_period', $data ?? [], null);
         $this->setIfExists('proration_behavior', $data ?? [], null);
+        $this->setIfExists('require_no_migration', $data ?? [], null);
+        $this->setIfExists('scheduled_at', $data ?? [], null);
         $this->setIfExists('send_invoice', $data ?? [], null);
         $this->setIfExists('tax_id', $data ?? [], null);
     }
@@ -454,6 +489,74 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable address cannot be null');
         }
         $this->container['address'] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_cycle_anchor
+     *
+     * @return \DateTime|null
+     */
+    public function getBillingCycleAnchor()
+    {
+        return $this->container['billing_cycle_anchor'];
+    }
+
+    /**
+     * Sets billing_cycle_anchor
+     *
+     * @param \DateTime|null $billing_cycle_anchor The date the subscription's billing period renews on. Only honored on a first publish that starts a subscription.
+     *
+     * @return self
+     */
+    public function setBillingCycleAnchor($billing_cycle_anchor)
+    {
+        if (is_null($billing_cycle_anchor)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_cycle_anchor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_cycle_anchor', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_cycle_anchor'] = $billing_cycle_anchor;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_start_date
+     *
+     * @return \DateTime|null
+     */
+    public function getBillingStartDate()
+    {
+        return $this->container['billing_start_date'];
+    }
+
+    /**
+     * Sets billing_start_date
+     *
+     * @param \DateTime|null $billing_start_date The date the contract term starts. A past date backdates the subscription so the first invoice covers the term from this date to the renewal date. Requires billing_cycle_anchor. Only honored on a first publish that starts a subscription.
+     *
+     * @return self
+     */
+    public function setBillingStartDate($billing_start_date)
+    {
+        if (is_null($billing_start_date)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_start_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_start_date', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_start_date'] = $billing_start_date;
 
         return $this;
     }
@@ -708,6 +811,40 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
+     * Gets prorate_first_period
+     *
+     * @return bool|null
+     */
+    public function getProrateFirstPeriod()
+    {
+        return $this->container['prorate_first_period'];
+    }
+
+    /**
+     * Sets prorate_first_period
+     *
+     * @param bool|null $prorate_first_period When true, the partial period between the subscription starting and its renewal date is billed pro rata straight away. When false that period is free and no invoice is raised until the renewal date. Only applies alongside billing_cycle_anchor. Defaults to true.
+     *
+     * @return self
+     */
+    public function setProrateFirstPeriod($prorate_first_period)
+    {
+        if (is_null($prorate_first_period)) {
+            array_push($this->openAPINullablesSetToNull, 'prorate_first_period');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('prorate_first_period', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['prorate_first_period'] = $prorate_first_period;
+
+        return $this;
+    }
+
+    /**
      * Gets proration_behavior
      *
      * @return \Schematic\Model\MigrationProrationBehavior|null
@@ -720,7 +857,7 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets proration_behavior
      *
-     * @param \Schematic\Model\MigrationProrationBehavior|null $proration_behavior proration_behavior
+     * @param \Schematic\Model\MigrationProrationBehavior|null $proration_behavior How Stripe handles the price difference when companies are migrated. With migration_strategy immediate, omitted means create_prorations. With end_of_billing_period only none is accepted and means the same as omitting it: the change lands on the renewal boundary, so there is nothing to prorate. With scheduled any value is accepted and omitted means none. Not accepted with leave.
      *
      * @return self
      */
@@ -737,6 +874,74 @@ class PublishPlanVersionRequestBody implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['proration_behavior'] = $proration_behavior;
+
+        return $this;
+    }
+
+    /**
+     * Gets require_no_migration
+     *
+     * @return bool|null
+     */
+    public function getRequireNoMigration()
+    {
+        return $this->container['require_no_migration'];
+    }
+
+    /**
+     * Sets require_no_migration
+     *
+     * @param bool|null $require_no_migration Refuse the publish if any company would be migrated onto the new version
+     *
+     * @return self
+     */
+    public function setRequireNoMigration($require_no_migration)
+    {
+        if (is_null($require_no_migration)) {
+            array_push($this->openAPINullablesSetToNull, 'require_no_migration');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('require_no_migration', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['require_no_migration'] = $require_no_migration;
+
+        return $this;
+    }
+
+    /**
+     * Gets scheduled_at
+     *
+     * @return \DateTime|null
+     */
+    public function getScheduledAt()
+    {
+        return $this->container['scheduled_at'];
+    }
+
+    /**
+     * Sets scheduled_at
+     *
+     * @param \DateTime|null $scheduled_at When every company moves, for migration_strategy scheduled. Must be in the future; the migration runs within about a minute of this time. Not accepted with other strategies.
+     *
+     * @return self
+     */
+    public function setScheduledAt($scheduled_at)
+    {
+        if (is_null($scheduled_at)) {
+            array_push($this->openAPINullablesSetToNull, 'scheduled_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('scheduled_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['scheduled_at'] = $scheduled_at;
 
         return $this;
     }

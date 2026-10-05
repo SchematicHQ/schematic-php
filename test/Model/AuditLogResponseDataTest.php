@@ -81,6 +81,15 @@ class AuditLogResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "account_member_id"
+     */
+    public function testPropertyAccountMemberId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "actor_type"
      */
     public function testPropertyActorType()

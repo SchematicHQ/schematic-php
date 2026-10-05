@@ -378,6 +378,15 @@ class PlanGroupDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "trial_eligibility_per_plan"
+     */
+    public function testPropertyTrialEligibilityPerPlan()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "trial_expiry_plan"
      */
     public function testPropertyTrialExpiryPlan()

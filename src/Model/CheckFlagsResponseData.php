@@ -59,6 +59,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'credit_balances' => 'array<string,\Schematic\Model\CompanyCreditBalance>',
+        'credit_spend_policies' => '\Schematic\Model\CreditSpendPolicy[]',
         'flags' => '\Schematic\Model\CheckFlagResponseData[]',
         'plan' => '\Schematic\Model\DatastreamCompanyPlan'
     ];
@@ -72,6 +73,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPIFormats = [
         'credit_balances' => null,
+        'credit_spend_policies' => null,
         'flags' => null,
         'plan' => null
     ];
@@ -83,6 +85,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static array $openAPINullables = [
         'credit_balances' => false,
+        'credit_spend_policies' => false,
         'flags' => false,
         'plan' => false
     ];
@@ -174,6 +177,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $attributeMap = [
         'credit_balances' => 'credit_balances',
+        'credit_spend_policies' => 'credit_spend_policies',
         'flags' => 'flags',
         'plan' => 'plan'
     ];
@@ -185,6 +189,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $setters = [
         'credit_balances' => 'setCreditBalances',
+        'credit_spend_policies' => 'setCreditSpendPolicies',
         'flags' => 'setFlags',
         'plan' => 'setPlan'
     ];
@@ -196,6 +201,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
      */
     protected static $getters = [
         'credit_balances' => 'getCreditBalances',
+        'credit_spend_policies' => 'getCreditSpendPolicies',
         'flags' => 'getFlags',
         'plan' => 'getPlan'
     ];
@@ -258,6 +264,7 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     public function __construct(?array $data = null)
     {
         $this->setIfExists('credit_balances', $data ?? [], null);
+        $this->setIfExists('credit_spend_policies', $data ?? [], null);
         $this->setIfExists('flags', $data ?? [], null);
         $this->setIfExists('plan', $data ?? [], null);
     }
@@ -288,6 +295,13 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if ($this->container['credit_spend_policies'] === null) {
+            $invalidProperties[] = "'credit_spend_policies' can't be null";
+        }
+        if ((count($this->container['credit_spend_policies']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credit_spend_policies', number of items must be less than or equal to 1000.";
+        }
 
         if ($this->container['flags'] === null) {
             $invalidProperties[] = "'flags' can't be null";
@@ -334,6 +348,37 @@ class CheckFlagsResponseData implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable credit_balances cannot be null');
         }
         $this->container['credit_balances'] = $credit_balances;
+
+        return $this;
+    }
+
+    /**
+     * Gets credit_spend_policies
+     *
+     * @return \Schematic\Model\CreditSpendPolicy[]
+     */
+    public function getCreditSpendPolicies()
+    {
+        return $this->container['credit_spend_policies'];
+    }
+
+    /**
+     * Sets credit_spend_policies
+     *
+     * @param \Schematic\Model\CreditSpendPolicy[] $credit_spend_policies Credit spend policies binding the evaluated company and user; empty when none bind. Each response carries the whole set, so replace any previously received set with it. Advisory: the flag values do not reflect them, since a check names no draw amount
+     *
+     * @return self
+     */
+    public function setCreditSpendPolicies($credit_spend_policies)
+    {
+        if (is_null($credit_spend_policies)) {
+            throw new \InvalidArgumentException('non-nullable credit_spend_policies cannot be null');
+        }
+
+        if ((count($credit_spend_policies) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credit_spend_policies when calling CheckFlagsResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['credit_spend_policies'] = $credit_spend_policies;
 
         return $this;
     }

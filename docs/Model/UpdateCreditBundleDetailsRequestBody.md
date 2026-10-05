@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bundle_name** | **string** |  |
+**compatible_plan_ids** | **string[]** | Plans whose companies may purchase this bundle. Omitted leaves compatibility unchanged; empty resets the bundle to purchasable on every plan. | [optional]
 **currency_prices** | [**\Schematic\Model\CreditBundleCurrencyPriceRequestBody[]**](CreditBundleCurrencyPriceRequestBody.md) |  | [optional]
 **expiry_type** | [**\Schematic\Model\BillingCreditExpiryType**](BillingCreditExpiryType.md) |  | [optional]
 **expiry_unit** | [**\Schematic\Model\BillingCreditExpiryUnit**](BillingCreditExpiryUnit.md) |  | [optional]

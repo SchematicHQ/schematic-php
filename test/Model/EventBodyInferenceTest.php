@@ -81,6 +81,15 @@ class EventBodyInferenceTest extends TestCase
     }
 
     /**
+     * Test attribute "cache_creation_input_tokens"
+     */
+    public function testPropertyCacheCreationInputTokens()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "cached_input_tokens"
      */
     public function testPropertyCachedInputTokens()

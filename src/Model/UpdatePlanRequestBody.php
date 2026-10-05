@@ -293,10 +293,6 @@ class UpdatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 1024.";
         }
 
-        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) < 0)) {
-            $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 0.";
-        }
-
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
@@ -354,9 +350,6 @@ class UpdatePlanRequestBody implements ModelInterface, ArrayAccess, \JsonSeriali
         }
         if (!is_null($description) && (mb_strlen($description) > 1024)) {
             throw new \InvalidArgumentException('invalid length for $description when calling UpdatePlanRequestBody., must be smaller than or equal to 1024.');
-        }
-        if (!is_null($description) && (mb_strlen($description) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $description when calling UpdatePlanRequestBody., must be bigger than or equal to 0.');
         }
 
         $this->container['description'] = $description;

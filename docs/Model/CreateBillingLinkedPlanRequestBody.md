@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_provider** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  |
-**description** | **string** |  |
+**description** | **string** |  | [optional]
 **external_resource_id** | **string** |  |
 **external_resource_version** | **string** |  | [optional]
 **icon** | [**\Schematic\Model\PlanIcon**](PlanIcon.md) |  | [optional]

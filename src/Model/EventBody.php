@@ -62,12 +62,14 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => 'string',
         'lease_id' => 'string',
         'quantity' => 'int',
+        'reservation_id' => 'string',
         'traits' => 'object',
         'user' => 'array<string,string>',
         'company_id' => 'string',
         'error' => 'string',
         'flag_id' => 'string',
         'flag_key' => 'string',
+        'preflight' => 'bool',
         'reason' => 'string',
         'req_company' => 'array<string,string>',
         'req_user' => 'array<string,string>',
@@ -76,6 +78,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'bool',
         'keys' => 'array<string,string>',
         'name' => 'string',
+        'cache_creation_input_tokens' => 'int',
         'cached_input_tokens' => 'int',
         'cost' => 'string',
         'currency' => 'string',
@@ -101,12 +104,14 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => null,
         'lease_id' => null,
         'quantity' => 'int64',
+        'reservation_id' => null,
         'traits' => null,
         'user' => null,
         'company_id' => null,
         'error' => null,
         'flag_id' => null,
         'flag_key' => null,
+        'preflight' => null,
         'reason' => null,
         'req_company' => null,
         'req_user' => null,
@@ -115,6 +120,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => null,
         'keys' => null,
         'name' => null,
+        'cache_creation_input_tokens' => 'int64',
         'cached_input_tokens' => 'int64',
         'cost' => null,
         'currency' => null,
@@ -138,12 +144,14 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => false,
         'lease_id' => false,
         'quantity' => false,
+        'reservation_id' => false,
         'traits' => false,
         'user' => false,
         'company_id' => true,
         'error' => true,
         'flag_id' => true,
         'flag_key' => false,
+        'preflight' => false,
         'reason' => false,
         'req_company' => true,
         'req_user' => true,
@@ -152,6 +160,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => false,
         'keys' => false,
         'name' => false,
+        'cache_creation_input_tokens' => false,
         'cached_input_tokens' => false,
         'cost' => false,
         'currency' => false,
@@ -255,12 +264,14 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => 'event',
         'lease_id' => 'lease_id',
         'quantity' => 'quantity',
+        'reservation_id' => 'reservation_id',
         'traits' => 'traits',
         'user' => 'user',
         'company_id' => 'company_id',
         'error' => 'error',
         'flag_id' => 'flag_id',
         'flag_key' => 'flag_key',
+        'preflight' => 'preflight',
         'reason' => 'reason',
         'req_company' => 'req_company',
         'req_user' => 'req_user',
@@ -269,6 +280,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'value',
         'keys' => 'keys',
         'name' => 'name',
+        'cache_creation_input_tokens' => 'cache_creation_input_tokens',
         'cached_input_tokens' => 'cached_input_tokens',
         'cost' => 'cost',
         'currency' => 'currency',
@@ -292,12 +304,14 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => 'setEvent',
         'lease_id' => 'setLeaseId',
         'quantity' => 'setQuantity',
+        'reservation_id' => 'setReservationId',
         'traits' => 'setTraits',
         'user' => 'setUser',
         'company_id' => 'setCompanyId',
         'error' => 'setError',
         'flag_id' => 'setFlagId',
         'flag_key' => 'setFlagKey',
+        'preflight' => 'setPreflight',
         'reason' => 'setReason',
         'req_company' => 'setReqCompany',
         'req_user' => 'setReqUser',
@@ -306,6 +320,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'setValue',
         'keys' => 'setKeys',
         'name' => 'setName',
+        'cache_creation_input_tokens' => 'setCacheCreationInputTokens',
         'cached_input_tokens' => 'setCachedInputTokens',
         'cost' => 'setCost',
         'currency' => 'setCurrency',
@@ -329,12 +344,14 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'event' => 'getEvent',
         'lease_id' => 'getLeaseId',
         'quantity' => 'getQuantity',
+        'reservation_id' => 'getReservationId',
         'traits' => 'getTraits',
         'user' => 'getUser',
         'company_id' => 'getCompanyId',
         'error' => 'getError',
         'flag_id' => 'getFlagId',
         'flag_key' => 'getFlagKey',
+        'preflight' => 'getPreflight',
         'reason' => 'getReason',
         'req_company' => 'getReqCompany',
         'req_user' => 'getReqUser',
@@ -343,6 +360,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         'value' => 'getValue',
         'keys' => 'getKeys',
         'name' => 'getName',
+        'cache_creation_input_tokens' => 'getCacheCreationInputTokens',
         'cached_input_tokens' => 'getCachedInputTokens',
         'cost' => 'getCost',
         'currency' => 'getCurrency',
@@ -417,12 +435,14 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('event', $data ?? [], null);
         $this->setIfExists('lease_id', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('reservation_id', $data ?? [], null);
         $this->setIfExists('traits', $data ?? [], null);
         $this->setIfExists('user', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('error', $data ?? [], null);
         $this->setIfExists('flag_id', $data ?? [], null);
         $this->setIfExists('flag_key', $data ?? [], null);
+        $this->setIfExists('preflight', $data ?? [], null);
         $this->setIfExists('reason', $data ?? [], null);
         $this->setIfExists('req_company', $data ?? [], null);
         $this->setIfExists('req_user', $data ?? [], null);
@@ -431,6 +451,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('value', $data ?? [], null);
         $this->setIfExists('keys', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('cache_creation_input_tokens', $data ?? [], null);
         $this->setIfExists('cached_input_tokens', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
@@ -625,6 +646,33 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets reservation_id
+     *
+     * @return string|null
+     */
+    public function getReservationId()
+    {
+        return $this->container['reservation_id'];
+    }
+
+    /**
+     * Sets reservation_id
+     *
+     * @param string|null $reservation_id Credit reservation ID this track event settles. lease_id takes precedence when both are set
+     *
+     * @return self
+     */
+    public function setReservationId($reservation_id)
+    {
+        if (is_null($reservation_id)) {
+            throw new \InvalidArgumentException('non-nullable reservation_id cannot be null');
+        }
+        $this->container['reservation_id'] = $reservation_id;
+
+        return $this;
+    }
+
+    /**
      * Gets traits
      *
      * @return object|null
@@ -803,6 +851,33 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable flag_key cannot be null');
         }
         $this->container['flag_key'] = $flag_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets preflight
+     *
+     * @return bool|null
+     */
+    public function getPreflight()
+    {
+        return $this->container['preflight'];
+    }
+
+    /**
+     * Sets preflight
+     *
+     * @param bool|null $preflight Whether the check was a preflight, asking whether an action would be allowed rather than reporting one that happened. Absent on ordinary checks
+     *
+     * @return self
+     */
+    public function setPreflight($preflight)
+    {
+        if (is_null($preflight)) {
+            throw new \InvalidArgumentException('non-nullable preflight cannot be null');
+        }
+        $this->container['preflight'] = $preflight;
 
         return $this;
     }
@@ -1052,6 +1127,33 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets cache_creation_input_tokens
+     *
+     * @return int|null
+     */
+    public function getCacheCreationInputTokens()
+    {
+        return $this->container['cache_creation_input_tokens'];
+    }
+
+    /**
+     * Sets cache_creation_input_tokens
+     *
+     * @param int|null $cache_creation_input_tokens Number of input tokens written to a prompt cache; a subset of input_tokens
+     *
+     * @return self
+     */
+    public function setCacheCreationInputTokens($cache_creation_input_tokens)
+    {
+        if (is_null($cache_creation_input_tokens)) {
+            throw new \InvalidArgumentException('non-nullable cache_creation_input_tokens cannot be null');
+        }
+        $this->container['cache_creation_input_tokens'] = $cache_creation_input_tokens;
+
+        return $this;
+    }
+
+    /**
      * Gets cached_input_tokens
      *
      * @return int|null
@@ -1064,7 +1166,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cached_input_tokens
      *
-     * @param int|null $cached_input_tokens Number of input tokens served from cache
+     * @param int|null $cached_input_tokens Number of input tokens served from cache; a subset of input_tokens
      *
      * @return self
      */
@@ -1145,7 +1247,7 @@ class EventBody implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets input_tokens
      *
-     * @param int $input_tokens Number of input tokens for the inference request
+     * @param int $input_tokens Total number of input tokens for the inference request, including those served from and written to a prompt cache
      *
      * @return self
      */

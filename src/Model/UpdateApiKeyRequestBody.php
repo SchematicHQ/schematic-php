@@ -293,8 +293,8 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 256.";
         }
 
-        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 256)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 256.";
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 512)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 512.";
         }
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) < 1)) {
@@ -391,8 +391,8 @@ class UpdateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        if (!is_null($name) && (mb_strlen($name) > 256)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling UpdateApiKeyRequestBody., must be smaller than or equal to 256.');
+        if (!is_null($name) && (mb_strlen($name) > 512)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling UpdateApiKeyRequestBody., must be smaller than or equal to 512.');
         }
         if (!is_null($name) && (mb_strlen($name) < 1)) {
             throw new \InvalidArgumentException('invalid length for $name when calling UpdateApiKeyRequestBody., must be bigger than or equal to 1.');

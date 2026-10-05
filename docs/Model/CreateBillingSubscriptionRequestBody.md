@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **period_start** | **int** |  | [optional]
 **product_external_ids** | [**\Schematic\Model\BillingProductPricing[]**](BillingProductPricing.md) |  |
 **provider_type** | [**\Schematic\Model\BillingProviderType**](BillingProviderType.md) |  | [optional]
+**started_at** | **\DateTime** |  | [optional]
 **status** | **string** |  | [optional]
 **subscription_external_id** | **string** |  |
 **total_price** | **int** |  |

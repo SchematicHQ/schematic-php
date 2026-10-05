@@ -310,8 +310,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ((mb_strlen($this->container['name']) > 256)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 256.";
+        if ((mb_strlen($this->container['name']) > 512)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 512.";
         }
 
         if ((mb_strlen($this->container['name']) < 1)) {
@@ -435,8 +435,8 @@ class CreateApiKeyRequestBody implements ModelInterface, ArrayAccess, \JsonSeria
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        if ((mb_strlen($name) > 256)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling CreateApiKeyRequestBody., must be smaller than or equal to 256.');
+        if ((mb_strlen($name) > 512)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling CreateApiKeyRequestBody., must be smaller than or equal to 512.');
         }
         if ((mb_strlen($name) < 1)) {
             throw new \InvalidArgumentException('invalid length for $name when calling CreateApiKeyRequestBody., must be bigger than or equal to 1.');

@@ -270,6 +270,33 @@ class PlanChangeResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "trial_converted_at"
+     */
+    public function testPropertyTrialConvertedAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "trial_expires_at"
+     */
+    public function testPropertyTrialExpiresAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "trial_status"
+     */
+    public function testPropertyTrialStatus()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "updated_at"
      */
     public function testPropertyUpdatedAt()

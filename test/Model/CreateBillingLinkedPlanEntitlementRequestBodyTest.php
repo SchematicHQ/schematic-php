@@ -207,9 +207,27 @@ class CreateBillingLinkedPlanEntitlementRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "overage_billing_cadence"
+     */
+    public function testPropertyOverageBillingCadence()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "overage_billing_product_id"
      */
     public function testPropertyOverageBillingProductId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "overage_invoice_anchor"
+     */
+    public function testPropertyOverageInvoiceAnchor()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_invoice_id** | **string** |  | [optional]
 **bundle_type** | [**\Schematic\Model\BillingCreditBundleType**](BillingCreditBundleType.md) |  |
+**compatible_plan_ids** | **string[]** | Plans whose companies may purchase this bundle. Empty means the bundle is purchasable on every plan. |
 **created_at** | **\DateTime** |  |
 **credit_description** | **string** |  | [optional]
 **credit_icon** | **string** |  | [optional]

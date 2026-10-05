@@ -59,6 +59,7 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'company' => 'array<string,string>',
+        'preflight' => '\Schematic\Model\PreflightRequestBody',
         'user' => 'array<string,string>'
     ];
 
@@ -71,6 +72,7 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPIFormats = [
         'company' => null,
+        'preflight' => null,
         'user' => null
     ];
 
@@ -81,6 +83,7 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static array $openAPINullables = [
         'company' => true,
+        'preflight' => false,
         'user' => true
     ];
 
@@ -171,6 +174,7 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'company' => 'company',
+        'preflight' => 'preflight',
         'user' => 'user'
     ];
 
@@ -181,6 +185,7 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'company' => 'setCompany',
+        'preflight' => 'setPreflight',
         'user' => 'setUser'
     ];
 
@@ -191,6 +196,7 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'company' => 'getCompany',
+        'preflight' => 'getPreflight',
         'user' => 'getUser'
     ];
 
@@ -252,6 +258,7 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(?array $data = null)
     {
         $this->setIfExists('company', $data ?? [], null);
+        $this->setIfExists('preflight', $data ?? [], null);
         $this->setIfExists('user', $data ?? [], null);
     }
 
@@ -281,6 +288,14 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['company']) && (count($this->container['company']) > 100)) {
+            $invalidProperties[] = "invalid value for 'company', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['user']) && (count($this->container['user']) > 100)) {
+            $invalidProperties[] = "invalid value for 'user', number of items must be less than or equal to 100.";
+        }
 
         return $invalidProperties;
     }
@@ -326,7 +341,38 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($company) && (count($company) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $company when calling CheckFlagRequestBody., number of items must be less than or equal to 100.');
+        }
         $this->container['company'] = $company;
+
+        return $this;
+    }
+
+    /**
+     * Gets preflight
+     *
+     * @return \Schematic\Model\PreflightRequestBody|null
+     */
+    public function getPreflight()
+    {
+        return $this->container['preflight'];
+    }
+
+    /**
+     * Sets preflight
+     *
+     * @param \Schematic\Model\PreflightRequestBody|null $preflight Hypothetical usage to evaluate the flag against, for answering \"would this action be allowed?\" before performing it. Only supported when checking a single flag. Values are caller-asserted and can widen a verdict as well as narrow it, so do not forward untrusted input here when the result gates access. Only the flag value reflects the preflight; the entitlement and usage figures in the response are the company's current, unsimulated ones
+     *
+     * @return self
+     */
+    public function setPreflight($preflight)
+    {
+        if (is_null($preflight)) {
+            throw new \InvalidArgumentException('non-nullable preflight cannot be null');
+        }
+        $this->container['preflight'] = $preflight;
 
         return $this;
     }
@@ -359,6 +405,10 @@ class CheckFlagRequestBody implements ModelInterface, ArrayAccess, \JsonSerializ
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
+        }
+
+        if (!is_null($user) && (count($user) > 100)) {
+            throw new \InvalidArgumentException('invalid value for $user when calling CheckFlagRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['user'] = $user;
 

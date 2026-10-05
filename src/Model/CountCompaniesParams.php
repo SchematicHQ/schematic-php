@@ -69,6 +69,7 @@ class CountCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_ids' => 'string[]',
         'plan_version_id' => 'string',
         'plan_version_ids' => 'string[]',
+        'plan_version_unpublished' => 'bool',
         'q' => 'string',
         'sort_order_column' => 'string',
         'sort_order_direction' => '\Schematic\Model\SortDirection',
@@ -99,6 +100,7 @@ class CountCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_ids' => null,
         'plan_version_id' => null,
         'plan_version_ids' => null,
+        'plan_version_unpublished' => null,
         'q' => null,
         'sort_order_column' => null,
         'sort_order_direction' => null,
@@ -127,6 +129,7 @@ class CountCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_ids' => false,
         'plan_version_id' => false,
         'plan_version_ids' => false,
+        'plan_version_unpublished' => false,
         'q' => false,
         'sort_order_column' => false,
         'sort_order_direction' => false,
@@ -235,6 +238,7 @@ class CountCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_ids' => 'plan_ids',
         'plan_version_id' => 'plan_version_id',
         'plan_version_ids' => 'plan_version_ids',
+        'plan_version_unpublished' => 'plan_version_unpublished',
         'q' => 'q',
         'sort_order_column' => 'sort_order_column',
         'sort_order_direction' => 'sort_order_direction',
@@ -263,6 +267,7 @@ class CountCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_ids' => 'setPlanIds',
         'plan_version_id' => 'setPlanVersionId',
         'plan_version_ids' => 'setPlanVersionIds',
+        'plan_version_unpublished' => 'setPlanVersionUnpublished',
         'q' => 'setQ',
         'sort_order_column' => 'setSortOrderColumn',
         'sort_order_direction' => 'setSortOrderDirection',
@@ -291,6 +296,7 @@ class CountCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializ
         'plan_ids' => 'getPlanIds',
         'plan_version_id' => 'getPlanVersionId',
         'plan_version_ids' => 'getPlanVersionIds',
+        'plan_version_unpublished' => 'getPlanVersionUnpublished',
         'q' => 'getQ',
         'sort_order_column' => 'getSortOrderColumn',
         'sort_order_direction' => 'getSortOrderDirection',
@@ -370,6 +376,7 @@ class CountCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('plan_ids', $data ?? [], null);
         $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('plan_version_ids', $data ?? [], null);
+        $this->setIfExists('plan_version_unpublished', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
         $this->setIfExists('sort_order_column', $data ?? [], null);
         $this->setIfExists('sort_order_direction', $data ?? [], null);
@@ -754,6 +761,33 @@ class CountCompaniesParams implements ModelInterface, ArrayAccess, \JsonSerializ
             throw new \InvalidArgumentException('invalid value for $plan_version_ids when calling CountCompaniesParams., number of items must be less than or equal to 100.');
         }
         $this->container['plan_version_ids'] = $plan_version_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_unpublished
+     *
+     * @return bool|null
+     */
+    public function getPlanVersionUnpublished()
+    {
+        return $this->container['plan_version_unpublished'];
+    }
+
+    /**
+     * Sets plan_version_unpublished
+     *
+     * @param bool|null $plan_version_unpublished Filter companies assigned to a plan version that is no longer published, meaning the plan has since moved on to a newer version
+     *
+     * @return self
+     */
+    public function setPlanVersionUnpublished($plan_version_unpublished)
+    {
+        if (is_null($plan_version_unpublished)) {
+            throw new \InvalidArgumentException('non-nullable plan_version_unpublished cannot be null');
+        }
+        $this->container['plan_version_unpublished'] = $plan_version_unpublished;
 
         return $this;
     }

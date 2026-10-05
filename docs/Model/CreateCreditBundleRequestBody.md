@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bundle_name** | **string** |  |
 **bundle_type** | [**\Schematic\Model\BillingCreditBundleType**](BillingCreditBundleType.md) |  | [optional]
+**compatible_plan_ids** | **string[]** | Plans whose companies may purchase this bundle. Omitted or empty means the bundle is purchasable on every plan. | [optional]
 **credit_id** | **string** |  |
 **currency** | **string** |  |
 **currency_prices** | [**\Schematic\Model\CreditBundleCurrencyPriceRequestBody[]**](CreditBundleCurrencyPriceRequestBody.md) |  | [optional]

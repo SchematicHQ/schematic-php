@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **base_plan_id** | **string** |  | [optional]
 **billing_product_ids** | **string[]** |  |
 **credit_balances** | **array<string,float>** |  |
+**credit_postpaid** | [**array<string,\Schematic\Model\RulesengineCreditPostpaidConfig>**](RulesengineCreditPostpaidConfig.md) |  | [optional]
+**credit_spend_policies** | [**\Schematic\Model\RulesengineCreditSpendPolicy[]**](RulesengineCreditSpendPolicy.md) |  | [optional]
 **entitlements** | [**\Schematic\Model\RulesengineFeatureEntitlement[]**](RulesengineFeatureEntitlement.md) |  | [optional]
 **environment_id** | **string** |  |
 **id** | **string** |  |

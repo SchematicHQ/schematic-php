@@ -64,6 +64,7 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
         'company_id' => 'string',
         'coupon_external_id' => 'string',
         'credit_bundles' => '\Schematic\Model\UpdateCreditBundleRequestBody[]',
+        'currency' => 'string',
         'custom_field_values' => '\Schematic\Model\CheckoutFieldValue[]',
         'new_plan_id' => 'string',
         'new_price_id' => 'string',
@@ -88,6 +89,7 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
         'company_id' => null,
         'coupon_external_id' => null,
         'credit_bundles' => null,
+        'currency' => null,
         'custom_field_values' => null,
         'new_plan_id' => null,
         'new_price_id' => null,
@@ -110,6 +112,7 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
         'company_id' => false,
         'coupon_external_id' => true,
         'credit_bundles' => false,
+        'currency' => true,
         'custom_field_values' => false,
         'new_plan_id' => false,
         'new_price_id' => false,
@@ -212,6 +215,7 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
         'company_id' => 'company_id',
         'coupon_external_id' => 'coupon_external_id',
         'credit_bundles' => 'credit_bundles',
+        'currency' => 'currency',
         'custom_field_values' => 'custom_field_values',
         'new_plan_id' => 'new_plan_id',
         'new_price_id' => 'new_price_id',
@@ -234,6 +238,7 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
         'company_id' => 'setCompanyId',
         'coupon_external_id' => 'setCouponExternalId',
         'credit_bundles' => 'setCreditBundles',
+        'currency' => 'setCurrency',
         'custom_field_values' => 'setCustomFieldValues',
         'new_plan_id' => 'setNewPlanId',
         'new_price_id' => 'setNewPriceId',
@@ -256,6 +261,7 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
         'company_id' => 'getCompanyId',
         'coupon_external_id' => 'getCouponExternalId',
         'credit_bundles' => 'getCreditBundles',
+        'currency' => 'getCurrency',
         'custom_field_values' => 'getCustomFieldValues',
         'new_plan_id' => 'getNewPlanId',
         'new_price_id' => 'getNewPriceId',
@@ -329,6 +335,7 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('coupon_external_id', $data ?? [], null);
         $this->setIfExists('credit_bundles', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('custom_field_values', $data ?? [], null);
         $this->setIfExists('new_plan_id', $data ?? [], null);
         $this->setIfExists('new_price_id', $data ?? [], null);
@@ -392,6 +399,10 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
         }
         if ((count($this->container['credit_bundles']) > 100)) {
             $invalidProperties[] = "invalid value for 'credit_bundles', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['currency']) && (mb_strlen($this->container['currency']) > 3)) {
+            $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
         }
 
         if ($this->container['custom_field_values'] === null) {
@@ -628,6 +639,44 @@ class ChangeSubscriptionInternalRequestBody implements ModelInterface, ArrayAcce
             throw new \InvalidArgumentException('invalid value for $credit_bundles when calling ChangeSubscriptionInternalRequestBody., number of items must be less than or equal to 100.');
         }
         $this->container['credit_bundles'] = $credit_bundles;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency ISO 4217 currency this cart is being built in. Prices are still selected by id; this records the intent, and a cart that prices in another currency is reported as a problem.
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($currency) && (mb_strlen($currency) > 3)) {
+            throw new \InvalidArgumentException('invalid length for $currency when calling ChangeSubscriptionInternalRequestBody., must be smaller than or equal to 3.');
+        }
+
+        $this->container['currency'] = $currency;
 
         return $this;
     }

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **status** | [**\Schematic\Model\InvoiceStatus**](InvoiceStatus.md) |  | [optional]
 **subscription_external_id** | **string** |  | [optional]
 **subtotal** | **int** |  |
+**total** | **int** |  | [optional]
 **url** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

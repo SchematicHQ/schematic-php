@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **loaded_at** | **\DateTime** |  | [optional]
 **processed_at** | **\DateTime** |  | [optional]
 **quantity** | **int** |  |
+**reservation_id** | **string** |  | [optional]
 **sent_at** | **\DateTime** |  | [optional]
 **status** | [**\Schematic\Model\EventStatus**](EventStatus.md) |  |
 **subtype** | **string** |  | [optional]

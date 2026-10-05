@@ -71,6 +71,7 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => 'string',
         'coupon_external_id' => 'string',
         'credit_bundles' => '\Schematic\Model\UpdateCreditBundleRequestBody[]',
+        'currency' => 'string',
         'custom_field_values' => '\Schematic\Model\CheckoutFieldValue[]',
         'days_until_due' => 'int',
         'pay_in_advance_entitlements' => '\Schematic\Model\UpdatePayInAdvanceRequestBody[]',
@@ -103,6 +104,7 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => null,
         'coupon_external_id' => null,
         'credit_bundles' => null,
+        'currency' => null,
         'custom_field_values' => null,
         'days_until_due' => 'int64',
         'pay_in_advance_entitlements' => null,
@@ -133,6 +135,7 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => false,
         'coupon_external_id' => true,
         'credit_bundles' => false,
+        'currency' => true,
         'custom_field_values' => false,
         'days_until_due' => true,
         'pay_in_advance_entitlements' => false,
@@ -243,6 +246,7 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => 'company_id',
         'coupon_external_id' => 'coupon_external_id',
         'credit_bundles' => 'credit_bundles',
+        'currency' => 'currency',
         'custom_field_values' => 'custom_field_values',
         'days_until_due' => 'days_until_due',
         'pay_in_advance_entitlements' => 'pay_in_advance_entitlements',
@@ -273,6 +277,7 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => 'setCompanyId',
         'coupon_external_id' => 'setCouponExternalId',
         'credit_bundles' => 'setCreditBundles',
+        'currency' => 'setCurrency',
         'custom_field_values' => 'setCustomFieldValues',
         'days_until_due' => 'setDaysUntilDue',
         'pay_in_advance_entitlements' => 'setPayInAdvanceEntitlements',
@@ -303,6 +308,7 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'company_id' => 'getCompanyId',
         'coupon_external_id' => 'getCouponExternalId',
         'credit_bundles' => 'getCreditBundles',
+        'currency' => 'getCurrency',
         'custom_field_values' => 'getCustomFieldValues',
         'days_until_due' => 'getDaysUntilDue',
         'pay_in_advance_entitlements' => 'getPayInAdvanceEntitlements',
@@ -384,6 +390,7 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('coupon_external_id', $data ?? [], null);
         $this->setIfExists('credit_bundles', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('custom_field_values', $data ?? [], null);
         $this->setIfExists('days_until_due', $data ?? [], null);
         $this->setIfExists('pay_in_advance_entitlements', $data ?? [], null);
@@ -436,11 +443,19 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         if ($this->container['company_id'] === null) {
             $invalidProperties[] = "'company_id' can't be null";
         }
+        if (!is_null($this->container['coupon_external_id']) && (mb_strlen($this->container['coupon_external_id']) > 255)) {
+            $invalidProperties[] = "invalid value for 'coupon_external_id', the character length must be smaller than or equal to 255.";
+        }
+
         if ($this->container['credit_bundles'] === null) {
             $invalidProperties[] = "'credit_bundles' can't be null";
         }
         if ((count($this->container['credit_bundles']) > 100)) {
             $invalidProperties[] = "invalid value for 'credit_bundles', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['currency']) && (mb_strlen($this->container['currency']) > 3)) {
+            $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
         }
 
         if ($this->container['custom_field_values'] === null) {
@@ -463,6 +478,10 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
 
         if (!is_null($this->container['payment_method_external_id']) && (mb_strlen($this->container['payment_method_external_id']) > 255)) {
             $invalidProperties[] = "invalid value for 'payment_method_external_id', the character length must be smaller than or equal to 255.";
+        }
+
+        if (!is_null($this->container['promo_code']) && (mb_strlen($this->container['promo_code']) > 255)) {
+            $invalidProperties[] = "invalid value for 'promo_code', the character length must be smaller than or equal to 255.";
         }
 
         return $invalidProperties;
@@ -877,6 +896,10 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+        if (!is_null($coupon_external_id) && (mb_strlen($coupon_external_id) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $coupon_external_id when calling ManagePlanRequest., must be smaller than or equal to 255.');
+        }
+
         $this->container['coupon_external_id'] = $coupon_external_id;
 
         return $this;
@@ -909,6 +932,44 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('invalid value for $credit_bundles when calling ManagePlanRequest., number of items must be less than or equal to 100.');
         }
         $this->container['credit_bundles'] = $credit_bundles;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     *
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string|null $currency ISO 4217 currency this change is being built in. Prices are still selected by id; this records the intent.
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($currency) && (mb_strlen($currency) > 3)) {
+            throw new \InvalidArgumentException('invalid length for $currency when calling ManagePlanRequest., must be smaller than or equal to 3.');
+        }
+
+        $this->container['currency'] = $currency;
 
         return $this;
     }
@@ -1081,6 +1142,10 @@ class ManagePlanRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+        if (!is_null($promo_code) && (mb_strlen($promo_code) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $promo_code when calling ManagePlanRequest., must be smaller than or equal to 255.');
+        }
+
         $this->container['promo_code'] = $promo_code;
 
         return $this;

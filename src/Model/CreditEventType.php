@@ -43,7 +43,13 @@ class CreditEventType
     /**
      * Possible values of this enum
      */
+    public const ADJUSTMENT = 'adjustment';
+
+    public const CHARGE = 'charge';
+
     public const GRANT = 'grant';
+
+    public const SETTLEMENT = 'settlement';
 
     public const TRANSFER = 'transfer';
 
@@ -58,7 +64,10 @@ class CreditEventType
     public static function getAllowableEnumValues()
     {
         return [
+            self::ADJUSTMENT,
+            self::CHARGE,
             self::GRANT,
+            self::SETTLEMENT,
             self::TRANSFER,
             self::USAGE,
             self::ZERO_OUT

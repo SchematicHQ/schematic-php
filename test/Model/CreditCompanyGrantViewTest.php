@@ -81,6 +81,15 @@ class CreditCompanyGrantViewTest extends TestCase
     }
 
     /**
+     * Test attribute "arrears_cadence"
+     */
+    public function testPropertyArrearsCadence()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "billing_credit_bundle_id"
      */
     public function testPropertyBillingCreditBundleId()
@@ -264,6 +273,60 @@ class CreditCompanyGrantViewTest extends TestCase
      * Test attribute "plural_name"
      */
     public function testPropertyPluralName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_charge_amount"
+     */
+    public function testPropertyPostpaidChargeAmount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_charge_currency"
+     */
+    public function testPropertyPostpaidChargeCurrency()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_charged_credits"
+     */
+    public function testPropertyPostpaidChargedCredits()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_period_end"
+     */
+    public function testPropertyPostpaidPeriodEnd()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_rate"
+     */
+    public function testPropertyPostpaidRate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_rate_decimal"
+     */
+    public function testPropertyPostpaidRateDecimal()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

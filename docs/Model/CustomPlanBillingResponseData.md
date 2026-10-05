@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **activation_strategy** | [**\Schematic\Model\CustomPlanActivationStrategy**](CustomPlanActivationStrategy.md) |  |
 **billing_cycle_anchor** | **\DateTime** | The billing period renewal date pinned when the subscription started, when one was set. When no invoice exists yet, the first invoice is raised on this date. | [optional]
+**billing_start_date** | **\DateTime** | The date the contract term starts, when the operator pinned one. A past date was backdated onto the subscription so the first period runs from the contract date rather than from finalization. | [optional]
 **company_id** | **string** |  |
 **created_at** | **\DateTime** |  |
 **days_until_due** | **int** |  |
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **paid_at** | **\DateTime** |  | [optional]
 **plan_billing_source** | [**\Schematic\Model\PlanBillingSource**](PlanBillingSource.md) | The flow that created this billing record: a custom plan, or a standard plan assigned by invoice through Manage Plan. |
 **plan_id** | **string** |  |
+**prorate_first_period** | **bool** | Whether the shortened period the renewal date created was billed pro rata when the subscription started. False means that period is free and the first invoice is the one raised on the renewal date. | [optional]
 **published_at** | **\DateTime** |  | [optional]
 **send_invoice** | **bool** |  |
 **status** | [**\Schematic\Model\CustomPlanBillingStatus**](CustomPlanBillingStatus.md) |  |

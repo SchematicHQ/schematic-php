@@ -60,6 +60,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPITypes = [
         'activation_strategy' => '\Schematic\Model\CustomPlanActivationStrategy',
         'billing_cycle_anchor' => '\DateTime',
+        'billing_start_date' => '\DateTime',
         'company_id' => 'string',
         'created_at' => '\DateTime',
         'days_until_due' => 'int',
@@ -68,6 +69,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
         'paid_at' => '\DateTime',
         'plan_billing_source' => '\Schematic\Model\PlanBillingSource',
         'plan_id' => 'string',
+        'prorate_first_period' => 'bool',
         'published_at' => '\DateTime',
         'send_invoice' => 'bool',
         'status' => '\Schematic\Model\CustomPlanBillingStatus',
@@ -85,6 +87,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
     protected static $openAPIFormats = [
         'activation_strategy' => null,
         'billing_cycle_anchor' => 'date-time',
+        'billing_start_date' => 'date-time',
         'company_id' => null,
         'created_at' => 'date-time',
         'days_until_due' => 'int64',
@@ -93,6 +96,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
         'paid_at' => 'date-time',
         'plan_billing_source' => null,
         'plan_id' => null,
+        'prorate_first_period' => null,
         'published_at' => 'date-time',
         'send_invoice' => null,
         'status' => null,
@@ -108,6 +112,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
     protected static array $openAPINullables = [
         'activation_strategy' => false,
         'billing_cycle_anchor' => true,
+        'billing_start_date' => true,
         'company_id' => false,
         'created_at' => false,
         'days_until_due' => false,
@@ -116,6 +121,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
         'paid_at' => true,
         'plan_billing_source' => false,
         'plan_id' => false,
+        'prorate_first_period' => true,
         'published_at' => true,
         'send_invoice' => false,
         'status' => false,
@@ -211,6 +217,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
     protected static $attributeMap = [
         'activation_strategy' => 'activation_strategy',
         'billing_cycle_anchor' => 'billing_cycle_anchor',
+        'billing_start_date' => 'billing_start_date',
         'company_id' => 'company_id',
         'created_at' => 'created_at',
         'days_until_due' => 'days_until_due',
@@ -219,6 +226,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
         'paid_at' => 'paid_at',
         'plan_billing_source' => 'plan_billing_source',
         'plan_id' => 'plan_id',
+        'prorate_first_period' => 'prorate_first_period',
         'published_at' => 'published_at',
         'send_invoice' => 'send_invoice',
         'status' => 'status',
@@ -234,6 +242,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
     protected static $setters = [
         'activation_strategy' => 'setActivationStrategy',
         'billing_cycle_anchor' => 'setBillingCycleAnchor',
+        'billing_start_date' => 'setBillingStartDate',
         'company_id' => 'setCompanyId',
         'created_at' => 'setCreatedAt',
         'days_until_due' => 'setDaysUntilDue',
@@ -242,6 +251,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
         'paid_at' => 'setPaidAt',
         'plan_billing_source' => 'setPlanBillingSource',
         'plan_id' => 'setPlanId',
+        'prorate_first_period' => 'setProrateFirstPeriod',
         'published_at' => 'setPublishedAt',
         'send_invoice' => 'setSendInvoice',
         'status' => 'setStatus',
@@ -257,6 +267,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
     protected static $getters = [
         'activation_strategy' => 'getActivationStrategy',
         'billing_cycle_anchor' => 'getBillingCycleAnchor',
+        'billing_start_date' => 'getBillingStartDate',
         'company_id' => 'getCompanyId',
         'created_at' => 'getCreatedAt',
         'days_until_due' => 'getDaysUntilDue',
@@ -265,6 +276,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
         'paid_at' => 'getPaidAt',
         'plan_billing_source' => 'getPlanBillingSource',
         'plan_id' => 'getPlanId',
+        'prorate_first_period' => 'getProrateFirstPeriod',
         'published_at' => 'getPublishedAt',
         'send_invoice' => 'getSendInvoice',
         'status' => 'getStatus',
@@ -331,6 +343,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
     {
         $this->setIfExists('activation_strategy', $data ?? [], null);
         $this->setIfExists('billing_cycle_anchor', $data ?? [], null);
+        $this->setIfExists('billing_start_date', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('days_until_due', $data ?? [], null);
@@ -339,6 +352,7 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('paid_at', $data ?? [], null);
         $this->setIfExists('plan_billing_source', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
+        $this->setIfExists('prorate_first_period', $data ?? [], null);
         $this->setIfExists('published_at', $data ?? [], null);
         $this->setIfExists('send_invoice', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
@@ -475,6 +489,40 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['billing_cycle_anchor'] = $billing_cycle_anchor;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_start_date
+     *
+     * @return \DateTime|null
+     */
+    public function getBillingStartDate()
+    {
+        return $this->container['billing_start_date'];
+    }
+
+    /**
+     * Sets billing_start_date
+     *
+     * @param \DateTime|null $billing_start_date The date the contract term starts, when the operator pinned one. A past date was backdated onto the subscription so the first period runs from the contract date rather than from finalization.
+     *
+     * @return self
+     */
+    public function setBillingStartDate($billing_start_date)
+    {
+        if (is_null($billing_start_date)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_start_date');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_start_date', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_start_date'] = $billing_start_date;
 
         return $this;
     }
@@ -705,6 +753,40 @@ class CustomPlanBillingResponseData implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable plan_id cannot be null');
         }
         $this->container['plan_id'] = $plan_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets prorate_first_period
+     *
+     * @return bool|null
+     */
+    public function getProrateFirstPeriod()
+    {
+        return $this->container['prorate_first_period'];
+    }
+
+    /**
+     * Sets prorate_first_period
+     *
+     * @param bool|null $prorate_first_period Whether the shortened period the renewal date created was billed pro rata when the subscription started. False means that period is free and the first invoice is the one raised on the renewal date.
+     *
+     * @return self
+     */
+    public function setProrateFirstPeriod($prorate_first_period)
+    {
+        if (is_null($prorate_first_period)) {
+            array_push($this->openAPINullablesSetToNull, 'prorate_first_period');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('prorate_first_period', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['prorate_first_period'] = $prorate_first_period;
 
         return $this;
     }

@@ -58,6 +58,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
+        'arrears_cadence' => '\Schematic\Model\BillingArrearsCadence',
         'billing_credit_bundle_id' => 'string',
         'billing_credit_id' => 'string',
         'company_id' => 'string',
@@ -79,6 +80,12 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => 'string',
         'plan_name' => 'string',
         'plural_name' => 'string',
+        'postpaid_charge_amount' => 'int',
+        'postpaid_charge_currency' => 'string',
+        'postpaid_charged_credits' => 'float',
+        'postpaid_period_end' => '\DateTime',
+        'postpaid_rate' => 'int',
+        'postpaid_rate_decimal' => 'string',
         'price' => '\Schematic\Model\BillingProductPriceResponseData',
         'quantity' => 'float',
         'quantity_remaining' => 'float',
@@ -105,6 +112,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'arrears_cadence' => null,
         'billing_credit_bundle_id' => null,
         'billing_credit_id' => null,
         'company_id' => null,
@@ -126,6 +134,12 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => null,
         'plan_name' => null,
         'plural_name' => null,
+        'postpaid_charge_amount' => 'int64',
+        'postpaid_charge_currency' => null,
+        'postpaid_charged_credits' => 'double',
+        'postpaid_period_end' => 'date-time',
+        'postpaid_rate' => 'int64',
+        'postpaid_rate_decimal' => null,
         'price' => null,
         'quantity' => 'double',
         'quantity_remaining' => 'double',
@@ -150,6 +164,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'arrears_cadence' => true,
         'billing_credit_bundle_id' => true,
         'billing_credit_id' => false,
         'company_id' => false,
@@ -171,6 +186,12 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => true,
         'plan_name' => true,
         'plural_name' => true,
+        'postpaid_charge_amount' => true,
+        'postpaid_charge_currency' => true,
+        'postpaid_charged_credits' => true,
+        'postpaid_period_end' => true,
+        'postpaid_rate' => true,
+        'postpaid_rate_decimal' => true,
         'price' => false,
         'quantity' => false,
         'quantity_remaining' => false,
@@ -275,6 +296,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
+        'arrears_cadence' => 'arrears_cadence',
         'billing_credit_bundle_id' => 'billing_credit_bundle_id',
         'billing_credit_id' => 'billing_credit_id',
         'company_id' => 'company_id',
@@ -296,6 +318,12 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => 'plan_id',
         'plan_name' => 'plan_name',
         'plural_name' => 'plural_name',
+        'postpaid_charge_amount' => 'postpaid_charge_amount',
+        'postpaid_charge_currency' => 'postpaid_charge_currency',
+        'postpaid_charged_credits' => 'postpaid_charged_credits',
+        'postpaid_period_end' => 'postpaid_period_end',
+        'postpaid_rate' => 'postpaid_rate',
+        'postpaid_rate_decimal' => 'postpaid_rate_decimal',
         'price' => 'price',
         'quantity' => 'quantity',
         'quantity_remaining' => 'quantity_remaining',
@@ -320,6 +348,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
+        'arrears_cadence' => 'setArrearsCadence',
         'billing_credit_bundle_id' => 'setBillingCreditBundleId',
         'billing_credit_id' => 'setBillingCreditId',
         'company_id' => 'setCompanyId',
@@ -341,6 +370,12 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => 'setPlanId',
         'plan_name' => 'setPlanName',
         'plural_name' => 'setPluralName',
+        'postpaid_charge_amount' => 'setPostpaidChargeAmount',
+        'postpaid_charge_currency' => 'setPostpaidChargeCurrency',
+        'postpaid_charged_credits' => 'setPostpaidChargedCredits',
+        'postpaid_period_end' => 'setPostpaidPeriodEnd',
+        'postpaid_rate' => 'setPostpaidRate',
+        'postpaid_rate_decimal' => 'setPostpaidRateDecimal',
         'price' => 'setPrice',
         'quantity' => 'setQuantity',
         'quantity_remaining' => 'setQuantityRemaining',
@@ -365,6 +400,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
+        'arrears_cadence' => 'getArrearsCadence',
         'billing_credit_bundle_id' => 'getBillingCreditBundleId',
         'billing_credit_id' => 'getBillingCreditId',
         'company_id' => 'getCompanyId',
@@ -386,6 +422,12 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         'plan_id' => 'getPlanId',
         'plan_name' => 'getPlanName',
         'plural_name' => 'getPluralName',
+        'postpaid_charge_amount' => 'getPostpaidChargeAmount',
+        'postpaid_charge_currency' => 'getPostpaidChargeCurrency',
+        'postpaid_charged_credits' => 'getPostpaidChargedCredits',
+        'postpaid_period_end' => 'getPostpaidPeriodEnd',
+        'postpaid_rate' => 'getPostpaidRate',
+        'postpaid_rate_decimal' => 'getPostpaidRateDecimal',
         'price' => 'getPrice',
         'quantity' => 'getQuantity',
         'quantity_remaining' => 'getQuantityRemaining',
@@ -461,6 +503,7 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('arrears_cadence', $data ?? [], null);
         $this->setIfExists('billing_credit_bundle_id', $data ?? [], null);
         $this->setIfExists('billing_credit_id', $data ?? [], null);
         $this->setIfExists('company_id', $data ?? [], null);
@@ -482,6 +525,12 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_name', $data ?? [], null);
         $this->setIfExists('plural_name', $data ?? [], null);
+        $this->setIfExists('postpaid_charge_amount', $data ?? [], null);
+        $this->setIfExists('postpaid_charge_currency', $data ?? [], null);
+        $this->setIfExists('postpaid_charged_credits', $data ?? [], null);
+        $this->setIfExists('postpaid_period_end', $data ?? [], null);
+        $this->setIfExists('postpaid_rate', $data ?? [], null);
+        $this->setIfExists('postpaid_rate_decimal', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
         $this->setIfExists('quantity_remaining', $data ?? [], null);
@@ -587,6 +636,40 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets arrears_cadence
+     *
+     * @return \Schematic\Model\BillingArrearsCadence|null
+     */
+    public function getArrearsCadence()
+    {
+        return $this->container['arrears_cadence'];
+    }
+
+    /**
+     * Sets arrears_cadence
+     *
+     * @param \Schematic\Model\BillingArrearsCadence|null $arrears_cadence arrears_cadence
+     *
+     * @return self
+     */
+    public function setArrearsCadence($arrears_cadence)
+    {
+        if (is_null($arrears_cadence)) {
+            array_push($this->openAPINullablesSetToNull, 'arrears_cadence');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('arrears_cadence', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['arrears_cadence'] = $arrears_cadence;
+
+        return $this;
+    }
 
     /**
      * Gets billing_credit_bundle_id
@@ -1242,6 +1325,210 @@ class CreditCompanyGrantView implements ModelInterface, ArrayAccess, \JsonSerial
             }
         }
         $this->container['plural_name'] = $plural_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_charge_amount
+     *
+     * @return int|null
+     */
+    public function getPostpaidChargeAmount()
+    {
+        return $this->container['postpaid_charge_amount'];
+    }
+
+    /**
+     * Sets postpaid_charge_amount
+     *
+     * @param int|null $postpaid_charge_amount postpaid_charge_amount
+     *
+     * @return self
+     */
+    public function setPostpaidChargeAmount($postpaid_charge_amount)
+    {
+        if (is_null($postpaid_charge_amount)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_charge_amount');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_charge_amount', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_charge_amount'] = $postpaid_charge_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_charge_currency
+     *
+     * @return string|null
+     */
+    public function getPostpaidChargeCurrency()
+    {
+        return $this->container['postpaid_charge_currency'];
+    }
+
+    /**
+     * Sets postpaid_charge_currency
+     *
+     * @param string|null $postpaid_charge_currency postpaid_charge_currency
+     *
+     * @return self
+     */
+    public function setPostpaidChargeCurrency($postpaid_charge_currency)
+    {
+        if (is_null($postpaid_charge_currency)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_charge_currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_charge_currency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_charge_currency'] = $postpaid_charge_currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_charged_credits
+     *
+     * @return float|null
+     */
+    public function getPostpaidChargedCredits()
+    {
+        return $this->container['postpaid_charged_credits'];
+    }
+
+    /**
+     * Sets postpaid_charged_credits
+     *
+     * @param float|null $postpaid_charged_credits postpaid_charged_credits
+     *
+     * @return self
+     */
+    public function setPostpaidChargedCredits($postpaid_charged_credits)
+    {
+        if (is_null($postpaid_charged_credits)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_charged_credits');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_charged_credits', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_charged_credits'] = $postpaid_charged_credits;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_period_end
+     *
+     * @return \DateTime|null
+     */
+    public function getPostpaidPeriodEnd()
+    {
+        return $this->container['postpaid_period_end'];
+    }
+
+    /**
+     * Sets postpaid_period_end
+     *
+     * @param \DateTime|null $postpaid_period_end postpaid_period_end
+     *
+     * @return self
+     */
+    public function setPostpaidPeriodEnd($postpaid_period_end)
+    {
+        if (is_null($postpaid_period_end)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_period_end');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_period_end', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_period_end'] = $postpaid_period_end;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_rate
+     *
+     * @return int|null
+     */
+    public function getPostpaidRate()
+    {
+        return $this->container['postpaid_rate'];
+    }
+
+    /**
+     * Sets postpaid_rate
+     *
+     * @param int|null $postpaid_rate postpaid_rate
+     *
+     * @return self
+     */
+    public function setPostpaidRate($postpaid_rate)
+    {
+        if (is_null($postpaid_rate)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_rate');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_rate', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_rate'] = $postpaid_rate;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_rate_decimal
+     *
+     * @return string|null
+     */
+    public function getPostpaidRateDecimal()
+    {
+        return $this->container['postpaid_rate_decimal'];
+    }
+
+    /**
+     * Sets postpaid_rate_decimal
+     *
+     * @param string|null $postpaid_rate_decimal postpaid_rate_decimal
+     *
+     * @return self
+     */
+    public function setPostpaidRateDecimal($postpaid_rate_decimal)
+    {
+        if (is_null($postpaid_rate_decimal)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_rate_decimal');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_rate_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_rate_decimal'] = $postpaid_rate_decimal;
 
         return $this;
     }

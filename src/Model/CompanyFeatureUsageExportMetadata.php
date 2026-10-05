@@ -70,6 +70,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_id' => 'string',
         'plan_ids' => 'string[]',
         'plan_version_id' => 'string',
+        'plan_version_unpublished' => 'bool',
         'q' => 'string',
         'sort_order_column' => 'string',
         'sort_order_direction' => 'string',
@@ -103,6 +104,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_id' => null,
         'plan_ids' => null,
         'plan_version_id' => null,
+        'plan_version_unpublished' => null,
         'q' => null,
         'sort_order_column' => null,
         'sort_order_direction' => null,
@@ -134,6 +136,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_id' => true,
         'plan_ids' => true,
         'plan_version_id' => true,
+        'plan_version_unpublished' => true,
         'q' => true,
         'sort_order_column' => true,
         'sort_order_direction' => true,
@@ -245,6 +248,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_id' => 'plan_id',
         'plan_ids' => 'plan_ids',
         'plan_version_id' => 'plan_version_id',
+        'plan_version_unpublished' => 'plan_version_unpublished',
         'q' => 'q',
         'sort_order_column' => 'sort_order_column',
         'sort_order_direction' => 'sort_order_direction',
@@ -276,6 +280,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_id' => 'setPlanId',
         'plan_ids' => 'setPlanIds',
         'plan_version_id' => 'setPlanVersionId',
+        'plan_version_unpublished' => 'setPlanVersionUnpublished',
         'q' => 'setQ',
         'sort_order_column' => 'setSortOrderColumn',
         'sort_order_direction' => 'setSortOrderDirection',
@@ -307,6 +312,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         'plan_id' => 'getPlanId',
         'plan_ids' => 'getPlanIds',
         'plan_version_id' => 'getPlanVersionId',
+        'plan_version_unpublished' => 'getPlanVersionUnpublished',
         'q' => 'getQ',
         'sort_order_column' => 'getSortOrderColumn',
         'sort_order_direction' => 'getSortOrderDirection',
@@ -368,6 +374,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
     public const VISIBLE_COLUMNS_SUBSCRIPTION = 'subscription';
     public const VISIBLE_COLUMNS_USERS = 'users';
     public const VISIBLE_COLUMNS_LAST_SEEN_AT = 'last_seen_at';
+    public const VISIBLE_COLUMNS_CREATED_AT = 'created_at';
 
     /**
      * Gets allowable values of the enum
@@ -406,6 +413,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
             self::VISIBLE_COLUMNS_SUBSCRIPTION,
             self::VISIBLE_COLUMNS_USERS,
             self::VISIBLE_COLUMNS_LAST_SEEN_AT,
+            self::VISIBLE_COLUMNS_CREATED_AT,
         ];
     }
 
@@ -436,6 +444,7 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_ids', $data ?? [], null);
         $this->setIfExists('plan_version_id', $data ?? [], null);
+        $this->setIfExists('plan_version_unpublished', $data ?? [], null);
         $this->setIfExists('q', $data ?? [], null);
         $this->setIfExists('sort_order_column', $data ?? [], null);
         $this->setIfExists('sort_order_direction', $data ?? [], null);
@@ -973,6 +982,40 @@ class CompanyFeatureUsageExportMetadata implements ModelInterface, ArrayAccess, 
             }
         }
         $this->container['plan_version_id'] = $plan_version_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_version_unpublished
+     *
+     * @return bool|null
+     */
+    public function getPlanVersionUnpublished()
+    {
+        return $this->container['plan_version_unpublished'];
+    }
+
+    /**
+     * Sets plan_version_unpublished
+     *
+     * @param bool|null $plan_version_unpublished Restrict the export to companies on a plan version that is no longer published
+     *
+     * @return self
+     */
+    public function setPlanVersionUnpublished($plan_version_unpublished)
+    {
+        if (is_null($plan_version_unpublished)) {
+            array_push($this->openAPINullablesSetToNull, 'plan_version_unpublished');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('plan_version_unpublished', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['plan_version_unpublished'] = $plan_version_unpublished;
 
         return $this;
     }

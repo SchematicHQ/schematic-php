@@ -15,6 +15,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**getApiKey()**](AccountsApi.md#getApiKey) | **GET** /api-keys/{api_key_id} | Get api key |
 | [**getAuditLog()**](AccountsApi.md#getAuditLog) | **GET** /audit-log/{audit_log_id} | Get audit log |
 | [**getEnvironment()**](AccountsApi.md#getEnvironment) | **GET** /environments/{environment_id} | Get environment |
+| [**getOnboardingState()**](AccountsApi.md#getOnboardingState) | **GET** /onboarding-state | Get onboarding state |
 | [**getWhoAmI()**](AccountsApi.md#getWhoAmI) | **GET** /whoami | Get who am I |
 | [**listAccountMembers()**](AccountsApi.md#listAccountMembers) | **GET** /account-members | List account members |
 | [**listApiKeys()**](AccountsApi.md#listApiKeys) | **GET** /api-keys | List api keys |
@@ -23,6 +24,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**quickstart()**](AccountsApi.md#quickstart) | **POST** /quickstart | Quickstart |
 | [**updateApiKey()**](AccountsApi.md#updateApiKey) | **PUT** /api-keys/{api_key_id} | Update api key |
 | [**updateEnvironment()**](AccountsApi.md#updateEnvironment) | **PUT** /environments/{environment_id} | Update environment |
+| [**updateOnboardingState()**](AccountsApi.md#updateOnboardingState) | **POST** /onboarding-state | Update onboarding state |
 
 
 ## `countAccountMembers()`
@@ -612,6 +614,54 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getOnboardingState()`
+
+```php
+getOnboardingState(): \Schematic\Model\GetOnboardingStateResponse
+```
+
+Get onboarding state
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+
+try {
+    $result = $schematic->AccountsApi->getOnboardingState();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->getOnboardingState: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Schematic\Model\GetOnboardingStateResponse**](../Model/GetOnboardingStateResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getWhoAmI()`
 
 ```php
@@ -1034,6 +1084,57 @@ try {
 ### Return type
 
 [**\Schematic\Model\UpdateEnvironmentResponse**](../Model/UpdateEnvironmentResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateOnboardingState()`
+
+```php
+updateOnboardingState($update_onboarding_state_request_body): \Schematic\Model\UpdateOnboardingStateResponse
+```
+
+Update onboarding state
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$update_onboarding_state_request_body = new \Schematic\Model\UpdateOnboardingStateRequestBody(); // \Schematic\Model\UpdateOnboardingStateRequestBody
+
+try {
+    $result = $schematic->AccountsApi->updateOnboardingState($update_onboarding_state_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->AccountsApi->updateOnboardingState: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **update_onboarding_state_request_body** | [**\Schematic\Model\UpdateOnboardingStateRequestBody**](../Model/UpdateOnboardingStateRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpdateOnboardingStateResponse**](../Model/UpdateOnboardingStateResponse.md)
 
 ### Authorization
 

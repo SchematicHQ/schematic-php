@@ -225,6 +225,15 @@ class CreateBillingSubscriptionRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "started_at"
+     */
+    public function testPropertyStartedAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "status"
      */
     public function testPropertyStatus()

@@ -90,6 +90,24 @@ class UpdateBillingPlanCreditGrantRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "arrears_anchor"
+     */
+    public function testPropertyArrearsAnchor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "arrears_cadence"
+     */
+    public function testPropertyArrearsCadence()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "auto_topup_amount"
      */
     public function testPropertyAutoTopupAmount()
@@ -180,6 +198,15 @@ class UpdateBillingPlanCreditGrantRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_mode"
+     */
+    public function testPropertyBillingMode()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "can_buy_bundles"
      */
     public function testPropertyCanBuyBundles()
@@ -243,6 +270,51 @@ class UpdateBillingPlanCreditGrantRequestBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "overdraft_limit"
+     */
+    public function testPropertyOverdraftLimit()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_enabled"
+     */
+    public function testPropertyPostpaidEnabled()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_rate_per_unit"
+     */
+    public function testPropertyPostpaidRatePerUnit()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_rate_per_unit_decimal"
+     */
+    public function testPropertyPostpaidRatePerUnitDecimal()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "price_tiers"
+     */
+    public function testPropertyPriceTiers()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "reset_cadence"
      */
     public function testPropertyResetCadence()
@@ -282,6 +354,33 @@ class UpdateBillingPlanCreditGrantRequestBodyTest extends TestCase
      * Test attribute "scaling"
      */
     public function testPropertyScaling()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tier_mode"
+     */
+    public function testPropertyTierMode()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "unit_price"
+     */
+    public function testPropertyUnitPrice()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "unit_price_decimal"
+     */
+    public function testPropertyUnitPriceDecimal()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

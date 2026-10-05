@@ -58,6 +58,7 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
+        'cache_creation_input_tokens' => 'int',
         'cached_input_tokens' => 'int',
         'company' => 'array<string,string>',
         'cost' => 'string',
@@ -82,6 +83,7 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'cache_creation_input_tokens' => 'int64',
         'cached_input_tokens' => 'int64',
         'company' => null,
         'cost' => null,
@@ -104,6 +106,7 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'cache_creation_input_tokens' => false,
         'cached_input_tokens' => false,
         'company' => false,
         'cost' => false,
@@ -206,6 +209,7 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
+        'cache_creation_input_tokens' => 'cache_creation_input_tokens',
         'cached_input_tokens' => 'cached_input_tokens',
         'company' => 'company',
         'cost' => 'cost',
@@ -228,6 +232,7 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
+        'cache_creation_input_tokens' => 'setCacheCreationInputTokens',
         'cached_input_tokens' => 'setCachedInputTokens',
         'company' => 'setCompany',
         'cost' => 'setCost',
@@ -250,6 +255,7 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
+        'cache_creation_input_tokens' => 'getCacheCreationInputTokens',
         'cached_input_tokens' => 'getCachedInputTokens',
         'company' => 'getCompany',
         'cost' => 'getCost',
@@ -323,6 +329,7 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('cache_creation_input_tokens', $data ?? [], null);
         $this->setIfExists('cached_input_tokens', $data ?? [], null);
         $this->setIfExists('company', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
@@ -397,6 +404,33 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
 
 
     /**
+     * Gets cache_creation_input_tokens
+     *
+     * @return int|null
+     */
+    public function getCacheCreationInputTokens()
+    {
+        return $this->container['cache_creation_input_tokens'];
+    }
+
+    /**
+     * Sets cache_creation_input_tokens
+     *
+     * @param int|null $cache_creation_input_tokens Number of input tokens written to a prompt cache; a subset of input_tokens
+     *
+     * @return self
+     */
+    public function setCacheCreationInputTokens($cache_creation_input_tokens)
+    {
+        if (is_null($cache_creation_input_tokens)) {
+            throw new \InvalidArgumentException('non-nullable cache_creation_input_tokens cannot be null');
+        }
+        $this->container['cache_creation_input_tokens'] = $cache_creation_input_tokens;
+
+        return $this;
+    }
+
+    /**
      * Gets cached_input_tokens
      *
      * @return int|null
@@ -409,7 +443,7 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets cached_input_tokens
      *
-     * @param int|null $cached_input_tokens Number of input tokens served from cache
+     * @param int|null $cached_input_tokens Number of input tokens served from cache; a subset of input_tokens
      *
      * @return self
      */
@@ -544,7 +578,7 @@ class EventBodyInference implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets input_tokens
      *
-     * @param int $input_tokens Number of input tokens for the inference request
+     * @param int $input_tokens Total number of input tokens for the inference request, including those served from and written to a prompt cache
      *
      * @return self
      */

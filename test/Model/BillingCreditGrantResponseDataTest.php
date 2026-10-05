@@ -117,6 +117,15 @@ class BillingCreditGrantResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "credit_bundle_id"
+     */
+    public function testPropertyCreditBundleId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "credit_icon"
      */
     public function testPropertyCreditIcon()
@@ -201,6 +210,33 @@ class BillingCreditGrantResponseDataTest extends TestCase
      * Test attribute "plan_name"
      */
     public function testPropertyPlanName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_charge_amount"
+     */
+    public function testPropertyPostpaidChargeAmount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_charge_currency"
+     */
+    public function testPropertyPostpaidChargeCurrency()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_charged_credits"
+     */
+    public function testPropertyPostpaidChargedCredits()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

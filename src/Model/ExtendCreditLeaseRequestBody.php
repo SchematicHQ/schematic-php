@@ -59,7 +59,9 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPITypes = [
         'additional_amount' => 'float',
-        'expires_at' => '\DateTime'
+        'expires_at' => '\DateTime',
+        'idempotency_key' => 'string',
+        'user_id' => 'string'
     ];
 
     /**
@@ -71,7 +73,9 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
       */
     protected static $openAPIFormats = [
         'additional_amount' => 'double',
-        'expires_at' => 'date-time'
+        'expires_at' => 'date-time',
+        'idempotency_key' => null,
+        'user_id' => null
     ];
 
     /**
@@ -81,7 +85,9 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
       */
     protected static array $openAPINullables = [
         'additional_amount' => false,
-        'expires_at' => true
+        'expires_at' => true,
+        'idempotency_key' => true,
+        'user_id' => true
     ];
 
     /**
@@ -171,7 +177,9 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
      */
     protected static $attributeMap = [
         'additional_amount' => 'additional_amount',
-        'expires_at' => 'expires_at'
+        'expires_at' => 'expires_at',
+        'idempotency_key' => 'idempotency_key',
+        'user_id' => 'user_id'
     ];
 
     /**
@@ -181,7 +189,9 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
      */
     protected static $setters = [
         'additional_amount' => 'setAdditionalAmount',
-        'expires_at' => 'setExpiresAt'
+        'expires_at' => 'setExpiresAt',
+        'idempotency_key' => 'setIdempotencyKey',
+        'user_id' => 'setUserId'
     ];
 
     /**
@@ -191,7 +201,9 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
      */
     protected static $getters = [
         'additional_amount' => 'getAdditionalAmount',
-        'expires_at' => 'getExpiresAt'
+        'expires_at' => 'getExpiresAt',
+        'idempotency_key' => 'getIdempotencyKey',
+        'user_id' => 'getUserId'
     ];
 
     /**
@@ -253,6 +265,8 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
     {
         $this->setIfExists('additional_amount', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
+        $this->setIfExists('idempotency_key', $data ?? [], null);
+        $this->setIfExists('user_id', $data ?? [], null);
     }
 
     /**
@@ -285,6 +299,14 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
         if ($this->container['additional_amount'] === null) {
             $invalidProperties[] = "'additional_amount' can't be null";
         }
+        if (($this->container['additional_amount'] > 9999999999)) {
+            $invalidProperties[] = "invalid value for 'additional_amount', must be smaller than or equal to 9999999999.";
+        }
+
+        if (!is_null($this->container['idempotency_key']) && (mb_strlen($this->container['idempotency_key']) > 255)) {
+            $invalidProperties[] = "invalid value for 'idempotency_key', the character length must be smaller than or equal to 255.";
+        }
+
         return $invalidProperties;
     }
 
@@ -322,6 +344,11 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
         if (is_null($additional_amount)) {
             throw new \InvalidArgumentException('non-nullable additional_amount cannot be null');
         }
+
+        if (($additional_amount > 9999999999)) {
+            throw new \InvalidArgumentException('invalid value for $additional_amount when calling ExtendCreditLeaseRequestBody., must be smaller than or equal to 9999999999.');
+        }
+
         $this->container['additional_amount'] = $additional_amount;
 
         return $this;
@@ -340,7 +367,7 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets expires_at
      *
-     * @param \DateTime|null $expires_at expires_at
+     * @param \DateTime|null $expires_at Pushes the lease's expiry out; may be at most one hour from now. Leave unset to keep the expiry the lease already has
      *
      * @return self
      */
@@ -357,6 +384,78 @@ class ExtendCreditLeaseRequestBody implements ModelInterface, ArrayAccess, \Json
             }
         }
         $this->container['expires_at'] = $expires_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets idempotency_key
+     *
+     * @return string|null
+     */
+    public function getIdempotencyKey()
+    {
+        return $this->container['idempotency_key'];
+    }
+
+    /**
+     * Sets idempotency_key
+     *
+     * @param string|null $idempotency_key A caller-chosen key for safe retries: a second request with the same key returns the lease as it stands instead of growing it again. Keys are unique per environment across every extend
+     *
+     * @return self
+     */
+    public function setIdempotencyKey($idempotency_key)
+    {
+        if (is_null($idempotency_key)) {
+            array_push($this->openAPINullablesSetToNull, 'idempotency_key');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('idempotency_key', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($idempotency_key) && (mb_strlen($idempotency_key) > 255)) {
+            throw new \InvalidArgumentException('invalid length for $idempotency_key when calling ExtendCreditLeaseRequestBody., must be smaller than or equal to 255.');
+        }
+
+        $this->container['idempotency_key'] = $idempotency_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_id
+     *
+     * @return string|null
+     */
+    public function getUserId()
+    {
+        return $this->container['user_id'];
+    }
+
+    /**
+     * Sets user_id
+     *
+     * @param string|null $user_id The user drawing the top-up, so a user-scope spend policy applies to it
+     *
+     * @return self
+     */
+    public function setUserId($user_id)
+    {
+        if (is_null($user_id)) {
+            array_push($this->openAPINullablesSetToNull, 'user_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('user_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['user_id'] = $user_id;
 
         return $this;
     }

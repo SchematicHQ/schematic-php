@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **company_license_id** | **string** | The license instance this grant was issued for. Set only when a per-license plan grant issued it; null on a plan&#39;s own grant. | [optional]
 **company_name** | **string** |  |
 **created_at** | **\DateTime** |  |
+**credit_bundle_id** | **string** | The catalog bundle this grant was issued from, when the company bought one. | [optional]
 **credit_icon** | **string** |  | [optional]
 **credit_id** | **string** |  |
 **credit_name** | **string** |  |
@@ -18,6 +19,9 @@ Name | Type | Description | Notes
 **license_name** | **string** | Name of the license this grant was issued for, when it came from a per-license plan grant. | [optional]
 **plan_id** | **string** |  | [optional]
 **plan_name** | **string** |  | [optional]
+**postpaid_charge_amount** | **int** | What the postpaid charges costs, in the currency&#39;s minor unit. | [optional]
+**postpaid_charge_currency** | **string** |  | [optional]
+**postpaid_charged_credits** | **float** | Credits consumed past a zero balance in the window still open. | [optional]
 **price** | [**\Schematic\Model\BillingPriceResponseData**](BillingPriceResponseData.md) |  | [optional]
 **quantity** | **float** |  |
 **quantity_remaining** | **float** |  |

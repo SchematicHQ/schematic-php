@@ -349,12 +349,24 @@ class CurrencyPriceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
             $invalidProperties[] = "invalid value for 'monthly_price_tiers', number of items must be less than or equal to 100.";
         }
 
+        if (!is_null($this->container['monthly_unit_price']) && ($this->container['monthly_unit_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'monthly_unit_price', must be bigger than or equal to 0.";
+        }
+
         if (!is_null($this->container['quarterly_price_tiers']) && (count($this->container['quarterly_price_tiers']) > 100)) {
             $invalidProperties[] = "invalid value for 'quarterly_price_tiers', number of items must be less than or equal to 100.";
         }
 
+        if (!is_null($this->container['quarterly_unit_price']) && ($this->container['quarterly_unit_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'quarterly_unit_price', must be bigger than or equal to 0.";
+        }
+
         if (!is_null($this->container['yearly_price_tiers']) && (count($this->container['yearly_price_tiers']) > 100)) {
             $invalidProperties[] = "invalid value for 'yearly_price_tiers', number of items must be less than or equal to 100.";
+        }
+
+        if (!is_null($this->container['yearly_unit_price']) && ($this->container['yearly_unit_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'yearly_unit_price', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -470,6 +482,11 @@ class CurrencyPriceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($monthly_unit_price) && ($monthly_unit_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $monthly_unit_price when calling CurrencyPriceRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['monthly_unit_price'] = $monthly_unit_price;
 
         return $this;
@@ -576,6 +593,11 @@ class CurrencyPriceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($quarterly_unit_price) && ($quarterly_unit_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $quarterly_unit_price when calling CurrencyPriceRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['quarterly_unit_price'] = $quarterly_unit_price;
 
         return $this;
@@ -682,6 +704,11 @@ class CurrencyPriceRequestBody implements ModelInterface, ArrayAccess, \JsonSeri
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($yearly_unit_price) && ($yearly_unit_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $yearly_unit_price when calling CurrencyPriceRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['yearly_unit_price'] = $yearly_unit_price;
 
         return $this;

@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **status** | [**\Schematic\Model\InvoiceStatus**](InvoiceStatus.md) |  | [optional]
 **subscription_external_id** | **string** |  | [optional]
 **subtotal** | **int** |  |
+**total** | **int** | Amount after discounts and tax, before applying the customer balance. Null when the provider has not reported it: rows synced before the column existed, or pushed without one. | [optional]
 **updated_at** | **\DateTime** |  |
 **url** | **string** |  | [optional]
 

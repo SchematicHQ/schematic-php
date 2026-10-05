@@ -117,6 +117,15 @@ class EventBodyFlagCheckTest extends TestCase
     }
 
     /**
+     * Test attribute "preflight"
+     */
+    public function testPropertyPreflight()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "reason"
      */
     public function testPropertyReason()

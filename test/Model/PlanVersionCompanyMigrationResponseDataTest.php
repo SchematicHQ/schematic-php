@@ -162,6 +162,15 @@ class PlanVersionCompanyMigrationResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "scheduled_for"
+     */
+    public function testPropertyScheduledFor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "started_at"
      */
     public function testPropertyStartedAt()

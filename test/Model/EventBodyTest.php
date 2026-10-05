@@ -117,6 +117,15 @@ class EventBodyTest extends TestCase
     }
 
     /**
+     * Test attribute "reservation_id"
+     */
+    public function testPropertyReservationId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "traits"
      */
     public function testPropertyTraits()
@@ -165,6 +174,15 @@ class EventBodyTest extends TestCase
      * Test attribute "flag_key"
      */
     public function testPropertyFlagKey()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "preflight"
+     */
+    public function testPropertyPreflight()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -237,6 +255,15 @@ class EventBodyTest extends TestCase
      * Test attribute "name"
      */
     public function testPropertyName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "cache_creation_input_tokens"
+     */
+    public function testPropertyCacheCreationInputTokens()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

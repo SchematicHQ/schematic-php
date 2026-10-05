@@ -59,6 +59,7 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'account_id' => 'string',
+        'credit_spend_policies' => '\Schematic\Model\RulesengineCreditSpendPolicy[]',
         'environment_id' => 'string',
         'id' => 'string',
         'keys' => 'array<string,string>',
@@ -75,6 +76,7 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'account_id' => null,
+        'credit_spend_policies' => null,
         'environment_id' => null,
         'id' => null,
         'keys' => null,
@@ -89,6 +91,7 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'account_id' => false,
+        'credit_spend_policies' => false,
         'environment_id' => false,
         'id' => false,
         'keys' => false,
@@ -183,6 +186,7 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'account_id' => 'account_id',
+        'credit_spend_policies' => 'credit_spend_policies',
         'environment_id' => 'environment_id',
         'id' => 'id',
         'keys' => 'keys',
@@ -197,6 +201,7 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'account_id' => 'setAccountId',
+        'credit_spend_policies' => 'setCreditSpendPolicies',
         'environment_id' => 'setEnvironmentId',
         'id' => 'setId',
         'keys' => 'setKeys',
@@ -211,6 +216,7 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'account_id' => 'getAccountId',
+        'credit_spend_policies' => 'getCreditSpendPolicies',
         'environment_id' => 'getEnvironmentId',
         'id' => 'getId',
         'keys' => 'getKeys',
@@ -276,6 +282,7 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('credit_spend_policies', $data ?? [], null);
         $this->setIfExists('environment_id', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('keys', $data ?? [], null);
@@ -313,6 +320,10 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['account_id'] === null) {
             $invalidProperties[] = "'account_id' can't be null";
         }
+        if (!is_null($this->container['credit_spend_policies']) && (count($this->container['credit_spend_policies']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'credit_spend_policies', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['environment_id'] === null) {
             $invalidProperties[] = "'environment_id' can't be null";
         }
@@ -374,6 +385,37 @@ class RulesengineUser implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable account_id cannot be null');
         }
         $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets credit_spend_policies
+     *
+     * @return \Schematic\Model\RulesengineCreditSpendPolicy[]|null
+     */
+    public function getCreditSpendPolicies()
+    {
+        return $this->container['credit_spend_policies'];
+    }
+
+    /**
+     * Sets credit_spend_policies
+     *
+     * @param \Schematic\Model\RulesengineCreditSpendPolicy[]|null $credit_spend_policies credit_spend_policies
+     *
+     * @return self
+     */
+    public function setCreditSpendPolicies($credit_spend_policies)
+    {
+        if (is_null($credit_spend_policies)) {
+            throw new \InvalidArgumentException('non-nullable credit_spend_policies cannot be null');
+        }
+
+        if ((count($credit_spend_policies) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $credit_spend_policies when calling RulesengineUser., number of items must be less than or equal to 1000.');
+        }
+        $this->container['credit_spend_policies'] = $credit_spend_policies;
 
         return $this;
     }

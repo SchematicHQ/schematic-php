@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **add_on_compatibilities** | [**\Schematic\Model\CompatiblePlans[]**](CompatiblePlans.md) |  | [optional]
 **add_on_ids** | **string[]** | Use OrderedAddOns instead |
-**checkout_bundle_purchase_behavior** | [**\Schematic\Model\CheckoutBundlePurchaseBehavior**](CheckoutBundlePurchaseBehavior.md) |  |
+**checkout_bundle_purchase_behavior** | [**\Schematic\Model\CheckoutBundlePurchaseBehavior**](CheckoutBundlePurchaseBehavior.md) |  | [optional]
 **checkout_collect_address** | **bool** |  |
 **checkout_collect_email** | **bool** |  |
 **checkout_collect_phone** | **bool** |  |
@@ -33,12 +33,14 @@ Name | Type | Description | Notes
 **scheduled_downgrade_prevent_when_over_limit** | **bool** |  | [optional]
 **show_as_monthly_prices** | **bool** |  |
 **show_credits** | **bool** |  |
+**show_estimated_total** | **bool** |  |
 **show_feature_description** | **bool** |  |
 **show_hard_limit** | **bool** |  |
 **show_period_toggle** | **bool** |  |
 **show_zero_price_as_free** | **bool** |  |
 **sync_customer_billing_details** | **bool** |  |
 **trial_days** | **int** |  | [optional]
+**trial_eligibility_per_plan** | **bool** |  | [optional]
 **trial_expiry_plan_id** | **string** |  | [optional]
 **trial_expiry_plan_price_id** | **string** |  | [optional]
 **trial_payment_method_required** | **bool** |  | [optional]

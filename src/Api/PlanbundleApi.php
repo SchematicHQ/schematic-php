@@ -821,7 +821,7 @@ class PlanbundleApi
      *
      * Update plan bundle
      *
-     * @param  string $plan_bundle_id plan_bundle_id (required)
+     * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanBundleRequestBody $update_plan_bundle_request_body update_plan_bundle_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanBundle'] to see the possible values for this operation
      *
@@ -829,9 +829,9 @@ class PlanbundleApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\UpdatePlanBundleResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function updatePlanBundle($plan_bundle_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
+    public function updatePlanBundle($plan_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
     {
-        list($response) = $this->updatePlanBundleWithHttpInfo($plan_bundle_id, $update_plan_bundle_request_body, $contentType);
+        list($response) = $this->updatePlanBundleWithHttpInfo($plan_id, $update_plan_bundle_request_body, $contentType);
         return $response;
     }
 
@@ -840,7 +840,7 @@ class PlanbundleApi
      *
      * Update plan bundle
      *
-     * @param  string $plan_bundle_id plan_bundle_id (required)
+     * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanBundleRequestBody $update_plan_bundle_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanBundle'] to see the possible values for this operation
      *
@@ -848,9 +848,9 @@ class PlanbundleApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\UpdatePlanBundleResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updatePlanBundleWithHttpInfo($plan_bundle_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
+    public function updatePlanBundleWithHttpInfo($plan_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
     {
-        $request = $this->updatePlanBundleRequest($plan_bundle_id, $update_plan_bundle_request_body, $contentType);
+        $request = $this->updatePlanBundleRequest($plan_id, $update_plan_bundle_request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -996,16 +996,16 @@ class PlanbundleApi
      *
      * Update plan bundle
      *
-     * @param  string $plan_bundle_id plan_bundle_id (required)
+     * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanBundleRequestBody $update_plan_bundle_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanBundle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePlanBundleAsync($plan_bundle_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
+    public function updatePlanBundleAsync($plan_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
     {
-        return $this->updatePlanBundleAsyncWithHttpInfo($plan_bundle_id, $update_plan_bundle_request_body, $contentType)
+        return $this->updatePlanBundleAsyncWithHttpInfo($plan_id, $update_plan_bundle_request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1018,17 +1018,17 @@ class PlanbundleApi
      *
      * Update plan bundle
      *
-     * @param  string $plan_bundle_id plan_bundle_id (required)
+     * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanBundleRequestBody $update_plan_bundle_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanBundle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePlanBundleAsyncWithHttpInfo($plan_bundle_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
+    public function updatePlanBundleAsyncWithHttpInfo($plan_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
     {
         $returnType = '\Schematic\Model\UpdatePlanBundleResponse';
-        $request = $this->updatePlanBundleRequest($plan_bundle_id, $update_plan_bundle_request_body, $contentType);
+        $request = $this->updatePlanBundleRequest($plan_id, $update_plan_bundle_request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1069,20 +1069,20 @@ class PlanbundleApi
     /**
      * Create request for operation 'updatePlanBundle'
      *
-     * @param  string $plan_bundle_id plan_bundle_id (required)
+     * @param  string $plan_id plan_id (required)
      * @param  \Schematic\Model\UpdatePlanBundleRequestBody $update_plan_bundle_request_body (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePlanBundle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePlanBundleRequest($plan_bundle_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
+    public function updatePlanBundleRequest($plan_id, $update_plan_bundle_request_body, string $contentType = self::contentTypes['updatePlanBundle'][0])
     {
 
-        // verify the required parameter 'plan_bundle_id' is set
-        if ($plan_bundle_id === null || (is_array($plan_bundle_id) && count($plan_bundle_id) === 0)) {
+        // verify the required parameter 'plan_id' is set
+        if ($plan_id === null || (is_array($plan_id) && count($plan_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $plan_bundle_id when calling updatePlanBundle'
+                'Missing the required parameter $plan_id when calling updatePlanBundle'
             );
         }
 
@@ -1094,7 +1094,7 @@ class PlanbundleApi
         }
 
 
-        $resourcePath = '/plan-bundles/{plan_bundle_id}';
+        $resourcePath = '/plan-bundles/{plan_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1104,10 +1104,10 @@ class PlanbundleApi
 
 
         // path params
-        if ($plan_bundle_id !== null) {
+        if ($plan_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'plan_bundle_id' . '}',
-                ObjectSerializer::toPathValue($plan_bundle_id),
+                '{' . 'plan_id' . '}',
+                ObjectSerializer::toPathValue($plan_id),
                 $resourcePath
             );
         }

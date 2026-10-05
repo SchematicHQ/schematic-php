@@ -69,6 +69,7 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getApiKey**](docs/Api/AccountsApi.md#getapikey) | **GET** /api-keys/{api_key_id} | Get api key
 *AccountsApi* | [**getAuditLog**](docs/Api/AccountsApi.md#getauditlog) | **GET** /audit-log/{audit_log_id} | Get audit log
 *AccountsApi* | [**getEnvironment**](docs/Api/AccountsApi.md#getenvironment) | **GET** /environments/{environment_id} | Get environment
+*AccountsApi* | [**getOnboardingState**](docs/Api/AccountsApi.md#getonboardingstate) | **GET** /onboarding-state | Get onboarding state
 *AccountsApi* | [**getWhoAmI**](docs/Api/AccountsApi.md#getwhoami) | **GET** /whoami | Get who am I
 *AccountsApi* | [**listAccountMembers**](docs/Api/AccountsApi.md#listaccountmembers) | **GET** /account-members | List account members
 *AccountsApi* | [**listApiKeys**](docs/Api/AccountsApi.md#listapikeys) | **GET** /api-keys | List api keys
@@ -77,6 +78,7 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**quickstart**](docs/Api/AccountsApi.md#quickstart) | **POST** /quickstart | Quickstart
 *AccountsApi* | [**updateApiKey**](docs/Api/AccountsApi.md#updateapikey) | **PUT** /api-keys/{api_key_id} | Update api key
 *AccountsApi* | [**updateEnvironment**](docs/Api/AccountsApi.md#updateenvironment) | **PUT** /environments/{environment_id} | Update environment
+*AccountsApi* | [**updateOnboardingState**](docs/Api/AccountsApi.md#updateonboardingstate) | **POST** /onboarding-state | Update onboarding state
 *BillingApi* | [**countBillingProducts**](docs/Api/BillingApi.md#countbillingproducts) | **GET** /billing/products/count | Count billing products
 *BillingApi* | [**countCustomers**](docs/Api/BillingApi.md#countcustomers) | **GET** /billing/customers/count | Count customers
 *BillingApi* | [**deleteBillingCoupon**](docs/Api/BillingApi.md#deletebillingcoupon) | **DELETE** /billing/coupons/{billing_id} | Delete billing coupon
@@ -88,11 +90,13 @@ Class | Method | HTTP request | Description
 *BillingApi* | [**listBillingPrices**](docs/Api/BillingApi.md#listbillingprices) | **GET** /billing/price | List billing prices
 *BillingApi* | [**listBillingProductPrices**](docs/Api/BillingApi.md#listbillingproductprices) | **GET** /billing/product/prices | List billing product prices
 *BillingApi* | [**listBillingProducts**](docs/Api/BillingApi.md#listbillingproducts) | **GET** /billing/products | List billing products
+*BillingApi* | [**listCompanyBillingProfiles**](docs/Api/BillingApi.md#listcompanybillingprofiles) | **GET** /billing/profiles | List company billing profiles
 *BillingApi* | [**listCoupons**](docs/Api/BillingApi.md#listcoupons) | **GET** /billing/coupons | List coupons
 *BillingApi* | [**listCustomersWithSubscriptions**](docs/Api/BillingApi.md#listcustomerswithsubscriptions) | **GET** /billing/customers | List customers with subscriptions
 *BillingApi* | [**listInvoices**](docs/Api/BillingApi.md#listinvoices) | **GET** /billing/invoices | List invoices
 *BillingApi* | [**listMeters**](docs/Api/BillingApi.md#listmeters) | **GET** /billing/meter | List meters
 *BillingApi* | [**listPaymentMethods**](docs/Api/BillingApi.md#listpaymentmethods) | **GET** /billing/payment-methods | List payment methods
+*BillingApi* | [**updateCompanyBillingProfile**](docs/Api/BillingApi.md#updatecompanybillingprofile) | **PUT** /billing/profiles/{billing_profile_id} | Update company billing profile
 *BillingApi* | [**upsertBillingCoupon**](docs/Api/BillingApi.md#upsertbillingcoupon) | **POST** /billing/coupons | Upsert billing coupon
 *BillingApi* | [**upsertBillingCustomer**](docs/Api/BillingApi.md#upsertbillingcustomer) | **POST** /billing/customer/upsert | Upsert billing customer
 *BillingApi* | [**upsertBillingMeter**](docs/Api/BillingApi.md#upsertbillingmeter) | **POST** /billing/meter/upsert | Upsert billing meter
@@ -183,13 +187,18 @@ Class | Method | HTTP request | Description
 *CreditsApi* | [**countCompanyGrants**](docs/Api/CreditsApi.md#countcompanygrants) | **GET** /billing/credits/grants/company/count | Count company grants
 *CreditsApi* | [**countCreditBundles**](docs/Api/CreditsApi.md#countcreditbundles) | **GET** /billing/credits/bundles/count | Count credit bundles
 *CreditsApi* | [**countCreditEventLedger**](docs/Api/CreditsApi.md#countcrediteventledger) | **GET** /v2/billing/credits/ledger/count | Count credit event ledger
+*CreditsApi* | [**countCreditSpendPolicies**](docs/Api/CreditsApi.md#countcreditspendpolicies) | **GET** /billing/credits/spend-policies/count | Count credit spend policies
 *CreditsApi* | [**createBillingCredit**](docs/Api/CreditsApi.md#createbillingcredit) | **POST** /billing/credits | Create billing credit
 *CreditsApi* | [**createBillingPlanCreditGrant**](docs/Api/CreditsApi.md#createbillingplancreditgrant) | **POST** /billing/credits/plan-grants | Create billing plan credit grant
 *CreditsApi* | [**createCreditBundle**](docs/Api/CreditsApi.md#createcreditbundle) | **POST** /billing/credits/bundles | Create credit bundle
+*CreditsApi* | [**createCreditSpendPolicy**](docs/Api/CreditsApi.md#createcreditspendpolicy) | **POST** /billing/credits/spend-policies | Create credit spend policy
 *CreditsApi* | [**deleteBillingPlanCreditGrant**](docs/Api/CreditsApi.md#deletebillingplancreditgrant) | **DELETE** /billing/credits/plan-grants/{plan_grant_id} | Delete billing plan credit grant
 *CreditsApi* | [**deleteCreditBundle**](docs/Api/CreditsApi.md#deletecreditbundle) | **DELETE** /billing/credits/bundles/{bundle_id} | Delete credit bundle
+*CreditsApi* | [**deleteCreditSpendPolicy**](docs/Api/CreditsApi.md#deletecreditspendpolicy) | **DELETE** /billing/credits/spend-policies/{spend_policy_id} | Delete credit spend policy
 *CreditsApi* | [**extendCreditLease**](docs/Api/CreditsApi.md#extendcreditlease) | **PUT** /billing/credits/lease/{lease_id}/extend | Extend credit lease
 *CreditsApi* | [**getCreditBundle**](docs/Api/CreditsApi.md#getcreditbundle) | **GET** /billing/credits/bundles/{bundle_id} | Get credit bundle
+*CreditsApi* | [**getCreditSpendPolicy**](docs/Api/CreditsApi.md#getcreditspendpolicy) | **GET** /billing/credits/spend-policies/{spend_policy_id} | Get credit spend policy
+*CreditsApi* | [**getCreditSpendPolicyUsage**](docs/Api/CreditsApi.md#getcreditspendpolicyusage) | **GET** /billing/credits/spend-policies/usage | Get credit spend policy usage
 *CreditsApi* | [**getSingleBillingCredit**](docs/Api/CreditsApi.md#getsinglebillingcredit) | **GET** /billing/credits/{credit_id} | Get single billing credit
 *CreditsApi* | [**getSingleBillingPlanCreditGrant**](docs/Api/CreditsApi.md#getsinglebillingplancreditgrant) | **GET** /billing/credits/plan-grants/{plan_grant_id} | Get single billing plan credit grant
 *CreditsApi* | [**grantBillingCreditsToCompany**](docs/Api/CreditsApi.md#grantbillingcreditstocompany) | **POST** /billing/credits/grants/company | Grant billing credits to company
@@ -199,18 +208,23 @@ Class | Method | HTTP request | Description
 *CreditsApi* | [**listCompanyGrants**](docs/Api/CreditsApi.md#listcompanygrants) | **GET** /billing/credits/grants/company/list | List company grants
 *CreditsApi* | [**listCreditBundles**](docs/Api/CreditsApi.md#listcreditbundles) | **GET** /billing/credits/bundles | List credit bundles
 *CreditsApi* | [**listCreditEventLedger**](docs/Api/CreditsApi.md#listcrediteventledger) | **GET** /v2/billing/credits/ledger | List credit event ledger
+*CreditsApi* | [**listCreditSpendPolicies**](docs/Api/CreditsApi.md#listcreditspendpolicies) | **GET** /billing/credits/spend-policies | List credit spend policies
 *CreditsApi* | [**listGrantsForCredit**](docs/Api/CreditsApi.md#listgrantsforcredit) | **GET** /billing/credits/grants/list | List grants for credit
 *CreditsApi* | [**releaseCreditLease**](docs/Api/CreditsApi.md#releasecreditlease) | **PUT** /billing/credits/lease/{lease_id}/release | Release credit lease
+*CreditsApi* | [**releaseCreditReservation**](docs/Api/CreditsApi.md#releasecreditreservation) | **PUT** /billing/credits/reservations/{reservation_id}/release | Release credit reservation
+*CreditsApi* | [**reserveCredits**](docs/Api/CreditsApi.md#reservecredits) | **POST** /billing/credits/reservations | Reserve credits
 *CreditsApi* | [**softDeleteBillingCredit**](docs/Api/CreditsApi.md#softdeletebillingcredit) | **DELETE** /billing/credits/{credit_id} | Soft delete billing credit
 *CreditsApi* | [**updateBillingCredit**](docs/Api/CreditsApi.md#updatebillingcredit) | **PUT** /billing/credits/{credit_id} | Update billing credit
 *CreditsApi* | [**updateBillingPlanCreditGrant**](docs/Api/CreditsApi.md#updatebillingplancreditgrant) | **PUT** /billing/credits/plan-grants/{plan_grant_id} | Update billing plan credit grant
 *CreditsApi* | [**updateCreditBundleDetails**](docs/Api/CreditsApi.md#updatecreditbundledetails) | **PUT** /billing/credits/bundles/{bundle_id} | Update credit bundle details
+*CreditsApi* | [**updateCreditSpendPolicy**](docs/Api/CreditsApi.md#updatecreditspendpolicy) | **PUT** /billing/credits/spend-policies/{spend_policy_id} | Update credit spend policy
 *CreditsApi* | [**zeroOutGrant**](docs/Api/CreditsApi.md#zerooutgrant) | **PUT** /billing/credits/grants/{grant_id}/zero-out | Zero out grant
 *DataexportsApi* | [**createDataExport**](docs/Api/DataexportsApi.md#createdataexport) | **POST** /data-exports | Create data export
 *DataexportsApi* | [**getDataExport**](docs/Api/DataexportsApi.md#getdataexport) | **GET** /data-exports/{data_export_id} | Get data export
 *DataexportsApi* | [**getDataExportArtifact**](docs/Api/DataexportsApi.md#getdataexportartifact) | **GET** /data-exports/{data_export_id}/artifact | Get data export artifact
 *DataexportsApi* | [**listDataExports**](docs/Api/DataexportsApi.md#listdataexports) | **GET** /data-exports | List data exports
 *EntitlementsApi* | [**countCompanyOverrides**](docs/Api/EntitlementsApi.md#countcompanyoverrides) | **GET** /company-overrides/count | Count company overrides
+*EntitlementsApi* | [**countCompanyUserUsage**](docs/Api/EntitlementsApi.md#countcompanyuserusage) | **GET** /user-usage-by-company/users/count | Count company user usage
 *EntitlementsApi* | [**countFeatureCompanies**](docs/Api/EntitlementsApi.md#countfeaturecompanies) | **GET** /feature-companies/count | Count feature companies
 *EntitlementsApi* | [**countFeatureUsage**](docs/Api/EntitlementsApi.md#countfeatureusage) | **GET** /feature-usage/count | Count feature usage
 *EntitlementsApi* | [**countFeatureUsers**](docs/Api/EntitlementsApi.md#countfeatureusers) | **GET** /feature-users/count | Count feature users
@@ -221,14 +235,17 @@ Class | Method | HTTP request | Description
 *EntitlementsApi* | [**deletePlanEntitlement**](docs/Api/EntitlementsApi.md#deleteplanentitlement) | **DELETE** /plan-entitlements/{plan_entitlement_id} | Delete plan entitlement
 *EntitlementsApi* | [**duplicatePlanEntitlements**](docs/Api/EntitlementsApi.md#duplicateplanentitlements) | **POST** /plan-entitlements/duplicate | Duplicate plan entitlements
 *EntitlementsApi* | [**getCompanyOverride**](docs/Api/EntitlementsApi.md#getcompanyoverride) | **GET** /company-overrides/{company_override_id} | Get company override
+*EntitlementsApi* | [**getCompanyUserUsageMetrics**](docs/Api/EntitlementsApi.md#getcompanyuserusagemetrics) | **GET** /user-usage-by-company/metrics | Get company user usage metrics
 *EntitlementsApi* | [**getFeatureUsageByCompany**](docs/Api/EntitlementsApi.md#getfeatureusagebycompany) | **GET** /usage-by-company | Get feature usage by company
 *EntitlementsApi* | [**getFeatureUsageTimeSeries**](docs/Api/EntitlementsApi.md#getfeatureusagetimeseries) | **GET** /feature-usage-timeseries | Get feature usage time series
 *EntitlementsApi* | [**getPlanEntitlement**](docs/Api/EntitlementsApi.md#getplanentitlement) | **GET** /plan-entitlements/{plan_entitlement_id} | Get plan entitlement
 *EntitlementsApi* | [**getUserUsageByCompany**](docs/Api/EntitlementsApi.md#getuserusagebycompany) | **GET** /user-usage-by-company | Get user usage by company
 *EntitlementsApi* | [**getUserUsageDetail**](docs/Api/EntitlementsApi.md#getuserusagedetail) | **GET** /user-usage-detail | Get user usage detail
 *EntitlementsApi* | [**listCompanyOverrides**](docs/Api/EntitlementsApi.md#listcompanyoverrides) | **GET** /company-overrides | List company overrides
+*EntitlementsApi* | [**listCompanyUserUsage**](docs/Api/EntitlementsApi.md#listcompanyuserusage) | **GET** /user-usage-by-company/users | List company user usage
 *EntitlementsApi* | [**listFeatureCompanies**](docs/Api/EntitlementsApi.md#listfeaturecompanies) | **GET** /feature-companies | List feature companies
 *EntitlementsApi* | [**listFeatureUsage**](docs/Api/EntitlementsApi.md#listfeatureusage) | **GET** /feature-usage | List feature usage
+*EntitlementsApi* | [**listFeatureUsageHistory**](docs/Api/EntitlementsApi.md#listfeatureusagehistory) | **GET** /feature-usage-history | List feature usage history
 *EntitlementsApi* | [**listFeatureUsers**](docs/Api/EntitlementsApi.md#listfeatureusers) | **GET** /feature-users | List feature users
 *EntitlementsApi* | [**listPlanEntitlements**](docs/Api/EntitlementsApi.md#listplanentitlements) | **GET** /plan-entitlements | List plan entitlements
 *EntitlementsApi* | [**updateCompanyOverride**](docs/Api/EntitlementsApi.md#updatecompanyoverride) | **PUT** /company-overrides/{company_override_id} | Update company override
@@ -236,10 +253,14 @@ Class | Method | HTTP request | Description
 *EntitlementsApi* | [**upsertPlanEntitlementForBillingProduct**](docs/Api/EntitlementsApi.md#upsertplanentitlementforbillingproduct) | **POST** /plan-entitlements/billing-linked | Upsert plan entitlement for billing product
 *EventsApi* | [**createEvent**](docs/Api/EventsApi.md#createevent) | **POST** /events | Create event
 *EventsApi* | [**createEventBatch**](docs/Api/EventsApi.md#createeventbatch) | **POST** /event-batch | Create event batch
+*EventsApi* | [**deleteOTLPEnvironmentSettings**](docs/Api/EventsApi.md#deleteotlpenvironmentsettings) | **DELETE** /otlp/settings | Delete OTLP environment settings
 *EventsApi* | [**getEvent**](docs/Api/EventsApi.md#getevent) | **GET** /events/{event_id} | Get event
 *EventsApi* | [**getEventSummaries**](docs/Api/EventsApi.md#geteventsummaries) | **GET** /event-types | Get event summaries
+*EventsApi* | [**getOTLPEnvironmentSettings**](docs/Api/EventsApi.md#getotlpenvironmentsettings) | **GET** /otlp/settings | Get OTLP environment settings
 *EventsApi* | [**getSegmentIntegrationStatus**](docs/Api/EventsApi.md#getsegmentintegrationstatus) | **GET** /segment-integration | Get segment integration status
 *EventsApi* | [**listEvents**](docs/Api/EventsApi.md#listevents) | **GET** /events | List events
+*EventsApi* | [**upsertOTLPEnvironmentSettings**](docs/Api/EventsApi.md#upsertotlpenvironmentsettings) | **POST** /otlp/settings | Upsert OTLP environment settings
+*FeaturesApi* | [**checkAndReserveFlag**](docs/Api/FeaturesApi.md#checkandreserveflag) | **POST** /flags/{key}/check-and-reserve | Check and reserve flag
 *FeaturesApi* | [**checkFlag**](docs/Api/FeaturesApi.md#checkflag) | **POST** /flags/{key}/check | Check flag
 *FeaturesApi* | [**checkFlags**](docs/Api/FeaturesApi.md#checkflags) | **POST** /flags/check | Check flags
 *FeaturesApi* | [**checkFlagsBulk**](docs/Api/FeaturesApi.md#checkflagsbulk) | **POST** /flags/check-bulk | Check flags bulk
@@ -264,10 +285,15 @@ Class | Method | HTTP request | Description
 *InsightsApi* | [**getSummary**](docs/Api/InsightsApi.md#getsummary) | **GET** /insights/summary | Get summary
 *InsightsApi* | [**getTopFeaturesByUsage**](docs/Api/InsightsApi.md#gettopfeaturesbyusage) | **GET** /insights/top-features | Get top features by usage
 *IntegrationsapiApi* | [**assumeStripeInstalled**](docs/Api/IntegrationsapiApi.md#assumestripeinstalled) | **POST** /integrations/stripe/v2/assume-installed | Assume stripe installed
+*IntegrationsapiApi* | [**claimStripeSandboxKeys**](docs/Api/IntegrationsapiApi.md#claimstripesandboxkeys) | **POST** /integrations/stripe/sandbox/keys/claim | Claim stripe sandbox keys
 *IntegrationsapiApi* | [**getIntegrationWebhookUrl**](docs/Api/IntegrationsapiApi.md#getintegrationwebhookurl) | **GET** /integrations/{type}/webhook-url | Get integration webhook url
+*IntegrationsapiApi* | [**getStripeSandboxClaimLink**](docs/Api/IntegrationsapiApi.md#getstripesandboxclaimlink) | **GET** /integrations/stripe/sandbox/claim-link | Get stripe sandbox claim link
+*IntegrationsapiApi* | [**getStripeSandboxKeys**](docs/Api/IntegrationsapiApi.md#getstripesandboxkeys) | **GET** /integrations/stripe/sandbox/keys | Get stripe sandbox keys
 *IntegrationsapiApi* | [**installIntegration**](docs/Api/IntegrationsapiApi.md#installintegration) | **POST** /integrations/install | Install integration
 *IntegrationsapiApi* | [**installStripe**](docs/Api/IntegrationsapiApi.md#installstripe) | **POST** /integrations/stripe/v2/install | Install stripe
+*IntegrationsapiApi* | [**installStripeClaimableSandbox**](docs/Api/IntegrationsapiApi.md#installstripeclaimablesandbox) | **POST** /integrations/stripe/v2/sandbox | Install stripe claimable sandbox
 *IntegrationsapiApi* | [**listIntegrations**](docs/Api/IntegrationsapiApi.md#listintegrations) | **GET** /integrations | List integrations
+*IntegrationsapiApi* | [**listStripeSandboxCountries**](docs/Api/IntegrationsapiApi.md#liststripesandboxcountries) | **GET** /integrations/stripe/v2/sandbox-countries | List stripe sandbox countries
 *IntegrationsapiApi* | [**loadSampleDataSet**](docs/Api/IntegrationsapiApi.md#loadsampledataset) | **GET** /integrations/stripe/dataset-sample-v2 | Load sample data set
 *IntegrationsapiApi* | [**runIntegration**](docs/Api/IntegrationsapiApi.md#runintegration) | **GET** /integration/start/{integration_id} | Run integration
 *IntegrationsapiApi* | [**startDataImport**](docs/Api/IntegrationsapiApi.md#startdataimport) | **POST** /integrations/start-data-import | Start data import
@@ -277,10 +303,12 @@ Class | Method | HTTP request | Description
 *LicensesApi* | [**listLicenses**](docs/Api/LicensesApi.md#listlicenses) | **GET** /licenses | List licenses
 *PlanbundleApi* | [**createCustomPlanBundle**](docs/Api/PlanbundleApi.md#createcustomplanbundle) | **POST** /custom-plan-bundles | Create custom plan bundle
 *PlanbundleApi* | [**createPlanBundle**](docs/Api/PlanbundleApi.md#createplanbundle) | **POST** /plan-bundles | Create plan bundle
-*PlanbundleApi* | [**updatePlanBundle**](docs/Api/PlanbundleApi.md#updateplanbundle) | **PUT** /plan-bundles/{plan_bundle_id} | Update plan bundle
+*PlanbundleApi* | [**updatePlanBundle**](docs/Api/PlanbundleApi.md#updateplanbundle) | **PUT** /plan-bundles/{plan_id} | Update plan bundle
 *PlangroupsApi* | [**createPlanGroup**](docs/Api/PlangroupsApi.md#createplangroup) | **POST** /plan-groups | Create plan group
 *PlangroupsApi* | [**getPlanGroup**](docs/Api/PlangroupsApi.md#getplangroup) | **GET** /plan-groups | Get plan group
 *PlangroupsApi* | [**updatePlanGroup**](docs/Api/PlangroupsApi.md#updateplangroup) | **PUT** /plan-groups/{plan_group_id} | Update plan group
+*PlanmigrationsApi* | [**cancelMigration**](docs/Api/PlanmigrationsApi.md#cancelmigration) | **POST** /plan-version-migrations/{plan_version_migration_id}/cancel | Cancel migration
+*PlanmigrationsApi* | [**completeMigrationNow**](docs/Api/PlanmigrationsApi.md#completemigrationnow) | **POST** /plan-version-migrations/{plan_version_migration_id}/complete-now | Complete migration now
 *PlanmigrationsApi* | [**countCompanyMigrations**](docs/Api/PlanmigrationsApi.md#countcompanymigrations) | **GET** /plan-version-company-migrations/count | Count company migrations
 *PlanmigrationsApi* | [**countMigrations**](docs/Api/PlanmigrationsApi.md#countmigrations) | **GET** /plan-version-migrations/count | Count migrations
 *PlanmigrationsApi* | [**createMigration**](docs/Api/PlanmigrationsApi.md#createmigration) | **POST** /plan-version-migrations | Create migration
@@ -304,7 +332,7 @@ Class | Method | HTTP request | Description
 *PlansApi* | [**markCustomPlanBillingPaid**](docs/Api/PlansApi.md#markcustomplanbillingpaid) | **PUT** /custom-plan-billings/{custom_plan_billing_id}/mark-paid | Mark custom plan billing paid
 *PlansApi* | [**publishPlanVersion**](docs/Api/PlansApi.md#publishplanversion) | **PUT** /plans/version/{plan_version_id}/publish | Publish plan version
 *PlansApi* | [**retryCustomPlanBilling**](docs/Api/PlansApi.md#retrycustomplanbilling) | **PUT** /custom-plan-billings/{custom_plan_billing_id}/retry | Retry custom plan billing
-*PlansApi* | [**updateCompanyPlans**](docs/Api/PlansApi.md#updatecompanyplans) | **PUT** /company-plans/{company_plan_id} | Update company plans
+*PlansApi* | [**updateCompanyPlans**](docs/Api/PlansApi.md#updatecompanyplans) | **PUT** /company-plans/{company_id} | Update company plans
 *PlansApi* | [**updatePlan**](docs/Api/PlansApi.md#updateplan) | **PUT** /plans/{plan_id} | Update plan
 *PlansApi* | [**upsertBillingProductPlan**](docs/Api/PlansApi.md#upsertbillingproductplan) | **PUT** /plans/{plan_id}/billing_products | Upsert billing product plan
 *PlansApi* | [**upsertPlanForBillingProduct**](docs/Api/PlansApi.md#upsertplanforbillingproduct) | **POST** /plans/billing-linked | Upsert plan for billing product
@@ -342,6 +370,8 @@ Class | Method | HTTP request | Description
 - [AuditLogExportMetadata](docs/Model/AuditLogExportMetadata.md)
 - [AuditLogListResponseData](docs/Model/AuditLogListResponseData.md)
 - [AuditLogResponseData](docs/Model/AuditLogResponseData.md)
+- [BillingArrearsAnchor](docs/Model/BillingArrearsAnchor.md)
+- [BillingArrearsCadence](docs/Model/BillingArrearsCadence.md)
 - [BillingCollectionMethod](docs/Model/BillingCollectionMethod.md)
 - [BillingCouponResponseData](docs/Model/BillingCouponResponseData.md)
 - [BillingCreditAutoTopupAvailability](docs/Model/BillingCreditAutoTopupAvailability.md)
@@ -365,6 +395,8 @@ Class | Method | HTTP request | Description
 - [BillingCustomerWithSubscriptionsResponseData](docs/Model/BillingCustomerWithSubscriptionsResponseData.md)
 - [BillingLinkedResourceResponseData](docs/Model/BillingLinkedResourceResponseData.md)
 - [BillingMeterResponseData](docs/Model/BillingMeterResponseData.md)
+- [BillingPlanCreditGrantBillingMode](docs/Model/BillingPlanCreditGrantBillingMode.md)
+- [BillingPlanCreditGrantPriceTierResponseData](docs/Model/BillingPlanCreditGrantPriceTierResponseData.md)
 - [BillingPlanCreditGrantResetCadence](docs/Model/BillingPlanCreditGrantResetCadence.md)
 - [BillingPlanCreditGrantResetStart](docs/Model/BillingPlanCreditGrantResetStart.md)
 - [BillingPlanCreditGrantResetType](docs/Model/BillingPlanCreditGrantResetType.md)
@@ -392,6 +424,7 @@ Class | Method | HTTP request | Description
 - [BillingTiersMode](docs/Model/BillingTiersMode.md)
 - [BindCatalogRequestBody](docs/Model/BindCatalogRequestBody.md)
 - [BindCatalogResponse](docs/Model/BindCatalogResponse.md)
+- [CancelMigrationResponse](docs/Model/CancelMigrationResponse.md)
 - [CancelSubscriptionRequest](docs/Model/CancelSubscriptionRequest.md)
 - [CancelSubscriptionResponse](docs/Model/CancelSubscriptionResponse.md)
 - [CaptureRawEvent](docs/Model/CaptureRawEvent.md)
@@ -411,6 +444,9 @@ Class | Method | HTTP request | Description
 - [ChangeSubscriptionInternalRequestBody](docs/Model/ChangeSubscriptionInternalRequestBody.md)
 - [ChangeSubscriptionRequestBody](docs/Model/ChangeSubscriptionRequestBody.md)
 - [ChargeType](docs/Model/ChargeType.md)
+- [CheckAndReserveFlagRequestBody](docs/Model/CheckAndReserveFlagRequestBody.md)
+- [CheckAndReserveFlagResponse](docs/Model/CheckAndReserveFlagResponse.md)
+- [CheckAndReserveFlagResponseData](docs/Model/CheckAndReserveFlagResponseData.md)
 - [CheckFlagRequestBody](docs/Model/CheckFlagRequestBody.md)
 - [CheckFlagResponse](docs/Model/CheckFlagResponse.md)
 - [CheckFlagResponseData](docs/Model/CheckFlagResponseData.md)
@@ -429,6 +465,9 @@ Class | Method | HTTP request | Description
 - [CheckoutInternalResponse](docs/Model/CheckoutInternalResponse.md)
 - [CheckoutSettingsResponseData](docs/Model/CheckoutSettingsResponseData.md)
 - [CheckoutSubscription](docs/Model/CheckoutSubscription.md)
+- [ClaimStripeSandboxKeysRequestBody](docs/Model/ClaimStripeSandboxKeysRequestBody.md)
+- [ClaimStripeSandboxKeysResponse](docs/Model/ClaimStripeSandboxKeysResponse.md)
+- [ClaimedStripeSandboxKeysResponseData](docs/Model/ClaimedStripeSandboxKeysResponseData.md)
 - [ClerkIntegrationConfig](docs/Model/ClerkIntegrationConfig.md)
 - [CompanyBillingAddressView](docs/Model/CompanyBillingAddressView.md)
 - [CompanyBillingCheckoutSettings](docs/Model/CompanyBillingCheckoutSettings.md)
@@ -436,6 +475,7 @@ Class | Method | HTTP request | Description
 - [CompanyBillingDetailsView](docs/Model/CompanyBillingDetailsView.md)
 - [CompanyBillingEntityResponseData](docs/Model/CompanyBillingEntityResponseData.md)
 - [CompanyBillingEntitySubscriptionResponseData](docs/Model/CompanyBillingEntitySubscriptionResponseData.md)
+- [CompanyBillingProfileResponseData](docs/Model/CompanyBillingProfileResponseData.md)
 - [CompanyCreditBalance](docs/Model/CompanyCreditBalance.md)
 - [CompanyCreditBalanceResponseData](docs/Model/CompanyCreditBalanceResponseData.md)
 - [CompanyDetailResponseData](docs/Model/CompanyDetailResponseData.md)
@@ -454,9 +494,14 @@ Class | Method | HTTP request | Description
 - [CompanyResponseData](docs/Model/CompanyResponseData.md)
 - [CompanySubscriptionResponseData](docs/Model/CompanySubscriptionResponseData.md)
 - [CompanyTaxIDView](docs/Model/CompanyTaxIDView.md)
+- [CompanyUserUsageMetricsResponseData](docs/Model/CompanyUserUsageMetricsResponseData.md)
+- [CompanyUserUsageResponseData](docs/Model/CompanyUserUsageResponseData.md)
+- [CompanyUserUsageRowResponseData](docs/Model/CompanyUserUsageRowResponseData.md)
 - [ComparableOperator](docs/Model/ComparableOperator.md)
 - [CompatiblePlans](docs/Model/CompatiblePlans.md)
 - [CompatiblePlansResponseData](docs/Model/CompatiblePlansResponseData.md)
+- [CompleteMigrationNowRequestBody](docs/Model/CompleteMigrationNowRequestBody.md)
+- [CompleteMigrationNowResponse](docs/Model/CompleteMigrationNowResponse.md)
 - [ComponentCapabilities](docs/Model/ComponentCapabilities.md)
 - [ComponentCheckoutSettings](docs/Model/ComponentCheckoutSettings.md)
 - [ComponentDisplaySettings](docs/Model/ComponentDisplaySettings.md)
@@ -497,12 +542,16 @@ Class | Method | HTTP request | Description
 - [CountCompanyMigrationsResponse](docs/Model/CountCompanyMigrationsResponse.md)
 - [CountCompanyOverridesParams](docs/Model/CountCompanyOverridesParams.md)
 - [CountCompanyOverridesResponse](docs/Model/CountCompanyOverridesResponse.md)
+- [CountCompanyUserUsageParams](docs/Model/CountCompanyUserUsageParams.md)
+- [CountCompanyUserUsageResponse](docs/Model/CountCompanyUserUsageResponse.md)
 - [CountComponentsParams](docs/Model/CountComponentsParams.md)
 - [CountComponentsResponse](docs/Model/CountComponentsResponse.md)
 - [CountCreditBundlesParams](docs/Model/CountCreditBundlesParams.md)
 - [CountCreditBundlesResponse](docs/Model/CountCreditBundlesResponse.md)
 - [CountCreditEventLedgerParams](docs/Model/CountCreditEventLedgerParams.md)
 - [CountCreditEventLedgerResponse](docs/Model/CountCreditEventLedgerResponse.md)
+- [CountCreditSpendPoliciesParams](docs/Model/CountCreditSpendPoliciesParams.md)
+- [CountCreditSpendPoliciesResponse](docs/Model/CountCreditSpendPoliciesResponse.md)
 - [CountCustomersParams](docs/Model/CountCustomersParams.md)
 - [CountCustomersResponse](docs/Model/CountCustomersResponse.md)
 - [CountEntityKeyDefinitionsParams](docs/Model/CountEntityKeyDefinitionsParams.md)
@@ -566,6 +615,8 @@ Class | Method | HTTP request | Description
 - [CreateCouponRequestBody](docs/Model/CreateCouponRequestBody.md)
 - [CreateCreditBundleRequestBody](docs/Model/CreateCreditBundleRequestBody.md)
 - [CreateCreditBundleResponse](docs/Model/CreateCreditBundleResponse.md)
+- [CreateCreditSpendPolicyRequestBody](docs/Model/CreateCreditSpendPolicyRequestBody.md)
+- [CreateCreditSpendPolicyResponse](docs/Model/CreateCreditSpendPolicyResponse.md)
 - [CreateCustomPlanBundlePlanRequestBody](docs/Model/CreateCustomPlanBundlePlanRequestBody.md)
 - [CreateCustomPlanBundleRequestBody](docs/Model/CreateCustomPlanBundleRequestBody.md)
 - [CreateCustomPlanBundleResponse](docs/Model/CreateCustomPlanBundleResponse.md)
@@ -622,8 +673,17 @@ Class | Method | HTTP request | Description
 - [CreditEventType](docs/Model/CreditEventType.md)
 - [CreditGrantDetail](docs/Model/CreditGrantDetail.md)
 - [CreditGrantExpiryRequestBody](docs/Model/CreditGrantExpiryRequestBody.md)
+- [CreditGrantPriceTierRequestBody](docs/Model/CreditGrantPriceTierRequestBody.md)
 - [CreditGrantSortOrder](docs/Model/CreditGrantSortOrder.md)
 - [CreditLeaseResponseData](docs/Model/CreditLeaseResponseData.md)
+- [CreditLedgerEntryKind](docs/Model/CreditLedgerEntryKind.md)
+- [CreditReservationResponseData](docs/Model/CreditReservationResponseData.md)
+- [CreditSpendPolicy](docs/Model/CreditSpendPolicy.md)
+- [CreditSpendPolicyResponseData](docs/Model/CreditSpendPolicyResponseData.md)
+- [CreditSpendPolicyScope](docs/Model/CreditSpendPolicyScope.md)
+- [CreditSpendWindow](docs/Model/CreditSpendWindow.md)
+- [CreditSpendWindowUnit](docs/Model/CreditSpendWindowUnit.md)
+- [CreditTransferReason](docs/Model/CreditTransferReason.md)
 - [CreditTransferResponseData](docs/Model/CreditTransferResponseData.md)
 - [CreditTransferView](docs/Model/CreditTransferView.md)
 - [CreditTriggerConfig](docs/Model/CreditTriggerConfig.md)
@@ -668,11 +728,13 @@ Class | Method | HTTP request | Description
 - [DeleteCompanyResponse](docs/Model/DeleteCompanyResponse.md)
 - [DeleteComponentResponse](docs/Model/DeleteComponentResponse.md)
 - [DeleteCreditBundleResponse](docs/Model/DeleteCreditBundleResponse.md)
+- [DeleteCreditSpendPolicyResponse](docs/Model/DeleteCreditSpendPolicyResponse.md)
 - [DeleteEntityKeyDefinitionResponse](docs/Model/DeleteEntityKeyDefinitionResponse.md)
 - [DeleteEntityTraitDefinitionResponse](docs/Model/DeleteEntityTraitDefinitionResponse.md)
 - [DeleteEnvironmentResponse](docs/Model/DeleteEnvironmentResponse.md)
 - [DeleteFeatureResponse](docs/Model/DeleteFeatureResponse.md)
 - [DeleteFlagResponse](docs/Model/DeleteFlagResponse.md)
+- [DeleteOTLPEnvironmentSettingsResponse](docs/Model/DeleteOTLPEnvironmentSettingsResponse.md)
 - [DeletePaymentMethodByExternalIDResponse](docs/Model/DeletePaymentMethodByExternalIDResponse.md)
 - [DeletePlanEntitlementResponse](docs/Model/DeletePlanEntitlementResponse.md)
 - [DeletePlanResponse](docs/Model/DeletePlanResponse.md)
@@ -707,6 +769,7 @@ Class | Method | HTTP request | Description
 - [EnvironmentTraitUsageTimeSeriesResponseData](docs/Model/EnvironmentTraitUsageTimeSeriesResponseData.md)
 - [EnvironmentType](docs/Model/EnvironmentType.md)
 - [EnvironmentUsagePointResponseData](docs/Model/EnvironmentUsagePointResponseData.md)
+- [EstimatedPlanTotal](docs/Model/EstimatedPlanTotal.md)
 - [EventBody](docs/Model/EventBody.md)
 - [EventBodyFlagCheck](docs/Model/EventBodyFlagCheck.md)
 - [EventBodyIdentify](docs/Model/EventBodyIdentify.md)
@@ -731,10 +794,12 @@ Class | Method | HTTP request | Description
 - [FeatureResponseData](docs/Model/FeatureResponseData.md)
 - [FeatureType](docs/Model/FeatureType.md)
 - [FeatureUsageDetailResponseData](docs/Model/FeatureUsageDetailResponseData.md)
+- [FeatureUsageHistoryResponseData](docs/Model/FeatureUsageHistoryResponseData.md)
 - [FeatureUsageLegacyResponseData](docs/Model/FeatureUsageLegacyResponseData.md)
 - [FeatureUsageResponseData](docs/Model/FeatureUsageResponseData.md)
 - [FeatureUsageTimeSeriesResponseData](docs/Model/FeatureUsageTimeSeriesResponseData.md)
 - [FeatureView](docs/Model/FeatureView.md)
+- [FlagCheckReservationResponseData](docs/Model/FlagCheckReservationResponseData.md)
 - [FlagDetailResponseData](docs/Model/FlagDetailResponseData.md)
 - [FlagInPlanResponseData](docs/Model/FlagInPlanResponseData.md)
 - [FlagResponseData](docs/Model/FlagResponseData.md)
@@ -757,10 +822,15 @@ Class | Method | HTTP request | Description
 - [GetCompanyBillingEntityResponse](docs/Model/GetCompanyBillingEntityResponse.md)
 - [GetCompanyOverrideResponse](docs/Model/GetCompanyOverrideResponse.md)
 - [GetCompanyResponse](docs/Model/GetCompanyResponse.md)
+- [GetCompanyUserUsageMetricsParams](docs/Model/GetCompanyUserUsageMetricsParams.md)
+- [GetCompanyUserUsageMetricsResponse](docs/Model/GetCompanyUserUsageMetricsResponse.md)
 - [GetComponentResponse](docs/Model/GetComponentResponse.md)
 - [GetConfigurationResponse](docs/Model/GetConfigurationResponse.md)
 - [GetCreditBundleResponse](docs/Model/GetCreditBundleResponse.md)
 - [GetCreditBundlesInCatalogResponse](docs/Model/GetCreditBundlesInCatalogResponse.md)
+- [GetCreditSpendPolicyResponse](docs/Model/GetCreditSpendPolicyResponse.md)
+- [GetCreditSpendPolicyUsageParams](docs/Model/GetCreditSpendPolicyUsageParams.md)
+- [GetCreditSpendPolicyUsageResponse](docs/Model/GetCreditSpendPolicyUsageResponse.md)
 - [GetDataExportResponse](docs/Model/GetDataExportResponse.md)
 - [GetDerivedFeaturesResponse](docs/Model/GetDerivedFeaturesResponse.md)
 - [GetEntityTraitDefinitionResponse](docs/Model/GetEntityTraitDefinitionResponse.md)
@@ -783,6 +853,9 @@ Class | Method | HTTP request | Description
 - [GetFlagResponse](docs/Model/GetFlagResponse.md)
 - [GetIntegrationWebhookUrlResponse](docs/Model/GetIntegrationWebhookUrlResponse.md)
 - [GetMigrationResponse](docs/Model/GetMigrationResponse.md)
+- [GetOTLPEnvironmentSettingsResponse](docs/Model/GetOTLPEnvironmentSettingsResponse.md)
+- [GetOnboardingStateResp](docs/Model/GetOnboardingStateResp.md)
+- [GetOnboardingStateResponse](docs/Model/GetOnboardingStateResponse.md)
 - [GetOrCreateCompanyMembershipRequestBody](docs/Model/GetOrCreateCompanyMembershipRequestBody.md)
 - [GetOrCreateCompanyMembershipResponse](docs/Model/GetOrCreateCompanyMembershipResponse.md)
 - [GetOrCreateEntityTraitDefinitionResponse](docs/Model/GetOrCreateEntityTraitDefinitionResponse.md)
@@ -802,6 +875,8 @@ Class | Method | HTTP request | Description
 - [GetSingleBillingCreditResponse](docs/Model/GetSingleBillingCreditResponse.md)
 - [GetSingleBillingPlanCreditGrantResponse](docs/Model/GetSingleBillingPlanCreditGrantResponse.md)
 - [GetSingleLicenseResponse](docs/Model/GetSingleLicenseResponse.md)
+- [GetStripeSandboxClaimLinkResponse](docs/Model/GetStripeSandboxClaimLinkResponse.md)
+- [GetStripeSandboxKeysResponse](docs/Model/GetStripeSandboxKeysResponse.md)
 - [GetSummaryResponse](docs/Model/GetSummaryResponse.md)
 - [GetTopFeaturesByUsageParams](docs/Model/GetTopFeaturesByUsageParams.md)
 - [GetTopFeaturesByUsageResponse](docs/Model/GetTopFeaturesByUsageResponse.md)
@@ -817,7 +892,9 @@ Class | Method | HTTP request | Description
 - [InsightsSummaryResponseData](docs/Model/InsightsSummaryResponseData.md)
 - [InstallIntegrationRequestBody](docs/Model/InstallIntegrationRequestBody.md)
 - [InstallIntegrationResponse](docs/Model/InstallIntegrationResponse.md)
+- [InstallStripeClaimableSandboxResponse](docs/Model/InstallStripeClaimableSandboxResponse.md)
 - [InstallStripeResponse](docs/Model/InstallStripeResponse.md)
+- [InstallStripeSandboxRequestBody](docs/Model/InstallStripeSandboxRequestBody.md)
 - [IntegrationCapabilities](docs/Model/IntegrationCapabilities.md)
 - [IntegrationConfig](docs/Model/IntegrationConfig.md)
 - [IntegrationInstallConfig](docs/Model/IntegrationInstallConfig.md)
@@ -860,6 +937,8 @@ Class | Method | HTTP request | Description
 - [ListCatalogsResponse](docs/Model/ListCatalogsResponse.md)
 - [ListCompaniesParams](docs/Model/ListCompaniesParams.md)
 - [ListCompaniesResponse](docs/Model/ListCompaniesResponse.md)
+- [ListCompanyBillingProfilesParams](docs/Model/ListCompanyBillingProfilesParams.md)
+- [ListCompanyBillingProfilesResponse](docs/Model/ListCompanyBillingProfilesResponse.md)
 - [ListCompanyCreditBalancesParams](docs/Model/ListCompanyCreditBalancesParams.md)
 - [ListCompanyCreditBalancesResponse](docs/Model/ListCompanyCreditBalancesResponse.md)
 - [ListCompanyGrantsParams](docs/Model/ListCompanyGrantsParams.md)
@@ -870,6 +949,8 @@ Class | Method | HTTP request | Description
 - [ListCompanyMigrationsResponse](docs/Model/ListCompanyMigrationsResponse.md)
 - [ListCompanyOverridesParams](docs/Model/ListCompanyOverridesParams.md)
 - [ListCompanyOverridesResponse](docs/Model/ListCompanyOverridesResponse.md)
+- [ListCompanyUserUsageParams](docs/Model/ListCompanyUserUsageParams.md)
+- [ListCompanyUserUsageResponse](docs/Model/ListCompanyUserUsageResponse.md)
 - [ListComponentsParams](docs/Model/ListComponentsParams.md)
 - [ListComponentsResponse](docs/Model/ListComponentsResponse.md)
 - [ListCouponsParams](docs/Model/ListCouponsParams.md)
@@ -878,6 +959,8 @@ Class | Method | HTTP request | Description
 - [ListCreditBundlesResponse](docs/Model/ListCreditBundlesResponse.md)
 - [ListCreditEventLedgerParams](docs/Model/ListCreditEventLedgerParams.md)
 - [ListCreditEventLedgerResponse](docs/Model/ListCreditEventLedgerResponse.md)
+- [ListCreditSpendPoliciesParams](docs/Model/ListCreditSpendPoliciesParams.md)
+- [ListCreditSpendPoliciesResponse](docs/Model/ListCreditSpendPoliciesResponse.md)
 - [ListCustomPlanBillingsParams](docs/Model/ListCustomPlanBillingsParams.md)
 - [ListCustomPlanBillingsResponse](docs/Model/ListCustomPlanBillingsResponse.md)
 - [ListCustomersWithSubscriptionsParams](docs/Model/ListCustomersWithSubscriptionsParams.md)
@@ -894,6 +977,8 @@ Class | Method | HTTP request | Description
 - [ListEventsResponse](docs/Model/ListEventsResponse.md)
 - [ListFeatureCompaniesParams](docs/Model/ListFeatureCompaniesParams.md)
 - [ListFeatureCompaniesResponse](docs/Model/ListFeatureCompaniesResponse.md)
+- [ListFeatureUsageHistoryParams](docs/Model/ListFeatureUsageHistoryParams.md)
+- [ListFeatureUsageHistoryResponse](docs/Model/ListFeatureUsageHistoryResponse.md)
 - [ListFeatureUsageParams](docs/Model/ListFeatureUsageParams.md)
 - [ListFeatureUsageResponse](docs/Model/ListFeatureUsageResponse.md)
 - [ListFeatureUsersParams](docs/Model/ListFeatureUsersParams.md)
@@ -928,6 +1013,7 @@ Class | Method | HTTP request | Description
 - [ListPlansResponse](docs/Model/ListPlansResponse.md)
 - [ListScheduledCheckoutsParams](docs/Model/ListScheduledCheckoutsParams.md)
 - [ListScheduledCheckoutsResponse](docs/Model/ListScheduledCheckoutsResponse.md)
+- [ListStripeSandboxCountriesResponse](docs/Model/ListStripeSandboxCountriesResponse.md)
 - [ListUsersParams](docs/Model/ListUsersParams.md)
 - [ListUsersResponse](docs/Model/ListUsersResponse.md)
 - [ListWebhookEventsParams](docs/Model/ListWebhookEventsParams.md)
@@ -951,10 +1037,21 @@ Class | Method | HTTP request | Description
 - [MigrationErrorCode](docs/Model/MigrationErrorCode.md)
 - [MigrationProrationBehavior](docs/Model/MigrationProrationBehavior.md)
 - [MrrResponseData](docs/Model/MrrResponseData.md)
+- [OTLPEnvironmentSettingsResponseData](docs/Model/OTLPEnvironmentSettingsResponseData.md)
+- [OnboardingMilestone](docs/Model/OnboardingMilestone.md)
+- [OnboardingMilestoneView](docs/Model/OnboardingMilestoneView.md)
+- [OnboardingPath](docs/Model/OnboardingPath.md)
+- [OnboardingRequirement](docs/Model/OnboardingRequirement.md)
+- [OnboardingRequirementStatus](docs/Model/OnboardingRequirementStatus.md)
+- [OnboardingRequirementView](docs/Model/OnboardingRequirementView.md)
+- [OnboardingRoadmapView](docs/Model/OnboardingRoadmapView.md)
+- [OnboardingStripeImport](docs/Model/OnboardingStripeImport.md)
+- [OnboardingTrack](docs/Model/OnboardingTrack.md)
 - [OrbIntegrationConfig](docs/Model/OrbIntegrationConfig.md)
 - [OrderedPlansInGroup](docs/Model/OrderedPlansInGroup.md)
 - [PaymentMethodRequestBody](docs/Model/PaymentMethodRequestBody.md)
 - [PaymentMethodResponseData](docs/Model/PaymentMethodResponseData.md)
+- [PendingMigrationResponseData](docs/Model/PendingMigrationResponseData.md)
 - [PlanBillingSource](docs/Model/PlanBillingSource.md)
 - [PlanBundleAction](docs/Model/PlanBundleAction.md)
 - [PlanBundleCreditGrantRequestBody](docs/Model/PlanBundleCreditGrantRequestBody.md)
@@ -998,6 +1095,8 @@ Class | Method | HTTP request | Description
 - [PlanVersionSnapshotView](docs/Model/PlanVersionSnapshotView.md)
 - [PlanVersionStatus](docs/Model/PlanVersionStatus.md)
 - [PlanViewPublicResponseData](docs/Model/PlanViewPublicResponseData.md)
+- [PreflightEventUsageRequestBody](docs/Model/PreflightEventUsageRequestBody.md)
+- [PreflightRequestBody](docs/Model/PreflightRequestBody.md)
 - [PreviewCheckoutInternalResponse](docs/Model/PreviewCheckoutInternalResponse.md)
 - [PreviewComponentDataParams](docs/Model/PreviewComponentDataParams.md)
 - [PreviewComponentDataResponse](docs/Model/PreviewComponentDataResponse.md)
@@ -1019,6 +1118,9 @@ Class | Method | HTTP request | Description
 - [RawEventBatchResponseData](docs/Model/RawEventBatchResponseData.md)
 - [RawEventResponseData](docs/Model/RawEventResponseData.md)
 - [ReleaseCreditLeaseResponse](docs/Model/ReleaseCreditLeaseResponse.md)
+- [ReleaseCreditReservationResponse](docs/Model/ReleaseCreditReservationResponse.md)
+- [ReserveCreditsRequestBody](docs/Model/ReserveCreditsRequestBody.md)
+- [ReserveCreditsResponse](docs/Model/ReserveCreditsResponse.md)
 - [RetryCompanyMigrationResponse](docs/Model/RetryCompanyMigrationResponse.md)
 - [RetryCustomPlanBillingRequestBody](docs/Model/RetryCustomPlanBillingRequestBody.md)
 - [RetryCustomPlanBillingResponse](docs/Model/RetryCustomPlanBillingResponse.md)
@@ -1028,6 +1130,7 @@ Class | Method | HTTP request | Description
 - [RuleConditionDetailResponseData](docs/Model/RuleConditionDetailResponseData.md)
 - [RuleConditionGroupDetailResponseData](docs/Model/RuleConditionGroupDetailResponseData.md)
 - [RuleConditionGroupResponseData](docs/Model/RuleConditionGroupResponseData.md)
+- [RuleConditionPlanVersionResponseData](docs/Model/RuleConditionPlanVersionResponseData.md)
 - [RuleConditionResponseData](docs/Model/RuleConditionResponseData.md)
 - [RuleDetailResponseData](docs/Model/RuleDetailResponseData.md)
 - [RuleResponseData](docs/Model/RuleResponseData.md)
@@ -1038,9 +1141,14 @@ Class | Method | HTTP request | Description
 - [RulesengineCheckFlagResult](docs/Model/RulesengineCheckFlagResult.md)
 - [RulesengineCompany](docs/Model/RulesengineCompany.md)
 - [RulesengineCompanyMetric](docs/Model/RulesengineCompanyMetric.md)
+- [RulesengineComparableOperator](docs/Model/RulesengineComparableOperator.md)
 - [RulesengineCondition](docs/Model/RulesengineCondition.md)
 - [RulesengineConditionGroup](docs/Model/RulesengineConditionGroup.md)
 - [RulesengineConditionType](docs/Model/RulesengineConditionType.md)
+- [RulesengineCreditPostpaidConfig](docs/Model/RulesengineCreditPostpaidConfig.md)
+- [RulesengineCreditSpendPolicy](docs/Model/RulesengineCreditSpendPolicy.md)
+- [RulesengineCreditSpendPolicyScope](docs/Model/RulesengineCreditSpendPolicyScope.md)
+- [RulesengineCreditSpendWindow](docs/Model/RulesengineCreditSpendWindow.md)
 - [RulesengineEntitlementValueType](docs/Model/RulesengineEntitlementValueType.md)
 - [RulesengineEntityType](docs/Model/RulesengineEntityType.md)
 - [RulesengineFeatureEntitlement](docs/Model/RulesengineFeatureEntitlement.md)
@@ -1063,17 +1171,24 @@ Class | Method | HTTP request | Description
 - [SendTestWebhookActionResponse](docs/Model/SendTestWebhookActionResponse.md)
 - [SkippedEntitlementErrorResponseData](docs/Model/SkippedEntitlementErrorResponseData.md)
 - [SkippedEntitlementResponseData](docs/Model/SkippedEntitlementResponseData.md)
+- [SlackConnectInviteStatus](docs/Model/SlackConnectInviteStatus.md)
+- [SlackConnectInviteView](docs/Model/SlackConnectInviteView.md)
 - [SoftDeleteBillingCreditResponse](docs/Model/SoftDeleteBillingCreditResponse.md)
 - [SortDirection](docs/Model/SortDirection.md)
 - [StartDataImportRequestBody](docs/Model/StartDataImportRequestBody.md)
 - [StartDataImportResponse](docs/Model/StartDataImportResponse.md)
 - [StripeEmbedInfo](docs/Model/StripeEmbedInfo.md)
 - [StripeIntegrationConfig](docs/Model/StripeIntegrationConfig.md)
+- [StripeSandboxClaimLink](docs/Model/StripeSandboxClaimLink.md)
+- [StripeSandboxCountriesResponseData](docs/Model/StripeSandboxCountriesResponseData.md)
+- [StripeSandboxInstallResponseData](docs/Model/StripeSandboxInstallResponseData.md)
+- [StripeSandboxKeysResponseData](docs/Model/StripeSandboxKeysResponseData.md)
 - [SubscriptionStatus](docs/Model/SubscriptionStatus.md)
 - [SubscriptionTraitUpdate](docs/Model/SubscriptionTraitUpdate.md)
 - [SubscriptionType](docs/Model/SubscriptionType.md)
 - [TaxIDInput](docs/Model/TaxIDInput.md)
 - [TaxIdType](docs/Model/TaxIdType.md)
+- [TemporaryAccessTokenIssuerType](docs/Model/TemporaryAccessTokenIssuerType.md)
 - [TemporaryAccessTokenResourceType](docs/Model/TemporaryAccessTokenResourceType.md)
 - [TemporaryAccessTokenResponseData](docs/Model/TemporaryAccessTokenResponseData.md)
 - [TestWebhookRequestBody](docs/Model/TestWebhookRequestBody.md)
@@ -1085,6 +1200,7 @@ Class | Method | HTTP request | Description
 - [TraitType](docs/Model/TraitType.md)
 - [TrialStatus](docs/Model/TrialStatus.md)
 - [UninstallIntegrationResponse](docs/Model/UninstallIntegrationResponse.md)
+- [UpcomingInvoiceResponseData](docs/Model/UpcomingInvoiceResponseData.md)
 - [UpdateAddOnRequestBody](docs/Model/UpdateAddOnRequestBody.md)
 - [UpdateApiKeyRequestBody](docs/Model/UpdateApiKeyRequestBody.md)
 - [UpdateApiKeyResponse](docs/Model/UpdateApiKeyResponse.md)
@@ -1098,6 +1214,8 @@ Class | Method | HTTP request | Description
 - [UpdateCatalogResponse](docs/Model/UpdateCatalogResponse.md)
 - [UpdateCompanyBillingDetailsRequestBody](docs/Model/UpdateCompanyBillingDetailsRequestBody.md)
 - [UpdateCompanyBillingDetailsResponse](docs/Model/UpdateCompanyBillingDetailsResponse.md)
+- [UpdateCompanyBillingProfileRequestBody](docs/Model/UpdateCompanyBillingProfileRequestBody.md)
+- [UpdateCompanyBillingProfileResponse](docs/Model/UpdateCompanyBillingProfileResponse.md)
 - [UpdateCompanyOverrideRequestBody](docs/Model/UpdateCompanyOverrideRequestBody.md)
 - [UpdateCompanyOverrideResponse](docs/Model/UpdateCompanyOverrideResponse.md)
 - [UpdateCompanyPlansRequestBody](docs/Model/UpdateCompanyPlansRequestBody.md)
@@ -1108,6 +1226,8 @@ Class | Method | HTTP request | Description
 - [UpdateCreditBundleDetailsRequestBody](docs/Model/UpdateCreditBundleDetailsRequestBody.md)
 - [UpdateCreditBundleDetailsResponse](docs/Model/UpdateCreditBundleDetailsResponse.md)
 - [UpdateCreditBundleRequestBody](docs/Model/UpdateCreditBundleRequestBody.md)
+- [UpdateCreditSpendPolicyRequestBody](docs/Model/UpdateCreditSpendPolicyRequestBody.md)
+- [UpdateCreditSpendPolicyResponse](docs/Model/UpdateCreditSpendPolicyResponse.md)
 - [UpdateCustomerSubscriptionTrialEndResponse](docs/Model/UpdateCustomerSubscriptionTrialEndResponse.md)
 - [UpdateEntitlementReqCommon](docs/Model/UpdateEntitlementReqCommon.md)
 - [UpdateEntityTraitDefinitionRequestBody](docs/Model/UpdateEntityTraitDefinitionRequestBody.md)
@@ -1119,6 +1239,8 @@ Class | Method | HTTP request | Description
 - [UpdateFlagResponse](docs/Model/UpdateFlagResponse.md)
 - [UpdateFlagRulesRequestBody](docs/Model/UpdateFlagRulesRequestBody.md)
 - [UpdateFlagRulesResponse](docs/Model/UpdateFlagRulesResponse.md)
+- [UpdateOnboardingStateRequestBody](docs/Model/UpdateOnboardingStateRequestBody.md)
+- [UpdateOnboardingStateResponse](docs/Model/UpdateOnboardingStateResponse.md)
 - [UpdatePayInAdvanceRequestBody](docs/Model/UpdatePayInAdvanceRequestBody.md)
 - [UpdatePlanBundleRequestBody](docs/Model/UpdatePlanBundleRequestBody.md)
 - [UpdatePlanBundleResponse](docs/Model/UpdatePlanBundleResponse.md)
@@ -1150,6 +1272,8 @@ Class | Method | HTTP request | Description
 - [UpsertCompanyTraitResponse](docs/Model/UpsertCompanyTraitResponse.md)
 - [UpsertFeatureForBillingProductResponse](docs/Model/UpsertFeatureForBillingProductResponse.md)
 - [UpsertInvoiceResponse](docs/Model/UpsertInvoiceResponse.md)
+- [UpsertOTLPEnvironmentSettingsRequestBody](docs/Model/UpsertOTLPEnvironmentSettingsRequestBody.md)
+- [UpsertOTLPEnvironmentSettingsResponse](docs/Model/UpsertOTLPEnvironmentSettingsResponse.md)
 - [UpsertPaymentMethodResponse](docs/Model/UpsertPaymentMethodResponse.md)
 - [UpsertPlanEntitlementForBillingProductResponse](docs/Model/UpsertPlanEntitlementForBillingProductResponse.md)
 - [UpsertPlanForBillingProductResponse](docs/Model/UpsertPlanForBillingProductResponse.md)
@@ -1169,6 +1293,7 @@ Class | Method | HTTP request | Description
 - [UserResponseData](docs/Model/UserResponseData.md)
 - [UserUsageByCompanyResponseData](docs/Model/UserUsageByCompanyResponseData.md)
 - [UserUsageDetailResponseData](docs/Model/UserUsageDetailResponseData.md)
+- [UserUsageMetric](docs/Model/UserUsageMetric.md)
 - [WarningTier](docs/Model/WarningTier.md)
 - [WarningTierRequestBody](docs/Model/WarningTierRequestBody.md)
 - [WarningTierResponseData](docs/Model/WarningTierResponseData.md)

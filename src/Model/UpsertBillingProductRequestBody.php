@@ -383,6 +383,22 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
         if ($this->container['is_trialable'] === null) {
             $invalidProperties[] = "'is_trialable' can't be null";
         }
+        if (!is_null($this->container['monthly_price']) && ($this->container['monthly_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'monthly_price', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['one_time_price']) && ($this->container['one_time_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'one_time_price', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['quarterly_price']) && ($this->container['quarterly_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'quarterly_price', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['yearly_price']) && ($this->container['yearly_price'] < 0)) {
+            $invalidProperties[] = "invalid value for 'yearly_price', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -621,6 +637,11 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($monthly_price) && ($monthly_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $monthly_price when calling UpsertBillingProductRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['monthly_price'] = $monthly_price;
 
         return $this;
@@ -689,6 +710,11 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($one_time_price) && ($one_time_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $one_time_price when calling UpsertBillingProductRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['one_time_price'] = $one_time_price;
 
         return $this;
@@ -757,6 +783,11 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($quarterly_price) && ($quarterly_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $quarterly_price when calling UpsertBillingProductRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['quarterly_price'] = $quarterly_price;
 
         return $this;
@@ -859,6 +890,11 @@ class UpsertBillingProductRequestBody implements ModelInterface, ArrayAccess, \J
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
+
+        if (!is_null($yearly_price) && ($yearly_price < 0)) {
+            throw new \InvalidArgumentException('invalid value for $yearly_price when calling UpsertBillingProductRequestBody., must be bigger than or equal to 0.');
+        }
+
         $this->container['yearly_price'] = $yearly_price;
 
         return $this;

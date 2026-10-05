@@ -205,6 +205,18 @@ class AccountsApiTest extends TestCase
     }
 
     /**
+     * Test case for getOnboardingState
+     *
+     * Get onboarding state.
+     *
+     */
+    public function testGetOnboardingState()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getWhoAmI
      *
      * Get who am I.
@@ -295,6 +307,18 @@ class AccountsApiTest extends TestCase
      *
      */
     public function testUpdateEnvironment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateOnboardingState
+     *
+     * Update onboarding state.
+     *
+     */
+    public function testUpdateOnboardingState()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

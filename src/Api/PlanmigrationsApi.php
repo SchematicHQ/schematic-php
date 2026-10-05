@@ -75,6 +75,12 @@ class PlanmigrationsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'cancelMigration' => [
+            'application/json',
+        ],
+        'completeMigrationNow' => [
+            'application/json',
+        ],
         'countCompanyMigrations' => [
             'application/json',
         ],
@@ -151,11 +157,716 @@ class PlanmigrationsApi
     }
 
     /**
+     * Operation cancelMigration
+     *
+     * Cancel migration
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelMigration'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CancelMigrationResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function cancelMigration($plan_version_migration_id, string $contentType = self::contentTypes['cancelMigration'][0])
+    {
+        list($response) = $this->cancelMigrationWithHttpInfo($plan_version_migration_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation cancelMigrationWithHttpInfo
+     *
+     * Cancel migration
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelMigration'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CancelMigrationResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function cancelMigrationWithHttpInfo($plan_version_migration_id, string $contentType = self::contentTypes['cancelMigration'][0])
+    {
+        $request = $this->cancelMigrationRequest($plan_version_migration_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\CancelMigrationResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\CancelMigrationResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CancelMigrationResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation cancelMigrationAsync
+     *
+     * Cancel migration
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelMigration'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function cancelMigrationAsync($plan_version_migration_id, string $contentType = self::contentTypes['cancelMigration'][0])
+    {
+        return $this->cancelMigrationAsyncWithHttpInfo($plan_version_migration_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation cancelMigrationAsyncWithHttpInfo
+     *
+     * Cancel migration
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelMigration'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function cancelMigrationAsyncWithHttpInfo($plan_version_migration_id, string $contentType = self::contentTypes['cancelMigration'][0])
+    {
+        $returnType = '\Schematic\Model\CancelMigrationResponse';
+        $request = $this->cancelMigrationRequest($plan_version_migration_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'cancelMigration'
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelMigration'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function cancelMigrationRequest($plan_version_migration_id, string $contentType = self::contentTypes['cancelMigration'][0])
+    {
+
+        // verify the required parameter 'plan_version_migration_id' is set
+        if ($plan_version_migration_id === null || (is_array($plan_version_migration_id) && count($plan_version_migration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $plan_version_migration_id when calling cancelMigration'
+            );
+        }
+
+
+        $resourcePath = '/plan-version-migrations/{plan_version_migration_id}/cancel';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($plan_version_migration_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'plan_version_migration_id' . '}',
+                ObjectSerializer::toPathValue($plan_version_migration_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation completeMigrationNow
+     *
+     * Complete migration now
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  \Schematic\Model\CompleteMigrationNowRequestBody $complete_migration_now_request_body complete_migration_now_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['completeMigrationNow'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Schematic\Model\CompleteMigrationNowResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
+     */
+    public function completeMigrationNow($plan_version_migration_id, $complete_migration_now_request_body, string $contentType = self::contentTypes['completeMigrationNow'][0])
+    {
+        list($response) = $this->completeMigrationNowWithHttpInfo($plan_version_migration_id, $complete_migration_now_request_body, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation completeMigrationNowWithHttpInfo
+     *
+     * Complete migration now
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  \Schematic\Model\CompleteMigrationNowRequestBody $complete_migration_now_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['completeMigrationNow'] to see the possible values for this operation
+     *
+     * @throws \Schematic\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Schematic\Model\CompleteMigrationNowResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function completeMigrationNowWithHttpInfo($plan_version_migration_id, $complete_migration_now_request_body, string $contentType = self::contentTypes['completeMigrationNow'][0])
+    {
+        $request = $this->completeMigrationNowRequest($plan_version_migration_id, $complete_migration_now_request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch ($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\CompleteMigrationNowResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 401:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 403:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Schematic\Model\ApiError',
+                        $request,
+                        $response,
+                    );
+            }
+
+
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Schematic\Model\CompleteMigrationNowResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\CompleteMigrationNowResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Schematic\Model\ApiError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation completeMigrationNowAsync
+     *
+     * Complete migration now
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  \Schematic\Model\CompleteMigrationNowRequestBody $complete_migration_now_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['completeMigrationNow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function completeMigrationNowAsync($plan_version_migration_id, $complete_migration_now_request_body, string $contentType = self::contentTypes['completeMigrationNow'][0])
+    {
+        return $this->completeMigrationNowAsyncWithHttpInfo($plan_version_migration_id, $complete_migration_now_request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation completeMigrationNowAsyncWithHttpInfo
+     *
+     * Complete migration now
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  \Schematic\Model\CompleteMigrationNowRequestBody $complete_migration_now_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['completeMigrationNow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function completeMigrationNowAsyncWithHttpInfo($plan_version_migration_id, $complete_migration_now_request_body, string $contentType = self::contentTypes['completeMigrationNow'][0])
+    {
+        $returnType = '\Schematic\Model\CompleteMigrationNowResponse';
+        $request = $this->completeMigrationNowRequest($plan_version_migration_id, $complete_migration_now_request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'completeMigrationNow'
+     *
+     * @param  string $plan_version_migration_id plan_version_migration_id (required)
+     * @param  \Schematic\Model\CompleteMigrationNowRequestBody $complete_migration_now_request_body (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['completeMigrationNow'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function completeMigrationNowRequest($plan_version_migration_id, $complete_migration_now_request_body, string $contentType = self::contentTypes['completeMigrationNow'][0])
+    {
+
+        // verify the required parameter 'plan_version_migration_id' is set
+        if ($plan_version_migration_id === null || (is_array($plan_version_migration_id) && count($plan_version_migration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $plan_version_migration_id when calling completeMigrationNow'
+            );
+        }
+
+        // verify the required parameter 'complete_migration_now_request_body' is set
+        if ($complete_migration_now_request_body === null || (is_array($complete_migration_now_request_body) && count($complete_migration_now_request_body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $complete_migration_now_request_body when calling completeMigrationNow'
+            );
+        }
+
+
+        $resourcePath = '/plan-version-migrations/{plan_version_migration_id}/complete-now';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($plan_version_migration_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'plan_version_migration_id' . '}',
+                ObjectSerializer::toPathValue($plan_version_migration_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($complete_migration_now_request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($complete_migration_now_request_body));
+            } else {
+                $httpBody = $complete_migration_now_request_body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-Schematic-Api-Key');
+        if ($apiKey !== null) {
+            $headers['X-Schematic-Api-Key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation countCompanyMigrations
      *
      * Count company migrations
      *
-     * @param  string|null $migration_id migration_id (optional)
+     * @param  string $migration_id migration_id (required)
      * @param  string|null $q q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -166,7 +877,7 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountCompanyMigrationsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countCompanyMigrations($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
+    public function countCompanyMigrations($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
     {
         list($response) = $this->countCompanyMigrationsWithHttpInfo($migration_id, $q, $status, $limit, $offset, $contentType);
         return $response;
@@ -177,7 +888,7 @@ class PlanmigrationsApi
      *
      * Count company migrations
      *
-     * @param  string|null $migration_id (optional)
+     * @param  string $migration_id (required)
      * @param  string|null $q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -188,7 +899,7 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountCompanyMigrationsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countCompanyMigrationsWithHttpInfo($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
+    public function countCompanyMigrationsWithHttpInfo($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
     {
         $request = $this->countCompanyMigrationsRequest($migration_id, $q, $status, $limit, $offset, $contentType);
 
@@ -336,7 +1047,7 @@ class PlanmigrationsApi
      *
      * Count company migrations
      *
-     * @param  string|null $migration_id (optional)
+     * @param  string $migration_id (required)
      * @param  string|null $q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -346,7 +1057,7 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCompanyMigrationsAsync($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
+    public function countCompanyMigrationsAsync($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
     {
         return $this->countCompanyMigrationsAsyncWithHttpInfo($migration_id, $q, $status, $limit, $offset, $contentType)
             ->then(
@@ -361,7 +1072,7 @@ class PlanmigrationsApi
      *
      * Count company migrations
      *
-     * @param  string|null $migration_id (optional)
+     * @param  string $migration_id (required)
      * @param  string|null $q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -371,7 +1082,7 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countCompanyMigrationsAsyncWithHttpInfo($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
+    public function countCompanyMigrationsAsyncWithHttpInfo($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
     {
         $returnType = '\Schematic\Model\CountCompanyMigrationsResponse';
         $request = $this->countCompanyMigrationsRequest($migration_id, $q, $status, $limit, $offset, $contentType);
@@ -415,7 +1126,7 @@ class PlanmigrationsApi
     /**
      * Create request for operation 'countCompanyMigrations'
      *
-     * @param  string|null $migration_id (optional)
+     * @param  string $migration_id (required)
      * @param  string|null $q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -425,9 +1136,15 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countCompanyMigrationsRequest($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
+    public function countCompanyMigrationsRequest($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countCompanyMigrations'][0])
     {
 
+        // verify the required parameter 'migration_id' is set
+        if ($migration_id === null || (is_array($migration_id) && count($migration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $migration_id when calling countCompanyMigrations'
+            );
+        }
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling PlanmigrationsApi.countCompanyMigrations, must be smaller than or equal to 512.');
@@ -457,7 +1174,7 @@ class PlanmigrationsApi
             'string', // openApiType
             'form', // style
             true, // explode
-            false // required
+            true // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -562,6 +1279,8 @@ class PlanmigrationsApi
      *
      * Count migrations
      *
+     * @param  string|null $feature_id feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -572,9 +1291,9 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\CountMigrationsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function countMigrations($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
+    public function countMigrations($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
     {
-        list($response) = $this->countMigrationsWithHttpInfo($plan_version_id, $status, $limit, $offset, $contentType);
+        list($response) = $this->countMigrationsWithHttpInfo($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -583,6 +1302,8 @@ class PlanmigrationsApi
      *
      * Count migrations
      *
+     * @param  string|null $feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -593,9 +1314,9 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\CountMigrationsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function countMigrationsWithHttpInfo($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
+    public function countMigrationsWithHttpInfo($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
     {
-        $request = $this->countMigrationsRequest($plan_version_id, $status, $limit, $offset, $contentType);
+        $request = $this->countMigrationsRequest($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -741,6 +1462,8 @@ class PlanmigrationsApi
      *
      * Count migrations
      *
+     * @param  string|null $feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -750,9 +1473,9 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countMigrationsAsync($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
+    public function countMigrationsAsync($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
     {
-        return $this->countMigrationsAsyncWithHttpInfo($plan_version_id, $status, $limit, $offset, $contentType)
+        return $this->countMigrationsAsyncWithHttpInfo($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -765,6 +1488,8 @@ class PlanmigrationsApi
      *
      * Count migrations
      *
+     * @param  string|null $feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -774,10 +1499,10 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function countMigrationsAsyncWithHttpInfo($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
+    public function countMigrationsAsyncWithHttpInfo($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
     {
         $returnType = '\Schematic\Model\CountMigrationsResponse';
-        $request = $this->countMigrationsRequest($plan_version_id, $status, $limit, $offset, $contentType);
+        $request = $this->countMigrationsRequest($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -818,6 +1543,8 @@ class PlanmigrationsApi
     /**
      * Create request for operation 'countMigrations'
      *
+     * @param  string|null $feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -827,8 +1554,10 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function countMigrationsRequest($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
+    public function countMigrationsRequest($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['countMigrations'][0])
     {
+
+
 
 
 
@@ -848,6 +1577,24 @@ class PlanmigrationsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $feature_id,
+            'feature_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $feature_plan_rollout_id,
+            'feature_plan_rollout_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $plan_version_id,
@@ -1622,7 +2369,7 @@ class PlanmigrationsApi
      *
      * List company migrations
      *
-     * @param  string|null $migration_id migration_id (optional)
+     * @param  string $migration_id migration_id (required)
      * @param  string|null $q q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -1633,7 +2380,7 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListCompanyMigrationsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listCompanyMigrations($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
+    public function listCompanyMigrations($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
     {
         list($response) = $this->listCompanyMigrationsWithHttpInfo($migration_id, $q, $status, $limit, $offset, $contentType);
         return $response;
@@ -1644,7 +2391,7 @@ class PlanmigrationsApi
      *
      * List company migrations
      *
-     * @param  string|null $migration_id (optional)
+     * @param  string $migration_id (required)
      * @param  string|null $q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -1655,7 +2402,7 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListCompanyMigrationsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listCompanyMigrationsWithHttpInfo($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
+    public function listCompanyMigrationsWithHttpInfo($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
     {
         $request = $this->listCompanyMigrationsRequest($migration_id, $q, $status, $limit, $offset, $contentType);
 
@@ -1803,7 +2550,7 @@ class PlanmigrationsApi
      *
      * List company migrations
      *
-     * @param  string|null $migration_id (optional)
+     * @param  string $migration_id (required)
      * @param  string|null $q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -1813,7 +2560,7 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyMigrationsAsync($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
+    public function listCompanyMigrationsAsync($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
     {
         return $this->listCompanyMigrationsAsyncWithHttpInfo($migration_id, $q, $status, $limit, $offset, $contentType)
             ->then(
@@ -1828,7 +2575,7 @@ class PlanmigrationsApi
      *
      * List company migrations
      *
-     * @param  string|null $migration_id (optional)
+     * @param  string $migration_id (required)
      * @param  string|null $q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -1838,7 +2585,7 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listCompanyMigrationsAsyncWithHttpInfo($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
+    public function listCompanyMigrationsAsyncWithHttpInfo($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
     {
         $returnType = '\Schematic\Model\ListCompanyMigrationsResponse';
         $request = $this->listCompanyMigrationsRequest($migration_id, $q, $status, $limit, $offset, $contentType);
@@ -1882,7 +2629,7 @@ class PlanmigrationsApi
     /**
      * Create request for operation 'listCompanyMigrations'
      *
-     * @param  string|null $migration_id (optional)
+     * @param  string $migration_id (required)
      * @param  string|null $q (optional)
      * @param  \Schematic\Model\PlanVersionCompanyMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -1892,9 +2639,15 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCompanyMigrationsRequest($migration_id = null, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
+    public function listCompanyMigrationsRequest($migration_id, $q = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listCompanyMigrations'][0])
     {
 
+        // verify the required parameter 'migration_id' is set
+        if ($migration_id === null || (is_array($migration_id) && count($migration_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $migration_id when calling listCompanyMigrations'
+            );
+        }
 
         if ($q !== null && strlen($q) > 512) {
             throw new \InvalidArgumentException('invalid length for "$q" when calling PlanmigrationsApi.listCompanyMigrations, must be smaller than or equal to 512.');
@@ -1924,7 +2677,7 @@ class PlanmigrationsApi
             'string', // openApiType
             'form', // style
             true, // explode
-            false // required
+            true // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -2029,6 +2782,8 @@ class PlanmigrationsApi
      *
      * List migrations
      *
+     * @param  string|null $feature_id feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -2039,9 +2794,9 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \Schematic\Model\ListMigrationsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError
      */
-    public function listMigrations($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
+    public function listMigrations($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
     {
-        list($response) = $this->listMigrationsWithHttpInfo($plan_version_id, $status, $limit, $offset, $contentType);
+        list($response) = $this->listMigrationsWithHttpInfo($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset, $contentType);
         return $response;
     }
 
@@ -2050,6 +2805,8 @@ class PlanmigrationsApi
      *
      * List migrations
      *
+     * @param  string|null $feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -2060,9 +2817,9 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return array of \Schematic\Model\ListMigrationsResponse|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError|\Schematic\Model\ApiError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listMigrationsWithHttpInfo($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
+    public function listMigrationsWithHttpInfo($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
     {
-        $request = $this->listMigrationsRequest($plan_version_id, $status, $limit, $offset, $contentType);
+        $request = $this->listMigrationsRequest($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2208,6 +2965,8 @@ class PlanmigrationsApi
      *
      * List migrations
      *
+     * @param  string|null $feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -2217,9 +2976,9 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMigrationsAsync($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
+    public function listMigrationsAsync($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
     {
-        return $this->listMigrationsAsyncWithHttpInfo($plan_version_id, $status, $limit, $offset, $contentType)
+        return $this->listMigrationsAsyncWithHttpInfo($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2232,6 +2991,8 @@ class PlanmigrationsApi
      *
      * List migrations
      *
+     * @param  string|null $feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -2241,10 +3002,10 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listMigrationsAsyncWithHttpInfo($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
+    public function listMigrationsAsyncWithHttpInfo($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
     {
         $returnType = '\Schematic\Model\ListMigrationsResponse';
-        $request = $this->listMigrationsRequest($plan_version_id, $status, $limit, $offset, $contentType);
+        $request = $this->listMigrationsRequest($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2285,6 +3046,8 @@ class PlanmigrationsApi
     /**
      * Create request for operation 'listMigrations'
      *
+     * @param  string|null $feature_id (optional)
+     * @param  string|null $feature_plan_rollout_id (optional)
      * @param  string|null $plan_version_id (optional)
      * @param  \Schematic\Model\PlanVersionMigrationStatus|null $status (optional)
      * @param  int|null $limit Page limit (default 100) (optional)
@@ -2294,8 +3057,10 @@ class PlanmigrationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listMigrationsRequest($plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
+    public function listMigrationsRequest($feature_id = null, $feature_plan_rollout_id = null, $plan_version_id = null, $status = null, $limit = null, $offset = null, string $contentType = self::contentTypes['listMigrations'][0])
     {
+
+
 
 
 
@@ -2315,6 +3080,24 @@ class PlanmigrationsApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $feature_id,
+            'feature_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $feature_plan_rollout_id,
+            'feature_plan_rollout_id', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $plan_version_id,

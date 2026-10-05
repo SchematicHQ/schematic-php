@@ -6,6 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **add_ons** | [**\Schematic\Model\CompanyPlanWithBillingSubView[]**](CompanyPlanWithBillingSubView.md) |  |
 **billing_credit_balances** | **array<string,float>** |  | [optional]
+**billing_email** | **string** |  | [optional]
+**billing_profile** | [**\Schematic\Model\CompanyBillingProfileResponseData**](CompanyBillingProfileResponseData.md) |  | [optional]
+**billing_profiles** | [**\Schematic\Model\CompanyBillingProfileResponseData[]**](CompanyBillingProfileResponseData.md) |  | [optional]
 **billing_subscription** | [**\Schematic\Model\BillingSubscriptionView**](BillingSubscriptionView.md) |  | [optional]
 **billing_subscriptions** | [**\Schematic\Model\BillingSubscriptionView[]**](BillingSubscriptionView.md) |  |
 **created_at** | **\DateTime** |  |
@@ -21,6 +24,7 @@ Name | Type | Description | Notes
 **metrics** | [**\Schematic\Model\CompanyEventPeriodMetricsResponseData[]**](CompanyEventPeriodMetricsResponseData.md) |  |
 **name** | **string** |  |
 **payment_methods** | [**\Schematic\Model\PaymentMethodResponseData[]**](PaymentMethodResponseData.md) |  |
+**pending_migration** | [**\Schematic\Model\PendingMigrationResponseData**](PendingMigrationResponseData.md) |  | [optional]
 **plan** | [**\Schematic\Model\CompanyPlanWithBillingSubView**](CompanyPlanWithBillingSubView.md) |  | [optional]
 **plans** | [**\Schematic\Model\GenericPreviewObject[]**](GenericPreviewObject.md) |  |
 **rules** | [**\Schematic\Model\Rule[]**](Rule.md) |  |

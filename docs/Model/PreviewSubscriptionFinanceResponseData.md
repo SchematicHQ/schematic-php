@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount_off** | **int** |  |
+**currency** | **string** | ISO 4217 currency every amount in this block is denominated in. |
 **discount_amount** | **int** |  |
 **discounts** | [**\Schematic\Model\PreviewSubscriptionDiscountResponseData[]**](PreviewSubscriptionDiscountResponseData.md) |  |
 **due_now** | **int** |  |
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **period_start** | **\DateTime** |  |
 **promo_code_applied** | **bool** |  |
 **proration** | **int** |  |
+**proration_billed_at** | **\DateTime** |  | [optional]
 **tax_amount** | **int** |  | [optional]
 **tax_display_name** | **string** |  | [optional]
 **tax_require_billing_details** | **bool** |  |

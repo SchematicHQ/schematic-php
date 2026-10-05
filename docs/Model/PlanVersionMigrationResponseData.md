@@ -9,12 +9,16 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** |  |
 **error** | **string** |  | [optional]
 **failed_companies** | **int** |  |
+**feature_id** | **string** |  | [optional]
+**feature_plan_rollout_id** | **string** |  | [optional]
 **id** | **string** |  |
+**next_due_at** | **\DateTime** |  | [optional]
 **plan_id** | **string** |  |
 **plan_version_id_from** | **string** |  | [optional]
 **plan_version_id_to** | **string** |  |
 **plan_version_ids_from** | **string[]** |  |
 **proration_behavior** | [**\Schematic\Model\MigrationProrationBehavior**](MigrationProrationBehavior.md) |  | [optional]
+**scheduled_at** | **\DateTime** |  | [optional]
 **skipped_companies** | **int** |  |
 **started_at** | **\DateTime** |  | [optional]
 **status** | [**\Schematic\Model\PlanVersionMigrationStatus**](PlanVersionMigrationStatus.md) |  |

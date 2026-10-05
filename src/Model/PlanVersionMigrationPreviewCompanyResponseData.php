@@ -63,7 +63,8 @@ class PlanVersionMigrationPreviewCompanyResponseData implements ModelInterface, 
         'has_custom_pricing' => 'bool',
         'note' => 'string',
         'plan_version_id_from' => 'string',
-        'will_update_subscription' => 'bool'
+        'will_update_subscription' => 'bool',
+        'would_fail' => 'bool'
     ];
 
     /**
@@ -79,7 +80,8 @@ class PlanVersionMigrationPreviewCompanyResponseData implements ModelInterface, 
         'has_custom_pricing' => null,
         'note' => null,
         'plan_version_id_from' => null,
-        'will_update_subscription' => null
+        'will_update_subscription' => null,
+        'would_fail' => null
     ];
 
     /**
@@ -93,7 +95,8 @@ class PlanVersionMigrationPreviewCompanyResponseData implements ModelInterface, 
         'has_custom_pricing' => false,
         'note' => true,
         'plan_version_id_from' => true,
-        'will_update_subscription' => false
+        'will_update_subscription' => false,
+        'would_fail' => false
     ];
 
     /**
@@ -187,7 +190,8 @@ class PlanVersionMigrationPreviewCompanyResponseData implements ModelInterface, 
         'has_custom_pricing' => 'has_custom_pricing',
         'note' => 'note',
         'plan_version_id_from' => 'plan_version_id_from',
-        'will_update_subscription' => 'will_update_subscription'
+        'will_update_subscription' => 'will_update_subscription',
+        'would_fail' => 'would_fail'
     ];
 
     /**
@@ -201,7 +205,8 @@ class PlanVersionMigrationPreviewCompanyResponseData implements ModelInterface, 
         'has_custom_pricing' => 'setHasCustomPricing',
         'note' => 'setNote',
         'plan_version_id_from' => 'setPlanVersionIdFrom',
-        'will_update_subscription' => 'setWillUpdateSubscription'
+        'will_update_subscription' => 'setWillUpdateSubscription',
+        'would_fail' => 'setWouldFail'
     ];
 
     /**
@@ -215,7 +220,8 @@ class PlanVersionMigrationPreviewCompanyResponseData implements ModelInterface, 
         'has_custom_pricing' => 'getHasCustomPricing',
         'note' => 'getNote',
         'plan_version_id_from' => 'getPlanVersionIdFrom',
-        'will_update_subscription' => 'getWillUpdateSubscription'
+        'will_update_subscription' => 'getWillUpdateSubscription',
+        'would_fail' => 'getWouldFail'
     ];
 
     /**
@@ -281,6 +287,7 @@ class PlanVersionMigrationPreviewCompanyResponseData implements ModelInterface, 
         $this->setIfExists('note', $data ?? [], null);
         $this->setIfExists('plan_version_id_from', $data ?? [], null);
         $this->setIfExists('will_update_subscription', $data ?? [], null);
+        $this->setIfExists('would_fail', $data ?? [], null);
     }
 
     /**
@@ -321,6 +328,9 @@ class PlanVersionMigrationPreviewCompanyResponseData implements ModelInterface, 
         }
         if ($this->container['will_update_subscription'] === null) {
             $invalidProperties[] = "'will_update_subscription' can't be null";
+        }
+        if ($this->container['would_fail'] === null) {
+            $invalidProperties[] = "'would_fail' can't be null";
         }
         return $invalidProperties;
     }
@@ -509,6 +519,33 @@ class PlanVersionMigrationPreviewCompanyResponseData implements ModelInterface, 
             throw new \InvalidArgumentException('non-nullable will_update_subscription cannot be null');
         }
         $this->container['will_update_subscription'] = $will_update_subscription;
+
+        return $this;
+    }
+
+    /**
+     * Gets would_fail
+     *
+     * @return bool
+     */
+    public function getWouldFail()
+    {
+        return $this->container['would_fail'];
+    }
+
+    /**
+     * Sets would_fail
+     *
+     * @param bool $would_fail would_fail
+     *
+     * @return self
+     */
+    public function setWouldFail($would_fail)
+    {
+        if (is_null($would_fail)) {
+            throw new \InvalidArgumentException('non-nullable would_fail cannot be null');
+        }
+        $this->container['would_fail'] = $would_fail;
 
         return $this;
     }

@@ -99,6 +99,15 @@ class CreateCompanyCreditGrantTest extends TestCase
     }
 
     /**
+     * Test attribute "credit_bundle_id"
+     */
+    public function testPropertyCreditBundleId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "credit_id"
      */
     public function testPropertyCreditId()

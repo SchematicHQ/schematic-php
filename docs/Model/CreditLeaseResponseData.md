@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **granted_amount** | **float** |  |
 **id** | **string** |  |
 **released_at** | **\DateTime** |  | [optional]
+**tracked_amount** | **float** |  |
 **updated_at** | **\DateTime** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

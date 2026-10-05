@@ -69,7 +69,7 @@ class RulesengineCondition implements ModelInterface, ArrayAccess, \JsonSerializ
         'metric_period' => '\Schematic\Model\RulesengineMetricPeriod',
         'metric_period_month_reset' => '\Schematic\Model\RulesengineMetricPeriodMonthReset',
         'metric_value' => 'int',
-        'operator' => '\Schematic\Model\ComparableOperator',
+        'operator' => '\Schematic\Model\RulesengineComparableOperator',
         'resource_ids' => 'string[]',
         'trait_definition' => '\Schematic\Model\RulesengineTraitDefinition',
         'trait_value' => 'string'
@@ -755,7 +755,7 @@ class RulesengineCondition implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets operator
      *
-     * @return \Schematic\Model\ComparableOperator
+     * @return \Schematic\Model\RulesengineComparableOperator
      */
     public function getOperator()
     {
@@ -765,7 +765,7 @@ class RulesengineCondition implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets operator
      *
-     * @param \Schematic\Model\ComparableOperator $operator operator
+     * @param \Schematic\Model\RulesengineComparableOperator $operator operator
      *
      * @return self
      */

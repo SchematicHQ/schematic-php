@@ -97,6 +97,18 @@ class EventsApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteOTLPEnvironmentSettings
+     *
+     * Delete OTLP environment settings.
+     *
+     */
+    public function testDeleteOTLPEnvironmentSettings()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getEvent
      *
      * Get event.
@@ -121,6 +133,18 @@ class EventsApiTest extends TestCase
     }
 
     /**
+     * Test case for getOTLPEnvironmentSettings
+     *
+     * Get OTLP environment settings.
+     *
+     */
+    public function testGetOTLPEnvironmentSettings()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getSegmentIntegrationStatus
      *
      * Get segment integration status.
@@ -139,6 +163,18 @@ class EventsApiTest extends TestCase
      *
      */
     public function testListEvents()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for upsertOTLPEnvironmentSettings
+     *
+     * Upsert OTLP environment settings.
+     *
+     */
+    public function testUpsertOTLPEnvironmentSettings()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

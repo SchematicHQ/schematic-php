@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**arrears_cadence** | [**\Schematic\Model\BillingArrearsCadence**](BillingArrearsCadence.md) |  | [optional]
 **billing_credit_bundle_id** | **string** |  | [optional]
 **billing_credit_id** | **string** |  |
 **company_id** | **string** |  |
@@ -25,6 +26,12 @@ Name | Type | Description | Notes
 **plan_id** | **string** |  | [optional]
 **plan_name** | **string** |  | [optional]
 **plural_name** | **string** |  | [optional]
+**postpaid_charge_amount** | **int** |  | [optional]
+**postpaid_charge_currency** | **string** |  | [optional]
+**postpaid_charged_credits** | **float** |  | [optional]
+**postpaid_period_end** | **\DateTime** |  | [optional]
+**postpaid_rate** | **int** |  | [optional]
+**postpaid_rate_decimal** | **string** |  | [optional]
 **price** | [**\Schematic\Model\BillingProductPriceResponseData**](BillingProductPriceResponseData.md) |  | [optional]
 **quantity** | **float** |  |
 **quantity_remaining** | **float** |  |

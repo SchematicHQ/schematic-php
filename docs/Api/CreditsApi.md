@@ -11,13 +11,18 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**countCompanyGrants()**](CreditsApi.md#countCompanyGrants) | **GET** /billing/credits/grants/company/count | Count company grants |
 | [**countCreditBundles()**](CreditsApi.md#countCreditBundles) | **GET** /billing/credits/bundles/count | Count credit bundles |
 | [**countCreditEventLedger()**](CreditsApi.md#countCreditEventLedger) | **GET** /v2/billing/credits/ledger/count | Count credit event ledger |
+| [**countCreditSpendPolicies()**](CreditsApi.md#countCreditSpendPolicies) | **GET** /billing/credits/spend-policies/count | Count credit spend policies |
 | [**createBillingCredit()**](CreditsApi.md#createBillingCredit) | **POST** /billing/credits | Create billing credit |
 | [**createBillingPlanCreditGrant()**](CreditsApi.md#createBillingPlanCreditGrant) | **POST** /billing/credits/plan-grants | Create billing plan credit grant |
 | [**createCreditBundle()**](CreditsApi.md#createCreditBundle) | **POST** /billing/credits/bundles | Create credit bundle |
+| [**createCreditSpendPolicy()**](CreditsApi.md#createCreditSpendPolicy) | **POST** /billing/credits/spend-policies | Create credit spend policy |
 | [**deleteBillingPlanCreditGrant()**](CreditsApi.md#deleteBillingPlanCreditGrant) | **DELETE** /billing/credits/plan-grants/{plan_grant_id} | Delete billing plan credit grant |
 | [**deleteCreditBundle()**](CreditsApi.md#deleteCreditBundle) | **DELETE** /billing/credits/bundles/{bundle_id} | Delete credit bundle |
+| [**deleteCreditSpendPolicy()**](CreditsApi.md#deleteCreditSpendPolicy) | **DELETE** /billing/credits/spend-policies/{spend_policy_id} | Delete credit spend policy |
 | [**extendCreditLease()**](CreditsApi.md#extendCreditLease) | **PUT** /billing/credits/lease/{lease_id}/extend | Extend credit lease |
 | [**getCreditBundle()**](CreditsApi.md#getCreditBundle) | **GET** /billing/credits/bundles/{bundle_id} | Get credit bundle |
+| [**getCreditSpendPolicy()**](CreditsApi.md#getCreditSpendPolicy) | **GET** /billing/credits/spend-policies/{spend_policy_id} | Get credit spend policy |
+| [**getCreditSpendPolicyUsage()**](CreditsApi.md#getCreditSpendPolicyUsage) | **GET** /billing/credits/spend-policies/usage | Get credit spend policy usage |
 | [**getSingleBillingCredit()**](CreditsApi.md#getSingleBillingCredit) | **GET** /billing/credits/{credit_id} | Get single billing credit |
 | [**getSingleBillingPlanCreditGrant()**](CreditsApi.md#getSingleBillingPlanCreditGrant) | **GET** /billing/credits/plan-grants/{plan_grant_id} | Get single billing plan credit grant |
 | [**grantBillingCreditsToCompany()**](CreditsApi.md#grantBillingCreditsToCompany) | **POST** /billing/credits/grants/company | Grant billing credits to company |
@@ -27,12 +32,16 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**listCompanyGrants()**](CreditsApi.md#listCompanyGrants) | **GET** /billing/credits/grants/company/list | List company grants |
 | [**listCreditBundles()**](CreditsApi.md#listCreditBundles) | **GET** /billing/credits/bundles | List credit bundles |
 | [**listCreditEventLedger()**](CreditsApi.md#listCreditEventLedger) | **GET** /v2/billing/credits/ledger | List credit event ledger |
+| [**listCreditSpendPolicies()**](CreditsApi.md#listCreditSpendPolicies) | **GET** /billing/credits/spend-policies | List credit spend policies |
 | [**listGrantsForCredit()**](CreditsApi.md#listGrantsForCredit) | **GET** /billing/credits/grants/list | List grants for credit |
 | [**releaseCreditLease()**](CreditsApi.md#releaseCreditLease) | **PUT** /billing/credits/lease/{lease_id}/release | Release credit lease |
+| [**releaseCreditReservation()**](CreditsApi.md#releaseCreditReservation) | **PUT** /billing/credits/reservations/{reservation_id}/release | Release credit reservation |
+| [**reserveCredits()**](CreditsApi.md#reserveCredits) | **POST** /billing/credits/reservations | Reserve credits |
 | [**softDeleteBillingCredit()**](CreditsApi.md#softDeleteBillingCredit) | **DELETE** /billing/credits/{credit_id} | Soft delete billing credit |
 | [**updateBillingCredit()**](CreditsApi.md#updateBillingCredit) | **PUT** /billing/credits/{credit_id} | Update billing credit |
 | [**updateBillingPlanCreditGrant()**](CreditsApi.md#updateBillingPlanCreditGrant) | **PUT** /billing/credits/plan-grants/{plan_grant_id} | Update billing plan credit grant |
 | [**updateCreditBundleDetails()**](CreditsApi.md#updateCreditBundleDetails) | **PUT** /billing/credits/bundles/{bundle_id} | Update credit bundle details |
+| [**updateCreditSpendPolicy()**](CreditsApi.md#updateCreditSpendPolicy) | **PUT** /billing/credits/spend-policies/{spend_policy_id} | Update credit spend policy |
 | [**zeroOutGrant()**](CreditsApi.md#zeroOutGrant) | **PUT** /billing/credits/grants/{grant_id}/zero-out | Zero out grant |
 
 
@@ -302,7 +311,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **company_id** | **string**|  | [optional] |
+| **company_id** | **string**|  | |
 | **order** | [**\Schematic\Model\CreditGrantSortOrder**](../Model/.md)|  | [optional] |
 | **dir** | [**\Schematic\Model\SortDirection**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -437,6 +446,69 @@ try {
 ### Return type
 
 [**\Schematic\Model\CountCreditEventLedgerResponse**](../Model/CountCreditEventLedgerResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `countCreditSpendPolicies()`
+
+```php
+countCreditSpendPolicies($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset): \Schematic\Model\CountCreditSpendPoliciesResponse
+```
+
+Count credit spend policies
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$billing_credit_id = 'billing_credit_id_example'; // string
+$company_id = 'company_id_example'; // string
+$scope_type = new \Schematic\Model\\Schematic\Model\CreditSpendPolicyScope(); // \Schematic\Model\CreditSpendPolicyScope
+$user_id = 'user_id_example'; // string
+$user_ids = array('user_ids_example'); // string[]
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CreditsApi->countCreditSpendPolicies($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->countCreditSpendPolicies: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **billing_credit_id** | **string**|  | [optional] |
+| **company_id** | **string**|  | [optional] |
+| **scope_type** | [**\Schematic\Model\CreditSpendPolicyScope**](../Model/.md)|  | [optional] |
+| **user_id** | **string**|  | [optional] |
+| **user_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\CountCreditSpendPoliciesResponse**](../Model/CountCreditSpendPoliciesResponse.md)
 
 ### Authorization
 
@@ -604,6 +676,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `createCreditSpendPolicy()`
+
+```php
+createCreditSpendPolicy($create_credit_spend_policy_request_body): \Schematic\Model\CreateCreditSpendPolicyResponse
+```
+
+Create credit spend policy
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$create_credit_spend_policy_request_body = new \Schematic\Model\CreateCreditSpendPolicyRequestBody(); // \Schematic\Model\CreateCreditSpendPolicyRequestBody
+
+try {
+    $result = $schematic->CreditsApi->createCreditSpendPolicy($create_credit_spend_policy_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->createCreditSpendPolicy: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **create_credit_spend_policy_request_body** | [**\Schematic\Model\CreateCreditSpendPolicyRequestBody**](../Model/CreateCreditSpendPolicyRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\CreateCreditSpendPolicyResponse**](../Model/CreateCreditSpendPolicyResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `deleteBillingPlanCreditGrant()`
 
 ```php
@@ -708,6 +831,57 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `deleteCreditSpendPolicy()`
+
+```php
+deleteCreditSpendPolicy($spend_policy_id): \Schematic\Model\DeleteCreditSpendPolicyResponse
+```
+
+Delete credit spend policy
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$spend_policy_id = 'spend_policy_id_example'; // string | spend_policy_id
+
+try {
+    $result = $schematic->CreditsApi->deleteCreditSpendPolicy($spend_policy_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->deleteCreditSpendPolicy: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **spend_policy_id** | **string**| spend_policy_id | |
+
+### Return type
+
+[**\Schematic\Model\DeleteCreditSpendPolicyResponse**](../Model/DeleteCreditSpendPolicyResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `extendCreditLease()`
 
 ```php
@@ -798,6 +972,112 @@ try {
 ### Return type
 
 [**\Schematic\Model\GetCreditBundleResponse**](../Model/GetCreditBundleResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCreditSpendPolicy()`
+
+```php
+getCreditSpendPolicy($spend_policy_id): \Schematic\Model\GetCreditSpendPolicyResponse
+```
+
+Get credit spend policy
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$spend_policy_id = 'spend_policy_id_example'; // string | spend_policy_id
+
+try {
+    $result = $schematic->CreditsApi->getCreditSpendPolicy($spend_policy_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->getCreditSpendPolicy: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **spend_policy_id** | **string**| spend_policy_id | |
+
+### Return type
+
+[**\Schematic\Model\GetCreditSpendPolicyResponse**](../Model/GetCreditSpendPolicyResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getCreditSpendPolicyUsage()`
+
+```php
+getCreditSpendPolicyUsage($company_id, $billing_credit_id, $user_ids): \Schematic\Model\GetCreditSpendPolicyUsageResponse
+```
+
+Get credit spend policy usage
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$company_id = 'company_id_example'; // string
+$billing_credit_id = 'billing_credit_id_example'; // string
+$user_ids = array('user_ids_example'); // string[]
+
+try {
+    $result = $schematic->CreditsApi->getCreditSpendPolicyUsage($company_id, $billing_credit_id, $user_ids);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->getCreditSpendPolicyUsage: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **company_id** | **string**|  | |
+| **billing_credit_id** | **string**|  | [optional] |
+| **user_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+
+### Return type
+
+[**\Schematic\Model\GetCreditSpendPolicyUsageResponse**](../Model/GetCreditSpendPolicyUsageResponse.md)
 
 ### Authorization
 
@@ -1174,7 +1454,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **company_id** | **string**|  | [optional] |
+| **company_id** | **string**|  | |
 | **order** | [**\Schematic\Model\CreditGrantSortOrder**](../Model/.md)|  | [optional] |
 | **dir** | [**\Schematic\Model\SortDirection**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -1323,6 +1603,69 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listCreditSpendPolicies()`
+
+```php
+listCreditSpendPolicies($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset): \Schematic\Model\ListCreditSpendPoliciesResponse
+```
+
+List credit spend policies
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$billing_credit_id = 'billing_credit_id_example'; // string
+$company_id = 'company_id_example'; // string
+$scope_type = new \Schematic\Model\\Schematic\Model\CreditSpendPolicyScope(); // \Schematic\Model\CreditSpendPolicyScope
+$user_id = 'user_id_example'; // string
+$user_ids = array('user_ids_example'); // string[]
+$limit = 100; // int | Page limit (default 100)
+$offset = 0; // int | Page offset (default 0)
+
+try {
+    $result = $schematic->CreditsApi->listCreditSpendPolicies($billing_credit_id, $company_id, $scope_type, $user_id, $user_ids, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->listCreditSpendPolicies: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **billing_credit_id** | **string**|  | [optional] |
+| **company_id** | **string**|  | [optional] |
+| **scope_type** | [**\Schematic\Model\CreditSpendPolicyScope**](../Model/.md)|  | [optional] |
+| **user_id** | **string**|  | [optional] |
+| **user_ids** | [**string[]**](../Model/string.md)|  | [optional] |
+| **limit** | **int**| Page limit (default 100) | [optional] |
+| **offset** | **int**| Page offset (default 0) | [optional] |
+
+### Return type
+
+[**\Schematic\Model\ListCreditSpendPoliciesResponse**](../Model/ListCreditSpendPoliciesResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listGrantsForCredit()`
 
 ```php
@@ -1383,7 +1726,7 @@ try {
 ## `releaseCreditLease()`
 
 ```php
-releaseCreditLease($lease_id, $body): \Schematic\Model\ReleaseCreditLeaseResponse
+releaseCreditLease($lease_id): \Schematic\Model\ReleaseCreditLeaseResponse
 ```
 
 Release credit lease
@@ -1399,10 +1742,9 @@ use Schematic\Schematic;
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
 $lease_id = 'lease_id_example'; // string | lease_id
-$body = array('key' => new \stdClass); // object
 
 try {
-    $result = $schematic->CreditsApi->releaseCreditLease($lease_id, $body);
+    $result = $schematic->CreditsApi->releaseCreditLease($lease_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->CreditsApi->releaseCreditLease: ', $e->getMessage(), PHP_EOL;
@@ -1414,11 +1756,112 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **lease_id** | **string**| lease_id | |
-| **body** | **object**|  | |
 
 ### Return type
 
 [**\Schematic\Model\ReleaseCreditLeaseResponse**](../Model/ReleaseCreditLeaseResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `releaseCreditReservation()`
+
+```php
+releaseCreditReservation($reservation_id): \Schematic\Model\ReleaseCreditReservationResponse
+```
+
+Release credit reservation
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$reservation_id = 'reservation_id_example'; // string | reservation_id
+
+try {
+    $result = $schematic->CreditsApi->releaseCreditReservation($reservation_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->releaseCreditReservation: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **reservation_id** | **string**| reservation_id | |
+
+### Return type
+
+[**\Schematic\Model\ReleaseCreditReservationResponse**](../Model/ReleaseCreditReservationResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `reserveCredits()`
+
+```php
+reserveCredits($reserve_credits_request_body): \Schematic\Model\ReserveCreditsResponse
+```
+
+Reserve credits
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$reserve_credits_request_body = new \Schematic\Model\ReserveCreditsRequestBody(); // \Schematic\Model\ReserveCreditsRequestBody
+
+try {
+    $result = $schematic->CreditsApi->reserveCredits($reserve_credits_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->reserveCredits: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **reserve_credits_request_body** | [**\Schematic\Model\ReserveCreditsRequestBody**](../Model/ReserveCreditsRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\ReserveCreditsResponse**](../Model/ReserveCreditsResponse.md)
 
 ### Authorization
 
@@ -1629,6 +2072,59 @@ try {
 ### Return type
 
 [**\Schematic\Model\UpdateCreditBundleDetailsResponse**](../Model/UpdateCreditBundleDetailsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateCreditSpendPolicy()`
+
+```php
+updateCreditSpendPolicy($spend_policy_id, $update_credit_spend_policy_request_body): \Schematic\Model\UpdateCreditSpendPolicyResponse
+```
+
+Update credit spend policy
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$spend_policy_id = 'spend_policy_id_example'; // string | spend_policy_id
+$update_credit_spend_policy_request_body = new \Schematic\Model\UpdateCreditSpendPolicyRequestBody(); // \Schematic\Model\UpdateCreditSpendPolicyRequestBody
+
+try {
+    $result = $schematic->CreditsApi->updateCreditSpendPolicy($spend_policy_id, $update_credit_spend_policy_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->CreditsApi->updateCreditSpendPolicy: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **spend_policy_id** | **string**| spend_policy_id | |
+| **update_credit_spend_policy_request_body** | [**\Schematic\Model\UpdateCreditSpendPolicyRequestBody**](../Model/UpdateCreditSpendPolicyRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\UpdateCreditSpendPolicyResponse**](../Model/UpdateCreditSpendPolicyResponse.md)
 
 ### Authorization
 

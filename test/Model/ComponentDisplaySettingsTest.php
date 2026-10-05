@@ -99,6 +99,15 @@ class ComponentDisplaySettingsTest extends TestCase
     }
 
     /**
+     * Test attribute "show_estimated_total"
+     */
+    public function testPropertyShowEstimatedTotal()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "show_feature_description"
      */
     public function testPropertyShowFeatureDescription()

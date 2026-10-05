@@ -4,6 +4,8 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**cancelMigration()**](PlanmigrationsApi.md#cancelMigration) | **POST** /plan-version-migrations/{plan_version_migration_id}/cancel | Cancel migration |
+| [**completeMigrationNow()**](PlanmigrationsApi.md#completeMigrationNow) | **POST** /plan-version-migrations/{plan_version_migration_id}/complete-now | Complete migration now |
 | [**countCompanyMigrations()**](PlanmigrationsApi.md#countCompanyMigrations) | **GET** /plan-version-company-migrations/count | Count company migrations |
 | [**countMigrations()**](PlanmigrationsApi.md#countMigrations) | **GET** /plan-version-migrations/count | Count migrations |
 | [**createMigration()**](PlanmigrationsApi.md#createMigration) | **POST** /plan-version-migrations | Create migration |
@@ -14,6 +16,110 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | [**retryCompanyMigration()**](PlanmigrationsApi.md#retryCompanyMigration) | **POST** /plan-version-company-migrations/{plan_version_company_migration_id}/retry | Retry company migration |
 | [**retryMigration()**](PlanmigrationsApi.md#retryMigration) | **POST** /plan-version-migrations/{plan_version_migration_id}/retry | Retry migration |
 
+
+## `cancelMigration()`
+
+```php
+cancelMigration($plan_version_migration_id): \Schematic\Model\CancelMigrationResponse
+```
+
+Cancel migration
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$plan_version_migration_id = 'plan_version_migration_id_example'; // string | plan_version_migration_id
+
+try {
+    $result = $schematic->PlanmigrationsApi->cancelMigration($plan_version_migration_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->PlanmigrationsApi->cancelMigration: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_version_migration_id** | **string**| plan_version_migration_id | |
+
+### Return type
+
+[**\Schematic\Model\CancelMigrationResponse**](../Model/CancelMigrationResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `completeMigrationNow()`
+
+```php
+completeMigrationNow($plan_version_migration_id, $complete_migration_now_request_body): \Schematic\Model\CompleteMigrationNowResponse
+```
+
+Complete migration now
+
+### Example
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+
+use Schematic\Schematic;
+
+$schematic = new Schematic('YOUR_SECRET_API_KEY');
+
+$plan_version_migration_id = 'plan_version_migration_id_example'; // string | plan_version_migration_id
+$complete_migration_now_request_body = new \Schematic\Model\CompleteMigrationNowRequestBody(); // \Schematic\Model\CompleteMigrationNowRequestBody
+
+try {
+    $result = $schematic->PlanmigrationsApi->completeMigrationNow($plan_version_migration_id, $complete_migration_now_request_body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling Schematic->PlanmigrationsApi->completeMigrationNow: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **plan_version_migration_id** | **string**| plan_version_migration_id | |
+| **complete_migration_now_request_body** | [**\Schematic\Model\CompleteMigrationNowRequestBody**](../Model/CompleteMigrationNowRequestBody.md)|  | |
+
+### Return type
+
+[**\Schematic\Model\CompleteMigrationNowResponse**](../Model/CompleteMigrationNowResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `countCompanyMigrations()`
 
@@ -51,7 +157,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **migration_id** | **string**|  | [optional] |
+| **migration_id** | **string**|  | |
 | **q** | **string**|  | [optional] |
 | **status** | [**\Schematic\Model\PlanVersionCompanyMigrationStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -77,7 +183,7 @@ try {
 ## `countMigrations()`
 
 ```php
-countMigrations($plan_version_id, $status, $limit, $offset): \Schematic\Model\CountMigrationsResponse
+countMigrations($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset): \Schematic\Model\CountMigrationsResponse
 ```
 
 Count migrations
@@ -92,13 +198,15 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
+$feature_id = 'feature_id_example'; // string
+$feature_plan_rollout_id = 'feature_plan_rollout_id_example'; // string
 $plan_version_id = 'plan_version_id_example'; // string
 $status = new \Schematic\Model\\Schematic\Model\PlanVersionMigrationStatus(); // \Schematic\Model\PlanVersionMigrationStatus
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->PlanmigrationsApi->countMigrations($plan_version_id, $status, $limit, $offset);
+    $result = $schematic->PlanmigrationsApi->countMigrations($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlanmigrationsApi->countMigrations: ', $e->getMessage(), PHP_EOL;
@@ -109,6 +217,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **feature_id** | **string**|  | [optional] |
+| **feature_plan_rollout_id** | **string**|  | [optional] |
 | **plan_version_id** | **string**|  | [optional] |
 | **status** | [**\Schematic\Model\PlanVersionMigrationStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -269,7 +379,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **migration_id** | **string**|  | [optional] |
+| **migration_id** | **string**|  | |
 | **q** | **string**|  | [optional] |
 | **status** | [**\Schematic\Model\PlanVersionCompanyMigrationStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |
@@ -295,7 +405,7 @@ try {
 ## `listMigrations()`
 
 ```php
-listMigrations($plan_version_id, $status, $limit, $offset): \Schematic\Model\ListMigrationsResponse
+listMigrations($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset): \Schematic\Model\ListMigrationsResponse
 ```
 
 List migrations
@@ -310,13 +420,15 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
+$feature_id = 'feature_id_example'; // string
+$feature_plan_rollout_id = 'feature_plan_rollout_id_example'; // string
 $plan_version_id = 'plan_version_id_example'; // string
 $status = new \Schematic\Model\\Schematic\Model\PlanVersionMigrationStatus(); // \Schematic\Model\PlanVersionMigrationStatus
 $limit = 100; // int | Page limit (default 100)
 $offset = 0; // int | Page offset (default 0)
 
 try {
-    $result = $schematic->PlanmigrationsApi->listMigrations($plan_version_id, $status, $limit, $offset);
+    $result = $schematic->PlanmigrationsApi->listMigrations($feature_id, $feature_plan_rollout_id, $plan_version_id, $status, $limit, $offset);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlanmigrationsApi->listMigrations: ', $e->getMessage(), PHP_EOL;
@@ -327,6 +439,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **feature_id** | **string**|  | [optional] |
+| **feature_plan_rollout_id** | **string**|  | [optional] |
 | **plan_version_id** | **string**|  | [optional] |
 | **status** | [**\Schematic\Model\PlanVersionMigrationStatus**](../Model/.md)|  | [optional] |
 | **limit** | **int**| Page limit (default 100) | [optional] |

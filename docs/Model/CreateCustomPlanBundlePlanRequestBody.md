@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **company_id** | **string** |  |
-**description** | **string** |  |
+**description** | **string** |  | [optional]
 **icon** | [**\Schematic\Model\PlanIcon**](PlanIcon.md) |  | [optional]
 **name** | **string** |  |
 

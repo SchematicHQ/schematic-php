@@ -81,6 +81,24 @@ class BillingPlanCreditGrantResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "arrears_anchor"
+     */
+    public function testPropertyArrearsAnchor()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "arrears_cadence"
+     */
+    public function testPropertyArrearsCadence()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "auto_topup_amount"
      */
     public function testPropertyAutoTopupAmount()
@@ -165,6 +183,15 @@ class BillingPlanCreditGrantResponseDataTest extends TestCase
      * Test attribute "auto_topup_threshold_percent"
      */
     public function testPropertyAutoTopupThresholdPercent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_mode"
+     */
+    public function testPropertyBillingMode()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -297,6 +324,15 @@ class BillingPlanCreditGrantResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "overdraft_limit"
+     */
+    public function testPropertyOverdraftLimit()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "plan"
      */
     public function testPropertyPlan()
@@ -327,6 +363,51 @@ class BillingPlanCreditGrantResponseDataTest extends TestCase
      * Test attribute "plan_version_id"
      */
     public function testPropertyPlanVersionId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_enabled"
+     */
+    public function testPropertyPostpaidEnabled()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_rate_per_unit"
+     */
+    public function testPropertyPostpaidRatePerUnit()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "postpaid_rate_per_unit_decimal"
+     */
+    public function testPropertyPostpaidRatePerUnitDecimal()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "price"
+     */
+    public function testPropertyPrice()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "price_tiers"
+     */
+    public function testPropertyPriceTiers()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -372,6 +453,33 @@ class BillingPlanCreditGrantResponseDataTest extends TestCase
      * Test attribute "scaling"
      */
     public function testPropertyScaling()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "tier_mode"
+     */
+    public function testPropertyTierMode()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "unit_price"
+     */
+    public function testPropertyUnitPrice()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "unit_price_decimal"
+     */
+    public function testPropertyUnitPriceDecimal()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

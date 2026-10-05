@@ -71,6 +71,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         'metric_period_month_reset' => '\Schematic\Model\MetricPeriodMonthReset',
         'metric_value' => 'int',
         'operator' => '\Schematic\Model\ComparableOperator',
+        'plan_versions' => '\Schematic\Model\RuleConditionPlanVersionResponseData[]',
         'resource_ids' => 'string[]',
         'resources' => '\Schematic\Model\PreviewObjectResponseData[]',
         'rule_id' => 'string',
@@ -102,6 +103,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         'metric_period_month_reset' => null,
         'metric_value' => 'int64',
         'operator' => null,
+        'plan_versions' => null,
         'resource_ids' => null,
         'resources' => null,
         'rule_id' => null,
@@ -131,6 +133,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         'metric_period_month_reset' => true,
         'metric_value' => true,
         'operator' => false,
+        'plan_versions' => false,
         'resource_ids' => false,
         'resources' => false,
         'rule_id' => false,
@@ -240,6 +243,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         'metric_period_month_reset' => 'metric_period_month_reset',
         'metric_value' => 'metric_value',
         'operator' => 'operator',
+        'plan_versions' => 'plan_versions',
         'resource_ids' => 'resource_ids',
         'resources' => 'resources',
         'rule_id' => 'rule_id',
@@ -269,6 +273,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         'metric_period_month_reset' => 'setMetricPeriodMonthReset',
         'metric_value' => 'setMetricValue',
         'operator' => 'setOperator',
+        'plan_versions' => 'setPlanVersions',
         'resource_ids' => 'setResourceIds',
         'resources' => 'setResources',
         'rule_id' => 'setRuleId',
@@ -298,6 +303,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         'metric_period_month_reset' => 'getMetricPeriodMonthReset',
         'metric_value' => 'getMetricValue',
         'operator' => 'getOperator',
+        'plan_versions' => 'getPlanVersions',
         'resource_ids' => 'getResourceIds',
         'resources' => 'getResources',
         'rule_id' => 'getRuleId',
@@ -378,6 +384,7 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('metric_period_month_reset', $data ?? [], null);
         $this->setIfExists('metric_value', $data ?? [], null);
         $this->setIfExists('operator', $data ?? [], null);
+        $this->setIfExists('plan_versions', $data ?? [], null);
         $this->setIfExists('resource_ids', $data ?? [], null);
         $this->setIfExists('resources', $data ?? [], null);
         $this->setIfExists('rule_id', $data ?? [], null);
@@ -430,6 +437,10 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
         if ($this->container['operator'] === null) {
             $invalidProperties[] = "'operator' can't be null";
         }
+        if (!is_null($this->container['plan_versions']) && (count($this->container['plan_versions']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'plan_versions', number of items must be less than or equal to 1000.";
+        }
+
         if ($this->container['resource_ids'] === null) {
             $invalidProperties[] = "'resource_ids' can't be null";
         }
@@ -864,6 +875,37 @@ class RuleConditionDetailResponseData implements ModelInterface, ArrayAccess, \J
             throw new \InvalidArgumentException('non-nullable operator cannot be null');
         }
         $this->container['operator'] = $operator;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan_versions
+     *
+     * @return \Schematic\Model\RuleConditionPlanVersionResponseData[]|null
+     */
+    public function getPlanVersions()
+    {
+        return $this->container['plan_versions'];
+    }
+
+    /**
+     * Sets plan_versions
+     *
+     * @param \Schematic\Model\RuleConditionPlanVersionResponseData[]|null $plan_versions plan_versions
+     *
+     * @return self
+     */
+    public function setPlanVersions($plan_versions)
+    {
+        if (is_null($plan_versions)) {
+            throw new \InvalidArgumentException('non-nullable plan_versions cannot be null');
+        }
+
+        if ((count($plan_versions) > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $plan_versions when calling RuleConditionDetailResponseData., number of items must be less than or equal to 1000.');
+        }
+        $this->container['plan_versions'] = $plan_versions;
 
         return $this;
     }

@@ -51,6 +51,10 @@ class CreditUsageReason
 
     public const RECONCILIATION = 'reconciliation';
 
+    public const RESERVATION_HOLD = 'reservation_hold';
+
+    public const RESERVATION_RELEASE = 'reservation_release';
+
     public const TRACK = 'track';
 
     /**
@@ -64,6 +68,8 @@ class CreditUsageReason
             self::LEASE_RELEASE,
             self::MANUAL_ADJUSTMENT,
             self::RECONCILIATION,
+            self::RESERVATION_HOLD,
+            self::RESERVATION_RELEASE,
             self::TRACK
         ];
     }

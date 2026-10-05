@@ -6,7 +6,7 @@ All URIs are relative to https://api.schematichq.com, except if the operation de
 | ------------- | ------------- | ------------- |
 | [**createCustomPlanBundle()**](PlanbundleApi.md#createCustomPlanBundle) | **POST** /custom-plan-bundles | Create custom plan bundle |
 | [**createPlanBundle()**](PlanbundleApi.md#createPlanBundle) | **POST** /plan-bundles | Create plan bundle |
-| [**updatePlanBundle()**](PlanbundleApi.md#updatePlanBundle) | **PUT** /plan-bundles/{plan_bundle_id} | Update plan bundle |
+| [**updatePlanBundle()**](PlanbundleApi.md#updatePlanBundle) | **PUT** /plan-bundles/{plan_id} | Update plan bundle |
 
 
 ## `createCustomPlanBundle()`
@@ -114,7 +114,7 @@ try {
 ## `updatePlanBundle()`
 
 ```php
-updatePlanBundle($plan_bundle_id, $update_plan_bundle_request_body): \Schematic\Model\UpdatePlanBundleResponse
+updatePlanBundle($plan_id, $update_plan_bundle_request_body): \Schematic\Model\UpdatePlanBundleResponse
 ```
 
 Update plan bundle
@@ -129,11 +129,11 @@ use Schematic\Schematic;
 
 $schematic = new Schematic('YOUR_SECRET_API_KEY');
 
-$plan_bundle_id = 'plan_bundle_id_example'; // string | plan_bundle_id
+$plan_id = 'plan_id_example'; // string | plan_id
 $update_plan_bundle_request_body = new \Schematic\Model\UpdatePlanBundleRequestBody(); // \Schematic\Model\UpdatePlanBundleRequestBody
 
 try {
-    $result = $schematic->PlanbundleApi->updatePlanBundle($plan_bundle_id, $update_plan_bundle_request_body);
+    $result = $schematic->PlanbundleApi->updatePlanBundle($plan_id, $update_plan_bundle_request_body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling Schematic->PlanbundleApi->updatePlanBundle: ', $e->getMessage(), PHP_EOL;
@@ -144,7 +144,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **plan_bundle_id** | **string**| plan_bundle_id | |
+| **plan_id** | **string**| plan_id | |
 | **update_plan_bundle_request_body** | [**\Schematic\Model\UpdatePlanBundleRequestBody**](../Model/UpdatePlanBundleRequestBody.md)|  | |
 
 ### Return type

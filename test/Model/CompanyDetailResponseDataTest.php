@@ -99,6 +99,33 @@ class CompanyDetailResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "billing_email"
+     */
+    public function testPropertyBillingEmail()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_profile"
+     */
+    public function testPropertyBillingProfile()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "billing_profiles"
+     */
+    public function testPropertyBillingProfiles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "billing_subscription"
      */
     public function testPropertyBillingSubscription()
@@ -228,6 +255,15 @@ class CompanyDetailResponseDataTest extends TestCase
      * Test attribute "payment_methods"
      */
     public function testPropertyPaymentMethods()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "pending_migration"
+     */
+    public function testPropertyPendingMigration()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

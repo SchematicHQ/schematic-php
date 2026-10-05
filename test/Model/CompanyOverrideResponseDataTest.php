@@ -225,6 +225,24 @@ class CompanyOverrideResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "value_credit"
+     */
+    public function testPropertyValueCredit()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "value_credit_id"
+     */
+    public function testPropertyValueCreditId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "value_numeric"
      */
     public function testPropertyValueNumeric()

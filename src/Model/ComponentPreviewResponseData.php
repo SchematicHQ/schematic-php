@@ -85,7 +85,7 @@ class ComponentPreviewResponseData implements ModelInterface, ArrayAccess, \Json
         'stripe_embed' => '\Schematic\Model\StripeEmbedInfo',
         'subscription' => '\Schematic\Model\CompanySubscriptionResponseData',
         'trial_payment_method_required' => 'bool',
-        'upcoming_invoice' => '\Schematic\Model\InvoiceResponseData'
+        'upcoming_invoice' => '\Schematic\Model\UpcomingInvoiceResponseData'
     ];
 
     /**
@@ -1349,7 +1349,7 @@ class ComponentPreviewResponseData implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets upcoming_invoice
      *
-     * @return \Schematic\Model\InvoiceResponseData|null
+     * @return \Schematic\Model\UpcomingInvoiceResponseData|null
      */
     public function getUpcomingInvoice()
     {
@@ -1359,7 +1359,7 @@ class ComponentPreviewResponseData implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets upcoming_invoice
      *
-     * @param \Schematic\Model\InvoiceResponseData|null $upcoming_invoice upcoming_invoice
+     * @param \Schematic\Model\UpcomingInvoiceResponseData|null $upcoming_invoice upcoming_invoice
      *
      * @return self
      */

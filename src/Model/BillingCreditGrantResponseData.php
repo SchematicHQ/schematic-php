@@ -62,6 +62,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'company_license_id' => 'string',
         'company_name' => 'string',
         'created_at' => '\DateTime',
+        'credit_bundle_id' => 'string',
         'credit_icon' => 'string',
         'credit_id' => 'string',
         'credit_name' => 'string',
@@ -72,6 +73,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'license_name' => 'string',
         'plan_id' => 'string',
         'plan_name' => 'string',
+        'postpaid_charge_amount' => 'int',
+        'postpaid_charge_currency' => 'string',
+        'postpaid_charged_credits' => 'float',
         'price' => '\Schematic\Model\BillingPriceResponseData',
         'quantity' => 'float',
         'quantity_remaining' => 'float',
@@ -101,6 +105,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'company_license_id' => null,
         'company_name' => null,
         'created_at' => 'date-time',
+        'credit_bundle_id' => null,
         'credit_icon' => null,
         'credit_id' => null,
         'credit_name' => null,
@@ -111,6 +116,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'license_name' => null,
         'plan_id' => null,
         'plan_name' => null,
+        'postpaid_charge_amount' => 'int64',
+        'postpaid_charge_currency' => null,
+        'postpaid_charged_credits' => 'double',
         'price' => null,
         'quantity' => 'double',
         'quantity_remaining' => 'double',
@@ -138,6 +146,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'company_license_id' => true,
         'company_name' => false,
         'created_at' => false,
+        'credit_bundle_id' => true,
         'credit_icon' => true,
         'credit_id' => false,
         'credit_name' => false,
@@ -148,6 +157,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'license_name' => true,
         'plan_id' => true,
         'plan_name' => true,
+        'postpaid_charge_amount' => true,
+        'postpaid_charge_currency' => true,
+        'postpaid_charged_credits' => true,
         'price' => false,
         'quantity' => false,
         'quantity_remaining' => false,
@@ -255,6 +267,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'company_license_id' => 'company_license_id',
         'company_name' => 'company_name',
         'created_at' => 'created_at',
+        'credit_bundle_id' => 'credit_bundle_id',
         'credit_icon' => 'credit_icon',
         'credit_id' => 'credit_id',
         'credit_name' => 'credit_name',
@@ -265,6 +278,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'license_name' => 'license_name',
         'plan_id' => 'plan_id',
         'plan_name' => 'plan_name',
+        'postpaid_charge_amount' => 'postpaid_charge_amount',
+        'postpaid_charge_currency' => 'postpaid_charge_currency',
+        'postpaid_charged_credits' => 'postpaid_charged_credits',
         'price' => 'price',
         'quantity' => 'quantity',
         'quantity_remaining' => 'quantity_remaining',
@@ -292,6 +308,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'company_license_id' => 'setCompanyLicenseId',
         'company_name' => 'setCompanyName',
         'created_at' => 'setCreatedAt',
+        'credit_bundle_id' => 'setCreditBundleId',
         'credit_icon' => 'setCreditIcon',
         'credit_id' => 'setCreditId',
         'credit_name' => 'setCreditName',
@@ -302,6 +319,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'license_name' => 'setLicenseName',
         'plan_id' => 'setPlanId',
         'plan_name' => 'setPlanName',
+        'postpaid_charge_amount' => 'setPostpaidChargeAmount',
+        'postpaid_charge_currency' => 'setPostpaidChargeCurrency',
+        'postpaid_charged_credits' => 'setPostpaidChargedCredits',
         'price' => 'setPrice',
         'quantity' => 'setQuantity',
         'quantity_remaining' => 'setQuantityRemaining',
@@ -329,6 +349,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'company_license_id' => 'getCompanyLicenseId',
         'company_name' => 'getCompanyName',
         'created_at' => 'getCreatedAt',
+        'credit_bundle_id' => 'getCreditBundleId',
         'credit_icon' => 'getCreditIcon',
         'credit_id' => 'getCreditId',
         'credit_name' => 'getCreditName',
@@ -339,6 +360,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         'license_name' => 'getLicenseName',
         'plan_id' => 'getPlanId',
         'plan_name' => 'getPlanName',
+        'postpaid_charge_amount' => 'getPostpaidChargeAmount',
+        'postpaid_charge_currency' => 'getPostpaidChargeCurrency',
+        'postpaid_charged_credits' => 'getPostpaidChargedCredits',
         'price' => 'getPrice',
         'quantity' => 'getQuantity',
         'quantity_remaining' => 'getQuantityRemaining',
@@ -417,6 +441,7 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('company_license_id', $data ?? [], null);
         $this->setIfExists('company_name', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('credit_bundle_id', $data ?? [], null);
         $this->setIfExists('credit_icon', $data ?? [], null);
         $this->setIfExists('credit_id', $data ?? [], null);
         $this->setIfExists('credit_name', $data ?? [], null);
@@ -427,6 +452,9 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('license_name', $data ?? [], null);
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_name', $data ?? [], null);
+        $this->setIfExists('postpaid_charge_amount', $data ?? [], null);
+        $this->setIfExists('postpaid_charge_currency', $data ?? [], null);
+        $this->setIfExists('postpaid_charged_credits', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
         $this->setIfExists('quantity_remaining', $data ?? [], null);
@@ -640,6 +668,40 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets credit_bundle_id
+     *
+     * @return string|null
+     */
+    public function getCreditBundleId()
+    {
+        return $this->container['credit_bundle_id'];
+    }
+
+    /**
+     * Sets credit_bundle_id
+     *
+     * @param string|null $credit_bundle_id The catalog bundle this grant was issued from, when the company bought one.
+     *
+     * @return self
+     */
+    public function setCreditBundleId($credit_bundle_id)
+    {
+        if (is_null($credit_bundle_id)) {
+            array_push($this->openAPINullablesSetToNull, 'credit_bundle_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('credit_bundle_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['credit_bundle_id'] = $credit_bundle_id;
 
         return $this;
     }
@@ -952,6 +1014,108 @@ class BillingCreditGrantResponseData implements ModelInterface, ArrayAccess, \Js
             }
         }
         $this->container['plan_name'] = $plan_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_charge_amount
+     *
+     * @return int|null
+     */
+    public function getPostpaidChargeAmount()
+    {
+        return $this->container['postpaid_charge_amount'];
+    }
+
+    /**
+     * Sets postpaid_charge_amount
+     *
+     * @param int|null $postpaid_charge_amount What the postpaid charges costs, in the currency's minor unit.
+     *
+     * @return self
+     */
+    public function setPostpaidChargeAmount($postpaid_charge_amount)
+    {
+        if (is_null($postpaid_charge_amount)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_charge_amount');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_charge_amount', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_charge_amount'] = $postpaid_charge_amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_charge_currency
+     *
+     * @return string|null
+     */
+    public function getPostpaidChargeCurrency()
+    {
+        return $this->container['postpaid_charge_currency'];
+    }
+
+    /**
+     * Sets postpaid_charge_currency
+     *
+     * @param string|null $postpaid_charge_currency postpaid_charge_currency
+     *
+     * @return self
+     */
+    public function setPostpaidChargeCurrency($postpaid_charge_currency)
+    {
+        if (is_null($postpaid_charge_currency)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_charge_currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_charge_currency', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_charge_currency'] = $postpaid_charge_currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets postpaid_charged_credits
+     *
+     * @return float|null
+     */
+    public function getPostpaidChargedCredits()
+    {
+        return $this->container['postpaid_charged_credits'];
+    }
+
+    /**
+     * Sets postpaid_charged_credits
+     *
+     * @param float|null $postpaid_charged_credits Credits consumed past a zero balance in the window still open.
+     *
+     * @return self
+     */
+    public function setPostpaidChargedCredits($postpaid_charged_credits)
+    {
+        if (is_null($postpaid_charged_credits)) {
+            array_push($this->openAPINullablesSetToNull, 'postpaid_charged_credits');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('postpaid_charged_credits', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['postpaid_charged_credits'] = $postpaid_charged_credits;
 
         return $this;
     }

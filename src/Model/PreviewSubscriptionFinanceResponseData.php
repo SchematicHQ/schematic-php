@@ -59,6 +59,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
       */
     protected static $openAPITypes = [
         'amount_off' => 'int',
+        'currency' => 'string',
         'discount_amount' => 'int',
         'discounts' => '\Schematic\Model\PreviewSubscriptionDiscountResponseData[]',
         'due_now' => 'int',
@@ -68,6 +69,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         'period_start' => '\DateTime',
         'promo_code_applied' => 'bool',
         'proration' => 'int',
+        'proration_billed_at' => '\DateTime',
         'tax_amount' => 'int',
         'tax_display_name' => 'string',
         'tax_require_billing_details' => 'bool',
@@ -85,6 +87,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
       */
     protected static $openAPIFormats = [
         'amount_off' => 'int64',
+        'currency' => null,
         'discount_amount' => 'int64',
         'discounts' => null,
         'due_now' => 'int64',
@@ -94,6 +97,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         'period_start' => 'date-time',
         'promo_code_applied' => null,
         'proration' => 'int64',
+        'proration_billed_at' => 'date-time',
         'tax_amount' => 'int64',
         'tax_display_name' => null,
         'tax_require_billing_details' => null,
@@ -109,6 +113,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
       */
     protected static array $openAPINullables = [
         'amount_off' => false,
+        'currency' => false,
         'discount_amount' => false,
         'discounts' => false,
         'due_now' => false,
@@ -118,6 +123,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         'period_start' => false,
         'promo_code_applied' => false,
         'proration' => false,
+        'proration_billed_at' => true,
         'tax_amount' => true,
         'tax_display_name' => true,
         'tax_require_billing_details' => false,
@@ -213,6 +219,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
      */
     protected static $attributeMap = [
         'amount_off' => 'amount_off',
+        'currency' => 'currency',
         'discount_amount' => 'discount_amount',
         'discounts' => 'discounts',
         'due_now' => 'due_now',
@@ -222,6 +229,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         'period_start' => 'period_start',
         'promo_code_applied' => 'promo_code_applied',
         'proration' => 'proration',
+        'proration_billed_at' => 'proration_billed_at',
         'tax_amount' => 'tax_amount',
         'tax_display_name' => 'tax_display_name',
         'tax_require_billing_details' => 'tax_require_billing_details',
@@ -237,6 +245,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
      */
     protected static $setters = [
         'amount_off' => 'setAmountOff',
+        'currency' => 'setCurrency',
         'discount_amount' => 'setDiscountAmount',
         'discounts' => 'setDiscounts',
         'due_now' => 'setDueNow',
@@ -246,6 +255,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         'period_start' => 'setPeriodStart',
         'promo_code_applied' => 'setPromoCodeApplied',
         'proration' => 'setProration',
+        'proration_billed_at' => 'setProrationBilledAt',
         'tax_amount' => 'setTaxAmount',
         'tax_display_name' => 'setTaxDisplayName',
         'tax_require_billing_details' => 'setTaxRequireBillingDetails',
@@ -261,6 +271,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
      */
     protected static $getters = [
         'amount_off' => 'getAmountOff',
+        'currency' => 'getCurrency',
         'discount_amount' => 'getDiscountAmount',
         'discounts' => 'getDiscounts',
         'due_now' => 'getDueNow',
@@ -270,6 +281,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         'period_start' => 'getPeriodStart',
         'promo_code_applied' => 'getPromoCodeApplied',
         'proration' => 'getProration',
+        'proration_billed_at' => 'getProrationBilledAt',
         'tax_amount' => 'getTaxAmount',
         'tax_display_name' => 'getTaxDisplayName',
         'tax_require_billing_details' => 'getTaxRequireBillingDetails',
@@ -336,6 +348,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
     public function __construct(?array $data = null)
     {
         $this->setIfExists('amount_off', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('discount_amount', $data ?? [], null);
         $this->setIfExists('discounts', $data ?? [], null);
         $this->setIfExists('due_now', $data ?? [], null);
@@ -345,6 +358,7 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
         $this->setIfExists('period_start', $data ?? [], null);
         $this->setIfExists('promo_code_applied', $data ?? [], null);
         $this->setIfExists('proration', $data ?? [], null);
+        $this->setIfExists('proration_billed_at', $data ?? [], null);
         $this->setIfExists('tax_amount', $data ?? [], null);
         $this->setIfExists('tax_display_name', $data ?? [], null);
         $this->setIfExists('tax_require_billing_details', $data ?? [], null);
@@ -382,6 +396,9 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
 
         if ($this->container['amount_off'] === null) {
             $invalidProperties[] = "'amount_off' can't be null";
+        }
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
         }
         if ($this->container['discount_amount'] === null) {
             $invalidProperties[] = "'discount_amount' can't be null";
@@ -465,6 +482,33 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable amount_off cannot be null');
         }
         $this->container['amount_off'] = $amount_off;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->container['currency'];
+    }
+
+    /**
+     * Sets currency
+     *
+     * @param string $currency ISO 4217 currency every amount in this block is denominated in.
+     *
+     * @return self
+     */
+    public function setCurrency($currency)
+    {
+        if (is_null($currency)) {
+            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        }
+        $this->container['currency'] = $currency;
 
         return $this;
     }
@@ -712,6 +756,40 @@ class PreviewSubscriptionFinanceResponseData implements ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable proration cannot be null');
         }
         $this->container['proration'] = $proration;
+
+        return $this;
+    }
+
+    /**
+     * Gets proration_billed_at
+     *
+     * @return \DateTime|null
+     */
+    public function getProrationBilledAt()
+    {
+        return $this->container['proration_billed_at'];
+    }
+
+    /**
+     * Sets proration_billed_at
+     *
+     * @param \DateTime|null $proration_billed_at proration_billed_at
+     *
+     * @return self
+     */
+    public function setProrationBilledAt($proration_billed_at)
+    {
+        if (is_null($proration_billed_at)) {
+            array_push($this->openAPINullablesSetToNull, 'proration_billed_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('proration_billed_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['proration_billed_at'] = $proration_billed_at;
 
         return $this;
     }

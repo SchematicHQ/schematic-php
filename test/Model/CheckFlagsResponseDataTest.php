@@ -90,6 +90,15 @@ class CheckFlagsResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "credit_spend_policies"
+     */
+    public function testPropertyCreditSpendPolicies()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "flags"
      */
     public function testPropertyFlags()

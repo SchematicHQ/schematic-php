@@ -60,10 +60,14 @@ class IntegrationConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $openAPITypes = [
         'account_id' => 'string',
         'account_name' => 'string',
+        'claimable_sandbox_expires_at' => '\DateTime',
+        'claimable_sandbox_id' => 'string',
+        'claimable_sandbox_status' => 'string',
         'company_update_only' => 'bool',
         'is_sandbox' => 'bool',
         'live_mode' => 'bool',
         'onboard_url' => 'string',
+        'return_to' => 'string',
         'type' => 'string',
         'external_customer_id_key' => 'string',
         'first_events_received' => 'bool',
@@ -80,10 +84,14 @@ class IntegrationConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $openAPIFormats = [
         'account_id' => null,
         'account_name' => null,
+        'claimable_sandbox_expires_at' => 'date-time',
+        'claimable_sandbox_id' => null,
+        'claimable_sandbox_status' => null,
         'company_update_only' => null,
         'is_sandbox' => null,
         'live_mode' => null,
         'onboard_url' => null,
+        'return_to' => null,
         'type' => null,
         'external_customer_id_key' => null,
         'first_events_received' => null,
@@ -98,10 +106,14 @@ class IntegrationConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static array $openAPINullables = [
         'account_id' => true,
         'account_name' => true,
+        'claimable_sandbox_expires_at' => true,
+        'claimable_sandbox_id' => true,
+        'claimable_sandbox_status' => true,
         'company_update_only' => false,
         'is_sandbox' => false,
         'live_mode' => false,
         'onboard_url' => true,
+        'return_to' => true,
         'type' => false,
         'external_customer_id_key' => true,
         'first_events_received' => true,
@@ -196,10 +208,14 @@ class IntegrationConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $attributeMap = [
         'account_id' => 'account_id',
         'account_name' => 'account_name',
+        'claimable_sandbox_expires_at' => 'claimable_sandbox_expires_at',
+        'claimable_sandbox_id' => 'claimable_sandbox_id',
+        'claimable_sandbox_status' => 'claimable_sandbox_status',
         'company_update_only' => 'company_update_only',
         'is_sandbox' => 'is_sandbox',
         'live_mode' => 'live_mode',
         'onboard_url' => 'onboard_url',
+        'return_to' => 'return_to',
         'type' => 'type',
         'external_customer_id_key' => 'external_customer_id_key',
         'first_events_received' => 'first_events_received',
@@ -214,10 +230,14 @@ class IntegrationConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $setters = [
         'account_id' => 'setAccountId',
         'account_name' => 'setAccountName',
+        'claimable_sandbox_expires_at' => 'setClaimableSandboxExpiresAt',
+        'claimable_sandbox_id' => 'setClaimableSandboxId',
+        'claimable_sandbox_status' => 'setClaimableSandboxStatus',
         'company_update_only' => 'setCompanyUpdateOnly',
         'is_sandbox' => 'setIsSandbox',
         'live_mode' => 'setLiveMode',
         'onboard_url' => 'setOnboardUrl',
+        'return_to' => 'setReturnTo',
         'type' => 'setType',
         'external_customer_id_key' => 'setExternalCustomerIdKey',
         'first_events_received' => 'setFirstEventsReceived',
@@ -232,10 +252,14 @@ class IntegrationConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected static $getters = [
         'account_id' => 'getAccountId',
         'account_name' => 'getAccountName',
+        'claimable_sandbox_expires_at' => 'getClaimableSandboxExpiresAt',
+        'claimable_sandbox_id' => 'getClaimableSandboxId',
+        'claimable_sandbox_status' => 'getClaimableSandboxStatus',
         'company_update_only' => 'getCompanyUpdateOnly',
         'is_sandbox' => 'getIsSandbox',
         'live_mode' => 'getLiveMode',
         'onboard_url' => 'getOnboardUrl',
+        'return_to' => 'getReturnTo',
         'type' => 'getType',
         'external_customer_id_key' => 'getExternalCustomerIdKey',
         'first_events_received' => 'getFirstEventsReceived',
@@ -322,10 +346,14 @@ class IntegrationConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $this->setIfExists('account_id', $data ?? [], null);
         $this->setIfExists('account_name', $data ?? [], null);
+        $this->setIfExists('claimable_sandbox_expires_at', $data ?? [], null);
+        $this->setIfExists('claimable_sandbox_id', $data ?? [], null);
+        $this->setIfExists('claimable_sandbox_status', $data ?? [], null);
         $this->setIfExists('company_update_only', $data ?? [], null);
         $this->setIfExists('is_sandbox', $data ?? [], null);
         $this->setIfExists('live_mode', $data ?? [], null);
         $this->setIfExists('onboard_url', $data ?? [], null);
+        $this->setIfExists('return_to', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('external_customer_id_key', $data ?? [], null);
         $this->setIfExists('first_events_received', $data ?? [], null);
@@ -464,6 +492,108 @@ class IntegrationConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * Gets claimable_sandbox_expires_at
+     *
+     * @return \DateTime|null
+     */
+    public function getClaimableSandboxExpiresAt()
+    {
+        return $this->container['claimable_sandbox_expires_at'];
+    }
+
+    /**
+     * Sets claimable_sandbox_expires_at
+     *
+     * @param \DateTime|null $claimable_sandbox_expires_at When Stripe deletes the sandbox if nobody claims it, 60 days from creation; absent on sandboxes created before it was recorded
+     *
+     * @return self
+     */
+    public function setClaimableSandboxExpiresAt($claimable_sandbox_expires_at)
+    {
+        if (is_null($claimable_sandbox_expires_at)) {
+            array_push($this->openAPINullablesSetToNull, 'claimable_sandbox_expires_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('claimable_sandbox_expires_at', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['claimable_sandbox_expires_at'] = $claimable_sandbox_expires_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets claimable_sandbox_id
+     *
+     * @return string|null
+     */
+    public function getClaimableSandboxId()
+    {
+        return $this->container['claimable_sandbox_id'];
+    }
+
+    /**
+     * Sets claimable_sandbox_id
+     *
+     * @param string|null $claimable_sandbox_id Stripe claimable sandbox this connection was provisioned from; absent for an OAuth connect
+     *
+     * @return self
+     */
+    public function setClaimableSandboxId($claimable_sandbox_id)
+    {
+        if (is_null($claimable_sandbox_id)) {
+            array_push($this->openAPINullablesSetToNull, 'claimable_sandbox_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('claimable_sandbox_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['claimable_sandbox_id'] = $claimable_sandbox_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets claimable_sandbox_status
+     *
+     * @return string|null
+     */
+    public function getClaimableSandboxStatus()
+    {
+        return $this->container['claimable_sandbox_status'];
+    }
+
+    /**
+     * Sets claimable_sandbox_status
+     *
+     * @param string|null $claimable_sandbox_status Stripe's claim status for the sandbox: unclaimed, claimed, or live
+     *
+     * @return self
+     */
+    public function setClaimableSandboxStatus($claimable_sandbox_status)
+    {
+        if (is_null($claimable_sandbox_status)) {
+            array_push($this->openAPINullablesSetToNull, 'claimable_sandbox_status');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('claimable_sandbox_status', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['claimable_sandbox_status'] = $claimable_sandbox_status;
+
+        return $this;
+    }
+
+    /**
      * Gets company_update_only
      *
      * @return bool|null
@@ -574,6 +704,40 @@ class IntegrationConfig implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['onboard_url'] = $onboard_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets return_to
+     *
+     * @return string|null
+     */
+    public function getReturnTo()
+    {
+        return $this->container['return_to'];
+    }
+
+    /**
+     * Sets return_to
+     *
+     * @param string|null $return_to App location that started the connect flow; the OAuth callback redirects back there on success
+     *
+     * @return self
+     */
+    public function setReturnTo($return_to)
+    {
+        if (is_null($return_to)) {
+            array_push($this->openAPINullablesSetToNull, 'return_to');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('return_to', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['return_to'] = $return_to;
 
         return $this;
     }

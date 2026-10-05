@@ -85,6 +85,18 @@ class EntitlementsApiTest extends TestCase
     }
 
     /**
+     * Test case for countCompanyUserUsage
+     *
+     * Count company user usage.
+     *
+     */
+    public function testCountCompanyUserUsage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for countFeatureCompanies
      *
      * Count feature companies.
@@ -205,6 +217,18 @@ class EntitlementsApiTest extends TestCase
     }
 
     /**
+     * Test case for getCompanyUserUsageMetrics
+     *
+     * Get company user usage metrics.
+     *
+     */
+    public function testGetCompanyUserUsageMetrics()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getFeatureUsageByCompany
      *
      * Get feature usage by company.
@@ -277,6 +301,18 @@ class EntitlementsApiTest extends TestCase
     }
 
     /**
+     * Test case for listCompanyUserUsage
+     *
+     * List company user usage.
+     *
+     */
+    public function testListCompanyUserUsage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for listFeatureCompanies
      *
      * List feature companies.
@@ -295,6 +331,18 @@ class EntitlementsApiTest extends TestCase
      *
      */
     public function testListFeatureUsage()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for listFeatureUsageHistory
+     *
+     * List feature usage history.
+     *
+     */
+    public function testListFeatureUsageHistory()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

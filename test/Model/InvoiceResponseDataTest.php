@@ -252,6 +252,15 @@ class InvoiceResponseDataTest extends TestCase
     }
 
     /**
+     * Test attribute "total"
+     */
+    public function testPropertyTotal()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "updated_at"
      */
     public function testPropertyUpdatedAt()

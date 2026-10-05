@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **rule_id_usage_exceeded** | **string** |  | [optional]
 **updated_at** | **\DateTime** |  |
 **value_bool** | **bool** |  | [optional]
+**value_credit** | [**\Schematic\Model\BillingCreditResponseData**](BillingCreditResponseData.md) |  | [optional]
+**value_credit_id** | **string** |  | [optional]
 **value_numeric** | **int** |  | [optional]
 **value_trait** | [**\Schematic\Model\EntityTraitDefinitionResponseData**](EntityTraitDefinitionResponseData.md) |  | [optional]
 **value_trait_id** | **string** |  | [optional]

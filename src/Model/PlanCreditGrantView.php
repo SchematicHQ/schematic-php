@@ -58,6 +58,8 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
+        'billing_credit_arrears_anchor' => '\Schematic\Model\BillingArrearsAnchor',
+        'billing_credit_arrears_cadence' => '\Schematic\Model\BillingArrearsCadence',
         'billing_credit_auto_topup_amount' => 'int',
         'billing_credit_auto_topup_amount_type' => 'string',
         'billing_credit_auto_topup_availability' => '\Schematic\Model\BillingCreditAutoTopupAvailability',
@@ -69,6 +71,12 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'int',
         'billing_credit_auto_topup_threshold_percent' => 'int',
         'billing_credit_can_buy_bundles' => 'bool',
+        'billing_credit_overdraft_limit' => 'float',
+        'billing_credit_postpaid_enabled' => 'bool',
+        'billing_credit_postpaid_rate_per_unit' => 'int',
+        'billing_credit_postpaid_rate_per_unit_decimal' => 'string',
+        'billing_mode' => '\Schematic\Model\BillingPlanCreditGrantBillingMode',
+        'billing_product_price_id' => 'string',
         'company_credit_amount' => 'int',
         'created_at' => '\DateTime',
         'credit' => '\Schematic\Model\BillingCreditView',
@@ -86,6 +94,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'plan_id' => 'string',
         'plan_version_id' => 'string',
         'plural_name' => 'string',
+        'price' => '\Schematic\Model\BillingPriceView',
         'reset_cadence' => '\Schematic\Model\BillingPlanCreditGrantResetCadence',
         'reset_start' => '\Schematic\Model\BillingPlanCreditGrantResetStart',
         'reset_type' => '\Schematic\Model\BillingPlanCreditGrantResetType',
@@ -103,6 +112,8 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'billing_credit_arrears_anchor' => null,
+        'billing_credit_arrears_cadence' => null,
         'billing_credit_auto_topup_amount' => 'int64',
         'billing_credit_auto_topup_amount_type' => null,
         'billing_credit_auto_topup_availability' => null,
@@ -114,6 +125,12 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'int64',
         'billing_credit_auto_topup_threshold_percent' => 'int64',
         'billing_credit_can_buy_bundles' => null,
+        'billing_credit_overdraft_limit' => 'double',
+        'billing_credit_postpaid_enabled' => null,
+        'billing_credit_postpaid_rate_per_unit' => 'int64',
+        'billing_credit_postpaid_rate_per_unit_decimal' => null,
+        'billing_mode' => null,
+        'billing_product_price_id' => null,
         'company_credit_amount' => 'int64',
         'created_at' => 'date-time',
         'credit' => null,
@@ -131,6 +148,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'plan_id' => null,
         'plan_version_id' => null,
         'plural_name' => null,
+        'price' => null,
         'reset_cadence' => null,
         'reset_start' => null,
         'reset_type' => null,
@@ -146,6 +164,8 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'billing_credit_arrears_anchor' => true,
+        'billing_credit_arrears_cadence' => true,
         'billing_credit_auto_topup_amount' => true,
         'billing_credit_auto_topup_amount_type' => true,
         'billing_credit_auto_topup_availability' => true,
@@ -157,6 +177,12 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => true,
         'billing_credit_auto_topup_threshold_percent' => true,
         'billing_credit_can_buy_bundles' => false,
+        'billing_credit_overdraft_limit' => true,
+        'billing_credit_postpaid_enabled' => false,
+        'billing_credit_postpaid_rate_per_unit' => true,
+        'billing_credit_postpaid_rate_per_unit_decimal' => true,
+        'billing_mode' => false,
+        'billing_product_price_id' => true,
         'company_credit_amount' => false,
         'created_at' => false,
         'credit' => false,
@@ -174,6 +200,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'plan_id' => false,
         'plan_version_id' => true,
         'plural_name' => true,
+        'price' => false,
         'reset_cadence' => true,
         'reset_start' => true,
         'reset_type' => false,
@@ -269,6 +296,8 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
+        'billing_credit_arrears_anchor' => 'billing_credit_arrears_anchor',
+        'billing_credit_arrears_cadence' => 'billing_credit_arrears_cadence',
         'billing_credit_auto_topup_amount' => 'billing_credit_auto_topup_amount',
         'billing_credit_auto_topup_amount_type' => 'billing_credit_auto_topup_amount_type',
         'billing_credit_auto_topup_availability' => 'billing_credit_auto_topup_availability',
@@ -280,6 +309,12 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'billing_credit_auto_topup_threshold_credits',
         'billing_credit_auto_topup_threshold_percent' => 'billing_credit_auto_topup_threshold_percent',
         'billing_credit_can_buy_bundles' => 'billing_credit_can_buy_bundles',
+        'billing_credit_overdraft_limit' => 'billing_credit_overdraft_limit',
+        'billing_credit_postpaid_enabled' => 'billing_credit_postpaid_enabled',
+        'billing_credit_postpaid_rate_per_unit' => 'billing_credit_postpaid_rate_per_unit',
+        'billing_credit_postpaid_rate_per_unit_decimal' => 'billing_credit_postpaid_rate_per_unit_decimal',
+        'billing_mode' => 'billing_mode',
+        'billing_product_price_id' => 'billing_product_price_id',
         'company_credit_amount' => 'company_credit_amount',
         'created_at' => 'created_at',
         'credit' => 'credit',
@@ -297,6 +332,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'plan_id' => 'plan_id',
         'plan_version_id' => 'plan_version_id',
         'plural_name' => 'plural_name',
+        'price' => 'price',
         'reset_cadence' => 'reset_cadence',
         'reset_start' => 'reset_start',
         'reset_type' => 'reset_type',
@@ -312,6 +348,8 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
+        'billing_credit_arrears_anchor' => 'setBillingCreditArrearsAnchor',
+        'billing_credit_arrears_cadence' => 'setBillingCreditArrearsCadence',
         'billing_credit_auto_topup_amount' => 'setBillingCreditAutoTopupAmount',
         'billing_credit_auto_topup_amount_type' => 'setBillingCreditAutoTopupAmountType',
         'billing_credit_auto_topup_availability' => 'setBillingCreditAutoTopupAvailability',
@@ -323,6 +361,12 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'setBillingCreditAutoTopupThresholdCredits',
         'billing_credit_auto_topup_threshold_percent' => 'setBillingCreditAutoTopupThresholdPercent',
         'billing_credit_can_buy_bundles' => 'setBillingCreditCanBuyBundles',
+        'billing_credit_overdraft_limit' => 'setBillingCreditOverdraftLimit',
+        'billing_credit_postpaid_enabled' => 'setBillingCreditPostpaidEnabled',
+        'billing_credit_postpaid_rate_per_unit' => 'setBillingCreditPostpaidRatePerUnit',
+        'billing_credit_postpaid_rate_per_unit_decimal' => 'setBillingCreditPostpaidRatePerUnitDecimal',
+        'billing_mode' => 'setBillingMode',
+        'billing_product_price_id' => 'setBillingProductPriceId',
         'company_credit_amount' => 'setCompanyCreditAmount',
         'created_at' => 'setCreatedAt',
         'credit' => 'setCredit',
@@ -340,6 +384,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'plan_id' => 'setPlanId',
         'plan_version_id' => 'setPlanVersionId',
         'plural_name' => 'setPluralName',
+        'price' => 'setPrice',
         'reset_cadence' => 'setResetCadence',
         'reset_start' => 'setResetStart',
         'reset_type' => 'setResetType',
@@ -355,6 +400,8 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
+        'billing_credit_arrears_anchor' => 'getBillingCreditArrearsAnchor',
+        'billing_credit_arrears_cadence' => 'getBillingCreditArrearsCadence',
         'billing_credit_auto_topup_amount' => 'getBillingCreditAutoTopupAmount',
         'billing_credit_auto_topup_amount_type' => 'getBillingCreditAutoTopupAmountType',
         'billing_credit_auto_topup_availability' => 'getBillingCreditAutoTopupAvailability',
@@ -366,6 +413,12 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'billing_credit_auto_topup_threshold_credits' => 'getBillingCreditAutoTopupThresholdCredits',
         'billing_credit_auto_topup_threshold_percent' => 'getBillingCreditAutoTopupThresholdPercent',
         'billing_credit_can_buy_bundles' => 'getBillingCreditCanBuyBundles',
+        'billing_credit_overdraft_limit' => 'getBillingCreditOverdraftLimit',
+        'billing_credit_postpaid_enabled' => 'getBillingCreditPostpaidEnabled',
+        'billing_credit_postpaid_rate_per_unit' => 'getBillingCreditPostpaidRatePerUnit',
+        'billing_credit_postpaid_rate_per_unit_decimal' => 'getBillingCreditPostpaidRatePerUnitDecimal',
+        'billing_mode' => 'getBillingMode',
+        'billing_product_price_id' => 'getBillingProductPriceId',
         'company_credit_amount' => 'getCompanyCreditAmount',
         'created_at' => 'getCreatedAt',
         'credit' => 'getCredit',
@@ -383,6 +436,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         'plan_id' => 'getPlanId',
         'plan_version_id' => 'getPlanVersionId',
         'plural_name' => 'getPluralName',
+        'price' => 'getPrice',
         'reset_cadence' => 'getResetCadence',
         'reset_start' => 'getResetStart',
         'reset_type' => 'getResetType',
@@ -449,6 +503,8 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('billing_credit_arrears_anchor', $data ?? [], null);
+        $this->setIfExists('billing_credit_arrears_cadence', $data ?? [], null);
         $this->setIfExists('billing_credit_auto_topup_amount', $data ?? [], null);
         $this->setIfExists('billing_credit_auto_topup_amount_type', $data ?? [], null);
         $this->setIfExists('billing_credit_auto_topup_availability', $data ?? [], null);
@@ -460,6 +516,12 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('billing_credit_auto_topup_threshold_credits', $data ?? [], null);
         $this->setIfExists('billing_credit_auto_topup_threshold_percent', $data ?? [], null);
         $this->setIfExists('billing_credit_can_buy_bundles', $data ?? [], null);
+        $this->setIfExists('billing_credit_overdraft_limit', $data ?? [], null);
+        $this->setIfExists('billing_credit_postpaid_enabled', $data ?? [], null);
+        $this->setIfExists('billing_credit_postpaid_rate_per_unit', $data ?? [], null);
+        $this->setIfExists('billing_credit_postpaid_rate_per_unit_decimal', $data ?? [], null);
+        $this->setIfExists('billing_mode', $data ?? [], null);
+        $this->setIfExists('billing_product_price_id', $data ?? [], null);
         $this->setIfExists('company_credit_amount', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('credit', $data ?? [], null);
@@ -477,6 +539,7 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('plan_id', $data ?? [], null);
         $this->setIfExists('plan_version_id', $data ?? [], null);
         $this->setIfExists('plural_name', $data ?? [], null);
+        $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('reset_cadence', $data ?? [], null);
         $this->setIfExists('reset_start', $data ?? [], null);
         $this->setIfExists('reset_type', $data ?? [], null);
@@ -521,6 +584,12 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         }
         if ($this->container['billing_credit_can_buy_bundles'] === null) {
             $invalidProperties[] = "'billing_credit_can_buy_bundles' can't be null";
+        }
+        if ($this->container['billing_credit_postpaid_enabled'] === null) {
+            $invalidProperties[] = "'billing_credit_postpaid_enabled' can't be null";
+        }
+        if ($this->container['billing_mode'] === null) {
+            $invalidProperties[] = "'billing_mode' can't be null";
         }
         if ($this->container['company_credit_amount'] === null) {
             $invalidProperties[] = "'company_credit_amount' can't be null";
@@ -572,6 +641,74 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets billing_credit_arrears_anchor
+     *
+     * @return \Schematic\Model\BillingArrearsAnchor|null
+     */
+    public function getBillingCreditArrearsAnchor()
+    {
+        return $this->container['billing_credit_arrears_anchor'];
+    }
+
+    /**
+     * Sets billing_credit_arrears_anchor
+     *
+     * @param \Schematic\Model\BillingArrearsAnchor|null $billing_credit_arrears_anchor billing_credit_arrears_anchor
+     *
+     * @return self
+     */
+    public function setBillingCreditArrearsAnchor($billing_credit_arrears_anchor)
+    {
+        if (is_null($billing_credit_arrears_anchor)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_credit_arrears_anchor');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_credit_arrears_anchor', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_credit_arrears_anchor'] = $billing_credit_arrears_anchor;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_credit_arrears_cadence
+     *
+     * @return \Schematic\Model\BillingArrearsCadence|null
+     */
+    public function getBillingCreditArrearsCadence()
+    {
+        return $this->container['billing_credit_arrears_cadence'];
+    }
+
+    /**
+     * Sets billing_credit_arrears_cadence
+     *
+     * @param \Schematic\Model\BillingArrearsCadence|null $billing_credit_arrears_cadence billing_credit_arrears_cadence
+     *
+     * @return self
+     */
+    public function setBillingCreditArrearsCadence($billing_credit_arrears_cadence)
+    {
+        if (is_null($billing_credit_arrears_cadence)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_credit_arrears_cadence');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_credit_arrears_cadence', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_credit_arrears_cadence'] = $billing_credit_arrears_cadence;
+
+        return $this;
+    }
 
     /**
      * Gets billing_credit_auto_topup_amount
@@ -922,6 +1059,196 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable billing_credit_can_buy_bundles cannot be null');
         }
         $this->container['billing_credit_can_buy_bundles'] = $billing_credit_can_buy_bundles;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_credit_overdraft_limit
+     *
+     * @return float|null
+     */
+    public function getBillingCreditOverdraftLimit()
+    {
+        return $this->container['billing_credit_overdraft_limit'];
+    }
+
+    /**
+     * Sets billing_credit_overdraft_limit
+     *
+     * @param float|null $billing_credit_overdraft_limit billing_credit_overdraft_limit
+     *
+     * @return self
+     */
+    public function setBillingCreditOverdraftLimit($billing_credit_overdraft_limit)
+    {
+        if (is_null($billing_credit_overdraft_limit)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_credit_overdraft_limit');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_credit_overdraft_limit', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_credit_overdraft_limit'] = $billing_credit_overdraft_limit;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_credit_postpaid_enabled
+     *
+     * @return bool
+     */
+    public function getBillingCreditPostpaidEnabled()
+    {
+        return $this->container['billing_credit_postpaid_enabled'];
+    }
+
+    /**
+     * Sets billing_credit_postpaid_enabled
+     *
+     * @param bool $billing_credit_postpaid_enabled billing_credit_postpaid_enabled
+     *
+     * @return self
+     */
+    public function setBillingCreditPostpaidEnabled($billing_credit_postpaid_enabled)
+    {
+        if (is_null($billing_credit_postpaid_enabled)) {
+            throw new \InvalidArgumentException('non-nullable billing_credit_postpaid_enabled cannot be null');
+        }
+        $this->container['billing_credit_postpaid_enabled'] = $billing_credit_postpaid_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_credit_postpaid_rate_per_unit
+     *
+     * @return int|null
+     */
+    public function getBillingCreditPostpaidRatePerUnit()
+    {
+        return $this->container['billing_credit_postpaid_rate_per_unit'];
+    }
+
+    /**
+     * Sets billing_credit_postpaid_rate_per_unit
+     *
+     * @param int|null $billing_credit_postpaid_rate_per_unit billing_credit_postpaid_rate_per_unit
+     *
+     * @return self
+     */
+    public function setBillingCreditPostpaidRatePerUnit($billing_credit_postpaid_rate_per_unit)
+    {
+        if (is_null($billing_credit_postpaid_rate_per_unit)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_credit_postpaid_rate_per_unit');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_credit_postpaid_rate_per_unit', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_credit_postpaid_rate_per_unit'] = $billing_credit_postpaid_rate_per_unit;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_credit_postpaid_rate_per_unit_decimal
+     *
+     * @return string|null
+     */
+    public function getBillingCreditPostpaidRatePerUnitDecimal()
+    {
+        return $this->container['billing_credit_postpaid_rate_per_unit_decimal'];
+    }
+
+    /**
+     * Sets billing_credit_postpaid_rate_per_unit_decimal
+     *
+     * @param string|null $billing_credit_postpaid_rate_per_unit_decimal billing_credit_postpaid_rate_per_unit_decimal
+     *
+     * @return self
+     */
+    public function setBillingCreditPostpaidRatePerUnitDecimal($billing_credit_postpaid_rate_per_unit_decimal)
+    {
+        if (is_null($billing_credit_postpaid_rate_per_unit_decimal)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_credit_postpaid_rate_per_unit_decimal');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_credit_postpaid_rate_per_unit_decimal', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_credit_postpaid_rate_per_unit_decimal'] = $billing_credit_postpaid_rate_per_unit_decimal;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_mode
+     *
+     * @return \Schematic\Model\BillingPlanCreditGrantBillingMode
+     */
+    public function getBillingMode()
+    {
+        return $this->container['billing_mode'];
+    }
+
+    /**
+     * Sets billing_mode
+     *
+     * @param \Schematic\Model\BillingPlanCreditGrantBillingMode $billing_mode billing_mode
+     *
+     * @return self
+     */
+    public function setBillingMode($billing_mode)
+    {
+        if (is_null($billing_mode)) {
+            throw new \InvalidArgumentException('non-nullable billing_mode cannot be null');
+        }
+        $this->container['billing_mode'] = $billing_mode;
+
+        return $this;
+    }
+
+    /**
+     * Gets billing_product_price_id
+     *
+     * @return string|null
+     */
+    public function getBillingProductPriceId()
+    {
+        return $this->container['billing_product_price_id'];
+    }
+
+    /**
+     * Sets billing_product_price_id
+     *
+     * @param string|null $billing_product_price_id billing_product_price_id
+     *
+     * @return self
+     */
+    public function setBillingProductPriceId($billing_product_price_id)
+    {
+        if (is_null($billing_product_price_id)) {
+            array_push($this->openAPINullablesSetToNull, 'billing_product_price_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('billing_product_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['billing_product_price_id'] = $billing_product_price_id;
 
         return $this;
     }
@@ -1438,6 +1765,33 @@ class PlanCreditGrantView implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['plural_name'] = $plural_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets price
+     *
+     * @return \Schematic\Model\BillingPriceView|null
+     */
+    public function getPrice()
+    {
+        return $this->container['price'];
+    }
+
+    /**
+     * Sets price
+     *
+     * @param \Schematic\Model\BillingPriceView|null $price price
+     *
+     * @return self
+     */
+    public function setPrice($price)
+    {
+        if (is_null($price)) {
+            throw new \InvalidArgumentException('non-nullable price cannot be null');
+        }
+        $this->container['price'] = $price;
 
         return $this;
     }

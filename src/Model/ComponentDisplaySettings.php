@@ -60,6 +60,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'show_as_monthly_prices' => 'bool',
         'show_credits' => 'bool',
+        'show_estimated_total' => 'bool',
         'show_feature_description' => 'bool',
         'show_hard_limit' => 'bool',
         'show_period_toggle' => 'bool',
@@ -76,6 +77,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPIFormats = [
         'show_as_monthly_prices' => null,
         'show_credits' => null,
+        'show_estimated_total' => null,
         'show_feature_description' => null,
         'show_hard_limit' => null,
         'show_period_toggle' => null,
@@ -90,6 +92,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
     protected static array $openAPINullables = [
         'show_as_monthly_prices' => false,
         'show_credits' => false,
+        'show_estimated_total' => false,
         'show_feature_description' => false,
         'show_hard_limit' => false,
         'show_period_toggle' => false,
@@ -184,6 +187,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $attributeMap = [
         'show_as_monthly_prices' => 'show_as_monthly_prices',
         'show_credits' => 'show_credits',
+        'show_estimated_total' => 'show_estimated_total',
         'show_feature_description' => 'show_feature_description',
         'show_hard_limit' => 'show_hard_limit',
         'show_period_toggle' => 'show_period_toggle',
@@ -198,6 +202,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $setters = [
         'show_as_monthly_prices' => 'setShowAsMonthlyPrices',
         'show_credits' => 'setShowCredits',
+        'show_estimated_total' => 'setShowEstimatedTotal',
         'show_feature_description' => 'setShowFeatureDescription',
         'show_hard_limit' => 'setShowHardLimit',
         'show_period_toggle' => 'setShowPeriodToggle',
@@ -212,6 +217,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $getters = [
         'show_as_monthly_prices' => 'getShowAsMonthlyPrices',
         'show_credits' => 'getShowCredits',
+        'show_estimated_total' => 'getShowEstimatedTotal',
         'show_feature_description' => 'getShowFeatureDescription',
         'show_hard_limit' => 'getShowHardLimit',
         'show_period_toggle' => 'getShowPeriodToggle',
@@ -277,6 +283,7 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $this->setIfExists('show_as_monthly_prices', $data ?? [], null);
         $this->setIfExists('show_credits', $data ?? [], null);
+        $this->setIfExists('show_estimated_total', $data ?? [], null);
         $this->setIfExists('show_feature_description', $data ?? [], null);
         $this->setIfExists('show_hard_limit', $data ?? [], null);
         $this->setIfExists('show_period_toggle', $data ?? [], null);
@@ -315,6 +322,9 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
         }
         if ($this->container['show_credits'] === null) {
             $invalidProperties[] = "'show_credits' can't be null";
+        }
+        if ($this->container['show_estimated_total'] === null) {
+            $invalidProperties[] = "'show_estimated_total' can't be null";
         }
         if ($this->container['show_feature_description'] === null) {
             $invalidProperties[] = "'show_feature_description' can't be null";
@@ -393,6 +403,33 @@ class ComponentDisplaySettings implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable show_credits cannot be null');
         }
         $this->container['show_credits'] = $show_credits;
+
+        return $this;
+    }
+
+    /**
+     * Gets show_estimated_total
+     *
+     * @return bool
+     */
+    public function getShowEstimatedTotal()
+    {
+        return $this->container['show_estimated_total'];
+    }
+
+    /**
+     * Sets show_estimated_total
+     *
+     * @param bool $show_estimated_total show_estimated_total
+     *
+     * @return self
+     */
+    public function setShowEstimatedTotal($show_estimated_total)
+    {
+        if (is_null($show_estimated_total)) {
+            throw new \InvalidArgumentException('non-nullable show_estimated_total cannot be null');
+        }
+        $this->container['show_estimated_total'] = $show_estimated_total;
 
         return $this;
     }

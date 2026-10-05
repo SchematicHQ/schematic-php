@@ -60,6 +60,7 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'company_id' => 'string',
         'copied_from_plan_id' => 'string',
+        'copied_price_id' => 'string',
         'description' => 'string',
         'icon' => '\Schematic\Model\PlanIcon',
         'name' => 'string'
@@ -75,6 +76,7 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'company_id' => null,
         'copied_from_plan_id' => null,
+        'copied_price_id' => null,
         'description' => null,
         'icon' => null,
         'name' => null
@@ -88,6 +90,7 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
     protected static array $openAPINullables = [
         'company_id' => false,
         'copied_from_plan_id' => true,
+        'copied_price_id' => true,
         'description' => false,
         'icon' => true,
         'name' => false
@@ -181,6 +184,7 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'company_id' => 'company_id',
         'copied_from_plan_id' => 'copied_from_plan_id',
+        'copied_price_id' => 'copied_price_id',
         'description' => 'description',
         'icon' => 'icon',
         'name' => 'name'
@@ -194,6 +198,7 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'company_id' => 'setCompanyId',
         'copied_from_plan_id' => 'setCopiedFromPlanId',
+        'copied_price_id' => 'setCopiedPriceId',
         'description' => 'setDescription',
         'icon' => 'setIcon',
         'name' => 'setName'
@@ -207,6 +212,7 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'company_id' => 'getCompanyId',
         'copied_from_plan_id' => 'getCopiedFromPlanId',
+        'copied_price_id' => 'getCopiedPriceId',
         'description' => 'getDescription',
         'icon' => 'getIcon',
         'name' => 'getName'
@@ -271,6 +277,7 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
     {
         $this->setIfExists('company_id', $data ?? [], null);
         $this->setIfExists('copied_from_plan_id', $data ?? [], null);
+        $this->setIfExists('copied_price_id', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
@@ -306,15 +313,8 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
         if ($this->container['company_id'] === null) {
             $invalidProperties[] = "'company_id' can't be null";
         }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ((mb_strlen($this->container['description']) > 1024)) {
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 1024)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 1024.";
-        }
-
-        if ((mb_strlen($this->container['description']) < 0)) {
-            $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 0.";
         }
 
         if ($this->container['name'] === null) {
@@ -405,9 +405,43 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * Gets copied_price_id
+     *
+     * @return string|null
+     */
+    public function getCopiedPriceId()
+    {
+        return $this->container['copied_price_id'];
+    }
+
+    /**
+     * Sets copied_price_id
+     *
+     * @param string|null $copied_price_id copied_price_id
+     *
+     * @return self
+     */
+    public function setCopiedPriceId($copied_price_id)
+    {
+        if (is_null($copied_price_id)) {
+            array_push($this->openAPINullablesSetToNull, 'copied_price_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('copied_price_id', $nullablesSetToNull, true);
+            if ($index !== false) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['copied_price_id'] = $copied_price_id;
+
+        return $this;
+    }
+
+    /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -417,7 +451,7 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets description
      *
-     * @param string $description description
+     * @param string|null $description description
      *
      * @return self
      */
@@ -428,9 +462,6 @@ class CreateCustomPlanRequestBody implements ModelInterface, ArrayAccess, \JsonS
         }
         if ((mb_strlen($description) > 1024)) {
             throw new \InvalidArgumentException('invalid length for $description when calling CreateCustomPlanRequestBody., must be smaller than or equal to 1024.');
-        }
-        if ((mb_strlen($description) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $description when calling CreateCustomPlanRequestBody., must be bigger than or equal to 0.');
         }
 
         $this->container['description'] = $description;

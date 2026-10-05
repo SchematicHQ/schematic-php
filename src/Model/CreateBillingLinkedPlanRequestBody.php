@@ -320,15 +320,8 @@ class CreateBillingLinkedPlanRequestBody implements ModelInterface, ArrayAccess,
         if ($this->container['billing_provider'] === null) {
             $invalidProperties[] = "'billing_provider' can't be null";
         }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ((mb_strlen($this->container['description']) > 1024)) {
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 1024)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 1024.";
-        }
-
-        if ((mb_strlen($this->container['description']) < 0)) {
-            $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 0.";
         }
 
         if ($this->container['external_resource_id'] === null) {
@@ -401,7 +394,7 @@ class CreateBillingLinkedPlanRequestBody implements ModelInterface, ArrayAccess,
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -411,7 +404,7 @@ class CreateBillingLinkedPlanRequestBody implements ModelInterface, ArrayAccess,
     /**
      * Sets description
      *
-     * @param string $description description
+     * @param string|null $description description
      *
      * @return self
      */
@@ -422,9 +415,6 @@ class CreateBillingLinkedPlanRequestBody implements ModelInterface, ArrayAccess,
         }
         if ((mb_strlen($description) > 1024)) {
             throw new \InvalidArgumentException('invalid length for $description when calling CreateBillingLinkedPlanRequestBody., must be smaller than or equal to 1024.');
-        }
-        if ((mb_strlen($description) < 0)) {
-            throw new \InvalidArgumentException('invalid length for $description when calling CreateBillingLinkedPlanRequestBody., must be bigger than or equal to 0.');
         }
 
         $this->container['description'] = $description;
